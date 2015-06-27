@@ -1,0 +1,63 @@
+
+Noir type game
+shadow monsters
+
+gizmo
+
+-- upgrades
+
+collars extend the life of gizmo
+ultra collar
+sweet collar
+custom collar with bowtie
+custom collar
+leather collar
+
+costumes give special skills
+raptor costume (ability to shoot fire)
+favorite tshirt (give confidence and extra barking ability)
+
+bone cookie
+bone
+wet food
+
+digging thru different objects
+
+
+-- bosses
+
+giant cat
+giant teddy bear
+quackers
+
+
+-- enemies
+
+evil bones
+
+
+
+-- attacks
+
+digging
+barking
+special powers
+
+
+-- levels
+
+levels start above ground and proceed deeper (deeper into sleep and crazier)
+levels are simple and work like mario
+speed thru levels can be done
+the game is linear
+
+1-5 are the training levels
+the allow the user to get the initial collar and digging skills
+
+-- story
+
+the entire game is a dogs dream
+wakes up in a strange place
+his collar is missing and he finds upgrades throughout the game
+all he can remember is something about his brother
+as he progresses further into sleep state, things get crazier
