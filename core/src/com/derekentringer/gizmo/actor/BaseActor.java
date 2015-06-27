@@ -1,0 +1,73 @@
+package com.derekentringer.gizmo.actor;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.derekentringer.gizmo.actor.data.UserData;
+import com.derekentringer.gizmo.manager.AnimationManager;
+import com.derekentringer.gizmo.util.constant.Constants;
+
+public abstract class BaseActor extends Actor {
+
+    protected Body body;
+    protected UserData userData;
+    protected AnimationManager animationManager;
+    protected float width;
+    protected float height;
+    private TextureRegion[] currentTextureRegion;
+
+    public abstract UserData getUserData();
+
+    public BaseActor(Body body) {
+        this.body = body;
+        this.userData = (UserData) body.getUserData();
+        this.animationManager = new AnimationManager();
+    }
+
+    public void setAnimation(TextureRegion[] textureRegion, float delay) {
+        setCurrentTextureRegion(textureRegion);
+        currentTextureRegion = textureRegion;
+        animationManager.setFrames(textureRegion, delay);
+        width = textureRegion[0].getRegionWidth();
+        height = textureRegion[0].getRegionHeight();
+    }
+
+    public void update(float delayTime) {
+        animationManager.update(delayTime);
+    }
+
+    public void render(SpriteBatch spriteBatch) {
+        spriteBatch.begin();
+        spriteBatch.draw(animationManager.getFrame(),
+                body.getPosition().x * Constants.PPM - width / 2,
+                body.getPosition().y * Constants.PPM - height / 2);
+        spriteBatch.end();
+    }
+
+    public void setCurrentTextureRegion(TextureRegion[] textureRegion) {
+        currentTextureRegion = textureRegion;
+    }
+
+    public TextureRegion[] getCurrentTextureRegion() {
+        return currentTextureRegion;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public Vector2 getPosition() {
+        return body.getPosition();
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+}
