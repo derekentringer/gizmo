@@ -78,7 +78,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void loadLevel() {
-        level = new Level(Constants.LEVEL_THREE);
+        level = new Level(Constants.LEVEL_FIVE);
     }
 
     private void startBackgroundMusic() {
@@ -189,8 +189,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         float maxWidth = (mapWidth * tileSize) - (effectiveViewportWidth / 2f);
         float maxHeight = (mapHeight * tileSize) - (effectiveViewportHeight / 2f);
 
-        tiledCamera.position.x = MathUtils.clamp(playerX * Constants.PPM, minWidth, maxWidth);
-        tiledCamera.position.y = MathUtils.clamp(playerY * Constants.PPM, minHeight, maxHeight);
+        tiledCamera.position.x = Math.round(MathUtils.clamp(playerX * Constants.PPM, minWidth, maxWidth));
+        tiledCamera.position.y = Math.round(MathUtils.clamp(playerY * Constants.PPM, minHeight, maxHeight));
 
         tiledCamera.update();
     }

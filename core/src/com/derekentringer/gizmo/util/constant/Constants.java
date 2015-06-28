@@ -22,6 +22,8 @@ public class Constants {
     //levels
     public static final String LEVEL_ONE = "res/maps/level_one.tmx";
     public static final String LEVEL_TWO = "res/maps/level_two.tmx";
-    public static final String LEVEL_THREE = "res/maps/level_three_simple.tmx";
+    public static final String LEVEL_THREE = "res/maps/level_three.tmx";
+    public static final String LEVEL_FOUR = "res/maps/level_four.tmx";
+    public static final String LEVEL_FIVE = "res/maps/level_five.tmx";
 
 }

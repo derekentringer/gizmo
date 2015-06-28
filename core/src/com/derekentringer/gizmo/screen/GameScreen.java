@@ -2,7 +2,7 @@ package com.derekentringer.gizmo.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.stage.GameStage;
@@ -24,7 +24,7 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         //clear the screen
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //set the viewport
         Gdx.gl.glViewport((int) viewPort.x, (int) viewPort.y,
