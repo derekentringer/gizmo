@@ -17,7 +17,7 @@ public class PlayerUtils {
         PolygonShape shape = new PolygonShape();
 
         // create player
-        bodyDef.position.set(WorldUtils.ppmCalc(45), WorldUtils.ppmCalc(45));
+        bodyDef.position.set(WorldUtils.ppmCalc(143), WorldUtils.ppmCalc(120));
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 

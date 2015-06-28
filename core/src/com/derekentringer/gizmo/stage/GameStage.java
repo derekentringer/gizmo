@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -29,8 +30,8 @@ import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate {
 
-    //private OrthographicCamera camera;
-    //private Box2DDebugRenderer renderer;
+    private OrthographicCamera camera;
+    private Box2DDebugRenderer renderer;
 
     private OrthographicCamera tiledCamera;
 
@@ -52,7 +53,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         setupWorld();
         loadLevel();
         tileMapBodies();
-        //setupDebugRendererCamera();
+        setupDebugRendererCamera();
         setupTiledCamera();
         startBackgroundMusic();
     }
@@ -64,12 +65,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         createPlayer();
     }
 
-    /*private void setupDebugRendererCamera() {
+    private void setupDebugRendererCamera() {
         renderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
         camera.update();
-    }*/
+    }
 
     private void setupTiledCamera() {
         tiledCamera = new OrthographicCamera();
@@ -78,7 +79,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void loadLevel() {
-        level = new Level(Constants.LEVEL_FIVE);
+        level = new Level(Constants.LEVEL_SEVEN);
     }
 
     private void startBackgroundMusic() {
