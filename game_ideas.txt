@@ -1,12 +1,47 @@
 
 Noir type game
 shadow monsters
+other underground enemies
 
-gizmo
+Gizmo is on a search for his lost brother. The last he had seen him, he was digging a hole in the forest. Gizmo enters the same hole that his brother did in an attempt to find him. Now Gizmo has found himself going deeper and deeper into the underground dungeons beneath the forest in order to find his brother.
+
+Layer after layer of dungeons take Gizmo up against crazier and crazier enemeies. He finds power ups and loot along the way to let him keep going in his journey.
+
+Every now and then, Gizmo finds a clue that lets him know that his brother went the same way that he is going.
+
+At the end of the game, something tragic happens, but, Gizmo awakes to find that everything was just a dream. His brother is safely sleeping next to him. He falls back asleep.
+
+
+-- game levels (Decending Dungeons)
+
+- introduction
+Gizmo find the hole that his brother entered in the forest near some rocks.
+
+Gizmo falls down into the hole and looses his favorite collar.
+
+- level 1 The Primer Dungeon (small level)
+Let the user get used to controlling Gizmo. Gives them a few obstacles to maneuvre. A few easy enemies to get used to barking and clawing and their effects. A power up or two to highlight where health is in the UI.
+
+- level 2 Deeper We Go (regular level)
+This level is a bit more complicated and larger. At the end of this level, player gets their first upgrade. A collar. Opens up dig ability.
+
+
+
+-- characters
+
+japanese chin brothers
+dog brothers
+gizmo (black/white)
+sushi (red/white)
+
+barking
+clawing
+jumping
 
 -- upgrades
 
 collars extend the life of gizmo
+collars give gizmo the ability to dig thru certain types of dirt/stone
 ultra collar
 sweet collar
 custom collar with bowtie
@@ -21,20 +56,18 @@ bone cookie
 bone
 wet food
 
-digging thru different objects
-
 
 -- bosses
 
 giant cat
-giant teddy bear
+teddy bear
 quackers
 
 
 -- enemies
 
 evil bones
-
+cave dwelling creatures
 
 
 -- attacks
