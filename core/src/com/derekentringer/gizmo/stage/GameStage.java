@@ -272,10 +272,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         if(UserInput.isDown(UserInput.ENTER_DOOR)) {
             if(playerActor.getIsAtDoor()) {
                 //TODO load the correct level
-                if(doorActor.getDoorType() == DoorType.PREVIOUS) {
+                if(doorActor.getDoorType().equalsIgnoreCase(DoorType.PREVIOUS)) {
                     //
                 }
-                else if(doorActor.getDoorType() == DoorType.NEXT) {
+                else if(doorActor.getDoorType().equalsIgnoreCase(DoorType.NEXT)) {
                     createPlayer();
                 }
             }

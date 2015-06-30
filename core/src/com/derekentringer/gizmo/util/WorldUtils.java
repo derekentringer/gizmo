@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.structure.GroundUserData;
 import com.derekentringer.gizmo.util.constant.Constants;
 
 public class WorldUtils {
@@ -46,7 +45,7 @@ public class WorldUtils {
         fixtureDef.isSensor = isSensor;
 
         Body body = world.createBody(bodyDef);
-        body.createFixture(fixtureDef).setUserData(new GroundUserData());
+        body.createFixture(fixtureDef).setUserData(userData);
         body.setUserData(userData);
 
         chainShape.dispose();
