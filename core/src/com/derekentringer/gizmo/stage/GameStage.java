@@ -142,7 +142,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(cell.getTile() == null) continue;
 
                 //if not empty, create our body for the cell
-                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(), world, tileSize, row, col, true), DoorType.PREVIOUS);
+                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.PREVIOUS), world, tileSize, row, col, true));
                 addActor(doorActor);
             }
         }
@@ -158,7 +158,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(cell.getTile() == null) continue;
 
                 //if not empty, create our body for the cell
-                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(), world, tileSize, row, col, true), DoorType.NEXT);
+                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.NEXT), world, tileSize, row, col, true));
                 addActor(doorActor);
             }
         }
@@ -182,6 +182,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
 
         if(FixtureUtils.fixtureIsDoor(a)) {
+            //TODO need to pass which type of door
             playerActor.setIsAtDoor(true);
         }
         else if(FixtureUtils.fixtureIsDoor(b)) {
