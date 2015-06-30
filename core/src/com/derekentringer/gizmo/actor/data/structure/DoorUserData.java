@@ -5,16 +5,9 @@ import com.derekentringer.gizmo.actor.data.ObjectDataType;
 
 public class DoorUserData extends ObjectData {
 
-    private String sDoorType;
-
-    public DoorUserData(String doorType) {
+    public DoorUserData() {
         super();
         objectDataType = ObjectDataType.DOOR;
-        sDoorType = doorType;
-    }
-
-    public String getDoorType() {
-        return sDoorType;
     }
 
 }

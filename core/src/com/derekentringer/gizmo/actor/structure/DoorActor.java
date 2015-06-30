@@ -6,13 +6,19 @@ import com.derekentringer.gizmo.actor.data.ObjectData;
 
 public class DoorActor extends BaseActor {
 
-    public DoorActor(Body body) {
+    private String doorType;
+
+    public DoorActor(Body body, String doorType) {
         super(body);
     }
 
     @Override
     public ObjectData getUserData() {
         return null;
+    }
+
+    public String getDoorType() {
+        return doorType;
     }
 
 }
