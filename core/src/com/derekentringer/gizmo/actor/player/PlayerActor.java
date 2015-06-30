@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.UserData;
+import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
 
@@ -30,6 +30,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private Texture gizmoStandingLeft;
 
     public boolean isOnGround;
+    public boolean isAtDoor;
     public int facingDirection;
 
     public PlayerActor(Body body) {
@@ -49,7 +50,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     @Override
-    public UserData getUserData() {
+    public ObjectData getUserData() {
         return null;
     }
 
@@ -68,6 +69,14 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     public boolean getIsOnGround() {
         return isOnGround;
+    }
+
+    public void setIsAtDoor(boolean isAtDoor) {
+        this.isAtDoor = isAtDoor;
+    }
+
+    public boolean getIsAtDoor() {
+        return isAtDoor;
     }
 
     public void moveLeft() {

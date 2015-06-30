@@ -17,12 +17,12 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown (int keycode) {
-        //arrow key movement
         if(keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
+        //arrow key movement
         if(keycode == Input.Keys.UP) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, true);
+            UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
         if(keycode == Input.Keys.RIGHT) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
@@ -32,7 +32,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         //wsad key movement
         if(keycode == Input.Keys.W) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, true);
+            UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
         if(keycode == Input.Keys.D) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
@@ -45,12 +45,12 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyUp (int keycode) {
-        //arrow key movement
         if(keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
+        //arrow key movement
         if(keycode == Input.Keys.UP) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, false);
+            UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
         if(keycode == Input.Keys.RIGHT) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, false);
@@ -60,7 +60,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         //wsad key movement
         if(keycode == Input.Keys.W) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, false);
+            UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
         if(keycode == Input.Keys.D) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, false);
@@ -108,6 +108,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
+        else if(buttonCode == PS3Controller.BUTTON_TRIANGLE
+                || buttonCode == NexusPlayerController.BUTTON_Y) {
+            UserInput.setKey(UserInput.ENTER_DOOR, true);
+        }
         return true;
     }
 
@@ -116,6 +120,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if(buttonCode == PS3Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
+        }
+        else if(buttonCode == PS3Controller.BUTTON_TRIANGLE
+                || buttonCode == NexusPlayerController.BUTTON_Y) {
+            UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
         return true;
     }

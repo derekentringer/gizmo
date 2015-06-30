@@ -1,10 +1,9 @@
 package com.derekentringer.gizmo.actor.data;
 
-public enum UserDataType {
-
+public enum ObjectDataType {
     GROUND,
     WALL,
+    DOOR,
     PLAYER,
     PLAYER_HIT_AREA
-    
 }

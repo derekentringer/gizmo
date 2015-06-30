@@ -3,11 +3,11 @@ package com.derekentringer.gizmo.actor.data.structure;
 import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.actor.data.ObjectDataType;
 
-public class WallUserData extends ObjectData {
+public class DoorUserData extends ObjectData {
 
-    public WallUserData() {
+    public DoorUserData() {
         super();
-        objectDataType = ObjectDataType.GROUND;
+        objectDataType = ObjectDataType.DOOR;
     }
 
 }

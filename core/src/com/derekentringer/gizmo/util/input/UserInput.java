@@ -5,11 +5,12 @@ public class UserInput {
     public static boolean[] currentKey;
     public static boolean[] previousKey;
 
-    public static final int NUM_KEYS = 3;
+    public static final int NUM_KEYS = 4;
 
     public static final int JUMP_BUTTON = 0;
     public static final int LEFT_BUTTON = 1;
     public static final int RIGHT_BUTTON = 2;
+    public static final int ENTER_DOOR = 3;
 
     static {
         currentKey = new boolean[NUM_KEYS];

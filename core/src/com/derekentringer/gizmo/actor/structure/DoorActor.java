@@ -4,15 +4,22 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.ObjectData;
 
-public class GroundActor extends BaseActor {
+public class DoorActor extends BaseActor {
 
-    public GroundActor(Body body) {
+    private String doorType;
+
+    public DoorActor(Body body, String doorType) {
         super(body);
+        this.doorType = doorType;
     }
 
     @Override
     public ObjectData getUserData() {
         return null;
+    }
+
+    public String getDoorType() {
+        return doorType;
     }
 
 }

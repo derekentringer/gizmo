@@ -15,10 +15,13 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.actor.data.DoorType;
+import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
 import com.derekentringer.gizmo.actor.data.structure.GroundUserData;
 import com.derekentringer.gizmo.actor.data.structure.WallUserData;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
+import com.derekentringer.gizmo.actor.structure.DoorActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.level.Level;
@@ -40,6 +43,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private GroundActor groundActor;
     private WallActor wallActor;
+    private DoorActor doorActor;
     private PlayerActor playerActor;
 
     private SpriteBatch spriteBatch;
@@ -106,7 +110,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(cell.getTile() == null) continue;
 
                 //if not empty, create our body for the cell
-                groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundUserData(), world, tileSize, row, col));
+                groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundUserData(), world, tileSize, row, col, false));
                 addActor(groundActor);
             }
         }
@@ -122,8 +126,40 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(cell.getTile() == null) continue;
 
                 //if not empty, create our body for the cell
-                wallActor = new WallActor(WorldUtils.createStaticBody(new WallUserData(), world, tileSize, row, col));
+                wallActor = new WallActor(WorldUtils.createStaticBody(new WallUserData(), world, tileSize, row, col, false));
                 addActor(wallActor);
+            }
+        }
+
+        TiledMapTileLayer layerDoorPrevious = (TiledMapTileLayer) level.getTiledMap().getLayers().get("doorprevious");
+        tileSize = layerDoorPrevious.getTileWidth();
+
+        for(int row = 0; row < layerDoorPrevious.getHeight(); row++) {
+            for(int col = 0; col < layerDoorPrevious.getWidth(); col++) {
+                //check for empty cells
+                TiledMapTileLayer.Cell cell = layerDoorPrevious.getCell(col, row);
+                if(cell == null) continue;
+                if(cell.getTile() == null) continue;
+
+                //if not empty, create our body for the cell
+                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(), world, tileSize, row, col, true), DoorType.PREVIOUS);
+                addActor(doorActor);
+            }
+        }
+
+        TiledMapTileLayer layerDoorNext = (TiledMapTileLayer) level.getTiledMap().getLayers().get("doornext");
+        tileSize = layerGround.getTileWidth();
+
+        for(int row = 0; row < layerDoorNext.getHeight(); row++) {
+            for(int col = 0; col < layerDoorNext.getWidth(); col++) {
+                //check for empty cells
+                TiledMapTileLayer.Cell cell = layerDoorNext.getCell(col, row);
+                if(cell == null) continue;
+                if(cell.getTile() == null) continue;
+
+                //if not empty, create our body for the cell
+                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(), world, tileSize, row, col, true), DoorType.NEXT);
+                addActor(doorActor);
             }
         }
     }
@@ -143,6 +179,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
         else if(FixtureUtils.fixtureIsPlayerHitArea(b)) {
             playerActor.setIsOnGround(true);
+        }
+
+        if(FixtureUtils.fixtureIsDoor(a)) {
+            playerActor.setIsAtDoor(true);
+        }
+        else if(FixtureUtils.fixtureIsDoor(b)) {
+            playerActor.setIsAtDoor(true);
         }
     }
 
@@ -224,6 +267,18 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         if(!UserInput.isDown(UserInput.JUMP_BUTTON)) {
             playerActor.stopJumping();
+        }
+
+        if(UserInput.isDown(UserInput.ENTER_DOOR)) {
+            if(playerActor.getIsAtDoor()) {
+                //TODO load the correct level
+                if(doorActor.getDoorType() == DoorType.PREVIOUS) {
+                    //
+                }
+                else if(doorActor.getDoorType() == DoorType.NEXT) {
+                    createPlayer();
+                }
+            }
         }
     }
 

@@ -5,7 +5,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzlmM1uwyAQhNfXXnKJ3ZI4ef/HrFAZZTJaYLGtpmpGWhEIkP34XXI2s9l+9PVPLetcbCnpO/BOhTe9AW/mnAvr8ga8mXUqvKPr+cOxVzP1eLGeJxs7rzzWv84M3syJdR3hbbG+gjk6R+Cd7HFG99pGWKPMt4NYoUhdsCaLnc8jvNlOFU7YUawR5qy5GNZ1r92RrHuYPaWG8fyO8EaYb6UPj8nj3crtaRX/V6mPuxfMrC3MN+kjwnwqNsrs6Sr+X6U+7l6ON3rMWZ8Op7K2mJl7C29N4EU95U1WjydrvMrcYq0xc9lRrODFWPZ4R+JJj6MnjxdzewQreNkn5cX+5ftolbT1m7om2WrMrBHensCnvDzGiJ/xLjR77AHd+7251XGqMasivD0pn5fPwrnM8ZXHa9ZmbbXrac/86ll/Keld8vAT73x+70f89vbrVt4sZerlt8q7f/OY3EvqCXf4KuUXSSNa7TkmiOQhxMH85uEyxFIw3L3M/JvCfcFnaCSfxTH/THmOj/Wtu1AebbkOlydqA+OzfZGU2ySnzbKDN0mfi5TxWPBZ7M2v56vnu34/Sz+zPfvhjc1WXn6vsy/8mf+zQR7znMu/AQX9YMk=
+   eJzlmM1uwyAQhNfXXnKJ3ZLY7/+aFSqjTEcLLI6VVPVIKwIBsh+/S65mNtuPvv6pZV2LLSU9A+9UeNMJeDPnXFiXE/Bm1qnwjq7nD8fezdTjxXqebOy88lj/OjN4MyfWdYS3xfoO5ugcgXeyxxndaxthjTJvB7FCkbpgTRY7n0d4s10qnLCjWCPMWXMxrOteuyNZn2H2lBrG8zvCG2HeSh8ek8e7l9vTKv6vUh93L5hZe5g36SPCfCk2yuzpLv7fpT7uXo43esxZnw6nsraYmXsPb03gRT3lTVaPJ2u8ytxirTFz2VGs4MVY9nhH4kmPoyePF3N7BCt42Sflxf7l+2iVtPWbuibZasysEd6ewKe8PMaIn/EuNHvsAd37vbnVcaoxqyK8PSmfl8/Cuczxlcdr1mZttevpmfnVs/5GPnEeZXjn83s/4re3X/fyZilTL79X3v17k1SFO3yV8l67Wl8cE0TyEOJgfvNwGWIpGO5eZn6lcF/wGRrJZ3HMP1Oe42N96y6UR1uuw+WJ2sD4bF8k5TbJabM8wZukz0XKeCz4LPbm1/PV812/n6Wf2X774Y3NXl5+r7Mv/Jn/s0Ee85zLvwEG7mCN
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -16,6 +16,16 @@
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztltEKwCAIResfLOj/f3SMFYic5xhXD8jIueHlStXaR3dhsD65scP2882tHd2tfe1wNdPFcu8n1J9/Wfgu1sceSUOEciosyCnrHZCz613cg7wkz1UgveS5CjS72eZZWS/NrvL+TF4q6yV/lferbOdvtnnOdn/OpjfbPJPeeb2Le9R9o86joij+zwNROAUr
+  </data>
+ </layer>
+ <layer name="doornext" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7A5wb9LTCyBo1XQBAAAAOC3uQ4AlCyqwAAg
+  </data>
+ </layer>
+ <layer name="doorprevious" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7Apwb9MLOwjJK2CJgAAAAB8NtcBoLaEMAAf
   </data>
  </layer>
 </map>
