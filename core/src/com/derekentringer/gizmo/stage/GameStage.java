@@ -99,6 +99,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //TODO this can be enhanced for larger levels by creating a Manager -
         //http://siondream.com/blog/games/populate-your-box2d-world-using-the-libgdx-maps-api/
 
+        //createLayer(String layerName, Actor actorType, UserDataType userDataType)
         TiledMapTileLayer layerGround = (TiledMapTileLayer) level.getTiledMap().getLayers().get("ground");
         tileSize = layerGround.getTileWidth();
 
