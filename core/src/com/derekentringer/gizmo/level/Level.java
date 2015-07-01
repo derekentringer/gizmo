@@ -12,7 +12,6 @@ public class Level {
     private TiledMapRenderer tiledMapRenderer;
 
     public Level(String tilemapName) {
-        //TODO need to find out more about the loader params
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
