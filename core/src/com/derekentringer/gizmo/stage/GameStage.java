@@ -142,7 +142,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(cell.getTile() == null) continue;
 
                 //if not empty, create our body for the cell
-                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(), world, tileSize, row, col, true), DoorType.PREVIOUS);
+                DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.PREVIOUS), world, tileSize, row, col, true));
                 addActor(doorActor);
             }
         }
@@ -158,7 +158,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(cell.getTile() == null) continue;
 
                 //if not empty, create our body for the cell
-                doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(), world, tileSize, row, col, true), DoorType.NEXT);
+                DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.NEXT), world, tileSize, row, col, true));
                 addActor(doorActor);
             }
         }
@@ -183,9 +183,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         if(FixtureUtils.fixtureIsDoor(a)) {
             playerActor.setIsAtDoor(true);
+            playerActor.setIsAtDoorUserData((DoorUserData) a.getBody().getUserData());
         }
         else if(FixtureUtils.fixtureIsDoor(b)) {
             playerActor.setIsAtDoor(true);
+            playerActor.setIsAtDoorUserData((DoorUserData) b.getBody().getUserData());
         }
     }
 
@@ -272,10 +274,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         if(UserInput.isDown(UserInput.ENTER_DOOR)) {
             if(playerActor.getIsAtDoor()) {
                 //TODO load the correct level
-                if(doorActor.getDoorType().equalsIgnoreCase(DoorType.PREVIOUS)) {
+                if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
                     //
                 }
-                else if(doorActor.getDoorType().equalsIgnoreCase(DoorType.NEXT)) {
+                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
                     createPlayer();
                 }
             }
