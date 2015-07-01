@@ -1,13 +1,13 @@
 package com.derekentringer.gizmo.actor.data.player;
 
-import com.derekentringer.gizmo.actor.data.UserData;
-import com.derekentringer.gizmo.actor.data.UserDataType;
+import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.actor.data.ObjectDataType;
 
-public class PlayerUserData extends UserData {
+public class PlayerUserData extends ObjectData {
 
     public PlayerUserData() {
         super();
-        userDataType = UserDataType.PLAYER;
+        objectDataType = ObjectDataType.PLAYER;
     }
 
 }

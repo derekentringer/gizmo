@@ -1,7 +1,5 @@
 package com.derekentringer.gizmo.util.input;
 
-import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.controllers.Controller;
@@ -17,12 +15,12 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown (int keycode) {
-        //arrow key movement
         if(keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
+        //arrow key movement
         if(keycode == Input.Keys.UP) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, true);
+            UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
         if(keycode == Input.Keys.RIGHT) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
@@ -32,7 +30,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         //wsad key movement
         if(keycode == Input.Keys.W) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, true);
+            UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
         if(keycode == Input.Keys.D) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
@@ -45,12 +43,12 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyUp (int keycode) {
-        //arrow key movement
         if(keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
+        //arrow key movement
         if(keycode == Input.Keys.UP) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, false);
+            UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
         if(keycode == Input.Keys.RIGHT) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, false);
@@ -60,7 +58,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         //wsad key movement
         if(keycode == Input.Keys.W) {
-            UserInput.setKey(UserInput.JUMP_BUTTON, false);
+            UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
         if(keycode == Input.Keys.D) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, false);
@@ -68,26 +66,6 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if(keycode == Input.Keys.A) {
             UserInput.setKey(UserInput.LEFT_BUTTON, false);
         }
-        return true;
-    }
-
-    //MOBILE
-
-    @Override
-    public boolean touchDown (int screenX, int screenY, int pointer, int button) {
-        if (!Gdx.app.getType().equals(Application.ApplicationType.Android)) {
-            return false;
-        }
-        UserInput.setKey(UserInput.JUMP_BUTTON, true);
-        return true;
-    }
-
-    @Override
-    public boolean touchUp (int screenX, int screenY, int pointer, int button) {
-        if (!Gdx.app.getType().equals(Application.ApplicationType.Android)) {
-            return false;
-        }
-        UserInput.setKey(UserInput.JUMP_BUTTON, false);
         return true;
     }
 
@@ -108,6 +86,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
+        else if(buttonCode == PS3Controller.BUTTON_TRIANGLE
+                || buttonCode == NexusPlayerController.BUTTON_Y) {
+            UserInput.setKey(UserInput.ENTER_DOOR, true);
+        }
         return true;
     }
 
@@ -116,6 +98,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if(buttonCode == PS3Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
+        }
+        else if(buttonCode == PS3Controller.BUTTON_TRIANGLE
+                || buttonCode == NexusPlayerController.BUTTON_Y) {
+            UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
         return true;
     }
@@ -157,5 +143,25 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean accelerometerMoved(Controller controller, int accelerometerCode, Vector3 value) {
         return true;
     }
+
+    //MOBILE not supported
+
+    /*@Override
+    public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+        if (!Gdx.app.getType().equals(Application.ApplicationType.Android)) {
+            return false;
+        }
+        UserInput.setKey(UserInput.JUMP_BUTTON, true);
+        return true;
+    }
+
+    @Override
+    public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+        if (!Gdx.app.getType().equals(Application.ApplicationType.Android)) {
+            return false;
+        }
+        UserInput.setKey(UserInput.JUMP_BUTTON, false);
+        return true;
+    }*/
 
 }

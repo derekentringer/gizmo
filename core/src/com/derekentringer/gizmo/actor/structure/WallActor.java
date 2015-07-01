@@ -2,7 +2,7 @@ package com.derekentringer.gizmo.actor.structure;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.UserData;
+import com.derekentringer.gizmo.actor.data.ObjectData;
 
 public class WallActor extends BaseActor {
 
@@ -11,7 +11,7 @@ public class WallActor extends BaseActor {
     }
 
     @Override
-    public UserData getUserData() {
+    public ObjectData getUserData() {
         return null;
     }
     

@@ -1,13 +1,13 @@
 package com.derekentringer.gizmo.actor.data.structure;
 
-import com.derekentringer.gizmo.actor.data.UserData;
-import com.derekentringer.gizmo.actor.data.UserDataType;
+import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.actor.data.ObjectDataType;
 
-public class GroundUserData extends UserData {
+public class GroundUserData extends ObjectData {
 
     public GroundUserData() {
         super();
-        userDataType = UserDataType.GROUND;
+        objectDataType = ObjectDataType.GROUND;
     }
 
 }

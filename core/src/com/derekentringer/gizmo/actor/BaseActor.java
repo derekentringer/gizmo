@@ -5,24 +5,24 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.derekentringer.gizmo.actor.data.UserData;
+import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.manager.AnimationManager;
 import com.derekentringer.gizmo.util.constant.Constants;
 
 public abstract class BaseActor extends Actor {
 
     protected Body body;
-    protected UserData userData;
+    protected ObjectData userData;
     protected AnimationManager animationManager;
     protected float width;
     protected float height;
     private TextureRegion[] currentTextureRegion;
 
-    public abstract UserData getUserData();
+    public abstract ObjectData getUserData();
 
     public BaseActor(Body body) {
         this.body = body;
-        this.userData = (UserData) body.getUserData();
+        this.userData = (ObjectData) body.getUserData();
         this.animationManager = new AnimationManager();
     }
 

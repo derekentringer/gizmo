@@ -2,19 +2,19 @@ package com.derekentringer.gizmo.util;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.derekentringer.gizmo.actor.data.UserData;
-import com.derekentringer.gizmo.actor.data.UserDataType;
+import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.actor.data.ObjectDataType;
 
 public class BodyUtils {
 
     public static boolean bodyIsPlayer(Body body) {
-        UserData userData = (UserData) body.getUserData();
-        return userData != null && userData.getUserDataType() == UserDataType.PLAYER;
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType() == ObjectDataType.PLAYER;
     }
 
     public static boolean bodyIsGround(Body body) {
-        UserData userData = (UserData) body.getUserData();
-        return userData != null && userData.getUserDataType().equals(UserDataType.GROUND);
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType().equals(ObjectDataType.GROUND);
     }
 
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {

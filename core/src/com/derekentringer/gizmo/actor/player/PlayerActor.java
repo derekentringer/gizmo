@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.UserData;
+import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
 
@@ -30,6 +31,8 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private Texture gizmoStandingLeft;
 
     public boolean isOnGround;
+    public boolean isAtDoor;
+    public DoorUserData isAtDoorUserData;
     public int facingDirection;
 
     public PlayerActor(Body body) {
@@ -49,7 +52,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     @Override
-    public UserData getUserData() {
+    public ObjectData getUserData() {
         return null;
     }
 
@@ -68,6 +71,22 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     public boolean getIsOnGround() {
         return isOnGround;
+    }
+
+    public void setIsAtDoor(boolean isAtDoor) {
+        this.isAtDoor = isAtDoor;
+    }
+
+    public boolean getIsAtDoor() {
+        return isAtDoor;
+    }
+
+    public void setIsAtDoorUserData(DoorUserData doorUserData) {
+        this.isAtDoorUserData = doorUserData;
+    }
+
+    public DoorUserData getIsAtDoorUserData() {
+        return isAtDoorUserData;
     }
 
     public void moveLeft() {
@@ -96,6 +115,12 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
             }
         }
         BodyUtils.applyLinearImpulseToBody(body, 0, "x");
+    }
+
+    public void enterDoor() {
+        if(isAtDoor) {
+
+        }
     }
 
     private void playJumpSfx() {
