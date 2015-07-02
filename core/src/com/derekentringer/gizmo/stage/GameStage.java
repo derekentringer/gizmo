@@ -70,10 +70,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private void loadLevel() {
         level = new Level(Constants.LEVEL_SEVEN);
-        level.createTileMapLayer(world, "wall");
-        level.createTileMapLayer(world, "ground");
-        level.createTileMapLayer(world, "doorprevious");
-        level.createTileMapLayer(world, "doornext");
+        level.createTileMapLayers(world);
     }
 
     private void startBackgroundMusic() {

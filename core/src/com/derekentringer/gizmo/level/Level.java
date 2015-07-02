@@ -32,42 +32,45 @@ public class Level extends Stage {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
 
-    public void createTileMapLayer(World world, String layerName) {
-        TiledMapTileLayer tiledMapTileLayer = (TiledMapTileLayer) getTiledMap().getLayers().get(layerName);
+    public void createTileMapLayers(World world) {
+        for(int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
+            TiledMapTileLayer tiledMapTileLayer = (TiledMapTileLayer) getTiledMap().getLayers().get(curLayer);
 
-        if(tiledMapTileLayer == null) {
-            return;
-        }
+            if (tiledMapTileLayer == null) {
+                return;
+            }
 
-        tileSize = tiledMapTileLayer.getTileWidth();
+            String curLayerName = tiledMapTileLayer.getName();
+            tileSize = tiledMapTileLayer.getTileWidth();
 
-        for(int row = 0; row < tiledMapTileLayer.getHeight(); row++) {
-            for(int col = 0; col < tiledMapTileLayer.getWidth(); col++) {
+            for (int row = 0; row < tiledMapTileLayer.getHeight(); row++) {
+                for (int col = 0; col < tiledMapTileLayer.getWidth(); col++) {
 
-                //check for empty cells
-                TiledMapTileLayer.Cell cell = tiledMapTileLayer.getCell(col, row);
-                if(cell == null) {
-                    continue;
-                }
-                if(cell.getTile() == null) {
-                    continue;
-                }
+                    //check for empty cells
+                    TiledMapTileLayer.Cell cell = tiledMapTileLayer.getCell(col, row);
+                    if (cell == null) {
+                        continue;
+                    }
+                    if (cell.getTile() == null) {
+                        continue;
+                    }
 
-                if(getTiledMap().getLayers().get(layerName).getName().equalsIgnoreCase(GroundUserData.TILE_GROUND)) {
-                    GroundActor groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundUserData(), world, tileSize, row, col, false));
-                    addActor(groundActor);
-                }
-                else if(getTiledMap().getLayers().get(layerName).getName().equalsIgnoreCase(WallUserData.TILE_WALL)) {
-                    WallActor wallActor = new WallActor(WorldUtils.createStaticBody(new WallUserData(), world, tileSize, row, col, false));
-                    addActor(wallActor);
-                }
-                else if(getTiledMap().getLayers().get(layerName).getName().equalsIgnoreCase(DoorType.PREVIOUS)) {
-                    DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.PREVIOUS), world, tileSize, row, col, true));
-                    addActor(doorActor);
-                }
-                else if(getTiledMap().getLayers().get(layerName).getName().equalsIgnoreCase(DoorType.NEXT)) {
-                    DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.NEXT), world, tileSize, row, col, true));
-                    addActor(doorActor);
+                    if (curLayerName.equalsIgnoreCase(GroundUserData.TILE_GROUND)) {
+                        GroundActor groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundUserData(), world, tileSize, row, col, false));
+                        addActor(groundActor);
+                    }
+                    else if (curLayerName.equalsIgnoreCase(WallUserData.TILE_WALL)) {
+                        WallActor wallActor = new WallActor(WorldUtils.createStaticBody(new WallUserData(), world, tileSize, row, col, false));
+                        addActor(wallActor);
+                    }
+                    else if (curLayerName.equalsIgnoreCase(DoorType.PREVIOUS)) {
+                        DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.PREVIOUS), world, tileSize, row, col, true));
+                        addActor(doorActor);
+                    }
+                    else if (curLayerName.equalsIgnoreCase(DoorType.NEXT)) {
+                        DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.NEXT), world, tileSize, row, col, true));
+                        addActor(doorActor);
+                    }
                 }
             }
         }
