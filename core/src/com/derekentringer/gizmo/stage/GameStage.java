@@ -17,7 +17,7 @@ import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
-import com.derekentringer.gizmo.level.Level;
+import com.derekentringer.gizmo.manager.TileMapManager;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -32,7 +32,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private OrthographicCamera tiledCamera;
 
     private World world;
-    private Level level;
+    private TileMapManager tileMapManager;
 
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
@@ -68,9 +68,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         tiledCamera.update();
     }
 
-    private void loadLevel() {
-        level = new Level(Constants.LEVEL_SEVEN);
-        level.createTileMapLayers(world);
+    public void loadLevel() {
+        tileMapManager = new TileMapManager(Constants.LEVEL_SEVEN);
+        tileMapManager.createTileMapLayers(world);
     }
 
     private void startBackgroundMusic() {
@@ -126,8 +126,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         super.draw();
 
         //tiled maps render camera
-        level.getTiledMapRenderer().setView(tiledCamera);
-        level.getTiledMapRenderer().render();
+        tileMapManager.getTiledMapRenderer().setView(tiledCamera);
+        tileMapManager.getTiledMapRenderer().render();
 
         //world debugRenderer camera
         //renderer.render(world, camera.combined);
@@ -141,7 +141,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void updateCameraPlayerMovement(float playerX, float playerY) {
-        MapProperties prop = level.getTiledMap().getProperties();
+        MapProperties prop = tileMapManager.getTiledMap().getProperties();
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
 
@@ -150,8 +150,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         float minWidth = effectiveViewportWidth / 2f;
         float minHeight = effectiveViewportHeight / 2f;
-        float maxWidth = (mapWidth * level.getTileSize()) - (effectiveViewportWidth / 2f);
-        float maxHeight = (mapHeight * level.getTileSize()) - (effectiveViewportHeight / 2f);
+        float maxWidth = (mapWidth * tileMapManager.getTileSize()) - (effectiveViewportWidth / 2f);
+        float maxHeight = (mapHeight * tileMapManager.getTileSize()) - (effectiveViewportHeight / 2f);
 
         tiledCamera.position.x = Math.round(MathUtils.clamp(playerX * Constants.PPM, minWidth, maxWidth));
         tiledCamera.position.y = Math.round(MathUtils.clamp(playerY * Constants.PPM, minHeight, maxHeight));

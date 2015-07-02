@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.level;
+package com.derekentringer.gizmo.manager;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -17,14 +17,14 @@ import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.util.WorldUtils;
 
-public class Level extends Stage {
+public class TileMapManager extends Stage {
 
     private TiledMap tiledMap;
     private TiledMapRenderer tiledMapRenderer;
 
     private float tileSize;
 
-    public Level(String tilemapName) {
+    public TileMapManager(String tilemapName) {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
