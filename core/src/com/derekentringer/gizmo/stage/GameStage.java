@@ -83,7 +83,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void createPlayer() {
-        playerActor = new PlayerActor(PlayerUtils.createPlayer(world));
+        playerActor = new PlayerActor(PlayerUtils.createPlayer(world, 143, 120));
         addActor(playerActor);
     }
 
