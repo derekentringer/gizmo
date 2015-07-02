@@ -95,10 +95,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         Fixture a =  contact.getFixtureA();
         Fixture b =  contact.getFixtureB();
 
-        if(FixtureUtils.fixtureIsPlayerHitArea(a)) {
+        if(FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
             playerActor.setIsOnGround(true);
         }
-        else if(FixtureUtils.fixtureIsPlayerHitArea(b)) {
+        else if(FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsGround(a)) {
             playerActor.setIsOnGround(true);
         }
 
