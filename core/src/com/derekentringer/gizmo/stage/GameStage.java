@@ -4,9 +4,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -17,13 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
-import com.derekentringer.gizmo.actor.data.structure.GroundUserData;
-import com.derekentringer.gizmo.actor.data.structure.WallUserData;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
-import com.derekentringer.gizmo.actor.structure.DoorActor;
-import com.derekentringer.gizmo.actor.structure.GroundActor;
-import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
@@ -33,31 +26,25 @@ import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate {
 
-    private OrthographicCamera camera;
-    private Box2DDebugRenderer renderer;
+    //private OrthographicCamera camera;
+    //private Box2DDebugRenderer renderer;
 
     private OrthographicCamera tiledCamera;
 
     private World world;
     private Level level;
 
-    private GroundActor groundActor;
-    private WallActor wallActor;
-    private DoorActor doorActor;
-    private PlayerActor playerActor;
-
-    private SpriteBatch spriteBatch;
-
-    private float tileSize;
-
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
-    
+
+    private PlayerActor playerActor;
+    private SpriteBatch spriteBatch;
+
     public GameStage() {
         setupWorld();
         loadLevel();
-        tileMapBodies();
-        setupDebugRendererCamera();
+        createPlayer();
+        //setupDebugRendererCamera();
         setupTiledCamera();
         startBackgroundMusic();
     }
@@ -66,15 +53,14 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         spriteBatch = new SpriteBatch();
         world = WorldUtils.createWorld();
         world.setContactListener(this);
-        createPlayer();
     }
 
-    private void setupDebugRendererCamera() {
-        renderer = new Box2DDebugRenderer();
+    /*private void setupDebugRendererCamera() {
+        renderer = new  zBox2DDebugRenderer();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
         camera.update();
-    }
+    }*/
 
     private void setupTiledCamera() {
         tiledCamera = new OrthographicCamera();
@@ -84,6 +70,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private void loadLevel() {
         level = new Level(Constants.LEVEL_SEVEN);
+        level.createTileMapLayer(world, "wall");
+        level.createTileMapLayer(world, "ground");
+        level.createTileMapLayer(world, "doorprevious");
+        level.createTileMapLayer(world, "doornext");
     }
 
     private void startBackgroundMusic() {
@@ -92,76 +82,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             backgroundMusic.play();
             backgroundMusic.setLooping(true);
             backgroundMusic.setVolume(0.2f);
-        }
-    }
-
-    private void tileMapBodies() {
-        //TODO this can be enhanced for larger levels by creating a Manager -
-        //http://siondream.com/blog/games/populate-your-box2d-world-using-the-libgdx-maps-api/
-
-        //createLayer(String layerName, Actor actorType, UserDataType userDataType)
-        TiledMapTileLayer layerGround = (TiledMapTileLayer) level.getTiledMap().getLayers().get("ground");
-        tileSize = layerGround.getTileWidth();
-
-        for(int row = 0; row < layerGround.getHeight(); row++) {
-            for(int col = 0; col < layerGround.getWidth(); col++) {
-                //check for empty cells
-                TiledMapTileLayer.Cell cell = layerGround.getCell(col, row);
-                if(cell == null) continue;
-                if(cell.getTile() == null) continue;
-
-                //if not empty, create our body for the cell
-                groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundUserData(), world, tileSize, row, col, false));
-                addActor(groundActor);
-            }
-        }
-
-        TiledMapTileLayer layerWall = (TiledMapTileLayer) level.getTiledMap().getLayers().get("wall");
-        tileSize = layerWall.getTileWidth();
-
-        for(int row = 0; row < layerWall.getHeight(); row++) {
-            for(int col = 0; col < layerWall.getWidth(); col++) {
-                //check for empty cells
-                TiledMapTileLayer.Cell cell = layerWall.getCell(col, row);
-                if(cell == null) continue;
-                if(cell.getTile() == null) continue;
-
-                //if not empty, create our body for the cell
-                wallActor = new WallActor(WorldUtils.createStaticBody(new WallUserData(), world, tileSize, row, col, false));
-                addActor(wallActor);
-            }
-        }
-
-        TiledMapTileLayer layerDoorPrevious = (TiledMapTileLayer) level.getTiledMap().getLayers().get("doorprevious");
-        tileSize = layerDoorPrevious.getTileWidth();
-
-        for(int row = 0; row < layerDoorPrevious.getHeight(); row++) {
-            for(int col = 0; col < layerDoorPrevious.getWidth(); col++) {
-                //check for empty cells
-                TiledMapTileLayer.Cell cell = layerDoorPrevious.getCell(col, row);
-                if(cell == null) continue;
-                if(cell.getTile() == null) continue;
-
-                //if not empty, create our body for the cell
-                DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.PREVIOUS), world, tileSize, row, col, true));
-                addActor(doorActor);
-            }
-        }
-
-        TiledMapTileLayer layerDoorNext = (TiledMapTileLayer) level.getTiledMap().getLayers().get("doornext");
-        tileSize = layerGround.getTileWidth();
-
-        for(int row = 0; row < layerDoorNext.getHeight(); row++) {
-            for(int col = 0; col < layerDoorNext.getWidth(); col++) {
-                //check for empty cells
-                TiledMapTileLayer.Cell cell = layerDoorNext.getCell(col, row);
-                if(cell == null) continue;
-                if(cell.getTile() == null) continue;
-
-                //if not empty, create our body for the cell
-                DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.NEXT), world, tileSize, row, col, true));
-                addActor(doorActor);
-            }
         }
     }
 
@@ -233,8 +153,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         float minWidth = effectiveViewportWidth / 2f;
         float minHeight = effectiveViewportHeight / 2f;
-        float maxWidth = (mapWidth * tileSize) - (effectiveViewportWidth / 2f);
-        float maxHeight = (mapHeight * tileSize) - (effectiveViewportHeight / 2f);
+        float maxWidth = (mapWidth * level.getTileSize()) - (effectiveViewportWidth / 2f);
+        float maxHeight = (mapHeight * level.getTileSize()) - (effectiveViewportHeight / 2f);
 
         tiledCamera.position.x = Math.round(MathUtils.clamp(playerX * Constants.PPM, minWidth, maxWidth));
         tiledCamera.position.y = Math.round(MathUtils.clamp(playerY * Constants.PPM, minHeight, maxHeight));
