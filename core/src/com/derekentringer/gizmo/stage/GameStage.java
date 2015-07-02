@@ -39,10 +39,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private PlayerActor playerActor;
     private SpriteBatch spriteBatch;
 
+    private GameLevel currentLevel;
+
     public GameStage(GameLevel level) {
+        currentLevel = level;
         setupWorld();
         loadLevel(level);
-        createPlayer();
+        createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
         //setupDebugRendererCamera();
         setupTiledCamera();
     }
@@ -80,8 +83,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }*/
 
-    private void createPlayer() {
-        playerActor = new PlayerActor(PlayerUtils.createPlayer(world, 143, 120));
+    private void createPlayer(int xPos, int yPos) {
+        playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
         addActor(playerActor);
     }
 
@@ -191,15 +194,26 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             if(playerActor.getIsAtDoor()) {
                 //TODO load the correct level
                 if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
-
-                    tileMapManager.destroyTiledMap();
-                    WorldUtils.destroyBodies(world);
-                    loadLevel(Constants.LEVEL_SIX);
-                    createPlayer();
-
+                    if((Integer) currentLevel.getLevel() > 0) {
+                        tileMapManager.destroyTiledMap();
+                        WorldUtils.destroyBodies(world);
+                        int newLevel = (Integer) currentLevel.getLevel() - 1;
+                        currentLevel = Constants.gameLevels.get(newLevel);
+                        loadLevel(Constants.gameLevels.get(newLevel));
+                        createPlayer((Integer) Constants.gameLevels.get(newLevel).getXpos(),
+                                (Integer) Constants.gameLevels.get(newLevel).getYpos());
+                    }
                 }
                 else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-
+                    if((Integer) currentLevel.getLevel() < Constants.gameLevels.size()) {
+                        tileMapManager.destroyTiledMap();
+                        WorldUtils.destroyBodies(world);
+                        int newLevel = (Integer) currentLevel.getLevel() + 1;
+                        currentLevel = Constants.gameLevels.get(newLevel);
+                        loadLevel(Constants.gameLevels.get(newLevel));
+                        createPlayer((Integer) Constants.gameLevels.get(newLevel).getXpos(),
+                                (Integer) Constants.gameLevels.get(newLevel).getYpos());
+                    }
                 }
             }
         }
@@ -223,7 +237,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerIsOffMap(boolean offMap) {
-        createPlayer();
+        createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
     }
 
 }

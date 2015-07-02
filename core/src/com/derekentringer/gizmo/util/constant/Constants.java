@@ -2,6 +2,8 @@ package com.derekentringer.gizmo.util.constant;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class Constants {
 
     public static final boolean DEBUGGING = true;
@@ -20,13 +22,21 @@ public class Constants {
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);
 
     //levels
-    public static final GameLevel<Integer, String> LEVEL_ONE = new GameLevel<Integer, String>(0, "res/maps/level_one.tmx");
-    public static final GameLevel<Integer, String> LEVEL_TWO = new GameLevel<Integer, String>(1, "res/maps/level_two.tmx");
-    public static final GameLevel<Integer, String> LEVEL_THREE = new GameLevel<Integer, String>(2, "res/maps/level_three.tmx");
-    public static final GameLevel<Integer, String> LEVEL_FOUR = new GameLevel<Integer, String>(3, "res/maps/level_four.tmx");
-    public static final GameLevel<Integer, String> LEVEL_FIVE = new GameLevel<Integer, String>(4, "res/maps/level_five.tmx");
-    public static final GameLevel<Integer, String> LEVEL_SIX = new GameLevel<Integer, String>(5, "res/maps/level_six.tmx");
-    public static final GameLevel<Integer, String> LEVEL_SEVEN = new GameLevel<Integer, String>(6, "res/maps/level_seven.tmx");
+    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_ONE = new GameLevel<Integer, String, Integer, Integer>(0, "res/maps/level_one.tmx", 143, 120);
+    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_TWO = new GameLevel<Integer, String, Integer, Integer>(1, "res/maps/level_two.tmx", 143, 120);
+    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_THREE = new GameLevel<Integer, String, Integer, Integer>(2, "res/maps/level_three.tmx", 143, 120);
+
+    public static final ArrayList<GameLevel> gameLevels = new ArrayList<GameLevel>();
+
+    public Constants() {
+        buildGameLevelList();
+    }
+
+    public static void buildGameLevelList() {
+        gameLevels.add(LEVEL_ONE);
+        gameLevels.add(LEVEL_TWO);
+        gameLevels.add(LEVEL_THREE);
+    }
 
 }
 

@@ -1,27 +1,33 @@
 package com.derekentringer.gizmo.util.constant;
 
-public class GameLevel<L,R> {
+public class GameLevel<I,S,X,Y> {
 
-    private final L left;
-    private final R right;
+    private final I levelInt;
+    private final S levelMap;
+    private final X xpos;
+    private final Y ypos;
 
-    public GameLevel(L left, R right) {
-        this.left = left;
-        this.right = right;
+    public GameLevel(I levelInt, S levelMap, X xpos, Y ypos) {
+        this.levelInt = levelInt;
+        this.levelMap = levelMap;
+        this.xpos = xpos;
+        this.ypos = ypos;
     }
 
-    public L getLevel() { return left; }
-    public R getMap() { return right; }
+    public I getLevel() { return levelInt; }
+    public S getMap() { return levelMap; }
+    public X getXpos() { return xpos; }
+    public Y getYpos() { return ypos; }
 
     @Override
-    public int hashCode() { return left.hashCode() ^ right.hashCode(); }
+    public int hashCode() { return levelInt.hashCode() ^ levelMap.hashCode() ^ xpos.hashCode() ^ ypos.hashCode(); }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof GameLevel)) return false;
         GameLevel pairo = (GameLevel) o;
-        return this.left.equals(pairo.getLevel()) &&
-                this.right.equals(pairo.getMap());
+        return this.levelInt.equals(pairo.getLevel())
+                && this.levelMap.equals(pairo.getMap());
     }
 
 }

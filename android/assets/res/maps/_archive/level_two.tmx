@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="blocks" tilewidth="32" tileheight="32">
+  <image source="blocks.png" width="96" height="32"/>
+ </tileset>
+ <layer name="ground" width="50" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztVssKACAIE/z/f+7UJaKyVo7RwFuPLafpZuYCoYCvIxetn1odTL6L1EEGzxt1urOfKWcVtzi87o0Mb4lAtg7Uv7bSr1hqYAQ0P/TssHoeUz8+QY/vKy8hvRvJB/O8mX0/Cigds9xE87izXgFKOlSiAAMhAoY=
+  </data>
+ </layer>
+ <layer name="wall" width="50" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENACAMxMAo+w+NGABBEQkHfPUX74g35O0DRexgsYPFDhY7WOxgsYPFDpZdRx5sCFYfM/o0TF1+/mIAUF8ALw==
+  </data>
+ </layer>
+</map>
