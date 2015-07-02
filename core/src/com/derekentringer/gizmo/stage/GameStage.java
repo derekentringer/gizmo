@@ -70,6 +70,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     public void loadLevel(GameLevel level) {
+        System.out.print("loading level: " + level.getLevel().toString());
         tileMapManager = new TileMapManager(level.getMap().toString());
         tileMapManager.createTileMapLayers(world);
     }
@@ -166,6 +167,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
+    private boolean alreadyEntered = false;
+
     private void handleInput() {
         if(UserInput.isDown(UserInput.JUMP_BUTTON)) {
             if(playerActor.getIsOnGround()) {
@@ -175,10 +178,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
 
         if(UserInput.isDown(UserInput.LEFT_BUTTON)) {
+            alreadyEntered = false;
             playerActor.moveLeft();
         }
 
         if(UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+            alreadyEntered = false;
             playerActor.moveRight();
         }
 
@@ -190,11 +195,14 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.stopJumping();
         }
 
-        if(UserInput.isDown(UserInput.ENTER_DOOR)) {
-            if(playerActor.getIsAtDoor()) {
-                //TODO load the correct level
-                if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
-                    if((Integer) currentLevel.getLevel() > 0) {
+        if (UserInput.isDown(UserInput.ENTER_DOOR)) {
+            if(alreadyEntered) {
+                return;
+            }
+            if (playerActor.getIsAtDoor()) {
+                if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
+                    if ((Integer) currentLevel.getLevel() > 0) {
+                        alreadyEntered = true;
                         tileMapManager.destroyTiledMap();
                         WorldUtils.destroyBodies(world);
                         int newLevel = (Integer) currentLevel.getLevel() - 1;
@@ -204,8 +212,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                                 (Integer) Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
-                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-                    if((Integer) currentLevel.getLevel() < Constants.gameLevels.size()) {
+                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
+                    if ((Integer) currentLevel.getLevel() < Constants.gameLevels.size()) {
+                        alreadyEntered = true;
                         tileMapManager.destroyTiledMap();
                         WorldUtils.destroyBodies(world);
                         int newLevel = (Integer) currentLevel.getLevel() + 1;
