@@ -20,6 +20,7 @@ import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.util.constant.GameLevel;
 import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate {
@@ -38,7 +39,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private PlayerActor playerActor;
     private SpriteBatch spriteBatch;
 
-    public GameStage(String level) {
+    public GameStage(GameLevel level) {
         setupWorld();
         loadLevel(level);
         createPlayer();
@@ -65,8 +66,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         tiledCamera.update();
     }
 
-    public void loadLevel(String level) {
-        tileMapManager = new TileMapManager(level);
+    public void loadLevel(GameLevel level) {
+        tileMapManager = new TileMapManager(level.getMap().toString());
         tileMapManager.createTileMapLayers(world);
     }
 
@@ -195,7 +196,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                     WorldUtils.destroyBodies(world);
                     loadLevel(Constants.LEVEL_SIX);
                     createPlayer();
-                    
+
                 }
                 else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
 

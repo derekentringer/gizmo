@@ -20,12 +20,13 @@ public class Constants {
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);
 
     //levels
-    public static final String LEVEL_ONE = "res/maps/level_one.tmx";
-    public static final String LEVEL_TWO = "res/maps/level_two.tmx";
-    public static final String LEVEL_THREE = "res/maps/level_three.tmx";
-    public static final String LEVEL_FOUR = "res/maps/level_four.tmx";
-    public static final String LEVEL_FIVE = "res/maps/level_five.tmx";
-    public static final String LEVEL_SIX = "res/maps/level_six.tmx";
-    public static final String LEVEL_SEVEN = "res/maps/level_seven.tmx";
+    public static final GameLevel<Integer, String> LEVEL_ONE = new GameLevel<Integer, String>(0, "res/maps/level_one.tmx");
+    public static final GameLevel<Integer, String> LEVEL_TWO = new GameLevel<Integer, String>(1, "res/maps/level_two.tmx");
+    public static final GameLevel<Integer, String> LEVEL_THREE = new GameLevel<Integer, String>(2, "res/maps/level_three.tmx");
+    public static final GameLevel<Integer, String> LEVEL_FOUR = new GameLevel<Integer, String>(3, "res/maps/level_four.tmx");
+    public static final GameLevel<Integer, String> LEVEL_FIVE = new GameLevel<Integer, String>(4, "res/maps/level_five.tmx");
+    public static final GameLevel<Integer, String> LEVEL_SIX = new GameLevel<Integer, String>(5, "res/maps/level_six.tmx");
+    public static final GameLevel<Integer, String> LEVEL_SEVEN = new GameLevel<Integer, String>(6, "res/maps/level_seven.tmx");
 
 }
+
