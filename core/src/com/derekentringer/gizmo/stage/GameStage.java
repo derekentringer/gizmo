@@ -1,6 +1,5 @@
 package com.derekentringer.gizmo.stage;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
@@ -12,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
@@ -40,13 +38,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private PlayerActor playerActor;
     private SpriteBatch spriteBatch;
 
-    public GameStage() {
+    public GameStage(String level) {
         setupWorld();
-        loadLevel();
+        loadLevel(level);
         createPlayer();
         //setupDebugRendererCamera();
         setupTiledCamera();
-        startBackgroundMusic();
     }
 
     private void setupWorld() {
@@ -68,19 +65,19 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         tiledCamera.update();
     }
 
-    public void loadLevel() {
-        tileMapManager = new TileMapManager(Constants.LEVEL_SEVEN);
+    public void loadLevel(String level) {
+        tileMapManager = new TileMapManager(level);
         tileMapManager.createTileMapLayers(world);
     }
 
-    private void startBackgroundMusic() {
+    /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
         if(!Constants.DEBUGGING) {
             backgroundMusic.play();
             backgroundMusic.setLooping(true);
             backgroundMusic.setVolume(0.2f);
         }
-    }
+    }*/
 
     private void createPlayer() {
         playerActor = new PlayerActor(PlayerUtils.createPlayer(world, 143, 120));
@@ -193,10 +190,15 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             if(playerActor.getIsAtDoor()) {
                 //TODO load the correct level
                 if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
-                    //
+
+                    tileMapManager.destroyTiledMap();
+                    WorldUtils.destroyBodies(world);
+                    loadLevel(Constants.LEVEL_SIX);
+                    createPlayer();
+                    
                 }
                 else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-                    createPlayer();
+
                 }
             }
         }

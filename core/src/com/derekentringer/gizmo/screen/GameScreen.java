@@ -14,7 +14,7 @@ public class GameScreen implements Screen {
     private Rectangle viewPort;
 
     public GameScreen() {
-        stage = new GameStage();
+        stage = new GameStage(Constants.LEVEL_SEVEN);
     }
 
     @Override

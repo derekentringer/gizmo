@@ -16,7 +16,7 @@ public class WorldUtils {
         return new World(Constants.WORLD_GRAVITY, true);
     }
 
-    public static void destroyWorld(World world) {
+    public static void destroyBodies(World world) {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         for(Body body : bodies){
