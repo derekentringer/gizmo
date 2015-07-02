@@ -73,8 +73,8 @@ public class Level extends Stage {
         }
     }
 
-    public void destroyLevel() {
-        //TODO
+    public void destroyTiledMap() {
+        tiledMap.dispose();
     }
 
     public TiledMap getTiledMap() {

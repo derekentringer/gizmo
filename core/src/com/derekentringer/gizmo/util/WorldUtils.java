@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.util.constant.Constants;
 
@@ -13,6 +14,14 @@ public class WorldUtils {
 
     public static World createWorld() {
         return new World(Constants.WORLD_GRAVITY, true);
+    }
+
+    public static void destroyWorld(World world) {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for(Body body : bodies){
+            world.destroyBody(body);
+        }
     }
 
     public static float ppmCalc(int dimension) {
