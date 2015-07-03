@@ -200,7 +200,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-                    if ((Integer) currentLevel.getLevel() < Constants.gameLevels.size()) {
+                    if ((Integer) currentLevel.getLevel() < Constants.gameLevels.size() - 1) {
                         alreadyEntered = true;
                         tileMapManager.destroyTiledMap();
                         WorldUtils.destroyBodies(world);

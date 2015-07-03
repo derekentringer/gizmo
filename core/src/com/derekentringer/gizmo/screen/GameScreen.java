@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
 
     public GameScreen() {
         Constants.buildGameLevelList();
-        stage = new GameStage(Constants.gameLevels.get(0));
+        stage = new GameStage(Constants.gameLevels.get(2));
     }
 
     @Override

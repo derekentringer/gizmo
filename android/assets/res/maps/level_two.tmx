@@ -10,7 +10,7 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztl4EKgCAMRNs/ZND//2gGHhwSWeTaxD041EzTmdMtSxAEwZysWamke5aUMiSljiVVXujZRinn5aItv8/SYlPs2xtiPYCgyU4SSrEXNffCCMCvwBZsF9gNPgo+JlG7VJXhazyiuV+TYt9e4fPJcv5WftjiX+f7ghUYgzbezlf4ur+wXmcN3szH2/q/he/tLSz8yCk+9+80Mj1jktZaItaDEKMh/4QvPkYj/pIb9QR2qr/L9Vye8c7VgwMNqQfI
+   eJztlw0KgCAMhdsdMvD+F83ABw+JLHJt4T54qJnmT5tuWYIgCOZkLUo1zUVSy5DUOpY0eaFnG6Wcl5O2/D5Li02xb2+I9QCCLpkklMIWW1vQtA2PwK9gLXhdsG7wUfAxidqlpgxf4xFNe02KfXuFzyfL+Vv5YYt/ne8LVmAM2ng7X+HrvsJ6nzV4Mh9v+/8Uvrf3sPAjh/jcv9KfGRmT9PYSsR6EGA35O7zxMRrxl1xoJFin9rtcz+UZ71wj2AEPiAfc
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
