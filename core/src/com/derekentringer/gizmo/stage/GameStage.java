@@ -28,7 +28,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     //private OrthographicCamera camera;
     //private Box2DDebugRenderer renderer;
 
-    private OrthographicCamera tiledCamera;
+    private OrthographicCamera mainCamera;
+    private OrthographicCamera backgroundCamera;
 
     private World world;
     private TileMapManager tileMapManager;
@@ -48,7 +49,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         loadLevel(level);
         createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
         //setupDebugRendererCamera();
-        setupTiledCamera();
+        setupMainCamera();
+        setupBackgroundCamera();
     }
 
     private void setupWorld() {
@@ -57,15 +59,22 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         world.setContactListener(this);
     }
 
-    private void setupTiledCamera() {
-        tiledCamera = new OrthographicCamera();
-        tiledCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        tiledCamera.update();
+    private void setupMainCamera() {
+        mainCamera = new OrthographicCamera();
+        mainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mainCamera.update();
+    }
+
+    private void setupBackgroundCamera() {
+        backgroundCamera = new OrthographicCamera();
+        backgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        backgroundCamera.zoom = 1.5f;
+        backgroundCamera.update();
     }
 
     public void loadLevel(GameLevel level) {
         System.out.print("loading level: " + level.getLevel().toString());
-        tileMapManager = new TileMapManager(level.getMap().toString(), "res/maps/level_three.tmx");
+        tileMapManager = new TileMapManager(level.getMap().toString(), "res/maps/level_background.tmx");
         tileMapManager.createTileMapLayers(world);
     }
 
@@ -116,16 +125,18 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         super.draw();
 
         //tiled maps render camera
-        tileMapManager.getTiledMapRenderer().setView(tiledCamera);
+        tileMapManager.getTiledMapBackgroundRenderer().setView(backgroundCamera);
+        tileMapManager.getTiledMapBackgroundRenderer().render();
+
+        tileMapManager.getTiledMapRenderer().setView(mainCamera);
         tileMapManager.getTiledMapRenderer().render();
 
-        tileMapManager.getTiledMapBackgroundRenderer().setView(tiledCamera);
-        tileMapManager.getTiledMapBackgroundRenderer().render();
+
 
         //world debugRenderer camera
         //renderer.render(world, camera.combined);
 
-        spriteBatch.setProjectionMatrix(tiledCamera.combined);
+        spriteBatch.setProjectionMatrix(mainCamera.combined);
         playerActor.render(spriteBatch);
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
@@ -138,18 +149,23 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
 
-        effectiveViewportWidth = tiledCamera.viewportWidth * tiledCamera.zoom;
-        effectiveViewportHeight = tiledCamera.viewportHeight * tiledCamera.zoom;
+        effectiveViewportWidth = mainCamera.viewportWidth * mainCamera.zoom;
+        effectiveViewportHeight = mainCamera.viewportHeight * mainCamera.zoom;
 
         float minWidth = effectiveViewportWidth / 2f;
         float minHeight = effectiveViewportHeight / 2f;
         float maxWidth = (mapWidth * tileMapManager.getTileSize()) - (effectiveViewportWidth / 2f);
         float maxHeight = (mapHeight * tileMapManager.getTileSize()) - (effectiveViewportHeight / 2f);
 
-        tiledCamera.position.x = Math.round(MathUtils.clamp(tiledCamera.position.x + (playerX * Constants.PPM - tiledCamera.position.x) * 0.1f, minWidth, maxWidth));
-        tiledCamera.position.y = Math.round(MathUtils.clamp(tiledCamera.position.y + (playerY * Constants.PPM - tiledCamera.position.y) * 0.1f, minHeight, maxHeight));
+        mainCamera.position.x = Math.round(MathUtils.clamp(mainCamera.position.x + (playerX * Constants.PPM - mainCamera.position.x) * 0.1f, minWidth, maxWidth));
+        mainCamera.position.y = Math.round(MathUtils.clamp(mainCamera.position.y + (playerY * Constants.PPM - mainCamera.position.y) * 0.1f, minHeight, maxHeight));
 
-        tiledCamera.update();
+        mainCamera.update();
+
+        backgroundCamera.position.x = Math.round(MathUtils.clamp(backgroundCamera.position.x + (playerX * Constants.PPM - backgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
+        backgroundCamera.position.y = Math.round(MathUtils.clamp(backgroundCamera.position.y + (playerY * Constants.PPM - backgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
+
+        backgroundCamera.update();
     }
 
     private void handlePlayerPosition(float playerY) {
