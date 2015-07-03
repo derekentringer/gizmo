@@ -93,6 +93,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorUserData) b.getBody().getUserData());
         }
+        else {
+            playerActor.setIsAtDoor(false);
+        }
     }
 
     @Override
