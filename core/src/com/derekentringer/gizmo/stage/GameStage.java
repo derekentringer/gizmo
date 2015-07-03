@@ -40,6 +40,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private SpriteBatch spriteBatch;
 
     private GameLevel currentLevel;
+    private boolean alreadyEntered = false;
 
     public GameStage(GameLevel level) {
         currentLevel = level;
@@ -64,7 +65,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     public void loadLevel(GameLevel level) {
         System.out.print("loading level: " + level.getLevel().toString());
-        tileMapManager = new TileMapManager(level.getMap().toString());
+        tileMapManager = new TileMapManager(level.getMap().toString(), "res/maps/level_three.tmx");
         tileMapManager.createTileMapLayers(world);
     }
 
@@ -118,6 +119,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         tileMapManager.getTiledMapRenderer().setView(tiledCamera);
         tileMapManager.getTiledMapRenderer().render();
 
+        tileMapManager.getTiledMapBackgroundRenderer().setView(tiledCamera);
+        tileMapManager.getTiledMapBackgroundRenderer().render();
+
         //world debugRenderer camera
         //renderer.render(world, camera.combined);
 
@@ -153,8 +157,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerIsOffMap(true);
         }
     }
-
-    private boolean alreadyEntered = false;
 
     private void handleInput() {
         if(UserInput.isDown(UserInput.JUMP_BUTTON)) {

@@ -20,16 +20,20 @@ import com.derekentringer.gizmo.util.WorldUtils;
 public class TileMapManager extends Stage {
 
     private TiledMap tiledMap;
+    private TiledMap tiledMapBackground;
     private TiledMapRenderer tiledMapRenderer;
+    private TiledMapRenderer tiledMapBackgroundRenderer;
 
     private float tileSize;
 
-    public TileMapManager(String tilemapName) {
+    public TileMapManager(String tileMapName, String tileMapBackground) {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
-        tiledMap = new TmxMapLoader().load(tilemapName, params);
+        tiledMap = new TmxMapLoader().load(tileMapName, params);
+        tiledMapBackground = new TmxMapLoader().load(tileMapBackground, params);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        tiledMapBackgroundRenderer = new OrthogonalTiledMapRenderer(tiledMapBackground);
     }
 
     public void createTileMapLayers(World world) {
@@ -86,6 +90,10 @@ public class TileMapManager extends Stage {
 
     public TiledMapRenderer getTiledMapRenderer() {
         return tiledMapRenderer;
+    }
+
+    public TiledMapRenderer getTiledMapBackgroundRenderer() {
+        return tiledMapBackgroundRenderer;
     }
 
     public float getTileSize() {
