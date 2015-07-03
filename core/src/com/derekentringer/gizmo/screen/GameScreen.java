@@ -13,6 +13,8 @@ public class GameScreen implements Screen {
     private GameStage stage;
     private Rectangle viewPort;
 
+    //private FPSLogger fpsLogger = new FPSLogger();
+
     public GameScreen() {
         Constants.buildGameLevelList();
         stage = new GameStage(Constants.gameLevels.get(0));
@@ -34,6 +36,8 @@ public class GameScreen implements Screen {
         //Update the stage
         stage.draw();
         stage.act(delta);
+
+        //fpsLogger.log();
     }
 
     @Override
