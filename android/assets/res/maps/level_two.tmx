@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="1">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
-  <image source="tileset/bricks.png" width="256" height="128"/>
+  <image source="tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmOtOwzAMRt0/e4ItWtsh3v8toSKfejDOrRQmsGSlydLYJxfH3dXMbvYh93+qm1yzplxKWu/V5EwfX76hD1eKd8q8c4ffPfJT6zPKu77rJZfi3ThvmTXB5zXwne2/zdrDvuJZnCwts06Zl/uZXPdC+7NYS9xL5pJu9Ve0m+37ebI9XonLs0Vtz2QdVfFunNrXf5G31754J9tjtGdbC/UzWEvvPgbH6PXDwDrb5/i8QKN6zQb9jfq23l8PsPYwb3LLqn3deq9n/KXiT4+PS9DWw9ryaxPFKfJO0CNzWutTuy+PnIcRbrP97hUzeUf30RTobPuZ0dwmxykZZe4Vv746uwltvu+IHZ0R5WxilR3N5aWiZ7GSw2Cf+WSLt8eeX2PFRM8a7esW8xGJeFPQ56hNnhEpcxqy+rHJfQYrRefX30c11kfW1rjKVZPtZ9jzlmxEcyFp2ZZcgjb5pDWwgg2y1vIsP67WWNyy0ROT+TvF2474GQu8X/wGJpuXu33Ns6K1ZlzS+Dov5D0ahz0vcyDP6evygb7Uzgp5yS8Re2kv+zk9g3dEovs3OisqN1tRnumfmaNyDx39z4jibXAu2ab9xVgif1R6WQplS5iXMz73/mfUYo7mU8+cX37rJvt8R3JeaqKzyNieXElf5uCd5BhK8TGq06aUbZwLxuJofSNfI9/97zc3DvMr31ftvNv8XVer83udvvCZeY7qWuet/Q2DmlZo
+   eJzdmFluwzAMROmfnCAW4i1Fc/9DtkI18GRAa6vbBiVAyFZkkU/UQuVqZqN9ye2fapRr0pBKSOm7nJzp4/s3dP3UC5XgHRLvVOF3jfxUfEp8m7wviROlJc4xsQbyeXN85/rfZq1hX+iZOe/EG1mHxMvz+SEMkPsLsB5xz4kLGt/fqN5sn8+D7fsVuDSWm4zDX7O2KngjJ+Y1ZElqhbpX4K21D97B9j2a2TjGiK3He7afa2MftX4YsU72vD/PpN57zgb767UtfX/vYK1hjjImxbwufVfT/5zxp8bH2amrYS35FQX7FPMOpD1jmmuzZbRnPbRwm+1nL5iZt3UeDY5Otq8ZjG0QTkgrc61ofLF2A9Vp2xY7WCPI2cAKOxjLS0bPYmUOI/ucT5Z4a+xpjLEnKquXJ5WYe8TjDU6bXpu8RqCc0zAr96vc2qZWNikhWL96HuVY16Q5wZzGWGINK++RDeZW1pLtKMiZNV+AT4iBsprUramPo7xS+0WMwQ0bXmw9Zi+uyuDx891I/eI7MLOp3GzPKXFv8GLN+xL6x3ph3t59WBk4B+K7An5DnZEP7EturSCnXOyZHwL2o7msY3oGb4t456+3VlBGW16eqc+co/Ic6v3PiEVt8FhyHeYX7yXwB6XKfFCWhPNy3p9r/zMqMXvjiWceX77rBns+I3lccoK1yHt7kJJ9mZxvgjAc7Y/eO9uEch2PBe/FXnw9Xz3f9fdR+uH8Stuins82Pety73xfZ1/4mfMcvCPOsf4DRZ1YHQ==
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -25,7 +25,7 @@
  </layer>
  <layer name="doorprevious" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7Apwb9MNOwiJK2CJgAAAADw01wHoLRmqAAf
+   eJztzjENAAAIA7A5wb9LNOwiJK2CJgAAAADw01wHoLRpXAAg
   </data>
  </layer>
 </map>

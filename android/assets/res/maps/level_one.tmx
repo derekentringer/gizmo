@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="1">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
-  <image source="tileset/bricks.png" width="256" height="128"/>
+  <image source="tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzlmM1uwyAQhNfXXnKJ3ZLY7/+aFSqjTEcLLI6VVPVIKwIBsh+/S65mNtuPvv6pZV2LLSU9A+9UeNMJeDPnXFiXE/Bm1qnwjq7nD8fezdTjxXqebOy88lj/OjN4MyfWdYS3xfoO5ugcgXeyxxndaxthjTJvB7FCkbpgTRY7n0d4s10qnLCjWCPMWXMxrOteuyNZn2H2lBrG8zvCG2HeSh8ek8e7l9vTKv6vUh93L5hZe5g36SPCfCk2yuzpLv7fpT7uXo43esxZnw6nsraYmXsPb03gRT3lTVaPJ2u8ytxirTFz2VGs4MVY9nhH4kmPoyePF3N7BCt42Sflxf7l+2iVtPWbuibZasysEd6ewKe8PMaIn/EuNHvsAd37vbnVcaoxqyK8PSmfl8/Cuczxlcdr1mZttevpmfnVs/5GPnEeZXjn83s/4re3X/fyZilTL79X3v17k1SFO3yV8l67Wl8cE0TyEOJgfvNwGWIpGO5eZn6lcF/wGRrJZ3HMP1Oe42N96y6UR1uuw+WJ2sD4bF8k5TbJabM8wZukz0XKeCz4LPbm1/PV812/n6Wf2X774Y3NXl5+r7Mv/Jn/s0Ee85zLvwEG7mCN
+   eJzlmN1uwyAMhZ3b3fSmsNGk7/+aExpHPbVMbJIqrZYjWdQeEH+B8LOriCT5088/taprs9zKM/BOjbecgLdypsaaT8BbWafGOzqfvwx7N5PHi/k8ydh6ZbF+OjN4KyfmdYR3jfUdzNExAu8kjzXaaxthPZKZFakL1iKx9XmEt9rlINYIc1Vqhnnttftk1rJiPL4jvBHmI+Zxj3lR+S+qPvZeMLO2MOtcInlfZNtcsDSrZ8+qPvZePm94zFXfDqfXx17ensCLepq3SP88uZYrM3s5WP1w7FWs4OW6a7wj50mLw5PFOzq2njxefL+8Hy2qXHumnpNsPWbWCK8nzdfjxR6M9WpWpYj9XPj35uv31GPWivB6svh6vHwHFrF5RWxWjvXaedozvrrOjeqyjxju+Xzfj+R9N2JbeTnvqL9V1v57U6UW9vBFxb12vb74TBDxIZyD+c7DMZylYNh7mflI4fvibyziV/GZP5HP52N9183koy3X4XihNjBe27MquU0x2uQdvEX1mVWM3wWvxdb4Wrlaueu/J9VPkuc8rHezlZfv65wL/+b/2cDHONf4L7PbXx4=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -20,12 +20,12 @@
  </layer>
  <layer name="doornext" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7A5wb9LTCyBo1XQBAAAAOC3uQ4AlCyqwAAg
+   eJzt1DEOACAIQ1FOYoz3P6Sr6cYARPhvM3GgpmgGAAAAYJpTPQBSreoBgmk+T7/ZhX9sx93unUedid3Sf/I9d3gPzZCR6QLF2gGd
   </data>
  </layer>
  <layer name="doorprevious" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7Apwb9MLOwjJK2CJgAAAAB8NtcBoLaEMAAf
+   eJztzjENAAAIA7A5wb9LLOwjJK2CJgAAAAB8NtcBoLaH4AAg
   </data>
  </layer>
 </map>
