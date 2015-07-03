@@ -18,7 +18,7 @@ falling blocks
 - game is linear, but, certain ways to advance past levels 
 with power ups and digging (hidden)
 
--metroid/mario
+-metroid/mario/zelda
 
 -----
 
