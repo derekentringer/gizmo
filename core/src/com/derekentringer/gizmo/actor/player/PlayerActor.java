@@ -30,11 +30,11 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private Texture gizmoStandingRight;
     private Texture gizmoStandingLeft;
 
-    public boolean isOnGround;
-    public boolean isAtDoor;
-    public DoorUserData isAtDoorUserData;
-    public int facingDirection;
-
+    private boolean isOnGround;
+    private boolean isAtDoor;
+    private DoorUserData isAtDoorUserData;
+    private int facingDirection;
+    
     public PlayerActor(Body body) {
         super(body);
 
