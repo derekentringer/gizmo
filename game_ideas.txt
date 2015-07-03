@@ -4,6 +4,7 @@ TODO
 player stats
 destroyable blocks
 HUD
+start screen
 create an enemy
 objects layer in a map
 make a larger level
