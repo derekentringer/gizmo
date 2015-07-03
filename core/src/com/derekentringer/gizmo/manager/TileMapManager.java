@@ -20,19 +20,26 @@ import com.derekentringer.gizmo.util.WorldUtils;
 public class TileMapManager extends Stage {
 
     private TiledMap tiledMap;
+    private TiledMap tiledMapMidBackground;
     private TiledMap tiledMapBackground;
+
     private TiledMapRenderer tiledMapRenderer;
+    private TiledMapRenderer tiledMapMidBackgroundRenderer;
     private TiledMapRenderer tiledMapBackgroundRenderer;
 
     private float tileSize;
 
-    public TileMapManager(String tileMapName, String tileMapBackground) {
+    public TileMapManager(String tileMapName, String tileMapBackground, String tileMapMidBackground) {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
+
         tiledMap = new TmxMapLoader().load(tileMapName, params);
+        tiledMapMidBackground = new TmxMapLoader().load(tileMapMidBackground, params);
         tiledMapBackground = new TmxMapLoader().load(tileMapBackground, params);
+
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        tiledMapMidBackgroundRenderer = new OrthogonalTiledMapRenderer(tiledMapMidBackground);
         tiledMapBackgroundRenderer = new OrthogonalTiledMapRenderer(tiledMapBackground);
     }
 
@@ -90,6 +97,10 @@ public class TileMapManager extends Stage {
 
     public TiledMapRenderer getTiledMapRenderer() {
         return tiledMapRenderer;
+    }
+
+    public TiledMapRenderer getTiledMapMidBackgroundRenderer() {
+        return tiledMapMidBackgroundRenderer;
     }
 
     public TiledMapRenderer getTiledMapBackgroundRenderer() {

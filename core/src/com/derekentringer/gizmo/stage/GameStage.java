@@ -29,6 +29,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     //private Box2DDebugRenderer renderer;
 
     private OrthographicCamera mainCamera;
+    private OrthographicCamera midBackgroundCamera;
     private OrthographicCamera backgroundCamera;
 
     private World world;
@@ -50,6 +51,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
         //setupDebugRendererCamera();
         setupMainCamera();
+        setupMidBackgroundCamera();
         setupBackgroundCamera();
     }
 
@@ -65,16 +67,23 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mainCamera.update();
     }
 
+    private void setupMidBackgroundCamera() {
+        midBackgroundCamera = new OrthographicCamera();
+        midBackgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        midBackgroundCamera.zoom = 1.3f;
+        midBackgroundCamera.update();
+    }
+
     private void setupBackgroundCamera() {
         backgroundCamera = new OrthographicCamera();
         backgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        backgroundCamera.zoom = 1.5f;
+        backgroundCamera.zoom = 1.7f;
         backgroundCamera.update();
     }
 
     public void loadLevel(GameLevel level) {
         System.out.print("loading level: " + level.getLevel().toString());
-        tileMapManager = new TileMapManager(level.getMap().toString(), "res/maps/level_background.tmx");
+        tileMapManager = new TileMapManager(level.getMap().toString(), "res/maps/level_background.tmx", "res/maps/level_mid_background.tmx");
         tileMapManager.createTileMapLayers(world);
     }
 
@@ -128,6 +137,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         tileMapManager.getTiledMapBackgroundRenderer().setView(backgroundCamera);
         tileMapManager.getTiledMapBackgroundRenderer().render();
 
+        tileMapManager.getTiledMapMidBackgroundRenderer().setView(midBackgroundCamera);
+        tileMapManager.getTiledMapMidBackgroundRenderer().render();
+
         tileMapManager.getTiledMapRenderer().setView(mainCamera);
         tileMapManager.getTiledMapRenderer().render();
 
@@ -161,6 +173,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mainCamera.position.y = Math.round(MathUtils.clamp(mainCamera.position.y + (playerY * Constants.PPM - mainCamera.position.y) * 0.1f, minHeight, maxHeight));
 
         mainCamera.update();
+
+        midBackgroundCamera.position.x = Math.round(MathUtils.clamp(midBackgroundCamera.position.x + (playerX * Constants.PPM - midBackgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
+        midBackgroundCamera.position.y = Math.round(MathUtils.clamp(midBackgroundCamera.position.y + (playerY * Constants.PPM - midBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
+
+        midBackgroundCamera.update();
 
         backgroundCamera.position.x = Math.round(MathUtils.clamp(backgroundCamera.position.x + (playerX * Constants.PPM - backgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
         backgroundCamera.position.y = Math.round(MathUtils.clamp(backgroundCamera.position.y + (playerY * Constants.PPM - backgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
