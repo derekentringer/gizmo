@@ -5,7 +5,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmFluwzAMROmfnCAW4i1Fc/9DtkI18GRAa6vbBiVAyFZkkU/UQuVqZqN9ye2fapRr0pBKSOm7nJzp4/s3dP3UC5XgHRLvVOF3jfxUfEp8m7wviROlJc4xsQbyeXN85/rfZq1hX+iZOe/EG1mHxMvz+SEMkPsLsB5xz4kLGt/fqN5sn8+D7fsVuDSWm4zDX7O2KngjJ+Y1ZElqhbpX4K21D97B9j2a2TjGiK3He7afa2MftX4YsU72vD/PpN57zgb767UtfX/vYK1hjjImxbwufVfT/5zxp8bH2amrYS35FQX7FPMOpD1jmmuzZbRnPbRwm+1nL5iZt3UeDY5Otq8ZjG0QTkgrc61ofLF2A9Vp2xY7WCPI2cAKOxjLS0bPYmUOI/ucT5Z4a+xpjLEnKquXJ5WYe8TjDU6bXpu8RqCc0zAr96vc2qZWNikhWL96HuVY16Q5wZzGWGINK++RDeZW1pLtKMiZNV+AT4iBsprUramPo7xS+0WMwQ0bXmw9Zi+uyuDx891I/eI7MLOp3GzPKXFv8GLN+xL6x3ph3t59WBk4B+K7An5DnZEP7EturSCnXOyZHwL2o7msY3oGb4t456+3VlBGW16eqc+co/Ic6v3PiEVt8FhyHeYX7yXwB6XKfFCWhPNy3p9r/zMqMXvjiWceX77rBns+I3lccoK1yHt7kJJ9mZxvgjAc7Y/eO9uEch2PBe/FXnw9Xz3f9fdR+uH8Stuins82Pety73xfZ1/4mfMcvCPOsf4DRZ1YHQ==
+   eJzdmFluwzAMROmfnCAW4i1Am/vfsRWqgScDWlvdNigBQrYii3yiFipXMxvtS27/VKNck4ZUQkrf5eRMH9++oeunXqgE75B4pwq/a+Sn4lPi2+R9SZwoLXGOiTWQz5vjO9f/NmsN+0LPzHkn3sg6JF6ez+/CALm/AOsR95y4oPH9QfVm+3webN+vwKWx3GQc/pq1VcEbOTGvIUtSK9S9Am+tffAOtu/RzMYxRmw93rP9XBv7qPXDiHWy5/15JvXeczbYX69t6ft7B2sNc5QxKeZ16bua/ueMPzU+zk5dDWvJryjYp5h3IO0Z01ybLaM966GF22w/e8HMvK3zaHB0sn3NYGyDcEJamWtF44u1G6hO27bYwRpBzgZW2MFYXjJ6FitzGNnnfLLEW2NPY4w9UVm9PKnE3CMeb3Da9NrkNQLlnIZZuV/l1ja1skkJwfrV8yjHuibNCeY0xhJrWHmPbDC3spZsR0HOrPkCfEIMlNWkbk19HOWV2i9iDG7Y8GLrMXtxVQaPn+9G6hffgZlN5WZ7Tol7gxdr3pfQP9YL8/buw8rAORDfFfAb6ox8YF9yawU55WLP/BCwH81lHdMzeFvEO3+9tYIy2vLyTH3mHJXnUO9/Rixqg8eS6zC/eC+BPyhV5oOyJJyX8/5c+59RidkbTzzz+PJdN9jzGcnjkhOsRd7bg5Tsy+R8E4ThaH/03tkmlOt4LHgv9uLr+er5rr+P0g/nV9oW9Xy26VmXe+f7OvvCz5zn4B1xjvUfiX1YIQ==
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -20,7 +20,7 @@
  </layer>
  <layer name="doornext" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7A5wb9LTCyBo1XQBAAAAOC/uQ4AFCyqRAAg
+   eJztzjENAAAIA7BJwb9KTCyBo1XQBAAAAOC/uQ4AFCyvEAAh
   </data>
  </layer>
  <layer name="doorprevious" width="60" height="23">

@@ -5,17 +5,17 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzlmIEOgyAMROs/DDKy+f+/uTTjspOgFKWazEuIg4HeA4TiQ0SCfPX806R65BTz9Q68U+ZNN+BVzpBZ4w14lXXKvL3zuaarmVp+MZ8n6VuvtnQ1V4tXOTGvLX4tOpujd3yxRrfa9miUT6sfS12wJrGtz3t0xGOvl1b9kBPmdavdSFaLx5E+VFinrLxHx9hSx4OZxzfJj9n6/D2ytPMcYxX2Xo43Ws/3lCerSjnX4smt53vIm1XFvD3x5GidwarC+8v7UcuLh87qY8TPOBda/HhoNOu8Uo51meOrLU9eGjm+c3Fl4ZzP5/0rVDK18nu1tf+yvPrinRN4LHn2hHMszjxchlgKCXsvM9fE3wRGSv2/cnp25EWWMX+gPMfH5Vk3Uh5tuQ6XJ2qDxGt7LK7cJlXaxAO8qbhnLMq4L3gtro1vzWvNe/l/KO4TZOmj1jd7efm8zl74N3+zQR7jrOUfNVlMuQ==
+   eJzlmGtugzAQhDd/coKAykNIpPe/Y2rVowyjJfiVtiojrcCLDfths7a5mVln3/r4pxZ0i9bH4xl4L5F3OAFv4Owia38C3sB6iby549nTbzMdxYvxfLFtvvosYP3rzOANnBjXKfGm6Kc5cvsXORpt5wrWVOYW7yX3eWAdbJuflwa8e3HkxJg7zo7qd9EwrqGJ6s1WzlsbY803pfcOQp56xXsvfJb33NTY3sEchLkXzBDzen1dopR27+bF3MvrjaCF6ip70Ex1ZynXqDUr3zcocHrryUnOta8ne2qRcqlasmpdj5fno73x7PHepVzS161Yj+rj++X5KGiScx3Pel3LuWrJun7ZNR61HdbP2Bd6MfNc/Ip3dq6lqpZ1JbuSwcf5mffAzKDn4J3Jd7fnePbeRapq+vfqmPrX6MM+n/f7GvMofmULxjlrsXx5+eVVuVR78+8o9W7kH+n6uONLFeYynt+PyhwT9rHY87APaykY5l5m9sT/BFoK34fmw6Oy2XbN31GZ18e61+2pjLZch/0DtYFxbu/lyG0Gp01fwTvIPXvx8bvgXOz1rxerF7te7+Q+nW3j8N5NKS/v1zkWPud/Niijn4P/AbHDVVI=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0MsJACEMRVHTgxGm/0ZVUAjBhYoyIPfAw88i0YQAAAAAAADwNrlYVxbPnbZ8JXEiK2/yvf6WDtWp8xITP5d+ryapRQer39vsOvVXvCsDfAgCxg==
+   eJzt0gEKgDAIBVC9wzbo/heNSEGkYJQU0/9AlBGyaUQAALAC/vsC8Bnsuo6qu7bvbhJQA3adU9a98k0N64reY6fz/2epj7xJ9rV+o2e2h563iZjFLr8V0WcE9FB2rn4udt4aQ6JfZF/beCryrZDTDhm6A6c=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztltEKwCAIResfLOj/f3SMFYic5xhXD8jIueHlStXaR3dhsD65scP2882tHd2tfe1wNdPFcu8n1J9/Wfgu1sceSUOEciosyCnrHZCz613cg7wkz1UgveS5CjS72eZZWS/NrvL+TF4q6yV/lferbOdvtnnOdn/OpjfbPJPeeb2Le9R9o86joij+zwNROAUr
+   eJztl10KwCAMg+cdquD9LzrGFEr5XldGaqAMsyoNKf5c14vmwmC8ub7C1vfh5ormxj63u5zhYrr/A/L3WhbmxfxYI2mIIE4FEzhlvR04S68iD+Qlea4C0kueq4B6t1o/K+ul3lXen8lLZb3kr/J+Ve38rdbP1e7P1fRW62fSO9KryMO5b5zz6Cv85d2p7O9BHdzbqAVY
   </data>
  </layer>
  <layer name="doornext" width="60" height="23">
@@ -25,7 +25,7 @@
  </layer>
  <layer name="doorprevious" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0TEKwCAQRNE5hl3w/peUQIStEwsx78H0+9kEAACAE7Vnf3B39pzfOzvr3v75WnjXSq2sdibfmwF2MABBlgKK
+   eJztzjEBAAAMAiCbrH/LxfAQEpAAAAAAa64dABj1wBAAIA==
   </data>
  </layer>
 </map>
