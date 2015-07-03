@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="1">
+ <tileset firstgid="1" name="bricks background" tilewidth="32" tileheight="32">
+  <image source="../tileset/bricks background.png" width="256" height="160"/>
+ </tileset>
+ <layer name="background" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztluEKwyAMhJM/fYK22G3s/R9zEwxcr7HgL1PIwaFtneQzZiqSSqVSqVQqNUdL84j2v7fWPkkLeG2+007eyE8QslarnBnqM3Mq9ZXGR1AhK9nLHTMq9dEb9COox1rjx31dnw/x84m/wbl4DSKIeTF/i1yZkRuZeJ7SvmE92JwzZTHyvrVcfeTMwjnEvCq1WP+8frN0x1r9lWuNF2ecynVNeqxReG2fIleP18s3u8c6m9fixtq1928ZY1WYKyqvd+4Yy0vGWfHcjbifsfYwTov1bj/zWvG9BO8mUXj5/3aFd8yNLZ6tvG5PuG9wzBh37/7lfeuNjaAfgTEXNA==
+  </data>
+ </layer>
+</map>
