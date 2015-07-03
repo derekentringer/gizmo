@@ -22,9 +22,9 @@ public class Constants {
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);
 
     //levels
-    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_ONE = new GameLevel<Integer, String, Integer, Integer>(0, "res/maps/level_one.tmx", 143, 120);
-    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_TWO = new GameLevel<Integer, String, Integer, Integer>(1, "res/maps/level_two.tmx", 143, 120);
-    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_THREE = new GameLevel<Integer, String, Integer, Integer>(2, "res/maps/level_three.tmx", 143, 120);
+    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_ONE = new GameLevel<Integer, String, Integer, Integer>(0, "res/maps/level_one.tmx", 143, 130);
+    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_TWO = new GameLevel<Integer, String, Integer, Integer>(1, "res/maps/level_two.tmx", 240, 90);
+    public static final GameLevel<Integer, String, Integer, Integer> LEVEL_THREE = new GameLevel<Integer, String, Integer, Integer>(2, "res/maps/level_three.tmx", 275, 210);
 
     public static final ArrayList<GameLevel> gameLevels = new ArrayList<GameLevel>();
 

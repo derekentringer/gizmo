@@ -56,13 +56,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         world.setContactListener(this);
     }
 
-    /*private void setupDebugRendererCamera() {
-        renderer = new  zBox2DDebugRenderer();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
-        camera.update();
-    }*/
-
     private void setupTiledCamera() {
         tiledCamera = new OrthographicCamera();
         tiledCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
@@ -74,15 +67,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         tileMapManager = new TileMapManager(level.getMap().toString());
         tileMapManager.createTileMapLayers(world);
     }
-
-    /*private void startBackgroundMusic() {
-        Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
-        if(!Constants.DEBUGGING) {
-            backgroundMusic.play();
-            backgroundMusic.setLooping(true);
-            backgroundMusic.setVolume(0.2f);
-        }
-    }*/
 
     private void createPlayer(int xPos, int yPos) {
         playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
@@ -155,8 +139,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         float maxWidth = (mapWidth * tileMapManager.getTileSize()) - (effectiveViewportWidth / 2f);
         float maxHeight = (mapHeight * tileMapManager.getTileSize()) - (effectiveViewportHeight / 2f);
 
-        tiledCamera.position.x = Math.round(MathUtils.clamp(playerX * Constants.PPM, minWidth, maxWidth));
-        tiledCamera.position.y = Math.round(MathUtils.clamp(playerY * Constants.PPM, minHeight, maxHeight));
+        tiledCamera.position.x = Math.round(MathUtils.clamp(tiledCamera.position.x + (playerX * Constants.PPM - tiledCamera.position.x) * 0.1f, minWidth, maxWidth));
+        tiledCamera.position.y = Math.round(MathUtils.clamp(tiledCamera.position.y + (playerY * Constants.PPM - tiledCamera.position.y) * 0.1f, minHeight, maxHeight));
 
         tiledCamera.update();
     }
@@ -248,5 +232,21 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void playerIsOffMap(boolean offMap) {
         createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
     }
+
+    /*private void setupDebugRendererCamera() {
+        renderer = new  zBox2DDebugRenderer();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
+        camera.update();
+    }*/
+
+    /*private void startBackgroundMusic() {
+        Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
+        if(!Constants.DEBUGGING) {
+            backgroundMusic.play();
+            backgroundMusic.setLooping(true);
+            backgroundMusic.setVolume(0.2f);
+        }
+    }*/
 
 }
