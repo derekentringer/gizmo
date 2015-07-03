@@ -29,17 +29,18 @@ public class TileMapManager extends Stage {
 
     private float tileSize;
 
-    public TileMapManager(String tileMapName, String tileMapBackground, String tileMapMidBackground) {
+    public TileMapManager(String tileMapName, String tileMapMidBackground, String tileMapBackground) {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
 
         tiledMap = new TmxMapLoader().load(tileMapName, params);
-        tiledMapMidBackground = new TmxMapLoader().load(tileMapMidBackground, params);
-        tiledMapBackground = new TmxMapLoader().load(tileMapBackground, params);
-
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
+        tiledMapMidBackground = new TmxMapLoader().load(tileMapMidBackground, params);
         tiledMapMidBackgroundRenderer = new OrthogonalTiledMapRenderer(tiledMapMidBackground);
+
+        tiledMapBackground = new TmxMapLoader().load(tileMapBackground, params);
         tiledMapBackgroundRenderer = new OrthogonalTiledMapRenderer(tiledMapBackground);
     }
 

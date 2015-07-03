@@ -83,7 +83,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     public void loadLevel(GameLevel level) {
         System.out.print("loading level: " + level.getLevel().toString());
-        tileMapManager = new TileMapManager(level.getMap().toString(), "res/maps/level_background.tmx", "res/maps/level_mid_background.tmx");
+        tileMapManager = new TileMapManager(level.getMap().toString(), level.getMidMap().toString(), level.getBackMap().toString());
         tileMapManager.createTileMapLayers(world);
     }
 
@@ -142,8 +142,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         tileMapManager.getTiledMapRenderer().setView(mainCamera);
         tileMapManager.getTiledMapRenderer().render();
-
-
 
         //world debugRenderer camera
         //renderer.render(world, camera.combined);
