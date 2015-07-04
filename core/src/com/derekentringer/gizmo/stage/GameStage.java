@@ -61,6 +61,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         world.setContactListener(this);
     }
 
+    //TODO create new camera class
     private void setupMainCamera() {
         mainCamera = new OrthographicCamera();
         mainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
