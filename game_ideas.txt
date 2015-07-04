@@ -5,6 +5,8 @@ fix up how the tiled cameras are created
 fix how the three tile maps are loaded
 updated ability to go to next level; bugs with hitting twice
 
+--adding a new actor for a transition is becoming a real pain..should probably not do it
+
 player stats
 destroyable blocks
 HUD
