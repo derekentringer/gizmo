@@ -9,8 +9,13 @@ public class Level {
     private int sXpos;
     private int sYpos;
 
-    public Level() {
-        super();
+    public Level(int levelInt, String levelMap, String levelMidMap, String levelBackMap, int xPos, int yPos) {
+        sLevelInt = levelInt;
+        sLevelMap = levelMap;
+        sLevelMidMap = levelMidMap;
+        sLevelBackMap = levelBackMap;
+        sXpos = xPos;
+        sYpos = yPos;
     }
 
     public int getLevelInt() {

@@ -15,12 +15,12 @@ import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
+import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.manager.TileMapManager;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
-import com.derekentringer.gizmo.util.constant.GameLevels;
 import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate {
@@ -41,10 +41,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private PlayerActor playerActor;
     private SpriteBatch spriteBatch;
 
-    private GameLevels currentLevel;
+    private Level currentLevel;
     private boolean alreadyEntered = false;
 
-    public GameStage(GameLevels level) {
+    public GameStage(Level level) {
         currentLevel = level;
         setupWorld();
         loadLevel(level);
@@ -81,9 +81,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         backgroundCamera.update();
     }
 
-    public void loadLevel(GameLevels level) {
-        System.out.print("loading level: " + level.getLevel().toString());
-        tileMapManager = new TileMapManager(level.getMap().toString(), level.getMidMap().toString(), level.getBackMap().toString());
+    public void loadLevel(Level level) {
+        System.out.print("loading level: " + level.getLevelInt());
+        tileMapManager = new TileMapManager(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         tileMapManager.createTileMapLayers(world);
     }
 
@@ -221,27 +221,27 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             }
             if (playerActor.getIsAtDoor()) {
                 if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
-                    if ((Integer) currentLevel.getLevel() > 0) {
+                    if (currentLevel.getLevelInt() > 0) {
                         alreadyEntered = true;
                         tileMapManager.destroyTiledMap();
                         WorldUtils.destroyBodies(world);
-                        int newLevel = (Integer) currentLevel.getLevel() - 1;
+                        int newLevel = currentLevel.getLevelInt() - 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
                         loadLevel(Constants.gameLevels.get(newLevel));
-                        createPlayer((Integer) Constants.gameLevels.get(newLevel).getXpos(),
-                                (Integer) Constants.gameLevels.get(newLevel).getYpos());
+                        createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
+                                Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-                    if ((Integer) currentLevel.getLevel() < Constants.gameLevels.size() - 1) {
+                    if (currentLevel.getLevelInt() < Constants.gameLevels.size() - 1) {
                         alreadyEntered = true;
                         tileMapManager.destroyTiledMap();
                         WorldUtils.destroyBodies(world);
-                        int newLevel = (Integer) currentLevel.getLevel() + 1;
+                        int newLevel = currentLevel.getLevelInt() + 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
                         loadLevel(Constants.gameLevels.get(newLevel));
-                        createPlayer((Integer) Constants.gameLevels.get(newLevel).getXpos(),
-                                (Integer) Constants.gameLevels.get(newLevel).getYpos());
+                        createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
+                                Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
             }

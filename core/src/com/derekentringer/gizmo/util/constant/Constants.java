@@ -1,6 +1,7 @@
 package com.derekentringer.gizmo.util.constant;
 
 import com.badlogic.gdx.math.Vector2;
+import com.derekentringer.gizmo.level.Level;
 
 import java.util.ArrayList;
 
@@ -21,22 +22,34 @@ public class Constants {
     //world
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);
 
-    //levels
-    public static final GameLevels<Integer, String, String, String, Integer, Integer> LEVEL_ONE = new GameLevels<Integer, String, String, String, Integer, Integer>(0, "res/maps/level_one/level_one.tmx", "res/maps/level_one/mid_background.tmx", "res/maps/level_one/background.tmx", 143, 130);
-    public static final GameLevels<Integer, String, String, String, Integer, Integer> LEVEL_TWO = new GameLevels<Integer, String, String, String, Integer, Integer>(1, "res/maps/level_two/level_two.tmx", "res/maps/level_one/mid_background.tmx", "res/maps/level_one/background.tmx", 240, 90);
-    public static final GameLevels<Integer, String, String, String, Integer, Integer> LEVEL_THREE = new GameLevels<Integer, String, String, String, Integer, Integer>(2, "res/maps/level_three/level_three.tmx", "res/maps/level_one/mid_background.tmx", "res/maps/level_one/background.tmx", 275, 210);
-
-    public static final ArrayList<GameLevels> gameLevels = new ArrayList<GameLevels>();
-
-    public Constants() {
-        buildGameLevelList();
-    }
+    //game levels
+    public static final ArrayList<Level> gameLevels = new ArrayList<Level>();
 
     public static void buildGameLevelList() {
-        gameLevels.add(LEVEL_ONE);
-        gameLevels.add(LEVEL_TWO);
-        gameLevels.add(LEVEL_THREE);
+        Level levelOne = new Level(0,
+                "res/maps/level_one/level_two.tmx",
+                "res/maps/level_one/mid_background.tmx",
+                "res/maps/level_one/background.tmx",
+                143,
+                130);
+
+        Level levelTwo = new Level(1,
+                "res/maps/level_two/level_two.tmx",
+                "res/maps/level_two/mid_background.tmx",
+                "res/maps/level_two/background.tmx",
+                143,
+                130);
+
+        Level levelThree = new Level(2,
+                "res/maps/level_three/level_three.tmx",
+                "res/maps/level_three/mid_background.tmx",
+                "res/maps/level_three/background.tmx",
+                143,
+                130);
+
+        gameLevels.add(levelOne);
+        gameLevels.add(levelTwo);
+        gameLevels.add(levelThree);
     }
 
 }
-
