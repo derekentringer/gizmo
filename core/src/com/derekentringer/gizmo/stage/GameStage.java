@@ -48,7 +48,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         currentLevel = level;
         setupWorld();
         loadLevel(level);
-        createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
+        createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
         //setupDebugRendererCamera();
         setupMainCamera();
         setupMidBackgroundCamera();
@@ -267,7 +267,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerIsOffMap(boolean offMap) {
-        createPlayer((Integer) currentLevel.getXpos(), (Integer) currentLevel.getYpos());
+        createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
     }
 
     /*private void setupDebugRendererCamera() {
