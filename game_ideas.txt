@@ -3,6 +3,7 @@ TODO
 
 fix up how the tiled cameras are created
 fix how the three tile maps are loaded
+updated ability to go to next level; bugs with hitting twice
 
 player stats
 destroyable blocks
