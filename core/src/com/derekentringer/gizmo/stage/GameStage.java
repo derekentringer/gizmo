@@ -20,7 +20,7 @@ import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
-import com.derekentringer.gizmo.util.constant.GameLevel;
+import com.derekentringer.gizmo.util.constant.GameLevels;
 import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate {
@@ -41,10 +41,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private PlayerActor playerActor;
     private SpriteBatch spriteBatch;
 
-    private GameLevel currentLevel;
+    private GameLevels currentLevel;
     private boolean alreadyEntered = false;
 
-    public GameStage(GameLevel level) {
+    public GameStage(GameLevels level) {
         currentLevel = level;
         setupWorld();
         loadLevel(level);
@@ -81,7 +81,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         backgroundCamera.update();
     }
 
-    public void loadLevel(GameLevel level) {
+    public void loadLevel(GameLevels level) {
         System.out.print("loading level: " + level.getLevel().toString());
         tileMapManager = new TileMapManager(level.getMap().toString(), level.getMidMap().toString(), level.getBackMap().toString());
         tileMapManager.createTileMapLayers(world);
