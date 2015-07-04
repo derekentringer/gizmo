@@ -155,6 +155,22 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         handlePlayerPosition(playerActor.getPosition().y);
     }
 
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        UserInput.update();
+        handleInput();
+
+        playerActor.update(delta);
+
+        Constants.ACCUMULATOR += delta;
+        while (Constants.ACCUMULATOR >= delta) {
+            world.step(Constants.TIME_STEP, 6, 2);
+            Constants.ACCUMULATOR -= Constants.TIME_STEP;
+        }
+    }
+
     private void updateCameraPlayerMovement(float playerX, float playerY) {
         MapProperties prop = tileMapManager.getTiledMap().getProperties();
         int mapWidth = prop.get("width", Integer.class);
@@ -246,22 +262,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                     }
                 }
             }
-        }
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-
-        UserInput.update();
-        handleInput();
-
-        playerActor.update(delta);
-
-        Constants.ACCUMULATOR += delta;
-        while (Constants.ACCUMULATOR >= delta) {
-            world.step(Constants.TIME_STEP, 6, 2);
-            Constants.ACCUMULATOR -= Constants.TIME_STEP;
         }
     }
 
