@@ -7,20 +7,17 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
+import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
 
 public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
-    public static final int FACING_RIGHT = 1;
-    public static final int FACING_LEFT = 2;
-
     private static final float RUNNING_FORCE = 1f;
     private static final float JUMP_FORCE = 4f;
     private static final float JUMP_FORCE_RESET = -1f;
 
-    private DoorUserData isAtDoorUserData;
+    private DoorData isAtDoorUserData;
 
     private TextureRegion[] runningRightSprites;
     private TextureRegion[] runningLeftSprites;
@@ -42,7 +39,6 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     private boolean isOnGround;
     private boolean isAtDoor;
-    private int facingDirection;
 
     private int playerHealth = 100;
 
@@ -161,14 +157,6 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         return playerHealth;
     }
 
-    public void setFacingDirection(int direction) {
-        facingDirection = direction;
-    }
-
-    public int getFacingDirection() {
-        return facingDirection;
-    }
-
     public void setIsOnGround(boolean isOnGround) {
         this.isOnGround = isOnGround;
     }
@@ -185,11 +173,11 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         return isAtDoor;
     }
 
-    public void setIsAtDoorUserData(DoorUserData doorUserData) {
+    public void setIsAtDoorUserData(DoorData doorUserData) {
         this.isAtDoorUserData = doorUserData;
     }
 
-    public DoorUserData getIsAtDoorUserData() {
+    public DoorData getIsAtDoorUserData() {
         return isAtDoorUserData;
     }
 

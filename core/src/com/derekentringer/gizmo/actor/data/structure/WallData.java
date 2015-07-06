@@ -3,11 +3,11 @@ package com.derekentringer.gizmo.actor.data.structure;
 import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.actor.data.ObjectDataType;
 
-public class GroundUserData extends ObjectData {
+public class WallData extends ObjectData {
 
-    public static final String TILE_GROUND = "ground";
+    public static final String TILE_WALL = "wall";
 
-    public GroundUserData() {
+    public WallData() {
         super();
         objectDataType = ObjectDataType.GROUND;
     }

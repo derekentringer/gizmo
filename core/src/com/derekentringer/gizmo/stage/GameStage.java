@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
-import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
+import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
@@ -113,11 +113,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         if(FixtureUtils.fixtureIsDoor(a)) {
             playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorUserData) a.getBody().getUserData());
+            playerActor.setIsAtDoorUserData((DoorData) a.getBody().getUserData());
         }
         else if(FixtureUtils.fixtureIsDoor(b)) {
             playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorUserData) b.getBody().getUserData());
+            playerActor.setIsAtDoorUserData((DoorData) b.getBody().getUserData());
         }
         else {
             playerActor.setIsAtDoor(false);
@@ -162,9 +162,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         playerActor.render(spriteBatch);
 
-        //TODO
+        //TODO shouldn't need to specify a specific actor
         for(Actor actor: tileMapManager.actorsArray) {
             ((PhantomActor) actor).render(spriteBatch);
+            ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
         }
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);

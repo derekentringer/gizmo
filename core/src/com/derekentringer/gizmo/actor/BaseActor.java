@@ -11,6 +11,11 @@ import com.derekentringer.gizmo.util.constant.Constants;
 
 public abstract class BaseActor extends Actor {
 
+    public static final int FACING_RIGHT = 1;
+    public static final int FACING_LEFT = 2;
+
+    public int facingDirection;
+
     protected Body body;
     protected ObjectData userData;
     protected AnimationManager animationManager;
@@ -27,6 +32,7 @@ public abstract class BaseActor extends Actor {
     }
 
     public void setAnimation(TextureRegion[] textureRegion, float delay) {
+        //TODO check for same animation here instead of in subclasses
         setCurrentTextureRegion(textureRegion);
         currentTextureRegion = textureRegion;
         animationManager.setFrames(textureRegion, delay);
@@ -72,6 +78,14 @@ public abstract class BaseActor extends Actor {
 
     public float getHeight() {
         return height;
+    }
+
+    public void setFacingDirection(int direction) {
+        facingDirection = direction;
+    }
+
+    public int getFacingDirection() {
+        return facingDirection;
     }
 
 }

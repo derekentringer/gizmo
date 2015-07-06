@@ -13,9 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
-import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
-import com.derekentringer.gizmo.actor.data.structure.GroundUserData;
-import com.derekentringer.gizmo.actor.data.structure.WallUserData;
+import com.derekentringer.gizmo.actor.data.structure.DoorData;
+import com.derekentringer.gizmo.actor.data.structure.GroundData;
+import com.derekentringer.gizmo.actor.data.structure.WallData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
@@ -79,20 +79,20 @@ public class MapParser extends Stage {
                             continue;
                         }
 
-                        if (curLayerName.equalsIgnoreCase(GroundUserData.TILE_GROUND)) {
-                            GroundActor groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundUserData(), world, tileSize, row, col, false));
+                        if (curLayerName.equalsIgnoreCase(GroundData.TILE_GROUND)) {
+                            GroundActor groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundData(), world, tileSize, row, col, false));
                             addActor(groundActor);
                         }
-                        else if (curLayerName.equalsIgnoreCase(WallUserData.TILE_WALL)) {
-                            WallActor wallActor = new WallActor(WorldUtils.createStaticBody(new WallUserData(), world, tileSize, row, col, false));
+                        else if (curLayerName.equalsIgnoreCase(WallData.TILE_WALL)) {
+                            WallActor wallActor = new WallActor(WorldUtils.createStaticBody(new WallData(), world, tileSize, row, col, false));
                             addActor(wallActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.PREVIOUS)) {
-                            DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.PREVIOUS), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorData(DoorType.PREVIOUS), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.NEXT)) {
-                            DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorUserData(DoorType.NEXT), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorData(DoorType.NEXT), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                     }
