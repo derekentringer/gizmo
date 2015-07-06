@@ -52,7 +52,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         setupWorld();
         loadLevel(level);
         createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
-        createPhantom(currentLevel.getXpos()+300, currentLevel.getYpos()+300);
         //setupDebugRendererCamera();
         setupMainCamera();
         setupMidBackgroundCamera();
@@ -90,16 +89,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         System.out.print("loading level: " + level.getLevelInt());
         tileMapManager = new TileMapManager(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         tileMapManager.createTileMapLayers(world);
+        tileMapManager.createMapLayers(world);
     }
 
     private void createPlayer(int xPos, int yPos) {
         playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
         addActor(playerActor);
-    }
-
-    private void createPhantom(int xPos, int yPos) {
-        phantomActor = new PhantomActor(PlayerUtils.createPhantom(world, xPos, yPos));
-        addActor(phantomActor);
     }
 
     @Override
@@ -157,8 +152,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //renderer.render(world, camera.combined);
 
         spriteBatch.setProjectionMatrix(mainCamera.combined);
+
         playerActor.render(spriteBatch);
-        phantomActor.render(spriteBatch);
+
+        for(PhantomActor actor: tileMapManager.phantomActors) {
+            actor.render(spriteBatch);
+        }
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
 
@@ -173,7 +172,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         handleInput();
 
         playerActor.update(delta);
-        phantomActor.update(delta);
+
+        for(PhantomActor actor: tileMapManager.phantomActors) {
+            actor.update(delta);
+        }
 
         Constants.ACCUMULATOR += delta;
         while (Constants.ACCUMULATOR >= delta) {
