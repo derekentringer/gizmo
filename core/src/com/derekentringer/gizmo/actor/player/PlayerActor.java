@@ -20,6 +20,8 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private static final float JUMP_FORCE = 4f;
     private static final float JUMP_FORCE_RESET = -1f;
 
+    private DoorUserData isAtDoorUserData;
+
     private TextureRegion[] runningRightSprites;
     private TextureRegion[] runningLeftSprites;
     private TextureRegion[] standingRightSprites;
@@ -40,7 +42,6 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     private boolean isOnGround;
     private boolean isAtDoor;
-    private DoorUserData isAtDoorUserData;
     private int facingDirection;
     
     public PlayerActor(Body body) {
@@ -66,7 +67,8 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         jumpFallRightSprites = TextureRegion.split(gizmoFallRightSprites, 32, 32)[0];
         jumpFallLeftSprites = TextureRegion.split(gizmoFallLeftSprites, 32, 32)[0];
 
-        setAnimation(runningRightSprites, 1 / 12f);
+        setAnimation(runningRightSprites, 1/12f);
+        setFacingDirection(FACING_RIGHT);
     }
 
     @Override
@@ -77,12 +79,12 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     public void jump() {
         if(getFacingDirection() == FACING_RIGHT) {
             if (!getCurrentTextureRegion().equals(jumpUpRightSprites)) {
-                setAnimation(jumpUpRightSprites, 1 / 12f);
+                setAnimation(jumpUpRightSprites, 1/12f);
             }
         }
         else if(getFacingDirection() == FACING_LEFT) {
             if (!getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
-                setAnimation(jumpUpLeftSprites, 1 / 12f);
+                setAnimation(jumpUpLeftSprites, 1/12f);
             }
         }
         BodyUtils.applyLinearImpulseToBody(body, JUMP_FORCE, "y");
@@ -92,15 +94,64 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     public void stopJumping() {
         if(getFacingDirection() == FACING_RIGHT) {
             if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallRightSprites)) {
-                setAnimation(jumpFallRightSprites, 1 / 12f);
+                setAnimation(jumpFallRightSprites, 1/12f);
             }
         }
         else if(getFacingDirection() == FACING_LEFT) {
             if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallLeftSprites)) {
-                setAnimation(jumpFallLeftSprites, 1 / 12f);
+                setAnimation(jumpFallLeftSprites, 1/12f);
             }
         }
         BodyUtils.applyLinearImpulseToBody(body, JUMP_FORCE_RESET, "y");
+    }
+
+    public void moveLeft() {
+        if(getIsOnGround() && !getCurrentTextureRegion().equals(runningLeftSprites)) {
+            setAnimation(runningLeftSprites, 1/12f);
+        }
+        if(!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
+            setAnimation(jumpUpLeftSprites, 1/12f);
+        }
+        BodyUtils.applyLinearImpulseToBody(body, -RUNNING_FORCE, "x");
+        setFacingDirection(FACING_LEFT);
+    }
+
+    public void moveRight() {
+        if(getIsOnGround() && !getCurrentTextureRegion().equals(runningRightSprites)) {
+            setAnimation(runningRightSprites, 1/12f);
+        }
+        if(!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpRightSprites)) {
+            setAnimation(jumpUpRightSprites, 1/12f);
+        }
+        BodyUtils.applyLinearImpulseToBody(body, RUNNING_FORCE, "x");
+        setFacingDirection(FACING_RIGHT);
+    }
+
+    public void stoppedMoving() {
+        if(getIsOnGround() && !getCurrentTextureRegion().equals(standingRightSprites)) {
+            if(facingDirection == FACING_LEFT) {
+                setAnimation(standingLeftSprites, 1/12f);
+            }
+            else {
+                setAnimation(standingRightSprites, 1/12f);
+            }
+        }
+        BodyUtils.applyLinearImpulseToBody(body, 0, "x");
+    }
+
+    private void playJumpSfx() {
+        Sound jumpSfx = Gizmo.assetManager.get("res/sfx/jump.ogg", Sound.class);
+        if(!Constants.DEBUGGING) {
+            jumpSfx.play();
+        }
+    }
+
+    public void setFacingDirection(int direction) {
+        facingDirection = direction;
+    }
+
+    public int getFacingDirection() {
+        return facingDirection;
     }
 
     public void setIsOnGround(boolean isOnGround) {
@@ -125,55 +176,6 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     public DoorUserData getIsAtDoorUserData() {
         return isAtDoorUserData;
-    }
-
-    public void moveLeft() {
-        if(getIsOnGround() && !getCurrentTextureRegion().equals(runningLeftSprites)) {
-            setAnimation(runningLeftSprites, 1 / 12f);
-        }
-        BodyUtils.applyLinearImpulseToBody(body, -RUNNING_FORCE, "x");
-        setFacingDirection(FACING_LEFT);
-    }
-
-    public void moveRight() {
-        if(getIsOnGround() && !getCurrentTextureRegion().equals(runningRightSprites)) {
-            setAnimation(runningRightSprites, 1 / 12f);
-        }
-        BodyUtils.applyLinearImpulseToBody(body, RUNNING_FORCE, "x");
-        setFacingDirection(FACING_RIGHT);
-    }
-
-    public void stoppedMoving() {
-        if(getIsOnGround() && !getCurrentTextureRegion().equals(standingRightSprites)) {
-            if(facingDirection == FACING_LEFT) {
-                setAnimation(standingLeftSprites, 1 / 12f);
-            }
-            else {
-                setAnimation(standingRightSprites, 1 / 12f);
-            }
-        }
-        BodyUtils.applyLinearImpulseToBody(body, 0, "x");
-    }
-
-    public void enterDoor() {
-        if(isAtDoor) {
-
-        }
-    }
-
-    private void playJumpSfx() {
-        Sound jumpSfx = Gizmo.assetManager.get("res/sfx/jump.ogg", Sound.class);
-        if(!Constants.DEBUGGING) {
-            jumpSfx.play();
-        }
-    }
-
-    public void setFacingDirection(int direction) {
-        facingDirection = direction;
-    }
-
-    public int getFacingDirection() {
-        return facingDirection;
     }
 
     @Override
