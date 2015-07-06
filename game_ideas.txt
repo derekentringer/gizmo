@@ -1,6 +1,10 @@
 TODO
 -----
 
+add phantoms to the map based on Tiled Object layers
+try some large phantoms
+phantoms run away when gizmo barks
+
 fix up how the tiled cameras are created
 fix how the three tile maps are loaded
 updated ability to go to next level; bugs with hitting twice
