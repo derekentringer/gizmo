@@ -5,5 +5,6 @@ public enum ObjectDataType {
     WALL,
     DOOR,
     PLAYER,
-    PLAYER_HIT_AREA
+    PLAYER_HIT_AREA,
+    PHANTOM
 }

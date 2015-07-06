@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
+import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.level.Level;
@@ -39,6 +40,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private float effectiveViewportHeight;
 
     private PlayerActor playerActor;
+    private PhantomActor phantomActor;
+
     private SpriteBatch spriteBatch;
 
     private Level currentLevel;
@@ -49,6 +52,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         setupWorld();
         loadLevel(level);
         createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
+        createPhantom(currentLevel.getXpos()+300, currentLevel.getYpos()+300);
         //setupDebugRendererCamera();
         setupMainCamera();
         setupMidBackgroundCamera();
@@ -91,6 +95,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void createPlayer(int xPos, int yPos) {
         playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
         addActor(playerActor);
+    }
+
+    private void createPhantom(int xPos, int yPos) {
+        phantomActor = new PhantomActor(PlayerUtils.createPhantom(world, xPos, yPos));
+        addActor(phantomActor);
     }
 
     @Override
@@ -149,6 +158,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         spriteBatch.setProjectionMatrix(mainCamera.combined);
         playerActor.render(spriteBatch);
+        phantomActor.render(spriteBatch);
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
 
@@ -163,6 +173,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         handleInput();
 
         playerActor.update(delta);
+        phantomActor.update(delta);
 
         Constants.ACCUMULATOR += delta;
         while (Constants.ACCUMULATOR >= delta) {
