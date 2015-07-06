@@ -4,18 +4,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.util.BodyUtils;
+import com.derekentringer.gizmo.util.WorldUtils;
 
-public class PhantomActor extends BaseActor implements ContactListener {
+public class PhantomActor extends BaseActor {
 
     private static final float MOVEMENT_FORCE = 0.1f;
+    private static final int MOVEMENT_PADDING = 7;
 
     private TextureRegion[] phantomLeftSprite;
     private TextureRegion[] phantomRightSprite;
@@ -51,11 +49,11 @@ public class PhantomActor extends BaseActor implements ContactListener {
 
     @Override
     public void act (float delta) {
-        if(getPosition().x > getPlayerPosition().x) {
+        if(getPosition().x > getPlayerPosition().x + WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
             BodyUtils.applyLinearImpulseToBody(body, -MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_LEFT);
         }
-        else {
+        else if(getPosition().x < getPlayerPosition().x - WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
             BodyUtils.applyLinearImpulseToBody(body, MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_RIGHT);
         }
@@ -70,22 +68,6 @@ public class PhantomActor extends BaseActor implements ContactListener {
                 setAnimation(phantomRightSprite, 1 / 12f);
             }
         }
-    }
-
-    @Override
-    public void beginContact(Contact contact) {
-    }
-
-    @Override
-    public void endContact(Contact contact) {
-    }
-
-    @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
-    }
-
-    @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
     }
 
 }
