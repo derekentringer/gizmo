@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.manager;
+package com.derekentringer.gizmo.level;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.MapLayer;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Array;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
@@ -23,7 +23,9 @@ import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 
-public class TileMapManager extends Stage {
+import java.util.ArrayList;
+
+public class MapParser extends Stage {
 
     private TiledMap tiledMap;
     private TiledMap tiledMapMidBackground;
@@ -35,9 +37,9 @@ public class TileMapManager extends Stage {
 
     private float tileSize;
 
-    public Array<PhantomActor> phantomActors = new Array<PhantomActor>();
+    public final ArrayList<Actor> actorsArray = new ArrayList<Actor>();
 
-    public TileMapManager(String tileMapName, String tileMapMidBackground, String tileMapBackground) {
+    public MapParser(String tileMapName, String tileMapMidBackground, String tileMapBackground) {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
@@ -113,9 +115,9 @@ public class TileMapManager extends Stage {
                     Float yPosD = (Float) mapObject.getProperties().get("y");
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
-                    PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(world, xPos, yPos));
+                    PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomData(), world, xPos, yPos));
                     addActor(phantomActor);
-                    phantomActors.add(phantomActor);
+                    actorsArray.add(phantomActor);
                 }
             }
         }

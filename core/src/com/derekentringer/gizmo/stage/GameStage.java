@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.structure.DoorUserData;
@@ -17,7 +18,7 @@ import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.level.Level;
-import com.derekentringer.gizmo.manager.TileMapManager;
+import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -34,7 +35,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private OrthographicCamera backgroundCamera;
 
     private World world;
-    private TileMapManager tileMapManager;
+    private MapParser tileMapManager;
 
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
@@ -87,7 +88,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     public void loadLevel(Level level) {
         System.out.print("loading level: " + level.getLevelInt());
-        tileMapManager = new TileMapManager(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
+        tileMapManager = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         tileMapManager.createTileMapLayers(world);
         tileMapManager.createMapLayers(world);
     }
@@ -155,8 +156,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         playerActor.render(spriteBatch);
 
-        for(PhantomActor actor: tileMapManager.phantomActors) {
-            actor.render(spriteBatch);
+        //TODO
+        for(Actor actor: tileMapManager.actorsArray) {
+            ((PhantomActor) actor).render(spriteBatch);
         }
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
@@ -173,8 +175,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         playerActor.update(delta);
 
-        for(PhantomActor actor: tileMapManager.phantomActors) {
-            actor.update(delta);
+        //TODO
+        for(Actor actor: tileMapManager.actorsArray) {
+            ((PhantomActor) actor).update(delta);
         }
 
         Constants.ACCUMULATOR += delta;
