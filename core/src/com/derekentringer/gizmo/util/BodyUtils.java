@@ -17,6 +17,16 @@ public class BodyUtils {
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.GROUND);
     }
 
+    public static boolean bodyIsEnemy(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType().equals(ObjectDataType.ENEMY);
+    }
+
+    public static int getBodyDamageAmount(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData.getHealthDamage();
+    }
+
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {
         float velChange;
         Vector2 velocity = body.getLinearVelocity();

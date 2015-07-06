@@ -28,14 +28,14 @@
    eJztzjENAAAIA7A5wb9LLOwjJK2CJgAAAAB8NtcBoLaH4AAg
   </data>
  </layer>
- <objectgroup name="phantoms">
-  <object id="3" x="786" y="611">
+ <objectgroup name="phantom">
+  <object id="3" x="784" y="623">
    <ellipse/>
   </object>
-  <object id="4" x="1487" y="542">
+  <object id="4" x="1488" y="559">
    <ellipse/>
   </object>
-  <object id="5" x="400" y="551">
+  <object id="5" x="400" y="559">
    <ellipse/>
   </object>
  </objectgroup>

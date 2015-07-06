@@ -19,6 +19,7 @@ import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
+import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -41,7 +42,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private float effectiveViewportHeight;
 
     private PlayerActor playerActor;
-    private PhantomActor phantomActor;
 
     private SpriteBatch spriteBatch;
 
@@ -103,6 +103,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         Fixture a =  contact.getFixtureA();
         Fixture b =  contact.getFixtureB();
 
+        //player
         if(FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
             playerActor.setIsOnGround(true);
         }
@@ -120,6 +121,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
         else {
             playerActor.setIsAtDoor(false);
+        }
+
+        //player/enemy collisions
+        if(BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+            playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(a.getBody()));
         }
     }
 
@@ -178,6 +184,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //TODO
         for(Actor actor: tileMapManager.actorsArray) {
             ((PhantomActor) actor).update(delta);
+            actor.act(delta);
         }
 
         Constants.ACCUMULATOR += delta;
@@ -284,6 +291,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     @Override
     public void playerIsOffMap(boolean offMap) {
         createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
+    }
+
+    @Override
+    public void playerGotHit(int playerHealth) {
     }
 
     /*private void setupDebugRendererCamera() {

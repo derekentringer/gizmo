@@ -46,6 +46,10 @@ public abstract class BaseActor extends Actor {
         spriteBatch.end();
     }
 
+    @Override
+    public void act (float delta) {
+    }
+
     public void setCurrentTextureRegion(TextureRegion[] textureRegion) {
         currentTextureRegion = textureRegion;
     }

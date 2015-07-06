@@ -43,7 +43,9 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private boolean isOnGround;
     private boolean isAtDoor;
     private int facingDirection;
-    
+
+    private int playerHealth = 100;
+
     public PlayerActor(Body body) {
         super(body);
 
@@ -74,6 +76,11 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     @Override
     public ObjectData getUserData() {
         return null;
+    }
+
+    public void setHitEnemy(int healthDamage) {
+        setPlayerHealth(playerHealth - healthDamage);
+        playerGotHit(playerHealth);
     }
 
     public void jump() {
@@ -146,6 +153,14 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         }
     }
 
+    public void setPlayerHealth(int health) {
+        playerHealth = health;
+    }
+
+    public int getPlayerHealth() {
+        return playerHealth;
+    }
+
     public void setFacingDirection(int direction) {
         facingDirection = direction;
     }
@@ -180,6 +195,13 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     @Override
     public void playerIsOffMap(boolean offMap) {
+    }
+
+    @Override
+    public void playerGotHit(int playerHealth) {
+        //TODO create blinking animation
+        //setAnimation(gizmoFlinch);
+        //apply linear impulse for flinch in opposite direction
     }
 
 }
