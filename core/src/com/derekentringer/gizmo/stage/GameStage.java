@@ -306,7 +306,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerIsOffMap(boolean offMap) {
-        createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
+        isPlayerDead = true;
     }
 
     @Override
