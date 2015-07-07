@@ -40,7 +40,9 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private boolean isOnGround;
     private boolean isAtDoor;
 
-    private int playerHealth = 100;
+    private int playerHealth = 20;
+
+    public IPlayerDelegate delegate = null;
 
     public PlayerActor(Body body) {
         super(body);
@@ -76,7 +78,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     public void setHitEnemy(int healthDamage) {
         setPlayerHealth(playerHealth - healthDamage);
-        playerGotHit(playerHealth);
+        delegate.playerGotHit(playerHealth);
     }
 
     public void jump() {
@@ -187,9 +189,10 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     @Override
     public void playerGotHit(int playerHealth) {
-        //TODO create blinking animation
-        //setAnimation(gizmoFlinch);
-        //apply linear impulse for flinch in opposite direction
+    }
+
+    @Override
+    public void playerDied() {
     }
 
 }

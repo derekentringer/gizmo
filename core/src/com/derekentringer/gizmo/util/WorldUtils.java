@@ -24,6 +24,10 @@ public class WorldUtils {
         }
     }
 
+    public static void destroyBody(World world, Body body) {
+        world.destroyBody(body);
+    }
+
     public static float ppmCalc(int dimension) {
         return dimension / Constants.PPM;
     }

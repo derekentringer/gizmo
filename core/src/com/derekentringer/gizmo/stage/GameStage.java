@@ -48,6 +48,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private Level currentLevel;
     private boolean alreadyEntered = false;
 
+    private boolean isPlayerDead = false;
+
     public GameStage(Level level) {
         currentLevel = level;
         setupWorld();
@@ -95,6 +97,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private void createPlayer(int xPos, int yPos) {
         playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
+        playerActor.delegate = this;
         addActor(playerActor);
     }
 
@@ -171,6 +174,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
 
         handlePlayerPosition(playerActor.getPosition().y);
+
+        handlePlayerDied();
     }
 
     @Override
@@ -227,6 +232,16 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void handlePlayerPosition(float playerY) {
         if(playerY * Constants.PPM < 0) {
             playerIsOffMap(true);
+        }
+    }
+
+    private void handlePlayerDied() {
+        if(isPlayerDead) {
+            isPlayerDead = false;
+            tileMapManager.destroyTiledMap();
+            WorldUtils.destroyBodies(world);
+            loadLevel(currentLevel);
+            createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
         }
     }
 
@@ -296,6 +311,14 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerGotHit(int playerHealth) {
+        if(playerHealth <= 0) {
+            playerDied();
+        }
+    }
+
+    @Override
+    public void playerDied() {
+        isPlayerDead = true;
     }
 
     /*private void setupDebugRendererCamera() {
