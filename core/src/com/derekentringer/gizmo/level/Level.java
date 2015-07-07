@@ -6,16 +6,12 @@ public class Level {
     private String sLevelMap;
     private String sLevelMidMap;
     private String sLevelBackMap;
-    private int sXpos;
-    private int sYpos;
 
-    public Level(int levelInt, String levelMap, String levelMidMap, String levelBackMap, int xPos, int yPos) {
+    public Level(int levelInt, String levelMap, String levelMidMap, String levelBackMap) {
         sLevelInt = levelInt;
         sLevelMap = levelMap;
         sLevelMidMap = levelMidMap;
         sLevelBackMap = levelBackMap;
-        sXpos = xPos;
-        sYpos = yPos;
     }
 
     public int getLevelInt() {
@@ -48,22 +44,6 @@ public class Level {
 
     public void setsLevelBackMap(String levelBackMap) {
         sLevelBackMap = levelBackMap;
-    }
-
-    public int getXpos() {
-        return sXpos;
-    }
-
-    public void setsXpos(int xPos) {
-        sXpos = xPos;
-    }
-
-    public int getYpos() {
-        return sYpos;
-    }
-
-    public void setsYpos(int yPos) {
-        sYpos = yPos;
     }
 
 }

@@ -28,23 +28,17 @@ public class Constants {
         Level levelOne = new Level(0,
                 "res/maps/level_one/level_one.tmx",
                 "res/maps/level_one/mid_background.tmx",
-                "res/maps/level_one/background.tmx",
-                143,
-                130);
+                "res/maps/level_one/background.tmx");
 
         Level levelTwo = new Level(1,
                 "res/maps/level_two/level_two.tmx",
                 "res/maps/level_two/mid_background.tmx",
-                "res/maps/level_two/background.tmx",
-                240,
-                90);
+                "res/maps/level_two/background.tmx");
 
         Level levelThree = new Level(2,
                 "res/maps/level_three/level_three.tmx",
                 "res/maps/level_three/mid_background.tmx",
-                "res/maps/level_three/background.tmx",
-                275,
-                210);
+                "res/maps/level_three/background.tmx");
 
         gameLevels.add(levelOne);
         gameLevels.add(levelTwo);

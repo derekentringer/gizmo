@@ -55,7 +55,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         currentLevel = level;
         setupWorld();
         loadLevel(level);
-        //createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
         //setupDebugRendererCamera();
         setupMainCamera();
         setupMidBackgroundCamera();
@@ -96,12 +95,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mapParser.createTileMapLayers(world);
         mapParser.createMapLayers(world);
     }
-
-    /*private void createPlayer(int xPos, int yPos) {
-        playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
-        playerActor.delegate = this;
-        addActor(playerActor);
-    }*/
 
     @Override
     public void beginContact(Contact contact) {
@@ -248,7 +241,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
             loadLevel(currentLevel);
-            //createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
         }
     }
 
@@ -291,8 +283,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         int newLevel = currentLevel.getLevelInt() - 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
                         loadLevel(Constants.gameLevels.get(newLevel));
-                        //createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
-                                //Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
@@ -303,8 +293,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         int newLevel = currentLevel.getLevelInt() + 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
                         loadLevel(Constants.gameLevels.get(newLevel));
-                        //createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
-                                //Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
             }

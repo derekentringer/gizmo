@@ -49,7 +49,7 @@
   </object>
  </objectgroup>
  <objectgroup name="player">
-  <object id="11" x="143.5" y="625">
+  <object id="11" x="143.5" y="623">
    <ellipse/>
   </object>
  </objectgroup>
