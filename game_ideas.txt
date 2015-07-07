@@ -1,7 +1,7 @@
 TODO
 -----
 
-add phantoms to the map based on Tiled Object layers
+
 try some large phantoms
 phantoms run away when gizmo barks
 

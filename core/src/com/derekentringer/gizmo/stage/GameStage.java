@@ -161,7 +161,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         playerActor.render(spriteBatch);
 
         //TODO shouldn't need to specify a specific actor
-        //can check for names
+        //can check for names and render
         for(Actor actor: mapParser.actorsArray) {
             if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).render(spriteBatch);
@@ -185,7 +185,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         playerActor.update(delta);
 
-        //TODO
+        //TODO check name and update
         for(Actor actor: mapParser.actorsArray) {
             if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).update(delta);
