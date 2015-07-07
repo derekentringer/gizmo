@@ -13,19 +13,24 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
+import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.data.structure.GroundData;
 import com.derekentringer.gizmo.actor.data.structure.WallData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.util.EnemyUtils;
+import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 
 import java.util.ArrayList;
 
 public class MapParser extends Stage {
+
+    public IMapParserDelegate delegate = null;
 
     private TiledMap tiledMap;
     private TiledMap tiledMapMidBackground;
@@ -116,8 +121,20 @@ public class MapParser extends Stage {
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
                     PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomData(), world, xPos, yPos));
+                    phantomActor.setName(PhantomData.PHANTOM);
                     addActor(phantomActor);
                     actorsArray.add(phantomActor);
+                }
+                else if(mapLayer.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
+                    Float xPosD = (Float) mapObject.getProperties().get("x");
+                    Float yPosD = (Float) mapObject.getProperties().get("y");
+                    int xPos = xPosD.intValue();
+                    int yPos = yPosD.intValue();
+                    PlayerActor playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
+                    playerActor.setName(PlayerData.PLAYER);
+                    addActor(playerActor);
+                    actorsArray.add(playerActor);
+                    delegate.setPlayerActor(playerActor);
                 }
             }
         }

@@ -13,20 +13,21 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
+import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
+import com.derekentringer.gizmo.level.IMapParserDelegate;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
-import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
 import com.derekentringer.gizmo.util.input.UserInput;
 
-public class GameStage extends Stage implements ContactListener, IPlayerDelegate {
+public class GameStage extends Stage implements ContactListener, IPlayerDelegate, IMapParserDelegate {
 
     //private OrthographicCamera camera;
     //private Box2DDebugRenderer renderer;
@@ -36,7 +37,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private OrthographicCamera backgroundCamera;
 
     private World world;
-    private MapParser tileMapManager;
+    private MapParser mapParser;
 
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
@@ -54,7 +55,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         currentLevel = level;
         setupWorld();
         loadLevel(level);
-        createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
+        //createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
         //setupDebugRendererCamera();
         setupMainCamera();
         setupMidBackgroundCamera();
@@ -90,16 +91,17 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     public void loadLevel(Level level) {
         System.out.print("loading level: " + level.getLevelInt());
-        tileMapManager = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
-        tileMapManager.createTileMapLayers(world);
-        tileMapManager.createMapLayers(world);
+        mapParser = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
+        mapParser.delegate = this;
+        mapParser.createTileMapLayers(world);
+        mapParser.createMapLayers(world);
     }
 
-    private void createPlayer(int xPos, int yPos) {
+    /*private void createPlayer(int xPos, int yPos) {
         playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
         playerActor.delegate = this;
         addActor(playerActor);
-    }
+    }*/
 
     @Override
     public void beginContact(Contact contact) {
@@ -149,14 +151,14 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         super.draw();
 
         //tiled maps render camera
-        tileMapManager.getTiledMapBackgroundRenderer().setView(backgroundCamera);
-        tileMapManager.getTiledMapBackgroundRenderer().render();
+        mapParser.getTiledMapBackgroundRenderer().setView(backgroundCamera);
+        mapParser.getTiledMapBackgroundRenderer().render();
 
-        tileMapManager.getTiledMapMidBackgroundRenderer().setView(midBackgroundCamera);
-        tileMapManager.getTiledMapMidBackgroundRenderer().render();
+        mapParser.getTiledMapMidBackgroundRenderer().setView(midBackgroundCamera);
+        mapParser.getTiledMapMidBackgroundRenderer().render();
 
-        tileMapManager.getTiledMapRenderer().setView(mainCamera);
-        tileMapManager.getTiledMapRenderer().render();
+        mapParser.getTiledMapRenderer().setView(mainCamera);
+        mapParser.getTiledMapRenderer().render();
 
         //world debugRenderer camera
         //renderer.render(world, camera.combined);
@@ -166,9 +168,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         playerActor.render(spriteBatch);
 
         //TODO shouldn't need to specify a specific actor
-        for(Actor actor: tileMapManager.actorsArray) {
-            ((PhantomActor) actor).render(spriteBatch);
-            ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
+        //can check for names
+        for(Actor actor: mapParser.actorsArray) {
+            if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
+                ((PhantomActor) actor).render(spriteBatch);
+                ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
+            }
         }
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
@@ -188,8 +193,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         playerActor.update(delta);
 
         //TODO
-        for(Actor actor: tileMapManager.actorsArray) {
-            ((PhantomActor) actor).update(delta);
+        for(Actor actor: mapParser.actorsArray) {
+            if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
+                ((PhantomActor) actor).update(delta);
+            }
             actor.act(delta);
         }
 
@@ -201,7 +208,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void updateCameraPlayerMovement(float playerX, float playerY) {
-        MapProperties prop = tileMapManager.getTiledMap().getProperties();
+        MapProperties prop = mapParser.getTiledMap().getProperties();
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
 
@@ -210,8 +217,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         float minWidth = effectiveViewportWidth / 2f;
         float minHeight = effectiveViewportHeight / 2f;
-        float maxWidth = (mapWidth * tileMapManager.getTileSize()) - (effectiveViewportWidth / 2f);
-        float maxHeight = (mapHeight * tileMapManager.getTileSize()) - (effectiveViewportHeight / 2f);
+        float maxWidth = (mapWidth * mapParser.getTileSize()) - (effectiveViewportWidth / 2f);
+        float maxHeight = (mapHeight * mapParser.getTileSize()) - (effectiveViewportHeight / 2f);
 
         mainCamera.position.x = Math.round(MathUtils.clamp(mainCamera.position.x + (playerX * Constants.PPM - mainCamera.position.x) * 0.1f, minWidth, maxWidth));
         mainCamera.position.y = Math.round(MathUtils.clamp(mainCamera.position.y + (playerY * Constants.PPM - mainCamera.position.y) * 0.1f, minHeight, maxHeight));
@@ -238,10 +245,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void handlePlayerDied() {
         if(isPlayerDead) {
             isPlayerDead = false;
-            tileMapManager.destroyTiledMap();
+            mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
             loadLevel(currentLevel);
-            createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
+            //createPlayer(currentLevel.getXpos(), currentLevel.getYpos());
         }
     }
 
@@ -279,25 +286,25 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
                     if (currentLevel.getLevelInt() > 0) {
                         alreadyEntered = true;
-                        tileMapManager.destroyTiledMap();
+                        mapParser.destroyTiledMap();
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() - 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
                         loadLevel(Constants.gameLevels.get(newLevel));
-                        createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
-                                Constants.gameLevels.get(newLevel).getYpos());
+                        //createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
+                                //Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
                     if (currentLevel.getLevelInt() < Constants.gameLevels.size() - 1) {
                         alreadyEntered = true;
-                        tileMapManager.destroyTiledMap();
+                        mapParser.destroyTiledMap();
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() + 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
                         loadLevel(Constants.gameLevels.get(newLevel));
-                        createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
-                                Constants.gameLevels.get(newLevel).getYpos());
+                        //createPlayer(Constants.gameLevels.get(newLevel).getXpos(),
+                                //Constants.gameLevels.get(newLevel).getYpos());
                     }
                 }
             }
@@ -319,6 +326,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     @Override
     public void playerDied() {
         isPlayerDead = true;
+    }
+
+    @Override
+    public void setPlayerActor(PlayerActor playerActor) {
+        this.playerActor = playerActor;
+        this.playerActor.delegate = this;
     }
 
     /*private void setupDebugRendererCamera() {
