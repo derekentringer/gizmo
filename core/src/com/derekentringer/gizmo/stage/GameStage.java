@@ -14,8 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
+import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.actor.object.KeyActor;
 import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.level.IMapParserDelegate;
@@ -170,6 +172,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 ((PhantomActor) actor).render(spriteBatch);
                 ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
             }
+            else if (actor.getName().equalsIgnoreCase(KeyData.KEY)) {
+                ((KeyActor) actor).render(spriteBatch);
+            }
         }
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
@@ -192,6 +197,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         for(Actor actor: mapParser.actorsArray) {
             if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).update(delta);
+            }
+            else if(actor.getName().equalsIgnoreCase(KeyData.KEY)) {
+                ((KeyActor) actor).update(delta);
             }
             actor.act(delta);
         }

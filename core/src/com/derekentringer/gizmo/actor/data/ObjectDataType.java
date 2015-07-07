@@ -6,5 +6,6 @@ public enum ObjectDataType {
     DOOR,
     PLAYER,
     PLAYER_HIT_AREA,
-    ENEMY
+    ENEMY,
+    KEY
 }

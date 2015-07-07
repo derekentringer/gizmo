@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="9">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
@@ -47,6 +47,11 @@
  </objectgroup>
  <objectgroup name="player">
   <object id="1" x="239.5" y="655.5">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="key">
+  <object id="8" x="913" y="622">
    <ellipse/>
   </object>
  </objectgroup>

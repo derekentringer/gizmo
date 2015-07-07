@@ -13,16 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
+import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.data.structure.GroundData;
 import com.derekentringer.gizmo.actor.data.structure.WallData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.actor.object.KeyActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.util.EnemyUtils;
+import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 
@@ -135,6 +138,16 @@ public class MapParser extends Stage {
                     addActor(playerActor);
                     actorsArray.add(playerActor);
                     delegate.setPlayerActor(playerActor);
+                }
+                else if(mapLayer.getName().equalsIgnoreCase(KeyData.KEY)) {
+                    Float xPosD = (Float) mapObject.getProperties().get("x");
+                    Float yPosD = (Float) mapObject.getProperties().get("y");
+                    int xPos = xPosD.intValue();
+                    int yPos = yPosD.intValue();
+                    KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyData(), world, xPos, yPos));
+                    keyActor.setName(KeyData.KEY);
+                    addActor(keyActor);
+                    actorsArray.add(keyActor);
                 }
             }
         }
