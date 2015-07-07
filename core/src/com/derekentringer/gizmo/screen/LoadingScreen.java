@@ -23,6 +23,15 @@ public class LoadingScreen extends AbstractScreen {
         game.assetManager.load("res/images/gizmo_jump_fall_right.png", Texture.class);
         game.assetManager.load("res/images/gizmo_jump_fall_left.png", Texture.class);
 
+        game.assetManager.load("res/images/gizmo_running_flinching_left.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_running_flinching_right.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_standing_flinching_left.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_standing_flinching_right.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_jump_up_flinching_left.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_jump_up_flinching_right.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_jump_fall_flinching_left.png", Texture.class);
+        game.assetManager.load("res/images/gizmo_jump_fall_flinching_right.png", Texture.class);
+
         game.assetManager.load("res/images/phantom_left.png", Texture.class);
         game.assetManager.load("res/images/phantom_right.png", Texture.class);
 

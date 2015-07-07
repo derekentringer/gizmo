@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.ObjectData;
@@ -15,9 +16,11 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     private static final float RUNNING_FORCE = 1f;
     private static final float JUMP_FORCE = 4f;
-    private static final float JUMP_FORCE_RESET = -1f;
+    private static final float JUMP_FORCE_RESET = -1.2f;
+    public  static final int FLINCHING_LENGTH = 3;
+    private static final float FLINCH_FORCE = 4f;
 
-    private DoorData isAtDoorUserData;
+    public IPlayerDelegate delegate = null;
 
     private TextureRegion[] runningRightSprites;
     private TextureRegion[] runningLeftSprites;
@@ -28,6 +31,15 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private TextureRegion[] jumpFallRightSprites;
     private TextureRegion[] jumpFallLeftSprites;
 
+    private TextureRegion[] flinchingRunningLeftSprites;
+    private TextureRegion[] flinchingRunningRightSprites;
+    private TextureRegion[] flinchingStandingLeftSprites;
+    private TextureRegion[] flinchingStandingRightSprites;
+    private TextureRegion[] flinchingJumpUpLeftSprites;
+    private TextureRegion[] flinchingJumpUpRightSprites;
+    private TextureRegion[] flinchingJumpFallLeftSprites;
+    private TextureRegion[] flinchingJumpFallRightSprites;
+
     private Texture gizmoRunningRight;
     private Texture gizmoRunningLeft;
     private Texture gizmoStandingRight;
@@ -37,12 +49,22 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private Texture gizmoFallRightSprites;
     private Texture gizmoFallLeftSprites;
 
+    private Texture gizmoFlinchingRunningLeft;
+    private Texture gizmoFlinchingRunningRight;
+    private Texture gizmoFlinchingStandingLeft;
+    private Texture gizmoFlinchingStandingRight;
+    private Texture gizmoFlinchingJumpUpLeft;
+    private Texture gizmoFlinchingJumpUpRight;
+    private Texture gizmoFlinchingJumpFallLeft;
+    private Texture gizmoFlinchingJumpFallRight;
+
+    private DoorData isAtDoorUserData;
     private boolean isOnGround;
     private boolean isAtDoor;
+    private static boolean isFlinching = false;
 
     private int playerHealth = 20;
-
-    public IPlayerDelegate delegate = null;
+    private int playerLives = 5;
 
     public PlayerActor(Body body) {
         super(body);
@@ -57,6 +79,15 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         gizmoFallRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right.png", Texture.class);
         gizmoFallLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left.png", Texture.class);
 
+        gizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_flinching_left.png", Texture.class);
+        gizmoFlinchingRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_flinching_right.png", Texture.class);
+        gizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_flinching_left.png", Texture.class);
+        gizmoFlinchingStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_flinching_right.png", Texture.class);
+        gizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/images/gizmo_jump_up_flinching_right.png", Texture.class);
+        gizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/images/gizmo_jump_up_flinching_left.png", Texture.class);
+        gizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/images/gizmo_jump_fall_flinching_right.png", Texture.class);
+        gizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/images/gizmo_jump_fall_flinching_left.png", Texture.class);
+
         runningRightSprites = TextureRegion.split(gizmoRunningRight, 32, 32)[0];
         runningLeftSprites = TextureRegion.split(gizmoRunningLeft, 32, 32)[0];
         standingRightSprites = TextureRegion.split(gizmoStandingRight, 32, 32)[0];
@@ -66,6 +97,15 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         jumpUpLeftSprites = TextureRegion.split(gizmoJumpUpLeftSprites, 32, 32)[0];
         jumpFallRightSprites = TextureRegion.split(gizmoFallRightSprites, 32, 32)[0];
         jumpFallLeftSprites = TextureRegion.split(gizmoFallLeftSprites, 32, 32)[0];
+
+        flinchingRunningLeftSprites = TextureRegion.split(gizmoFlinchingRunningLeft, 32, 32)[0];
+        flinchingRunningRightSprites = TextureRegion.split(gizmoFlinchingRunningRight, 32, 32)[0];
+        flinchingStandingLeftSprites = TextureRegion.split(gizmoFlinchingStandingLeft, 32, 32)[0];
+        flinchingStandingRightSprites = TextureRegion.split(gizmoFlinchingStandingRight, 32, 32)[0];
+        flinchingJumpUpRightSprites = TextureRegion.split(gizmoFlinchingJumpUpRight, 32, 32)[0];
+        flinchingJumpUpLeftSprites = TextureRegion.split(gizmoFlinchingJumpUpLeft, 32, 32)[0];
+        flinchingJumpFallRightSprites = TextureRegion.split(gizmoFlinchingJumpFallRight, 32, 32)[0];
+        flinchingJumpFallLeftSprites = TextureRegion.split(gizmoFlinchingJumpFallLeft, 32, 32)[0];
 
         setAnimation(runningRightSprites, 1/12f);
         setFacingDirection(FACING_RIGHT);
@@ -78,18 +118,33 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     public void setHitEnemy(int healthDamage) {
         setPlayerHealth(playerHealth - healthDamage);
+        applyFlinchForce();
         delegate.playerGotHit(playerHealth);
     }
 
     public void jump() {
-        if(getFacingDirection() == FACING_RIGHT) {
-            if (!getCurrentTextureRegion().equals(jumpUpRightSprites)) {
-                setAnimation(jumpUpRightSprites, 1/12f);
+        if(isFlinching) {
+            if(getFacingDirection() == FACING_RIGHT) {
+                if (!getCurrentTextureRegion().equals(flinchingJumpUpRightSprites)) {
+                    setAnimation(flinchingJumpUpRightSprites, 1/12f);
+                }
+            }
+            else if(getFacingDirection() == FACING_LEFT) {
+                if (!getCurrentTextureRegion().equals(flinchingJumpUpLeftSprites)) {
+                    setAnimation(flinchingJumpUpLeftSprites, 1/12f);
+                }
             }
         }
-        else if(getFacingDirection() == FACING_LEFT) {
-            if (!getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
-                setAnimation(jumpUpLeftSprites, 1/12f);
+        else {
+            if (getFacingDirection() == FACING_RIGHT) {
+                if (!getCurrentTextureRegion().equals(jumpUpRightSprites)) {
+                    setAnimation(jumpUpRightSprites, 1 / 12f);
+                }
+            }
+            else if (getFacingDirection() == FACING_LEFT) {
+                if (!getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
+                    setAnimation(jumpUpLeftSprites, 1 / 12f);
+                }
             }
         }
         BodyUtils.applyLinearImpulseToBody(body, JUMP_FORCE, "y");
@@ -97,51 +152,112 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     public void stopJumping() {
-        if(getFacingDirection() == FACING_RIGHT) {
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallRightSprites)) {
-                setAnimation(jumpFallRightSprites, 1/12f);
+        if(isFlinching) {
+            if (getFacingDirection() == FACING_RIGHT) {
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpFallRightSprites)) {
+                    setAnimation(flinchingJumpFallRightSprites, 1 / 12f);
+                }
+            }
+            else if (getFacingDirection() == FACING_LEFT) {
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpFallLeftSprites)) {
+                    setAnimation(flinchingJumpFallLeftSprites, 1 / 12f);
+                }
             }
         }
-        else if(getFacingDirection() == FACING_LEFT) {
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallLeftSprites)) {
-                setAnimation(jumpFallLeftSprites, 1/12f);
+        else {
+            if (getFacingDirection() == FACING_RIGHT) {
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallRightSprites)) {
+                    setAnimation(jumpFallRightSprites, 1 / 12f);
+                }
+            }
+            else if (getFacingDirection() == FACING_LEFT) {
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallLeftSprites)) {
+                    setAnimation(jumpFallLeftSprites, 1 / 12f);
+                }
             }
         }
         BodyUtils.applyLinearImpulseToBody(body, JUMP_FORCE_RESET, "y");
     }
 
     public void moveLeft() {
-        if(getIsOnGround() && !getCurrentTextureRegion().equals(runningLeftSprites)) {
-            setAnimation(runningLeftSprites, 1/12f);
+        if(isFlinching) {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningLeftSprites) ) {
+                setAnimation(flinchingRunningLeftSprites, 1 / 12f);
+            }
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpUpLeftSprites)
+                    && !getCurrentTextureRegion().equals(flinchingJumpFallLeftSprites)) {
+                setAnimation(flinchingJumpUpLeftSprites, 1 / 12f);
+            }
         }
-        if(!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
-            setAnimation(jumpUpLeftSprites, 1/12f);
+        else {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(runningLeftSprites)) {
+                setAnimation(runningLeftSprites, 1 / 12f);
+            }
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
+                setAnimation(jumpUpLeftSprites, 1 / 12f);
+            }
         }
         BodyUtils.applyLinearImpulseToBody(body, -RUNNING_FORCE, "x");
         setFacingDirection(FACING_LEFT);
     }
 
     public void moveRight() {
-        if(getIsOnGround() && !getCurrentTextureRegion().equals(runningRightSprites)) {
-            setAnimation(runningRightSprites, 1/12f);
+        if(isFlinching) {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningRightSprites)) {
+                setAnimation(flinchingRunningRightSprites, 1 / 12f);
+            }
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpUpRightSprites)
+                    && !getCurrentTextureRegion().equals(flinchingJumpFallRightSprites)) {
+                setAnimation(flinchingJumpUpRightSprites, 1 / 12f);
+            }
         }
-        if(!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpRightSprites)) {
-            setAnimation(jumpUpRightSprites, 1/12f);
+        else {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(runningRightSprites)) {
+                setAnimation(runningRightSprites, 1 / 12f);
+            }
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpRightSprites)) {
+                setAnimation(jumpUpRightSprites, 1 / 12f);
+            }
         }
         BodyUtils.applyLinearImpulseToBody(body, RUNNING_FORCE, "x");
         setFacingDirection(FACING_RIGHT);
     }
 
     public void stoppedMoving() {
-        if(getIsOnGround() && !getCurrentTextureRegion().equals(standingRightSprites)) {
-            if(facingDirection == FACING_LEFT) {
-                setAnimation(standingLeftSprites, 1/12f);
+        if(isFlinching) {
+            if (facingDirection == FACING_LEFT) {
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingStandingLeftSprites)) {
+                    setAnimation(flinchingStandingLeftSprites, 1 / 12f);
+                }
             }
             else {
-                setAnimation(standingRightSprites, 1/12f);
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingStandingRightSprites)) {
+                    setAnimation(flinchingStandingRightSprites, 1 / 12f);
+                }
+            }
+        }
+        else {
+            if (facingDirection == FACING_LEFT) {
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(standingLeftSprites)) {
+                    setAnimation(standingLeftSprites, 1 / 12f);
+                }
+            }
+            else {
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(standingRightSprites)) {
+                    setAnimation(standingRightSprites, 1 / 12f);
+                }
             }
         }
         BodyUtils.applyLinearImpulseToBody(body, 0, "x");
+    }
+
+    private void applyFlinchForce() {
+        if(facingDirection == FACING_RIGHT) {
+            BodyUtils.applyLinearImpulseToBody(body, -FLINCH_FORCE, "x");
+        }
+        else {
+            BodyUtils.applyLinearImpulseToBody(body, FLINCH_FORCE, "x");
+        }
     }
 
     private void playJumpSfx() {
@@ -149,6 +265,16 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         if(!Constants.DEBUGGING) {
             jumpSfx.play();
         }
+    }
+
+    public static void startFlinchingTimer(final PlayerActor playerActor) {
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                playerActor.setIsFlinching(false);
+            }
+
+        }, PlayerActor.FLINCHING_LENGTH);
     }
 
     public void setPlayerHealth(int health) {
@@ -159,16 +285,24 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         return playerHealth;
     }
 
-    public void setIsOnGround(boolean isOnGround) {
-        this.isOnGround = isOnGround;
+    public void setPlayerLives(int lives) {
+        playerLives = lives;
+    }
+
+    public int getPlayerLives() {
+        return playerLives;
+    }
+
+    public void setIsOnGround(boolean onGround) {
+        isOnGround = onGround;
     }
 
     public boolean getIsOnGround() {
         return isOnGround;
     }
 
-    public void setIsAtDoor(boolean isAtDoor) {
-        this.isAtDoor = isAtDoor;
+    public void setIsAtDoor(boolean atDoor) {
+        isAtDoor = atDoor;
     }
 
     public boolean getIsAtDoor() {
@@ -176,11 +310,19 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     public void setIsAtDoorUserData(DoorData doorUserData) {
-        this.isAtDoorUserData = doorUserData;
+        isAtDoorUserData = doorUserData;
     }
 
     public DoorData getIsAtDoorUserData() {
         return isAtDoorUserData;
+    }
+
+    public void setIsFlinching(boolean flinching) {
+        isFlinching = flinching;
+    }
+
+    public boolean getIsFlinching() {
+        return isFlinching;
     }
 
     @Override
