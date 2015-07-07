@@ -122,7 +122,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
 
         //player/enemy collisions
-        if(BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        if(BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())
+                || BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(a.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);

@@ -18,7 +18,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private static final float JUMP_FORCE = 4f;
     private static final float JUMP_FORCE_RESET = -1.2f;
     public  static final int FLINCHING_LENGTH = 3;
-    private static final float FLINCH_FORCE = 4f;
+    private static final float FLINCH_FORCE = 50f;
 
     public IPlayerDelegate delegate = null;
 
@@ -61,7 +61,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private DoorData isAtDoorUserData;
     private boolean isOnGround;
     private boolean isAtDoor;
-    private static boolean isFlinching = false;
+    private static boolean isFlinching;
 
     private int playerHealth = 20;
     private int playerLives = 5;
@@ -117,9 +117,11 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     public void setHitEnemy(int healthDamage) {
-        setPlayerHealth(playerHealth - healthDamage);
-        applyFlinchForce();
-        delegate.playerGotHit(playerHealth);
+        if(!isFlinching) {
+            setPlayerHealth(playerHealth - healthDamage);
+            applyFlinchForce();
+            delegate.playerGotHit(playerHealth);
+        }
     }
 
     public void jump() {
