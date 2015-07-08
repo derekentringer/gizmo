@@ -1,7 +1,7 @@
 TODO
 -----
 
-
+open doors when user has the correct key
 try some large phantoms
 phantoms run away when gizmo barks
 
