@@ -8,9 +8,12 @@ import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
+
+import java.util.ArrayList;
 
 public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
@@ -66,6 +69,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private int playerHealth = 20;
     private int playerLives = 5;
     private int numKeys = 0;
+    private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
 
     public PlayerActor(Body body) {
         super(body);
@@ -125,8 +129,12 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         }
     }
 
-    public void pickupKey() {
-        setNumKeys();
+    public void setKeys(KeyData keyData) {
+        keyList.add(keyData);
+    }
+
+    public ArrayList<KeyData> getKeys() {
+        return keyList;
     }
 
     public void jump() {
