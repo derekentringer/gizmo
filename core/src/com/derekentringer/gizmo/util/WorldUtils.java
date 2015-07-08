@@ -25,6 +25,8 @@ public class WorldUtils {
     }
 
     public static void destroyBody(World world, Body body) {
+        body.setUserData(null);
+        body.setActive(false);
         world.destroyBody(body);
     }
 

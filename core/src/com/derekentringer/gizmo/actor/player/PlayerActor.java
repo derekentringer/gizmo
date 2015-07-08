@@ -65,6 +65,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     private int playerHealth = 20;
     private int playerLives = 5;
+    private int numKeys = 0;
 
     public PlayerActor(Body body) {
         super(body);
@@ -122,6 +123,10 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
             applyFlinchForce();
             delegate.playerGotHit(playerHealth);
         }
+    }
+
+    public void pickupKey() {
+        setNumKeys();
     }
 
     public void jump() {
@@ -293,6 +298,14 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     public int getPlayerLives() {
         return playerLives;
+    }
+
+    public void setNumKeys() {
+        numKeys++;
+    }
+
+    public int getNumKeys() {
+       return numKeys;
     }
 
     public void setIsOnGround(boolean onGround) {

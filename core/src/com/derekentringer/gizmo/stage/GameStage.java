@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -12,9 +13,11 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
+import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
@@ -43,6 +46,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
+
+    private Array<Body> deleteBodies = new Array<Body>();
 
     private PlayerActor playerActor;
 
@@ -111,24 +116,39 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.setIsOnGround(true);
         }
 
-        if(FixtureUtils.fixtureIsDoor(a)) {
-            playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorData) a.getBody().getUserData());
-        }
-        else if(FixtureUtils.fixtureIsDoor(b)) {
+        //player at door
+        if(BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoor(b.getBody()) ) {
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorData) b.getBody().getUserData());
+        }
+        else if(BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoor(a.getBody())) {
+            playerActor.setIsAtDoor(true);
+            playerActor.setIsAtDoorUserData((DoorData) a.getBody().getUserData());
         }
         else {
             playerActor.setIsAtDoor(false);
         }
 
         //player/enemy collisions
-        if(BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())
-                || BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        if(BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(a.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
+        }
+        else if(BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())){
+            playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(b.getBody()));
+            playerActor.setIsFlinching(true);
+            playerActor.startFlinchingTimer(playerActor);
+        }
+
+        //pickup a key
+        if(BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+            playerActor.pickupKey();
+            deleteBodies.add(a.getBody());
+        }
+        else if(BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())){
+            playerActor.pickupKey();
+            deleteBodies.add(b.getBody());
         }
     }
 
@@ -148,6 +168,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void draw() {
         super.draw();
 
+        removeBodiesActors();
+
         //tiled maps render camera
         mapParser.getTiledMapBackgroundRenderer().setView(backgroundCamera);
         mapParser.getTiledMapBackgroundRenderer().render();
@@ -163,12 +185,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         spriteBatch.setProjectionMatrix(mainCamera.combined);
 
-        playerActor.render(spriteBatch);
-
         //TODO shouldn't need to specify a specific actor
         //can check for names and render
         for(Actor actor: mapParser.actorsArray) {
-            if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
+            if(actor.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
+                ((PlayerActor) actor).render(spriteBatch);
+            }
+            else if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).render(spriteBatch);
                 ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
             }
@@ -191,10 +214,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         UserInput.update();
         handleInput();
 
-        playerActor.update(delta);
-
         //TODO check name and update
         for(Actor actor: mapParser.actorsArray) {
+            if(actor.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
+                ((PlayerActor) actor).update(delta);
+            }
             if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).update(delta);
             }
@@ -208,6 +232,25 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         while (Constants.ACCUMULATOR >= delta) {
             world.step(Constants.TIME_STEP, 6, 2);
             Constants.ACCUMULATOR -= Constants.TIME_STEP;
+        }
+    }
+
+    //TODO THIS IS KEYS ONLY
+    private void removeBodiesActors() {
+        //delete actors/bodies as needed
+        for(int i=0; i < deleteBodies.size; i++) {
+
+            //delete the body
+            WorldUtils.destroyBody(world, deleteBodies.get(i));
+            deleteBodies.removeIndex(i);
+
+            //remove the actor
+            KeyActor keyActor = mapParser.keyArray.get(i);
+            keyActor.remove();
+            mapParser.keyArray.remove(i);
+            //remove key from actors array in MapParser
+            int keyIndex = mapParser.actorsArray.indexOf(keyActor);
+            mapParser.actorsArray.remove(keyIndex);
         }
     }
 

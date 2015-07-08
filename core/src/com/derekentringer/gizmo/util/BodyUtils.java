@@ -22,9 +22,19 @@ public class BodyUtils {
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.ENEMY);
     }
 
+    public static boolean bodyIsKey(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType().equals(ObjectDataType.KEY);
+    }
+
     public static int getBodyDamageAmount(Body body) {
         ObjectData userData = (ObjectData) body.getUserData();
         return userData.getHealthDamage();
+    }
+
+    public static boolean bodyIsDoor(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR);
     }
 
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {
