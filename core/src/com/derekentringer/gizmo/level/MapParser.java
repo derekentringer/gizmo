@@ -144,11 +144,10 @@ public class MapParser extends Stage {
                 else if(mapLayer.getName().equalsIgnoreCase(KeyData.KEY)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
-                    Float keyKey = (Float) mapObject.getProperties().get("keyKey");
                     String keyType = (String) mapObject.getProperties().get("keyType");
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
-                    KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyData(keyKey, keyType), world, xPos, yPos));
+                    KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyData(keyType), world, xPos, yPos));
                     keyActor.setName(KeyData.KEY);
                     addActor(keyActor);
                     keyArray.add(keyActor);
