@@ -24,16 +24,19 @@ import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
+import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
-import com.derekentringer.gizmo.util.WorldUtils;
 
 import java.util.ArrayList;
 
 public class MapParser extends Stage {
 
     public IMapParserDelegate delegate = null;
+
+    public final ArrayList<Actor> actorsArray = new ArrayList<Actor>();
+    public ArrayList<KeyActor> keyArray = new ArrayList<KeyActor>();
 
     private TiledMap tiledMap;
     private TiledMap tiledMapMidBackground;
@@ -44,10 +47,6 @@ public class MapParser extends Stage {
     private TiledMapRenderer tiledMapBackgroundRenderer;
 
     private float tileSize;
-
-    public final ArrayList<Actor> actorsArray = new ArrayList<Actor>();
-
-    public ArrayList<KeyActor> keyArray = new ArrayList<KeyActor>();
 
     public MapParser(String tileMapName, String tileMapMidBackground, String tileMapBackground) {
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
@@ -90,19 +89,19 @@ public class MapParser extends Stage {
                         }
 
                         if (curLayerName.equalsIgnoreCase(GroundData.TILE_GROUND)) {
-                            GroundActor groundActor = new GroundActor(WorldUtils.createStaticBody(new GroundData(), world, tileSize, row, col, false));
+                            GroundActor groundActor = new GroundActor(BodyUtils.createStaticBody(new GroundData(), world, tileSize, row, col, false));
                             addActor(groundActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(WallData.TILE_WALL)) {
-                            WallActor wallActor = new WallActor(WorldUtils.createStaticBody(new WallData(), world, tileSize, row, col, false));
+                            WallActor wallActor = new WallActor(BodyUtils.createStaticBody(new WallData(), world, tileSize, row, col, false));
                             addActor(wallActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.PREVIOUS)) {
-                            DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorData(DoorType.PREVIOUS), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.PREVIOUS), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.NEXT)) {
-                            DoorActor doorActor = new DoorActor(WorldUtils.createStaticBody(new DoorData(DoorType.NEXT), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.NEXT), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                     }
@@ -111,7 +110,7 @@ public class MapParser extends Stage {
         }
     }
 
-    public void createMapLayers(World world, String whichDoor) {
+    public void createTileMapObjects(World world, String whichDoor) {
         for(int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
             MapLayer mapLayer = getTiledMap().getLayers().get(curLayer);
 
@@ -171,7 +170,6 @@ public class MapParser extends Stage {
         actorsArray.add(playerActor);
         delegate.setPlayerActor(playerActor);
     }
-
 
     public void destroyTiledMap() {
         tiledMap.dispose();

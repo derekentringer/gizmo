@@ -100,7 +100,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mapParser = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         mapParser.delegate = this;
         mapParser.createTileMapLayers(world);
-        mapParser.createMapLayers(world, whichDoor);
+        mapParser.createTileMapObjects(world, whichDoor);
     }
 
     @Override
