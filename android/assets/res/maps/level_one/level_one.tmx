@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="21">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="27">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzlWO1uwyAMdJ5gf0o0mrQ/8v4POaFx6u1kPpIs6bScZKUGjH18GOjNzIJ94/OfSsIty5i/V+A7ZL7xAnwTz5C5jhfgm7gOme/a9ezh3Zxa8WI9D7YuX9Xwbl4tvokn1nVPvD04m8fa+UWObtmuwVlce/0ZcY3Wl5+34AyuPb4SQhas65bdX+YaK8Lz+9t898S/l/Ms/czSHmcvOLfi7uXaG3+tjy22k/QzSVucvXzfKPmuYUv8RwB84eMp9Yln6T6pv2voHY8juSZgPuFjkXrmWzqPatiz1rei1oeu30nqsX/5PJrl2/Kd5MORXnjxe2PTmgfer6j3+OIMRr56FtqWYnpkXceph3Nrz6te44r9yu08vvwGNmpT4+v5RnvdM60+1rapjcOd6qEz8M7n934P34dT1mPHODJvleCdv3f5Kkr7u2UH8HzM9roTGOkm9erb7HUP5jcPl+EuBcHZy5zPBPYX77mkL6JzzkVu4Tt/IJ3vx/rWHUmHLbfh8kg2EM7to3zZJjo2o8OnxF/1KH2OUsZjwbnYm18vVi92rQ/ST7CfcXhjg3yqfFlfnHp+r3Ms/Jv/s4GOeU7lX7e4Ulc=
+   eJzlWO1uwyAMdJ5gf0o0mrQ/Iu39X3FC49TbyXwkadJpPclKDRj7+DDQi5kF+8HnP5WES5Yxf9+B75D5xjfgm3iGzHV8A76J65D5rl3PHl7NqRUv1vNg6/JVDa/m1eKbeGJd98Tbg7N5rJ1f5OiW7RqcxbXXnxHXaH35eQvO4NrjKyFkwbpu2f1lrrEiPL/P5rsn/r2cZ+lnlvY4e8G5FXcv1974a31ssZ2kn0na4uzl+8ZXwXcNW+I/AuALH3epTzxL90n9XUPveBzJNQHzCR+L1DPf0nlUw561vhW1PnT9TlKP/cvn0Szflu8kH470wovfG5vWPPB+Rb3HF2cw8tW90LYU0y3rOk49nFt7XvUaV+xXbufx5TewUZsaX8832uueafWxtk1tHK5UD52Bdz6/93v43pyyHjvGkXmrBO/8vcpXUdrfLTuA52O2x53ASDepV99mj3swv3m4DHcpCM5e5nwmsL94zyV9EZ1zLnIL3/kD6Xw/1rfuSDpsuQ2XR7KBcG4f5cs20bEZHT4l/qpH6XOUMh4LzsXe/HqxerFrfZB+gv2Owxsb5FPly/ri1PN7nWPh3/yfDXTMcyr/BjOqUnw=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -32,21 +32,23 @@
   <object id="5" x="432" y="559">
    <ellipse/>
   </object>
-  <object id="6" x="112.5" y="398">
-   <ellipse/>
-  </object>
-  <object id="8" x="656.5" y="463.5">
+  <object id="24" x="143" y="400">
    <ellipse/>
   </object>
  </objectgroup>
  <objectgroup name="player">
+  <properties>
+   <property name="type" value="previous"/>
+  </properties>
   <object id="11" x="143.5" y="623">
    <ellipse/>
   </object>
- </objectgroup>
- <objectgroup name="key">
-  <object id="18" x="208.5" y="431.5">
+  <object id="26" x="1680" y="561">
+   <properties>
+    <property name="type" value="next"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>
+ <objectgroup name="key"/>
 </map>

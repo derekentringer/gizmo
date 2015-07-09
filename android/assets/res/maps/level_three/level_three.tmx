@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="2">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="4">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzlmO1uhiAMhesfr0DMVGLy6v3f49aMkx27+opinJknacQK2AeQDxsRCfKtj39qqiZZm65P4K0Sb/cAXuUMibV9AK+yVol373j29NdMW/FiPFeynK/mA6x3ZwavcmJc58Sbo6s59vYv5miUjSv17NFZcea2fU5esHaynJ9Hp46jKolx7zjbyh+SYVxDA5WPb+rfUmmMJd+UrVuFeWqNVzVR/lLu3NjO4rXvxtoLZmgwaeSPclw5cZ7NynWqsPbyfkM1Utqyq5g7Slk7eLGdxcr1qpTT7idVHiOn2Tea+xKd/d3yvYp5uX/38E7mvrSvS1i3yuD75fVItYd3eJO/REf79PVldbra8tg/41wI2fFq/R5vdJ5dpRdZTQYfz898BoYsz0zpSM8n+RnPXltcodqxWX5zq3DO5/O+imPujd+yqfGcxePhblpbf3uTryF/T8/7Fd8Vwj6Yzzzsw14KhrWXmT3xP4G7iPf8ge55f2zPui3doyznYX9HZWA8t7fmymU6p0xVwMrvhLGP24LnYq9/vVi92O3zYOoJsozDaxu0KY89xMZ7eq6vpTS/w6b5n02QZT+r/xNlKUoo
+   eJzlmFtuhDAMRc0PKyCoPIQ0fHT2v8Op1Vz14pohIYiiciWLYJLgk4Q8aEQkyLc+/qmpmmhtvN6Bt4q83Q14lTNE1vYGvMpaRd7c8ezpr5m24sV4rmQ5X33uYL06M3iVE+M6Jd4Unc2R27+Yo1F2XKknR0fFmdr2KXnB2slyfp6cOvaqJMbccbaVP0TDuIYGKj++qX9LpTGWfFO2bhXmqTVe1Uz5S7lTYzuK174bay+YocGkkX+U/UqJ82hWrlOFtZf3G6qJ0pZdxdyjlLWDF9tRrFyvSjntflLlMXKafZO5L9HR3y3fq5iX+zeHdzb3pX1dwrpVBt8vr0eqHN7hTf4S7e3Tx5fV8WrLY/+McyFkx6v1e7yj8+wsPchqMvh4fuYzMGR5npQe6fksP+PZa4szVDv2lN/cKpzz+byv4ph747dsajxn8Xi4mtbW397ka8jf0/N+xXeGsA/mMw/7sJeCYe1lZk/8T+Aq4j1/oHveH9uzbkv3KMt52N9RGRjP7a25cpnOKVMVsPI7YezjtuC52OtfL1Yvdvs8mHqCLOPw2gZtymMPsfGenutrKc3vsGn+ZxNk2c/qfwHA2Uoz
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -15,7 +15,7 @@
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztllEKwCAMQ/UOVfD+Fx0yhVLedz9SA2WYdaMhQW3tR3dlsL7cOGXnubl1qru17x2uZ7pa7v2E/vsvC9/F/jgjaYggTgULOGW9AzhLnyIP5CV5rgLSS56rgLJbLc/Keim7yvszeamsl/xV3q+qnb/V8lzt/lxNb7U8k96ZPkUe3n3jnUfqUPb3oQ4+iNgFPw==
+   eJztVkEKwCAMm3+ogv//6BhTCCXnHpIGiph1o1mD9Xl+DIgg+8vNE3HWj9snBuwxd0LOgtjwfJH8+61I7+X8XCNquGsG41QQhFPWOwnH/oEKWC93eRV1YHpZz1XAvOvmZ2W9zLvK53PPI+3zym3+uvnZ7f7sptfNz0zvKq+iDn3f6HmkDuX+NnzwAq9LBU0=
   </data>
  </layer>
  <layer name="doornext" width="60" height="23">
@@ -30,6 +30,15 @@
  </layer>
  <objectgroup name="player">
   <object id="1" x="272" y="560">
+   <properties>
+    <property name="type" value="previous"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="3" x="1680" y="560.5">
+   <properties>
+    <property name="type" value="next"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>

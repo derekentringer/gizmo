@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="10">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="12">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmOtuwyAMhZ0/fYIGNU1SaZP6/q+4oXHEiWWDWTu12pEsEhrAH1fTs4jM8qPLP7Wsc7FUUqhXrqVn+vjxgG3fdqIUvFPhXQJ+R/RX49Pj29X7WjiRSuGcC2sqebvjO+e/grfHvtIzc96IN7NOhRfz+dPwX0q5d2D1uK+FC5bf75QvUufzJHW/ylx6LHejH17NOmrgzZyY11lrMZaV9y6s0fbBO0ndo8HGY4yxfTavqGdoG2SI+iDEukjdn69kd/XeYtX+9r7TPkI35/cWa/T7uRjmda9cr40sr1886bp1+agfkTLYp5h3IovUP9Ine8NG52pE1vguUpmzmDWqixz7CbZIXTPo2yRHTshjHplrnm88vli7ifIeEdYIYjawoh305alhI/uUJ8TKQmXQPseTj/KiDh5j7Ima1YqTeswRYd7wXi9y5E26kKNIm7xGYBzTMCuzaG79TVSrSiGsXz6PWsptbuKfOVwvYtUkdQ1rXm8MmTt63rEQM1u88OWsCxnaSh292BL1YozBjTassbWYrXHVDJqf7wpI+b7Ad+CeEFciJrDGmvcl1I/1wry9Pcmbw5qXz2u+K+A35oUP+r7vCXElrw9uH+zeXEafRlkjvCOyzl/WptLcFseW3jPHqDyHfvufEUu3wX3JeZhfvJfAH6RaVyftieNy3p+j/xn1mK3+xDP3L991kxzPSO6XlrAWeW9PKmVfFqNMUgyayXqHuE0Y53Ff8F5sja/lq+W7/n1W9XB8pb9FPp9tl4F3vq+zL/zMcQ7eMc45/wu0tVH3
+   eJzdmN1uwyAMhZ2bPkGDmiaptGkXe/8n3NA44sSywaydWu1IFgkN4I9f07OIzPKjyz+1rHOxVFKoV66lR/r4dodt33aiFLxT4V0Cfkf0V+PT49vV+1o4kUrhnAtrKnm74zvnP4O3x77SM3PeiDezToUX8/nd8F9KuVdg9bivhQuW3z8oX6TO50nqfpW59FjuRj88m3XUwJs5Ma+z1mIsK+9VWKPtg3eSukeDjccYY/toXlHP0DbIEPVBiHWRuj9fyT7Ve4tV+9v7TvsI3ZzfW6zR7+dimNe9cr02srx+8aTr1uWjfkTKYJ9i3oksUv9In+wNG52rEVnju0hlzmLWqC5y7CfYInXNoG+THDkhj3lkrnm+8fhi7SbKu0dYI4jZwIp20Jenho3sU54QKwuVQfscT97Lizp4jLEnalYrTuoxR4R5w3u9yJE36UKOIm3yGoFxTMOszKK59TdRrSqFsH75PGopt7mJf+ZwvYhVk9Q1rHm9MWTu6HnHQsxs8cKXsy5kaCt19GJL1IsxBjfasMbWYrbGVTNofr4rIOX7At+Be0JciZjAGmvel1A/1gvz9vYkbw5rXj6v+a6A35gXPuj7vifElbw+uH2we3MZfRpljfCOyDp/WZtKc1scW3rPHKPyHPrtf0Ys3Qb3JedhfvFeAn+Qal2dtCeOy3l/jv5n1GO2+hPP3L98101yPCO5X1rCWuS9PamUfVmMMkkxaCbrHeI2YZzHfcF7sTW+lq+W7/r3WdXD8ZX+Fvl8tl0G3vm+zr7wM8c5eMc45/wvzaVR+Q==
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -44,6 +44,15 @@
  </objectgroup>
  <objectgroup name="player">
   <object id="1" x="239.5" y="655.5">
+   <properties>
+    <property name="type" value="previous"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="11" x="1711.5" y="560.5">
+   <properties>
+    <property name="type" value="next"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>
