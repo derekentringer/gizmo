@@ -111,7 +111,7 @@ public class MapParser extends Stage {
         }
     }
 
-    public void createMapLayers(World world) {
+    public void createMapLayers(World world, String whichDoor) {
         for(int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
             MapLayer mapLayer = getTiledMap().getLayers().get(curLayer);
 
@@ -131,15 +131,22 @@ public class MapParser extends Stage {
                     actorsArray.add(phantomActor);
                 }
                 else if(mapLayer.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-                    PlayerActor playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
-                    playerActor.setName(PlayerData.PLAYER);
-                    addActor(playerActor);
-                    actorsArray.add(playerActor);
-                    delegate.setPlayerActor(playerActor);
+                    if(whichDoor.equalsIgnoreCase(DoorType.PREVIOUS)
+                            && mapObject.getProperties().get("type").equals(DoorType.PREVIOUS)) {
+                        Float xPosD = (Float) mapObject.getProperties().get("x");
+                        Float yPosD = (Float) mapObject.getProperties().get("y");
+                        int xPos = xPosD.intValue();
+                        int yPos = yPosD.intValue();
+                        createPlayerActor(world, xPos, yPos);
+                    }
+                    else if(whichDoor.equalsIgnoreCase(DoorType.NEXT)
+                            && mapObject.getProperties().get("type").equals(DoorType.NEXT)) {
+                        Float xPosD = (Float) mapObject.getProperties().get("x");
+                        Float yPosD = (Float) mapObject.getProperties().get("y");
+                        int xPos = xPosD.intValue();
+                        int yPos = yPosD.intValue();
+                        createPlayerActor(world, xPos, yPos);
+                    }
                 }
                 else if(mapLayer.getName().equalsIgnoreCase(KeyData.KEY)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
@@ -156,6 +163,15 @@ public class MapParser extends Stage {
             }
         }
     }
+
+    private void createPlayerActor(World world, int xPos, int yPos) {
+        PlayerActor playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
+        playerActor.setName(PlayerData.PLAYER);
+        addActor(playerActor);
+        actorsArray.add(playerActor);
+        delegate.setPlayerActor(playerActor);
+    }
+
 
     public void destroyTiledMap() {
         tiledMap.dispose();

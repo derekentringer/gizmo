@@ -45,13 +45,13 @@
  <objectgroup name="player">
   <object id="1" x="239.5" y="655.5">
    <properties>
-    <property name="type" value="previous"/>
+    <property name="type" value="doorprevious"/>
    </properties>
    <ellipse/>
   </object>
   <object id="11" x="1711.5" y="560.5">
    <properties>
-    <property name="type" value="next"/>
+    <property name="type" value="doornext"/>
    </properties>
    <ellipse/>
   </object>

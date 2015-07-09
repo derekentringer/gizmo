@@ -41,11 +41,14 @@
    <property name="type" value="previous"/>
   </properties>
   <object id="11" x="143.5" y="623">
+   <properties>
+    <property name="type" value="doorprevious"/>
+   </properties>
    <ellipse/>
   </object>
   <object id="26" x="1680" y="561">
    <properties>
-    <property name="type" value="next"/>
+    <property name="type" value="doornext"/>
    </properties>
    <ellipse/>
   </object>

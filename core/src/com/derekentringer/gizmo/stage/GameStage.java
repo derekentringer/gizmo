@@ -61,7 +61,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public GameStage(Level level) {
         currentLevel = level;
         setupWorld();
-        loadLevel(level);
+        loadLevel(level, DoorType.PREVIOUS);
         //setupDebugRendererCamera();
         setupMainCamera();
         setupMidBackgroundCamera();
@@ -95,12 +95,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         backgroundCamera.update();
     }
 
-    public void loadLevel(Level level) {
+    public void loadLevel(Level level, String whichDoor) {
         System.out.print("loading level: " + level.getLevelInt());
         mapParser = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         mapParser.delegate = this;
         mapParser.createTileMapLayers(world);
-        mapParser.createMapLayers(world);
+        mapParser.createMapLayers(world, whichDoor);
     }
 
     @Override
@@ -294,7 +294,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             isPlayerDead = false;
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
-            loadLevel(currentLevel);
+            loadLevel(currentLevel, DoorType.PREVIOUS);
         }
     }
 
@@ -336,7 +336,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() - 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
-                        loadLevel(Constants.gameLevels.get(newLevel));
+                        loadLevel(Constants.gameLevels.get(newLevel), DoorType.NEXT);
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
@@ -346,7 +346,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() + 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
-                        loadLevel(Constants.gameLevels.get(newLevel));
+                        loadLevel(Constants.gameLevels.get(newLevel), DoorType.PREVIOUS);
                     }
                 }
             }

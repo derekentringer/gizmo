@@ -31,13 +31,13 @@
  <objectgroup name="player">
   <object id="1" x="272" y="560">
    <properties>
-    <property name="type" value="previous"/>
+    <property name="type" value="doorprevious"/>
    </properties>
    <ellipse/>
   </object>
   <object id="3" x="1680" y="560.5">
    <properties>
-    <property name="type" value="next"/>
+    <property name="type" value="doornext"/>
    </properties>
    <ellipse/>
   </object>
