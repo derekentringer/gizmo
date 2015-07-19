@@ -76,13 +76,13 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
         gizmoRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_right.png", Texture.class);
         gizmoRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_left.png", Texture.class);
-        gizmoStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right.png", Texture.class);
-        gizmoStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left.png", Texture.class);
+        gizmoStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right_large.png", Texture.class);
+        gizmoStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left_large.png", Texture.class);
 
-        gizmoJumpUpRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_right.png", Texture.class);
-        gizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_left.png", Texture.class);
-        gizmoFallRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right.png", Texture.class);
-        gizmoFallLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left.png", Texture.class);
+        gizmoJumpUpRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_right_large.png", Texture.class);
+        gizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_left_large.png", Texture.class);
+        gizmoFallRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right_large.png", Texture.class);
+        gizmoFallLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left_large.png", Texture.class);
 
         gizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_flinching_left.png", Texture.class);
         gizmoFlinchingRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_flinching_right.png", Texture.class);
