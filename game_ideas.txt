@@ -5,18 +5,15 @@ open doors when user has the correct key
 try some large phantoms
 phantoms run away when gizmo barks
 
-fix up how the tiled cameras are created
-fix how the three tile maps are loaded
-updated ability to go to next level; bugs with hitting twice
+refactor up how the tiled cameras are created
+refactor how the three tile maps are loaded
+updated ability to go to next level; bugs with hitting twice - hit objects not working quite right
 
---adding a new actor for a transition is becoming a real pain..should probably not do it
+add a HUD
 
 player stats
 destroyable blocks
-HUD
 start screen
-create an enemy
-objects layer in a map
 make a larger level
 animate tiles in game
 redesign gizmo
@@ -96,6 +93,8 @@ wet food
 
 -- bosses
 
+bosses are something a dog would find scary in a funny way
+keep the bosses dark and creepy
 giant cat
 teddy bear
 quackers
@@ -109,6 +108,7 @@ cave dwelling creatures
 
 -- attacks
 
+stomp
 digging
 barking
 special powers
@@ -122,7 +122,7 @@ speed thru levels can be done
 the game is linear
 
 1-5 are the training levels
-the allow the user to get the initial collar and digging skills
+the allow the user to get the initial collar and stomping skills
 
 -- story
 
