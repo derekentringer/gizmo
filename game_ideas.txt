@@ -1,7 +1,7 @@
 TODO
 -----
 
-open doors when user has the correct key
+open doors when user has the correct key (manage keys in a level -ie, they dont respawn)
 try some large phantoms
 phantoms run away when gizmo barks
 
