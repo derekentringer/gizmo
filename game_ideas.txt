@@ -1,6 +1,10 @@
 TODO
 -----
 
+need to save player data between levels
+need to save level data to some extent...enemy stats/positions/keys available
+these might be related to the game save data...load level saves and loads from disk
+
 open doors when user has the correct key (manage keys in a level -ie, they dont respawn)
 try some large phantoms
 phantoms run away when gizmo barks

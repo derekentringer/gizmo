@@ -153,7 +153,7 @@ public class MapParser extends Stage {
                     String keyType = (String) mapObject.getProperties().get("keyType");
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
-                    KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyData(keyType), world, xPos, yPos));
+                    KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyData(keyType), world, xPos, yPos), keyType);
                     keyActor.setName(KeyData.KEY);
                     addActor(keyActor);
                     keyArray.add(keyActor);

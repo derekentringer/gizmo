@@ -35,7 +35,9 @@ public class LoadingScreen extends AbstractScreen {
         game.assetManager.load("res/images/phantom_left.png", Texture.class);
         game.assetManager.load("res/images/phantom_right.png", Texture.class);
 
-        game.assetManager.load("res/images/key.png", Texture.class);
+        game.assetManager.load("res/images/key_gold.png", Texture.class);
+        game.assetManager.load("res/images/key_bronze.png", Texture.class);
+        game.assetManager.load("res/images/key_blood.png", Texture.class);
 
         game.assetManager.load("res/music/background.ogg", Music.class);
         game.assetManager.load("res/sfx/jump.ogg", Sound.class);
