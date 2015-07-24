@@ -386,6 +386,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         if(DataManager.loadPlayerActorData() != null) {
             playerActor.setUserData(DataManager.loadPlayerActorData());
         }
+        else {
+            playerActor.setUserData(playerData = new PlayerData());
+        }
     }
 
     /*private void setupDebugRendererCamera() {

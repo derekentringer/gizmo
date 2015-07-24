@@ -10,10 +10,11 @@ public class PlayerData extends ObjectData {
 
     public static final String PLAYER = "player";
 
+    private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
+
     private int playerHealth = 20;
     private int playerLives = 5;
     private int numKeys = 0;
-    private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
 
     public PlayerData() {
         super();

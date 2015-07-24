@@ -62,3 +62,6 @@ build/
 
 ## OS Specific
 .DS_Store
+
+## game save file
+.sav
