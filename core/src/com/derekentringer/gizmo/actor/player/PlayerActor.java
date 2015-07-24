@@ -8,12 +8,10 @@ import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.object.KeyData;
+import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
-
-import java.util.ArrayList;
 
 public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
@@ -61,15 +59,11 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     private Texture gizmoFlinchingJumpFallLeft;
     private Texture gizmoFlinchingJumpFallRight;
 
+    private PlayerData playerData = new PlayerData();
     private DoorData isAtDoorUserData;
     private boolean isOnGround;
     private boolean isAtDoor;
     private static boolean isFlinching;
-
-    private int playerHealth = 20;
-    private int playerLives = 5;
-    private int numKeys = 0;
-    private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
 
     public PlayerActor(Body body) {
         super(body);
@@ -118,23 +112,19 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
 
     @Override
     public ObjectData getUserData() {
-        return null;
+        return playerData;
+    }
+
+    public void setUserData(PlayerData pData) {
+        playerData.setPlayerHealth(pData.getPlayerHealth());
     }
 
     public void setHitEnemy(int healthDamage) {
         if(!isFlinching) {
-            setPlayerHealth(playerHealth - healthDamage);
+            playerData.setPlayerHealth(playerData.getPlayerHealth() - healthDamage);
             applyFlinchForce();
-            delegate.playerGotHit(playerHealth);
+            delegate.playerGotHit(playerData.getPlayerHealth());
         }
-    }
-
-    public void setKeys(KeyData keyData) {
-        keyList.add(keyData);
-    }
-
-    public ArrayList<KeyData> getKeys() {
-        return keyList;
     }
 
     public void jump() {
@@ -290,30 +280,6 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
             }
 
         }, PlayerActor.FLINCHING_LENGTH);
-    }
-
-    public void setPlayerHealth(int health) {
-        playerHealth = health;
-    }
-
-    public int getPlayerHealth() {
-        return playerHealth;
-    }
-
-    public void setPlayerLives(int lives) {
-        playerLives = lives;
-    }
-
-    public int getPlayerLives() {
-        return playerLives;
-    }
-
-    public void setNumKeys() {
-        numKeys++;
-    }
-
-    public int getNumKeys() {
-       return numKeys;
     }
 
     public void setIsOnGround(boolean onGround) {

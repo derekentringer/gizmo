@@ -26,6 +26,7 @@ import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.level.IMapParserDelegate;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
+import com.derekentringer.gizmo.manager.DataManager;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -50,6 +51,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private Array<Body> deleteBodies = new Array<Body>();
 
     private PlayerActor playerActor;
+    private PlayerData playerData;
 
     private SpriteBatch spriteBatch;
 
@@ -143,11 +145,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         //pickup a key
         if(BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
-            playerActor.setKeys((KeyData) a.getBody().getUserData());
+            playerData.setKeys((KeyData) a.getBody().getUserData());
             deleteBodies.add(a.getBody());
         }
         else if(BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())){
-            playerActor.setKeys((KeyData) b.getBody().getUserData());
+            playerData.setKeys((KeyData) b.getBody().getUserData());
             deleteBodies.add(b.getBody());
         }
     }
@@ -292,6 +294,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void handlePlayerDied() {
         if(isPlayerDead) {
             isPlayerDead = false;
+            DataManager.resetPlayerData();
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
             loadLevel(currentLevel, DoorType.PREVIOUS);
@@ -336,6 +339,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() - 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
+
+                        DataManager.savePlayerActorData(playerActor);
+
                         loadLevel(Constants.gameLevels.get(newLevel), DoorType.NEXT);
                     }
                 }
@@ -346,6 +352,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() + 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
+
+                        DataManager.savePlayerActorData(playerActor);
+
                         loadLevel(Constants.gameLevels.get(newLevel), DoorType.PREVIOUS);
                     }
                 }
@@ -374,6 +383,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void setPlayerActor(PlayerActor playerActor) {
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
+        if(DataManager.loadPlayerActorData() != null) {
+            playerActor.setUserData(DataManager.loadPlayerActorData());
+        }
     }
 
     /*private void setupDebugRendererCamera() {

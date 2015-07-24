@@ -1,7 +1,7 @@
 TODO
 -----
 
-need to save player data between levels
+make sure all data is saved to correct dataObjects
 need to save level data to some extent...enemy stats/positions/keys available
 these might be related to the game save data...load level saves and loads from disk
 
