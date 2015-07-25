@@ -13,7 +13,6 @@ public class GameScreen implements Screen {
 
     private HudStage hudStage;
     private GameStage gameStage;
-
     private Rectangle viewPort;
 
     //private FPSLogger fpsLogger = new FPSLogger();
@@ -41,11 +40,9 @@ public class GameScreen implements Screen {
         gameStage.act(delta);
         gameStage.draw();
 
-
         //update the hud stage
         hudStage.act(delta);
         hudStage.draw();
-
 
         //fpsLogger.log();
     }
