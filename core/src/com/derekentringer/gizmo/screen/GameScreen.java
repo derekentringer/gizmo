@@ -78,12 +78,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void hide() {
+        stage.quitGame();
     }
 
     @Override
     public void dispose() {
-        //TODO not sure how to destroy
-        //the world for Android successfully
         stage.dispose();
     }
 

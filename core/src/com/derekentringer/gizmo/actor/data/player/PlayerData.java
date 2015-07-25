@@ -10,11 +10,13 @@ public class PlayerData extends ObjectData {
 
     public static final String PLAYER = "player";
 
+    public static final int DEFAULT_HEALTH = 20;
+    public static final int DEFAULT_LIVES = 5;
+
     private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
 
-    private int playerHealth = 20;
-    private int playerLives = 5;
-    private int numKeys = 0;
+    private int playerHealth;
+    private int playerLives;
 
     public PlayerData() {
         super();
@@ -37,20 +39,12 @@ public class PlayerData extends ObjectData {
         return playerLives;
     }
 
-    public void setKeys(KeyData keyData) {
+    public void setKey(KeyData keyData) {
         keyList.add(keyData);
     }
 
     public ArrayList<KeyData> getKeys() {
         return keyList;
-    }
-
-    public void setNumKeys() {
-        numKeys++;
-    }
-
-    public int getNumKeys() {
-        return numKeys;
     }
 
 }

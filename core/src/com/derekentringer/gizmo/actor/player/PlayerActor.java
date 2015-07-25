@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -111,12 +110,18 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     @Override
-    public ObjectData getUserData() {
+    public PlayerData getUserData() {
         return playerData;
     }
 
-    public void setUserData(PlayerData pData) {
+    public void initPlayerData(PlayerData pData) {
         playerData.setPlayerHealth(pData.getPlayerHealth());
+        playerData.setPlayerLives(pData.getPlayerLives());
+        if(pData.getKeys().size() > 0) {
+            for (int i = 0; i <= pData.getKeys().size(); i++) {
+                playerData.setKey(pData.getKeys().get(i));
+            }
+        }
     }
 
     public void setHitEnemy(int healthDamage) {
@@ -124,6 +129,21 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
             playerData.setPlayerHealth(playerData.getPlayerHealth() - healthDamage);
             applyFlinchForce();
             delegate.playerGotHit(playerData.getPlayerHealth());
+        }
+    }
+
+    public void resetHealth() {
+        playerData.setPlayerHealth(playerData.DEFAULT_HEALTH);
+    }
+
+    public void resetLives() {
+        playerData.setPlayerLives(playerData.DEFAULT_LIVES);
+    }
+
+    public void deIncrementLives() {
+        playerData.setPlayerLives(playerData.getPlayerLives() - 1);
+        if(playerData.getPlayerLives() <= 0) {
+            delegate.playerZeroLives();
         }
     }
 
@@ -315,15 +335,15 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     @Override
-    public void playerIsOffMap(boolean offMap) {
-    }
+    public void playerIsOffMap(boolean offMap) {}
 
     @Override
-    public void playerGotHit(int playerHealth) {
-    }
+    public void playerGotHit(int playerHealth) {}
 
     @Override
-    public void playerDied() {
-    }
+    public void playerDied() {}
+
+    @Override
+    public void playerZeroLives() {}
 
 }

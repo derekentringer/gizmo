@@ -4,12 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
-import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.util.constant.Constants;
 
 public class DataManager {
 
     private static final String GAME_SAVE_FILE = "game.sav";
+
+    public static void resetAllPlayerData() {
+        FileHandle file = Gdx.files.local(GAME_SAVE_FILE);
+        if (file != null && file.exists()) {
+            //file.delete();
+            file.writeString("", false);
+        }
+    }
 
     public static void writeFile(String fileName, String string) {
         FileHandle file = Gdx.files.local(fileName);
@@ -37,25 +44,18 @@ public class DataManager {
         return "";
     }
 
-    public static void savePlayerActorData(PlayerActor playerActor) {
+    public static void savePlayerActorData(PlayerData playerData) {
         Json json = new Json();
-        writeFile(GAME_SAVE_FILE, json.toJson(playerActor.getUserData()));
+        writeFile(GAME_SAVE_FILE, json.toJson(playerData, PlayerData.class));
     }
 
     public static PlayerData loadPlayerActorData() {
-        String save = readFile(GAME_SAVE_FILE);
-        if (!save.isEmpty()) {
+        String saveFile = readFile(GAME_SAVE_FILE);
+        if (!saveFile.isEmpty()) {
             Json json = new Json();
-            return json.fromJson(PlayerData.class, save);
+            return json.fromJson(PlayerData.class, saveFile);
         }
         return null;
-    }
-
-    public static void resetPlayerData() {
-        FileHandle file = Gdx.files.local(GAME_SAVE_FILE);
-        if (file != null && file.exists()) {
-            file.delete();
-        }
     }
 
 }

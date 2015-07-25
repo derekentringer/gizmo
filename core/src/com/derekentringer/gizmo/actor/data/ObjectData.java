@@ -1,6 +1,6 @@
 package com.derekentringer.gizmo.actor.data;
 
-public class ObjectData {
+public abstract class ObjectData {
 
     protected ObjectDataType objectDataType;
 

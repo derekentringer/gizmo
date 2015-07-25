@@ -29,9 +29,6 @@
   </data>
  </layer>
  <objectgroup name="phantom">
-  <object id="5" x="432" y="559">
-   <ellipse/>
-  </object>
   <object id="24" x="143" y="400">
    <ellipse/>
   </object>
