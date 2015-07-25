@@ -17,5 +17,16 @@ public class HudStage extends Stage {
         mainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mainCamera.update();
     }
-    
+
+    @Override
+    public void draw() {
+        super.draw();
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+    }
+
+
 }

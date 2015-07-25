@@ -6,18 +6,22 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.stage.GameStage;
+import com.derekentringer.gizmo.stage.HudStage;
 import com.derekentringer.gizmo.util.constant.Constants;
 
 public class GameScreen implements Screen {
 
-    private GameStage stage;
+    private HudStage hudStage;
+    private GameStage gameStage;
+
     private Rectangle viewPort;
 
     //private FPSLogger fpsLogger = new FPSLogger();
 
     public GameScreen() {
         Constants.buildGameLevelList();
-        stage = new GameStage(Constants.gameLevels.get(0));
+        gameStage = new GameStage(Constants.gameLevels.get(0));
+        hudStage = new HudStage();
     }
 
     @Override
@@ -33,9 +37,13 @@ public class GameScreen implements Screen {
         Gdx.gl.glViewport((int) viewPort.x, (int) viewPort.y,
                 (int) viewPort.width, (int) viewPort.height);
 
-        //Update the stage
-        stage.draw();
-        stage.act(delta);
+        //update the game stage
+        gameStage.draw();
+        gameStage.act(delta);
+
+        //update the hud stage
+        hudStage.draw();
+        hudStage.act(delta);
 
         //fpsLogger.log();
     }
@@ -78,12 +86,13 @@ public class GameScreen implements Screen {
 
     @Override
     public void hide() {
-        stage.quitGame();
+        gameStage.quitGame();
     }
 
     @Override
     public void dispose() {
-        stage.dispose();
+        hudStage.dispose();
+        gameStage.dispose();
     }
 
 }

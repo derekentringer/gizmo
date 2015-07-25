@@ -44,7 +44,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private World world;
     private MapParser mapParser;
-    private HudStage hudStage;
 
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
