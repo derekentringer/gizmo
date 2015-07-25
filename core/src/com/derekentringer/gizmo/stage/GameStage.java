@@ -296,7 +296,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             isPlayerDead = false;
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
-            loadLevel(currentLevel, DoorType.PREVIOUS);
+            if(playerActor.getUserData().getPlayerLives() == PlayerData.DEFAULT_LIVES) {
+                loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
+            }
+            else {
+                loadLevel(currentLevel, DoorType.PREVIOUS);
+            }
         }
     }
 
@@ -363,6 +368,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerIsOffMap(boolean offMap) {
+        killPlayer();
         isPlayerDead = true;
     }
 
@@ -375,9 +381,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerDied() {
-        playerActor.resetHealth();
-        playerActor.deIncrementLives();
-        DataManager.savePlayerActorData(playerActor.getUserData());
+        killPlayer();
         isPlayerDead = true;
     }
 
@@ -385,7 +389,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void playerZeroLives() {
         //show died screen
         playerActor.resetLives();
-        loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
     }
 
     @Override
@@ -402,6 +405,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.initPlayerData(playerData);
             DataManager.savePlayerActorData(playerData);
         }
+    }
+
+    private void killPlayer() {
+        playerActor.resetHealth();
+        playerActor.deIncrementLives();
+        DataManager.savePlayerActorData(playerActor.getUserData());
     }
 
     public void quitGame() {
