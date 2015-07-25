@@ -38,12 +38,14 @@ public class GameScreen implements Screen {
                 (int) viewPort.width, (int) viewPort.height);
 
         //update the game stage
-        gameStage.draw();
         gameStage.act(delta);
+        gameStage.draw();
+
 
         //update the hud stage
-        hudStage.draw();
         hudStage.act(delta);
+        hudStage.draw();
+
 
         //fpsLogger.log();
     }

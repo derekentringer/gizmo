@@ -385,6 +385,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void playerZeroLives() {
         //show died screen
         playerActor.resetLives();
+        loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
     }
 
     @Override

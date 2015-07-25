@@ -6,16 +6,16 @@ import com.derekentringer.gizmo.util.constant.Constants;
 
 public class HudStage extends Stage {
 
-    private OrthographicCamera mainCamera;
+    private OrthographicCamera hudCamera;
 
     public HudStage() {
         setupCamera();
     }
 
     private void setupCamera() {
-        mainCamera = new OrthographicCamera();
-        mainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mainCamera.update();
+        hudCamera = new OrthographicCamera();
+        hudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        hudCamera.update();
     }
 
     @Override
