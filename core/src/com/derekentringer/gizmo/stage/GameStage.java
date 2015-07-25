@@ -44,21 +44,20 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private World world;
     private MapParser mapParser;
+    private SpriteBatch spriteBatch;
 
     private float effectiveViewportWidth;
     private float effectiveViewportHeight;
 
-    private Array<Body> deleteBodies = new Array<Body>();
-
     private PlayerActor playerActor;
     private PlayerData playerData;
-
-    private SpriteBatch spriteBatch;
+    private boolean isPlayerDead = false;
+    private Array<Body> deleteBodies = new Array<Body>();
 
     private Level currentLevel;
+    
+    //TODO this flag not working correctly
     private boolean alreadyEntered = false;
-
-    private boolean isPlayerDead = false;
 
     public GameStage(Level level) {
         currentLevel = level;
@@ -367,31 +366,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     @Override
-    public void playerIsOffMap(boolean offMap) {
-        killPlayer();
-        isPlayerDead = true;
-    }
-
-    @Override
-    public void playerGotHit(int playerHealth) {
-        if(playerHealth <= 0) {
-            playerDied();
-        }
-    }
-
-    @Override
-    public void playerDied() {
-        killPlayer();
-        isPlayerDead = true;
-    }
-
-    @Override
-    public void playerZeroLives() {
-        //show died screen
-        playerActor.resetLives();
-    }
-
-    @Override
     public void setPlayerActor(PlayerActor playerActor) {
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
@@ -407,10 +381,34 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
+    @Override
+    public void playerIsOffMap(boolean offMap) {
+        killPlayer();
+    }
+
+    @Override
+    public void playerGotHit(int playerHealth) {
+        if(playerHealth <= 0) {
+            killPlayer();
+        }
+    }
+
+    @Override
+    public void playerDied() {
+        killPlayer();
+    }
+
+    @Override
+    public void playerZeroLives() {
+        //show died screen
+        playerActor.resetLives();
+    }
+
     private void killPlayer() {
         playerActor.resetHealth();
         playerActor.deIncrementLives();
         DataManager.savePlayerActorData(playerActor.getUserData());
+        isPlayerDead = true;
     }
 
     public void quitGame() {
