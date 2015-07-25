@@ -2,7 +2,6 @@ TODO
 -----
 
 still have some bugs with keys
-make sure all data is saved to correct dataObjects
 need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
 need to save level data to some extent...enemy stats/positions/keys available
 these might be related to the game save data...load level saves and loads from disk
