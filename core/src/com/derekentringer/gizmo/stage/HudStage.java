@@ -32,10 +32,13 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     private Texture currentTexture;
     private int sHealth;
+    private int sHearts;
 
     private ShapeRenderer redShapeRenderer;
     private ShapeRenderer whiteShapeRenderer;
     private static boolean projectionMatrixSet;
+
+    private float initialWidth;
     private float redShapeWidth;
     private float redShapeHeight;
 
@@ -100,18 +103,18 @@ public class HudStage extends Stage implements IHudStageDelegate {
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
         hudPosition.x = Math.abs(crop.x) / scale;
         hudPosition.y = Math.abs(gameHeight - hudHeartsTwo.getHeight() * scale - HUD_PADDING * scale) / scale;
-        System.out.println("hudPosition.x: "+hudPosition.x);
-        System.out.println("hudPosition.y: "+hudPosition.y);
+        System.out.println("hudPosition.x: " + hudPosition.x);
+        System.out.println("hudPosition.y: " + hudPosition.y);
 
         hudCamera.update();
     }
 
     @Override
     public void setHudHealthHearts(int hearts) {
-        if(hearts == 2) {
+        sHearts = hearts;
+        if(sHearts == 2) {
             currentTexture = hudHeartsTwo;
         }
-
     }
 
     @Override
@@ -119,12 +122,13 @@ public class HudStage extends Stage implements IHudStageDelegate {
         sHealth = health;
         float fullHealth = PlayerData.DEFAULT_HEALTH;
         float percentFull = sHealth / fullHealth;
-        float newWidth = percentFull * redShapeWidth;
+        float newWidth = percentFull * initialWidth;
         redShapeWidth = newWidth;
     }
 
     @Override
     public void resetHudShapes() {
+        initialWidth = sHearts * 18;
         redShapeWidth = 36;
         redShapeHeight = 20;
     }

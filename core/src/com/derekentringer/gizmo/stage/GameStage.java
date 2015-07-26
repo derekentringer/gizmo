@@ -392,8 +392,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             DataManager.savePlayerActorData(playerData);
         }
 
-        hudStageDelegate.resetHudShapes();
         hudStageDelegate.setHudHealthHearts(playerData.getPlayerHearts());
+        hudStageDelegate.resetHudShapes();
         hudStageDelegate.setHudHealth(playerData.getPlayerHealth());
     }
 
