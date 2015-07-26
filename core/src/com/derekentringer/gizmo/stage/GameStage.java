@@ -97,7 +97,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     public void loadLevel(Level level, String whichDoor) {
-        System.out.print("loading level: " + level.getLevelInt());
+        System.out.println("loading level: " + level.getLevelInt());
         mapParser = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         mapParser.delegate = this;
         mapParser.createTileMapLayers(world);

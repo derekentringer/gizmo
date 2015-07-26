@@ -81,7 +81,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
-        System.out.print("buttonCode: "+buttonCode);
+        System.out.println("buttonCode: "+buttonCode);
         if(buttonCode == PS3Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);

@@ -58,6 +58,9 @@ public class HudStage extends Stage {
     @Override
     public void draw() {
         super.draw();
+
+        sSpriteBatch.setProjectionMatrix(hudCamera.combined);
+
         sSpriteBatch.begin();
         sSpriteBatch.draw(currentTexture, hudPosition.x, hudPosition.y);
         sSpriteBatch.end();
@@ -71,8 +74,10 @@ public class HudStage extends Stage {
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
         hudPosition.x = Math.abs(crop.x) / scale;
         hudPosition.y = Math.abs(gameHeight - hudHeartsTwo.getHeight() * scale - HUD_PADDING * scale) / scale;
-        System.out.print("hudPosition.x: "+hudPosition.x);
-        System.out.print("hudPosition.y: "+hudPosition.y);
+        System.out.println("hudPosition.x: "+hudPosition.x);
+        System.out.println("hudPosition.y: "+hudPosition.y);
+
+        hudCamera.update();
     }
 
     public void setHealthHearts(int hearts) {
