@@ -84,7 +84,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
         redShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         redShapeRenderer.setColor(Color.RED);
-        redShapeRenderer.rect(hudPosition.x, hudPosition.y + currentTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
+        redShapeRenderer.rect(hudPosition.x + 3, hudPosition.y + currentTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
         redShapeRenderer.end();
 
         sSpriteBatch.begin();
@@ -125,7 +125,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     @Override
     public void resetHudShapes() {
-        redShapeWidth = 40;
+        redShapeWidth = 36;
         redShapeHeight = 20;
     }
 
