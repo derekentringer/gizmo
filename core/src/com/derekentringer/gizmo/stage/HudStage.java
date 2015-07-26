@@ -69,6 +69,8 @@ public class HudStage extends Stage {
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
         hudPosition.x = Math.abs(crop.x) / scale;
         hudPosition.y = Math.abs(gameHeight - hudHeartsTwo.getHeight() * scale - HUD_PADDING * scale) / scale;
+        System.out.print("hudPosition.x: "+hudPosition.x);
+        System.out.print("hudPosition.y: "+hudPosition.y);
     }
 
     public void setHealthHud(int hearts) {
