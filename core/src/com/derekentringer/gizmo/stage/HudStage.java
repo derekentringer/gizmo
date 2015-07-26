@@ -82,11 +82,11 @@ public class HudStage extends Stage implements IHudStageDelegate {
         }
         whiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         whiteShapeRenderer.setColor(Color.WHITE);
-        whiteShapeRenderer.rect(hudPosition.x, hudPosition.y + currentTexture.getHeight() - redShapeHeight, currentTexture.getWidth() - 30, redShapeHeight);
+        whiteShapeRenderer.rect(hudPosition.x, hudPosition.y + currentTexture.getHeight() - redShapeHeight, currentTexture.getWidth() - 32, redShapeHeight);
         whiteShapeRenderer.end();
 
         redShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        redShapeRenderer.setColor(Color.RED);
+        redShapeRenderer.setColor(193/255f, 0, 0, 1);
         redShapeRenderer.rect(hudPosition.x + 3, hudPosition.y + currentTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
         redShapeRenderer.end();
 
