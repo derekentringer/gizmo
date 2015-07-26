@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
+import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -146,6 +147,10 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         if(playerData.getPlayerLives() <= 0) {
             delegate.playerZeroLives();
         }
+    }
+
+    public void addKey(KeyData keyData) {
+        playerData.setKey(keyData);
     }
 
     public void jump() {

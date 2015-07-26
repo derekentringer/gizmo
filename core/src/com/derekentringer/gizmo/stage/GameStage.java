@@ -136,7 +136,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }
-        else if(BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())){
+        else if(BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(b.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
@@ -144,11 +144,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         //pickup a key
         if(BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
-            playerData.setKey((KeyData) a.getBody().getUserData());
+            playerActor.addKey((KeyData) a.getBody().getUserData());
+            //playerData.setKey((KeyData) a.getBody().getUserData());
             deleteBodies.add(a.getBody());
         }
-        else if(BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())){
-            playerData.setKey((KeyData) b.getBody().getUserData());
+        else if(BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+            playerActor.addKey((KeyData) b.getBody().getUserData());
+            //playerData.setKey((KeyData) b.getBody().getUserData());
             deleteBodies.add(b.getBody());
         }
     }
