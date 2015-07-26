@@ -13,6 +13,7 @@ public class PlayerData extends ObjectData {
     public static final int DEFAULT_HEARTS = 2;
     public static final int DEFAULT_HEALTH = 20;
     public static final int DEFAULT_LIVES = 5;
+    public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
 

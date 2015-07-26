@@ -59,8 +59,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     //TODO this flag not working correctly
     private boolean alreadyEntered = false;
 
-    public GameStage(PlayerData data, Level level) {
-        playerData = data;
+    public GameStage(Level level) {
         currentLevel = level;
         setupWorld();
         loadLevel(level, DoorType.PREVIOUS);
@@ -374,7 +373,19 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void setPlayerActor(PlayerActor playerActor) {
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
-        playerActor.initPlayerData(playerData);
+        if(DataManager.loadPlayerActorData() != null) {
+            playerData = DataManager.loadPlayerActorData();
+            playerActor.initPlayerData(playerData);
+        }
+        else {
+            playerData = new PlayerData();
+            playerData.setPlayerHearts(PlayerData.DEFAULT_HEARTS);
+            playerData.setPlayerHealth(PlayerData.DEFAULT_HEALTH);
+            playerData.setPlayerLives(PlayerData.DEFAULT_LIVES);
+            playerData.setCurrentLevel(PlayerData.DEFAULT_LEVEL);
+            playerActor.initPlayerData(playerData);
+            DataManager.savePlayerActorData(playerData);
+        }
     }
 
     @Override
