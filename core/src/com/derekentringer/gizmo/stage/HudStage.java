@@ -18,11 +18,33 @@ public class HudStage extends Stage {
     private Vector2 hudPosition = new Vector2();
 
     private Texture hudHeartsTwo;
+    private Texture hudHeartsThree;
+    private Texture hudHeartsFour;
+    private Texture hudHeartsFive;
+    private Texture hudHeartsSix;
+    private Texture hudHeartsSeven;
+    private Texture hudHeartsEight;
+    private Texture hudHeartsNine;
+    private Texture hudHeartsTen;
+
+    private Texture currentTexture;
 
     public HudStage() {
         setupCamera();
+
         sSpriteBatch = new SpriteBatch();
+
         hudHeartsTwo = Gizmo.assetManager.get("res/images/hud/hud_hearts_two.png", Texture.class);
+        hudHeartsThree = Gizmo.assetManager.get("res/images/hud/hud_hearts_three.png", Texture.class);
+        hudHeartsFour = Gizmo.assetManager.get("res/images/hud/hud_hearts_four.png", Texture.class);
+        hudHeartsFive = Gizmo.assetManager.get("res/images/hud/hud_hearts_five.png", Texture.class);
+        hudHeartsSix = Gizmo.assetManager.get("res/images/hud/hud_hearts_six.png", Texture.class);
+        hudHeartsSeven = Gizmo.assetManager.get("res/images/hud/hud_hearts_seven.png", Texture.class);
+        hudHeartsEight = Gizmo.assetManager.get("res/images/hud/hud_hearts_eight.png", Texture.class);
+        hudHeartsNine = Gizmo.assetManager.get("res/images/hud/hud_hearts_nine.png", Texture.class);
+        hudHeartsTen = Gizmo.assetManager.get("res/images/hud/hud_hearts_ten.png", Texture.class);
+
+        currentTexture = hudHeartsTwo;
     }
 
     private void setupCamera() {
@@ -35,7 +57,7 @@ public class HudStage extends Stage {
     public void draw() {
         super.draw();
         sSpriteBatch.begin();
-        sSpriteBatch.draw(hudHeartsTwo, hudPosition.x, hudPosition.y);
+        sSpriteBatch.draw(currentTexture, hudPosition.x, hudPosition.y);
         sSpriteBatch.end();
     }
 
@@ -47,6 +69,12 @@ public class HudStage extends Stage {
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
         hudPosition.x = Math.abs(crop.x) / scale;
         hudPosition.y = Math.abs(gameHeight - hudHeartsTwo.getHeight() * scale - HUD_PADDING * scale) / scale;
+    }
+
+    public void setHealthHud(int hearts) {
+        if(hearts == 2) {
+            currentTexture = hudHeartsTwo;
+        }
     }
 
 }

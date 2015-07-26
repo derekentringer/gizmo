@@ -10,17 +10,27 @@ public class PlayerData extends ObjectData {
 
     public static final String PLAYER = "player";
 
+    public static final int DEFAULT_HEARTS = 2;
     public static final int DEFAULT_HEALTH = 20;
     public static final int DEFAULT_LIVES = 5;
 
     private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
 
+    private int playerHearts;
     private int playerHealth;
     private int playerLives;
 
     public PlayerData() {
         super();
         objectDataType = ObjectDataType.PLAYER;
+    }
+
+    public void setPlayerHearts(int hearts) {
+        playerHearts = hearts;
+    }
+
+    public int getPlayerHearts() {
+        return playerHearts;
     }
 
     public void setPlayerHealth(int health) {

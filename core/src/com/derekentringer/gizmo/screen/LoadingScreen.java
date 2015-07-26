@@ -13,8 +13,15 @@ public class LoadingScreen extends AbstractScreen {
 
     @Override
     public void show() {
-
         game.assetManager.load("res/images/hud/hud_hearts_two.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_three.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_four.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_five.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_six.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_seven.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_eight.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_nine.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_ten.png", Texture.class);
 
         game.assetManager.load("res/images/gizmo_running_left.png", Texture.class);
         game.assetManager.load("res/images/gizmo_running_right.png", Texture.class);

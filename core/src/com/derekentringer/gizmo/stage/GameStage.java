@@ -374,6 +374,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
         else {
             playerData = new PlayerData();
+            playerData.setPlayerHearts(PlayerData.DEFAULT_HEARTS);
             playerData.setPlayerHealth(PlayerData.DEFAULT_HEALTH);
             playerData.setPlayerLives(PlayerData.DEFAULT_LIVES);
             playerActor.initPlayerData(playerData);
