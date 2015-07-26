@@ -29,6 +29,8 @@ public class HudStage extends Stage {
 
     private Texture currentTexture;
 
+    private int sHealth;
+
     public HudStage() {
         setupCamera();
 
@@ -73,10 +75,18 @@ public class HudStage extends Stage {
         System.out.print("hudPosition.y: "+hudPosition.y);
     }
 
-    public void setHealthHud(int hearts) {
+    public void setHealthHearts(int hearts) {
         if(hearts == 2) {
             currentTexture = hudHeartsTwo;
         }
+    }
+
+    public int getHealth() {
+        return sHealth;
+    }
+    public void setHealth(int health) {
+        sHealth = health;
+        //adjust background with accordingly
     }
 
 }
