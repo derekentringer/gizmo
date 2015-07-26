@@ -145,12 +145,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //pickup a key
         if(BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addKey((KeyData) a.getBody().getUserData());
-            //playerData.setKey((KeyData) a.getBody().getUserData());
             deleteBodies.add(a.getBody());
         }
         else if(BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addKey((KeyData) b.getBody().getUserData());
-            //playerData.setKey((KeyData) b.getBody().getUserData());
             deleteBodies.add(b.getBody());
         }
     }

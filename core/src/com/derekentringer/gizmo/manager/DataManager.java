@@ -46,14 +46,22 @@ public class DataManager {
 
     public static void savePlayerActorData(PlayerData playerData) {
         Json json = new Json();
-        writeFile(GAME_SAVE_FILE, json.toJson(playerData, PlayerData.class));
+        String playerDataString = json.toJson(playerData, PlayerData.class);
+        System.out.println("*** SAVING PLAYER DATA *** " + playerDataString);
+        writeFile(GAME_SAVE_FILE, playerDataString);
     }
 
     public static PlayerData loadPlayerActorData() {
         String saveFile = readFile(GAME_SAVE_FILE);
         if (!saveFile.isEmpty()) {
             Json json = new Json();
-            return json.fromJson(PlayerData.class, saveFile);
+            PlayerData playerData = json.fromJson(PlayerData.class, saveFile);
+            System.out.println("*** LOADED PLAYER DATA *** ");
+            System.out.println("getPlayerHearts: " + playerData.getPlayerHearts());
+            System.out.println("getPlayerLives: "+playerData.getPlayerLives());
+            System.out.println("getPlayerHealth: "+playerData.getPlayerHealth());
+            System.out.println("getPlayerKeys: "+playerData.getPlayerKeys().size());
+            return playerData;
         }
         return null;
     }

@@ -1,1 +1,1 @@
-{keyList:[{objectDataType:KEY,healthDamage:0,sKeyType:blood}],playerHearts:2,playerHealth:20,playerLives:3}
+{keyList:[{sKeyType:blood},{sKeyType:gold}],playerHearts:2,playerHealth:15,playerLives:5}

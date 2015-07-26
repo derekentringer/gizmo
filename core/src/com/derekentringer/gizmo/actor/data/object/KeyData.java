@@ -13,6 +13,11 @@ public class KeyData extends ObjectData {
 
     private String sKeyType;
 
+    public KeyData() {
+        super();
+        objectDataType = ObjectDataType.KEY;
+    }
+
     public KeyData(String keyType) {
         super();
         objectDataType = ObjectDataType.KEY;

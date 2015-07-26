@@ -119,9 +119,9 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         playerData.setPlayerHearts(pData.getPlayerHearts());
         playerData.setPlayerHealth(pData.getPlayerHealth());
         playerData.setPlayerLives(pData.getPlayerLives());
-        if(pData.getKeys().size() > 0) {
-            for (int i = 0; i <= pData.getKeys().size(); i++) {
-                playerData.setKey(pData.getKeys().get(i));
+        if(pData.getPlayerKeys().size() > 0) {
+            for (int i = 0; i < pData.getPlayerKeys().size(); i++) {
+                playerData.setPlayerKey(pData.getPlayerKeys().get(i));
             }
         }
     }
@@ -150,7 +150,7 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     }
 
     public void addKey(KeyData keyData) {
-        playerData.setKey(keyData);
+        playerData.setPlayerKey(keyData);
     }
 
     public void jump() {

@@ -49,11 +49,11 @@ public class PlayerData extends ObjectData {
         return playerLives;
     }
 
-    public void setKey(KeyData keyData) {
+    public void setPlayerKey(KeyData keyData) {
         keyList.add(keyData);
     }
 
-    public ArrayList<KeyData> getKeys() {
+    public ArrayList<KeyData> getPlayerKeys() {
         return keyList;
     }
 
