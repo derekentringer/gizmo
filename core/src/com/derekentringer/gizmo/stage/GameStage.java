@@ -370,7 +370,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
         if(DataManager.loadPlayerActorData() != null) {
-            playerActor.initPlayerData(DataManager.loadPlayerActorData());
+            playerData = DataManager.loadPlayerActorData();
+            playerActor.initPlayerData(playerData);
         }
         else {
             playerData = new PlayerData();
