@@ -4,5 +4,6 @@ public interface IHudStageDelegate {
 
     void setHudHealthHearts(int hearts);
     void setHudHealth(int health);
+    void resetHudShapes();
 
 }

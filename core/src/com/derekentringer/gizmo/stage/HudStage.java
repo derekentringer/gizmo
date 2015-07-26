@@ -1,11 +1,14 @@
 package com.derekentringer.gizmo.stage;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.constant.Constants;
 
@@ -30,11 +33,19 @@ public class HudStage extends Stage implements IHudStageDelegate {
     private Texture currentTexture;
     private int sHealth;
 
+    private ShapeRenderer redShapeRenderer;
+    private ShapeRenderer whiteShapeRenderer;
+    private static boolean projectionMatrixSet;
+    private float redShapeWidth;
+    private float redShapeHeight;
+
     public HudStage(GameStage gameStage) {
-
         gameStage.hudStageDelegate = this;
-
         setupCamera();
+
+        redShapeRenderer = new ShapeRenderer();
+        whiteShapeRenderer = new ShapeRenderer();
+        projectionMatrixSet = false;
 
         sSpriteBatch = new SpriteBatch();
 
@@ -63,6 +74,19 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
         sSpriteBatch.setProjectionMatrix(hudCamera.combined);
 
+        if(!projectionMatrixSet){
+            redShapeRenderer.setProjectionMatrix(sSpriteBatch.getProjectionMatrix());
+        }
+        whiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        whiteShapeRenderer.setColor(Color.WHITE);
+        whiteShapeRenderer.rect(hudPosition.x, hudPosition.y + currentTexture.getHeight() - redShapeHeight, currentTexture.getWidth() - 30, redShapeHeight);
+        whiteShapeRenderer.end();
+
+        redShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        redShapeRenderer.setColor(Color.RED);
+        redShapeRenderer.rect(hudPosition.x, hudPosition.y + currentTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
+        redShapeRenderer.end();
+
         sSpriteBatch.begin();
         sSpriteBatch.draw(currentTexture, hudPosition.x, hudPosition.y);
         sSpriteBatch.end();
@@ -87,12 +111,22 @@ public class HudStage extends Stage implements IHudStageDelegate {
         if(hearts == 2) {
             currentTexture = hudHeartsTwo;
         }
+
     }
 
     @Override
     public void setHudHealth(int health) {
         sHealth = health;
-        //adjust background with accordingly
+        float fullHealth = PlayerData.DEFAULT_HEALTH;
+        float percentFull = sHealth / fullHealth;
+        float newWidth = percentFull * redShapeWidth;
+        redShapeWidth = newWidth;
+    }
+
+    @Override
+    public void resetHudShapes() {
+        redShapeWidth = 40;
+        redShapeHeight = 20;
     }
 
 }

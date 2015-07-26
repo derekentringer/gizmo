@@ -392,6 +392,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             DataManager.savePlayerActorData(playerData);
         }
 
+        hudStageDelegate.resetHudShapes();
         hudStageDelegate.setHudHealthHearts(playerData.getPlayerHearts());
         hudStageDelegate.setHudHealth(playerData.getPlayerHealth());
     }
@@ -403,6 +404,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void playerGotHit(int playerHealth) {
+        hudStageDelegate.setHudHealth(playerHealth);
         if(playerHealth <= 0) {
             killPlayer();
         }
