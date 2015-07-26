@@ -19,6 +19,7 @@ public class PlayerData extends ObjectData {
     private int playerHearts;
     private int playerHealth;
     private int playerLives;
+    private int currentLevel;
 
     public PlayerData() {
         super();
@@ -55,6 +56,14 @@ public class PlayerData extends ObjectData {
 
     public ArrayList<KeyData> getPlayerKeys() {
         return keyList;
+    }
+
+    public void setCurrentLevel(int level) {
+        currentLevel = level;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
     }
 
 }

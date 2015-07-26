@@ -153,6 +153,10 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
         playerData.setPlayerKey(keyData);
     }
 
+    public void setCurrentLevel(int level) {
+        playerData.setCurrentLevel(level);
+    }
+
     public void jump() {
         if(isFlinching) {
             if(getFacingDirection() == FACING_RIGHT) {

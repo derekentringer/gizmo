@@ -59,7 +59,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     //TODO this flag not working correctly
     private boolean alreadyEntered = false;
 
-    public GameStage(Level level) {
+    public GameStage(PlayerData data, Level level) {
+        playerData = data;
         currentLevel = level;
         setupWorld();
         loadLevel(level, DoorType.PREVIOUS);
@@ -343,6 +344,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         int newLevel = currentLevel.getLevelInt() - 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
 
+                        playerActor.setCurrentLevel(newLevel);
+
                         DataManager.savePlayerActorData(playerActor.getUserData());
 
                         loadLevel(Constants.gameLevels.get(newLevel), DoorType.NEXT);
@@ -355,6 +358,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         WorldUtils.destroyBodies(world);
                         int newLevel = currentLevel.getLevelInt() + 1;
                         currentLevel = Constants.gameLevels.get(newLevel);
+
+                        playerActor.setCurrentLevel(newLevel);
 
                         DataManager.savePlayerActorData(playerActor.getUserData());
 
@@ -369,18 +374,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void setPlayerActor(PlayerActor playerActor) {
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
-        if(DataManager.loadPlayerActorData() != null) {
-            playerData = DataManager.loadPlayerActorData();
-            playerActor.initPlayerData(playerData);
-        }
-        else {
-            playerData = new PlayerData();
-            playerData.setPlayerHearts(PlayerData.DEFAULT_HEARTS);
-            playerData.setPlayerHealth(PlayerData.DEFAULT_HEALTH);
-            playerData.setPlayerLives(PlayerData.DEFAULT_LIVES);
-            playerActor.initPlayerData(playerData);
-            DataManager.savePlayerActorData(playerData);
-        }
+        playerActor.initPlayerData(playerData);
     }
 
     @Override
