@@ -115,6 +115,30 @@ public class HudStage extends Stage implements IHudStageDelegate {
         if(sHearts == 2) {
             currentTexture = hudHeartsTwo;
         }
+        else if(sHearts == 3) {
+            currentTexture = hudHeartsThree;
+        }
+        else if(sHearts == 4) {
+            currentTexture = hudHeartsFour;
+        }
+        else if(sHearts == 5) {
+            currentTexture = hudHeartsFive;
+        }
+        else if(sHearts == 6) {
+            currentTexture = hudHeartsSix;
+        }
+        else if(sHearts == 7) {
+            currentTexture = hudHeartsSeven;
+        }
+        else if(sHearts == 8) {
+            currentTexture = hudHeartsEight;
+        }
+        else if(sHearts == 9) {
+            currentTexture = hudHeartsNine;
+        }
+        else if(sHearts == 10) {
+            currentTexture = hudHeartsTen;
+        }
     }
 
     @Override
@@ -129,7 +153,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
     @Override
     public void resetHudShapes() {
         initialWidth = sHearts * 18;
-        redShapeWidth = 36;
+        redShapeWidth = initialWidth;
         redShapeHeight = 20;
     }
 

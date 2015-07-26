@@ -19,6 +19,7 @@ public class PlayerData extends ObjectData {
 
     private int playerHearts;
     private int playerHealth;
+    private int playerMaxHealth;
     private int playerLives;
     private int currentLevel;
 
@@ -41,6 +42,14 @@ public class PlayerData extends ObjectData {
 
     public int getPlayerHealth() {
         return playerHealth;
+    }
+
+    public void setPlayerMaxHealth(int health) {
+        playerMaxHealth = health;
+    }
+
+    public int getPlayerMaxHealth() {
+        return playerMaxHealth;
     }
 
     public void setPlayerLives(int lives) {
