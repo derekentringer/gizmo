@@ -6,15 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.constant.Constants;
 
-public class HudStage extends Stage {
+public class HudStage extends Stage implements IHudStageDelegate {
 
     private static final int HUD_PADDING = 10;
 
     private OrthographicCamera hudCamera;
     private SpriteBatch sSpriteBatch;
-
     private Vector2 hudPosition = new Vector2();
 
     private Texture hudHeartsTwo;
@@ -28,10 +28,12 @@ public class HudStage extends Stage {
     private Texture hudHeartsTen;
 
     private Texture currentTexture;
-
     private int sHealth;
 
-    public HudStage() {
+    public HudStage(GameStage gameStage) {
+
+        gameStage.hudStageDelegate = this;
+
         setupCamera();
 
         sSpriteBatch = new SpriteBatch();
@@ -80,16 +82,15 @@ public class HudStage extends Stage {
         hudCamera.update();
     }
 
-    public void setHealthHearts(int hearts) {
+    @Override
+    public void setHudHealthHearts(int hearts) {
         if(hearts == 2) {
             currentTexture = hudHeartsTwo;
         }
     }
 
-    public int getHealth() {
-        return sHealth;
-    }
-    public void setHealth(int health) {
+    @Override
+    public void setHudHealth(int health) {
         sHealth = health;
         //adjust background with accordingly
     }

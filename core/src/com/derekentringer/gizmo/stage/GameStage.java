@@ -27,6 +27,7 @@ import com.derekentringer.gizmo.level.IMapParserDelegate;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.manager.DataManager;
+import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -37,6 +38,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     //private OrthographicCamera camera;
     //private Box2DDebugRenderer renderer;
+
+    private HudStage sHudStage;
+    public IHudStageDelegate hudStageDelegate = null;
 
     private OrthographicCamera mainCamera;
     private OrthographicCamera midBackgroundCamera;
@@ -59,7 +63,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     //TODO this flag not working correctly
     private boolean alreadyEntered = false;
 
-    public GameStage(Level level) {
+    public GameStage() {
+    }
+
+    public void init(Level level) {
         currentLevel = level;
         setupWorld();
         loadLevel(level, DoorType.PREVIOUS);
@@ -240,7 +247,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void removeBodiesActors() {
         //delete actors/bodies as needed
         for(int i=0; i < deleteBodies.size; i++) {
-
             //delete the body
             WorldUtils.destroyBody(world, deleteBodies.get(i));
             deleteBodies.removeIndex(i);
@@ -386,6 +392,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.initPlayerData(playerData);
             DataManager.savePlayerActorData(playerData);
         }
+
+        hudStageDelegate.setHudHealthHearts(playerData.getPlayerHearts());
+        hudStageDelegate.setHudHealth(playerData.getPlayerHealth());
     }
 
     @Override

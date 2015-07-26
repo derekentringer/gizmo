@@ -21,11 +21,12 @@ public class GameScreen implements Screen {
 
     public GameScreen() {
         Constants.buildGameLevelList();
+        gameStage = new GameStage();
+        hudStage = new HudStage(gameStage);
         if(DataManager.loadPlayerActorData() != null) {
             levelToLoad = DataManager.loadPlayerActorData().getCurrentLevel();
         }
-        gameStage = new GameStage(Constants.gameLevels.get(levelToLoad));
-        hudStage = new HudStage();
+        gameStage.init(Constants.gameLevels.get(levelToLoad));
     }
 
     @Override
