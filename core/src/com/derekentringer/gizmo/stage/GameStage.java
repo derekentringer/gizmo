@@ -39,7 +39,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     //private OrthographicCamera camera;
     //private Box2DDebugRenderer renderer;
 
-    private HudStage sHudStage;
     public IHudStageDelegate hudStageDelegate = null;
 
     private OrthographicCamera mainCamera;

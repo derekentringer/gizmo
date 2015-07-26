@@ -13,7 +13,7 @@ import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.constant.Constants;
 
-public class PlayerActor extends BaseActor implements IPlayerDelegate {
+public class PlayerActor extends BaseActor {
 
     private static final float RUNNING_FORCE = 1f;
     private static final float JUMP_FORCE = 5f;
@@ -344,17 +344,5 @@ public class PlayerActor extends BaseActor implements IPlayerDelegate {
     public boolean getIsFlinching() {
         return isFlinching;
     }
-
-    @Override
-    public void playerIsOffMap(boolean offMap) {}
-
-    @Override
-    public void playerGotHit(int playerHealth) {}
-
-    @Override
-    public void playerDied() {}
-
-    @Override
-    public void playerZeroLives() {}
 
 }
