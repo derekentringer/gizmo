@@ -14,7 +14,7 @@ public class LoadingScreen extends AbstractScreen {
     @Override
     public void show() {
 
-        game.assetManager.load("res/banner/banner.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_hearts_two.png", Texture.class);
 
         game.assetManager.load("res/images/gizmo_running_left.png", Texture.class);
         game.assetManager.load("res/images/gizmo_running_right.png", Texture.class);

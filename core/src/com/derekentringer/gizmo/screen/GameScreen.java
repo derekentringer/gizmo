@@ -73,6 +73,8 @@ public class GameScreen implements Screen {
         h = (float) Constants.GAME_HEIGHT * scale;
 
         viewPort = new Rectangle(crop.x, crop.y, w, h);
+
+        hudStage.updateHudLayout(scale, crop, h);
     }
 
     @Override
