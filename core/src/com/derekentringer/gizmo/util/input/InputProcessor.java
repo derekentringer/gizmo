@@ -7,7 +7,7 @@ import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import com.derekentringer.gizmo.util.input.controller.NexusPlayerController;
-import com.derekentringer.gizmo.util.input.controller.PS3Controller;
+import com.derekentringer.gizmo.util.input.controller.PS4Controller;
 
 public class InputProcessor extends InputAdapter implements ControllerListener {
 
@@ -82,11 +82,11 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
         System.out.println("buttonCode: "+buttonCode);
-        if(buttonCode == PS3Controller.BUTTON_X
+        if(buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
-        else if(buttonCode == PS3Controller.BUTTON_TRIANGLE
+        else if(buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
@@ -95,11 +95,11 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean buttonUp(Controller controller, int buttonCode) {
-        if(buttonCode == PS3Controller.BUTTON_X
+        if(buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
-        else if(buttonCode == PS3Controller.BUTTON_TRIANGLE
+        else if(buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
@@ -108,14 +108,14 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
-        if(controller.getAxis(PS3Controller.AXIS_X) > 0.2f) {
+        if(controller.getAxis(PS4Controller.AXIS_X) > 0.2f) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
         }
         else {
             UserInput.setKey(UserInput.RIGHT_BUTTON, false);
         }
 
-        if(controller.getAxis(PS3Controller.AXIS_X) < -0.2f) {
+        if(controller.getAxis(PS4Controller.AXIS_X) < -0.2f) {
             UserInput.setKey(UserInput.LEFT_BUTTON, true);
         }
         else {
