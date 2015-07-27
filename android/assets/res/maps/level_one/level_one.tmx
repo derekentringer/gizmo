@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="35">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="43">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzlWO1uwyAMdJ5gf0o0mrQ/Iu39X3FC49TbyXwkadJpPclKDRj7+DDQi5kF+8HnP5WES5Yxf9+B75D5xjfgm3iGzHV8A76J65D5rl3PHl7NqRUv1vNg6/JVDa/m1eKbeGJd98Tbg7N5rJ1f5OiW7RqcxbXXnxHXaH35eQvO4NrjKyFkwbpu2f1lrrEiPL/P5rsn/r2cZ+lnlvY4e8G5FXcv1974a31ssZ2kn0na4uzl+8ZXwXcNW+I/AuALH3epTzxL90n9XUPveBzJNQHzCR+L1DPf0nlUw561vhW1PnT9TlKP/cvn0Szflu8kH470wovfG5vWPPB+Rb3HF2cw8tW90LYU0y3rOk49nFt7XvUaV+xXbufx5TewUZsaX8832uueafWxtk1tHK5UD52Bdz6/93v43pyyHjvGkXmrBO/8vcpXUdrfLTuA52O2x53ASDepV99mj3swv3m4DHcpCM5e5nwmsL94zyV9EZ1zLnIL3/kD6Xw/1rfuSDpsuQ2XR7KBcG4f5cs20bEZHT4l/qpH6XOUMh4LzsXe/HqxerFrfZB+gv2Owxsb5FPly/ri1PN7nWPh3/yfDXTMcyr/BjOqUnw=
+   eJzdmN1ugzAMhc0Nt7spqKxdJfr+D7lZyxFnlk0cCmyaJStN4jj+kpCfXkRkkG+5/lNVuRQdS6oykc5F9+hvDnx72hvbvmJvdXIUvF3hRdkRrJa55peZmTXjP2KWwjmU/Ei8R7ByTC22W2LxmKWwdiWP9Zz178mZ32PrXIss67mTZb/ayvrXmcGrnFjXmXgzciZTpj/m7WTZo2ttW+Qs1mx/Qqz8Te/FezR3a18qQ1Gsa5V+R94zWWtxqGCf2pP3lfj3Yl6b34mYRZYzfgtva/zZWF+JhW1x9vJ9Q8Rnzvhuif9IifpRLnufhF0ftIn8Z/v/LVYV5o3Oo62+I9tXJRNTH9jh++XzCPfzFoY3R7Pi9eONTW0eeF3y98iC+zPehVLsssxR/b3Srta+tu9F9t47ku2xL/P9yr7DsjGx3ILybPs1m2gcME/8rkUZ2uCdH733I+Yrpbbu40sfFQ4b95GSOX+RRmt77Xx5L1rrX/VeFO2RF1MvVA/BPZjfPFzGbz74B+tEdVaYd885UV+67h/kW/NPk79Rv1g3fOcfKM/3Y37rQpBHW7bh8lmWMYTy3j6alGOZnDajwxPx2/xkfI6mjMeC92IeE05trF7stn4wfgb5GYc3NtfCYnk5/3Tq+b3OsfBv/s8GeaxvLf8EuyxTtw==
+  </data>
+ </layer>
+ <layer name="backgroundForeground" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztlkEOhDAIRT2HU13M/Q9pumhCfj7QGkbihLdxYErlA23ctqIoiqIoGM2x/40v2J+ULJ7jBBv1vqHfDZ7Sjz7U59navpmMHNmsev3E/3EPFpN9BkbOLK/VfqL+mZhfo80oy31VL9OSrVeb0Yj+RunV7pQ7aO+P1ntMxjDGmlPs46HVRns/67t3Pi0t1r3gIXvA7gQrpnMoftwb/av93cnv3VijMe55loMX05E16vENbPmU/jvnNQJZK6s+rL5szUwfZvTOztob6Nq87+Xsb4dIMuc5g6f1Xh0vDrQ=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0tEKgCAMhWF9hyb4/i9awoSxiiR20/o/ODi9EDYtBQAAAACeVc1fVBec+RllntNdb5l7zizyz/p7VvaTaPqRbSFf1oLuGfOy7zfm0k09z8WkaeRi9bXNW1G9Iq8dXj8DAQ==
+   eJzt1mEKgCAMBeDtDk7o/hcNwWAMkVXCar4PHma/NjORCAAAwIfNvIRUAVEkugCHtkdbndW8L/S+/jIJwAr2jP0ipn/UuQqr4F8f40FgD1m+9Yo+7N73zC/Sc1D+u4a9n83Mem7r5TmfRaX2yGC0zzpP3elV1+vFatzl7M3W4wmRHgPz
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztltEKwCAIResfLOj/f3SMFYic5xhXD8jIueHlStXaR3dhsD65scP2882tHd2tfe1wNdPFcu8n1J9/Wfgu1sceSUOEciosyCnrHZCz613cg7wkz1UgveS5CjS72eZZWS/NrvL+TF4q6yV/lferbOdvtnnOdn/OpjfbPJPeeb2Le9R9o86joij+zwNROAUr
+   eJztlkEKwCAMBPUPUfD/Hy2lCmmYcw4bB0IxTUuWDWprH92Fwfrkxg7bzze3dnS39rXD1UwXy72fUH/+ZeG7WB97JA0RyqmwIKesd0DO0rvIg7wkz1UgveS5CjS71eZZWS/NrvL+TF4q6yV/lferaudvtXmudn+uprfaPJPemd5FHve+cc8jJZS9JJS9vPx5AIxUBUA=
   </data>
  </layer>
  <layer name="doornext" width="60" height="23">
@@ -25,14 +30,15 @@
  </layer>
  <layer name="doorprevious" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7A5wb9LLOwjJK2CJgAAAAB8NtcBoLaH4AAg
+   eJztzjENAAAIA7C5wb9DLOwjJK2CJgAAAAB8NtcBoLalYAAo
   </data>
  </layer>
- <objectgroup name="phantom">
-  <object id="24" x="143" y="400">
-   <ellipse/>
-  </object>
- </objectgroup>
+ <layer name="lockedDoor" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7CZwb9FPOwhJK2CJgAAQGOuAwAAvLORcwAm
+  </data>
+ </layer>
+ <objectgroup name="phantom"/>
  <objectgroup name="player">
   <properties>
    <property name="type" value="previous"/>
@@ -51,9 +57,12 @@
   </object>
  </objectgroup>
  <objectgroup name="key">
-  <object id="34" x="592.5" y="433">
+  <properties>
+   <property name="keyType" value="blood"/>
+  </properties>
+  <object id="41" x="1680" y="270.5">
    <properties>
-    <property name="keyType" value="blood"/>
+    <property name="keyType" value="bronze"/>
    </properties>
    <ellipse/>
   </object>

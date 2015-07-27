@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="15">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmN1uwyAMhZ2bPkGDmiaptGkXe/8n3NA44sSywaydWu1IFgkN4I9f07OIzPKjyz+1rHOxVFKoV66lR/r4dodt33aiFLxT4V0Cfkf0V+PT49vV+1o4kUrhnAtrKnm74zvnP4O3x77SM3PeiDezToUX8/nd8F9KuVdg9bivhQuW3z8oX6TO50nqfpW59FjuRj88m3XUwJs5Ma+z1mIsK+9VWKPtg3eSukeDjccYY/toXlHP0DbIEPVBiHWRuj9fyT7Ve4tV+9v7TvsI3ZzfW6zR7+dimNe9cr02srx+8aTr1uWjfkTKYJ9i3oksUv9In+wNG52rEVnju0hlzmLWqC5y7CfYInXNoG+THDkhj3lkrnm+8fhi7SbKu0dYI4jZwIp20Jenho3sU54QKwuVQfscT97Lizp4jLEnalYrTuoxR4R5w3u9yJE36UKOIm3yGoFxTMOszKK59TdRrSqFsH75PGopt7mJf+ZwvYhVk9Q1rHm9MWTu6HnHQsxs8cKXsy5kaCt19GJL1IsxBjfasMbWYrbGVTNofr4rIOX7At+Be0JciZjAGmvel1A/1gvz9vYkbw5rXj6v+a6A35gXPuj7vifElbw+uH2we3MZfRpljfCOyDp/WZtKc1scW3rPHKPyHPrtf0Ys3Qb3JedhfvFeAn+Qal2dtCeOy3l/jv5n1GO2+hPP3L98101yPCO5X1rCWuS9PamUfVmMMkkxaCbrHeI2YZzHfcF7sTW+lq+W7/r3WdXD8ZX+Fvl8tl0G3vm+zr7wM8c5eMc45/wvzaVR+Q==
+   eJzdmN1uwyAMRuEmT9BEydRNyt3e/wk3NI761bNJaFJ1miUrgfLjA8Y4vaSUxvQj8z/VIpeqU30WGb51cbTUr84YVs60cT2oaj+8ufJStzrMe1nP5j3CPhiOVDnHWp7EXmXuYX0mbw/7YBTewpprGX/WMf8ia8RtGYdqk77jzzn58cqyvsKPz1J4Cyd+/Sjvqzl6eHO6xehn8nrngnqVa2CHxs81/bbF83Ebn2HVOp3ncwevrb86bbx2di7kI/gd+z3WqL0yFxmr4tdev569LfIWtIvEjm37ez6yd0xlLkKcUt4s2uL07Nlak/eGtsbZu/ZeH5iLcPfCXKSHVcfOji7pdmZY28lwIhFzj695dmmMwCbNN7K0fUQ4I+RssDIPa0kuY/OCJcWMPazkysrL/JpP5t9d72Q2T0/sHhMTlZXYE+W8R1gjm5V3ipvf9ZtN2RM9I6jmNORt9o6y+ZLXZq/oPUc/zq/G7Eg8m6J4iU+zlpxhy9u6qy2rtaMlul70wS5suTj9tlj1dxXGZY/hZg5v3zzmnnvQstpvHezSb+AW79Y3iZ4Rzgnjc16UdysmPXJe4cNXNUYksUFtUUaVLd4kz8iXvZz1TN4t8e7fyHf3akr3Oar60KP/GXnCHLqWWod/aSzBHp6It2/2zLZE83KNz+pDR5i99eRd15c7kfXQO1LXpSWcRY3tk3mqLYvTZzIMWzFY33VOVOt0LTQWe/vr2erZbn8fzTiaX9m21BeGa9W5o6zf62qLvmueQ5l9LvVfWWVZ3g==
+  </data>
+ </layer>
+ <layer name="backgroundForeground" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztmGsOhCAMhDmH4P7g/oc0JkzS7drwKopsv4RoiVAGIQ46Z6xCeHoAg9iF+tjYTqqfhQ+LMV6faefdr7b9or/Z2ISY13NiKtAMrbl5eivQBn2exasBbVi/Md3n9v1b2Ui5ig3DMCirej4J7W8dvMOs86jt3dCfxjwGdtWgZlwleeEVevUGxb4oNV6GrgVJO8bWu26oj/Ypn8Z7rpk7+qzkgUrPCiW5kC+6b9950qq9Va82fK+euSSf2eM5azSM9LV8XYzKterZS+Lf9N797+QAF90KdQ==
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztl40KhCAQhNt3OAPf/0WvwIFBjixy2j3aDwY1819Xd1mSJEneyWdTaWHdZC0NWctjWRc3+rZSyHH7UZb/Z6lYhXVHw7w7kAypJKMQZ7FHeTYiAruyzwVsQ6VwF2wUbEyhcqVLw9ZERHlei7DuqPD95Dl+Lzvssdf5veAF+qAm2v0KW/cU3uus4Mp4vNf/7tzzu13d1lWwl/neP9I/M9MnGa0lfD0IPhriZ7hjYxT+lx1oJpinvl3O5/Qb31wz+AJtSQfc
+   eJztlw0KhSAQhNs7ZND9L1qCA4NEvch5u9F+MKiZ/7qu05QkSfJN5l2lhesua2nIWh7LurjRt4VCjttBWf6fpWIR1h0N8+5Ackndjzhn2Psc71GejYjArlS7hDlZKayCjYKNKVSudGnYmogoz2sR1h0Vvp88x+9lhz32OvsLXqAPaqLdr7B1/8J7nRXcGY/3+j+de/bb1W3dBXuZ7/0zvZmRb5KrtYR/CeGNhvgvPLExiveXnWgkmKe+Xc7n9Bd9rhFsV1gH7g==
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -20,12 +25,17 @@
  </layer>
  <layer name="doornext" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7BJwb9KTCyBo1XQBAAAAOC/uQ4AFCyvEAAh
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
  <layer name="doorprevious" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LNOwiJK2CJgAAAADw01wHoLRpXAAg
+  </data>
+ </layer>
+ <layer name="lockedDoor" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzkENAAAIBCDDOPtHtISb94AEVAFk6e8AAAAQab4DAAcWLuUASw==
   </data>
  </layer>
  <objectgroup name="phantom">
@@ -36,6 +46,9 @@
    <ellipse/>
   </object>
   <object id="7" x="113" y="270">
+   <ellipse/>
+  </object>
+  <object id="14" x="592" y="622">
    <ellipse/>
   </object>
  </objectgroup>
