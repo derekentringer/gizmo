@@ -6,6 +6,7 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
+import com.derekentringer.gizmo.util.input.controller.BaseController;
 import com.derekentringer.gizmo.util.input.controller.NexusPlayerController;
 import com.derekentringer.gizmo.util.input.controller.PS4Controller;
 
@@ -126,6 +127,23 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
+        if(value == BaseController.BUTTON_DPAD_RIGHT
+                || value == BaseController.BUTTON_DPAD_UP_RIGHT
+                || value == BaseController.BUTTON_DPAD_RIGHT_DOWN) {
+            UserInput.setKey(UserInput.RIGHT_BUTTON, true);
+        }
+        else {
+            UserInput.setKey(UserInput.RIGHT_BUTTON, false);
+        }
+
+        if(value == BaseController.BUTTON_DPAD_LEFT
+                || value == BaseController.BUTTON_DPAD_UP_LEFT
+                || value == BaseController.BUTTON_DPAD_DOWN_LEFT) {
+            UserInput.setKey(UserInput.RIGHT_BUTTON, true);
+        }
+        else {
+            UserInput.setKey(UserInput.RIGHT_BUTTON, false);
+        }
         return true;
     }
 
