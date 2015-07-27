@@ -31,7 +31,6 @@ public class HudStage extends Stage implements IHudStageDelegate {
     private Texture hudHeartsTen;
 
     private Texture currentTexture;
-    private int sHealth;
     private int sHearts;
 
     private ShapeRenderer redShapeRenderer;
@@ -143,10 +142,20 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     @Override
     public void setHudHealth(int health) {
-        sHealth = health;
-        float fullHealth = PlayerData.DEFAULT_HEALTH;
-        float percentFull = sHealth / fullHealth;
+        float fullHealth = sHearts * PlayerData.HEART_HEALTH_AMOUNT;
+        float percentFull = health / fullHealth;
         float newWidth = percentFull * initialWidth;
+
+        if(sHearts == 5 && health > 29) {
+            newWidth = newWidth + 3;
+        }
+        else if(sHearts == 4 && health > 19) {
+            newWidth = newWidth + 2;
+        }
+        else if(sHearts == 3 && health > 9) {
+            newWidth = newWidth + 1;
+        }
+
         redShapeWidth = newWidth;
     }
 

@@ -10,6 +10,7 @@ public class PlayerData extends ObjectData {
 
     public static final String PLAYER = "player";
 
+    public static final int HEART_HEALTH_AMOUNT = 10;
     public static final int DEFAULT_HEARTS = 2;
     public static final int DEFAULT_HEALTH = 20;
     public static final int DEFAULT_LIVES = 5;
@@ -19,7 +20,6 @@ public class PlayerData extends ObjectData {
 
     private int playerHearts;
     private int playerHealth;
-    private int playerMaxHealth;
     private int playerLives;
     private int currentLevel;
 
@@ -42,14 +42,6 @@ public class PlayerData extends ObjectData {
 
     public int getPlayerHealth() {
         return playerHealth;
-    }
-
-    public void setPlayerMaxHealth(int health) {
-        playerMaxHealth = health;
-    }
-
-    public int getPlayerMaxHealth() {
-        return playerMaxHealth;
     }
 
     public void setPlayerLives(int lives) {

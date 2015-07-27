@@ -136,11 +136,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void resetHealth() {
-        playerData.setPlayerHealth(playerData.DEFAULT_HEALTH);
-    }
-
-    public int getPlayerMaxHealth() {
-        return playerData.getPlayerMaxHealth();
+        playerData.setPlayerHealth(playerData.getPlayerHearts() * PlayerData.HEART_HEALTH_AMOUNT);
     }
 
     public void resetLives() {
