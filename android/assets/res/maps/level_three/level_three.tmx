@@ -38,11 +38,7 @@
    eJztzjENAAAIA7CZwb9FNOwiJK2CJgA/zXUAAAAAoLSDvgAm
   </data>
  </layer>
- <objectgroup name="phantom">
-  <object id="6" x="592" y="624">
-   <ellipse/>
-  </object>
- </objectgroup>
+ <objectgroup name="phantom"/>
  <objectgroup name="player">
   <object id="1" x="272" y="560">
    <properties>

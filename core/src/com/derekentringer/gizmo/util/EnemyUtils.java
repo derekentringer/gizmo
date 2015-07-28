@@ -18,7 +18,7 @@ public class EnemyUtils {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 
-        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        shape.setAsBox(WorldUtils.ppmCalc(6), WorldUtils.ppmCalc(13));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
         body.createFixture(fixtureDef).setUserData(userData);
