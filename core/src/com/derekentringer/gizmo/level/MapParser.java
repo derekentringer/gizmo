@@ -9,8 +9,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
@@ -35,7 +35,7 @@ public class MapParser extends Stage {
 
     public IMapParserDelegate delegate = null;
 
-    public final ArrayList<Actor> actorsArray = new ArrayList<Actor>();
+    public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();
     public ArrayList<KeyActor> keyArray = new ArrayList<KeyActor>();
 
     private TiledMap tiledMap;

@@ -35,7 +35,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     private ShapeRenderer redShapeRenderer;
     private ShapeRenderer whiteShapeRenderer;
-    private static boolean projectionMatrixSet;
+    private boolean projectionMatrixSet;
 
     private float initialWidth;
     private float redShapeWidth;

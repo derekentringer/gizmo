@@ -11,9 +11,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
@@ -192,18 +192,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         spriteBatch.setProjectionMatrix(mainCamera.combined);
 
-        //TODO shouldn't need to specify a specific actor
-        //can check for names and render
-        for(Actor actor: mapParser.actorsArray) {
-            if(actor.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
-                ((PlayerActor) actor).render(spriteBatch);
-            }
-            else if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
-                ((PhantomActor) actor).render(spriteBatch);
+        for(BaseActor actor : mapParser.actorsArray) {
+            actor.render(spriteBatch);
+            if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
-            }
-            else if (actor.getName().equalsIgnoreCase(KeyData.KEY)) {
-                ((KeyActor) actor).render(spriteBatch);
             }
         }
 
@@ -221,17 +213,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         UserInput.update();
         handleInput();
 
-        //TODO check name and update
-        for(Actor actor: mapParser.actorsArray) {
-            if(actor.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
-                ((PlayerActor) actor).update(delta);
-            }
-            if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
-                ((PhantomActor) actor).update(delta);
-            }
-            else if(actor.getName().equalsIgnoreCase(KeyData.KEY)) {
-                ((KeyActor) actor).update(delta);
-            }
+        for(BaseActor actor : mapParser.actorsArray) {
+            actor.update(delta);
             actor.act(delta);
         }
 
