@@ -1,6 +1,7 @@
 package com.derekentringer.gizmo.actor.data;
 
 public enum ObjectDataType {
+
     GROUND,
     WALL,
     DOOR,
@@ -8,4 +9,5 @@ public enum ObjectDataType {
     PLAYER_HIT_AREA,
     ENEMY,
     KEY
+
 }

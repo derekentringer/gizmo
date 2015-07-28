@@ -58,7 +58,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private Array<Body> deleteBodies = new Array<Body>();
 
     private Level currentLevel;
-    
+
     //TODO this flag not working correctly
     private boolean alreadyEntered = false;
 
@@ -112,23 +112,23 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     @Override
     public void beginContact(Contact contact) {
-        Fixture a =  contact.getFixtureA();
-        Fixture b =  contact.getFixtureB();
+        Fixture a = contact.getFixtureA();
+        Fixture b = contact.getFixtureB();
 
         //player
-        if(FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
+        if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
             playerActor.setIsOnGround(true);
         }
-        else if(FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsGround(a)) {
+        else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsGround(a)) {
             playerActor.setIsOnGround(true);
         }
 
         //player at door
-        if(BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoor(b.getBody()) ) {
+        if (BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoor(b.getBody())) {
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorData) b.getBody().getUserData());
         }
-        else if(BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoor(a.getBody())) {
+        else if (BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoor(a.getBody())) {
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorData) a.getBody().getUserData());
         }
@@ -137,23 +137,23 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
 
         //player/enemy collisions
-        if(BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        if (BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(a.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }
-        else if(BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        else if (BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(b.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }
 
         //pickup a key
-        if(BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        if (BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addKey((KeyData) a.getBody().getUserData());
             deleteBodies.add(a.getBody());
         }
-        else if(BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addKey((KeyData) b.getBody().getUserData());
             deleteBodies.add(b.getBody());
         }
@@ -175,7 +175,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void draw() {
         super.draw();
 
-        removeBodiesActors();
+        deleteQueuedActorBodies();
 
         //tiled maps render camera
         mapParser.getTiledMapBackgroundRenderer().setView(backgroundCamera);
@@ -192,17 +192,15 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         spriteBatch.setProjectionMatrix(mainCamera.combined);
 
-        for(BaseActor actor : mapParser.actorsArray) {
+        for (BaseActor actor : mapParser.actorsArray) {
             actor.render(spriteBatch);
-            if(actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
+            if (actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
                 ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
             }
         }
 
         updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
-
         handlePlayerPosition(playerActor.getPosition().y);
-
         handlePlayerDied();
     }
 
@@ -213,7 +211,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         UserInput.update();
         handleInput();
 
-        for(BaseActor actor : mapParser.actorsArray) {
+        for (BaseActor actor : mapParser.actorsArray) {
             actor.update(delta);
             actor.act(delta);
         }
@@ -226,13 +224,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     //TODO THIS IS KEYS ONLY
-    private void removeBodiesActors() {
+    private void deleteQueuedActorBodies() {
         //delete actors/bodies as needed
-        for(int i=0; i < deleteBodies.size; i++) {
+        for (int i = 0; i < deleteBodies.size; i++) {
             //delete the body
             WorldUtils.destroyBody(world, deleteBodies.get(i));
             deleteBodies.removeIndex(i);
-
             //remove the actor
             KeyActor keyActor = mapParser.keyArray.get(i);
             keyActor.remove();
@@ -273,17 +270,17 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void handlePlayerPosition(float playerY) {
-        if(playerY * Constants.PPM < 0) {
+        if (playerY * Constants.PPM < 0) {
             playerIsOffMap(true);
         }
     }
 
     private void handlePlayerDied() {
-        if(isPlayerDead) {
+        if (isPlayerDead) {
             isPlayerDead = false;
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
-            if(playerActor.getUserData().getPlayerLives() == PlayerData.DEFAULT_LIVES) {
+            if (playerActor.getUserData().getPlayerLives() == PlayerData.DEFAULT_LIVES) {
                 loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
             }
             else {
@@ -293,33 +290,33 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void handleInput() {
-        if(UserInput.isDown(UserInput.JUMP_BUTTON)) {
-            if(playerActor.getIsOnGround()) {
+        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+            if (playerActor.getIsOnGround()) {
                 playerActor.setIsOnGround(false);
                 playerActor.jump();
             }
         }
 
-        if(UserInput.isDown(UserInput.LEFT_BUTTON)) {
+        if (UserInput.isDown(UserInput.LEFT_BUTTON)) {
             alreadyEntered = false;
             playerActor.moveLeft();
         }
 
-        if(UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+        if (UserInput.isDown(UserInput.RIGHT_BUTTON)) {
             alreadyEntered = false;
             playerActor.moveRight();
         }
 
-        if(!UserInput.isDown(UserInput.LEFT_BUTTON) && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+        if (!UserInput.isDown(UserInput.LEFT_BUTTON) && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
             playerActor.stoppedMoving();
         }
 
-        if(!UserInput.isDown(UserInput.JUMP_BUTTON)) {
+        if (!UserInput.isDown(UserInput.JUMP_BUTTON)) {
             playerActor.stopJumping();
         }
 
         if (UserInput.isDown(UserInput.ENTER_DOOR)) {
-            if(alreadyEntered) {
+            if (alreadyEntered) {
                 return;
             }
             if (playerActor.getIsAtDoor()) {
@@ -361,7 +358,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void setPlayerActor(PlayerActor playerActor) {
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
-        if(DataManager.loadPlayerActorData() != null) {
+        if (DataManager.loadPlayerActorData() != null) {
             playerData = DataManager.loadPlayerActorData();
             playerActor.initPlayerData(playerData);
         }
@@ -388,7 +385,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     @Override
     public void playerGotHit(int playerHealth) {
         hudStageDelegate.setHudHealth(playerHealth);
-        if(playerHealth <= 0) {
+        if (playerHealth <= 0) {
             killPlayer();
         }
     }

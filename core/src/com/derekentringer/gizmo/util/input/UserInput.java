@@ -18,7 +18,7 @@ public class UserInput {
     }
 
     public static void update() {
-        for(int i = 0; i < NUM_KEYS; i++) {
+        for (int i = 0; i < NUM_KEYS; i++) {
             previousKey[i] = currentKey[i];
         }
     }

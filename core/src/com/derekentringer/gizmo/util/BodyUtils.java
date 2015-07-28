@@ -45,7 +45,7 @@ public class BodyUtils {
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {
         float velChange;
         Vector2 velocity = body.getLinearVelocity();
-        if(direction.equalsIgnoreCase("x")) {
+        if (direction.equalsIgnoreCase("x")) {
             velChange = force - velocity.x;
         }
         else {
@@ -53,7 +53,7 @@ public class BodyUtils {
             velChange = force - velocity.y / 2;
         }
         float impulse = body.getMass() * velChange;
-        if(direction.equalsIgnoreCase("x")) {
+        if (direction.equalsIgnoreCase("x")) {
             body.applyLinearImpulse(new Vector2(impulse, 0), body.getWorldCenter(), true);
         }
         else {

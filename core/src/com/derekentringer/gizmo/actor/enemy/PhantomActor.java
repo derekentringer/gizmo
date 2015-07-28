@@ -30,7 +30,7 @@ public class PhantomActor extends BaseActor {
         phantomLeftSprite = TextureRegion.split(phantomLeft, 32, 32)[0];
         phantomRightSprite = TextureRegion.split(phantomRight, 32, 32)[0];
 
-        setAnimation(phantomLeftSprite, 1/12f);
+        setAnimation(phantomLeftSprite, 1 / 12f);
         setFacingDirection(FACING_LEFT);
     }
 
@@ -48,23 +48,23 @@ public class PhantomActor extends BaseActor {
     }
 
     @Override
-    public void act (float delta) {
-        if(getPosition().x > getPlayerPosition().x + WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
+    public void act(float delta) {
+        if (getPosition().x > getPlayerPosition().x + WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
             BodyUtils.applyLinearImpulseToBody(body, -MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_LEFT);
         }
-        else if(getPosition().x < getPlayerPosition().x - WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
+        else if (getPosition().x < getPlayerPosition().x - WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
             BodyUtils.applyLinearImpulseToBody(body, MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_RIGHT);
         }
 
-        if(facingDirection == FACING_LEFT) {
-            if(!getCurrentTextureRegion().equals(phantomLeftSprite)) {
+        if (facingDirection == FACING_LEFT) {
+            if (!getCurrentTextureRegion().equals(phantomLeftSprite)) {
                 setAnimation(phantomLeftSprite, 1 / 12f);
             }
         }
         else {
-            if(!getCurrentTextureRegion().equals(phantomRightSprite)) {
+            if (!getCurrentTextureRegion().equals(phantomRightSprite)) {
                 setAnimation(phantomRightSprite, 1 / 12f);
             }
         }

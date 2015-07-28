@@ -53,7 +53,7 @@ public abstract class BaseActor extends Actor {
     }
 
     @Override
-    public void act (float delta) {
+    public void act(float delta) {
     }
 
     public void setCurrentTextureRegion(TextureRegion[] textureRegion) {

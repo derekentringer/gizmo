@@ -18,7 +18,7 @@ public class PlayerActor extends BaseActor {
     private static final float RUNNING_FORCE = 1f;
     private static final float JUMP_FORCE = 5f;
     private static final float JUMP_FORCE_RESET = -1.2f;
-    public  static final int FLINCHING_LENGTH = 3;
+    public static final int FLINCHING_LENGTH = 3;
     private static final float FLINCH_FORCE = 50f;
 
     public IPlayerDelegate delegate = null;
@@ -106,7 +106,7 @@ public class PlayerActor extends BaseActor {
         flinchingJumpFallRightSprites = TextureRegion.split(gizmoFlinchingJumpFallRight, 32, 32)[0];
         flinchingJumpFallLeftSprites = TextureRegion.split(gizmoFlinchingJumpFallLeft, 32, 32)[0];
 
-        setAnimation(runningRightSprites, 1/12f);
+        setAnimation(runningRightSprites, 1 / 12f);
         setFacingDirection(FACING_RIGHT);
     }
 
@@ -120,7 +120,7 @@ public class PlayerActor extends BaseActor {
         playerData.setPlayerHealth(pData.getPlayerHealth());
         playerData.setPlayerLives(pData.getPlayerLives());
         playerData.setCurrentLevel(pData.getCurrentLevel());
-        if(pData.getPlayerKeys().size() > 0) {
+        if (pData.getPlayerKeys().size() > 0) {
             for (int i = 0; i < pData.getPlayerKeys().size(); i++) {
                 playerData.setPlayerKey(pData.getPlayerKeys().get(i));
             }
@@ -128,7 +128,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void setHitEnemy(int healthDamage) {
-        if(!isFlinching) {
+        if (!isFlinching) {
             playerData.setPlayerHealth(playerData.getPlayerHealth() - healthDamage);
             applyFlinchForce();
             delegate.playerGotHit(playerData.getPlayerHealth());
@@ -145,7 +145,7 @@ public class PlayerActor extends BaseActor {
 
     public void deIncrementLives() {
         playerData.setPlayerLives(playerData.getPlayerLives() - 1);
-        if(playerData.getPlayerLives() <= 0) {
+        if (playerData.getPlayerLives() <= 0) {
             delegate.playerZeroLives();
         }
     }
@@ -159,15 +159,15 @@ public class PlayerActor extends BaseActor {
     }
 
     public void jump() {
-        if(isFlinching) {
-            if(getFacingDirection() == FACING_RIGHT) {
+        if (isFlinching) {
+            if (getFacingDirection() == FACING_RIGHT) {
                 if (!getCurrentTextureRegion().equals(flinchingJumpUpRightSprites)) {
-                    setAnimation(flinchingJumpUpRightSprites, 1/12f);
+                    setAnimation(flinchingJumpUpRightSprites, 1 / 12f);
                 }
             }
-            else if(getFacingDirection() == FACING_LEFT) {
+            else if (getFacingDirection() == FACING_LEFT) {
                 if (!getCurrentTextureRegion().equals(flinchingJumpUpLeftSprites)) {
-                    setAnimation(flinchingJumpUpLeftSprites, 1/12f);
+                    setAnimation(flinchingJumpUpLeftSprites, 1 / 12f);
                 }
             }
         }
@@ -188,7 +188,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void stopJumping() {
-        if(isFlinching) {
+        if (isFlinching) {
             if (getFacingDirection() == FACING_RIGHT) {
                 if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpFallRightSprites)) {
                     setAnimation(flinchingJumpFallRightSprites, 1 / 12f);
@@ -216,8 +216,8 @@ public class PlayerActor extends BaseActor {
     }
 
     public void moveLeft() {
-        if(isFlinching) {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningLeftSprites) ) {
+        if (isFlinching) {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningLeftSprites)) {
                 setAnimation(flinchingRunningLeftSprites, 1 / 12f);
             }
             if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpUpLeftSprites)
@@ -238,7 +238,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void moveRight() {
-        if(isFlinching) {
+        if (isFlinching) {
             if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningRightSprites)) {
                 setAnimation(flinchingRunningRightSprites, 1 / 12f);
             }
@@ -260,7 +260,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void stoppedMoving() {
-        if(isFlinching) {
+        if (isFlinching) {
             if (facingDirection == FACING_LEFT) {
                 if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingStandingLeftSprites)) {
                     setAnimation(flinchingStandingLeftSprites, 1 / 12f);
@@ -288,7 +288,7 @@ public class PlayerActor extends BaseActor {
     }
 
     private void applyFlinchForce() {
-        if(facingDirection == FACING_RIGHT) {
+        if (facingDirection == FACING_RIGHT) {
             BodyUtils.applyLinearImpulseToBody(body, -FLINCH_FORCE, "x");
         }
         else {
@@ -298,7 +298,7 @@ public class PlayerActor extends BaseActor {
 
     private void playJumpSfx() {
         Sound jumpSfx = Gizmo.assetManager.get("res/sfx/jump.ogg", Sound.class);
-        if(!Constants.DEBUGGING) {
+        if (!Constants.DEBUGGING) {
             jumpSfx.play();
         }
     }

@@ -9,7 +9,7 @@ import com.derekentringer.gizmo.util.input.InputProcessor;
 
 public class Gizmo extends Game {
 
-	public static AssetManager assetManager = new AssetManager();
+    public static AssetManager assetManager = new AssetManager();
 
     @Override
     public void create() {

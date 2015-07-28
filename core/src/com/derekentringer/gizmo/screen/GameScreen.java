@@ -23,7 +23,7 @@ public class GameScreen implements Screen {
         Constants.buildGameLevelList();
         gameStage = new GameStage();
         hudStage = new HudStage(gameStage);
-        if(DataManager.loadPlayerActorData() != null) {
+        if (DataManager.loadPlayerActorData() != null) {
             levelToLoad = DataManager.loadPlayerActorData().getCurrentLevel();
         }
         gameStage.init(Constants.gameLevels.get(levelToLoad));

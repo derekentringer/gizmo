@@ -76,7 +76,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
         sSpriteBatch.setProjectionMatrix(hudCamera.combined);
 
-        if(!projectionMatrixSet){
+        if (!projectionMatrixSet) {
             redShapeRenderer.setProjectionMatrix(sSpriteBatch.getProjectionMatrix());
         }
         whiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -85,7 +85,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
         whiteShapeRenderer.end();
 
         redShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        redShapeRenderer.setColor(193/255f, 0, 0, 1);
+        redShapeRenderer.setColor(193 / 255f, 0, 0, 1);
         redShapeRenderer.rect(hudPosition.x + 3, hudPosition.y + currentTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
         redShapeRenderer.end();
 
@@ -111,31 +111,31 @@ public class HudStage extends Stage implements IHudStageDelegate {
     @Override
     public void setHudHealthHearts(int hearts) {
         sHearts = hearts;
-        if(sHearts == 2) {
+        if (sHearts == 2) {
             currentTexture = hudHeartsTwo;
         }
-        else if(sHearts == 3) {
+        else if (sHearts == 3) {
             currentTexture = hudHeartsThree;
         }
-        else if(sHearts == 4) {
+        else if (sHearts == 4) {
             currentTexture = hudHeartsFour;
         }
-        else if(sHearts == 5) {
+        else if (sHearts == 5) {
             currentTexture = hudHeartsFive;
         }
-        else if(sHearts == 6) {
+        else if (sHearts == 6) {
             currentTexture = hudHeartsSix;
         }
-        else if(sHearts == 7) {
+        else if (sHearts == 7) {
             currentTexture = hudHeartsSeven;
         }
-        else if(sHearts == 8) {
+        else if (sHearts == 8) {
             currentTexture = hudHeartsEight;
         }
-        else if(sHearts == 9) {
+        else if (sHearts == 9) {
             currentTexture = hudHeartsNine;
         }
-        else if(sHearts == 10) {
+        else if (sHearts == 10) {
             currentTexture = hudHeartsTen;
         }
     }
@@ -146,13 +146,13 @@ public class HudStage extends Stage implements IHudStageDelegate {
         float percentFull = health / fullHealth;
         float newWidth = percentFull * initialWidth;
 
-        if(sHearts == 5 && health > 29) {
+        if (sHearts == 5 && health > 29) {
             newWidth = newWidth + 3;
         }
-        else if(sHearts == 4 && health > 19) {
+        else if (sHearts == 4 && health > 19) {
             newWidth = newWidth + 2;
         }
-        else if(sHearts == 3 && health > 9) {
+        else if (sHearts == 3 && health > 9) {
             newWidth = newWidth + 1;
         }
 

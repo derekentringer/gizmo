@@ -16,18 +16,18 @@ public class KeyActor extends BaseActor {
     public KeyActor(Body body, String keyType) {
         super(body);
 
-        if(keyType.equalsIgnoreCase(KeyData.KEY_GOLD)) {
+        if (keyType.equalsIgnoreCase(KeyData.KEY_GOLD)) {
             key = Gizmo.assetManager.get("res/images/key_gold.png", Texture.class);
         }
-        else if(keyType.equalsIgnoreCase(KeyData.KEY_BRONZE)) {
+        else if (keyType.equalsIgnoreCase(KeyData.KEY_BRONZE)) {
             key = Gizmo.assetManager.get("res/images/key_bronze.png", Texture.class);
         }
-        else if(keyType.equalsIgnoreCase(KeyData.KEY_BLOOD)) {
+        else if (keyType.equalsIgnoreCase(KeyData.KEY_BLOOD)) {
             key = Gizmo.assetManager.get("res/images/key_blood.png", Texture.class);
         }
         keySprite = TextureRegion.split(key, 32, 32)[0];
 
-        setAnimation(keySprite, 1/12f);
+        setAnimation(keySprite, 1 / 12f);
     }
 
     @Override
