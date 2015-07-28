@@ -25,8 +25,9 @@ public class PhantomActor extends BaseActor {
     public PhantomActor(Body body) {
         super(body);
 
-        phantomLeft = Gizmo.assetManager.get("res/images/phantom_left.png", Texture.class);
-        phantomRight = Gizmo.assetManager.get("res/images/phantom_right.png", Texture.class);
+        phantomLeft = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_left.png", Texture.class);
+        phantomRight = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_right.png", Texture.class);
+
         phantomLeftSprite = TextureRegion.split(phantomLeft, 32, 32)[0];
         phantomRightSprite = TextureRegion.split(phantomRight, 32, 32)[0];
 
@@ -49,6 +50,7 @@ public class PhantomActor extends BaseActor {
 
     @Override
     public void act(float delta) {
+        super.act(delta);
         if (getPosition().x > getPlayerPosition().x + WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
             BodyUtils.applyLinearImpulseToBody(body, -MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_LEFT);

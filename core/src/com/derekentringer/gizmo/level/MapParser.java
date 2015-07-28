@@ -13,12 +13,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
+import com.derekentringer.gizmo.actor.data.enemy.PhantomLargeData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.data.structure.GroundData;
 import com.derekentringer.gizmo.actor.data.structure.WallData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
@@ -128,6 +130,16 @@ public class MapParser extends Stage {
                     phantomActor.setName(PhantomData.PHANTOM);
                     addActor(phantomActor);
                     actorsArray.add(phantomActor);
+                }
+                else if(mapLayer.getName().equalsIgnoreCase(PhantomLargeData.PHANTOM_LARGE)) {
+                    Float xPosD = (Float) mapObject.getProperties().get("x");
+                    Float yPosD = (Float) mapObject.getProperties().get("y");
+                    int xPos = xPosD.intValue();
+                    int yPos = yPosD.intValue();
+                    PhantomLargeActor phantomLargeActor = new PhantomLargeActor(EnemyUtils.createLargePhantom(new PhantomLargeData(), world, xPos, yPos));
+                    phantomLargeActor.setName(PhantomLargeData.PHANTOM_LARGE);
+                    addActor(phantomLargeActor);
+                    actorsArray.add(phantomLargeActor);
                 }
                 else if(mapLayer.getName().equalsIgnoreCase(PlayerData.PLAYER)) {
                     if(whichDoor.equalsIgnoreCase(DoorType.PREVIOUS)

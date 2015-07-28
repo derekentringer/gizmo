@@ -29,4 +29,24 @@ public class EnemyUtils {
         return body;
     }
 
+    public static Body createLargePhantom(ObjectData userData, World world, int posX, int posY) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(WorldUtils.ppmCalc(posX), WorldUtils.ppmCalc(posY));
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(100), WorldUtils.ppmCalc(140));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = false;
+        body.createFixture(fixtureDef).setUserData(userData);
+
+        body.setUserData(userData);
+
+        shape.dispose();
+        return body;
+    }
+
 }
