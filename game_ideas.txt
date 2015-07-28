@@ -1,6 +1,8 @@
 TODO
 -----
 
+dog toys become weapons :) dropped from bosses
+
 flinching while standing is bugged need graphics for new standing char sprites
 
 need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
