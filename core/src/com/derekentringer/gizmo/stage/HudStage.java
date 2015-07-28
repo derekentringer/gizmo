@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class HudStage extends Stage implements IHudStageDelegate {
 

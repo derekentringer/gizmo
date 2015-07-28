@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.manager.DataManager;
 import com.derekentringer.gizmo.stage.GameStage;
 import com.derekentringer.gizmo.stage.HudStage;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class GameScreen implements Screen {
 

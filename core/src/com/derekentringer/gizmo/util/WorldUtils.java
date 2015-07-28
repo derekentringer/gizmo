@@ -3,7 +3,7 @@ package com.derekentringer.gizmo.util;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class WorldUtils {
 

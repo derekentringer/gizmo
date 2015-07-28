@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.actor.data.ObjectData;
 import com.derekentringer.gizmo.actor.data.ObjectDataType;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class BodyUtils {
 

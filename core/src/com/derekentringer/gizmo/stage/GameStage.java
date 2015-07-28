@@ -21,9 +21,9 @@ import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
-import com.derekentringer.gizmo.actor.player.IPlayerDelegate;
+import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
-import com.derekentringer.gizmo.level.IMapParserDelegate;
+import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.manager.DataManager;
@@ -31,7 +31,7 @@ import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate, IMapParserDelegate {

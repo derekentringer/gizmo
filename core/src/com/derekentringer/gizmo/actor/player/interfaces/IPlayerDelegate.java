@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.actor.player;
+package com.derekentringer.gizmo.actor.player.interfaces;
 
 public interface IPlayerDelegate {
 

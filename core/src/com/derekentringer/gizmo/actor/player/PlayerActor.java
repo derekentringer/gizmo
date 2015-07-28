@@ -11,7 +11,7 @@ import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.util.BodyUtils;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class PlayerActor extends BaseActor {
 
@@ -21,7 +21,7 @@ public class PlayerActor extends BaseActor {
     public static final int FLINCHING_LENGTH = 3;
     private static final float FLINCH_FORCE = 50f;
 
-    public IPlayerDelegate delegate = null;
+    public com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate delegate = null;
 
     private TextureRegion[] runningRightSprites;
     private TextureRegion[] runningLeftSprites;

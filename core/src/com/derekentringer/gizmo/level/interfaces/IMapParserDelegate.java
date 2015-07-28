@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.level;
+package com.derekentringer.gizmo.level.interfaces;
 
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 

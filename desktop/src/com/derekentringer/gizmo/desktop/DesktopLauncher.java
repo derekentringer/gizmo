@@ -3,7 +3,7 @@ package com.derekentringer.gizmo.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.util.constant.Constants;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

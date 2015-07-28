@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class MapParser extends Stage {
 
-    public IMapParserDelegate delegate = null;
+    public com.derekentringer.gizmo.level.interfaces.IMapParserDelegate delegate = null;
 
     public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();
     public ArrayList<KeyActor> keyArray = new ArrayList<KeyActor>();

@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.util.constant;
+package com.derekentringer.gizmo.settings;
 
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.level.Level;
