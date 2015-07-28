@@ -16,6 +16,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown (int keycode) {
+        System.out.println("keycode: "+keycode);
         if(keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
@@ -74,10 +75,12 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public void connected(Controller controller) {
+        System.out.println("controller connected: "+controller);
     }
 
     @Override
     public void disconnected(Controller controller) {
+        System.out.println("controller disconnected: "+controller);
     }
 
     @Override
@@ -127,6 +130,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
+        System.out.println("controller: "+controller);
+        System.out.println("povCode: "+povCode);
+        System.out.println("value: "+value);
         if(value == BaseController.BUTTON_DPAD_RIGHT
                 || value == BaseController.BUTTON_DPAD_UP_RIGHT
                 || value == BaseController.BUTTON_DPAD_RIGHT_DOWN) {
