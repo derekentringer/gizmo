@@ -21,7 +21,7 @@ public class PlayerUtils {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 
-        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        shape.setAsBox(WorldUtils.ppmCalc(8), WorldUtils.ppmCalc(14));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
         body.createFixture(fixtureDef).setUserData(new PlayerData());
