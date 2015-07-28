@@ -20,7 +20,7 @@
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlkEKwCAMBPUPUfD/Hy2lCmmYcw4bB0IxTUuWDWprH92Fwfrkxg7bzze3dnS39rXD1UwXy72fUH/+ZeG7WB97JA0RyqmwIKesd0DO0rvIg7wkz1UgveS5CjS71eZZWS/NrvL+TF4q6yV/lferaudvtXmudn+uprfaPJPemd5FHve+cc8jJZS9JJS9vPx5AIxUBUA=
+   eJztVlsKwDAIa++g3v+o+1gFK9k+/YgGwpg4Zkj6WOvFDhTw7jU9lPPcP9RAr1lg7LGPfv9//C735xmRhgxUY0E3vQpqUj5FHbr5i7Qhz1mAststz8x6UXaZ1y/yklkv8pd5v+p2/nbL89w3uPV2yzPSa+VT1GHuG3MeMYHZSwRmLwc3HiyXBFA=
   </data>
  </layer>
  <layer name="doornext" width="60" height="23">
