@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.derekentringer.gizmo.manager.DataManager;
+import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.stage.GameStage;
 import com.derekentringer.gizmo.stage.HudStage;
 import com.derekentringer.gizmo.settings.Constants;
@@ -23,8 +23,8 @@ public class GameScreen implements Screen {
         Constants.buildGameLevelList();
         gameStage = new GameStage();
         hudStage = new HudStage(gameStage);
-        if (DataManager.loadPlayerActorData() != null) {
-            levelToLoad = DataManager.loadPlayerActorData().getCurrentLevel();
+        if (LocalDataManager.loadPlayerActorData() != null) {
+            levelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
         }
         gameStage.init(Constants.gameLevels.get(levelToLoad));
     }

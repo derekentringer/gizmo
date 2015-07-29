@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Json;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.settings.Constants;
 
-public class DataManager {
+public class LocalDataManager {
 
     private static final String GAME_SAVE_FILE = "game.sav";
 

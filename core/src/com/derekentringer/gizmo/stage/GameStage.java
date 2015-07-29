@@ -26,7 +26,7 @@ import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
-import com.derekentringer.gizmo.manager.DataManager;
+import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -338,7 +338,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
                         playerActor.setCurrentLevel(newLevel);
 
-                        DataManager.savePlayerActorData(playerActor.getUserData());
+                        LocalDataManager.savePlayerActorData(playerActor.getUserData());
 
                         loadLevel(Constants.gameLevels.get(newLevel), DoorType.NEXT);
                     }
@@ -353,7 +353,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
                         playerActor.setCurrentLevel(newLevel);
 
-                        DataManager.savePlayerActorData(playerActor.getUserData());
+                        LocalDataManager.savePlayerActorData(playerActor.getUserData());
 
                         loadLevel(Constants.gameLevels.get(newLevel), DoorType.PREVIOUS);
                     }
@@ -366,8 +366,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void setPlayerActor(PlayerActor playerActor) {
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
-        if (DataManager.loadPlayerActorData() != null) {
-            playerData = DataManager.loadPlayerActorData();
+        if (LocalDataManager.loadPlayerActorData() != null) {
+            playerData = LocalDataManager.loadPlayerActorData();
             playerActor.initPlayerData(playerData);
         }
         else {
@@ -377,7 +377,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerData.setPlayerLives(PlayerData.DEFAULT_LIVES);
             playerData.setCurrentLevel(PlayerData.DEFAULT_LEVEL);
             playerActor.initPlayerData(playerData);
-            DataManager.savePlayerActorData(playerData);
+            LocalDataManager.savePlayerActorData(playerData);
         }
 
         hudStageDelegate.setHudHealthHearts(playerData.getPlayerHearts());
@@ -412,12 +412,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void killPlayer() {
         playerActor.resetHealth();
         playerActor.deIncrementLives();
-        DataManager.savePlayerActorData(playerActor.getUserData());
+        LocalDataManager.savePlayerActorData(playerActor.getUserData());
         isPlayerDead = true;
     }
 
     public void quitGame() {
-        DataManager.savePlayerActorData(playerActor.getUserData());
+        LocalDataManager.savePlayerActorData(playerActor.getUserData());
     }
 
     /*private void startBackgroundMusic() {
