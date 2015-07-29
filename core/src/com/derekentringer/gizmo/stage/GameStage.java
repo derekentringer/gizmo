@@ -21,23 +21,24 @@ import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
-import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
-import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
+import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
+import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.manager.DataManager;
+import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
-import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.UserInput;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate, IMapParserDelegate {
 
-    //private OrthographicCamera camera;
-    //private Box2DDebugRenderer renderer;
+    //TODO create flag for debugging in new camera class
+    //private OrthographicCamera box2dDebugCamera;
+    //private Box2DDebugRenderer box2dDebugRenderer;
 
     public IHudStageDelegate hudStageDelegate = null;
 
@@ -101,6 +102,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         backgroundCamera.zoom = 1.7f;
         backgroundCamera.update();
     }
+
+    /*private void setupDebugRendererCamera() {
+        box2dDebugRenderer = new Box2DDebugRenderer();
+        box2dDebugCamera = new OrthographicCamera();
+        box2dDebugCamera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
+        box2dDebugCamera.update();
+    }*/
 
     public void loadLevel(Level level, String whichDoor) {
         System.out.println("loading level: " + level.getLevelInt());
@@ -188,7 +196,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mapParser.getTiledMapRenderer().render();
 
         //world debugRenderer camera
-        //renderer.render(world, camera.combined);
+        //box2dDebugRenderer.render(world, box2dDebugCamera.combined);
 
         spriteBatch.setProjectionMatrix(mainCamera.combined);
 
@@ -411,13 +419,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void quitGame() {
         DataManager.savePlayerActorData(playerActor.getUserData());
     }
-
-    /*private void setupDebugRendererCamera() {
-        renderer = new  zBox2DDebugRenderer();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
-        camera.update();
-    }*/
 
     /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);

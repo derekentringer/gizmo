@@ -28,7 +28,7 @@ public class PlayerUtils {
 
         // create foot sensor
         Vector2 center = new Vector2(0, WorldUtils.ppmCalc(-16));
-        shape.setAsBox(WorldUtils.ppmCalc(10), WorldUtils.ppmCalc(1), center, 0);
+        shape.setAsBox(WorldUtils.ppmCalc(6), WorldUtils.ppmCalc(1), center, 0);
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData(new PlayerHitAreaData());
