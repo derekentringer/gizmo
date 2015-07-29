@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="43">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="48">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
@@ -10,12 +10,12 @@
  </layer>
  <layer name="backgroundForeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlkEOhDAIRT2HU13M/Q9pumhCfj7QGkbihLdxYErlA23ctqIoiqIoGM2x/40v2J+ULJ7jBBv1vqHfDZ7Sjz7U59navpmMHNmsev3E/3EPFpN9BkbOLK/VfqL+mZhfo80oy31VL9OSrVeb0Yj+RunV7pQ7aO+P1ntMxjDGmlPs46HVRns/67t3Pi0t1r3gIXvA7gQrpnMoftwb/av93cnv3VijMe55loMX05E16vENbPmU/jvnNQJZK6s+rL5szUwfZvTOztob6Nq87+Xsb4dIMuc5g6f1Xh0vDrQ=
+   eJztlEEOhTAIRD2Hv7r49z+k6aIJmQyFNlai4W0UUhQY6LYlSZIkSeKhRCfwML/oBBZzgv0H+2t6o56WXcEeRPekwFP60Yf1WHozX/QOtJyZVqN6Yv2emNVomrHcR+tltUTXixpo9VbbmsVV9Wo7NoP2/zvmWdqHcobtONJiTvEdC603Wo5Md2s/e/X27gULqQG7E3oxlUPx47fRP6rvTt73zhmNNgMsByumIntU4wvY8in9M/t6B7JXvf6w/rIzHh089Xpn7Q3M3M9vJnKeI3i63gtjdw4c
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1mEKgCAMBeDtDk7o/hcNwWAMkVXCar4PHma/NjORCAAAwIfNvIRUAVEkugCHtkdbndW8L/S+/jIJwAr2jP0ipn/UuQqr4F8f40FgD1m+9Yo+7N73zC/Sc1D+u4a9n83Mem7r5TmfRaX2yGC0zzpP3elV1+vFatzl7M3W4wmRHgPz
+   eJzt1mEKgCAMBWB3Byd0/4tGYDDEbA5Bne+DhyX92NKkEAAAAGxodgELi7MLMPhbT/6YjyKexUZmIZHaPOxlhzU7bW/Jb8z7GWdFlcAZvKz1iD7Kva+5f3HOFdb81xgpdTzb6vl5X5rzmUVSDlfG8lrGqqdXWa8WifGUs9dbjzeqCwPg
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -60,9 +60,9 @@
   <properties>
    <property name="keyType" value="blood"/>
   </properties>
-  <object id="41" x="1680" y="270.5">
+  <object id="43" x="1680" y="208">
    <properties>
-    <property name="keyType" value="bronze"/>
+    <property name="keyType" value="blood"/>
    </properties>
    <ellipse/>
   </object>
