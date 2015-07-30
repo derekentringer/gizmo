@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="48">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="53">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdWNtuwzAIJS953UsT1WtXqf3/j+ys+ShnCGycm6YhoRQb8DkO8aUXEZnkR67/VLNcis7lmSWRPovuMd7TyW3pqHzHhr/WZCj4DoUv2o7gqjm38jJn5hrJ73GWwnMq9kx8j+DKmHp812CxOEvhOhQb9RzNb8mZ32PvuxZZ6nmQZb1ay/WvcwbfzBN1HcEbkTM5RcZjvoMsa3QrtkfO4hodT4grf9N78T2ad+9YWaaiqOss4458z+TawpEF69SefLfg34tz7f0m4iyy7PFr+Pbij2LdgoV9sffyeUPE5hzJ3YO/B++WGmPJvPR5En6jE+Plj47f+/2t8ffGYb7efrQ2t+e7VbZgwvfL+9Ho+NZyfxjag8/La7V5XLguk+OH8zPuhVL8o5w9n3sgthbfWvc8f32P1P5Yl/l8xfewGudafd4qcZH4mo83D3hPfK/VaxDu+d59fw2er299NOI07iMlsv/iOTZyWDX2WbQ1ftZ7UcTDFtUv1A/BOZjvPNzGdz7kB9dEfWdJxpDr/iEL/2y/lH0jvKgbPvNPZPP5mO+6ENiIZR9uF1nmEMpr+6yejCUZMbPBx+Ov7aRyzqqN54LXYp4TfmqsFnbdP6k8k/zGYc3NtXDRfNl+Gf18X2cs/Jv/s4GN+s7tb8XxU2Y=
+   eJzdWNFuwyAMdF7yBU1V1q5S+/8f2SH5lJuFwYQkmmbJSk2MuQMXcC4issj/l4vqVZ9ZEulL9baDvpzYJZ2N79zwt5oKCr6T8kXbEVwt51Zc5sxcI/E9zqI8F7WvxPcIroypx3cLlhJnUa6T2sjnaPySHDE/I/PKvEXWfJ5k3a+2cv3rnME380ReR/BG5ExOkfGY7yTrHt3q2yNncY2OJ8SV/9N78T2ad+9YWRZV5HWWeUe+Z3Jt4ciCfWpPviP49+JcW99EnEXWM34L3178UawjWNgXZy/fN0TKnCOxe/D34B3JMZbMy94n4Tc7fbz40fF7/39b/L1xmK93Hm2N7fmOyggm/H/5PJod31rsUXyRuK114LxMjh/uz6gLRf2jnD2fR6BvrX9r3/P8bR1p/bEv8/2K67Aa59ra3iv9Iv1rPt66Y524rrV7EOp8r97fguf7R5+NfiXcR0nk/MVzbsQo5diXamv8rA9V9Ict5r3QewjuwVzzcBvXfIgPrknO/36VMeS8f8rKP9tvY98JL/KG7/wL2Xw/5loXAht92QftJeHvIrir8JOxoN1+S7F8PP7WTibm1bTxXPBezHPCT4u1hN2+X0ycRX7jKM3NTblYvmy/C++5Xmcs/Ju/2cBGfuf2D7zfTZk=
   </data>
  </layer>
  <layer name="backgroundForeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlEEOhTAIRD2Hv7r49z+k6aIJmQyFNlai4W0UUhQY6LYlSZIkSeKhRCfwML/oBBZzgv0H+2t6o56WXcEeRPekwFP60Yf1WHozX/QOtJyZVqN6Yv2emNVomrHcR+tltUTXixpo9VbbmsVV9Wo7NoP2/zvmWdqHcobtONJiTvEdC603Wo5Md2s/e/X27gULqQG7E3oxlUPx47fRP6rvTt73zhmNNgMsByumIntU4wvY8in9M/t6B7JXvf6w/rIzHh089Xpn7Q3M3M9vJnKeI3i63gtjdw4c
+   eJztlesKwzAIhfMcWdIfe/+HHMICcqq5Nam0+MHIdLqpx3QhOI7jOI7TQ7Iu4GY+1gVs5gD7C/bb9EY9WzaBM7CeSYKT+9GH/bT0lnzWd6DULGk1qif235OzG00zqfbRfsnOgzm7QQ20fslu7eKKHAntjs2g/f6KfSa7zDMrMdId12o8wnlfNLTZaDVLurfuJ34e/y8eO6Mv10B6JtRyiKz48bvRP/P/U4hwor9G2QGphlYOwWdE+QlsfnL/lX6vwGdVm09U3mOMFIfxPf327toTWPWsfQqW+2zB3f3+AEKoDng=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1mEKgCAMBWB3Byd0/4tGYDDEbA5Bne+DhyX92NKkEAAAAGxodgELi7MLMPhbT/6YjyKexUZmIZHaPOxlhzU7bW/Jb8z7GWdFlcAZvKz1iD7Kva+5f3HOFdb81xgpdTzb6vl5X5rzmUVSDlfG8lrGqqdXWa8WifGUs9dbjzeqCwPg
+   eJzt1ksKwCAMBNB4ByP0/hftpkIQrTEo/ubBUCtdJGhFIgAAABs3u4CF+dkFGNTWkwvzXuRk/iezOJHcPOxlhzW7bW/Jf+z0M87KZQJ3GLXWTOU7xwg9+kj3vuY9iv0+tOZdo6fQ8G2tZ835zCLhC2ee6VjGqqVXWa8Wzt79vT8GA/U=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztVlsKwDAIa++g3v+o+1gFK9k+/YgGwpg4Zkj6WOvFDhTw7jU9lPPcP9RAr1lg7LGPfv9//C735xmRhgxUY0E3vQpqUj5FHbr5i7Qhz1mAststz8x6UXaZ1y/yklkv8pd5v+p2/nbL89w3uPV2yzPSa+VT1GHuG3MeMYHZSwRmLwc3HiyXBFA=
+   eJztVkEOgDAI2/4A/P+pHhwJI9Ujh0KTxkgw0rQ61nqxAwXce00P5Vz3DzXQaxYYe+yj398fn8v9eUakIQPVWNBNr4KalE9Rh27+Im3Icxag7HbLM7NelF3m7xd5yawX+cv8v+p2/nbL8+wb3Hq75RnptfIp6jD7xpxHTEB6mfcrZi8HNx5m/wRl
   </data>
  </layer>
  <layer name="doornext" width="60" height="23">
@@ -38,7 +38,17 @@
    eJztzjENAAAIA7CZwb9FPOwhJK2CJgAAQGOuAwAAvLORcwAm
   </data>
  </layer>
- <objectgroup name="phantom"/>
+ <objectgroup name="phantom">
+  <object id="48" x="881" y="623">
+   <ellipse/>
+  </object>
+  <object id="49" x="145" y="400">
+   <ellipse/>
+  </object>
+  <object id="51" x="1745" y="558">
+   <ellipse/>
+  </object>
+ </objectgroup>
  <objectgroup name="player">
   <properties>
    <property name="type" value="previous"/>

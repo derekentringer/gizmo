@@ -1,6 +1,8 @@
 TODO
 -----
 
+adding multiple keys to level does not remove the correct key bodies - need to add more checks to what is deleted in terms of bodies
+
 dog toys become weapons :) dropped from bosses
 
 flinching while standing is bugged need graphics for new standing char sprites
