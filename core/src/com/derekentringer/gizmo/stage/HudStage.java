@@ -39,7 +39,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     private float initialWidth;
     private float redShapeWidth;
-    private float redShapeHeight;
+    private float redShapeHeight = 20;
 
     public HudStage(GameStage gameStage) {
         gameStage.hudStageDelegate = this;
@@ -77,6 +77,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
         sSpriteBatch.setProjectionMatrix(hudCamera.combined);
 
         if (!projectionMatrixSet) {
+            whiteShapeRenderer.setProjectionMatrix(sSpriteBatch.getProjectionMatrix());
             redShapeRenderer.setProjectionMatrix(sSpriteBatch.getProjectionMatrix());
         }
         whiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -101,7 +102,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
         hudPosition.x = Math.abs(crop.x) / scale;
-        hudPosition.y = Math.abs(gameHeight - hudHeartsTwo.getHeight() * scale - HUD_PADDING * scale) / scale;
+        hudPosition.y = Math.abs(gameHeight - currentTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
         System.out.println("hudPosition.x: " + hudPosition.x);
         System.out.println("hudPosition.y: " + hudPosition.y);
 

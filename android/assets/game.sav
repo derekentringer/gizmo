@@ -1,1 +1,1 @@
-{keyList:[{sKeyType:gold},{sKeyType:bronze},{sKeyType:gold},{sKeyType:bronze},{sKeyType:gold},{sKeyType:bronze},{sKeyType:gold},{sKeyType:gold},{sKeyType:gold},{sKeyType:gold}],playerHearts:2,playerHealth:10,playerLives:4,currentLevel:1}
+{keyList:[{sKeyType:gold},{sKeyType:bronze}],playerHearts:2,playerHealth:20,playerLives:5,currentLevel:1}
