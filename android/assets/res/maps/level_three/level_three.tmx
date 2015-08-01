@@ -5,17 +5,17 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdWFuOgzAMND+coEHtUlWiP3v/G1aWMmI6a5LQ0KrakSxIiJ2Z4DzgZGbJ/j9O2aZ8dVwKNpIt2c5kqBsb45Ta1Pofd8aB3iHrRV1JW6QxssXKXBZp08I54qExSnEs60y5PJFejV3TV9Md8T5bzL2ktdRPTb9lrUMucz5v5StbhJrmFt7Ks+ZTi4NYZms+D7auV2O+7tW6pVn1tnBlvkfkFzSdsk7kNXRGvFu01jTv4d46l0pcORb0Drau0TXfPYj63MuzRetWf1FbaOU5XRq/V9DDce/Y19qnbMhrYA78X0Evx948O8sV69SWXubTg5YY79CrwN4LzcAs9+jj2tFXC893aNX5i7k7UZsb3bvehe4drPtqfeMQcTtaK3xdp54nHZrP2Dfn4PlNyj04Qm/Jl/Xy++X1SvdOfu64S7n3Xfdq3drrHZi/vB85ZvHVc53Oby0fgVfW4tLZ1YHzM74Lt3wtiAFA75XKn4byjc7eDqzLer5SrYDGuNuaz9Hc/gSwvrDWX/ur2YHvfP7e13FiROPm+njNutn3Itp/NSfM4n8frPknm9H13cA5mL95uA5nKRj2XtYcgf8JfAv4zJ+ozOdj/dadqAxfbsP1F/KB8do+yZV9LoHP0KGV+4RxHY8Fr8XR+424Rtz1eZI4yZ55RGODMeXcAzc+03O8ie65D73nfzbJnt+z1z8AhNFFyQ==
+   eJzdWNGOgyAQXF/8gmLas2liX+7//7DZhInTuRWw2Ka5STYKsssMwoKezCzZ/8cp25SvjkvBRrIl25kMdWNjnFKbWv/jzjjQO2S9qCtpizRGtliZyyJtWjhHPDRGKY5lnSmXJ9KrsWv6aroj3meLuZe0lvqp6besdchlns9b85UtQk1zC2/lWfOpxUEss3U+D7bmqzFf92rd0qx6W7gy3yPmFzSdsk7Ma+iMeLdorWnew711LZW4cizoHWzN0TXfPYj63MuzRetWf1FbaOU1XRq/V9DDce/Y19qnbJjXwBz4v4Jejr3z7CxX5KktvcynBy0x3qFXgb0XmoFZ7tHHtaOvFp7v0KrrF2t3ojY3une9C907WPfV+sYh4na0Vvi6Tj1POnQ+Y9+cg+c3KffgCL0lX9bL75fzle6d/Nxxl3Lvu+7VurXXO7B+eT9yzOKr5zpd31o+Aq/k4tLZ1YHzM74Lt3wtiAFA75XKn4byjc7eDuRlPV+pL6Ax7rbO52htfwLIL8z31/5qduA7n7/3o3EConFzfZyzOLd/G6L9N9Ia/ftgzT/ZjK7vBs7B/M3DdThLwbD3suYI/E/gW8Bn/kRlPh/rt+5EZfhyG66/kA+Mc/skV/a5BD5Dh1buE8Z1PBaci6P3G3GNuOvzJHGSPfOIxgZjynMP3PhMz/Emuuc+9J7/2SR7fs9e/wCBOEX7
   </data>
  </layer>
  <layer name="dooroff" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztz7ERADAIAzHWYP9F0zMA5EBqvrUjAAAAgJwe0ChLt7v2F/jbA62+AH4=
+   eJztz7ERADAIAzHWCNl/zzTMALlDar61IwAAAIAzPaDRrW75nNUtf4G/Pb1aAIE=
   </data>
  </layer>
  <layer name="backgroundForeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztk0EKwDAIBH2HCTn0/4/sqSBFS61Bhe6clkSC6xoiAAAAoB+zuoFkVnUDhfwt66O6AaBi7WFkPzv/a6u34XxHq++445Yvb0ZD0R1ztvxG8u2Y60XEr5ap1N6ZZWBlEfU7aJ/faegvsPNcIv3w7XzRvpytuWbzNCsW9/xQ+4YufrNgQwMQ4QTKJQX3
+   eJztlEEKwDAIBPMOE3Lo/x/ZUyEUV2otUejOSYwE1zVpjRBCCKnHyG5gMzO7gUT+5vWR3QBRQXsY2c/K7xr11p33aPUVdxzp8nrUlbiiz0hvxN+Kvl5E9K41U8l7Z7YD5IVX7z3fjXMvA8RvEGd+xdI723c+a39DBtasZDkXo/YJVfTuQkBMSIQT0X4FxQ==
   </data>
  </layer>
  <layer name="ground" width="60" height="23">

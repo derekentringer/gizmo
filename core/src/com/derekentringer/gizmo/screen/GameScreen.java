@@ -81,6 +81,10 @@ public class GameScreen implements Screen {
         viewPort = new Rectangle(crop.x, crop.y, w, h);
 
         hudStage.updateHudLayout(scale, crop, h);
+
+        System.out.println("RESIZE: " + scale);
+        System.out.println("RESIZE: " + crop);
+        System.out.println("RESIZE: " + h);
     }
 
     @Override
