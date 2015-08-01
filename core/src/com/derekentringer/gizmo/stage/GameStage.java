@@ -231,33 +231,19 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
-    //TODO THIS IS KEYS ONLY
     private void deleteQueuedActorBodies() {
-        //delete actors/bodies as needed
         for (int i = 0; i < deleteBodies.size(); i++) {
-
             //delete the body
             WorldUtils.destroyBody(world, deleteBodies.get(i).getBody());
-            //deleteBodies.removeIndex(i);
-
-            //so close
-            //remove the actor
-            for (BaseActor actor : mapParser.actorsArray) {
-                if (actor.getName().equalsIgnoreCase(KeyData.KEY) && actor.userData == deleteBodies.get(i).getObjectData()) {
-                    actor.remove();
+            //delete the actor
+            for (int e=0; e < mapParser.actorsArray.size(); e++) {
+                if (mapParser.actorsArray.get(e).userData == deleteBodies.get(i).getObjectData()) {
+                    mapParser.actorsArray.get(e).remove();
                     deleteBodies.remove(i);
+                    mapParser.actorsArray.remove(e);
+                    break;
                 }
             }
-
-
-            //KeyActor keyActor = mapParser.keyArray.get(i);
-            //keyActor.remove();
-            //mapParser.keyArray.remove(i);
-
-            //remove key from actors array in MapParser
-            //int keyIndex = mapParser.actorsArray.indexOf(keyActor);
-            //mapParser.actorsArray.remove(keyIndex);
-
         }
     }
 

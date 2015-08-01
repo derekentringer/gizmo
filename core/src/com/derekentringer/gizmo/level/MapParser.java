@@ -38,7 +38,6 @@ public class MapParser extends Stage {
     public com.derekentringer.gizmo.level.interfaces.IMapParserDelegate delegate = null;
 
     public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();
-    public ArrayList<KeyActor> keyArray = new ArrayList<KeyActor>();
 
     private TiledMap tiledMap;
     private TiledMap tiledMapMidBackground;
@@ -168,7 +167,6 @@ public class MapParser extends Stage {
                     KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyData(keyType), world, xPos, yPos), keyType);
                     keyActor.setName(KeyData.KEY);
                     addActor(keyActor);
-                    keyArray.add(keyActor);
                     actorsArray.add(keyActor);
                 }
             }

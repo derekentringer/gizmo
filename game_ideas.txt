@@ -1,6 +1,8 @@
 TODO
 -----
 
+move actorsArray to the level model
+
 adding multiple keys to level does not remove the correct key bodies - need to add more checks to what is deleted in terms of bodies
 
 dog toys become weapons :) dropped from bosses
