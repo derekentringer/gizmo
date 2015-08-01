@@ -35,4 +35,8 @@ public class KeyActor extends BaseActor {
         return null;
     }
 
+    public void removeActor() {
+        this.remove();
+    }
+
 }

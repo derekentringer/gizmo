@@ -17,7 +17,7 @@ public abstract class BaseActor extends Actor {
     public int facingDirection;
 
     protected Body body;
-    protected ObjectData userData;
+    public ObjectData userData;
     protected AnimationManager animationManager;
     protected float width;
     protected float height;
