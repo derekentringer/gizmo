@@ -17,6 +17,7 @@ import com.derekentringer.gizmo.actor.data.enemy.PhantomLargeData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
+import com.derekentringer.gizmo.actor.data.structure.DoorOffData;
 import com.derekentringer.gizmo.actor.data.structure.GroundData;
 import com.derekentringer.gizmo.actor.data.structure.WallData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
@@ -24,6 +25,7 @@ import com.derekentringer.gizmo.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
+import com.derekentringer.gizmo.actor.structure.DoorOffActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -104,6 +106,10 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DoorType.NEXT)) {
                             DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.NEXT), world, tileSize, row, col, true));
                             addActor(doorActor);
+                        }
+                        else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OFF)) {
+                            DoorOffActor doorOffActor = new DoorOffActor(BodyUtils.createStaticBody(new DoorOffData(), world, tileSize, row, col, true));
+                            addActor(doorOffActor);
                         }
                     }
                 }

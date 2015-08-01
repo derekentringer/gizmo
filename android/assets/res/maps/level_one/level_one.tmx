@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="69">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="72">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdWNFuwyAMdF7yBU1V1q5S+/8f2SH5lJuFwYQkmmbJSk2MuQMXcC4issj/l4vqVZ9ZEulL9baDvpzYJZ2N79zwt5oKCr6T8kXbEVwt51Zc5sxcI/E9zqI8F7WvxPcIroypx3cLlhJnUa6T2sjnaPySHDE/I/PKvEXWfJ5k3a+2cv3rnME380ReR/BG5ExOkfGY7yTrHt3q2yNncY2OJ8SV/9N78T2ad+9YWRZV5HWWeUe+Z3Jt4ciCfWpPviP49+JcW99EnEXWM34L3178UawjWNgXZy/fN0TKnCOxe/D34B3JMZbMy94n4Tc7fbz40fF7/39b/L1xmK93Hm2N7fmOyggm/H/5PJod31rsUXyRuK114LxMjh/uz6gLRf2jnD2fR6BvrX9r3/P8bR1p/bEv8/2K67Aa59ra3iv9Iv1rPt66Y524rrV7EOp8r97fguf7R5+NfiXcR0nk/MVzbsQo5diXamv8rA9V9Ict5r3QewjuwVzzcBvXfIgPrknO/36VMeS8f8rKP9tvY98JL/KG7/wL2Xw/5loXAht92QftJeHvIrir8JOxoN1+S7F8PP7WTibm1bTxXPBezHPCT4u1hN2+X0ycRX7jKM3NTblYvmy/C++5Xmcs/Ju/2cBGfuf2D7zfTZk=
+   eJzdmGFuwyAMhZ0/OUFTlbWr1N7/kB2Sn/JmYTAhiaZZslKIMe8jlEAuIrLI/7eL+lWv2RL5S/22g7+c3CWfTezciLeeCg7eSXlRdwSrZW7lZWZmjeT3mEU5Fy1fifcIVtbUE7tFS4lZlHXSMuZzNH/JjhifkXFlbpF1Pk+yrldbWf86M3gzJ+Z1RG/EzmSK9Me8k6xrdKttj53FGu1PiJX/03vxHs3d21e2RR3zOtu8I++ZrC0d2bBO7ck7on8v5trzTcQssr7jt/D26o9qHdHCsXj38n5DpMwcyd2jv0fvyBxjy1x2P4m42Wnj5Y/23/v/2xLv9cO83vtoa24vdtRGNOH/y++j2Ymt5R7VF8nbeg48L5MTh/0zzoWi8VFmL+YRaFtr31r3vHiwipSZsS7z/orPYTXm2rO9V9pF2tdivOeO58Rm1yCc873z/hY93z/+bLQr6T7KIu9fXO142RylOfal3uo/+0Md7VEWc1/oPgz7YD7zcB2f+ZAfrEnO/36VNeR5/5SVP5ffpnwnvZg3vOdfqMz7Yz7rwlBGW45Bfcn4uwj2KnxlLai331Isj8dvy8nkvJo6Hgtei3lM+Gq1lrTb+4vJs8hvHaWxuSmL5eXyu3Cfz+ushX/zNxuUMb9z/Qc8cE1O
+  </data>
+ </layer>
+ <layer name="dooroff" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIBDFsvH+j7AiAkLTLrVcFAAAAfJPrgUUZBfisAZX/AEw=
   </data>
  </layer>
  <layer name="backgroundForeground" width="60" height="23">
@@ -70,7 +75,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="67" x="433" y="529.5">
+  <object id="71" x="592.5" y="457.5">
    <properties>
     <property name="keyType" value="bronze"/>
    </properties>

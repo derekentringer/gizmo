@@ -2,6 +2,7 @@ package com.derekentringer.gizmo.actor.data;
 
 public final class DoorType {
 
+    public static final String DOOR_OFF = "dooroff";
     public static final String NEXT = "doornext";
     public static final String PREVIOUS = "doorprevious";
 

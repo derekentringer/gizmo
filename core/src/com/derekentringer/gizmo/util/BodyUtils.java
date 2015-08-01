@@ -42,6 +42,11 @@ public class BodyUtils {
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR);
     }
 
+    public static boolean bodyIsDoorOff(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR_OFF);
+    }
+
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {
         float velChange;
         Vector2 velocity = body.getLinearVelocity();
