@@ -1,11 +1,9 @@
 TODO
 -----
 
-keys added twice on collision? seems its just blood for some weird reason..or 3 keys on screen
+
 
 move actorsArray to the level model
-
-adding multiple keys to level does not remove the correct key bodies - need to add more checks to what is deleted in terms of bodies
 
 dog toys become weapons :) dropped from bosses
 
@@ -16,7 +14,7 @@ need to save level data to some extent...enemy stats/positions/keys available
 these might be related to the game save data...load level saves and loads from disk
 
 open doors when user has the correct key (manage keys in a level -ie, they dont respawn)
-try some large phantoms
+
 phantoms run away when gizmo barks
 
 refactor up how the tiled cameras are created
