@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -27,6 +26,7 @@ import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.model.DeleteBody;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -56,7 +56,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private PlayerActor playerActor;
     private PlayerData playerData;
     private boolean isPlayerDead = false;
-    private Array<Body> deleteBodies = new Array<Body>();
+    private Array<DeleteBody> deleteBodies = new Array<DeleteBody>();
 
     private Level currentLevel;
 
@@ -159,11 +159,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //pickup a key
         if (BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addKey((KeyData) a.getBody().getUserData());
-            deleteBodies.add(a.getBody());
+            deleteBodies.add(new DeleteBody((KeyData) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addKey((KeyData) b.getBody().getUserData());
-            deleteBodies.add(b.getBody());
+            deleteBodies.add(new DeleteBody((KeyData) a.getBody().getUserData(), a.getBody()));
         }
     }
 
@@ -235,16 +235,27 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void deleteQueuedActorBodies() {
         //delete actors/bodies as needed
         for (int i = 0; i < deleteBodies.size; i++) {
+
             //delete the body
-            WorldUtils.destroyBody(world, deleteBodies.get(i));
-            deleteBodies.removeIndex(i);
+            WorldUtils.destroyBody(world, deleteBodies.get(i).getBody());
+            //deleteBodies.removeIndex(i);
+
             //remove the actor
+            for (BaseActor actor : mapParser.actorsArray) {
+                if (actor.getUserData() == deleteBodies.get(i).getObjectData()) {
+                    actor.remove();
+                    
+                }
+            }
+
             KeyActor keyActor = mapParser.keyArray.get(i);
             keyActor.remove();
             mapParser.keyArray.remove(i);
+
             //remove key from actors array in MapParser
             int keyIndex = mapParser.actorsArray.indexOf(keyActor);
             mapParser.actorsArray.remove(keyIndex);
+
         }
     }
 

@@ -24,6 +24,11 @@ public class KeyData extends ObjectData {
         sKeyType = keyType;
     }
 
+    public KeyData(ObjectData objectData) {
+        super();
+        objectDataType = ObjectDataType.KEY;
+    }
+
     public String getKeyType() {
         return sKeyType;
     }

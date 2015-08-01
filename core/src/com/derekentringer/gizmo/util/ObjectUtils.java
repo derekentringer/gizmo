@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.actor.data.object.KeyData;
 
 public class ObjectUtils {
 
@@ -21,7 +22,7 @@ public class ObjectUtils {
         shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
-        body.createFixture(fixtureDef).setUserData(userData);
+        body.createFixture(fixtureDef).setUserData(new KeyData());
 
         body.setUserData(userData);
 
