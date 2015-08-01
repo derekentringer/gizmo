@@ -1,7 +1,7 @@
 TODO
 -----
 
-keys added twice on collision?
+keys added twice on collision? seems its just blood for some weird reason..or 3 keys on screen
 
 move actorsArray to the level model
 

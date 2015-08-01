@@ -183,7 +183,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void draw() {
         super.draw();
 
-        deleteQueuedActorBodies();
+        deleteObsoleteActors();
 
         //tiled maps render camera
         mapParser.getTiledMapBackgroundRenderer().setView(backgroundCamera);
@@ -231,18 +231,26 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
-    private void deleteQueuedActorBodies() {
+    private void deleteObsoleteActors() {
         for (int i = 0; i < deleteBodies.size(); i++) {
             //delete the body
             WorldUtils.destroyBody(world, deleteBodies.get(i).getBody());
             //delete the actor
+            //look thru deleteBodies arraylist
             for (int e=0; e < mapParser.actorsArray.size(); e++) {
-                if (mapParser.actorsArray.get(e).userData == deleteBodies.get(i).getObjectData()) {
+                if (mapParser.actorsArray.get(e).userData.equals(deleteBodies.get(i).getObjectData())) {
                     mapParser.actorsArray.get(e).remove();
                     deleteBodies.remove(i);
                     mapParser.actorsArray.remove(e);
                     break;
                 }
+            }
+        }
+        //remove any actor that falls off the stage
+        for (int j=0; j < mapParser.actorsArray.size(); j++) {
+            if (mapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) { //playerY * Constants.PPM < 0
+                mapParser.actorsArray.get(j).remove();
+                mapParser.actorsArray.remove(j);
             }
         }
     }

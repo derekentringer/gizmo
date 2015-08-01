@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="68">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="69">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="160"/>
  </tileset>
@@ -38,7 +38,11 @@
    eJztzjENAAAIA7CZwb9FPOwhJK2CJgAAQGOuAwAAvLORcwAm
   </data>
  </layer>
- <objectgroup name="phantom"/>
+ <objectgroup name="phantom">
+  <object id="68" x="847" y="619">
+   <ellipse/>
+  </object>
+ </objectgroup>
  <objectgroup name="player">
   <properties>
    <property name="type" value="previous"/>
@@ -60,12 +64,6 @@
   <properties>
    <property name="keyType" value="blood"/>
   </properties>
-  <object id="60" x="1680" y="203">
-   <properties>
-    <property name="keyType" value="blood"/>
-   </properties>
-   <ellipse/>
-  </object>
   <object id="64" x="304" y="623">
    <properties>
     <property name="keyType" value="gold"/>
