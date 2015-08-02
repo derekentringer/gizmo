@@ -14,6 +14,7 @@ import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomLargeData;
+import com.derekentringer.gizmo.actor.data.object.HeartData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
@@ -22,6 +23,7 @@ import com.derekentringer.gizmo.actor.data.structure.GroundData;
 import com.derekentringer.gizmo.actor.data.structure.WallData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.enemy.PhantomLargeActor;
+import com.derekentringer.gizmo.actor.object.HeartActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
@@ -174,6 +176,16 @@ public class MapParser extends Stage {
                     keyActor.setName(KeyData.KEY);
                     addActor(keyActor);
                     actorsArray.add(keyActor);
+                }
+                else if(mapLayer.getName().equalsIgnoreCase(HeartData.HEART)) {
+                    Float xPosD = (Float) mapObject.getProperties().get("x");
+                    Float yPosD = (Float) mapObject.getProperties().get("y");
+                    int xPos = xPosD.intValue();
+                    int yPos = yPosD.intValue();
+                    HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartData(), world, xPos, yPos));
+                    heartActor.setName(KeyData.KEY);
+                    addActor(heartActor);
+                    actorsArray.add(heartActor);
                 }
             }
         }

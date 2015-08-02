@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="72">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
-  <image source="../tileset/bricks.png" width="256" height="160"/>
+  <image source="../tileset/bricks.png" width="256" height="192"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -48,23 +48,6 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="player">
-  <properties>
-   <property name="type" value="previous"/>
-  </properties>
-  <object id="11" x="143.5" y="623">
-   <properties>
-    <property name="type" value="doorprevious"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="26" x="1680" y="561">
-   <properties>
-    <property name="type" value="doornext"/>
-   </properties>
-   <ellipse/>
-  </object>
- </objectgroup>
  <objectgroup name="key">
   <properties>
    <property name="keyType" value="blood"/>
@@ -78,6 +61,23 @@
   <object id="71" x="592.5" y="457.5">
    <properties>
     <property name="keyType" value="bronze"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="player">
+  <properties>
+   <property name="type" value="previous"/>
+  </properties>
+  <object id="11" x="143.5" y="623">
+   <properties>
+    <property name="type" value="doorprevious"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="26" x="1680" y="561">
+   <properties>
+    <property name="type" value="doornext"/>
    </properties>
    <ellipse/>
   </object>

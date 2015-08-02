@@ -32,6 +32,11 @@ public class BodyUtils {
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.KEY);
     }
 
+    public static boolean bodyIsHeart(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData != null && userData.getObjectDataType().equals(ObjectDataType.HEART);
+    }
+
     public static int getBodyDamageAmount(Body body) {
         ObjectData userData = (ObjectData) body.getUserData();
         return userData.getHealthDamage();

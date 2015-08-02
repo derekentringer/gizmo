@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="21">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
-  <image source="../tileset/bricks.png" width="256" height="160"/>
+  <image source="../tileset/bricks.png" width="256" height="192"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -44,6 +44,11 @@
   </data>
  </layer>
  <objectgroup name="phantom"/>
+ <objectgroup name="phantomlarge">
+  <object id="20" x="1264" y="336">
+   <ellipse/>
+  </object>
+ </objectgroup>
  <objectgroup name="player">
   <object id="1" x="272" y="560">
    <properties>
@@ -55,11 +60,6 @@
    <properties>
     <property name="type" value="doornext"/>
    </properties>
-   <ellipse/>
-  </object>
- </objectgroup>
- <objectgroup name="phantomlarge">
-  <object id="20" x="1264" y="336">
    <ellipse/>
   </object>
  </objectgroup>

@@ -12,7 +12,7 @@ public class HeartActor extends BaseActor {
     private TextureRegion[] heartSprite;
     private Texture heart;
 
-    public HeartActor(Body body, String keyType) {
+    public HeartActor(Body body) {
         super(body);
 
         heart = Gizmo.assetManager.get("res/images/heart.png", Texture.class);
@@ -25,5 +25,5 @@ public class HeartActor extends BaseActor {
     public ObjectData getUserData() {
         return null;
     }
-    
+
 }

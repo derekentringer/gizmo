@@ -155,6 +155,14 @@ public class PlayerActor extends BaseActor {
         playerData.setPlayerKey(keyData);
     }
 
+    public void addHeart() {
+        playerData.setPlayerHearts(playerData.getPlayerHearts() + 1);
+    }
+
+    public int getHealthHearts() {
+        return playerData.getPlayerHearts();
+    }
+
     public void setCurrentLevel(int level) {
         playerData.setCurrentLevel(level);
     }

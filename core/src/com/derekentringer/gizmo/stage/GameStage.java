@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.BaseActor;
 import com.derekentringer.gizmo.actor.data.DoorType;
 import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
+import com.derekentringer.gizmo.actor.data.object.HeartData;
 import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
@@ -168,6 +169,18 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addKey((KeyData) b.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyData) b.getBody().getUserData(), b.getBody()));
+        }
+
+        //pickup a heart
+        if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+            playerActor.addHeart();
+            hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
+            deleteBodies.add(new DeleteBody((HeartData) a.getBody().getUserData(), a.getBody()));
+        }
+        else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+            playerActor.addHeart();
+            hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
+            deleteBodies.add(new DeleteBody((HeartData) b.getBody().getUserData(), b.getBody()));
         }
     }
 

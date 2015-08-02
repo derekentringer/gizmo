@@ -9,6 +9,7 @@ public enum ObjectDataType {
     PLAYER,
     PLAYER_HIT_AREA,
     ENEMY,
-    KEY
+    KEY,
+    HEART
 
 }
