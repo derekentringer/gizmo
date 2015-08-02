@@ -173,12 +173,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         //pickup a heart
         if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
-            playerActor.addHeart();
+            playerActor.addHealthHeart();
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartData) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
-            playerActor.addHeart();
+            playerActor.addHealthHeart();
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartData) b.getBody().getUserData(), b.getBody()));
         }
@@ -256,16 +256,16 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             //look thru deleteBodies arraylist
             for (int e=0; e < mapParser.actorsArray.size(); e++) {
                 if (mapParser.actorsArray.get(e).userData.equals(deleteBodies.get(i).getObjectData())) {
+                    mapParser.actorsArray.remove(e);
                     mapParser.actorsArray.get(e).remove();
                     deleteBodies.remove(i);
-                    mapParser.actorsArray.remove(e);
                     break;
                 }
             }
         }
         //remove any actor that falls off the stage
         for (int j=0; j < mapParser.actorsArray.size(); j++) {
-            if (mapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) { //playerY * Constants.PPM < 0
+            if (mapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) {
                 mapParser.actorsArray.get(j).remove();
                 mapParser.actorsArray.remove(j);
             }

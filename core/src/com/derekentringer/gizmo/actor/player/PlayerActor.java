@@ -155,7 +155,7 @@ public class PlayerActor extends BaseActor {
         playerData.setPlayerKey(keyData);
     }
 
-    public void addHeart() {
+    public void addHealthHeart() {
         playerData.setPlayerHearts(playerData.getPlayerHearts() + 1);
     }
 

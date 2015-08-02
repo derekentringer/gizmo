@@ -37,11 +37,6 @@ public class BodyUtils {
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.HEART);
     }
 
-    public static int getBodyDamageAmount(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData.getHealthDamage();
-    }
-
     public static boolean bodyIsDoor(Body body) {
         ObjectData userData = (ObjectData) body.getUserData();
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR);
@@ -50,6 +45,11 @@ public class BodyUtils {
     public static boolean bodyIsDoorOff(Body body) {
         ObjectData userData = (ObjectData) body.getUserData();
         return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR_OFF);
+    }
+
+    public static int getBodyDamageAmount(Body body) {
+        ObjectData userData = (ObjectData) body.getUserData();
+        return userData.getHealthDamage();
     }
 
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {
