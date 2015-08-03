@@ -5,22 +5,22 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmFluwzAMROkfnyA2kiIo4PtfshWqQV6nlLxkQdABBG+RzCeRFJ1TREzxo/M/bUWn2uZ6LBq/2yVp5f7SGUt6pI3LnY32i3eovLq3JMwt1kzPWp+9rKNxROWc6vUMe8m8h/WZvHvYR2viLaxDvZY/c8x3ZG1xO+NYbeK5/HmIPF9tideM9V1VeAun/LroCK8/e+Uab32feIe45egtvJla76aveS5wP1yiPb+ea5f4a4vHoefcACvvrc1Rj7Xoas/IlTF5nvhMxiZzxpox+z5TNNUmvz4qMn8kz5hXfH7oR63+7m9b7SFzkfIUeQe0Lev7Cm31tayPmIu094q5yFm32jMk7RK3mNHczo0xaKOv/xFe9hWvbGK9MeC3R6QYUc0mVr1H47N28/yytg/skdZY7/R6csg6WX8eM/kaKydmrF4zOPMj4kl9ydvzM/ZzX8vEGFFjTdOqU3v7117mBefqp/hlzm7JbWK+dcmnNZeKYfH2vrWyPSqL557YX31kl2w5Jf3WWPmc0rhaY3HrHb3aIqt1ejb5c+Zjzpns4jdwj3ftm0RjMi9rfMULeXus98Ss6pKIW32itZENtIWMPk6vBY4tX85q1kfz9pTtv16/Rfyepy3crFHpQ0f/M8qkd3AueU/+xVwie3SUWJ8HzhmzPbEuZ36mD93DnM2nzjm/2hM1H9wjOS89KRaZ22c70pZL0mc2hrUczHPZO6PRDs4Fc3G2vpmtme3+fLJxWF/5b3W/MFxrO++45vc6beE56xxda53L/S8WqVN9
+   eJzdmO1ugzAMRc2fPkFB7VRN4v1fcouWq57emhDoh6pZsoDQBJ/EdpweI2KMPzn9Uy1yrDrVa5HDr54TLe1zYyzJM22cH1TaL96h8qptTpiXWDN51fpsZT0YR1TOsT5PsJfMW1hfybuF/WAq3sI61Gf5M8f8RNYlbmc8VJt4L38eIs9XPfGasX6qFN7CKb8usofX371zjXu/J94hrjm6hzeTpW/T1zwXuB/OsTy/nmvnuLfF49BzboCVbWtz1GItcrF35MqYPE98J2OTOWPNmH2fKTJWlV/vFTJ/Je+YV3x+6EdL/d3feu0hcxHlKfIO0J71fYf0+lrWR8xFtPeKuYiz9tozJHqOa8xobqeFMWijr/8eXvYVr2xivTHgt3tEMaKaTaz6jsZn7eb5ZW0f2CJaY33T68kh62T9ec3E11g5MWP1msGZ98QTcwb7krflZxzHfS0TxoiUNc1Sndrav7bELfcv5rgR7ee09+04nmuX8qV8WnOpGBZv66yV7VFZPLdYZ7TxWTZpDbay8r3zMveLW99o1RZZrdOyifGVnQO1xrKLZ+AW79qZRN9lXtb4ihfytlj35GFnlfh50M/7HIOyxhtx7zfuy1nN+gzeXsn2X6/fIq4+0aMRtzUqfWjvf0aZ6BucS7bJv5hLZI+uEvcLj4M1YV3O/EwfeoQ5m0/dc361J2o+uEdyXlqiWGRun+xKW85Jn8kY1nIw72XvBKUdnAvm4mx9M1sz2/39aOOwvvLfqr0wXKqeNjzzvE5beM86R89a59L+AygNVTg=
   </data>
  </layer>
  <layer name="dooroff" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0rENADAIA0HWCPsPSo+UFhLprvnWhSMAAACAH53tAYOylTu/gLcVhg4Amw==
+   eJzt08EJACAMA8CuYd1/TxF8KQ5gvYOQLJAIAAAAqKGt/KBfdlV52Zx++cCUW8MLBnjYAOo=
   </data>
  </layer>
  <layer name="backgroundForeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztmFEOhCAMRDmHoB/c/5AbEybpVhsWKCxiX0IUIpSpoKPOGasQ/j2BTuxCe6zsJ7XPwsHqmK/P9PPuqm2/GW82NqHO2zkxFWiG1lyengq0QZ9n9dWANqzfmM5z+16L0c/TjZS7umEYBmVVzyeh/a6Dd5g1j9reDeNp5DGwowYl8/olLrxCq96gOBalxMvQtSBpx9xa1w310T7F07jPJbmj1/b2QNRHR/ftO09qtdfq1Ybv1TOW5DNbPGeJhpG+tlesVb+9JN6md/S/kw8mjQop
+   eJztmGEOgyAMhTmH1f3g/odcSGhSOxtWbJGxfgmRErG8BvVpSsEq7E8vwIlDGM+d86TxWXixGNcLjXmQPrUdF9ebjU2I+Tgn14aaUWurTr8KakN9wOLVQG24f3Ptt+57K0Y/TzfSruIgCALKqp5PwvNdN2Mtrb0b9Yd3a7mzowWaNX2TF4S+lpILfYflHtR4GboXvPcq9dFQ81nk1NSOnuvtgaiPzunsOwu92nv1WsPv1ZJL8pl3PKdGw0hf65Vr1W8viX/TO/rfyRuviAnL
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlwsKxCAMRJs7rN5h73/BbcGBIZTdFZ0mpT4Y/Na/qdm2xWKxeCavXaWF1lRI1spY5uJGeZVCjtvJt1yfpaIK286GRQ9gkHf0AC7gOI+4exCnPcq7kRG2Rd72cNkRr5Tn7ZhRnaxrqLyvRdh2Vvi89M4f52UGUXY44qzzeyEKjEFNtv8rbN1VRO+zgp75RO//6Nrzu13dVy/sf3jf4Ex3ZqZP8msv8b6E4KMh/g8jNkbhf9kXzQTr5Pvlck4/8c01gw9UOQfY
+   eJztlwsKwyAMhps7TO+w+19wKxj4CKOtaJqM+sGPz1qfMW7bYrFYPJPXV6WF0lQgaWWUmLggryJkXH58y/qUF9Wx7WxIdAcGeUd34Ab2/ahnT8W0xfNsZIS2yNoelu3xijxrxwR1ss6h53ktjm1nhfuld/y8z0aJssMRe53+QhTaB2+y3a9q6+4iep096BlPtvXvhX77GRF2xN77R/pnZr5JztZS/UuVvtE0foURG+Px/pIDzUTnyf6X5Uw/0eeawQewaQfY
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -30,7 +30,7 @@
  </layer>
  <layer name="doornext" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7BJwb9KTCyBo1XQBAAAAOC/uQ4AFCyvEAAh
+   eJztzskJACAMAEHr8ey/O9ODkIDMwP63NQAAAPjDjk71RKIZreqJRD0a1RMAjy4WYgEM
   </data>
  </layer>
  <layer name="doorprevious" width="60" height="23">
@@ -44,9 +44,6 @@
   </data>
  </layer>
  <objectgroup name="phantom">
-  <object id="5" x="1808.5" y="559">
-   <ellipse/>
-  </object>
   <object id="6" x="1807" y="142.5">
    <ellipse/>
   </object>
@@ -74,7 +71,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="11" x="1711.5" y="560.5">
+  <object id="11" x="1728.5" y="560.5">
    <properties>
     <property name="type" value="doornext"/>
    </properties>
