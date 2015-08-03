@@ -1,19 +1,15 @@
 TODO
 -----
 
-flinching while standing is bugged need graphics for new standing char sprites
 
-keys next
-
-dog toys become weapons :) dropped from bosses
-
-
+use keys on doors, take a look at animating them opening
 
 need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
 need to save level data to some extent...enemy stats/positions/keys available
-these might be related to the game save data...load level saves and loads from disk
 
-open doors when user has the correct key (manage keys in a level -ie, they dont respawn)
+add a power up for jumping
+add barking ability
+add a power up for barking
 
 phantoms run away when gizmo barks
 
