@@ -81,12 +81,12 @@ public class PlayerActor extends BaseActor {
 
         gizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_flinching_left.png", Texture.class);
         gizmoFlinchingRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_flinching_right.png", Texture.class);
-        gizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_flinching_left.png", Texture.class);
-        gizmoFlinchingStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_flinching_right.png", Texture.class);
-        gizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/images/gizmo_jump_up_flinching_right.png", Texture.class);
-        gizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/images/gizmo_jump_up_flinching_left.png", Texture.class);
-        gizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/images/gizmo_jump_fall_flinching_right.png", Texture.class);
-        gizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/images/gizmo_jump_fall_flinching_left.png", Texture.class);
+        gizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left_large_flinching.png", Texture.class);
+        gizmoFlinchingStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right_large_flinching.png", Texture.class);
+        gizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/images/gizmo_jump_up_right_large_flinching.png", Texture.class);
+        gizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/images/gizmo_jump_up_left_large_flinching.png", Texture.class);
+        gizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right_large_flinching.png", Texture.class);
+        gizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left_large_flinching.png", Texture.class);
 
         runningRightSprites = TextureRegion.split(gizmoRunningRight, 32, 32)[0];
         runningLeftSprites = TextureRegion.split(gizmoRunningLeft, 32, 32)[0];
