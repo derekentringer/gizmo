@@ -52,7 +52,7 @@ public class LoadingScreen extends AbstractScreen {
 
         game.assetManager.load("res/images/heart.png", Texture.class);
 
-        //game.assetManager.load("res/images/door_gold.png", Texture.class);
+        game.assetManager.load("res/images/door_gold.png", Texture.class);
 
         game.assetManager.load("res/music/background.ogg", Music.class);
         game.assetManager.load("res/sfx/jump.ogg", Sound.class);

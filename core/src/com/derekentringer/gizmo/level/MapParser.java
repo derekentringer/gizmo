@@ -27,9 +27,11 @@ import com.derekentringer.gizmo.actor.object.HeartActor;
 import com.derekentringer.gizmo.actor.object.KeyActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorActor;
+import com.derekentringer.gizmo.actor.structure.DoorGoldActor;
 import com.derekentringer.gizmo.actor.structure.DoorOffActor;
 import com.derekentringer.gizmo.actor.structure.GroundActor;
 import com.derekentringer.gizmo.actor.structure.WallActor;
+import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
@@ -39,7 +41,7 @@ import java.util.ArrayList;
 
 public class MapParser extends Stage {
 
-    public com.derekentringer.gizmo.level.interfaces.IMapParserDelegate delegate = null;
+    public IMapParserDelegate delegate = null;
 
     public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();
 
@@ -114,8 +116,9 @@ public class MapParser extends Stage {
                             addActor(doorOffActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_GOLD)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.LOCKED_GOLD, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString())), world, tileSize, row, col, true));
-                            addActor(doorActor);
+                            createLockedDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
+                            //DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorData(DoorType.LOCKED_GOLD, )), world, tileSize, row, col, true));
+                            //addActor(doorGoldActor);
                         }
                     }
                 }
@@ -201,6 +204,12 @@ public class MapParser extends Stage {
         addActor(playerActor);
         actorsArray.add(playerActor);
         delegate.setPlayerActor(playerActor);
+    }
+
+    private void createLockedDoorActor(World world, int levelNumber, int row, int col) {
+        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorData(DoorType.LOCKED_GOLD, levelNumber), world, tileSize, row, col, true));
+        addActor(doorGoldActor);
+        delegate.setLockedGoldDoor(doorGoldActor);
     }
 
     public void destroyTiledMap() {

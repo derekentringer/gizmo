@@ -21,6 +21,7 @@ import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
+import com.derekentringer.gizmo.actor.structure.DoorGoldActor;
 import com.derekentringer.gizmo.level.Level;
 import com.derekentringer.gizmo.level.MapParser;
 import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
@@ -420,6 +421,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         hudStageDelegate.setHudHealthHearts(playerData.getPlayerHearts());
         hudStageDelegate.resetHudShapes();
         hudStageDelegate.setHudHealth(playerData.getPlayerHealth());
+    }
+
+    @Override
+    public void setLockedGoldDoor(DoorGoldActor doorGoldActor) {
+        //TODO
     }
 
     @Override
