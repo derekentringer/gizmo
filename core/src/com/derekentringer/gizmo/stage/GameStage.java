@@ -358,7 +358,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
                     if(playerActor.hasCorrectKey(KeyData.KEY_GOLD)) {
                         //TODO animate locked doors?
-                        doorGoldActor.startAnimation();
+                        //doors are working, they are not animating
+                        //doorGoldActor.startAnimation();
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }

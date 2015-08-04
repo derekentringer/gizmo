@@ -24,6 +24,8 @@ public class DoorGoldActor extends BaseActor {
         return null;
     }
 
+    //TODO brpt this doesn't work
+    //not sure it's needed really
     public void startAnimation() {
         setAnimation(doorGoldSprite, 1 / 12f);
     }
