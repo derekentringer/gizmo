@@ -3,7 +3,9 @@ TODO
 
 ** need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
 
-** maybe look at restructuring the models (data vs actors)
+** maybe look at restructuring the models (data vs actors) this in on a refactor/ branch
+
+** doors seem to still be bugged sometimes
 
 animate doors opening
 
