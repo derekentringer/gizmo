@@ -11,8 +11,10 @@ import com.derekentringer.gizmo.actor.data.object.KeyData;
 import com.derekentringer.gizmo.actor.data.player.PlayerData;
 import com.derekentringer.gizmo.actor.data.structure.DoorData;
 import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
-import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.BodyUtils;
+
+import java.util.ArrayList;
 
 public class PlayerActor extends BaseActor {
 
@@ -153,6 +155,17 @@ public class PlayerActor extends BaseActor {
 
     public void addKey(KeyData keyData) {
         playerData.setPlayerKey(keyData);
+    }
+
+    public boolean hasCorrectKey(String keyType) {
+        ArrayList<KeyData> playerKeys = playerData.getPlayerKeys();
+        for(int i=0; i < playerKeys.size(); i++) {
+            if (playerKeys.get(i).getKeyType().equalsIgnoreCase(keyType)) {
+                playerData.removePlayerKey(keyType);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addHealthHeart() {

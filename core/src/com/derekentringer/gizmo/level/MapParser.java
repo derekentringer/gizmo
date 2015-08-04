@@ -102,16 +102,20 @@ public class MapParser extends Stage {
                             addActor(wallActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.PREVIOUS)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.PREVIOUS), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.PREVIOUS, -1), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.NEXT)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.NEXT), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.NEXT, -1), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OFF)) {
                             DoorOffActor doorOffActor = new DoorOffActor(BodyUtils.createStaticBody(new DoorOffData(), world, tileSize, row, col, true));
                             addActor(doorOffActor);
+                        }
+                        else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_GOLD)) {
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorData(DoorType.LOCKED_GOLD, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString())), world, tileSize, row, col, true));
+                            addActor(doorActor);
                         }
                     }
                 }

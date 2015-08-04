@@ -352,38 +352,51 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 return;
             }
             if (playerActor.getIsAtDoor()) {
-                if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
+                if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
+                    if(playerActor.hasCorrectKey(KeyData.KEY_GOLD)) {
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                    }
+                }
+                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
+                    if(playerActor.hasCorrectKey(KeyData.KEY_BRONZE)) {
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                    }
+                }
+                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
+                    if(playerActor.hasCorrectKey(KeyData.KEY_BLOOD)) {
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                    }
+                }
+                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
+                    if(playerActor.hasCorrectKey(KeyData.KEY_BLACK)) {
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                    }
+                }
+                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
                     if (currentLevel.getLevelInt() > 0) {
-                        alreadyEntered = true;
-                        mapParser.destroyTiledMap();
-                        WorldUtils.destroyBodies(world);
-                        int newLevel = currentLevel.getLevelInt() - 1;
-                        currentLevel = Constants.gameLevels.get(newLevel);
-
-                        playerActor.setCurrentLevel(newLevel);
-
-                        LocalDataManager.savePlayerActorData(playerActor.getUserData());
-
-                        loadLevel(Constants.gameLevels.get(newLevel), DoorType.NEXT);
+                        loadNewLevel(currentLevel.getLevelInt() - 1, DoorType.NEXT);
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
                     if (currentLevel.getLevelInt() < Constants.gameLevels.size() - 1) {
-                        alreadyEntered = true;
-                        mapParser.destroyTiledMap();
-                        WorldUtils.destroyBodies(world);
-                        int newLevel = currentLevel.getLevelInt() + 1;
-                        currentLevel = Constants.gameLevels.get(newLevel);
-
-                        playerActor.setCurrentLevel(newLevel);
-
-                        LocalDataManager.savePlayerActorData(playerActor.getUserData());
-
-                        loadLevel(Constants.gameLevels.get(newLevel), DoorType.PREVIOUS);
+                        loadNewLevel(currentLevel.getLevelInt() + 1, DoorType.PREVIOUS);
                     }
                 }
             }
         }
+    }
+
+    private void loadNewLevel(int levelNumber, String doorType) {
+        alreadyEntered = true;
+
+        mapParser.destroyTiledMap();
+        WorldUtils.destroyBodies(world);
+
+        int newLevel = levelNumber;
+        currentLevel = Constants.gameLevels.get(newLevel);
+        playerActor.setCurrentLevel(newLevel);
+        LocalDataManager.savePlayerActorData(playerActor.getUserData());
+        loadLevel(Constants.gameLevels.get(newLevel), doorType);
     }
 
     @Override

@@ -10,6 +10,7 @@ public class KeyData extends ObjectData {
     public static final String KEY_GOLD = "gold";
     public static final String KEY_BRONZE = "bronze";
     public static final String KEY_BLOOD = "blood";
+    public static final String KEY_BLACK = "black";
 
     private String sKeyType;
 

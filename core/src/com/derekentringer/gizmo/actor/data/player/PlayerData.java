@@ -69,4 +69,12 @@ public class PlayerData extends ObjectData {
         return keyList;
     }
 
+    public void removePlayerKey(String keyType) {
+        for (int i=0; i < keyList.size(); i++) {
+            if (keyList.get(i).getKeyType().equalsIgnoreCase(keyType)) {
+                keyList.remove(i);
+            }
+        }
+    }
+
 }
