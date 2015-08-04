@@ -1,11 +1,9 @@
 TODO
 -----
 
+**need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
 
 animate doors opening
-
-need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
-need to save level data to some extent...enemy stats/positions/keys available
 
 add a power up for jumping
 add barking ability
