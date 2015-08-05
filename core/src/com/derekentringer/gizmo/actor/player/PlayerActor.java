@@ -7,9 +7,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.object.KeyData;
-import com.derekentringer.gizmo.actor.data.player.PlayerData;
-import com.derekentringer.gizmo.actor.data.structure.DoorData;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -23,6 +23,8 @@ public class PlayerActor extends BaseActor {
     private static final float JUMP_FORCE_RESET = -1.2f;
     public static final int FLINCHING_LENGTH = 3;
     private static final float FLINCH_FORCE = 50f;
+
+    private PlayerModel playerModel = new PlayerModel();
 
     public IPlayerDelegate delegate = null;
 
@@ -62,8 +64,7 @@ public class PlayerActor extends BaseActor {
     private Texture gizmoFlinchingJumpFallLeft;
     private Texture gizmoFlinchingJumpFallRight;
 
-    private PlayerData playerData = new PlayerData();
-    private DoorData isAtDoorUserData;
+    private DoorModel isAtDoorUserData;
     private boolean isOnGround;
     private boolean isAtDoor;
     private static boolean isFlinching;
@@ -114,54 +115,54 @@ public class PlayerActor extends BaseActor {
     }
 
     @Override
-    public PlayerData getUserData() {
-        return playerData;
+    public PlayerModel getUserData() {
+        return playerModel;
     }
 
-    public void initPlayerData(PlayerData pData) {
-        playerData.setPlayerHearts(pData.getPlayerHearts());
-        playerData.setPlayerHealth(pData.getPlayerHealth());
-        playerData.setPlayerLives(pData.getPlayerLives());
-        playerData.setCurrentLevel(pData.getCurrentLevel());
+    public void initPlayerData(PlayerModel pData) {
+        playerModel.setPlayerHearts(pData.getPlayerHearts());
+        playerModel.setPlayerHealth(pData.getPlayerHealth());
+        playerModel.setPlayerLives(pData.getPlayerLives());
+        playerModel.setCurrentLevel(pData.getCurrentLevel());
         if (pData.getPlayerKeys().size() > 0) {
             for (int i = 0; i < pData.getPlayerKeys().size(); i++) {
-                playerData.setPlayerKey(pData.getPlayerKeys().get(i));
+                playerModel.setPlayerKey(pData.getPlayerKeys().get(i));
             }
         }
     }
 
     public void setHitEnemy(int healthDamage) {
         if (!isFlinching) {
-            playerData.setPlayerHealth(playerData.getPlayerHealth() - healthDamage);
+            playerModel.setPlayerHealth(playerModel.getPlayerHealth() - healthDamage);
             applyFlinchForce();
-            delegate.playerGotHit(playerData.getPlayerHealth());
+            delegate.playerGotHit(playerModel.getPlayerHealth());
         }
     }
 
     public void resetHealth() {
-        playerData.setPlayerHealth(playerData.getPlayerHearts() * PlayerData.HEART_HEALTH_AMOUNT);
+        playerModel.setPlayerHealth(playerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
     }
 
     public void resetLives() {
-        playerData.setPlayerLives(playerData.DEFAULT_LIVES);
+        playerModel.setPlayerLives(playerModel.DEFAULT_LIVES);
     }
 
     public void deIncrementLives() {
-        playerData.setPlayerLives(playerData.getPlayerLives() - 1);
-        if (playerData.getPlayerLives() <= 0) {
+        playerModel.setPlayerLives(playerModel.getPlayerLives() - 1);
+        if (playerModel.getPlayerLives() <= 0) {
             delegate.playerZeroLives();
         }
     }
 
-    public void addKey(KeyData keyData) {
-        playerData.setPlayerKey(keyData);
+    public void addKey(KeyModel keyData) {
+        playerModel.setPlayerKey(keyData);
     }
 
     public boolean hasCorrectKey(String keyType) {
-        ArrayList<KeyData> playerKeys = playerData.getPlayerKeys();
+        ArrayList<KeyModel> playerKeys = playerModel.getPlayerKeys();
         for(int i=0; i < playerKeys.size(); i++) {
             if (playerKeys.get(i).getKeyType().equalsIgnoreCase(keyType)) {
-                playerData.removePlayerKey(keyType);
+                playerModel.removePlayerKey(keyType);
                 return true;
             }
         }
@@ -169,15 +170,15 @@ public class PlayerActor extends BaseActor {
     }
 
     public void addHealthHeart() {
-        playerData.setPlayerHearts(playerData.getPlayerHearts() + 1);
+        playerModel.setPlayerHearts(playerModel.getPlayerHearts() + 1);
     }
 
     public int getHealthHearts() {
-        return playerData.getPlayerHearts();
+        return playerModel.getPlayerHearts();
     }
 
     public void setCurrentLevel(int level) {
-        playerData.setCurrentLevel(level);
+        playerModel.setCurrentLevel(level);
     }
 
     public void jump() {
@@ -351,11 +352,11 @@ public class PlayerActor extends BaseActor {
         return isAtDoor;
     }
 
-    public void setIsAtDoorUserData(DoorData doorUserData) {
+    public void setIsAtDoorUserData(DoorModel doorUserData) {
         isAtDoorUserData = doorUserData;
     }
 
-    public DoorData getIsAtDoorUserData() {
+    public DoorModel getIsAtDoorUserData() {
         return isAtDoorUserData;
     }
 

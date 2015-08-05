@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.manager.AnimationManager;
 import com.derekentringer.gizmo.settings.Constants;
 
@@ -14,20 +14,22 @@ public abstract class BaseActor extends Actor {
     public static final int FACING_RIGHT = 1;
     public static final int FACING_LEFT = 2;
 
+    public BaseModel userData;
+
     public int facingDirection;
 
     protected Body body;
-    public ObjectData userData;
     protected AnimationManager animationManager;
     protected float width;
     protected float height;
+
     private TextureRegion[] currentTextureRegion;
 
-    public abstract ObjectData getUserData();
+    public abstract BaseModel getUserData();
 
     public BaseActor(Body body) {
         this.body = body;
-        this.userData = (ObjectData) body.getUserData();
+        this.userData = (BaseModel) body.getUserData();
         this.animationManager = new AnimationManager();
     }
 

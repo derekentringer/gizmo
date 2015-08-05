@@ -3,7 +3,7 @@ package com.derekentringer.gizmo.manager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
-import com.derekentringer.gizmo.actor.data.player.PlayerData;
+import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 
 public class LocalDataManager {
@@ -44,18 +44,18 @@ public class LocalDataManager {
         return "";
     }
 
-    public static void savePlayerActorData(PlayerData playerData) {
+    public static void savePlayerActorData(PlayerModel playerData) {
         Json json = new Json();
-        String playerDataString = json.toJson(playerData, PlayerData.class);
+        String playerDataString = json.toJson(playerData, PlayerModel.class);
         System.out.println("*** SAVING PLAYER DATA *** " + playerDataString);
         writeFile(GAME_SAVE_FILE, playerDataString);
     }
 
-    public static PlayerData loadPlayerActorData() {
+    public static PlayerModel loadPlayerActorData() {
         String saveFile = readFile(GAME_SAVE_FILE);
         if (!saveFile.isEmpty()) {
             Json json = new Json();
-            PlayerData playerData = json.fromJson(PlayerData.class, saveFile);
+            PlayerModel playerData = json.fromJson(PlayerModel.class, saveFile);
             System.out.println("*** LOADED PLAYER DATA *** ");
             System.out.println("getPlayerHearts: " + playerData.getPlayerHearts());
             System.out.println("getPlayerLives: " + playerData.getPlayerLives());

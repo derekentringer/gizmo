@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 
@@ -14,6 +15,8 @@ public class PhantomActor extends BaseActor {
 
     private static final float MOVEMENT_FORCE = 0.1f;
     private static final int MOVEMENT_PADDING = 7;
+
+    private PhantomModel phantomModel = new PhantomModel();
 
     private TextureRegion[] phantomLeftSprite;
     private TextureRegion[] phantomRightSprite;
@@ -32,7 +35,13 @@ public class PhantomActor extends BaseActor {
         phantomRightSprite = TextureRegion.split(phantomRight, 32, 32)[0];
 
         setAnimation(phantomLeftSprite, 1 / 12f);
+
         setFacingDirection(FACING_LEFT);
+    }
+
+    @Override
+    public BaseModel getUserData() {
+        return phantomModel;
     }
 
     public Vector2 getPlayerPosition() {
@@ -41,11 +50,6 @@ public class PhantomActor extends BaseActor {
 
     public void setPlayerPosition(float xPos) {
         playerPosition.x = xPos;
-    }
-
-    @Override
-    public ObjectData getUserData() {
-        return null;
     }
 
     @Override

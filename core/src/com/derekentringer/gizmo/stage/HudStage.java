@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.actor.data.player.PlayerData;
+import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.settings.Constants;
 
@@ -143,7 +143,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     @Override
     public void setHudHealth(int health) {
-        float fullHealth = sHearts * PlayerData.HEART_HEALTH_AMOUNT;
+        float fullHealth = sHearts * PlayerModel.HEART_HEALTH_AMOUNT;
         float percentFull = health / fullHealth;
         float newWidth = percentFull * initialWidth;
 

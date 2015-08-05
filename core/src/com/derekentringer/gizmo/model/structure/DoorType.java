@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.actor.data;
+package com.derekentringer.gizmo.model.structure;
 
 public final class DoorType {
 

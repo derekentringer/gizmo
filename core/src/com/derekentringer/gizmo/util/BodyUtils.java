@@ -6,49 +6,49 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.ObjectDataType;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.settings.Constants;
 
 public class BodyUtils {
 
     public static boolean bodyIsPlayer(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType() == ObjectDataType.PLAYER;
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType() == BaseModelType.PLAYER;
     }
 
     public static boolean bodyIsGround(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType().equals(ObjectDataType.GROUND);
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.GROUND);
     }
 
     public static boolean bodyIsEnemy(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType().equals(ObjectDataType.ENEMY);
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.ENEMY);
     }
 
     public static boolean bodyIsKey(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType().equals(ObjectDataType.KEY);
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.KEY);
     }
 
     public static boolean bodyIsHeart(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType().equals(ObjectDataType.HEART);
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.HEART);
     }
 
     public static boolean bodyIsDoor(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR);
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR);
     }
 
     public static boolean bodyIsDoorOff(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
-        return userData != null && userData.getObjectDataType().equals(ObjectDataType.DOOR_OFF);
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR_OFF);
     }
 
     public static int getBodyDamageAmount(Body body) {
-        ObjectData userData = (ObjectData) body.getUserData();
+        BaseModel userData = (BaseModel) body.getUserData();
         return userData.getHealthDamage();
     }
 
@@ -71,7 +71,7 @@ public class BodyUtils {
         }
     }
 
-    public static Body createStaticBody(ObjectData userData, World world, float tileSize, int row, int col, boolean isSensor) {
+    public static Body createStaticBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set(

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.model.BaseModel;
 
 public class DoorGoldActor extends BaseActor {
 
@@ -20,11 +20,11 @@ public class DoorGoldActor extends BaseActor {
     }
 
     @Override
-    public ObjectData getUserData() {
+    public BaseModel getUserData() {
         return null;
     }
 
-    //TODO brpt this doesn't work
+    //TODO blah this doesn't work
     //not sure it's needed really
     public void startAnimation() {
         setAnimation(doorGoldSprite, 1 / 12f);

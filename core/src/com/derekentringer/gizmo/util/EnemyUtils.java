@@ -5,11 +5,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.model.BaseModel;
 
 public class EnemyUtils {
 
-    public static Body createPhantom(ObjectData userData, World world, int posX, int posY) {
+    public static Body createPhantom(BaseModel userData, World world, int posX, int posY) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
@@ -29,7 +29,7 @@ public class EnemyUtils {
         return body;
     }
 
-    public static Body createLargePhantom(ObjectData userData, World world, int posX, int posY) {
+    public static Body createLargePhantom(BaseModel userData, World world, int posX, int posY) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();

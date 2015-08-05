@@ -1,7 +1,7 @@
 package com.derekentringer.gizmo.settings;
 
 import com.badlogic.gdx.math.Vector2;
-import com.derekentringer.gizmo.level.Level;
+import com.derekentringer.gizmo.model.level.Level;
 
 import java.util.ArrayList;
 

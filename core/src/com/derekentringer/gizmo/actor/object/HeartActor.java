@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.object.HeartModel;
 
 public class HeartActor extends BaseActor {
+
+    private HeartModel heartModel = new HeartModel();
 
     private TextureRegion[] heartSprite;
     private Texture heart;
@@ -22,8 +25,8 @@ public class HeartActor extends BaseActor {
     }
 
     @Override
-    public ObjectData getUserData() {
-        return null;
+    public BaseModel getUserData() {
+        return heartModel;
     }
 
 }

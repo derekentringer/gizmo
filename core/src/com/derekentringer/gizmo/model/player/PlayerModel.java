@@ -1,12 +1,12 @@
-package com.derekentringer.gizmo.actor.data.player;
+package com.derekentringer.gizmo.model.player;
 
-import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.ObjectDataType;
-import com.derekentringer.gizmo.actor.data.object.KeyData;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.object.KeyModel;
 
 import java.util.ArrayList;
 
-public class PlayerData extends ObjectData {
+public class PlayerModel extends BaseModel {
 
     public static final String PLAYER = "player";
 
@@ -17,16 +17,16 @@ public class PlayerData extends ObjectData {
     public static final int DEFAULT_LIVES = 5;
     public static final int DEFAULT_LEVEL = 0;
 
-    private ArrayList<KeyData> keyList = new ArrayList<KeyData>();
+    private ArrayList<KeyModel> keyList = new ArrayList<KeyModel>();
 
     private int currentLevel;
     private int playerLives;
     private int playerHearts;
     private int playerHealth;
 
-    public PlayerData() {
+    public PlayerModel() {
         super();
-        objectDataType = ObjectDataType.PLAYER;
+        baseModelType = BaseModelType.PLAYER;
     }
 
     public void setCurrentLevel(int level) {
@@ -61,11 +61,11 @@ public class PlayerData extends ObjectData {
         return playerHealth;
     }
 
-    public void setPlayerKey(KeyData keyData) {
+    public void setPlayerKey(KeyModel keyData) {
         keyList.add(keyData);
     }
 
-    public ArrayList<KeyData> getPlayerKeys() {
+    public ArrayList<KeyModel> getPlayerKeys() {
         return keyList;
     }
 

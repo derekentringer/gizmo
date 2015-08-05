@@ -5,13 +5,13 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.object.HeartData;
-import com.derekentringer.gizmo.actor.data.object.KeyData;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
 
 public class ObjectUtils {
 
-    public static Body createHeart(ObjectData userData, World world, int posX, int posY) {
+    public static Body createHeart(BaseModel userData, World world, int posX, int posY) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
@@ -23,7 +23,7 @@ public class ObjectUtils {
         shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
-        body.createFixture(fixtureDef).setUserData(new HeartData());
+        body.createFixture(fixtureDef).setUserData(new HeartModel());
 
         body.setUserData(userData);
 
@@ -31,7 +31,7 @@ public class ObjectUtils {
         return body;
     }
 
-    public static Body createKey(ObjectData userData, World world, int posX, int posY) {
+    public static Body createKey(BaseModel userData, World world, int posX, int posY) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
@@ -43,7 +43,7 @@ public class ObjectUtils {
         shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
-        body.createFixture(fixtureDef).setUserData(new KeyData());
+        body.createFixture(fixtureDef).setUserData(new KeyModel());
 
         body.setUserData(userData);
 

@@ -1,24 +1,23 @@
 package com.derekentringer.gizmo.model;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.derekentringer.gizmo.actor.data.ObjectData;
 
 public class DeleteBody {
 
     private Body body;
-    private ObjectData objectData;
+    private BaseModel baseModel;
 
-    public DeleteBody(ObjectData objectData, Body body) {
-        this.objectData = objectData;
+    public DeleteBody(BaseModel baseModel, Body body) {
+        this.baseModel = baseModel;
         this.body = body;
     }
 
-    public ObjectData getObjectData() {
-        return objectData;
+    public BaseModel getBaseModel() {
+        return baseModel;
     }
 
-    public void setUserData(ObjectData objectData) {
-        this.objectData = objectData;
+    public void setBaseModel(BaseModel baseModel) {
+        this.baseModel = baseModel;
     }
 
     public Body getBody() {

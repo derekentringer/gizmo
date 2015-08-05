@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.level.interfaces;
+package com.derekentringer.gizmo.util.map.interfaces;
 
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.structure.DoorGoldActor;

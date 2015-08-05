@@ -12,19 +12,19 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.DoorType;
-import com.derekentringer.gizmo.actor.data.enemy.PhantomData;
-import com.derekentringer.gizmo.actor.data.object.HeartData;
-import com.derekentringer.gizmo.actor.data.object.KeyData;
-import com.derekentringer.gizmo.actor.data.player.PlayerData;
-import com.derekentringer.gizmo.actor.data.structure.DoorData;
+import com.derekentringer.gizmo.model.structure.DoorType;
+import com.derekentringer.gizmo.model.enemy.PhantomModel;
+import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.actor.player.PlayerActor;
 import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.actor.structure.DoorGoldActor;
-import com.derekentringer.gizmo.level.Level;
-import com.derekentringer.gizmo.level.MapParser;
-import com.derekentringer.gizmo.level.interfaces.IMapParserDelegate;
+import com.derekentringer.gizmo.model.level.Level;
+import com.derekentringer.gizmo.util.map.MapParser;
+import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.DeleteBody;
 import com.derekentringer.gizmo.settings.Constants;
@@ -56,7 +56,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private float effectiveViewportHeight;
 
     private PlayerActor playerActor;
-    private PlayerData playerData;
+    private PlayerModel playerData;
     private boolean isPlayerDead = false;
     private ArrayList<DeleteBody> deleteBodies = new ArrayList<DeleteBody>();
 
@@ -130,11 +130,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //player at door
         if (BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoor(b.getBody())) {
             playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorData) b.getBody().getUserData());
+            playerActor.setIsAtDoorUserData((DoorModel) b.getBody().getUserData());
         }
         else if (BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoor(a.getBody())) {
             playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorData) a.getBody().getUserData());
+            playerActor.setIsAtDoorUserData((DoorModel) a.getBody().getUserData());
         }
 
         if(BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoorOff(b.getBody())) {
@@ -166,24 +166,24 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         //pickup a key
         if (BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
-            playerActor.addKey((KeyData) a.getBody().getUserData());
-            deleteBodies.add(new DeleteBody((KeyData) a.getBody().getUserData(), a.getBody()));
+            playerActor.addKey((KeyModel) a.getBody().getUserData());
+            deleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
-            playerActor.addKey((KeyData) b.getBody().getUserData());
-            deleteBodies.add(new DeleteBody((KeyData) b.getBody().getUserData(), b.getBody()));
+            playerActor.addKey((KeyModel) b.getBody().getUserData());
+            deleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
         }
 
         //pickup a heart
         if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addHealthHeart();
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
-            deleteBodies.add(new DeleteBody((HeartData) a.getBody().getUserData(), a.getBody()));
+            deleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addHealthHeart();
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
-            deleteBodies.add(new DeleteBody((HeartData) b.getBody().getUserData(), b.getBody()));
+            deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
         }
     }
 
@@ -222,7 +222,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         for (BaseActor actor : mapParser.actorsArray) {
             actor.render(spriteBatch);
-            if (actor.getName().equalsIgnoreCase(PhantomData.PHANTOM)) {
+            if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
                 ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
             }
         }
@@ -258,7 +258,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             //delete the actor
             //look thru deleteBodies arraylist
             for (int e=0; e < mapParser.actorsArray.size(); e++) {
-                if (mapParser.actorsArray.get(e).userData.equals(deleteBodies.get(i).getObjectData())) {
+                if (mapParser.actorsArray.get(e).userData.equals(deleteBodies.get(i).getBaseModel())) {
                     mapParser.actorsArray.remove(e);
                     mapParser.actorsArray.get(e).remove();
                     deleteBodies.remove(i);
@@ -315,7 +315,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             isPlayerDead = false;
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
-            if (playerActor.getUserData().getPlayerLives() == PlayerData.DEFAULT_LIVES) {
+            if (playerActor.getUserData().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
                 loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
             }
             else {
@@ -356,7 +356,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             }
             if (playerActor.getIsAtDoor()) {
                 if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
-                    if(playerActor.hasCorrectKey(KeyData.KEY_GOLD)) {
+                    if(playerActor.hasCorrectKey(KeyModel.KEY_GOLD)) {
                         //TODO animate locked doors?
                         //doors are working, they are not animating
                         //doorGoldActor.startAnimation();
@@ -364,17 +364,17 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                     }
                 }
                 else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
-                    if(playerActor.hasCorrectKey(KeyData.KEY_BRONZE)) {
+                    if(playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)) {
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
                 else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
-                    if(playerActor.hasCorrectKey(KeyData.KEY_BLOOD)) {
+                    if(playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)) {
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
                 else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
-                    if(playerActor.hasCorrectKey(KeyData.KEY_BLACK)) {
+                    if(playerActor.hasCorrectKey(KeyModel.KEY_BLACK)) {
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
@@ -414,11 +414,11 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.initPlayerData(playerData);
         }
         else {
-            playerData = new PlayerData();
-            playerData.setPlayerHearts(PlayerData.DEFAULT_HEARTS);
-            playerData.setPlayerHealth(PlayerData.DEFAULT_HEALTH);
-            playerData.setPlayerLives(PlayerData.DEFAULT_LIVES);
-            playerData.setCurrentLevel(PlayerData.DEFAULT_LEVEL);
+            playerData = new PlayerModel();
+            playerData.setPlayerHearts(PlayerModel.DEFAULT_HEARTS);
+            playerData.setPlayerHealth(PlayerModel.DEFAULT_HEALTH);
+            playerData.setPlayerLives(PlayerModel.DEFAULT_LIVES);
+            playerData.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
             playerActor.initPlayerData(playerData);
             LocalDataManager.savePlayerActorData(playerData);
         }

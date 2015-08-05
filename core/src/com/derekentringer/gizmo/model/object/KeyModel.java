@@ -1,9 +1,9 @@
-package com.derekentringer.gizmo.actor.data.object;
+package com.derekentringer.gizmo.model.object;
 
-import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.ObjectDataType;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.BaseModelType;
 
-public class KeyData extends ObjectData {
+public class KeyModel extends BaseModel {
 
     public static final String KEY = "key";
 
@@ -14,14 +14,14 @@ public class KeyData extends ObjectData {
 
     private String sKeyType;
 
-    public KeyData() {
+    public KeyModel() {
         super();
-        objectDataType = ObjectDataType.KEY;
+        baseModelType = BaseModelType.KEY;
     }
 
-    public KeyData(String keyType) {
+    public KeyModel(String keyType) {
         super();
-        objectDataType = ObjectDataType.KEY;
+        baseModelType = BaseModelType.KEY;
         sKeyType = keyType;
     }
 

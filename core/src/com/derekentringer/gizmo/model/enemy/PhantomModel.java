@@ -1,16 +1,16 @@
-package com.derekentringer.gizmo.actor.data.enemy;
+package com.derekentringer.gizmo.model.enemy;
 
-import com.derekentringer.gizmo.actor.data.ObjectData;
-import com.derekentringer.gizmo.actor.data.ObjectDataType;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.BaseModelType;
 
-public class PhantomData extends ObjectData {
+public class PhantomModel extends BaseModel {
 
     public static final String PHANTOM = "phantom";
     public int healthDamage = 5;
 
-    public PhantomData() {
+    public PhantomModel() {
         super();
-        objectDataType = ObjectDataType.ENEMY;
+        baseModelType = BaseModelType.ENEMY;
     }
 
     @Override

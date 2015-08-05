@@ -1,6 +1,6 @@
-package com.derekentringer.gizmo.actor.data;
+package com.derekentringer.gizmo.model;
 
-public enum ObjectDataType {
+public enum BaseModelType {
 
     GROUND,
     WALL,

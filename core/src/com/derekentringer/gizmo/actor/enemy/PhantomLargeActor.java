@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.actor.BaseActor;
-import com.derekentringer.gizmo.actor.data.ObjectData;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 
 public class PhantomLargeActor extends BaseActor {
+
+    private PhantomLargeModel phantomLargeModel = new PhantomLargeModel();
 
     private TextureRegion[] phantomSprite;
     private Texture phantomLarge;
@@ -20,8 +23,8 @@ public class PhantomLargeActor extends BaseActor {
     }
 
     @Override
-    public ObjectData getUserData() {
-        return null;
+    public BaseModel getUserData() {
+        return phantomLargeModel;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.level;
+package com.derekentringer.gizmo.model.level;
 
 public class Level {
 
