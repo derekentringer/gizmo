@@ -1,6 +1,7 @@
-package com.derekentringer.gizmo.model;
+package com.derekentringer.gizmo.model.body;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.derekentringer.gizmo.model.BaseModel;
 
 public class DeleteBody {
 

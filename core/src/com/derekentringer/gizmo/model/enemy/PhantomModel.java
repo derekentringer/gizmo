@@ -1,9 +1,8 @@
 package com.derekentringer.gizmo.model.enemy;
 
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 
-public class PhantomModel extends BaseModel {
+public class PhantomModel extends EnemyModel {
 
     public static final String PHANTOM = "phantom";
     public int healthDamage = 5;

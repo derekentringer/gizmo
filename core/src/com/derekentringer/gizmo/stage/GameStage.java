@@ -26,7 +26,7 @@ import com.derekentringer.gizmo.model.level.Level;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.manager.LocalDataManager;
-import com.derekentringer.gizmo.model.DeleteBody;
+import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -154,12 +154,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         //player/enemy collisions
         if (BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
-            playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(a.getBody()));
+            playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(a.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }
         else if (BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
-            playerActor.setHitEnemy(BodyUtils.getBodyDamageAmount(b.getBody()));
+            playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(b.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }

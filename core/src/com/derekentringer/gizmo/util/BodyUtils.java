@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.enemy.EnemyModel;
 import com.derekentringer.gizmo.settings.Constants;
 
 public class BodyUtils {
@@ -47,8 +48,8 @@ public class BodyUtils {
         return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR_OFF);
     }
 
-    public static int getBodyDamageAmount(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
+    public static int getEnemyBodyDamageAmount(Body body) {
+        EnemyModel userData = (EnemyModel) body.getUserData();
         return userData.getHealthDamage();
     }
 

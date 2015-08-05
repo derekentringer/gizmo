@@ -13,12 +13,4 @@ public abstract class BaseModel {
         return baseModelType;
     }
 
-    public int getHealthDamage() {
-        return healthDamage;
-    }
-
-    public void setHealthDamage(int damage) {
-        healthDamage = damage;
-    }
-
 }
