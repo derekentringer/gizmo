@@ -3,10 +3,11 @@ TODO
 
 ** need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
 
+** still crashes with remvoing objects
 
 ** doors seem to still be bugged sometimes
 
-animate doors opening
+animate doors opening?
 
 add a power up for jumping
 add barking ability
