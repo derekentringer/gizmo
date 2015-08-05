@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.actor;
+package com.derekentringer.gizmo.components.actor;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

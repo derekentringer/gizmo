@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.stage;
+package com.derekentringer.gizmo.components.stage;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.stage.interfaces.IHudStageDelegate;
+import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.settings.Constants;
 
 public class HudStage extends Stage implements IHudStageDelegate {
@@ -41,7 +41,7 @@ public class HudStage extends Stage implements IHudStageDelegate {
     private float redShapeWidth;
     private float redShapeHeight = 20;
 
-    public HudStage(GameStage gameStage) {
+    public HudStage(com.derekentringer.gizmo.components.stage.GameStage gameStage) {
         gameStage.hudStageDelegate = this;
         setupCamera();
 

@@ -1,11 +1,11 @@
-package com.derekentringer.gizmo.screen;
+package com.derekentringer.gizmo.components.screen;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.derekentringer.gizmo.Gizmo;
 
-public class LoadingScreen extends AbstractScreen {
+public class LoadingScreen extends com.derekentringer.gizmo.components.screen.AbstractScreen {
 
     public LoadingScreen(Gizmo game) {
         super(game);
@@ -63,7 +63,7 @@ public class LoadingScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         if (game.assetManager.update()) {
-            game.setScreen(new GameScreen());
+            game.setScreen(new com.derekentringer.gizmo.components.screen.GameScreen());
         }
     }
 

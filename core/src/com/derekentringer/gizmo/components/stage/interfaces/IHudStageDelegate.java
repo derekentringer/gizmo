@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.stage.interfaces;
+package com.derekentringer.gizmo.components.stage.interfaces;
 
 public interface IHudStageDelegate {
 

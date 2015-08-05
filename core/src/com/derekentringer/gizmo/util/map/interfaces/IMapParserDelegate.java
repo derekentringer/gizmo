@@ -1,7 +1,7 @@
 package com.derekentringer.gizmo.util.map.interfaces;
 
-import com.derekentringer.gizmo.actor.player.PlayerActor;
-import com.derekentringer.gizmo.actor.structure.DoorGoldActor;
+import com.derekentringer.gizmo.components.actor.player.PlayerActor;
+import com.derekentringer.gizmo.components.actor.structure.DoorGoldActor;
 
 public interface IMapParserDelegate {
 

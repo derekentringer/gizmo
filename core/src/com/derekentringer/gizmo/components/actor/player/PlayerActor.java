@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.actor.player;
+package com.derekentringer.gizmo.components.actor.player;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
-import com.derekentringer.gizmo.actor.player.interfaces.IPlayerDelegate;
+import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BodyUtils;
 

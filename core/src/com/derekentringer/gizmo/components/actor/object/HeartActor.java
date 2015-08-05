@@ -1,10 +1,10 @@
-package com.derekentringer.gizmo.actor.object;
+package com.derekentringer.gizmo.components.actor.object;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 

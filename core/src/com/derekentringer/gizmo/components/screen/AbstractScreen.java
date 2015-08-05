@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.screen;
+package com.derekentringer.gizmo.components.screen;
 
 import com.badlogic.gdx.Screen;
 import com.derekentringer.gizmo.Gizmo;

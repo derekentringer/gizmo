@@ -1,7 +1,7 @@
-package com.derekentringer.gizmo.actor.structure;
+package com.derekentringer.gizmo.components.actor.structure;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.derekentringer.gizmo.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.structure.GroundModel;
 
