@@ -412,6 +412,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         playerActor.setCurrentLevel(newLevel);
         LocalDataManager.savePlayerActorData(playerActor.getUserData());
+        //TODO this is wrong level...it is always the previous it seems
         LocalDataManager.saveLevelData(loadedLevelModel);
         loadLevel(Constants.gameLevels.get(newLevel), doorType);
     }
