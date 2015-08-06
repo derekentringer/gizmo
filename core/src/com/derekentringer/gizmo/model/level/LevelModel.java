@@ -3,14 +3,14 @@ package com.derekentringer.gizmo.model.level;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 
-public class Level extends BaseModel {
+public class LevelModel extends BaseModel {
 
     private int sLevelInt;
     private String sLevelMap;
     private String sLevelMidMap;
     private String sLevelBackMap;
 
-    public Level(int levelInt, String levelMap, String levelMidMap, String levelBackMap) {
+    public LevelModel(int levelInt, String levelMap, String levelMidMap, String levelBackMap) {
         baseModelType = BaseModelType.LEVEL;
         sLevelInt = levelInt;
         sLevelMap = levelMap;

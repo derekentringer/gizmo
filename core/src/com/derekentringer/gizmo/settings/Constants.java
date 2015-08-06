@@ -1,7 +1,7 @@
 package com.derekentringer.gizmo.settings;
 
 import com.badlogic.gdx.math.Vector2;
-import com.derekentringer.gizmo.model.level.Level;
+import com.derekentringer.gizmo.model.level.LevelModel;
 
 import java.util.ArrayList;
 
@@ -22,20 +22,20 @@ public class Constants {
     //world
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);
 
-    public static final ArrayList<Level> gameLevels = new ArrayList<Level>();
+    public static final ArrayList<LevelModel> gameLevels = new ArrayList<LevelModel>();
 
     public static void buildGameLevelList() {
-        Level levelOne = new Level(0,
+        LevelModel levelOne = new LevelModel(0,
                 "res/maps/level_one/level_one.tmx",
                 "res/maps/level_one/mid_background.tmx",
                 "res/maps/level_one/background.tmx");
 
-        Level levelTwo = new Level(1,
+        LevelModel levelTwo = new LevelModel(1,
                 "res/maps/level_two/level_two.tmx",
                 "res/maps/level_two/mid_background.tmx",
                 "res/maps/level_two/background.tmx");
 
-        Level levelThree = new Level(2,
+        LevelModel levelThree = new LevelModel(2,
                 "res/maps/level_three/level_three.tmx",
                 "res/maps/level_three/mid_background.tmx",
                 "res/maps/level_three/background.tmx");

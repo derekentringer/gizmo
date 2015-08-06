@@ -22,7 +22,7 @@ import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.components.actor.structure.DoorGoldActor;
-import com.derekentringer.gizmo.model.level.Level;
+import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 import com.derekentringer.gizmo.manager.LocalDataManager;
@@ -60,7 +60,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private boolean isPlayerDead = false;
     private ArrayList<DeleteBody> deleteBodies = new ArrayList<DeleteBody>();
 
-    private Level currentLevel;
+    private LevelModel currentLevel;
 
     private DoorGoldActor doorGoldActor;
 
@@ -70,7 +70,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public GameStage() {
     }
 
-    public void init(Level level) {
+    public void init(LevelModel level) {
         currentLevel = level;
         setupWorld();
         loadLevel(level, DoorType.PREVIOUS);
@@ -114,8 +114,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         box2dDebugCamera.update();
     }*/
 
-    public void loadLevel(Level level, String whichDoor) {
+    public void loadLevel(LevelModel level, String whichDoor) {
         System.out.println("loading level: " + level.getLevelInt());
+        if (LocalDataManager.loadLevelData(level) != null) {
+            LevelModel loadedLevelModel = LocalDataManager.loadLevelData(level);
+            //pass levelData to mapParser
+        }
         mapParser = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         mapParser.delegate = this;
         mapParser.createTileMapLayers(world);
@@ -392,16 +396,16 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
-    private void loadNewLevel(int levelNumber, String doorType) {
+    private void loadNewLevel(int newLevel, String doorType) {
         alreadyEntered = true;
+        currentLevel = Constants.gameLevels.get(newLevel);
 
         mapParser.destroyTiledMap();
         WorldUtils.destroyBodies(world);
 
-        int newLevel = levelNumber;
-        currentLevel = Constants.gameLevels.get(newLevel);
         playerActor.setCurrentLevel(newLevel);
         LocalDataManager.savePlayerActorData(playerActor.getUserData());
+        LocalDataManager.saveLevelData(currentLevel);
         loadLevel(Constants.gameLevels.get(newLevel), doorType);
     }
 
@@ -466,6 +470,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     public void quitGame() {
         LocalDataManager.savePlayerActorData(playerActor.getUserData());
+        LocalDataManager.saveLevelData(currentLevel);
     }
 
     /*private void startBackgroundMusic() {
