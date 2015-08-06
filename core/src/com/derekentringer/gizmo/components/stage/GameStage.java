@@ -119,7 +119,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         System.out.println("loading level: " + level.getLevelInt());
         if (LocalDataManager.loadLevelData(level) != null) {
             loadedLevelModel = LocalDataManager.loadLevelData(level);
-            //pass levelData to mapParser
+        }
+        else {
+            loadedLevelModel = new LevelModel();
         }
         mapParser = new MapParser(loadedLevelModel, level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         mapParser.delegate = this;
@@ -172,25 +174,25 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //pickup a key
         if (BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addKey((KeyModel) a.getBody().getUserData());
-            levelModel.addKey((KeyModel) a.getBody().getUserData());
+            loadedLevelModel.addKey((KeyModel) a.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addKey((KeyModel) b.getBody().getUserData());
-            levelModel.addKey((KeyModel) b.getBody().getUserData());
+            loadedLevelModel.addKey((KeyModel) b.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
         }
 
         //pickup a heart
         if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addHealthHeart();
-            levelModel.addHeart((HeartModel) a.getBody().getUserData());
+            loadedLevelModel.addHeart((HeartModel) a.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addHealthHeart();
-            levelModel.addHeart((HeartModel) b.getBody().getUserData());
+            loadedLevelModel.addHeart((HeartModel) b.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
         }
@@ -410,7 +412,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         playerActor.setCurrentLevel(newLevel);
         LocalDataManager.savePlayerActorData(playerActor.getUserData());
-        LocalDataManager.saveLevelData(levelModel);
+        LocalDataManager.saveLevelData(loadedLevelModel);
         loadLevel(Constants.gameLevels.get(newLevel), doorType);
     }
 
@@ -475,7 +477,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     public void quitGame() {
         LocalDataManager.savePlayerActorData(playerActor.getUserData());
-        LocalDataManager.saveLevelData(levelModel);
+        LocalDataManager.saveLevelData(loadedLevelModel);
     }
 
     /*private void startBackgroundMusic() {
