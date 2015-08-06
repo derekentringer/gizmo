@@ -61,8 +61,16 @@ public class LevelModel extends BaseModel {
         pickedUpKeys.add(keyModel);
     }
 
+    public ArrayList<KeyModel> getPickedUpKeys() {
+        return pickedUpKeys;
+    }
+
     public void addHeart(HeartModel heartModel) {
         pickedUpHearts.add(heartModel);
+    }
+
+    public ArrayList<HeartModel> getPickedUpHearts() {
+        return pickedUpHearts;
     }
 
 }
