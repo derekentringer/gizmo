@@ -2,8 +2,15 @@ package com.derekentringer.gizmo.model.level;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+
+import java.util.ArrayList;
 
 public class LevelModel extends BaseModel {
+
+    private ArrayList<KeyModel> pickedUpKeys = new ArrayList<KeyModel>();
+    private ArrayList<HeartModel> pickedUpHearts = new ArrayList<HeartModel>();
 
     private int sLevelInt;
     private String sLevelMap;
@@ -48,6 +55,14 @@ public class LevelModel extends BaseModel {
 
     public void setsLevelBackMap(String levelBackMap) {
         sLevelBackMap = levelBackMap;
+    }
+
+    public void addKey(KeyModel keyModel) {
+        pickedUpKeys.add(keyModel);
+    }
+
+    public void addHeart(HeartModel heartModel) {
+        pickedUpHearts.add(heartModel);
     }
 
 }
