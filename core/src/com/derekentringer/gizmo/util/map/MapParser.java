@@ -11,16 +11,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
-import com.derekentringer.gizmo.model.structure.DoorType;
-import com.derekentringer.gizmo.model.enemy.PhantomModel;
-import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
-import com.derekentringer.gizmo.model.object.HeartModel;
-import com.derekentringer.gizmo.model.object.KeyModel;
-import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.structure.DoorModel;
-import com.derekentringer.gizmo.model.structure.DoorOffModel;
-import com.derekentringer.gizmo.model.structure.GroundModel;
-import com.derekentringer.gizmo.model.structure.WallModel;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
@@ -31,11 +21,22 @@ import com.derekentringer.gizmo.components.actor.structure.DoorGoldActor;
 import com.derekentringer.gizmo.components.actor.structure.DoorOffActor;
 import com.derekentringer.gizmo.components.actor.structure.GroundActor;
 import com.derekentringer.gizmo.components.actor.structure.WallActor;
-import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
+import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
+import com.derekentringer.gizmo.model.enemy.PhantomModel;
+import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.DoorModel;
+import com.derekentringer.gizmo.model.structure.DoorOffModel;
+import com.derekentringer.gizmo.model.structure.DoorType;
+import com.derekentringer.gizmo.model.structure.GroundModel;
+import com.derekentringer.gizmo.model.structure.WallModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
+import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,11 @@ public class MapParser extends Stage {
 
     private float tileSize;
 
-    public MapParser(String tileMapName, String tileMapMidBackground, String tileMapBackground) {
+    private LevelModel sLoadedLevelModel;
+
+    public MapParser(LevelModel loadedLevelModel, String tileMapName, String tileMapMidBackground, String tileMapBackground) {
+        sLoadedLevelModel = loadedLevelModel;
+
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
         params.textureMinFilter = Texture.TextureFilter.Nearest;
@@ -179,20 +184,50 @@ public class MapParser extends Stage {
                     String keyType = (String) mapObject.getProperties().get("keyType");
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
-                    KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
-                    keyActor.setName(KeyModel.KEY);
-                    addActor(keyActor);
-                    actorsArray.add(keyActor);
+
+                    // if the key was picked up
+                    // do not create it again for that level
+                    if (sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpKeys().size() > 0) {
+                        for (int i=0; i < sLoadedLevelModel.getPickedUpKeys().size(); i++) {
+
+                            if(!sLoadedLevelModel.getPickedUpKeys().get(i).getKeyType().equalsIgnoreCase(keyType)) {
+                                KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
+                                keyActor.setName(KeyModel.KEY);
+                                addActor(keyActor);
+                                actorsArray.add(keyActor);
+                            }
+
+                        }
+                    }
+                    else {
+                        KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
+                        keyActor.setName(KeyModel.KEY);
+                        addActor(keyActor);
+                        actorsArray.add(keyActor);
+                    }
+
                 }
                 else if(mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
-                    HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
-                    heartActor.setName(KeyModel.KEY);
-                    addActor(heartActor);
-                    actorsArray.add(heartActor);
+
+                    // do not load a heart if it was picked up already
+                    // only supporting one heart per level
+                    if(sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpHearts().size() == 0) {
+                        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
+                        heartActor.setName(KeyModel.KEY);
+                        addActor(heartActor);
+                        actorsArray.add(heartActor);
+                    }
+                    else {
+                        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
+                        heartActor.setName(KeyModel.KEY);
+                        addActor(heartActor);
+                        actorsArray.add(heartActor);
+                    }
+
                 }
             }
         }

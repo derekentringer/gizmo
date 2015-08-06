@@ -61,6 +61,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private ArrayList<DeleteBody> deleteBodies = new ArrayList<DeleteBody>();
 
     private LevelModel levelModel;
+    private LevelModel loadedLevelModel;
 
     private DoorGoldActor doorGoldActor;
 
@@ -117,10 +118,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void loadLevel(LevelModel level, String whichDoor) {
         System.out.println("loading level: " + level.getLevelInt());
         if (LocalDataManager.loadLevelData(level) != null) {
-            LevelModel loadedLevelModel = LocalDataManager.loadLevelData(level);
+            loadedLevelModel = LocalDataManager.loadLevelData(level);
             //pass levelData to mapParser
         }
-        mapParser = new MapParser(level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
+        mapParser = new MapParser(loadedLevelModel, level.getLevelMap(), level.getsLevelMidMap(), level.getsLevelBackMap());
         mapParser.delegate = this;
         mapParser.createTileMapLayers(world);
         mapParser.createTileMapObjects(world, whichDoor);

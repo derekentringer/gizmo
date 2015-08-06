@@ -1,1 +1,1 @@
-{baseModelType:LEVEL,healthDamage:0,pickedUpKeys:[{sKeyType:gold},{sKeyType:bronze}],pickedUpHearts:[],sLevelInt:0,sLevelMap:res/maps/level_one/level_one.tmx,sLevelMidMap:res/maps/level_one/mid_background.tmx,sLevelBackMap:res/maps/level_one/background.tmx}
+{baseModelType:LEVEL,sLevelMap:res/maps/level_one/level_one.tmx,sLevelMidMap:res/maps/level_one/mid_background.tmx,sLevelBackMap:res/maps/level_one/background.tmx}

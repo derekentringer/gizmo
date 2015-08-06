@@ -49,7 +49,7 @@ public class LocalDataManager {
         String savedLevelFile = readFile(fileName);
         if (!savedLevelFile.isEmpty()) {
             Json json = new Json();
-            LevelModel loadedLevelModel = json.fromJson(LevelModel.class, fileName);
+            LevelModel loadedLevelModel = json.fromJson(LevelModel.class, savedLevelFile);
             System.out.println("*** LOADED LEVEL DATA *** ");
             return loadedLevelModel;
         }
