@@ -185,40 +185,12 @@ public class MapParser extends Stage {
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
 
-                    //TODO this should be working good
                     if(!loopThruArray(sLoadedLevelModel.getPickedUpKeys(), keyType)) {
                         KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
                         keyActor.setName(KeyModel.KEY);
                         addActor(keyActor);
                         actorsArray.add(keyActor);
                     }
-
-                    // if the key was picked up
-                    // do not create it again for that level
-                    /*if (sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpKeys().size() > 0) {
-                        for (int i=0; i < sLoadedLevelModel.getPickedUpKeys().size(); i++) {
-
-                            //TODO need to correctly check this array
-                            if(!sLoadedLevelModel.getPickedUpKeys().get(i).getKeyType().equalsIgnoreCase(keyType)) {
-
-                                KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
-                                keyActor.setName(KeyModel.KEY);
-                                addActor(keyActor);
-                                actorsArray.add(keyActor);
-
-                            }
-                            else {
-                                continue;
-                            }
-
-                        }
-                    }
-                    else {
-                        KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
-                        keyActor.setName(KeyModel.KEY);
-                        addActor(keyActor);
-                        actorsArray.add(keyActor);
-                    }*/
 
                 }
                 else if(mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
