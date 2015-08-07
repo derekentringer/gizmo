@@ -154,8 +154,12 @@ public class PlayerActor extends BaseActor {
         }
     }
 
+    private KeyModel lastKeyAdded;
     public void addKey(KeyModel keyData) {
-        playerModel.setPlayerKey(keyData);
+        if(lastKeyAdded == null || !lastKeyAdded.equals(keyData)) {
+            playerModel.setPlayerKey(keyData);
+            lastKeyAdded = keyData;
+        }
     }
 
     public boolean hasCorrectKey(String keyType) {
