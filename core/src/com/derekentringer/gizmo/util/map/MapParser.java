@@ -199,16 +199,10 @@ public class MapParser extends Stage {
                     int yPos = yPosD.intValue();
 
                     // do not load a heart if it was picked up already
-                    // only supporting one heart per level
+                    // only supporting one heart per level atm
                     if(sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpHearts().size() == 0) {
                         HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
-                        heartActor.setName(KeyModel.KEY);
-                        addActor(heartActor);
-                        actorsArray.add(heartActor);
-                    }
-                    else {
-                        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
-                        heartActor.setName(KeyModel.KEY);
+                        heartActor.setName(HeartModel.HEART);
                         addActor(heartActor);
                         actorsArray.add(heartActor);
                     }

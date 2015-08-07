@@ -17,9 +17,6 @@ public class LevelModel extends BaseModel {
     private String sLevelMidMap;
     private String sLevelBackMap;
 
-    public LevelModel() {
-    }
-
     public LevelModel(int levelInt, String levelMap, String levelMidMap, String levelBackMap) {
         baseModelType = BaseModelType.LEVEL;
         sLevelInt = levelInt;

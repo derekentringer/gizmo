@@ -1,1 +1,1 @@
-{baseModelType:LEVEL,sLevelMap:res/maps/level_one/level_one.tmx,sLevelMidMap:res/maps/level_one/mid_background.tmx,sLevelBackMap:res/maps/level_one/background.tmx}
+{baseModelType:LEVEL,pickedUpKeys:[{sKeyType:gold},{sKeyType:gold},{sKeyType:bronze}],sLevelMap:res/maps/level_one/level_one.tmx,sLevelMidMap:res/maps/level_one/mid_background.tmx,sLevelBackMap:res/maps/level_one/background.tmx}

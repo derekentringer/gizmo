@@ -264,14 +264,15 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private void deleteObsoleteActors() {
         for (int i = 0; i < deleteBodies.size(); i++) {
-            //delete the body
-            WorldUtils.destroyBody(world, deleteBodies.get(i).getBody());
-            //delete the actor
+            //delete the actor from our actorsArray
             //look thru deleteBodies arraylist
+            //delete the associated body
             for (int e=0; e < mapParser.actorsArray.size(); e++) {
                 if (mapParser.actorsArray.get(e).userData.equals(deleteBodies.get(i).getBaseModel())) {
                     mapParser.actorsArray.remove(e);
                     mapParser.actorsArray.get(e).remove();
+                    //delete the body
+                    WorldUtils.destroyBody(world, deleteBodies.get(i).getBody());
                     deleteBodies.remove(i);
                     break;
                 }
