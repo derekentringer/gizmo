@@ -120,10 +120,9 @@ public class MapParser extends Stage {
                             DoorOffActor doorOffActor = new DoorOffActor(BodyUtils.createStaticBody(new DoorOffModel(), world, tileSize, row, col, true));
                             addActor(doorOffActor);
                         }
+                        //TODO add rest of door types
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_GOLD)) {
-                            createLockedDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
-                            //DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorData(DoorType.LOCKED_GOLD, )), world, tileSize, row, col, true));
-                            //addActor(doorGoldActor);
+                            createLockedGoldDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
                         }
                     }
                 }
@@ -185,7 +184,7 @@ public class MapParser extends Stage {
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
 
-                    if(!loopThruArray(sLoadedLevelModel.getPickedUpKeys(), keyType)) {
+                    if(!loopThruPickedUpKeysArray(sLoadedLevelModel.getPickedUpKeys(), keyType)) {
                         KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
                         keyActor.setName(KeyModel.KEY);
                         addActor(keyActor);
@@ -219,7 +218,7 @@ public class MapParser extends Stage {
         }
     }
 
-    public static boolean loopThruArray(ArrayList<KeyModel> array, String targetValue) {
+    public static boolean loopThruPickedUpKeysArray(ArrayList<KeyModel> array, String targetValue) {
         for(KeyModel lookingForKey: array){
             if(lookingForKey.getKeyType().equals(targetValue))
                 return true;
@@ -235,7 +234,7 @@ public class MapParser extends Stage {
         delegate.setPlayerActor(playerActor);
     }
 
-    private void createLockedDoorActor(World world, int levelNumber, int row, int col) {
+    private void createLockedGoldDoorActor(World world, int levelNumber, int row, int col) {
         DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber), world, tileSize, row, col, true));
         addActor(doorGoldActor);
         delegate.setLockedGoldDoor(doorGoldActor);

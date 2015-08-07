@@ -6,6 +6,7 @@ this is finished really, just need to debug
 
 ** still crashes with remvoing objects
 
+** add the rest of the doors to the map parser
 ** doors seem to still be bugged sometimes
 
 animate doors opening?
