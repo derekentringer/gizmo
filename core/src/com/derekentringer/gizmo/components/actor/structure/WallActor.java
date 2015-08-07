@@ -17,5 +17,5 @@ public class WallActor extends BaseActor {
     public BaseModel getUserData() {
         return wallModel;
     }
-    
+
 }

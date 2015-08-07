@@ -76,7 +76,7 @@ public class MapParser extends Stage {
     }
 
     public void createTileMapLayers(World world) {
-        for(int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
+        for (int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
             if (getTiledMap().getLayers().get(curLayer) instanceof TiledMapTileLayer) {
 
                 TiledMapTileLayer tiledMapTileLayer = (TiledMapTileLayer) getTiledMap().getLayers().get(curLayer);
@@ -131,15 +131,15 @@ public class MapParser extends Stage {
     }
 
     public void createTileMapObjects(World world, String whichDoor) {
-        for(int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
+        for (int curLayer = 0; curLayer < getTiledMap().getLayers().getCount(); curLayer++) {
             MapLayer mapLayer = getTiledMap().getLayers().get(curLayer);
 
             if (mapLayer == null) {
                 return;
             }
 
-            for(MapObject mapObject: mapLayer.getObjects()) {
-                if(mapLayer.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
+            for (MapObject mapObject : mapLayer.getObjects()) {
+                if (mapLayer.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
                     int xPos = xPosD.intValue();
@@ -149,7 +149,7 @@ public class MapParser extends Stage {
                     addActor(phantomActor);
                     actorsArray.add(phantomActor);
                 }
-                else if(mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
+                else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
                     int xPos = xPosD.intValue();
@@ -159,8 +159,8 @@ public class MapParser extends Stage {
                     addActor(phantomLargeActor);
                     actorsArray.add(phantomLargeActor);
                 }
-                else if(mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER)) {
-                    if(whichDoor.equalsIgnoreCase(DoorType.PREVIOUS)
+                else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER)) {
+                    if (whichDoor.equalsIgnoreCase(DoorType.PREVIOUS)
                             && mapObject.getProperties().get("type").equals(DoorType.PREVIOUS)) {
                         Float xPosD = (Float) mapObject.getProperties().get("x");
                         Float yPosD = (Float) mapObject.getProperties().get("y");
@@ -168,7 +168,7 @@ public class MapParser extends Stage {
                         int yPos = yPosD.intValue();
                         createPlayerActor(world, xPos, yPos);
                     }
-                    else if(whichDoor.equalsIgnoreCase(DoorType.NEXT)
+                    else if (whichDoor.equalsIgnoreCase(DoorType.NEXT)
                             && mapObject.getProperties().get("type").equals(DoorType.NEXT)) {
                         Float xPosD = (Float) mapObject.getProperties().get("x");
                         Float yPosD = (Float) mapObject.getProperties().get("y");
@@ -177,14 +177,14 @@ public class MapParser extends Stage {
                         createPlayerActor(world, xPos, yPos);
                     }
                 }
-                else if(mapLayer.getName().equalsIgnoreCase(KeyModel.KEY)) {
+                else if (mapLayer.getName().equalsIgnoreCase(KeyModel.KEY)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
                     String keyType = (String) mapObject.getProperties().get("keyType");
                     int xPos = xPosD.intValue();
                     int yPos = yPosD.intValue();
 
-                    if(!loopThruPickedUpKeysArray(sLoadedLevelModel.getPickedUpKeys(), keyType)) {
+                    if (!loopThruPickedUpKeysArray(sLoadedLevelModel.getPickedUpKeys(), keyType)) {
                         KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
                         keyActor.setName(KeyModel.KEY);
                         addActor(keyActor);
@@ -192,7 +192,7 @@ public class MapParser extends Stage {
                     }
 
                 }
-                else if(mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
+                else if (mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
                     int xPos = xPosD.intValue();
@@ -200,7 +200,7 @@ public class MapParser extends Stage {
 
                     // do not load a heart if it was picked up already
                     // only supporting one heart per level atm
-                    if(sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpHearts().size() == 0) {
+                    if (sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpHearts().size() == 0) {
                         HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
                         heartActor.setName(HeartModel.HEART);
                         addActor(heartActor);
@@ -213,9 +213,10 @@ public class MapParser extends Stage {
     }
 
     public static boolean loopThruPickedUpKeysArray(ArrayList<KeyModel> array, String targetValue) {
-        for(KeyModel lookingForKey: array){
-            if(lookingForKey.getKeyType().equals(targetValue))
+        for (KeyModel lookingForKey : array) {
+            if (lookingForKey.getKeyType().equals(targetValue)) {
                 return true;
+            }
         }
         return false;
     }

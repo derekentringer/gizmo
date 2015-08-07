@@ -159,7 +159,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void addKey(KeyModel keyData) {
-        if(lastKeyAdded == null || !lastKeyAdded.equals(keyData)) {
+        if (lastKeyAdded == null || !lastKeyAdded.equals(keyData)) {
             playerModel.setPlayerKey(keyData);
             lastKeyAdded = keyData;
         }
@@ -167,7 +167,7 @@ public class PlayerActor extends BaseActor {
 
     public boolean hasCorrectKey(String keyType) {
         ArrayList<KeyModel> playerKeys = playerModel.getPlayerKeys();
-        for(int i=0; i < playerKeys.size(); i++) {
+        for (int i = 0; i < playerKeys.size(); i++) {
             if (playerKeys.get(i).getKeyType().equalsIgnoreCase(keyType)) {
                 playerModel.removePlayerKey(keyType);
                 return true;
@@ -177,7 +177,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void addHealthHeart(HeartModel heartModel) {
-        if(lastHeartAdded == null || !lastHeartAdded.equals(heartModel)) {
+        if (lastHeartAdded == null || !lastHeartAdded.equals(heartModel)) {
             playerModel.setPlayerHearts(playerModel.getPlayerHearts() + 1);
         }
     }

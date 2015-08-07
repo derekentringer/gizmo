@@ -144,10 +144,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.setIsAtDoorUserData((DoorModel) a.getBody().getUserData());
         }
 
-        if(BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoorOff(b.getBody())) {
+        if (BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoorOff(b.getBody())) {
             playerActor.setIsAtDoor(false);
         }
-        else if(BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoorOff(a.getBody())) {
+        else if (BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoorOff(a.getBody())) {
             playerActor.setIsAtDoor(false);
         }
 
@@ -267,7 +267,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             //delete the actor from our actorsArray
             //look thru deleteBodies arraylist
             //delete the associated body
-            for (int e=0; e < mapParser.actorsArray.size(); e++) {
+            for (int e = 0; e < mapParser.actorsArray.size(); e++) {
                 if (mapParser.actorsArray.get(e).userData.equals(deleteBodies.get(i).getBaseModel())) {
                     mapParser.actorsArray.remove(e);
                     mapParser.actorsArray.get(e).remove();
@@ -279,7 +279,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             }
         }
         //remove any actor that falls off the stage
-        for (int j=0; j < mapParser.actorsArray.size(); j++) {
+        for (int j = 0; j < mapParser.actorsArray.size(); j++) {
             if (mapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) {
                 mapParser.actorsArray.get(j).remove();
                 mapParser.actorsArray.remove(j);
@@ -367,26 +367,26 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 return;
             }
             if (playerActor.getIsAtDoor()) {
-                if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
-                    if(playerActor.hasCorrectKey(KeyModel.KEY_GOLD)) {
+                if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_GOLD)) {
                         //TODO animate locked doors?
                         //doors are working, they are not animating
                         //doorGoldActor.startAnimation();
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
-                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
-                    if(playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)) {
+                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)) {
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
-                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
-                    if(playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)) {
+                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)) {
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
-                else if(playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
-                    if(playerActor.hasCorrectKey(KeyModel.KEY_BLACK)) {
+                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLACK)) {
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
                     }
                 }
