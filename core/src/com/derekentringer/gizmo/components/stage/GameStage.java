@@ -185,13 +185,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         //pickup a heart
         if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
-            playerActor.addHealthHeart();
+            playerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
             loadedLevelModel.addHeart((HeartModel) a.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
-            playerActor.addHealthHeart();
+            playerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
             loadedLevelModel.addHeart((HeartModel) b.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));

@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
+import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
@@ -68,6 +69,9 @@ public class PlayerActor extends BaseActor {
     private boolean isOnGround;
     private boolean isAtDoor;
     private static boolean isFlinching;
+
+    private KeyModel lastKeyAdded;
+    private HeartModel lastHeartAdded;
 
     public PlayerActor(Body body) {
         super(body);
@@ -154,7 +158,6 @@ public class PlayerActor extends BaseActor {
         }
     }
 
-    private KeyModel lastKeyAdded;
     public void addKey(KeyModel keyData) {
         if(lastKeyAdded == null || !lastKeyAdded.equals(keyData)) {
             playerModel.setPlayerKey(keyData);
@@ -173,8 +176,10 @@ public class PlayerActor extends BaseActor {
         return false;
     }
 
-    public void addHealthHeart() {
-        playerModel.setPlayerHearts(playerModel.getPlayerHearts() + 1);
+    public void addHealthHeart(HeartModel heartModel) {
+        if(lastHeartAdded == null || !lastHeartAdded.equals(heartModel)) {
+            playerModel.setPlayerHearts(playerModel.getPlayerHearts() + 1);
+        }
     }
 
     public int getHealthHearts() {
