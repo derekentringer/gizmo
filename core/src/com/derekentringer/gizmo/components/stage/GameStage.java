@@ -461,11 +461,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     @Override
-    public void playerDied() {
-        killPlayer();
-    }
-
-    @Override
     public void playerZeroLives() {
         //show died screen
         playerActor.resetLives();
