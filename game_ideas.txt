@@ -1,11 +1,6 @@
 TODO
 -----
 
-this is finished really, just need to debug
-** need to manage objects in levels with a data manager to load each time level is parsed for items and such that are gone
-
-** still crashes with remvoing objects
-
 ** add the rest of the doors to the map parser
 ** doors seem to still be bugged sometimes
 
