@@ -18,7 +18,15 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     private OrthographicCamera hudCamera;
     private SpriteBatch sSpriteBatch;
-    private Vector2 hudPosition = new Vector2();
+
+    private Vector2 hudLivesPosition = new Vector2();
+    private Vector2 hudHealthPosition = new Vector2();
+
+    private Texture hudLivesOne;
+    private Texture hudLivesTwo;
+    private Texture hudLivesThree;
+    private Texture hudLivesFour;
+    private Texture hudLivesFive;
 
     private Texture hudHeartsTwo;
     private Texture hudHeartsThree;
@@ -30,7 +38,10 @@ public class HudStage extends Stage implements IHudStageDelegate {
     private Texture hudHeartsNine;
     private Texture hudHeartsTen;
 
-    private Texture currentTexture;
+    private Texture currentLivesTexture;
+    private Texture currentHealthTexture;
+
+    private int sLives;
     private int sHearts;
 
     private ShapeRenderer redShapeRenderer;
@@ -51,6 +62,12 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
         sSpriteBatch = new SpriteBatch();
 
+        hudLivesOne = Gizmo.assetManager.get("res/images/hud/hud_lives_one.png", Texture.class);
+        hudLivesTwo = Gizmo.assetManager.get("res/images/hud/hud_lives_two.png", Texture.class);
+        hudLivesThree = Gizmo.assetManager.get("res/images/hud/hud_lives_three.png", Texture.class);
+        hudLivesFour = Gizmo.assetManager.get("res/images/hud/hud_lives_four.png", Texture.class);
+        hudLivesFive = Gizmo.assetManager.get("res/images/hud/hud_lives_five.png", Texture.class);
+
         hudHeartsTwo = Gizmo.assetManager.get("res/images/hud/hud_hearts_two.png", Texture.class);
         hudHeartsThree = Gizmo.assetManager.get("res/images/hud/hud_hearts_three.png", Texture.class);
         hudHeartsFour = Gizmo.assetManager.get("res/images/hud/hud_hearts_four.png", Texture.class);
@@ -61,7 +78,8 @@ public class HudStage extends Stage implements IHudStageDelegate {
         hudHeartsNine = Gizmo.assetManager.get("res/images/hud/hud_hearts_nine.png", Texture.class);
         hudHeartsTen = Gizmo.assetManager.get("res/images/hud/hud_hearts_ten.png", Texture.class);
 
-        currentTexture = hudHeartsTwo;
+        currentLivesTexture = hudLivesOne;
+        currentHealthTexture = hudHeartsTwo;
     }
 
     private void setupCamera() {
@@ -82,16 +100,17 @@ public class HudStage extends Stage implements IHudStageDelegate {
         }
         whiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         whiteShapeRenderer.setColor(Color.WHITE);
-        whiteShapeRenderer.rect(hudPosition.x, hudPosition.y + currentTexture.getHeight() - redShapeHeight, currentTexture.getWidth() - 32, redShapeHeight);
+        whiteShapeRenderer.rect(hudHealthPosition.x, hudHealthPosition.y + currentHealthTexture.getHeight() - redShapeHeight, currentHealthTexture.getWidth() - 32, redShapeHeight);
         whiteShapeRenderer.end();
 
         redShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         redShapeRenderer.setColor(193 / 255f, 0, 0, 1);
-        redShapeRenderer.rect(hudPosition.x + 3, hudPosition.y + currentTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
+        redShapeRenderer.rect(hudHealthPosition.x + 3, hudHealthPosition.y + currentHealthTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
         redShapeRenderer.end();
 
         sSpriteBatch.begin();
-        sSpriteBatch.draw(currentTexture, hudPosition.x, hudPosition.y);
+        sSpriteBatch.draw(currentLivesTexture, hudLivesPosition.x, hudLivesPosition.y);
+        sSpriteBatch.draw(currentHealthTexture, hudHealthPosition.x, hudHealthPosition.y);
         sSpriteBatch.end();
     }
 
@@ -101,10 +120,17 @@ public class HudStage extends Stage implements IHudStageDelegate {
     }
 
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
-        hudPosition.x = Math.abs(crop.x) / scale;
-        hudPosition.y = Math.abs(gameHeight - currentTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
-        System.out.println("hudPosition.x: " + hudPosition.x);
-        System.out.println("hudPosition.y: " + hudPosition.y);
+
+        hudLivesPosition.x = Math.abs(crop.x) / scale;
+        hudLivesPosition.y = Math.abs(gameHeight - currentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
+
+        hudHealthPosition.x = Math.abs(crop.x) / scale;
+        hudHealthPosition.y = Math.abs(gameHeight - currentLivesTexture.getHeight() * scale - currentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
+
+
+
+        System.out.println("hudPosition.x: " + hudHealthPosition.x);
+        System.out.println("hudPosition.y: " + hudHealthPosition.y);
 
         hudCamera.update();
     }
@@ -113,31 +139,31 @@ public class HudStage extends Stage implements IHudStageDelegate {
     public void setHudHealthHearts(int hearts) {
         sHearts = hearts;
         if (sHearts == 2) {
-            currentTexture = hudHeartsTwo;
+            currentHealthTexture = hudHeartsTwo;
         }
         else if (sHearts == 3) {
-            currentTexture = hudHeartsThree;
+            currentHealthTexture = hudHeartsThree;
         }
         else if (sHearts == 4) {
-            currentTexture = hudHeartsFour;
+            currentHealthTexture = hudHeartsFour;
         }
         else if (sHearts == 5) {
-            currentTexture = hudHeartsFive;
+            currentHealthTexture = hudHeartsFive;
         }
         else if (sHearts == 6) {
-            currentTexture = hudHeartsSix;
+            currentHealthTexture = hudHeartsSix;
         }
         else if (sHearts == 7) {
-            currentTexture = hudHeartsSeven;
+            currentHealthTexture = hudHeartsSeven;
         }
         else if (sHearts == 8) {
-            currentTexture = hudHeartsEight;
+            currentHealthTexture = hudHeartsEight;
         }
         else if (sHearts == 9) {
-            currentTexture = hudHeartsNine;
+            currentHealthTexture = hudHeartsNine;
         }
         else if (sHearts == 10) {
-            currentTexture = hudHeartsTen;
+            currentHealthTexture = hudHeartsTen;
         }
     }
 
@@ -165,6 +191,26 @@ public class HudStage extends Stage implements IHudStageDelegate {
         initialWidth = sHearts * 18;
         redShapeWidth = initialWidth;
         redShapeHeight = 20;
+    }
+
+    @Override
+    public void setHudLives(int lives) {
+        sLives = lives;
+        if(sLives == 5) {
+            currentLivesTexture = hudLivesFive;
+        }
+        else if (sLives == 4) {
+            currentLivesTexture = hudLivesFour;
+        }
+        else if (sLives == 3) {
+            currentLivesTexture = hudLivesThree;
+        }
+        else if (sLives == 2) {
+            currentLivesTexture = hudLivesTwo;
+        }
+        else if (sLives == 1) {
+            currentLivesTexture = hudLivesOne;
+        }
     }
 
 }

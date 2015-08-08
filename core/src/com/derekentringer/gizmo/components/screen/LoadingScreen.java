@@ -13,6 +13,12 @@ public class LoadingScreen extends com.derekentringer.gizmo.components.screen.Ab
 
     @Override
     public void show() {
+        game.assetManager.load("res/images/hud/hud_lives_one.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_lives_two.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_lives_three.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_lives_four.png", Texture.class);
+        game.assetManager.load("res/images/hud/hud_lives_five.png", Texture.class);
+
         game.assetManager.load("res/images/hud/hud_hearts_two.png", Texture.class);
         game.assetManager.load("res/images/hud/hud_hearts_three.png", Texture.class);
         game.assetManager.load("res/images/hud/hud_hearts_four.png", Texture.class);
