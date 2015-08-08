@@ -65,7 +65,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="player">
+ <objectgroup name="playerdestinations">
   <object id="1" x="239.5" y="655.5">
    <properties>
     <property name="name" value="doorprevious"/>
