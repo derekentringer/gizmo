@@ -120,14 +120,11 @@ public class HudStage extends Stage implements IHudStageDelegate {
     }
 
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
-
         hudLivesPosition.x = Math.abs(crop.x) / scale;
         hudLivesPosition.y = Math.abs(gameHeight - currentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
         hudHealthPosition.x = Math.abs(crop.x) / scale;
         hudHealthPosition.y = Math.abs(gameHeight - currentLivesTexture.getHeight() * scale - currentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
-
-
 
         System.out.println("hudPosition.x: " + hudHealthPosition.x);
         System.out.println("hudPosition.y: " + hudHealthPosition.y);
