@@ -12,6 +12,9 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
@@ -21,7 +24,7 @@ import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
-import com.derekentringer.gizmo.components.actor.structure.DoorGoldActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
@@ -446,6 +449,18 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     @Override
     public void setLockedGoldDoor(DoorGoldActor doorGoldActor) {
         this.doorGoldActor = doorGoldActor;
+    }
+
+    @Override
+    public void setLockedBronzeDoor(DoorBronzeActor bronzeDoorActor) {
+    }
+
+    @Override
+    public void setLockedBloodDoor(DoorBloodActor bloodDoorActor) {
+    }
+
+    @Override
+    public void setLockedBlackDoor(DoorBlackActor blackDoorActor) {
     }
 
     @Override

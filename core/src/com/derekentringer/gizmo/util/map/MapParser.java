@@ -16,9 +16,12 @@ import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
 import com.derekentringer.gizmo.components.actor.object.KeyActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
-import com.derekentringer.gizmo.components.actor.structure.DoorActor;
-import com.derekentringer.gizmo.components.actor.structure.DoorGoldActor;
-import com.derekentringer.gizmo.components.actor.structure.DoorOffActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorOffActor;
 import com.derekentringer.gizmo.components.actor.structure.GroundActor;
 import com.derekentringer.gizmo.components.actor.structure.WallActor;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
@@ -258,7 +261,7 @@ public class MapParser extends Stage {
     private void createLockedBlackDoorActor(World world, int levelNumber, int row, int col) {
         DoorBlackActor doorBlackActor = new DoorBlackActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLACK, levelNumber), world, tileSize, row, col, true));
         addActor(doorBlackActor);
-        delegate.setLockedBlackDoor(doorBloodActor);
+        delegate.setLockedBlackDoor(doorBlackActor);
     }
 
     public void destroyTiledMap() {
