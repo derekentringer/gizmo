@@ -9,12 +9,13 @@ import java.util.ArrayList;
 public class PlayerModel extends BaseModel {
 
     public static final String PLAYER = "player";
+    public static final String PLAYER_DESTINATIONS = "playerdestinations";
 
     public static final int HEART_HEALTH_AMOUNT = 10;
 
     public static final int DEFAULT_HEARTS = 2;
     public static final int DEFAULT_HEALTH = 20;
-    public static final int DEFAULT_LIVES = 5;
+    public static final int DEFAULT_LIVES = 2;
     public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyModel> keyList = new ArrayList<KeyModel>();

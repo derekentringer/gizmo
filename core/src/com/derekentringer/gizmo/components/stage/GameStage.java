@@ -331,7 +331,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             mapParser.destroyTiledMap();
             WorldUtils.destroyBodies(world);
             if (playerActor.getUserData().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
-                loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
+                loadLevel(Constants.gameLevels.get(0),  DoorType.PREVIOUS);
             }
             else {
                 loadLevel(levelModel, DoorType.PREVIOUS);
@@ -375,23 +375,26 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         //TODO animate locked doors?
                         //doors are working, they are not animating
                         //doorGoldActor.startAnimation();
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
                     if (playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)) {
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
                     if (playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)) {
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
                     if (playerActor.hasCorrectKey(KeyModel.KEY_BLACK)) {
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), DoorType.PREVIOUS);
+                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
+                }
+                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
+                    loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
                     if (levelModel.getLevelInt() > 0) {
@@ -407,7 +410,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
-    private void loadNewLevel(int newLevel, String doorType) {
+    private void loadNewLevel(int newLevel, String whichDoor) {
         alreadyEntered = true;
         levelModel = Constants.gameLevels.get(newLevel);
 
@@ -419,7 +422,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         LocalDataManager.saveLevelData(loadedLevelModel);
 
-        loadLevel(Constants.gameLevels.get(newLevel), doorType);
+        loadLevel(Constants.gameLevels.get(newLevel), whichDoor);
     }
 
     @Override

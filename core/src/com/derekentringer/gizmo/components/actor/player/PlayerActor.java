@@ -158,10 +158,10 @@ public class PlayerActor extends BaseActor {
         }
     }
 
-    public void addKey(KeyModel keyData) {
-        if (lastKeyAdded == null || !lastKeyAdded.equals(keyData)) {
-            playerModel.setPlayerKey(keyData);
-            lastKeyAdded = keyData;
+    public void addKey(KeyModel keyModel) {
+        if (lastKeyAdded == null || !lastKeyAdded.equals(keyModel)) {
+            playerModel.setPlayerKey(keyModel);
+            lastKeyAdded = keyModel;
         }
     }
 
@@ -179,6 +179,7 @@ public class PlayerActor extends BaseActor {
     public void addHealthHeart(HeartModel heartModel) {
         if (lastHeartAdded == null || !lastHeartAdded.equals(heartModel)) {
             playerModel.setPlayerHearts(playerModel.getPlayerHearts() + 1);
+            lastHeartAdded = heartModel;
         }
     }
 

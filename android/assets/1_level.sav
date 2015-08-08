@@ -1,1 +1,1 @@
-{baseModelType:LEVEL,pickedUpKeys:[{sKeyType:gold}],sLevelInt:1,sLevelMap:res/maps/level_two/level_two.tmx,sLevelMidMap:res/maps/level_two/mid_background.tmx,sLevelBackMap:res/maps/level_two/background.tmx}
+{baseModelType:LEVEL,sLevelInt:1,sLevelMap:res/maps/level_two/level_two.tmx,sLevelMidMap:res/maps/level_two/mid_background.tmx,sLevelBackMap:res/maps/level_two/background.tmx}

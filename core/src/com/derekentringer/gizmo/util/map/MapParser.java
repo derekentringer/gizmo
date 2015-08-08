@@ -16,14 +16,15 @@ import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
 import com.derekentringer.gizmo.components.actor.object.KeyActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
+import com.derekentringer.gizmo.components.actor.structure.GroundActor;
+import com.derekentringer.gizmo.components.actor.structure.WallActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorOffActor;
-import com.derekentringer.gizmo.components.actor.structure.GroundActor;
-import com.derekentringer.gizmo.components.actor.structure.WallActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorOtherActor;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
@@ -112,11 +113,11 @@ public class MapParser extends Stage {
                             addActor(wallActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.PREVIOUS)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorModel(DoorType.PREVIOUS, -1), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorModel(DoorType.PREVIOUS), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.NEXT)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorModel(DoorType.NEXT, -1), world, tileSize, row, col, true));
+                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticBody(new DoorModel(DoorType.NEXT), world, tileSize, row, col, true));
                             addActor(doorActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OFF)) {
@@ -124,16 +125,24 @@ public class MapParser extends Stage {
                             addActor(doorOffActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_GOLD)) {
-                            createLockedGoldDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
+                            createLockedGoldDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BRONZE)) {
-                            createLockedBronzeDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
+                            createLockedBronzeDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BLOOD)) {
-                            createLockedBloodDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
+                            createLockedBloodDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BLACK)) {
-                            createLockedBlackDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()), row, col);
+                            createLockedBlackDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
+                        }
+                        else if (curLayerName.equalsIgnoreCase(DoorType.OTHER)) {
+                            createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
                         }
                     }
                 }
@@ -170,9 +179,9 @@ public class MapParser extends Stage {
                     addActor(phantomLargeActor);
                     actorsArray.add(phantomLargeActor);
                 }
-                else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER)) {
+                else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER_DESTINATIONS)) {
                     if (whichDoor.equalsIgnoreCase(DoorType.PREVIOUS)
-                            && mapObject.getProperties().get("type").equals(DoorType.PREVIOUS)) {
+                            && mapObject.getProperties().get("name").equals(DoorType.PREVIOUS)) {
                         Float xPosD = (Float) mapObject.getProperties().get("x");
                         Float yPosD = (Float) mapObject.getProperties().get("y");
                         int xPos = xPosD.intValue();
@@ -180,7 +189,7 @@ public class MapParser extends Stage {
                         createPlayerActor(world, xPos, yPos);
                     }
                     else if (whichDoor.equalsIgnoreCase(DoorType.NEXT)
-                            && mapObject.getProperties().get("type").equals(DoorType.NEXT)) {
+                            && mapObject.getProperties().get("name").equals(DoorType.NEXT)) {
                         Float xPosD = (Float) mapObject.getProperties().get("x");
                         Float yPosD = (Float) mapObject.getProperties().get("y");
                         int xPos = xPosD.intValue();
@@ -240,28 +249,32 @@ public class MapParser extends Stage {
         delegate.setPlayerActor(playerActor);
     }
 
-    private void createLockedGoldDoorActor(World world, int levelNumber, int row, int col) {
-        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber), world, tileSize, row, col, true));
+    private void createLockedGoldDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
+        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber, doorTypeDest), world, tileSize, row, col, true));
         addActor(doorGoldActor);
         delegate.setLockedGoldDoor(doorGoldActor);
     }
 
-    private void createLockedBronzeDoorActor(World world, int levelNumber, int row, int col) {
-        DoorBronzeActor doorBronzeActor = new DoorBronzeActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BRONZE, levelNumber), world, tileSize, row, col, true));
+    private void createLockedBronzeDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
+        DoorBronzeActor doorBronzeActor = new DoorBronzeActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BRONZE, levelNumber, doorTypeDest), world, tileSize, row, col, true));
         addActor(doorBronzeActor);
         delegate.setLockedBronzeDoor(doorBronzeActor);
     }
 
-    private void createLockedBloodDoorActor(World world, int levelNumber, int row, int col) {
-        DoorBloodActor doorBloodActor = new DoorBloodActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLOOD, levelNumber), world, tileSize, row, col, true));
+    private void createLockedBloodDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
+        DoorBloodActor doorBloodActor = new DoorBloodActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLOOD, levelNumber, doorTypeDest), world, tileSize, row, col, true));
         addActor(doorBloodActor);
         delegate.setLockedBloodDoor(doorBloodActor);
     }
 
-    private void createLockedBlackDoorActor(World world, int levelNumber, int row, int col) {
-        DoorBlackActor doorBlackActor = new DoorBlackActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLACK, levelNumber), world, tileSize, row, col, true));
+    private void createLockedBlackDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
+        DoorBlackActor doorBlackActor = new DoorBlackActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLACK, levelNumber, doorTypeDest), world, tileSize, row, col, true));
         addActor(doorBlackActor);
         delegate.setLockedBlackDoor(doorBlackActor);
+    }
+    private void createOtherDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
+        DoorOtherActor doorOtherActor = new DoorOtherActor(BodyUtils.createStaticBody(new DoorModel(DoorType.OTHER, levelNumber, doorTypeDest), world, tileSize, row, col, true));
+        addActor(doorOtherActor);
     }
 
     public void destroyTiledMap() {

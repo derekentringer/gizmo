@@ -5,6 +5,7 @@ public final class DoorType {
     public static final String DOOR_OFF = "dooroff";
     public static final String NEXT = "doornext";
     public static final String PREVIOUS = "doorprevious";
+    public static final String OTHER = "doorother";
     public static final String LOCKED_GOLD = "doorlockedgold";
     public static final String LOCKED_BRONZE = "doorlockedbronze";
     public static final String LOCKED_BLOOD = "doorlockedblood";
