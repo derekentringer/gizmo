@@ -12,7 +12,6 @@ phantoms run away when gizmo barks
 
 refactor up how the tiled cameras are created
 refactor how the three tile maps are loaded
-updated ability to go to next level; bugs with hitting twice - hit objects not working quite right
 
 
 player stats
