@@ -4,6 +4,7 @@ import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.structure.DoorModel;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class LevelModel extends BaseModel {
 
     private ArrayList<KeyModel> pickedUpKeys = new ArrayList<KeyModel>();
     private ArrayList<HeartModel> pickedUpHearts = new ArrayList<HeartModel>();
+    private ArrayList<DoorModel> openedDoors = new ArrayList<DoorModel>();
 
     private int sLevelInt;
     private String sLevelMap;
@@ -76,4 +78,12 @@ public class LevelModel extends BaseModel {
         return pickedUpHearts;
     }
 
+    public void addOpenedDoor(DoorModel doorModel) {
+        openedDoors.add(doorModel);
+    }
+
+    public ArrayList<DoorModel> getOpenedDoors() {
+        return openedDoors;
+    }
+    
 }
