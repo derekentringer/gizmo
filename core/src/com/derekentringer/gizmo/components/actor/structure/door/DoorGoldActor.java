@@ -23,7 +23,7 @@ public class DoorGoldActor extends BaseActor {
             sDoorGold = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
         }
         sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
-        //setAnimation(sDoorGoldSprite, 1 / 12f);
+        setAnimation(sDoorGoldSprite, 1 / 12f);
     }
 
     @Override
