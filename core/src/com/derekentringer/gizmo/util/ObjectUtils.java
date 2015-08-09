@@ -51,4 +51,24 @@ public class ObjectUtils {
         return body;
     }
 
+    public static Body createDoor(BaseModel userData, World world, int posX, int posY) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(WorldUtils.ppmCalc(posX), WorldUtils.ppmCalc(posY));
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        body.createFixture(fixtureDef).setUserData(userData);
+
+        body.setUserData(userData);
+
+        shape.dispose();
+        return body;
+    }
+
 }

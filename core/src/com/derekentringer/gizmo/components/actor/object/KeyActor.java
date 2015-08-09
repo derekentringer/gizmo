@@ -28,7 +28,6 @@ public class KeyActor extends BaseActor {
             key = Gizmo.assetManager.get("res/images/key_blood.png", Texture.class);
         }
         keySprite = TextureRegion.split(key, 32, 32)[0];
-
         setAnimation(keySprite, 1 / 12f);
     }
 

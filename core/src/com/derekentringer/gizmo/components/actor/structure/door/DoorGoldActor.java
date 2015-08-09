@@ -18,12 +18,12 @@ public class DoorGoldActor extends BaseActor {
         sIsLocked = isLocked;
         if(sIsLocked) {
             sDoorGold = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
-            sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
         }
         else {
             sDoorGold = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
-            sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
         }
+        sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
+        //setAnimation(sDoorGoldSprite, 1 / 12f);
     }
 
     @Override
@@ -31,8 +31,6 @@ public class DoorGoldActor extends BaseActor {
         return null;
     }
 
-    //TODO blah this doesn't work
-    //not sure it's needed really
     public void startAnimation() {
         setAnimation(sDoorGoldSprite, 1 / 12f);
     }

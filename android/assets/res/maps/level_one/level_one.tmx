@@ -56,7 +56,6 @@
  <layer name="doorLockedBlood" width="60" height="23">
   <properties>
    <property name="destination" value="doorprevious"/>
-   <property name="doortype" value="blood"/>
    <property name="levelnumber" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">

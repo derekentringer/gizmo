@@ -9,6 +9,10 @@ public class DoorModel extends BaseModel {
     private int sLevelNumber;
     private String sDestinationDoor;
 
+    public DoorModel() {
+        super();
+    }
+
     public DoorModel(String doorType, int levelNumber, String destinationDoor) {
         super();
         baseModelType = BaseModelType.DOOR;
