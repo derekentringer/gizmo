@@ -1,12 +1,12 @@
 TODO
 -----
 
+need door graphics for all locked doors
+
 ** need to clean up the mapparser
 
-** add the rest of the doors to the map parser
 ** doors seem to still be bugged sometimes
 
-animate doors opening?
 
 add a power up for jumping
 add barking ability
