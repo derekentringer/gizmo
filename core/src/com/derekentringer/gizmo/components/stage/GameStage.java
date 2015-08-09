@@ -177,25 +177,25 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         //pickup a key
         if (BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addKey((KeyModel) a.getBody().getUserData());
-            loadedLevelModel.addKey((KeyModel) a.getBody().getUserData());
+            loadedLevelModel.addPickedUpKey((KeyModel) a.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addKey((KeyModel) b.getBody().getUserData());
-            loadedLevelModel.addKey((KeyModel) b.getBody().getUserData());
+            loadedLevelModel.addPickedUpKey((KeyModel) b.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
         }
 
         //pickup a heart
         if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
-            loadedLevelModel.addHeart((HeartModel) a.getBody().getUserData());
+            loadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
             playerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
-            loadedLevelModel.addHeart((HeartModel) b.getBody().getUserData());
+            loadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
         }

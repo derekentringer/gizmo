@@ -62,7 +62,7 @@ public class LevelModel extends BaseModel {
         sLevelBackMap = levelBackMap;
     }
 
-    public void addKey(KeyModel keyModel) {
+    public void addPickedUpKey(KeyModel keyModel) {
         pickedUpKeys.add(keyModel);
     }
 
@@ -70,7 +70,7 @@ public class LevelModel extends BaseModel {
         return pickedUpKeys;
     }
 
-    public void addHeart(HeartModel heartModel) {
+    public void addPickedUpHeart(HeartModel heartModel) {
         pickedUpHearts.add(heartModel);
     }
 
@@ -85,5 +85,5 @@ public class LevelModel extends BaseModel {
     public ArrayList<DoorModel> getOpenedDoors() {
         return openedDoors;
     }
-    
+
 }
