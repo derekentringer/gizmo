@@ -21,6 +21,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
@@ -139,19 +140,19 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         Fixture b = contact.getFixtureB();
 
         // player at door
-        if (BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoor(b.getBody())) {
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.DOOR)) {
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorModel) b.getBody().getUserData());
         }
-        else if (BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoor(a.getBody())) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.DOOR)) {
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorModel) a.getBody().getUserData());
         }
 
-        if (BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoorOff(b.getBody())) {
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.DOOR_OFF)) {
             playerActor.setIsAtDoor(false);
         }
-        else if (BodyUtils.bodyIsPlayer(b.getBody()) && BodyUtils.bodyIsDoorOff(a.getBody())) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.DOOR_OFF)) {
             playerActor.setIsAtDoor(false);
         }
 
@@ -164,51 +165,51 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
 
         // player/enemy collisions
-        if (BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(a.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }
-        else if (BodyUtils.bodyIsEnemy(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(b.getBody()));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
         }
 
-        //pickup a key
-        if (BodyUtils.bodyIsKey(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        // pickup a key
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             playerActor.addKey((KeyModel) a.getBody().getUserData());
             loadedLevelModel.addPickedUpKey((KeyModel) a.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
         }
-        else if (BodyUtils.bodyIsKey(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             playerActor.addKey((KeyModel) b.getBody().getUserData());
             loadedLevelModel.addPickedUpKey((KeyModel) b.getBody().getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
         }
 
-        //pickup a heart
-        if (BodyUtils.bodyIsHeart(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        // pickup a heart
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             playerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
             loadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
-        else if (BodyUtils.bodyIsHeart(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             playerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
             loadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
         }
 
-        //pickup a life
-        if (BodyUtils.bodyIsLife(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+        // pickup a life
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             playerActor.incrementLives();
             loadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
             hudStageDelegate.setHudLives(playerActor.getPlayerLives());
             deleteBodies.add(new DeleteBody((LifeModel) a.getBody().getUserData(), a.getBody()));
         }
-        else if (BodyUtils.bodyIsLife(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             playerActor.incrementLives();
             loadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
             hudStageDelegate.setHudLives(playerActor.getPlayerLives());

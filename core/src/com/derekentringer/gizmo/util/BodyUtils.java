@@ -13,44 +13,9 @@ import com.derekentringer.gizmo.settings.Constants;
 
 public class BodyUtils {
 
-    public static boolean bodyIsPlayer(Body body) {
+    public static boolean bodyTypeCheck(Body body, BaseModelType baseModelType) {
         BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType() == BaseModelType.PLAYER;
-    }
-
-    public static boolean bodyIsGround(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.GROUND);
-    }
-
-    public static boolean bodyIsEnemy(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.ENEMY);
-    }
-
-    public static boolean bodyIsKey(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.KEY);
-    }
-
-    public static boolean bodyIsHeart(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.HEART);
-    }
-
-    public static boolean bodyIsLife(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.LIFE);
-    }
-
-    public static boolean bodyIsDoor(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR);
-    }
-
-    public static boolean bodyIsDoorOff(Body body) {
-        BaseModel userData = (BaseModel) body.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR_OFF);
+        return userData != null && userData.getBaseModelType().equals(baseModelType);
     }
 
     public static int getEnemyBodyDamageAmount(Body body) {
