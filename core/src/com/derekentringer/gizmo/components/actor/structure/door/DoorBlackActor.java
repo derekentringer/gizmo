@@ -11,14 +11,11 @@ public class DoorBlackActor extends BaseActor {
 
     private TextureRegion[] sDoorBlackSprite;
     private Texture sDoorBlack;
-    private boolean sIsLocked;
 
     public DoorBlackActor(Body body, boolean isLocked) {
         super(body);
-        //TODO create needed asset
-        sIsLocked = isLocked;
-        if(sIsLocked) {
-            sDoorBlack = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
+        if(isLocked) {
+            sDoorBlack = Gizmo.assetManager.get("res/images/door_black.png", Texture.class);
         }
         else {
             sDoorBlack = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);

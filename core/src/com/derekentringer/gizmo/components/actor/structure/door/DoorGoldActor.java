@@ -11,12 +11,10 @@ public class DoorGoldActor extends BaseActor {
 
     private TextureRegion[] sDoorGoldSprite;
     private Texture sDoorGold;
-    private boolean sIsLocked;
 
     public DoorGoldActor(Body body, boolean isLocked) {
         super(body);
-        sIsLocked = isLocked;
-        if(sIsLocked) {
+        if(isLocked) {
             sDoorGold = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
         }
         else {
