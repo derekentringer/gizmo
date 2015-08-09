@@ -1,11 +1,7 @@
 TODO
 -----
 
-need door graphics for all locked doors
 
-** need to clean up the mapparser
-
-** doors seem to still be bugged sometimes
 
 
 add a power up for jumping
