@@ -53,7 +53,7 @@
   </object>
  </objectgroup>
  <objectgroup name="key">
-  <object id="8" x="913" y="622">
+  <object id="8" x="913" y="618">
    <properties>
     <property name="keyType" value="gold"/>
    </properties>
