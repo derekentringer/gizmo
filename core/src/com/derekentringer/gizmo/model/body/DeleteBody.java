@@ -17,10 +17,6 @@ public class DeleteBody {
         return baseModel;
     }
 
-    public void setBaseModel(BaseModel baseModel) {
-        this.baseModel = baseModel;
-    }
-
     public Body getBody() {
         return body;
     }

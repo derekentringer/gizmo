@@ -6,8 +6,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 public class EnemyModel extends BaseModel {
 
     protected BaseModelType baseModelType;
-
-    public int healthDamage;
+    private int healthDamage;
 
     public EnemyModel() {
     }

@@ -5,7 +5,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 public class PhantomLargeModel extends EnemyModel {
 
     public static final String PHANTOM_LARGE = "phantomlarge";
-    public int healthDamage = 10;
+    private int healthDamage = 10;
 
     public PhantomLargeModel() {
         super();
