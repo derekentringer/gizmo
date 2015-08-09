@@ -50,6 +50,9 @@
  <objectgroup name="phantom"/>
  <objectgroup name="phantomlarge"/>
  <objectgroup name="playerdestinations">
+  <properties>
+   <property name="doorType" value="bronze"/>
+  </properties>
   <object id="1" x="272" y="560">
    <properties>
     <property name="name" value="doorprevious"/>
@@ -64,7 +67,6 @@
   </object>
   <object id="24" x="145" y="176">
    <properties>
-    <property name="doorType" value="bronze"/>
     <property name="name" value="topleft"/>
    </properties>
    <ellipse/>
