@@ -108,6 +108,7 @@
   </object>
   <object id="73" x="112" y="113">
    <properties>
+    <property name="doorType" value="blood"/>
     <property name="name" value="topleftleft"/>
    </properties>
    <ellipse/>

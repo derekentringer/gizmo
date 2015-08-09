@@ -64,6 +64,7 @@
   </object>
   <object id="24" x="145" y="176">
    <properties>
+    <property name="doorType" value="bronze"/>
     <property name="name" value="topleft"/>
    </properties>
    <ellipse/>

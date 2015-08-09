@@ -9,13 +9,21 @@ import com.derekentringer.gizmo.model.BaseModel;
 
 public class DoorGoldActor extends BaseActor {
 
-    private TextureRegion[] doorGoldSprite;
-    private Texture doorGold;
+    private TextureRegion[] sDoorGoldSprite;
+    private Texture sDoorGold;
+    private boolean sIsLocked;
 
-    public DoorGoldActor(Body body) {
+    public DoorGoldActor(Body body, boolean isLocked) {
         super(body);
-        doorGold = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
-        doorGoldSprite = TextureRegion.split(doorGold, 32, 32)[0];
+        sIsLocked = isLocked;
+        if(sIsLocked) {
+            sDoorGold = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
+            sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
+        }
+        else {
+            sDoorGold = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
+            sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
+        }
     }
 
     @Override
@@ -26,7 +34,15 @@ public class DoorGoldActor extends BaseActor {
     //TODO blah this doesn't work
     //not sure it's needed really
     public void startAnimation() {
-        setAnimation(doorGoldSprite, 1 / 12f);
+        setAnimation(sDoorGoldSprite, 1 / 12f);
+    }
+
+    public boolean getIsLocked() {
+        return sIsLocked;
+    }
+
+    public void setIsLocked(boolean isLocked) {
+        sIsLocked = isLocked;
     }
 
 }

@@ -80,6 +80,7 @@
   </object>
   <object id="23" x="1743" y="144">
    <properties>
+    <property name="doorType" value="gold"/>
     <property name="name" value="topright"/>
    </properties>
    <ellipse/>

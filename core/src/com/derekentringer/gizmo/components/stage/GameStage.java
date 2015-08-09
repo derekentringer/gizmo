@@ -137,7 +137,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         Fixture a = contact.getFixtureA();
         Fixture b = contact.getFixtureB();
 
-        //player at door
+        // player at door
         if (BodyUtils.bodyIsPlayer(a.getBody()) && BodyUtils.bodyIsDoor(b.getBody())) {
             playerActor.setIsAtDoor(true);
             playerActor.setIsAtDoorUserData((DoorModel) b.getBody().getUserData());
@@ -154,7 +154,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.setIsAtDoor(false);
         }
 
-        //player
+        // player fixture and ground detection
         if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
             playerActor.setIsOnGround(true);
         }
@@ -162,7 +162,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             playerActor.setIsOnGround(true);
         }
 
-        //player/enemy collisions
+        // player/enemy collisions
         if (BodyUtils.bodyIsEnemy(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
             playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(a.getBody()));
             playerActor.setIsFlinching(true);
@@ -376,21 +376,26 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                         //TODO animate locked doors?
                         //doors are working, they are not animating
                         //doorGoldActor.startAnimation();
+
+                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
                     if (playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)) {
+                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
                     if (playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)) {
+                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
                     if (playerActor.hasCorrectKey(KeyModel.KEY_BLACK)) {
+                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }

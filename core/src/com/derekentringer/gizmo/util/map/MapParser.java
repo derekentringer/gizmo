@@ -125,8 +125,9 @@ public class MapParser extends Stage {
                             addActor(doorOffActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_GOLD)) {
+                            String doorType = tiledMapTileLayer.getProperties().get("doorType").toString();
                             createLockedGoldDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
-                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), checkIfDoorLocked(doorType), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BRONZE)) {
                             createLockedBronzeDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
@@ -223,13 +224,31 @@ public class MapParser extends Stage {
         }
     }
 
-    public static boolean loopThruPickedUpKeysArray(ArrayList<KeyModel> array, String targetValue) {
+    private static boolean loopThruPickedUpKeysArray(ArrayList<KeyModel> array, String targetValue) {
         for (KeyModel lookingForKey : array) {
             if (lookingForKey.getKeyType().equals(targetValue)) {
                 return true;
             }
         }
         return false;
+    }
+
+    private static boolean loopThruOpenedDoorsArray(ArrayList<DoorModel> array, String targetValue) {
+        for (DoorModel lookingForDoor : array) {
+            if (lookingForDoor.getDoorType().equals(targetValue)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkIfDoorLocked(String doorType) {
+        if(doorType != null && !doorType.isEmpty()) {
+            return !loopThruOpenedDoorsArray(sLoadedLevelModel.getOpenedDoors(), doorType);
+        }
+        else {
+            return false;
+        }
     }
 
     private void createPlayerActor(World world, int xPos, int yPos) {
@@ -240,8 +259,8 @@ public class MapParser extends Stage {
         delegate.setPlayerActor(playerActor);
     }
 
-    private void createLockedGoldDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
-        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber, doorTypeDest), world, tileSize, row, col, true));
+    private void createLockedGoldDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
+        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber, doorTypeDest), world, tileSize, row, col, true), isLocked);
         addActor(doorGoldActor);
         delegate.setLockedGoldDoor(doorGoldActor);
     }
