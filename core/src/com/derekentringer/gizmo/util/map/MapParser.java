@@ -180,24 +180,7 @@ public class MapParser extends Stage {
                     actorsArray.add(phantomLargeActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER_DESTINATIONS)) {
-                    if (whichDoor.equalsIgnoreCase(DoorType.PREVIOUS)
-                            && mapObject.getProperties().get("name").equals(DoorType.PREVIOUS)) {
-                        Float xPosD = (Float) mapObject.getProperties().get("x");
-                        Float yPosD = (Float) mapObject.getProperties().get("y");
-                        int xPos = xPosD.intValue();
-                        int yPos = yPosD.intValue();
-                        createPlayerActor(world, xPos, yPos);
-                    }
-                    else if (whichDoor.equalsIgnoreCase(DoorType.NEXT)
-                            && mapObject.getProperties().get("name").equals(DoorType.NEXT)) {
-                        Float xPosD = (Float) mapObject.getProperties().get("x");
-                        Float yPosD = (Float) mapObject.getProperties().get("y");
-                        int xPos = xPosD.intValue();
-                        int yPos = yPosD.intValue();
-                        createPlayerActor(world, xPos, yPos);
-                    }
-                    //could probably do this for all doors
-                    else if (whichDoor.equalsIgnoreCase(mapObject.getProperties().get("name").toString())) {
+                    if (whichDoor.equalsIgnoreCase(mapObject.getProperties().get("name").toString())) {
                         Float xPosD = (Float) mapObject.getProperties().get("x");
                         Float yPosD = (Float) mapObject.getProperties().get("y");
                         int xPos = xPosD.intValue();
