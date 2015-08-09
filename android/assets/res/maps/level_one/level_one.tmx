@@ -11,7 +11,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmGFuwyAMhZ0/OUGJmrWrlN7/kCsST3mxDJjAMmmWrBQwxh84FHITkSD/X25Jl/SMspLOH92S3jt1U763gs5GHNBaP90XCt4p8aIOzCNZNXPJp2bWjDX/1nyBLXKGVF7kKBiH/ckg5hZbL6vup5klsU6pjHzukVF5YDGf7QdukT2fJ9n3K/3uWr6uZu6dq5l4IyfyGrxnWf+CuTae5p1k36PB28N6JbN3vC3ZgJXf6d61vYq7dawoISnyejTvlay1OKJgnxrJ63mncn5HMZfWdyVmkfJ+5WFtid8b65m5t2zx38vnDdRpZo/vlvhb4j2TY5Z95NLnSdgxr8e/d/zW9++MfW4c5l0M+6ib0c/jO2fbKy1zqwXvL/8fcT5jjWu+e+Pz+K3lCOflmrHD+Rn3QpEja40n1/Ys9PH0r+17OXs+K1vM2Jf1+QrMnn3Ikkem3tu/ZJNbd6wRi2bAPT933/esr27//uirBJGJ+7fE8/+LZy1/rBz7SlobP+ozKfqjLKpdqB2CczDfebiO73zwD9ZV8t+vRu2rlt+Y9y8aI5bfqvyg8ZE3fOYPVObzMd91ISijL9ug3hL+LoKzCj85FtTrbymaJ8evy6vyuag6ngvei3lO+KljtWLX7UH5CXKMw5qbe2LRvFx+G+18X+dY+Dd/s0EZ+R3rfwCenkwO
+   eJzdmOtugzAMhc0fnqBBZe0q0fd/yDVSjjhYDs5tTJolq02wHX/BhISbiAT5/3JLuqTfKCvp/NEt6b1TNxV7O9HZyAPq+WlfKHinxIs+MI9k1cxnMTWzZvTiW/MFtsgZUnuRo2AcjieDmGtsS1m1n2aWxDqlNuq5R0bVgcXc6gdukb2eJ9nXK/3sWrGuZu6dq5l4IyfqGrytrH/B7I2neSfZ12jw9rBeyVw63pZswMrPdO+9vYq7dqwoISnqejTvlaxeHlGwTo3kLXmmcnFHMZ/d35WYRc7XqxLWmvxLc22Ze8sW717eb6BPM5fErsm/Jt+WGrPsI5feT8KOeUvil45f+/y12OfGYd7FsK/hKM2jV3pywvPL7yOu59nwsWL35lcS17sPXJdrxg77Z5wLRY6srSxPx8/z99a9nD3vlS1mrMt6fwVmL9dcvg/H1/M/s8ndd6seZznGwDk/d95vyef7oy/Hz8r7t6Tk/YvfHPPZe+IrqTd+1GdS+KMt6rrQdQj2wXzm4T4+8yE+WFfJf78ata5acWPdv2iM2H6r9oPGR93wnj9Qm/fHfNaFoA1ftkG/JfxdBHsV/uVc0K+/pWieHL9uryrmovp4Lngt5jnhX52rlbu+HlScIMc8rLm5JxbNy+23cZ3P65wL/+dvNmijvmP/D4lyS20=
   </data>
  </layer>
  <layer name="dooroff" width="60" height="23">
