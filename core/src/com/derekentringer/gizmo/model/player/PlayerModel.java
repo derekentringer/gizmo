@@ -16,6 +16,7 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_HEARTS = 2;
     public static final int DEFAULT_HEALTH = 20;
     public static final int DEFAULT_LIVES = 2;
+    public static final int DEFAULT_MAX_LIVES = 5;
     public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyModel> keyList = new ArrayList<KeyModel>();

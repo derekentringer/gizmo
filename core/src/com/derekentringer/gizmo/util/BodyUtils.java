@@ -38,6 +38,11 @@ public class BodyUtils {
         return userData != null && userData.getBaseModelType().equals(BaseModelType.HEART);
     }
 
+    public static boolean bodyIsLife(Body body) {
+        BaseModel userData = (BaseModel) body.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.LIFE);
+    }
+
     public static boolean bodyIsDoor(Body body) {
         BaseModel userData = (BaseModel) body.getUserData();
         return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR);

@@ -12,30 +12,31 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
-import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
-import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
-import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
-import com.derekentringer.gizmo.model.structure.DoorType;
-import com.derekentringer.gizmo.model.enemy.PhantomModel;
-import com.derekentringer.gizmo.model.object.HeartModel;
-import com.derekentringer.gizmo.model.object.KeyModel;
-import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
+import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
-import com.derekentringer.gizmo.model.level.LevelModel;
-import com.derekentringer.gizmo.util.map.MapParser;
-import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
+import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.body.DeleteBody;
+import com.derekentringer.gizmo.model.enemy.PhantomModel;
+import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.LifeModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.DoorModel;
+import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
-import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
+import com.derekentringer.gizmo.util.map.MapParser;
+import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private float effectiveViewportHeight;
 
     private PlayerActor playerActor;
-    private PlayerModel playerData;
+    private PlayerModel playerModel;
     private boolean isPlayerDead = false;
     private ArrayList<DeleteBody> deleteBodies = new ArrayList<DeleteBody>();
 
@@ -198,6 +199,20 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             loadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
             hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
             deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
+        }
+
+        //pickup a life
+        if (BodyUtils.bodyIsLife(a.getBody()) && BodyUtils.bodyIsPlayer(b.getBody())) {
+            playerActor.incrementLives();
+            loadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
+            hudStageDelegate.setHudLives(playerActor.getPlayerLives());
+            deleteBodies.add(new DeleteBody((LifeModel) a.getBody().getUserData(), a.getBody()));
+        }
+        else if (BodyUtils.bodyIsLife(b.getBody()) && BodyUtils.bodyIsPlayer(a.getBody())) {
+            playerActor.incrementLives();
+            loadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
+            hudStageDelegate.setHudLives(playerActor.getPlayerLives());
+            deleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
         }
     }
 
@@ -375,7 +390,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                     if (playerActor.hasCorrectKey(KeyModel.KEY_GOLD)
                             || !playerActor.getIsAtDoorUserData().getIsLocked()) {
 
-                        //TODO animate locked doors?
+                        //TODO animate locked doors
                         //doorGoldActor.startAnimation();
 
                         loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
@@ -440,23 +455,23 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         this.playerActor = playerActor;
         this.playerActor.delegate = this;
         if (LocalDataManager.loadPlayerActorData() != null) {
-            playerData = LocalDataManager.loadPlayerActorData();
-            playerActor.initPlayerData(playerData);
+            playerModel = LocalDataManager.loadPlayerActorData();
+            playerActor.initPlayerData(playerModel);
         }
         else {
-            playerData = new PlayerModel();
-            playerData.setPlayerHearts(PlayerModel.DEFAULT_HEARTS);
-            playerData.setPlayerHealth(PlayerModel.DEFAULT_HEALTH);
-            playerData.setPlayerLives(PlayerModel.DEFAULT_LIVES);
-            playerData.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
-            playerActor.initPlayerData(playerData);
-            LocalDataManager.savePlayerActorData(playerData);
+            playerModel = new PlayerModel();
+            playerModel.setPlayerHearts(PlayerModel.DEFAULT_HEARTS);
+            playerModel.setPlayerHealth(PlayerModel.DEFAULT_HEALTH);
+            playerModel.setPlayerLives(PlayerModel.DEFAULT_LIVES);
+            playerModel.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
+            playerActor.initPlayerData(playerModel);
+            LocalDataManager.savePlayerActorData(playerModel);
         }
 
-        hudStageDelegate.setHudHealthHearts(playerData.getPlayerHearts());
+        hudStageDelegate.setHudHealthHearts(playerModel.getPlayerHearts());
         hudStageDelegate.resetHudShapes();
-        hudStageDelegate.setHudHealth(playerData.getPlayerHealth());
-        hudStageDelegate.setHudLives(playerData.getPlayerLives());
+        hudStageDelegate.setHudHealth(playerModel.getPlayerHealth());
+        hudStageDelegate.setHudLives(playerModel.getPlayerLives());
     }
 
     @Override
@@ -498,7 +513,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void killPlayer() {
         playerActor.resetHealth();
         playerActor.deIncrementLives();
-        hudStageDelegate.setHudLives(playerData.getPlayerLives());
+        hudStageDelegate.setHudLives(playerModel.getPlayerLives());
         LocalDataManager.savePlayerActorData(playerActor.getUserData());
         isPlayerDead = true;
     }

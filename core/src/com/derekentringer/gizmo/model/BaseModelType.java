@@ -11,6 +11,7 @@ public enum BaseModelType {
     PLAYER_HIT_AREA,
     ENEMY,
     KEY,
-    HEART
+    HEART,
+    LIFE
 
 }

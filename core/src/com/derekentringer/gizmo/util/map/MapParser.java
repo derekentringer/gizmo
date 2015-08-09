@@ -15,6 +15,7 @@ import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
 import com.derekentringer.gizmo.components.actor.object.KeyActor;
+import com.derekentringer.gizmo.components.actor.object.LifeActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.structure.GroundActor;
 import com.derekentringer.gizmo.components.actor.structure.WallActor;
@@ -30,6 +31,7 @@ import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorOffModel;
@@ -217,7 +219,21 @@ public class MapParser extends Stage {
                         addActor(heartActor);
                         actorsArray.add(heartActor);
                     }
+                }
+                else if (mapLayer.getName().equalsIgnoreCase(LifeModel.LIFE)) {
+                    Float xPosD = (Float) mapObject.getProperties().get("x");
+                    Float yPosD = (Float) mapObject.getProperties().get("y");
+                    int xPos = xPosD.intValue();
+                    int yPos = yPosD.intValue();
 
+                    // do not load a heart if it was picked up already
+                    // only supporting one heart per level atm
+                    if (sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpLives().size() == 0) {
+                        LifeActor lifeActor = new LifeActor(ObjectUtils.createLife(new LifeModel(), world, xPos, yPos));
+                        lifeActor.setName(LifeModel.LIFE);
+                        addActor(lifeActor);
+                        actorsArray.add(lifeActor);
+                    }
                 }
             }
         }

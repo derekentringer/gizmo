@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.LifeModel;
 
 public class ObjectUtils {
 
@@ -24,6 +25,26 @@ public class ObjectUtils {
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData(new HeartModel());
+
+        body.setUserData(userData);
+
+        shape.dispose();
+        return body;
+    }
+
+    public static Body createLife(BaseModel userData, World world, int posX, int posY) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(WorldUtils.ppmCalc(posX), WorldUtils.ppmCalc(posY));
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        body.createFixture(fixtureDef).setUserData(new LifeModel());
 
         body.setUserData(userData);
 

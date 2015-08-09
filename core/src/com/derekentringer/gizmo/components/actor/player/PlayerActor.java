@@ -151,11 +151,21 @@ public class PlayerActor extends BaseActor {
         playerModel.setPlayerLives(playerModel.DEFAULT_LIVES);
     }
 
+    public void incrementLives() {
+        if(playerModel.getPlayerLives() < playerModel.DEFAULT_MAX_LIVES) {
+            playerModel.setPlayerLives(playerModel.getPlayerLives() + 1);
+        }
+    }
+
     public void deIncrementLives() {
         playerModel.setPlayerLives(playerModel.getPlayerLives() - 1);
         if (playerModel.getPlayerLives() <= 0) {
             delegate.playerZeroLives();
         }
+    }
+
+    public int getPlayerLives() {
+        return playerModel.getPlayerLives();
     }
 
     public void addKey(KeyModel keyModel) {
