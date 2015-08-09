@@ -372,7 +372,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             }
             if (playerActor.getIsAtDoor()) {
                 if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_GOLD)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_GOLD)
+                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
 
                         //TODO animate locked doors?
                         //doors are working, they are not animating
@@ -383,19 +384,22 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)
+                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
                         loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)
+                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
                         loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLACK)) {
+                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLACK)
+                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
                         loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
                         loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
                     }

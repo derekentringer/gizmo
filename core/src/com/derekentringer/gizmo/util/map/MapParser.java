@@ -130,19 +130,19 @@ public class MapParser extends Stage {
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BRONZE)) {
                             createLockedBronzeDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
-                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), checkIfDoorLocked(DoorType.LOCKED_BRONZE), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BLOOD)) {
                             createLockedBloodDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
-                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), checkIfDoorLocked(DoorType.LOCKED_BLOOD), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.LOCKED_BLACK)) {
                             createLockedBlackDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
-                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), checkIfDoorLocked(DoorType.LOCKED_BLACK), row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.OTHER)) {
                             createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get("levelnumber").toString()),
-                                    tiledMapTileLayer.getProperties().get("destination").toString(), row, col);
+                                    tiledMapTileLayer.getProperties().get("destination").toString(), false, row, col);
                         }
                     }
                 }
@@ -254,33 +254,39 @@ public class MapParser extends Stage {
     }
 
     private void createLockedGoldDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
-        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber, doorTypeDest), world, tileSize, row, col, true), isLocked);
+        DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber, doorTypeDest, isLocked), world, tileSize, row, col, true), isLocked);
         doorGoldActor.setName(DoorType.LOCKED_GOLD);
         addActor(doorGoldActor);
         actorsArray.add(doorGoldActor);
         delegate.setLockedGoldDoor(doorGoldActor);
     }
 
-    private void createLockedBronzeDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
-        DoorBronzeActor doorBronzeActor = new DoorBronzeActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BRONZE, levelNumber, doorTypeDest), world, tileSize, row, col, true));
+    private void createLockedBronzeDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
+        DoorBronzeActor doorBronzeActor = new DoorBronzeActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BRONZE, levelNumber, doorTypeDest, isLocked), world, tileSize, row, col, true), isLocked);
+        doorBronzeActor.setName(DoorType.LOCKED_BRONZE);
         addActor(doorBronzeActor);
+        actorsArray.add(doorBronzeActor);
         delegate.setLockedBronzeDoor(doorBronzeActor);
     }
 
-    private void createLockedBloodDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
-        DoorBloodActor doorBloodActor = new DoorBloodActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLOOD, levelNumber, doorTypeDest), world, tileSize, row, col, true));
+    private void createLockedBloodDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
+        DoorBloodActor doorBloodActor = new DoorBloodActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLOOD, levelNumber, doorTypeDest, isLocked), world, tileSize, row, col, true), isLocked);
+        doorBloodActor.setName(DoorType.LOCKED_BLOOD);
         addActor(doorBloodActor);
+        actorsArray.add(doorBloodActor);
         delegate.setLockedBloodDoor(doorBloodActor);
     }
 
-    private void createLockedBlackDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
-        DoorBlackActor doorBlackActor = new DoorBlackActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLACK, levelNumber, doorTypeDest), world, tileSize, row, col, true));
+    private void createLockedBlackDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
+        DoorBlackActor doorBlackActor = new DoorBlackActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLACK, levelNumber, doorTypeDest, isLocked), world, tileSize, row, col, true), isLocked);
+        doorBlackActor.setName(DoorType.LOCKED_BLACK);
         addActor(doorBlackActor);
+        actorsArray.add(doorBlackActor);
         delegate.setLockedBlackDoor(doorBlackActor);
     }
-    
-    private void createOtherDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
-        DoorOtherActor doorOtherActor = new DoorOtherActor(BodyUtils.createStaticBody(new DoorModel(DoorType.OTHER, levelNumber, doorTypeDest), world, tileSize, row, col, true));
+
+    private void createOtherDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
+        DoorOtherActor doorOtherActor = new DoorOtherActor(BodyUtils.createStaticBody(new DoorModel(DoorType.OTHER, levelNumber, doorTypeDest, isLocked), world, tileSize, row, col, true));
         addActor(doorOtherActor);
     }
 

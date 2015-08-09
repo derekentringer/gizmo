@@ -8,17 +8,19 @@ public class DoorModel extends BaseModel {
     private String sDoorType;
     private int sLevelNumber;
     private String sDestinationDoor;
+    private boolean sIsLocked;
 
     public DoorModel() {
         super();
     }
 
-    public DoorModel(String doorType, int levelNumber, String destinationDoor) {
+    public DoorModel(String doorType, int levelNumber, String destinationDoor, boolean isLocked) {
         super();
         baseModelType = BaseModelType.DOOR;
         sDoorType = doorType;
         sLevelNumber = levelNumber;
         sDestinationDoor = destinationDoor;
+        sIsLocked = isLocked;
     }
 
     public DoorModel(String doorType) {
@@ -40,6 +42,14 @@ public class DoorModel extends BaseModel {
             return sDestinationDoor;
         }
         return DoorType.PREVIOUS;
+    }
+
+    public boolean getIsLocked() {
+        return sIsLocked;
+    }
+
+    public void setIsLocked(boolean isLocked) {
+        sIsLocked = isLocked;
     }
 
 }
