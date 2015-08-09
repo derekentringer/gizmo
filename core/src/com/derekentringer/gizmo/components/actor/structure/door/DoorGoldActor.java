@@ -35,12 +35,4 @@ public class DoorGoldActor extends BaseActor {
         setAnimation(sDoorGoldSprite, 1 / 12f);
     }
 
-    public boolean getIsLocked() {
-        return sIsLocked;
-    }
-
-    public void setIsLocked(boolean isLocked) {
-        sIsLocked = isLocked;
-    }
-
 }
