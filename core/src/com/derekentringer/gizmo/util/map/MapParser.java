@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
@@ -162,74 +163,46 @@ public class MapParser extends Stage {
 
             for (MapObject mapObject : mapLayer.getObjects()) {
                 if (mapLayer.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-                    PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), world, xPos, yPos));
+                    PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), world, getMapObjectCoords(mapObject)));
                     phantomActor.setName(PhantomModel.PHANTOM);
                     addActor(phantomActor);
                     actorsArray.add(phantomActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-                    PhantomLargeActor phantomLargeActor = new PhantomLargeActor(EnemyUtils.createLargePhantom(new PhantomLargeModel(), world, xPos, yPos));
+                    PhantomLargeActor phantomLargeActor = new PhantomLargeActor(EnemyUtils.createLargePhantom(new PhantomLargeModel(), world, getMapObjectCoords(mapObject)));
                     phantomLargeActor.setName(PhantomLargeModel.PHANTOM_LARGE);
                     addActor(phantomLargeActor);
                     actorsArray.add(phantomLargeActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER_DESTINATIONS)) {
                     if (whichDoor.equalsIgnoreCase(mapObject.getProperties().get("name").toString())) {
-                        Float xPosD = (Float) mapObject.getProperties().get("x");
-                        Float yPosD = (Float) mapObject.getProperties().get("y");
-                        int xPos = xPosD.intValue();
-                        int yPos = yPosD.intValue();
-                        createPlayerActor(world, xPos, yPos);
+                        createPlayerActor(world, getMapObjectCoords(mapObject));
                     }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(KeyModel.KEY)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
                     String keyType = (String) mapObject.getProperties().get("keyType");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-
                     if (!loopThruPickedUpKeysArray(sLoadedLevelModel.getPickedUpKeys(), keyType)) {
-                        KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, xPos, yPos), keyType);
+                        KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, getMapObjectCoords(mapObject)), keyType);
                         keyActor.setName(KeyModel.KEY);
                         addActor(keyActor);
                         actorsArray.add(keyActor);
                     }
-
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-
                     // do not load a heart if it was picked up already
                     // only supporting one heart per level atm
                     if (sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpHearts().size() == 0) {
-                        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, xPos, yPos));
+                        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, getMapObjectCoords(mapObject)));
                         heartActor.setName(HeartModel.HEART);
                         addActor(heartActor);
                         actorsArray.add(heartActor);
                     }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(LifeModel.LIFE)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-
                     // do not load a heart if it was picked up already
                     // only supporting one heart per level atm
                     if (sLoadedLevelModel != null && sLoadedLevelModel.getPickedUpLives().size() == 0) {
-                        LifeActor lifeActor = new LifeActor(ObjectUtils.createLife(new LifeModel(), world, xPos, yPos));
+                        LifeActor lifeActor = new LifeActor(ObjectUtils.createLife(new LifeModel(), world, getMapObjectCoords(mapObject)));
                         lifeActor.setName(LifeModel.LIFE);
                         addActor(lifeActor);
                         actorsArray.add(lifeActor);
@@ -239,30 +212,8 @@ public class MapParser extends Stage {
         }
     }
 
-    private static boolean loopThruPickedUpKeysArray(ArrayList<KeyModel> array, String targetValue) {
-        for (KeyModel lookingForKey : array) {
-            if (lookingForKey.getKeyType().equals(targetValue)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean loopThruOpenedDoorsArray(ArrayList<DoorModel> array, String targetValue) {
-        for (DoorModel lookingForDoor : array) {
-            if (lookingForDoor.getDoorType().equals(targetValue)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean checkIfDoorLocked(String doorType) {
-        return !loopThruOpenedDoorsArray(sLoadedLevelModel.getOpenedDoors(), doorType);
-    }
-
-    private void createPlayerActor(World world, int xPos, int yPos) {
-        PlayerActor playerActor = new PlayerActor(PlayerUtils.createPlayer(world, xPos, yPos));
+    private void createPlayerActor(World world, Vector2 coordinates) {
+        PlayerActor playerActor = new PlayerActor(PlayerUtils.createPlayer(world, coordinates));
         playerActor.setName(PlayerModel.PLAYER);
         addActor(playerActor);
         actorsArray.add(playerActor);
@@ -304,6 +255,37 @@ public class MapParser extends Stage {
     private void createOtherDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
         DoorOtherActor doorOtherActor = new DoorOtherActor(BodyUtils.createStaticBody(new DoorModel(DoorType.OTHER, levelNumber, doorTypeDest, isLocked), world, tileSize, row, col, true));
         addActor(doorOtherActor);
+    }
+
+    private Vector2 getMapObjectCoords(MapObject mapObject) {
+        Vector2 mapObjectCoordinates = new Vector2();
+        Float xPosD = (Float) mapObject.getProperties().get("x");
+        Float yPosD = (Float) mapObject.getProperties().get("y");
+        mapObjectCoordinates.x = xPosD.intValue();
+        mapObjectCoordinates.y = yPosD.intValue();
+        return mapObjectCoordinates;
+    }
+
+    private static boolean loopThruPickedUpKeysArray(ArrayList<KeyModel> array, String targetValue) {
+        for (KeyModel lookingForKey : array) {
+            if (lookingForKey.getKeyType().equals(targetValue)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean loopThruOpenedDoorsArray(ArrayList<DoorModel> array, String targetValue) {
+        for (DoorModel lookingForDoor : array) {
+            if (lookingForDoor.getDoorType().equals(targetValue)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkIfDoorLocked(String doorType) {
+        return !loopThruOpenedDoorsArray(sLoadedLevelModel.getOpenedDoors(), doorType);
     }
 
     public void destroyTiledMap() {

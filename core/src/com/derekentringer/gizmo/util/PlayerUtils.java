@@ -11,13 +11,13 @@ import com.derekentringer.gizmo.model.player.PlayerHitAreaModel;
 
 public class PlayerUtils {
 
-    public static Body createPlayer(World world, int posX, int posY) {
+    public static Body createPlayer(World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
 
         // create player
-        bodyDef.position.set(WorldUtils.ppmCalc(posX), WorldUtils.ppmCalc(posY));
+        bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 

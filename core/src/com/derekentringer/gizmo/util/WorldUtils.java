@@ -29,4 +29,8 @@ public class WorldUtils {
         return dimension / Constants.PPM;
     }
 
+    public static float ppmCalc(float dimension) {
+        return dimension / Constants.PPM;
+    }
+
 }
