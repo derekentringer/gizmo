@@ -15,7 +15,7 @@ public class DoorBloodActor extends BaseActor {
     public DoorBloodActor(Body body, boolean isLocked) {
         super(body);
         if(isLocked) {
-            sDoorBlood = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
+            sDoorBlood = Gizmo.assetManager.get("res/images/door_blood.png", Texture.class);
         }
         else {
             sDoorBlood = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);

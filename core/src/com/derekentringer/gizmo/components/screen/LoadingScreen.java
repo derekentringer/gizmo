@@ -59,6 +59,9 @@ public class LoadingScreen extends com.derekentringer.gizmo.components.screen.Ab
         game.assetManager.load("res/images/heart.png", Texture.class);
 
         game.assetManager.load("res/images/door_gold.png", Texture.class);
+        game.assetManager.load("res/images/door_bronze.png", Texture.class);
+        game.assetManager.load("res/images/door_blood.png", Texture.class);
+        game.assetManager.load("res/images/door_black.png", Texture.class);
 
         game.assetManager.load("res/images/door_opened.png", Texture.class);
 

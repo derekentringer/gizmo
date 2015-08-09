@@ -13,7 +13,7 @@
    eJzt08EJACAMA8CuYd1/TxF8KQ5gvYOQLJAIAAAAqKGt/KBfdlV52Zx++cCUW8MLBnjYAOo=
   </data>
  </layer>
- <layer name="backgroundForeground" width="60" height="23">
+ <layer name="backgroundforeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztmGEOgyAMhTmH1f3g/odcSGhSOxtWbJGxfgmRErG8BvVpSsEq7E8vwIlDGM+d86TxWXixGNcLjXmQPrUdF9ebjU2I+Tgn14aaUWurTr8KakN9wOLVQG24f3Ptt+57K0Y/TzfSruIgCALKqp5PwvNdN2Mtrb0b9Yd3a7mzowWaNX2TF4S+lpILfYflHtR4GboXvPcq9dFQ81nk1NSOnuvtgaiPzunsOwu92nv1WsPv1ZJL8pl3PKdGw0hf65Vr1W8viX/TO/rfyRuviAnL
   </data>
@@ -81,15 +81,6 @@
   <object id="23" x="1743" y="144">
    <properties>
     <property name="name" value="topright"/>
-   </properties>
-   <ellipse/>
-  </object>
- </objectgroup>
- <objectgroup name="doorlockedgold">
-  <object id="24" x="369" y="621">
-   <properties>
-    <property name="destination" value="doorprevious"/>
-    <property name="levelnumber" value="0"/>
    </properties>
    <ellipse/>
   </object>

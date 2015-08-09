@@ -19,7 +19,7 @@
    eJzt1yEOADAIA8A9A/7/0XmyTJKw3ZkKTCtZi1/k5RZtLXqdNkdJAACAiW4/3muyJMBkG6X6AMY=
   </data>
  </layer>
- <layer name="backgroundForeground" width="60" height="23">
+ <layer name="backgroundforeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztV9EKwyAM7He0tg/7/48cwoRwuxjTRh3Dg+ESNcl5Uei2LSwsLPwf0uwCBuOaXcBgHIq/t+6z+krj21t3LW9vaHmj68Hze4E9Sm+Lb1QdmMeyWe6IWiy+NZ0TjNKPPoxj6c18ET1n8a3d4zLHtPLqyfK09IAXHn01zVjtXr7ZPp177sDDFzXQ+Gbb6sWIPTVod90TQ8sf0c/ZLud5KmvYHUcUntf23S8sZtnDuGg1M92t+4nz++cn197RV9bN3gTtnWA5e+orscOI/hpKD7Aa5Dz6mHbZl8CWo/Q/4fsE8qzY+Rywrvxn9WAMTYcWvrO+U1p6xIvot/bXMbOfZ2A03zdM4hIJ
   </data>
@@ -44,7 +44,7 @@
    eJztzjENAAAIA7C5wb9DLOwjJK2CJgAAAAB8NtcBoLalYAAo
   </data>
  </layer>
- <layer name="doorOther" width="60" height="23">
+ <layer name="doorother" width="60" height="23">
   <properties>
    <property name="destination" value="topleft"/>
    <property name="levelnumber" value="2"/>
@@ -53,7 +53,7 @@
    eJztzjEBAAAMAiCjrH/KxfAQEpDAnmsHAAAAAJj0aK4AIQ==
   </data>
  </layer>
- <layer name="doorLockedBlood" width="60" height="23">
+ <layer name="doorlockedblood" width="60" height="23">
   <properties>
    <property name="destination" value="doorprevious"/>
    <property name="levelnumber" value="0"/>
@@ -71,18 +71,6 @@
   <properties>
    <property name="keyType" value="blood"/>
   </properties>
-  <object id="77" x="432" y="549">
-   <properties>
-    <property name="keyType" value="gold"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="78" x="529" y="447.5">
-   <properties>
-    <property name="keyType" value="bronze"/>
-   </properties>
-   <ellipse/>
-  </object>
  </objectgroup>
  <objectgroup name="playerdestinations">
   <properties>

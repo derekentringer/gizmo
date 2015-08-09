@@ -15,7 +15,7 @@ public class DoorBronzeActor extends BaseActor {
     public DoorBronzeActor(Body body, boolean isLocked) {
         super(body);
         if(isLocked) {
-            sDoorBronze = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
+            sDoorBronze = Gizmo.assetManager.get("res/images/door_bronze.png", Texture.class);
         }
         else {
             sDoorBronze = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
