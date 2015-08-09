@@ -159,21 +159,6 @@ public class MapParser extends Stage {
             }
 
             for (MapObject mapObject : mapLayer.getObjects()) {
-
-                /*if (mapLayer.getName().equalsIgnoreCase(DoorType.LOCKED_GOLD)) {
-                    Float xPosD = (Float) mapObject.getProperties().get("x");
-                    Float yPosD = (Float) mapObject.getProperties().get("y");
-                    int xPos = xPosD.intValue();
-                    int yPos = yPosD.intValue();
-
-                    createLockedGoldDoorActor(world,
-                            Integer.parseInt(mapObject.getProperties().get("levelnumber").toString()),
-                            mapObject.getProperties().get("destination").toString(),
-                            checkIfDoorLocked(DoorType.LOCKED_GOLD),
-                            xPos,
-                            yPos);
-                }*/
-
                 if (mapLayer.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");
                     Float yPosD = (Float) mapObject.getProperties().get("y");
@@ -293,6 +278,7 @@ public class MapParser extends Stage {
         addActor(doorBlackActor);
         delegate.setLockedBlackDoor(doorBlackActor);
     }
+    
     private void createOtherDoorActor(World world, int levelNumber, String doorTypeDest, int row, int col) {
         DoorOtherActor doorOtherActor = new DoorOtherActor(BodyUtils.createStaticBody(new DoorModel(DoorType.OTHER, levelNumber, doorTypeDest), world, tileSize, row, col, true));
         addActor(doorOtherActor);
