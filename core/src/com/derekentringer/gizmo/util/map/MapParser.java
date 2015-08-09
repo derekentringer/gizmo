@@ -196,6 +196,14 @@ public class MapParser extends Stage {
                         int yPos = yPosD.intValue();
                         createPlayerActor(world, xPos, yPos);
                     }
+                    //could probably do this for all doors
+                    else if (whichDoor.equalsIgnoreCase(mapObject.getProperties().get("name").toString())) {
+                        Float xPosD = (Float) mapObject.getProperties().get("x");
+                        Float yPosD = (Float) mapObject.getProperties().get("y");
+                        int xPos = xPosD.intValue();
+                        int yPos = yPosD.intValue();
+                        createPlayerActor(world, xPos, yPos);
+                    }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(KeyModel.KEY)) {
                     Float xPosD = (Float) mapObject.getProperties().get("x");

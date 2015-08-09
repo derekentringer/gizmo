@@ -1,6 +1,8 @@
 TODO
 -----
 
+** need to clean up the mapparser
+
 ** add the rest of the doors to the map parser
 ** doors seem to still be bugged sometimes
 

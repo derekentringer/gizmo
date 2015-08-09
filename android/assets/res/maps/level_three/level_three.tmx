@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="27">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="31">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="192"/>
  </tileset>
@@ -73,15 +73,15 @@
   <properties>
    <property name="keyType" value="blood"/>
   </properties>
-  <object id="25" x="1489" y="559">
+  <object id="28" x="367" y="497">
    <properties>
-    <property name="keyType" value="blood"/>
+    <property name="keyType" value="bronze"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="26" x="1457" y="559">
+  <object id="30" x="466" y="495">
    <properties>
-    <property name="keyType" value="bronze"/>
+    <property name="keyType" value="blood"/>
    </properties>
    <ellipse/>
   </object>
