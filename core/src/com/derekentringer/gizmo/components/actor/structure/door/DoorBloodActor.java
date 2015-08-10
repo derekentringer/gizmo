@@ -9,19 +9,19 @@ import com.derekentringer.gizmo.model.BaseModel;
 
 public class DoorBloodActor extends BaseActor {
 
-    private TextureRegion[] sDoorBloodSprite;
-    private Texture sDoorBlood;
+    private TextureRegion[] mDoorBloodSprite;
+    private Texture mDoorBlood;
 
     public DoorBloodActor(Body body, boolean isLocked) {
         super(body);
         if(isLocked) {
-            sDoorBlood = Gizmo.assetManager.get("res/images/door_blood.png", Texture.class);
+            mDoorBlood = Gizmo.assetManager.get("res/images/door_blood.png", Texture.class);
         }
         else {
-            sDoorBlood = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
+            mDoorBlood = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
         }
-        sDoorBloodSprite = TextureRegion.split(sDoorBlood, 32, 32)[0];
-        setAnimation(sDoorBloodSprite, 1 / 12f);
+        mDoorBloodSprite = TextureRegion.split(mDoorBlood, 32, 32)[0];
+        setAnimation(mDoorBloodSprite, 1 / 12f);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DoorBloodActor extends BaseActor {
     }
 
     public void startAnimation() {
-        setAnimation(sDoorBloodSprite, 1 / 12f);
+        setAnimation(mDoorBloodSprite, 1 / 12f);
     }
 
 }

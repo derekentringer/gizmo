@@ -7,7 +7,7 @@ import com.derekentringer.gizmo.model.structure.WallModel;
 
 public class WallActor extends BaseActor {
 
-    private WallModel wallModel = new WallModel();
+    private WallModel mWallModel = new WallModel();
 
     public WallActor(Body body) {
         super(body);
@@ -15,7 +15,7 @@ public class WallActor extends BaseActor {
 
     @Override
     public BaseModel getUserData() {
-        return wallModel;
+        return mWallModel;
     }
 
 }

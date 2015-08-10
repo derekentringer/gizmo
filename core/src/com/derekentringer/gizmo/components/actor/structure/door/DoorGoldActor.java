@@ -9,19 +9,19 @@ import com.derekentringer.gizmo.model.BaseModel;
 
 public class DoorGoldActor extends BaseActor {
 
-    private TextureRegion[] sDoorGoldSprite;
-    private Texture sDoorGold;
+    private TextureRegion[] mDoorGoldSprite;
+    private Texture mDoorGold;
 
     public DoorGoldActor(Body body, boolean isLocked) {
         super(body);
         if(isLocked) {
-            sDoorGold = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
+            mDoorGold = Gizmo.assetManager.get("res/images/door_gold.png", Texture.class);
         }
         else {
-            sDoorGold = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
+            mDoorGold = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
         }
-        sDoorGoldSprite = TextureRegion.split(sDoorGold, 32, 32)[0];
-        setAnimation(sDoorGoldSprite, 1 / 12f);
+        mDoorGoldSprite = TextureRegion.split(mDoorGold, 32, 32)[0];
+        setAnimation(mDoorGoldSprite, 1 / 12f);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DoorGoldActor extends BaseActor {
     }
 
     public void startAnimation() {
-        setAnimation(sDoorGoldSprite, 1 / 12f);
+        setAnimation(mDoorGoldSprite, 1 / 12f);
     }
 
 }

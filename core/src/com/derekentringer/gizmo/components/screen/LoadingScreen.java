@@ -5,7 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.derekentringer.gizmo.Gizmo;
 
-public class LoadingScreen extends com.derekentringer.gizmo.components.screen.AbstractScreen {
+public class LoadingScreen extends AbstractScreen {
 
     public LoadingScreen(Gizmo game) {
         super(game);

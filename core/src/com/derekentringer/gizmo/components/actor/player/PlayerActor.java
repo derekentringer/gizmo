@@ -226,7 +226,7 @@ public class PlayerActor extends BaseActor {
                 }
             }
         }
-        BodyUtils.applyLinearImpulseToBody(body, JUMP_FORCE, "y");
+        BodyUtils.applyLinearImpulseToBody(mBody, JUMP_FORCE, "y");
         playJumpSfx();
     }
 
@@ -255,7 +255,7 @@ public class PlayerActor extends BaseActor {
                 }
             }
         }
-        BodyUtils.applyLinearImpulseToBody(body, JUMP_FORCE_RESET, "y");
+        BodyUtils.applyLinearImpulseToBody(mBody, JUMP_FORCE_RESET, "y");
     }
 
     public void moveLeft() {
@@ -276,7 +276,7 @@ public class PlayerActor extends BaseActor {
                 setAnimation(jumpUpLeftSprites, 1 / 12f);
             }
         }
-        BodyUtils.applyLinearImpulseToBody(body, -RUNNING_FORCE, "x");
+        BodyUtils.applyLinearImpulseToBody(mBody, -RUNNING_FORCE, "x");
         setFacingDirection(FACING_LEFT);
     }
 
@@ -298,13 +298,13 @@ public class PlayerActor extends BaseActor {
                 setAnimation(jumpUpRightSprites, 1 / 12f);
             }
         }
-        BodyUtils.applyLinearImpulseToBody(body, RUNNING_FORCE, "x");
+        BodyUtils.applyLinearImpulseToBody(mBody, RUNNING_FORCE, "x");
         setFacingDirection(FACING_RIGHT);
     }
 
     public void stoppedMoving() {
         if (isFlinching) {
-            if (facingDirection == FACING_LEFT) {
+            if (mFacingDirection == FACING_LEFT) {
                 if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingStandingLeftSprites)) {
                     setAnimation(flinchingStandingLeftSprites, 1 / 12f);
                 }
@@ -316,7 +316,7 @@ public class PlayerActor extends BaseActor {
             }
         }
         else {
-            if (facingDirection == FACING_LEFT) {
+            if (mFacingDirection == FACING_LEFT) {
                 if (getIsOnGround() && !getCurrentTextureRegion().equals(standingLeftSprites)) {
                     setAnimation(standingLeftSprites, 1 / 12f);
                 }
@@ -327,15 +327,15 @@ public class PlayerActor extends BaseActor {
                 }
             }
         }
-        BodyUtils.applyLinearImpulseToBody(body, 0, "x");
+        BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
     }
 
     private void applyFlinchForce() {
-        if (facingDirection == FACING_RIGHT) {
-            BodyUtils.applyLinearImpulseToBody(body, -FLINCH_FORCE, "x");
+        if (mFacingDirection == FACING_RIGHT) {
+            BodyUtils.applyLinearImpulseToBody(mBody, -FLINCH_FORCE, "x");
         }
         else {
-            BodyUtils.applyLinearImpulseToBody(body, FLINCH_FORCE, "x");
+            BodyUtils.applyLinearImpulseToBody(mBody, FLINCH_FORCE, "x");
         }
     }
 

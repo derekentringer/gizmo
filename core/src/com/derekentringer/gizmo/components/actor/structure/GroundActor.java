@@ -7,7 +7,7 @@ import com.derekentringer.gizmo.model.structure.GroundModel;
 
 public class GroundActor extends BaseActor {
 
-    private GroundModel groundModel = new GroundModel();
+    private GroundModel mGroundModel = new GroundModel();
 
     public GroundActor(Body body) {
         super(body);
@@ -15,7 +15,7 @@ public class GroundActor extends BaseActor {
 
     @Override
     public BaseModel getUserData() {
-        return groundModel;
+        return mGroundModel;
     }
 
 }

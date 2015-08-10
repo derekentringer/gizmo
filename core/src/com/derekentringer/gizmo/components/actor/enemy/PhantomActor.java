@@ -56,15 +56,15 @@ public class PhantomActor extends BaseActor {
     public void act(float delta) {
         super.act(delta);
         if (getPosition().x > getPlayerPosition().x + WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
-            BodyUtils.applyLinearImpulseToBody(body, -MOVEMENT_FORCE, "x");
+            BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_LEFT);
         }
         else if (getPosition().x < getPlayerPosition().x - WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
-            BodyUtils.applyLinearImpulseToBody(body, MOVEMENT_FORCE, "x");
+            BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_RIGHT);
         }
 
-        if (facingDirection == FACING_LEFT) {
+        if (mFacingDirection == FACING_LEFT) {
             if (!getCurrentTextureRegion().equals(phantomLeftSprite)) {
                 setAnimation(phantomLeftSprite, 1 / 12f);
             }

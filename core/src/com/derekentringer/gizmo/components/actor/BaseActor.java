@@ -14,43 +14,42 @@ public abstract class BaseActor extends Actor {
     public static final int FACING_RIGHT = 1;
     public static final int FACING_LEFT = 2;
 
-    public BaseModel userData;
+    public BaseModel mBaseModel;
 
-    public int facingDirection;
+    public int mFacingDirection;
 
-    protected Body body;
-    protected AnimationManager animationManager;
-    protected float width;
-    protected float height;
+    protected Body mBody;
+    protected AnimationManager mAnimationManager;
+    protected float mWidth;
+    protected float mHeight;
 
-    private TextureRegion[] currentTextureRegion;
+    private TextureRegion[] mCurrentTextureRegion;
 
     public abstract BaseModel getUserData();
 
     public BaseActor(Body body) {
-        this.body = body;
-        this.userData = (BaseModel) body.getUserData();
-        this.animationManager = new AnimationManager();
+        mBody = body;
+        mBaseModel = (BaseModel) body.getUserData();
+        mAnimationManager = new AnimationManager();
     }
 
     public void setAnimation(TextureRegion[] textureRegion, float delay) {
-        //TODO check for same animation here instead of in subclasses
         setCurrentTextureRegion(textureRegion);
-        currentTextureRegion = textureRegion;
-        animationManager.setFrames(textureRegion, delay);
-        width = textureRegion[0].getRegionWidth();
-        height = textureRegion[0].getRegionHeight();
+        mCurrentTextureRegion = textureRegion;
+        mAnimationManager.setFrames(textureRegion, delay);
+        mWidth = textureRegion[0].getRegionWidth();
+        mHeight = textureRegion[0].getRegionHeight();
     }
 
     public void update(float delayTime) {
-        animationManager.update(delayTime);
+        mAnimationManager.update(delayTime);
     }
 
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.begin();
-        spriteBatch.draw(animationManager.getFrame(),
-                body.getPosition().x * Constants.PPM - width / 2,
-                body.getPosition().y * Constants.PPM - height / 2);
+        spriteBatch.draw(mAnimationManager.getFrame(),
+                mBody.getPosition().x * Constants.PPM - mWidth / 2,
+                mBody.getPosition().y * Constants.PPM - mHeight / 2);
         spriteBatch.end();
     }
 
@@ -59,35 +58,35 @@ public abstract class BaseActor extends Actor {
     }
 
     public void setCurrentTextureRegion(TextureRegion[] textureRegion) {
-        currentTextureRegion = textureRegion;
+        mCurrentTextureRegion = textureRegion;
     }
 
     public TextureRegion[] getCurrentTextureRegion() {
-        return currentTextureRegion;
+        return mCurrentTextureRegion;
     }
 
     public Body getBody() {
-        return body;
+        return mBody;
     }
 
     public Vector2 getPosition() {
-        return body.getPosition();
+        return mBody.getPosition();
     }
 
     public float getWidth() {
-        return width;
+        return mWidth;
     }
 
     public float getHeight() {
-        return height;
+        return mHeight;
     }
 
     public void setFacingDirection(int direction) {
-        facingDirection = direction;
+        mFacingDirection = direction;
     }
 
     public int getFacingDirection() {
-        return facingDirection;
+        return mFacingDirection;
     }
 
 }
