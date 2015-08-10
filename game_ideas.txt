@@ -1,9 +1,6 @@
 TODO
 -----
 
-
-
-
 add a power up for jumping
 add barking ability
 add a power up for barking
