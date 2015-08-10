@@ -10,23 +10,21 @@ import com.derekentringer.gizmo.model.object.LifeModel;
 
 public class LifeActor extends BaseActor {
 
-    private LifeModel lifeModel = new LifeModel();
+    private LifeModel mLifeModel = new LifeModel();
 
-    private TextureRegion[] sLifeSprite;
-    private Texture sLife;
+    private TextureRegion[] mLifeSprite;
+    private Texture mLife;
 
     public LifeActor(Body body) {
         super(body);
-
-        sLife = Gizmo.assetManager.get("res/images/life.png", Texture.class);
-        sLifeSprite = TextureRegion.split(sLife, 32, 32)[0];
-
-        setAnimation(sLifeSprite, 1 / 12f);
+        mLife = Gizmo.assetManager.get("res/images/life.png", Texture.class);
+        mLifeSprite = TextureRegion.split(mLife, 32, 32)[0];
+        setAnimation(mLifeSprite, 1 / 12f);
     }
 
     @Override
-    public BaseModel getUserData() {
-        return lifeModel;
+    public BaseModel getPlayerModel() {
+        return mLifeModel;
     }
 
 }

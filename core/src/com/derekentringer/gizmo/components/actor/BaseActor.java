@@ -25,7 +25,7 @@ public abstract class BaseActor extends Actor {
 
     private TextureRegion[] mCurrentTextureRegion;
 
-    public abstract BaseModel getUserData();
+    public abstract BaseModel getPlayerModel();
 
     public BaseActor(Body body) {
         mBody = body;

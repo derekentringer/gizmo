@@ -346,7 +346,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             mIsPlayerDead = false;
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
-            if (mPlayerActor.getUserData().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
+            if (mPlayerActor.getPlayerModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
                 loadLevel(Constants.gameLevels.get(0),  DoorType.PREVIOUS);
             }
             else {
@@ -443,7 +443,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         WorldUtils.destroyBodies(mWorld);
 
         mPlayerActor.setCurrentLevel(newLevel);
-        LocalDataManager.savePlayerActorData(mPlayerActor.getUserData());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
 
         LocalDataManager.saveLevelData(mLoadedLevelModel);
 
@@ -514,12 +514,12 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
         hudStageDelegate.setHudLives(mPlayerModel.getPlayerLives());
-        LocalDataManager.savePlayerActorData(mPlayerActor.getUserData());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
         mIsPlayerDead = true;
     }
 
     public void quitGame() {
-        LocalDataManager.savePlayerActorData(mPlayerActor.getUserData());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
         LocalDataManager.saveLevelData(mLoadedLevelModel);
     }
 

@@ -16,40 +16,32 @@ public class PhantomActor extends BaseActor {
     private static final float MOVEMENT_FORCE = 0.1f;
     private static final int MOVEMENT_PADDING = 7;
 
-    private PhantomModel phantomModel = new PhantomModel();
+    private PhantomModel mPhantomModel = new PhantomModel();
 
-    private TextureRegion[] phantomLeftSprite;
-    private TextureRegion[] phantomRightSprite;
-    private Texture phantomLeft;
-    private Texture phantomRight;
+    private TextureRegion[] mPhantomLeftSprite;
+    private TextureRegion[] mPhantomRightSprite;
+    private Texture mPhantomLeft;
+    private Texture mPhantomRight;
 
-    private Vector2 playerPosition = new Vector2();
+    private Vector2 mPlayerPosition = new Vector2();
 
     public PhantomActor(Body body) {
         super(body);
 
-        phantomLeft = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_left.png", Texture.class);
-        phantomRight = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_right.png", Texture.class);
+        mPhantomLeft = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_left.png", Texture.class);
+        mPhantomRight = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_right.png", Texture.class);
 
-        phantomLeftSprite = TextureRegion.split(phantomLeft, 32, 32)[0];
-        phantomRightSprite = TextureRegion.split(phantomRight, 32, 32)[0];
+        mPhantomLeftSprite = TextureRegion.split(mPhantomLeft, 32, 32)[0];
+        mPhantomRightSprite = TextureRegion.split(mPhantomRight, 32, 32)[0];
 
-        setAnimation(phantomLeftSprite, 1 / 12f);
+        setAnimation(mPhantomLeftSprite, 1 / 12f);
 
         setFacingDirection(FACING_LEFT);
     }
 
     @Override
-    public BaseModel getUserData() {
-        return phantomModel;
-    }
-
-    public Vector2 getPlayerPosition() {
-        return playerPosition;
-    }
-
-    public void setPlayerPosition(float xPos) {
-        playerPosition.x = xPos;
+    public BaseModel getPlayerModel() {
+        return mPhantomModel;
     }
 
     @Override
@@ -65,15 +57,23 @@ public class PhantomActor extends BaseActor {
         }
 
         if (mFacingDirection == FACING_LEFT) {
-            if (!getCurrentTextureRegion().equals(phantomLeftSprite)) {
-                setAnimation(phantomLeftSprite, 1 / 12f);
+            if (!getCurrentTextureRegion().equals(mPhantomLeftSprite)) {
+                setAnimation(mPhantomLeftSprite, 1 / 12f);
             }
         }
         else {
-            if (!getCurrentTextureRegion().equals(phantomRightSprite)) {
-                setAnimation(phantomRightSprite, 1 / 12f);
+            if (!getCurrentTextureRegion().equals(mPhantomRightSprite)) {
+                setAnimation(mPhantomRightSprite, 1 / 12f);
             }
         }
+    }
+
+    public Vector2 getPlayerPosition() {
+        return mPlayerPosition;
+    }
+
+    public void setPlayerPosition(float xPos) {
+        mPlayerPosition.x = xPos;
     }
 
 }

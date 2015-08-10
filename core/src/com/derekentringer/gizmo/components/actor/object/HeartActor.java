@@ -10,23 +10,23 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 
 public class HeartActor extends BaseActor {
 
-    private HeartModel heartModel = new HeartModel();
+    private HeartModel mHeartModel = new HeartModel();
 
-    private TextureRegion[] heartSprite;
-    private Texture heart;
+    private TextureRegion[] mHeartSprite;
+    private Texture mHeart;
 
     public HeartActor(Body body) {
         super(body);
 
-        heart = Gizmo.assetManager.get("res/images/heart.png", Texture.class);
-        heartSprite = TextureRegion.split(heart, 32, 32)[0];
+        mHeart = Gizmo.assetManager.get("res/images/heart.png", Texture.class);
+        mHeartSprite = TextureRegion.split(mHeart, 32, 32)[0];
 
-        setAnimation(heartSprite, 1 / 12f);
+        setAnimation(mHeartSprite, 1 / 12f);
     }
 
     @Override
-    public BaseModel getUserData() {
-        return heartModel;
+    public BaseModel getPlayerModel() {
+        return mHeartModel;
     }
 
 }

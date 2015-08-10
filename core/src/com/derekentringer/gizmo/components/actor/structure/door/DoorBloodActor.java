@@ -25,7 +25,7 @@ public class DoorBloodActor extends BaseActor {
     }
 
     @Override
-    public BaseModel getUserData() {
+    public BaseModel getPlayerModel() {
         return null;
     }
 

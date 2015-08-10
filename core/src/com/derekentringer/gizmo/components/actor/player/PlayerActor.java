@@ -25,161 +25,161 @@ public class PlayerActor extends BaseActor {
     public static final int FLINCHING_LENGTH = 3;
     private static final float FLINCH_FORCE = 50f;
 
-    private PlayerModel playerModel = new PlayerModel();
+    private PlayerModel mPlayerModel = new PlayerModel();
 
     public IPlayerDelegate delegate = null;
 
-    private TextureRegion[] runningRightSprites;
-    private TextureRegion[] runningLeftSprites;
-    private TextureRegion[] standingRightSprites;
-    private TextureRegion[] standingLeftSprites;
-    private TextureRegion[] jumpUpRightSprites;
-    private TextureRegion[] jumpUpLeftSprites;
-    private TextureRegion[] jumpFallRightSprites;
-    private TextureRegion[] jumpFallLeftSprites;
+    private TextureRegion[] mRunningRightSprites;
+    private TextureRegion[] mRunningLeftSprites;
+    private TextureRegion[] mStandingRightSprites;
+    private TextureRegion[] mStandingLeftSprites;
+    private TextureRegion[] mJumpUpRightSprites;
+    private TextureRegion[] mJumpUpLeftSprites;
+    private TextureRegion[] mJumpFallRightSprites;
+    private TextureRegion[] mJumpFallLeftSprites;
 
-    private TextureRegion[] flinchingRunningLeftSprites;
-    private TextureRegion[] flinchingRunningRightSprites;
-    private TextureRegion[] flinchingStandingLeftSprites;
-    private TextureRegion[] flinchingStandingRightSprites;
-    private TextureRegion[] flinchingJumpUpLeftSprites;
-    private TextureRegion[] flinchingJumpUpRightSprites;
-    private TextureRegion[] flinchingJumpFallLeftSprites;
-    private TextureRegion[] flinchingJumpFallRightSprites;
+    private TextureRegion[] mFlinchingRunningLeftSprites;
+    private TextureRegion[] mFlinchingRunningRightSprites;
+    private TextureRegion[] mFlinchingStandingLeftSprites;
+    private TextureRegion[] mFlinchingStandingRightSprites;
+    private TextureRegion[] mFlinchingJumpUpLeftSprites;
+    private TextureRegion[] mFlinchingJumpUpRightSprites;
+    private TextureRegion[] mFlinchingJumpFallLeftSprites;
+    private TextureRegion[] mFlinchingJumpFallRightSprites;
 
-    private Texture gizmoRunningRight;
-    private Texture gizmoRunningLeft;
-    private Texture gizmoStandingRight;
-    private Texture gizmoStandingLeft;
-    private Texture gizmoJumpUpRightSprites;
-    private Texture gizmoJumpUpLeftSprites;
-    private Texture gizmoFallRightSprites;
-    private Texture gizmoFallLeftSprites;
+    private Texture mGizmoRunningRight;
+    private Texture mGizmoRunningLeft;
+    private Texture mGizmoStandingRight;
+    private Texture mGizmoStandingLeft;
+    private Texture mGizmoJumpUpRightSprites;
+    private Texture mGizmoJumpUpLeftSprites;
+    private Texture mGizmoFallRightSprites;
+    private Texture mGizmoFallLeftSprites;
 
-    private Texture gizmoFlinchingRunningLeft;
-    private Texture gizmoFlinchingRunningRight;
-    private Texture gizmoFlinchingStandingLeft;
-    private Texture gizmoFlinchingStandingRight;
-    private Texture gizmoFlinchingJumpUpLeft;
-    private Texture gizmoFlinchingJumpUpRight;
-    private Texture gizmoFlinchingJumpFallLeft;
-    private Texture gizmoFlinchingJumpFallRight;
+    private Texture mGizmoFlinchingRunningLeft;
+    private Texture mGizmoFlinchingRunningRight;
+    private Texture mGizmoFlinchingStandingLeft;
+    private Texture mGizmoFlinchingStandingRight;
+    private Texture mGizmoFlinchingJumpUpLeft;
+    private Texture mGizmoFlinchingJumpUpRight;
+    private Texture mGizmoFlinchingJumpFallLeft;
+    private Texture mGizmoFlinchingJumpFallRight;
 
-    private DoorModel isAtDoorUserData;
-    private boolean isOnGround;
-    private boolean isAtDoor;
-    private static boolean isFlinching;
+    private DoorModel mIsAtDoorUserData;
+    private boolean mIsOnGround;
+    private boolean mIsAtDoor;
+    private static boolean mIsFlinching;
 
-    private KeyModel lastKeyAdded;
-    private HeartModel lastHeartAdded;
+    private KeyModel mLastKeyAdded;
+    private HeartModel mLastHeartAdded;
 
     public PlayerActor(Body body) {
         super(body);
 
-        gizmoRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_right.png", Texture.class);
-        gizmoRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_left.png", Texture.class);
-        gizmoStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right_large.png", Texture.class);
-        gizmoStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left_large.png", Texture.class);
+        mGizmoRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_right.png", Texture.class);
+        mGizmoRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_left.png", Texture.class);
+        mGizmoStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right_large.png", Texture.class);
+        mGizmoStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left_large.png", Texture.class);
 
-        gizmoJumpUpRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_right_large.png", Texture.class);
-        gizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_left_large.png", Texture.class);
-        gizmoFallRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right_large.png", Texture.class);
-        gizmoFallLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left_large.png", Texture.class);
+        mGizmoJumpUpRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_right_large.png", Texture.class);
+        mGizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_up_left_large.png", Texture.class);
+        mGizmoFallRightSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right_large.png", Texture.class);
+        mGizmoFallLeftSprites = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left_large.png", Texture.class);
 
-        gizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_flinching_left.png", Texture.class);
-        gizmoFlinchingRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_flinching_right.png", Texture.class);
-        gizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left_large_flinching.png", Texture.class);
-        gizmoFlinchingStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right_large_flinching.png", Texture.class);
-        gizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/images/gizmo_jump_up_right_large_flinching.png", Texture.class);
-        gizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/images/gizmo_jump_up_left_large_flinching.png", Texture.class);
-        gizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right_large_flinching.png", Texture.class);
-        gizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left_large_flinching.png", Texture.class);
+        mGizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/images/gizmo_running_flinching_left.png", Texture.class);
+        mGizmoFlinchingRunningRight = Gizmo.assetManager.get("res/images/gizmo_running_flinching_right.png", Texture.class);
+        mGizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/images/gizmo_standing_left_large_flinching.png", Texture.class);
+        mGizmoFlinchingStandingRight = Gizmo.assetManager.get("res/images/gizmo_standing_right_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/images/gizmo_jump_up_right_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/images/gizmo_jump_up_left_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/images/gizmo_jump_fall_right_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/images/gizmo_jump_fall_left_large_flinching.png", Texture.class);
 
-        runningRightSprites = TextureRegion.split(gizmoRunningRight, 32, 32)[0];
-        runningLeftSprites = TextureRegion.split(gizmoRunningLeft, 32, 32)[0];
-        standingRightSprites = TextureRegion.split(gizmoStandingRight, 32, 32)[0];
-        standingLeftSprites = TextureRegion.split(gizmoStandingLeft, 32, 32)[0];
+        mRunningRightSprites = TextureRegion.split(mGizmoRunningRight, 32, 32)[0];
+        mRunningLeftSprites = TextureRegion.split(mGizmoRunningLeft, 32, 32)[0];
+        mStandingRightSprites = TextureRegion.split(mGizmoStandingRight, 32, 32)[0];
+        mStandingLeftSprites = TextureRegion.split(mGizmoStandingLeft, 32, 32)[0];
 
-        jumpUpRightSprites = TextureRegion.split(gizmoJumpUpRightSprites, 32, 32)[0];
-        jumpUpLeftSprites = TextureRegion.split(gizmoJumpUpLeftSprites, 32, 32)[0];
-        jumpFallRightSprites = TextureRegion.split(gizmoFallRightSprites, 32, 32)[0];
-        jumpFallLeftSprites = TextureRegion.split(gizmoFallLeftSprites, 32, 32)[0];
+        mJumpUpRightSprites = TextureRegion.split(mGizmoJumpUpRightSprites, 32, 32)[0];
+        mJumpUpLeftSprites = TextureRegion.split(mGizmoJumpUpLeftSprites, 32, 32)[0];
+        mJumpFallRightSprites = TextureRegion.split(mGizmoFallRightSprites, 32, 32)[0];
+        mJumpFallLeftSprites = TextureRegion.split(mGizmoFallLeftSprites, 32, 32)[0];
 
-        flinchingRunningLeftSprites = TextureRegion.split(gizmoFlinchingRunningLeft, 32, 32)[0];
-        flinchingRunningRightSprites = TextureRegion.split(gizmoFlinchingRunningRight, 32, 32)[0];
-        flinchingStandingLeftSprites = TextureRegion.split(gizmoFlinchingStandingLeft, 32, 32)[0];
-        flinchingStandingRightSprites = TextureRegion.split(gizmoFlinchingStandingRight, 32, 32)[0];
-        flinchingJumpUpRightSprites = TextureRegion.split(gizmoFlinchingJumpUpRight, 32, 32)[0];
-        flinchingJumpUpLeftSprites = TextureRegion.split(gizmoFlinchingJumpUpLeft, 32, 32)[0];
-        flinchingJumpFallRightSprites = TextureRegion.split(gizmoFlinchingJumpFallRight, 32, 32)[0];
-        flinchingJumpFallLeftSprites = TextureRegion.split(gizmoFlinchingJumpFallLeft, 32, 32)[0];
+        mFlinchingRunningLeftSprites = TextureRegion.split(mGizmoFlinchingRunningLeft, 32, 32)[0];
+        mFlinchingRunningRightSprites = TextureRegion.split(mGizmoFlinchingRunningRight, 32, 32)[0];
+        mFlinchingStandingLeftSprites = TextureRegion.split(mGizmoFlinchingStandingLeft, 32, 32)[0];
+        mFlinchingStandingRightSprites = TextureRegion.split(mGizmoFlinchingStandingRight, 32, 32)[0];
+        mFlinchingJumpUpRightSprites = TextureRegion.split(mGizmoFlinchingJumpUpRight, 32, 32)[0];
+        mFlinchingJumpUpLeftSprites = TextureRegion.split(mGizmoFlinchingJumpUpLeft, 32, 32)[0];
+        mFlinchingJumpFallRightSprites = TextureRegion.split(mGizmoFlinchingJumpFallRight, 32, 32)[0];
+        mFlinchingJumpFallLeftSprites = TextureRegion.split(mGizmoFlinchingJumpFallLeft, 32, 32)[0];
 
-        setAnimation(runningRightSprites, 1 / 12f);
+        setAnimation(mRunningRightSprites, 1 / 12f);
         setFacingDirection(FACING_RIGHT);
     }
 
     @Override
-    public PlayerModel getUserData() {
-        return playerModel;
+    public PlayerModel getPlayerModel() {
+        return mPlayerModel;
     }
 
-    public void initPlayerData(PlayerModel pData) {
-        playerModel.setPlayerHearts(pData.getPlayerHearts());
-        playerModel.setPlayerHealth(pData.getPlayerHealth());
-        playerModel.setPlayerLives(pData.getPlayerLives());
-        playerModel.setCurrentLevel(pData.getCurrentLevel());
-        if (pData.getPlayerKeys().size() > 0) {
-            for (int i = 0; i < pData.getPlayerKeys().size(); i++) {
-                playerModel.addPlayerKey(pData.getPlayerKeys().get(i));
+    public void initPlayerData(PlayerModel playerModel) {
+        mPlayerModel.setPlayerHearts(playerModel.getPlayerHearts());
+        mPlayerModel.setPlayerHealth(playerModel.getPlayerHealth());
+        mPlayerModel.setPlayerLives(playerModel.getPlayerLives());
+        mPlayerModel.setCurrentLevel(playerModel.getCurrentLevel());
+        if (playerModel.getPlayerKeys().size() > 0) {
+            for (int i = 0; i < playerModel.getPlayerKeys().size(); i++) {
+                mPlayerModel.addPlayerKey(playerModel.getPlayerKeys().get(i));
             }
         }
     }
 
     public void setHitEnemy(int healthDamage) {
-        if (!isFlinching) {
-            playerModel.setPlayerHealth(playerModel.getPlayerHealth() - healthDamage);
+        if (!mIsFlinching) {
+            mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() - healthDamage);
             applyFlinchForce();
-            delegate.playerGotHit(playerModel.getPlayerHealth());
+            delegate.playerGotHit(mPlayerModel.getPlayerHealth());
         }
     }
 
     public void resetHealth() {
-        playerModel.setPlayerHealth(playerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
+        mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
     }
 
     public void resetLives() {
-        playerModel.setPlayerLives(playerModel.DEFAULT_LIVES);
+        mPlayerModel.setPlayerLives(mPlayerModel.DEFAULT_LIVES);
     }
 
     public void incrementLives() {
-        if(playerModel.getPlayerLives() < playerModel.DEFAULT_MAX_LIVES) {
-            playerModel.setPlayerLives(playerModel.getPlayerLives() + 1);
+        if (mPlayerModel.getPlayerLives() < mPlayerModel.DEFAULT_MAX_LIVES) {
+            mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() + 1);
         }
     }
 
     public void deIncrementLives() {
-        playerModel.setPlayerLives(playerModel.getPlayerLives() - 1);
-        if (playerModel.getPlayerLives() <= 0) {
+        mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() - 1);
+        if (mPlayerModel.getPlayerLives() <= 0) {
             delegate.playerZeroLives();
         }
     }
 
     public int getPlayerLives() {
-        return playerModel.getPlayerLives();
+        return mPlayerModel.getPlayerLives();
     }
 
     public void addKey(KeyModel keyModel) {
-        if (lastKeyAdded == null || !lastKeyAdded.equals(keyModel)) {
-            playerModel.addPlayerKey(keyModel);
-            lastKeyAdded = keyModel;
+        if (mLastKeyAdded == null || !mLastKeyAdded.equals(keyModel)) {
+            mPlayerModel.addPlayerKey(keyModel);
+            mLastKeyAdded = keyModel;
         }
     }
 
     public boolean hasCorrectKey(String keyType) {
-        ArrayList<KeyModel> playerKeys = playerModel.getPlayerKeys();
+        ArrayList<KeyModel> playerKeys = mPlayerModel.getPlayerKeys();
         for (int i = 0; i < playerKeys.size(); i++) {
             if (playerKeys.get(i).getKeyType().equalsIgnoreCase(keyType)) {
-                playerModel.removePlayerKey(keyType);
+                mPlayerModel.removePlayerKey(keyType);
                 return true;
             }
         }
@@ -187,42 +187,42 @@ public class PlayerActor extends BaseActor {
     }
 
     public void addHealthHeart(HeartModel heartModel) {
-        if (lastHeartAdded == null || !lastHeartAdded.equals(heartModel)) {
-            playerModel.setPlayerHearts(playerModel.getPlayerHearts() + 1);
-            lastHeartAdded = heartModel;
+        if (mLastHeartAdded == null || !mLastHeartAdded.equals(heartModel)) {
+            mPlayerModel.setPlayerHearts(mPlayerModel.getPlayerHearts() + 1);
+            mLastHeartAdded = heartModel;
         }
     }
 
     public int getHealthHearts() {
-        return playerModel.getPlayerHearts();
+        return mPlayerModel.getPlayerHearts();
     }
 
     public void setCurrentLevel(int level) {
-        playerModel.setCurrentLevel(level);
+        mPlayerModel.setCurrentLevel(level);
     }
 
     public void jump() {
-        if (isFlinching) {
+        if (mIsFlinching) {
             if (getFacingDirection() == FACING_RIGHT) {
-                if (!getCurrentTextureRegion().equals(flinchingJumpUpRightSprites)) {
-                    setAnimation(flinchingJumpUpRightSprites, 1 / 12f);
+                if (!getCurrentTextureRegion().equals(mFlinchingJumpUpRightSprites)) {
+                    setAnimation(mFlinchingJumpUpRightSprites, 1 / 12f);
                 }
             }
             else if (getFacingDirection() == FACING_LEFT) {
-                if (!getCurrentTextureRegion().equals(flinchingJumpUpLeftSprites)) {
-                    setAnimation(flinchingJumpUpLeftSprites, 1 / 12f);
+                if (!getCurrentTextureRegion().equals(mFlinchingJumpUpLeftSprites)) {
+                    setAnimation(mFlinchingJumpUpLeftSprites, 1 / 12f);
                 }
             }
         }
         else {
             if (getFacingDirection() == FACING_RIGHT) {
-                if (!getCurrentTextureRegion().equals(jumpUpRightSprites)) {
-                    setAnimation(jumpUpRightSprites, 1 / 12f);
+                if (!getCurrentTextureRegion().equals(mJumpUpRightSprites)) {
+                    setAnimation(mJumpUpRightSprites, 1 / 12f);
                 }
             }
             else if (getFacingDirection() == FACING_LEFT) {
-                if (!getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
-                    setAnimation(jumpUpLeftSprites, 1 / 12f);
+                if (!getCurrentTextureRegion().equals(mJumpUpLeftSprites)) {
+                    setAnimation(mJumpUpLeftSprites, 1 / 12f);
                 }
             }
         }
@@ -231,27 +231,27 @@ public class PlayerActor extends BaseActor {
     }
 
     public void stopJumping() {
-        if (isFlinching) {
+        if (mIsFlinching) {
             if (getFacingDirection() == FACING_RIGHT) {
-                if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpFallRightSprites)) {
-                    setAnimation(flinchingJumpFallRightSprites, 1 / 12f);
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingJumpFallRightSprites)) {
+                    setAnimation(mFlinchingJumpFallRightSprites, 1 / 12f);
                 }
             }
             else if (getFacingDirection() == FACING_LEFT) {
-                if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpFallLeftSprites)) {
-                    setAnimation(flinchingJumpFallLeftSprites, 1 / 12f);
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingJumpFallLeftSprites)) {
+                    setAnimation(mFlinchingJumpFallLeftSprites, 1 / 12f);
                 }
             }
         }
         else {
             if (getFacingDirection() == FACING_RIGHT) {
-                if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallRightSprites)) {
-                    setAnimation(jumpFallRightSprites, 1 / 12f);
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(mJumpFallRightSprites)) {
+                    setAnimation(mJumpFallRightSprites, 1 / 12f);
                 }
             }
             else if (getFacingDirection() == FACING_LEFT) {
-                if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpFallLeftSprites)) {
-                    setAnimation(jumpFallLeftSprites, 1 / 12f);
+                if (!getIsOnGround() && !getCurrentTextureRegion().equals(mJumpFallLeftSprites)) {
+                    setAnimation(mJumpFallLeftSprites, 1 / 12f);
                 }
             }
         }
@@ -259,21 +259,21 @@ public class PlayerActor extends BaseActor {
     }
 
     public void moveLeft() {
-        if (isFlinching) {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningLeftSprites)) {
-                setAnimation(flinchingRunningLeftSprites, 1 / 12f);
+        if (mIsFlinching) {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingRunningLeftSprites)) {
+                setAnimation(mFlinchingRunningLeftSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpUpLeftSprites)
-                    && !getCurrentTextureRegion().equals(flinchingJumpFallLeftSprites)) {
-                setAnimation(flinchingJumpUpLeftSprites, 1 / 12f);
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingJumpUpLeftSprites)
+                    && !getCurrentTextureRegion().equals(mFlinchingJumpFallLeftSprites)) {
+                setAnimation(mFlinchingJumpUpLeftSprites, 1 / 12f);
             }
         }
         else {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(runningLeftSprites)) {
-                setAnimation(runningLeftSprites, 1 / 12f);
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(mRunningLeftSprites)) {
+                setAnimation(mRunningLeftSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpLeftSprites)) {
-                setAnimation(jumpUpLeftSprites, 1 / 12f);
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mJumpUpLeftSprites)) {
+                setAnimation(mJumpUpLeftSprites, 1 / 12f);
             }
         }
         BodyUtils.applyLinearImpulseToBody(mBody, -RUNNING_FORCE, "x");
@@ -281,21 +281,21 @@ public class PlayerActor extends BaseActor {
     }
 
     public void moveRight() {
-        if (isFlinching) {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingRunningRightSprites)) {
-                setAnimation(flinchingRunningRightSprites, 1 / 12f);
+        if (mIsFlinching) {
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingRunningRightSprites)) {
+                setAnimation(mFlinchingRunningRightSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(flinchingJumpUpRightSprites)
-                    && !getCurrentTextureRegion().equals(flinchingJumpFallRightSprites)) {
-                setAnimation(flinchingJumpUpRightSprites, 1 / 12f);
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingJumpUpRightSprites)
+                    && !getCurrentTextureRegion().equals(mFlinchingJumpFallRightSprites)) {
+                setAnimation(mFlinchingJumpUpRightSprites, 1 / 12f);
             }
         }
         else {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(runningRightSprites)) {
-                setAnimation(runningRightSprites, 1 / 12f);
+            if (getIsOnGround() && !getCurrentTextureRegion().equals(mRunningRightSprites)) {
+                setAnimation(mRunningRightSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(jumpUpRightSprites)) {
-                setAnimation(jumpUpRightSprites, 1 / 12f);
+            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mJumpUpRightSprites)) {
+                setAnimation(mJumpUpRightSprites, 1 / 12f);
             }
         }
         BodyUtils.applyLinearImpulseToBody(mBody, RUNNING_FORCE, "x");
@@ -303,27 +303,27 @@ public class PlayerActor extends BaseActor {
     }
 
     public void stoppedMoving() {
-        if (isFlinching) {
+        if (mIsFlinching) {
             if (mFacingDirection == FACING_LEFT) {
-                if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingStandingLeftSprites)) {
-                    setAnimation(flinchingStandingLeftSprites, 1 / 12f);
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingStandingLeftSprites)) {
+                    setAnimation(mFlinchingStandingLeftSprites, 1 / 12f);
                 }
             }
             else {
-                if (getIsOnGround() && !getCurrentTextureRegion().equals(flinchingStandingRightSprites)) {
-                    setAnimation(flinchingStandingRightSprites, 1 / 12f);
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingStandingRightSprites)) {
+                    setAnimation(mFlinchingStandingRightSprites, 1 / 12f);
                 }
             }
         }
         else {
             if (mFacingDirection == FACING_LEFT) {
-                if (getIsOnGround() && !getCurrentTextureRegion().equals(standingLeftSprites)) {
-                    setAnimation(standingLeftSprites, 1 / 12f);
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(mStandingLeftSprites)) {
+                    setAnimation(mStandingLeftSprites, 1 / 12f);
                 }
             }
             else {
-                if (getIsOnGround() && !getCurrentTextureRegion().equals(standingRightSprites)) {
-                    setAnimation(standingRightSprites, 1 / 12f);
+                if (getIsOnGround() && !getCurrentTextureRegion().equals(mStandingRightSprites)) {
+                    setAnimation(mStandingRightSprites, 1 / 12f);
                 }
             }
         }
@@ -357,35 +357,35 @@ public class PlayerActor extends BaseActor {
     }
 
     public void setIsOnGround(boolean onGround) {
-        isOnGround = onGround;
+        mIsOnGround = onGround;
     }
 
     public boolean getIsOnGround() {
-        return isOnGround;
+        return mIsOnGround;
     }
 
     public void setIsAtDoor(boolean atDoor) {
-        isAtDoor = atDoor;
+        mIsAtDoor = atDoor;
     }
 
     public boolean getIsAtDoor() {
-        return isAtDoor;
+        return mIsAtDoor;
     }
 
     public void setIsAtDoorUserData(DoorModel doorUserData) {
-        isAtDoorUserData = doorUserData;
+        mIsAtDoorUserData = doorUserData;
     }
 
     public DoorModel getIsAtDoorUserData() {
-        return isAtDoorUserData;
+        return mIsAtDoorUserData;
     }
 
     public void setIsFlinching(boolean flinching) {
-        isFlinching = flinching;
+        mIsFlinching = flinching;
     }
 
     public boolean getIsFlinching() {
-        return isFlinching;
+        return mIsFlinching;
     }
 
 }

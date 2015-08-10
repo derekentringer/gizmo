@@ -10,21 +10,21 @@ import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 
 public class PhantomLargeActor extends BaseActor {
 
-    private PhantomLargeModel phantomLargeModel = new PhantomLargeModel();
+    private PhantomLargeModel mPhantomLargeModel = new PhantomLargeModel();
 
-    private TextureRegion[] phantomSprite;
-    private Texture phantomLarge;
+    private TextureRegion[] mPhantomSprite;
+    private Texture mPhantomLarge;
 
     public PhantomLargeActor(Body body) {
         super(body);
-        phantomLarge = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_large.png", Texture.class);
-        phantomSprite = TextureRegion.split(phantomLarge, 320, 320)[0];
-        setAnimation(phantomSprite, 1 / 12f);
+        mPhantomLarge = Gizmo.assetManager.get("res/images/enemies/phantom/phantom_large.png", Texture.class);
+        mPhantomSprite = TextureRegion.split(mPhantomLarge, 320, 320)[0];
+        setAnimation(mPhantomSprite, 1 / 12f);
     }
 
     @Override
-    public BaseModel getUserData() {
-        return phantomLargeModel;
+    public BaseModel getPlayerModel() {
+        return mPhantomLargeModel;
     }
 
 }

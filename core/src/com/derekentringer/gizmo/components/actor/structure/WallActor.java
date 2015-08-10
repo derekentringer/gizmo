@@ -14,7 +14,7 @@ public class WallActor extends BaseActor {
     }
 
     @Override
-    public BaseModel getUserData() {
+    public BaseModel getPlayerModel() {
         return mWallModel;
     }
 
