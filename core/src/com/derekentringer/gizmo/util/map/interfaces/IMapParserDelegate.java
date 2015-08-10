@@ -7,11 +7,9 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 
 public interface IMapParserDelegate {
-
     void setPlayerActor(PlayerActor playerActor);
     void setLockedGoldDoor(DoorGoldActor goldDoorActor);
     void setLockedBronzeDoor(DoorBronzeActor bronzeDoorActor);
     void setLockedBloodDoor(DoorBloodActor bloodDoorActor);
     void setLockedBlackDoor(DoorBlackActor blackDoorActor);
-
 }
