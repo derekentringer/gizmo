@@ -15,12 +15,12 @@
  </layer>
  <layer name="backgroundforeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztldEKgCAMRe0fqgcVH/z/j8yHhDGcZBM3agdGtobsepk5ZxiGYRj6iNINLCZJNyDI37zOYP037eF+Qt3R6TgHqgdOb3WuA8gF9C4FdeeM9taqz42cNJSu0bsXe/lmjxVQejn+avS1wtELa1Ijr2FeMZQXo3pxfub9tJU4S+wlDuZefjAP6elNbp7P+L8mRe+sPPjuO7VPoObmq3hibRgcLliMBq4=
+   eJztldEKwCAIRf0Oix76/4/cywKRjDlHyvK8rJmEt4sGkCRJkiTxqN4FbKZ5F+DIaV53sj5Ne7m/VHeFGPcg1WCpbfR1IbHC/r2QZo62tll+n8S8kXRpZy/38s0ZO5D0WvyN6OvAopfmtEk8Qr9yJC+0enk8ynzioDJOWelt8J3P/F3zYnVXSPZxkfsEqW/+CgrrJLFwARBxBm4=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlmEKwCAIhfUOK+j+F92PJYgUi2hZ7X3wyAripRURAQAA2AH2NgCm8edar7z3mrcRntnE3nlgKvuojQPQyuVtAHzCqXW1bzPYnxXrGLISPXfpTa2waVcgDlxL/0lsXmQ8KMWsUGhtrNXLyL3OQs6Yzp/0S3MSJw+zB3ADC70DkA==
+   eJztloEKgCAMRLd/SMH//9GIHI2hIWHO7B4cLgM5byMiAgAA8AXY2wAYxp97PfPda956eGZTe+fAVPZR2weglc3bAHiFVftqv82gnSOvQOdszDQfM/YxZCW68rpTK2zWGYgdz9L/JDYX2Q9KMSsUVltrPaXnXUchM6bzk+fSO6mTh9kF2AFJmAPO
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
