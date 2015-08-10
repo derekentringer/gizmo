@@ -43,41 +43,40 @@ import java.util.ArrayList;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate, IMapParserDelegate {
 
-    //TODO create flag for debugging in new camera class
+    // TODO create flag for debugging in new camera class
     //private OrthographicCamera box2dDebugCamera;
     //private Box2DDebugRenderer box2dDebugRenderer;
 
     public IHudStageDelegate hudStageDelegate = null;
 
-    private OrthographicCamera mainCamera;
-    private OrthographicCamera midBackgroundCamera;
-    private OrthographicCamera backgroundCamera;
+    private OrthographicCamera mMainCamera;
+    private OrthographicCamera mMidBackgroundCamera;
+    private OrthographicCamera mBackgroundCamera;
 
-    private World world;
-    private MapParser mapParser;
-    private SpriteBatch spriteBatch;
+    private World mWorld;
+    private MapParser mMapParser;
+    private SpriteBatch mSpriteBatch;
 
-    private float effectiveViewportWidth;
-    private float effectiveViewportHeight;
+    private float mEffectiveViewportWidth;
+    private float mEffectiveViewportHeight;
 
-    private PlayerActor playerActor;
-    private PlayerModel playerModel;
-    private boolean isPlayerDead = false;
-    private ArrayList<DeleteBody> deleteBodies = new ArrayList<DeleteBody>();
+    private PlayerActor mPlayerActor;
+    private PlayerModel mPlayerModel;
+    private boolean mIsPlayerDead = false;
+    private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
-    private LevelModel levelModel;
-    private LevelModel loadedLevelModel;
+    private LevelModel mLevelModel;
+    private LevelModel mLoadedLevelModel;
 
-    private DoorGoldActor doorGoldActor;
+    private DoorGoldActor mDoorGoldActor;
 
-    //TODO this flag not working correctly
     private boolean alreadyEntered = false;
 
     public GameStage() {
     }
 
     public void init(LevelModel level) {
-        levelModel = level;
+        mLevelModel = level;
         setupWorld();
         loadLevel(level, DoorType.PREVIOUS);
         //setupDebugRendererCamera();
@@ -87,30 +86,30 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void setupWorld() {
-        spriteBatch = new SpriteBatch();
-        world = WorldUtils.createWorld();
-        world.setContactListener(this);
+        mSpriteBatch = new SpriteBatch();
+        mWorld = WorldUtils.createWorld();
+        mWorld.setContactListener(this);
     }
 
     //TODO create new camera class
     private void setupMainCamera() {
-        mainCamera = new OrthographicCamera();
-        mainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mainCamera.update();
+        mMainCamera = new OrthographicCamera();
+        mMainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mMainCamera.update();
     }
 
     private void setupMidBackgroundCamera() {
-        midBackgroundCamera = new OrthographicCamera();
-        midBackgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        midBackgroundCamera.zoom = 1.3f;
-        midBackgroundCamera.update();
+        mMidBackgroundCamera = new OrthographicCamera();
+        mMidBackgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mMidBackgroundCamera.zoom = 1.3f;
+        mMidBackgroundCamera.update();
     }
 
     private void setupBackgroundCamera() {
-        backgroundCamera = new OrthographicCamera();
-        backgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        backgroundCamera.zoom = 1.7f;
-        backgroundCamera.update();
+        mBackgroundCamera = new OrthographicCamera();
+        mBackgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mBackgroundCamera.zoom = 1.7f;
+        mBackgroundCamera.update();
     }
 
     /*private void setupDebugRendererCamera() {
@@ -123,15 +122,15 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     public void loadLevel(LevelModel level, String whichDoor) {
         System.out.println("loading level: " + level.getLevelInt());
         if (LocalDataManager.loadLevelData(level) != null) {
-            loadedLevelModel = LocalDataManager.loadLevelData(level);
+            mLoadedLevelModel = LocalDataManager.loadLevelData(level);
         }
         else {
-            loadedLevelModel = level;
+            mLoadedLevelModel = level;
         }
-        mapParser = new MapParser(loadedLevelModel, level.getLevelMap(), level.getLevelMidMap(), level.getLevelBackMap());
-        mapParser.delegate = this;
-        mapParser.createTileMapLayers(world);
-        mapParser.createTileMapObjects(world, whichDoor);
+        mMapParser = new MapParser(mLoadedLevelModel, level.getLevelMap(), level.getLevelMidMap(), level.getLevelBackMap());
+        mMapParser.delegate = this;
+        mMapParser.createTileMapLayers(mWorld);
+        mMapParser.createTileMapObjects(mWorld, whichDoor);
     }
 
     @Override
@@ -141,79 +140,79 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
         // player at door
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.DOOR)) {
-            playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorModel) b.getBody().getUserData());
+            mPlayerActor.setIsAtDoor(true);
+            mPlayerActor.setIsAtDoorUserData((DoorModel) b.getBody().getUserData());
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.DOOR)) {
-            playerActor.setIsAtDoor(true);
-            playerActor.setIsAtDoorUserData((DoorModel) a.getBody().getUserData());
+            mPlayerActor.setIsAtDoor(true);
+            mPlayerActor.setIsAtDoorUserData((DoorModel) a.getBody().getUserData());
         }
 
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.DOOR_OFF)) {
-            playerActor.setIsAtDoor(false);
+            mPlayerActor.setIsAtDoor(false);
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.DOOR_OFF)) {
-            playerActor.setIsAtDoor(false);
+            mPlayerActor.setIsAtDoor(false);
         }
 
         // player fixture and ground detection
         if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
-            playerActor.setIsOnGround(true);
+            mPlayerActor.setIsOnGround(true);
         }
         else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsGround(a)) {
-            playerActor.setIsOnGround(true);
+            mPlayerActor.setIsOnGround(true);
         }
 
         // player/enemy collisions
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(a.getBody()));
-            playerActor.setIsFlinching(true);
-            playerActor.startFlinchingTimer(playerActor);
+            mPlayerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(a.getBody()));
+            mPlayerActor.setIsFlinching(true);
+            mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            playerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(b.getBody()));
-            playerActor.setIsFlinching(true);
-            playerActor.startFlinchingTimer(playerActor);
+            mPlayerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(b.getBody()));
+            mPlayerActor.setIsFlinching(true);
+            mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
 
         // pickup a key
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            playerActor.addKey((KeyModel) a.getBody().getUserData());
-            loadedLevelModel.addPickedUpKey((KeyModel) a.getBody().getUserData());
-            deleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
+            mPlayerActor.addKey((KeyModel) a.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpKey((KeyModel) a.getBody().getUserData());
+            mDeleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            playerActor.addKey((KeyModel) b.getBody().getUserData());
-            loadedLevelModel.addPickedUpKey((KeyModel) b.getBody().getUserData());
-            deleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
+            mPlayerActor.addKey((KeyModel) b.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpKey((KeyModel) b.getBody().getUserData());
+            mDeleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
         }
 
         // pickup a heart
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            playerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
-            loadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
-            hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
-            deleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
+            mPlayerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
+            hudStageDelegate.setHudHealthHearts(mPlayerActor.getHealthHearts());
+            mDeleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            playerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
-            loadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
-            hudStageDelegate.setHudHealthHearts(playerActor.getHealthHearts());
-            deleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
+            mPlayerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
+            hudStageDelegate.setHudHealthHearts(mPlayerActor.getHealthHearts());
+            mDeleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
         }
 
         // pickup a life
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            playerActor.incrementLives();
-            loadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
-            hudStageDelegate.setHudLives(playerActor.getPlayerLives());
-            deleteBodies.add(new DeleteBody((LifeModel) a.getBody().getUserData(), a.getBody()));
+            mPlayerActor.incrementLives();
+            mLoadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
+            hudStageDelegate.setHudLives(mPlayerActor.getPlayerLives());
+            mDeleteBodies.add(new DeleteBody((LifeModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            playerActor.incrementLives();
-            loadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
-            hudStageDelegate.setHudLives(playerActor.getPlayerLives());
-            deleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
+            mPlayerActor.incrementLives();
+            mLoadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
+            hudStageDelegate.setHudLives(mPlayerActor.getPlayerLives());
+            mDeleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
         }
     }
 
@@ -236,29 +235,29 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         deleteObsoleteActors();
 
         //tiled maps render camera
-        mapParser.getTiledMapBackgroundRenderer().setView(backgroundCamera);
-        mapParser.getTiledMapBackgroundRenderer().render();
+        mMapParser.getTiledMapBackgroundRenderer().setView(mBackgroundCamera);
+        mMapParser.getTiledMapBackgroundRenderer().render();
 
-        mapParser.getTiledMapMidBackgroundRenderer().setView(midBackgroundCamera);
-        mapParser.getTiledMapMidBackgroundRenderer().render();
+        mMapParser.getTiledMapMidBackgroundRenderer().setView(mMidBackgroundCamera);
+        mMapParser.getTiledMapMidBackgroundRenderer().render();
 
-        mapParser.getTiledMapRenderer().setView(mainCamera);
-        mapParser.getTiledMapRenderer().render();
+        mMapParser.getTiledMapRenderer().setView(mMainCamera);
+        mMapParser.getTiledMapRenderer().render();
 
-        //world debugRenderer camera
-        //box2dDebugRenderer.render(world, box2dDebugCamera.combined);
+        // mWorld debugRenderer camera
+        // box2dDebugRenderer.render(mWorld, box2dDebugCamera.combined);
 
-        spriteBatch.setProjectionMatrix(mainCamera.combined);
+        mSpriteBatch.setProjectionMatrix(mMainCamera.combined);
 
-        for (BaseActor actor : mapParser.actorsArray) {
-            actor.render(spriteBatch);
+        for (BaseActor actor : mMapParser.actorsArray) {
+            actor.render(mSpriteBatch);
             if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
-                ((PhantomActor) actor).setPlayerPosition(playerActor.getPosition().x);
+                ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition().x);
             }
         }
 
-        updateCameraPlayerMovement(playerActor.getPosition().x, playerActor.getPosition().y);
-        handlePlayerPosition(playerActor.getPosition().y);
+        updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y);
+        handlePlayerPosition(mPlayerActor.getPosition().y);
         handlePlayerDied();
     }
 
@@ -269,71 +268,71 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         UserInput.update();
         handleInput();
 
-        for (BaseActor actor : mapParser.actorsArray) {
+        for (BaseActor actor : mMapParser.actorsArray) {
             actor.update(delta);
             actor.act(delta);
         }
 
         Constants.ACCUMULATOR += delta;
         while (Constants.ACCUMULATOR >= delta) {
-            world.step(Constants.TIME_STEP, 6, 2);
+            mWorld.step(Constants.TIME_STEP, 6, 2);
             Constants.ACCUMULATOR -= Constants.TIME_STEP;
         }
     }
 
     private void deleteObsoleteActors() {
-        for (int i = 0; i < deleteBodies.size(); i++) {
+        for (int i = 0; i < mDeleteBodies.size(); i++) {
             //delete the actor from our actorsArray
-            //look thru deleteBodies arraylist
+            //look thru delete Bodies arraylist
             //delete the associated body
-            for (int e=0; e < mapParser.actorsArray.size(); e++) {
-                BaseActor actorToDelete = mapParser.actorsArray.get(e);
-                if (actorToDelete.userData.equals(deleteBodies.get(i).getBaseModel())) {
-                    mapParser.actorsArray.remove(e);
+            for (int e=0; e < mMapParser.actorsArray.size(); e++) {
+                BaseActor actorToDelete = mMapParser.actorsArray.get(e);
+                if (actorToDelete.userData.equals(mDeleteBodies.get(i).getBaseModel())) {
+                    mMapParser.actorsArray.remove(e);
                     actorToDelete.remove();
                     //delete the body
-                    WorldUtils.destroyBody(world, deleteBodies.get(i).getBody());
-                    deleteBodies.remove(i);
+                    WorldUtils.destroyBody(mWorld, mDeleteBodies.get(i).getBody());
+                    mDeleteBodies.remove(i);
                     break;
                 }
             }
         }
         //remove any actor that falls off the stage
-        for (int j = 0; j < mapParser.actorsArray.size(); j++) {
-            if (mapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) {
-                mapParser.actorsArray.get(j).remove();
-                mapParser.actorsArray.remove(j);
+        for (int j = 0; j < mMapParser.actorsArray.size(); j++) {
+            if (mMapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) {
+                mMapParser.actorsArray.get(j).remove();
+                mMapParser.actorsArray.remove(j);
             }
         }
     }
 
     private void updateCameraPlayerMovement(float playerX, float playerY) {
-        MapProperties prop = mapParser.getTiledMap().getProperties();
+        MapProperties prop = mMapParser.getTiledMap().getProperties();
         int mapWidth = prop.get("width", Integer.class);
         int mapHeight = prop.get("height", Integer.class);
 
-        effectiveViewportWidth = mainCamera.viewportWidth * mainCamera.zoom;
-        effectiveViewportHeight = mainCamera.viewportHeight * mainCamera.zoom;
+        mEffectiveViewportWidth = mMainCamera.viewportWidth * mMainCamera.zoom;
+        mEffectiveViewportHeight = mMainCamera.viewportHeight * mMainCamera.zoom;
 
-        float minWidth = effectiveViewportWidth / 2f;
-        float minHeight = effectiveViewportHeight / 2f;
-        float maxWidth = (mapWidth * mapParser.getTileSize()) - (effectiveViewportWidth / 2f);
-        float maxHeight = (mapHeight * mapParser.getTileSize()) - (effectiveViewportHeight / 2f);
+        float minWidth = mEffectiveViewportWidth / 2f;
+        float minHeight = mEffectiveViewportHeight / 2f;
+        float maxWidth = (mapWidth * mMapParser.getTileSize()) - (mEffectiveViewportWidth / 2f);
+        float maxHeight = (mapHeight * mMapParser.getTileSize()) - (mEffectiveViewportHeight / 2f);
 
-        mainCamera.position.x = Math.round(MathUtils.clamp(mainCamera.position.x + (playerX * Constants.PPM - mainCamera.position.x) * 0.1f, minWidth, maxWidth));
-        mainCamera.position.y = Math.round(MathUtils.clamp(mainCamera.position.y + (playerY * Constants.PPM - mainCamera.position.y) * 0.1f, minHeight, maxHeight));
+        mMainCamera.position.x = Math.round(MathUtils.clamp(mMainCamera.position.x + (playerX * Constants.PPM - mMainCamera.position.x) * 0.1f, minWidth, maxWidth));
+        mMainCamera.position.y = Math.round(MathUtils.clamp(mMainCamera.position.y + (playerY * Constants.PPM - mMainCamera.position.y) * 0.1f, minHeight, maxHeight));
 
-        mainCamera.update();
+        mMainCamera.update();
 
-        midBackgroundCamera.position.x = Math.round(MathUtils.clamp(midBackgroundCamera.position.x + (playerX * Constants.PPM - midBackgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
-        midBackgroundCamera.position.y = Math.round(MathUtils.clamp(midBackgroundCamera.position.y + (playerY * Constants.PPM - midBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
+        mMidBackgroundCamera.position.x = Math.round(MathUtils.clamp(mMidBackgroundCamera.position.x + (playerX * Constants.PPM - mMidBackgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
+        mMidBackgroundCamera.position.y = Math.round(MathUtils.clamp(mMidBackgroundCamera.position.y + (playerY * Constants.PPM - mMidBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
 
-        midBackgroundCamera.update();
+        mMidBackgroundCamera.update();
 
-        backgroundCamera.position.x = Math.round(MathUtils.clamp(backgroundCamera.position.x + (playerX * Constants.PPM - backgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
-        backgroundCamera.position.y = Math.round(MathUtils.clamp(backgroundCamera.position.y + (playerY * Constants.PPM - backgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
+        mBackgroundCamera.position.x = Math.round(MathUtils.clamp(mBackgroundCamera.position.x + (playerX * Constants.PPM - mBackgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
+        mBackgroundCamera.position.y = Math.round(MathUtils.clamp(mBackgroundCamera.position.y + (playerY * Constants.PPM - mBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
 
-        backgroundCamera.update();
+        mBackgroundCamera.update();
     }
 
     private void handlePlayerPosition(float playerY) {
@@ -343,93 +342,93 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }
 
     private void handlePlayerDied() {
-        if (isPlayerDead) {
-            isPlayerDead = false;
-            mapParser.destroyTiledMap();
-            WorldUtils.destroyBodies(world);
-            if (playerActor.getUserData().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
+        if (mIsPlayerDead) {
+            mIsPlayerDead = false;
+            mMapParser.destroyTiledMap();
+            WorldUtils.destroyBodies(mWorld);
+            if (mPlayerActor.getUserData().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
                 loadLevel(Constants.gameLevels.get(0),  DoorType.PREVIOUS);
             }
             else {
-                loadLevel(levelModel, DoorType.PREVIOUS);
+                loadLevel(mLevelModel, DoorType.PREVIOUS);
             }
         }
     }
 
     private void handleInput() {
         if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
-            if (playerActor.getIsOnGround()) {
-                playerActor.setIsOnGround(false);
-                playerActor.jump();
+            if (mPlayerActor.getIsOnGround()) {
+                mPlayerActor.setIsOnGround(false);
+                mPlayerActor.jump();
             }
         }
 
         if (UserInput.isDown(UserInput.LEFT_BUTTON)) {
             alreadyEntered = false;
-            playerActor.moveLeft();
+            mPlayerActor.moveLeft();
         }
 
         if (UserInput.isDown(UserInput.RIGHT_BUTTON)) {
             alreadyEntered = false;
-            playerActor.moveRight();
+            mPlayerActor.moveRight();
         }
 
         if (!UserInput.isDown(UserInput.LEFT_BUTTON) && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
-            playerActor.stoppedMoving();
+            mPlayerActor.stoppedMoving();
         }
 
         if (!UserInput.isDown(UserInput.JUMP_BUTTON)) {
-            playerActor.stopJumping();
+            mPlayerActor.stopJumping();
         }
 
         if (UserInput.isDown(UserInput.ENTER_DOOR)) {
             if (alreadyEntered) {
                 return;
             }
-            if (playerActor.getIsAtDoor()) {
-                if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_GOLD)
-                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
+            if (mPlayerActor.getIsAtDoor()) {
+                if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
+                    if (mPlayerActor.hasCorrectKey(KeyModel.KEY_GOLD)
+                            || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
 
-                        //TODO animate locked doors
-                        //doorGoldActor.startAnimation();
+                        // TODO animate locked doors
+                        // mDoorGoldActor.startAnimation();
 
-                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
+                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
-                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_BRONZE)
-                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
-                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
+                    if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BRONZE)
+                            || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
+                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
-                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLOOD)
-                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
-                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
+                    if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLOOD)
+                            || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
+                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
-                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
-                    if (playerActor.hasCorrectKey(KeyModel.KEY_BLACK)
-                            || !playerActor.getIsAtDoorUserData().getIsLocked()) {
-                        loadedLevelModel.addOpenedDoor(playerActor.getIsAtDoorUserData());
-                        loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
+                    if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLACK)
+                            || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
+                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
-                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
-                    loadNewLevel(playerActor.getIsAtDoorUserData().getLevelNumber(), playerActor.getIsAtDoorUserData().getDestinationDoor());
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
+                    loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                 }
-                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
-                    if (levelModel.getLevelInt() > 0) {
-                        loadNewLevel(levelModel.getLevelInt() - 1, DoorType.NEXT);
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
+                    if (mLevelModel.getLevelInt() > 0) {
+                        loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.NEXT);
                     }
                 }
-                else if (playerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-                    if (levelModel.getLevelInt() < Constants.gameLevels.size() - 1) {
-                        loadNewLevel(levelModel.getLevelInt() + 1, DoorType.PREVIOUS);
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
+                    if (mLevelModel.getLevelInt() < Constants.gameLevels.size() - 1) {
+                        loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.PREVIOUS);
                     }
                 }
             }
@@ -438,46 +437,46 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private void loadNewLevel(int newLevel, String whichDoor) {
         alreadyEntered = true;
-        levelModel = Constants.gameLevels.get(newLevel);
+        mLevelModel = Constants.gameLevels.get(newLevel);
 
-        mapParser.destroyTiledMap();
-        WorldUtils.destroyBodies(world);
+        mMapParser.destroyTiledMap();
+        WorldUtils.destroyBodies(mWorld);
 
-        playerActor.setCurrentLevel(newLevel);
-        LocalDataManager.savePlayerActorData(playerActor.getUserData());
+        mPlayerActor.setCurrentLevel(newLevel);
+        LocalDataManager.savePlayerActorData(mPlayerActor.getUserData());
 
-        LocalDataManager.saveLevelData(loadedLevelModel);
+        LocalDataManager.saveLevelData(mLoadedLevelModel);
 
         loadLevel(Constants.gameLevels.get(newLevel), whichDoor);
     }
 
     @Override
     public void setPlayerActor(PlayerActor playerActor) {
-        this.playerActor = playerActor;
-        this.playerActor.delegate = this;
+        mPlayerActor = playerActor;
+        mPlayerActor.delegate = this;
         if (LocalDataManager.loadPlayerActorData() != null) {
-            playerModel = LocalDataManager.loadPlayerActorData();
-            playerActor.initPlayerData(playerModel);
+            mPlayerModel = LocalDataManager.loadPlayerActorData();
+            playerActor.initPlayerData(mPlayerModel);
         }
         else {
-            playerModel = new PlayerModel();
-            playerModel.setPlayerHearts(PlayerModel.DEFAULT_HEARTS);
-            playerModel.setPlayerHealth(PlayerModel.DEFAULT_HEALTH);
-            playerModel.setPlayerLives(PlayerModel.DEFAULT_LIVES);
-            playerModel.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
-            playerActor.initPlayerData(playerModel);
-            LocalDataManager.savePlayerActorData(playerModel);
+            mPlayerModel = new PlayerModel();
+            mPlayerModel.setPlayerHearts(PlayerModel.DEFAULT_HEARTS);
+            mPlayerModel.setPlayerHealth(PlayerModel.DEFAULT_HEALTH);
+            mPlayerModel.setPlayerLives(PlayerModel.DEFAULT_LIVES);
+            mPlayerModel.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
+            playerActor.initPlayerData(mPlayerModel);
+            LocalDataManager.savePlayerActorData(mPlayerModel);
         }
 
-        hudStageDelegate.setHudHealthHearts(playerModel.getPlayerHearts());
+        hudStageDelegate.setHudHealthHearts(mPlayerModel.getPlayerHearts());
         hudStageDelegate.resetHudShapes();
-        hudStageDelegate.setHudHealth(playerModel.getPlayerHealth());
-        hudStageDelegate.setHudLives(playerModel.getPlayerLives());
+        hudStageDelegate.setHudHealth(mPlayerModel.getPlayerHealth());
+        hudStageDelegate.setHudLives(mPlayerModel.getPlayerLives());
     }
 
     @Override
     public void setLockedGoldDoor(DoorGoldActor doorGoldActor) {
-        this.doorGoldActor = doorGoldActor;
+        mDoorGoldActor = doorGoldActor;
     }
 
     @Override
@@ -508,20 +507,20 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     @Override
     public void playerZeroLives() {
         //show died screen
-        playerActor.resetLives();
+        mPlayerActor.resetLives();
     }
 
     private void killPlayer() {
-        playerActor.resetHealth();
-        playerActor.deIncrementLives();
-        hudStageDelegate.setHudLives(playerModel.getPlayerLives());
-        LocalDataManager.savePlayerActorData(playerActor.getUserData());
-        isPlayerDead = true;
+        mPlayerActor.resetHealth();
+        mPlayerActor.deIncrementLives();
+        hudStageDelegate.setHudLives(mPlayerModel.getPlayerLives());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getUserData());
+        mIsPlayerDead = true;
     }
 
     public void quitGame() {
-        LocalDataManager.savePlayerActorData(playerActor.getUserData());
-        LocalDataManager.saveLevelData(loadedLevelModel);
+        LocalDataManager.savePlayerActorData(mPlayerActor.getUserData());
+        LocalDataManager.saveLevelData(mLoadedLevelModel);
     }
 
     /*private void startBackgroundMusic() {
