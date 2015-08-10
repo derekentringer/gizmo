@@ -16,102 +16,102 @@ public class HudStage extends Stage implements IHudStageDelegate {
 
     private static final int HUD_PADDING = 10;
 
-    private OrthographicCamera hudCamera;
-    private SpriteBatch sSpriteBatch;
+    private OrthographicCamera mHudCamera;
+    private SpriteBatch mSpriteBatch;
 
-    private Vector2 hudLivesPosition = new Vector2();
-    private Vector2 hudHealthPosition = new Vector2();
+    private Vector2 mHudLivesPosition = new Vector2();
+    private Vector2 mHudHealthPosition = new Vector2();
 
-    private Texture hudLivesOne;
-    private Texture hudLivesTwo;
-    private Texture hudLivesThree;
-    private Texture hudLivesFour;
-    private Texture hudLivesFive;
+    private Texture mHudLivesOne;
+    private Texture mHudLivesTwo;
+    private Texture mHudLivesThree;
+    private Texture mHudLivesFour;
+    private Texture mHudLivesFive;
 
-    private Texture hudHeartsTwo;
-    private Texture hudHeartsThree;
-    private Texture hudHeartsFour;
-    private Texture hudHeartsFive;
-    private Texture hudHeartsSix;
-    private Texture hudHeartsSeven;
-    private Texture hudHeartsEight;
-    private Texture hudHeartsNine;
-    private Texture hudHeartsTen;
+    private Texture mHudHeartsTwo;
+    private Texture mHudHeartsThree;
+    private Texture mHudHeartsFour;
+    private Texture mHudHeartsFive;
+    private Texture mHudHeartsSix;
+    private Texture mHudHeartsSeven;
+    private Texture mHudHeartsEight;
+    private Texture mHudHeartsNine;
+    private Texture mHudHeartsTen;
 
-    private Texture currentLivesTexture;
-    private Texture currentHealthTexture;
+    private Texture mCurrentLivesTexture;
+    private Texture mCurrentHealthTexture;
 
-    private int sLives;
-    private int sHearts;
+    private int mLives;
+    private int mHearts;
 
-    private ShapeRenderer redShapeRenderer;
-    private ShapeRenderer whiteShapeRenderer;
-    private boolean projectionMatrixSet;
+    private ShapeRenderer mRedShapeRenderer;
+    private ShapeRenderer mWhiteShapeRenderer;
+    private boolean mProjectionMatrixSet;
 
-    private float initialWidth;
-    private float redShapeWidth;
-    private float redShapeHeight = 20;
+    private float mInitialWidth;
+    private float mRedShapeWidth;
+    private float mRedShapeHeight = 20;
 
-    public HudStage(com.derekentringer.gizmo.components.stage.GameStage gameStage) {
+    public HudStage(GameStage gameStage) {
         gameStage.hudStageDelegate = this;
         setupCamera();
 
-        redShapeRenderer = new ShapeRenderer();
-        whiteShapeRenderer = new ShapeRenderer();
-        projectionMatrixSet = false;
+        mRedShapeRenderer = new ShapeRenderer();
+        mWhiteShapeRenderer = new ShapeRenderer();
+        mProjectionMatrixSet = false;
 
-        sSpriteBatch = new SpriteBatch();
+        mSpriteBatch = new SpriteBatch();
 
-        hudLivesOne = Gizmo.assetManager.get("res/images/hud/hud_lives_one.png", Texture.class);
-        hudLivesTwo = Gizmo.assetManager.get("res/images/hud/hud_lives_two.png", Texture.class);
-        hudLivesThree = Gizmo.assetManager.get("res/images/hud/hud_lives_three.png", Texture.class);
-        hudLivesFour = Gizmo.assetManager.get("res/images/hud/hud_lives_four.png", Texture.class);
-        hudLivesFive = Gizmo.assetManager.get("res/images/hud/hud_lives_five.png", Texture.class);
+        mHudLivesOne = Gizmo.assetManager.get("res/images/hud/hud_lives_one.png", Texture.class);
+        mHudLivesTwo = Gizmo.assetManager.get("res/images/hud/hud_lives_two.png", Texture.class);
+        mHudLivesThree = Gizmo.assetManager.get("res/images/hud/hud_lives_three.png", Texture.class);
+        mHudLivesFour = Gizmo.assetManager.get("res/images/hud/hud_lives_four.png", Texture.class);
+        mHudLivesFive = Gizmo.assetManager.get("res/images/hud/hud_lives_five.png", Texture.class);
 
-        hudHeartsTwo = Gizmo.assetManager.get("res/images/hud/hud_hearts_two.png", Texture.class);
-        hudHeartsThree = Gizmo.assetManager.get("res/images/hud/hud_hearts_three.png", Texture.class);
-        hudHeartsFour = Gizmo.assetManager.get("res/images/hud/hud_hearts_four.png", Texture.class);
-        hudHeartsFive = Gizmo.assetManager.get("res/images/hud/hud_hearts_five.png", Texture.class);
-        hudHeartsSix = Gizmo.assetManager.get("res/images/hud/hud_hearts_six.png", Texture.class);
-        hudHeartsSeven = Gizmo.assetManager.get("res/images/hud/hud_hearts_seven.png", Texture.class);
-        hudHeartsEight = Gizmo.assetManager.get("res/images/hud/hud_hearts_eight.png", Texture.class);
-        hudHeartsNine = Gizmo.assetManager.get("res/images/hud/hud_hearts_nine.png", Texture.class);
-        hudHeartsTen = Gizmo.assetManager.get("res/images/hud/hud_hearts_ten.png", Texture.class);
+        mHudHeartsTwo = Gizmo.assetManager.get("res/images/hud/hud_hearts_two.png", Texture.class);
+        mHudHeartsThree = Gizmo.assetManager.get("res/images/hud/hud_hearts_three.png", Texture.class);
+        mHudHeartsFour = Gizmo.assetManager.get("res/images/hud/hud_hearts_four.png", Texture.class);
+        mHudHeartsFive = Gizmo.assetManager.get("res/images/hud/hud_hearts_five.png", Texture.class);
+        mHudHeartsSix = Gizmo.assetManager.get("res/images/hud/hud_hearts_six.png", Texture.class);
+        mHudHeartsSeven = Gizmo.assetManager.get("res/images/hud/hud_hearts_seven.png", Texture.class);
+        mHudHeartsEight = Gizmo.assetManager.get("res/images/hud/hud_hearts_eight.png", Texture.class);
+        mHudHeartsNine = Gizmo.assetManager.get("res/images/hud/hud_hearts_nine.png", Texture.class);
+        mHudHeartsTen = Gizmo.assetManager.get("res/images/hud/hud_hearts_ten.png", Texture.class);
 
-        currentLivesTexture = hudLivesOne;
-        currentHealthTexture = hudHeartsTwo;
+        mCurrentLivesTexture = mHudLivesOne;
+        mCurrentHealthTexture = mHudHeartsTwo;
     }
 
     private void setupCamera() {
-        hudCamera = new OrthographicCamera();
-        hudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        hudCamera.update();
+        mHudCamera = new OrthographicCamera();
+        mHudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mHudCamera.update();
     }
 
     @Override
     public void draw() {
         super.draw();
 
-        sSpriteBatch.setProjectionMatrix(hudCamera.combined);
+        mSpriteBatch.setProjectionMatrix(mHudCamera.combined);
 
-        if (!projectionMatrixSet) {
-            whiteShapeRenderer.setProjectionMatrix(sSpriteBatch.getProjectionMatrix());
-            redShapeRenderer.setProjectionMatrix(sSpriteBatch.getProjectionMatrix());
+        if (!mProjectionMatrixSet) {
+            mWhiteShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mRedShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
         }
-        whiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        whiteShapeRenderer.setColor(Color.WHITE);
-        whiteShapeRenderer.rect(hudHealthPosition.x, hudHealthPosition.y + currentHealthTexture.getHeight() - redShapeHeight, currentHealthTexture.getWidth() - 32, redShapeHeight);
-        whiteShapeRenderer.end();
+        mWhiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        mWhiteShapeRenderer.setColor(Color.WHITE);
+        mWhiteShapeRenderer.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
+        mWhiteShapeRenderer.end();
 
-        redShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        redShapeRenderer.setColor(193 / 255f, 0, 0, 1);
-        redShapeRenderer.rect(hudHealthPosition.x + 3, hudHealthPosition.y + currentHealthTexture.getHeight() - redShapeHeight, redShapeWidth, redShapeHeight);
-        redShapeRenderer.end();
+        mRedShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        mRedShapeRenderer.setColor(193 / 255f, 0, 0, 1);
+        mRedShapeRenderer.rect(mHudHealthPosition.x + 3, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mRedShapeWidth, mRedShapeHeight);
+        mRedShapeRenderer.end();
 
-        sSpriteBatch.begin();
-        sSpriteBatch.draw(currentLivesTexture, hudLivesPosition.x, hudLivesPosition.y);
-        sSpriteBatch.draw(currentHealthTexture, hudHealthPosition.x, hudHealthPosition.y);
-        sSpriteBatch.end();
+        mSpriteBatch.begin();
+        mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
+        mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
+        mSpriteBatch.end();
     }
 
     @Override
@@ -120,93 +120,93 @@ public class HudStage extends Stage implements IHudStageDelegate {
     }
 
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
-        hudLivesPosition.x = Math.abs(crop.x) / scale;
-        hudLivesPosition.y = Math.abs(gameHeight - currentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
+        mHudLivesPosition.x = Math.abs(crop.x) / scale;
+        mHudLivesPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        hudHealthPosition.x = Math.abs(crop.x) / scale;
-        hudHealthPosition.y = Math.abs(gameHeight - currentLivesTexture.getHeight() * scale - currentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
+        mHudHealthPosition.x = Math.abs(crop.x) / scale;
+        mHudHealthPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - mCurrentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        System.out.println("hudPosition.x: " + hudHealthPosition.x);
-        System.out.println("hudPosition.y: " + hudHealthPosition.y);
+        System.out.println("hudPosition.x: " + mHudHealthPosition.x);
+        System.out.println("hudPosition.y: " + mHudHealthPosition.y);
 
-        hudCamera.update();
+        mHudCamera.update();
     }
 
     @Override
     public void setHudHealthHearts(int hearts) {
-        sHearts = hearts;
-        if (sHearts == 2) {
-            currentHealthTexture = hudHeartsTwo;
+        mHearts = hearts;
+        if (mHearts == 2) {
+            mCurrentHealthTexture = mHudHeartsTwo;
         }
-        else if (sHearts == 3) {
-            currentHealthTexture = hudHeartsThree;
+        else if (mHearts == 3) {
+            mCurrentHealthTexture = mHudHeartsThree;
         }
-        else if (sHearts == 4) {
-            currentHealthTexture = hudHeartsFour;
+        else if (mHearts == 4) {
+            mCurrentHealthTexture = mHudHeartsFour;
         }
-        else if (sHearts == 5) {
-            currentHealthTexture = hudHeartsFive;
+        else if (mHearts == 5) {
+            mCurrentHealthTexture = mHudHeartsFive;
         }
-        else if (sHearts == 6) {
-            currentHealthTexture = hudHeartsSix;
+        else if (mHearts == 6) {
+            mCurrentHealthTexture = mHudHeartsSix;
         }
-        else if (sHearts == 7) {
-            currentHealthTexture = hudHeartsSeven;
+        else if (mHearts == 7) {
+            mCurrentHealthTexture = mHudHeartsSeven;
         }
-        else if (sHearts == 8) {
-            currentHealthTexture = hudHeartsEight;
+        else if (mHearts == 8) {
+            mCurrentHealthTexture = mHudHeartsEight;
         }
-        else if (sHearts == 9) {
-            currentHealthTexture = hudHeartsNine;
+        else if (mHearts == 9) {
+            mCurrentHealthTexture = mHudHeartsNine;
         }
-        else if (sHearts == 10) {
-            currentHealthTexture = hudHeartsTen;
+        else if (mHearts == 10) {
+            mCurrentHealthTexture = mHudHeartsTen;
         }
     }
 
     @Override
     public void setHudHealth(int health) {
-        float fullHealth = sHearts * PlayerModel.HEART_HEALTH_AMOUNT;
+        float fullHealth = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
         float percentFull = health / fullHealth;
-        float newWidth = percentFull * initialWidth;
+        float newWidth = percentFull * mInitialWidth;
 
-        if (sHearts == 5 && health > 29) {
+        if (mHearts == 5 && health > 29) {
             newWidth = newWidth + 3;
         }
-        else if (sHearts == 4 && health > 19) {
+        else if (mHearts == 4 && health > 19) {
             newWidth = newWidth + 2;
         }
-        else if (sHearts == 3 && health > 9) {
+        else if (mHearts == 3 && health > 9) {
             newWidth = newWidth + 1;
         }
 
-        redShapeWidth = newWidth;
+        mRedShapeWidth = newWidth;
     }
 
     @Override
     public void resetHudShapes() {
-        initialWidth = sHearts * 18;
-        redShapeWidth = initialWidth;
-        redShapeHeight = 20;
+        mInitialWidth = mHearts * 18;
+        mRedShapeWidth = mInitialWidth;
+        mRedShapeHeight = 20;
     }
 
     @Override
     public void setHudLives(int lives) {
-        sLives = lives;
-        if(sLives == 5) {
-            currentLivesTexture = hudLivesFive;
+        mLives = lives;
+        if(mLives == 5) {
+            mCurrentLivesTexture = mHudLivesFive;
         }
-        else if (sLives == 4) {
-            currentLivesTexture = hudLivesFour;
+        else if (mLives == 4) {
+            mCurrentLivesTexture = mHudLivesFour;
         }
-        else if (sLives == 3) {
-            currentLivesTexture = hudLivesThree;
+        else if (mLives == 3) {
+            mCurrentLivesTexture = mHudLivesThree;
         }
-        else if (sLives == 2) {
-            currentLivesTexture = hudLivesTwo;
+        else if (mLives == 2) {
+            mCurrentLivesTexture = mHudLivesTwo;
         }
-        else if (sLives == 1) {
-            currentLivesTexture = hudLivesOne;
+        else if (mLives == 1) {
+            mCurrentLivesTexture = mHudLivesOne;
         }
     }
 
