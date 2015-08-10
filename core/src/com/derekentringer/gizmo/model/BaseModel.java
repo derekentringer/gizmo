@@ -2,15 +2,13 @@ package com.derekentringer.gizmo.model;
 
 public abstract class BaseModel {
 
-    protected BaseModelType baseModelType;
-
-    public int healthDamage;
+    protected BaseModelType mBaseModelType;
 
     public BaseModel() {
     }
 
     public BaseModelType getBaseModelType() {
-        return baseModelType;
+        return mBaseModelType;
     }
 
 }

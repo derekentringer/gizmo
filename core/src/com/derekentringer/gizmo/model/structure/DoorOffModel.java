@@ -7,7 +7,7 @@ public class DoorOffModel extends BaseModel {
 
     public DoorOffModel() {
         super();
-        baseModelType = BaseModelType.DOOR_OFF;
+        mBaseModelType = BaseModelType.DOOR_OFF;
     }
 
 }

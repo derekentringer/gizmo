@@ -9,7 +9,7 @@ public class GroundModel extends BaseModel {
 
     public GroundModel() {
         super();
-        baseModelType = BaseModelType.GROUND;
+        mBaseModelType = BaseModelType.GROUND;
     }
 
 }

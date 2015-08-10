@@ -19,62 +19,62 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_MAX_LIVES = 5;
     public static final int DEFAULT_LEVEL = 0;
 
-    private ArrayList<KeyModel> keyList = new ArrayList<KeyModel>();
+    private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
 
-    private int currentLevel;
-    private int playerLives;
-    private int playerHearts;
-    private int playerHealth;
+    private int mCurrentLevel;
+    private int mPlayerLives;
+    private int mPlayerHearts;
+    private int mPlayerHealth;
 
     public PlayerModel() {
         super();
-        baseModelType = BaseModelType.PLAYER;
+        mBaseModelType = BaseModelType.PLAYER;
     }
 
     public void setCurrentLevel(int level) {
-        currentLevel = level;
+        mCurrentLevel = level;
     }
 
     public int getCurrentLevel() {
-        return currentLevel;
+        return mCurrentLevel;
     }
 
     public void setPlayerLives(int lives) {
-        playerLives = lives;
+        mPlayerLives = lives;
     }
 
     public int getPlayerLives() {
-        return playerLives;
+        return mPlayerLives;
     }
 
     public void setPlayerHearts(int hearts) {
-        playerHearts = hearts;
+        mPlayerHearts = hearts;
     }
 
     public int getPlayerHearts() {
-        return playerHearts;
+        return mPlayerHearts;
     }
 
     public void setPlayerHealth(int health) {
-        playerHealth = health;
+        mPlayerHealth = health;
     }
 
     public int getPlayerHealth() {
-        return playerHealth;
+        return mPlayerHealth;
     }
 
-    public void setPlayerKey(KeyModel keyData) {
-        keyList.add(keyData);
+    public void addPlayerKey(KeyModel keyData) {
+        mKeyList.add(keyData);
     }
 
     public ArrayList<KeyModel> getPlayerKeys() {
-        return keyList;
+        return mKeyList;
     }
 
     public void removePlayerKey(String keyType) {
-        for (int i=0; i < keyList.size(); i++) {
-            if (keyList.get(i).getKeyType().equalsIgnoreCase(keyType)) {
-                keyList.remove(i);
+        for (int i=0; i < mKeyList.size(); i++) {
+            if (mKeyList.get(i).getKeyType().equalsIgnoreCase(keyType)) {
+                mKeyList.remove(i);
             }
         }
     }

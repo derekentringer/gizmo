@@ -9,7 +9,7 @@ public class LifeModel extends BaseModel {
 
     public LifeModel() {
         super();
-        baseModelType = BaseModelType.LIFE;
+        mBaseModelType = BaseModelType.LIFE;
     }
 
 }

@@ -11,89 +11,89 @@ import java.util.ArrayList;
 
 public class LevelModel extends BaseModel {
 
-    private ArrayList<KeyModel> pickedUpKeys = new ArrayList<KeyModel>();
-    private ArrayList<HeartModel> pickedUpHearts = new ArrayList<HeartModel>();
-    private ArrayList<LifeModel> pickedUpLives = new ArrayList<LifeModel>();
-    private ArrayList<DoorModel> openedDoors = new ArrayList<DoorModel>();
+    private ArrayList<KeyModel> mPickedUpKeys = new ArrayList<KeyModel>();
+    private ArrayList<HeartModel> mPickedUpHearts = new ArrayList<HeartModel>();
+    private ArrayList<LifeModel> mPickedUpLives = new ArrayList<LifeModel>();
+    private ArrayList<DoorModel> mOpenedDoors = new ArrayList<DoorModel>();
 
-    private int sLevelInt;
-    private String sLevelMap;
-    private String sLevelMidMap;
-    private String sLevelBackMap;
+    private int mLevelInt;
+    private String mLevelMap;
+    private String mLevelMidMap;
+    private String mLevelBackMap;
 
     public LevelModel() {
     }
 
     public LevelModel(int levelInt, String levelMap, String levelMidMap, String levelBackMap) {
-        baseModelType = BaseModelType.LEVEL;
-        sLevelInt = levelInt;
-        sLevelMap = levelMap;
-        sLevelMidMap = levelMidMap;
-        sLevelBackMap = levelBackMap;
+        mBaseModelType = BaseModelType.LEVEL;
+        mLevelInt = levelInt;
+        mLevelMap = levelMap;
+        mLevelMidMap = levelMidMap;
+        mLevelBackMap = levelBackMap;
     }
 
     public int getLevelInt() {
-        return sLevelInt;
+        return mLevelInt;
     }
 
     public void setLevelInt(int levelInt) {
-        sLevelInt = levelInt;
+        mLevelInt = levelInt;
     }
 
     public String getLevelMap() {
-        return sLevelMap;
+        return mLevelMap;
     }
 
     public void setLevelMap(String levelMap) {
-        sLevelMap = levelMap;
+        mLevelMap = levelMap;
     }
 
-    public String getsLevelMidMap() {
-        return sLevelMidMap;
+    public String getLevelMidMap() {
+        return mLevelMidMap;
     }
 
-    public void setsLevelMidMap(String levelMidMap) {
-        sLevelMidMap = levelMidMap;
+    public void setLevelMidMap(String levelMidMap) {
+        mLevelMidMap = levelMidMap;
     }
 
-    public String getsLevelBackMap() {
-        return sLevelBackMap;
+    public String getLevelBackMap() {
+        return mLevelBackMap;
     }
 
-    public void setsLevelBackMap(String levelBackMap) {
-        sLevelBackMap = levelBackMap;
+    public void setLevelBackMap(String levelBackMap) {
+        mLevelBackMap = levelBackMap;
     }
 
     public void addPickedUpKey(KeyModel keyModel) {
-        pickedUpKeys.add(keyModel);
+        mPickedUpKeys.add(keyModel);
     }
 
     public ArrayList<KeyModel> getPickedUpKeys() {
-        return pickedUpKeys;
+        return mPickedUpKeys;
     }
 
     public void addPickedUpHeart(HeartModel heartModel) {
-        pickedUpHearts.add(heartModel);
+        mPickedUpHearts.add(heartModel);
     }
 
     public ArrayList<HeartModel> getPickedUpHearts() {
-        return pickedUpHearts;
+        return mPickedUpHearts;
     }
 
     public void addPickedUpLife(LifeModel lifeModel) {
-        pickedUpLives.add(lifeModel);
+        mPickedUpLives.add(lifeModel);
     }
 
     public ArrayList<LifeModel> getPickedUpLives() {
-        return pickedUpLives;
+        return mPickedUpLives;
     }
 
     public void addOpenedDoor(DoorModel doorModel) {
-        openedDoors.add(doorModel);
+        mOpenedDoors.add(doorModel);
     }
 
     public ArrayList<DoorModel> getOpenedDoors() {
-        return openedDoors;
+        return mOpenedDoors;
     }
 
 }

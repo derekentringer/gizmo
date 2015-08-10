@@ -9,7 +9,7 @@ public class WallModel extends BaseModel {
 
     public WallModel() {
         super();
-        baseModelType = BaseModelType.GROUND;
+        mBaseModelType = BaseModelType.GROUND;
     }
 
 }

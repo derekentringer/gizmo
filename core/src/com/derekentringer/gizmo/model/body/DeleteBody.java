@@ -5,24 +5,24 @@ import com.derekentringer.gizmo.model.BaseModel;
 
 public class DeleteBody {
 
-    private Body body;
-    private BaseModel baseModel;
+    private Body mBody;
+    private BaseModel mBaseModel;
 
     public DeleteBody(BaseModel baseModel, Body body) {
-        this.baseModel = baseModel;
-        this.body = body;
+        mBaseModel = baseModel;
+        mBody = body;
     }
 
     public BaseModel getBaseModel() {
-        return baseModel;
+        return mBaseModel;
     }
 
     public Body getBody() {
-        return body;
+        return mBody;
     }
 
     public void setBody(Body body) {
-        this.body = body;
+        mBody = body;
     }
 
 }

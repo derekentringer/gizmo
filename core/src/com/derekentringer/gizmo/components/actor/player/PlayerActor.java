@@ -130,7 +130,7 @@ public class PlayerActor extends BaseActor {
         playerModel.setCurrentLevel(pData.getCurrentLevel());
         if (pData.getPlayerKeys().size() > 0) {
             for (int i = 0; i < pData.getPlayerKeys().size(); i++) {
-                playerModel.setPlayerKey(pData.getPlayerKeys().get(i));
+                playerModel.addPlayerKey(pData.getPlayerKeys().get(i));
             }
         }
     }
@@ -170,7 +170,7 @@ public class PlayerActor extends BaseActor {
 
     public void addKey(KeyModel keyModel) {
         if (lastKeyAdded == null || !lastKeyAdded.equals(keyModel)) {
-            playerModel.setPlayerKey(keyModel);
+            playerModel.addPlayerKey(keyModel);
             lastKeyAdded = keyModel;
         }
     }

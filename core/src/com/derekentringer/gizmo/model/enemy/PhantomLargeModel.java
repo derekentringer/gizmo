@@ -5,21 +5,21 @@ import com.derekentringer.gizmo.model.BaseModelType;
 public class PhantomLargeModel extends EnemyModel {
 
     public static final String PHANTOM_LARGE = "phantomlarge";
-    private int healthDamage = 10;
+    private int mHealthDamage = 10;
 
     public PhantomLargeModel() {
         super();
-        baseModelType = BaseModelType.ENEMY;
+        mBaseModelType = BaseModelType.ENEMY;
     }
 
     @Override
     public int getHealthDamage() {
-        return healthDamage;
+        return mHealthDamage;
     }
 
     @Override
     public void setHealthDamage(int damage) {
-        healthDamage = damage;
+        mHealthDamage = damage;
     }
 
 }

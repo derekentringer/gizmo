@@ -5,10 +5,10 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class DoorModel extends BaseModel {
 
-    private String sDoorType;
-    private int sLevelNumber;
-    private String sDestinationDoor;
-    private boolean sIsLocked;
+    private String mDoorType;
+    private int mLevelNumber;
+    private String mDestinationDoor;
+    private boolean mIsLocked;
 
     public DoorModel() {
         super();
@@ -16,40 +16,40 @@ public class DoorModel extends BaseModel {
 
     public DoorModel(String doorType, int levelNumber, String destinationDoor, boolean isLocked) {
         super();
-        baseModelType = BaseModelType.DOOR;
-        sDoorType = doorType;
-        sLevelNumber = levelNumber;
-        sDestinationDoor = destinationDoor;
-        sIsLocked = isLocked;
+        mBaseModelType = BaseModelType.DOOR;
+        mDoorType = doorType;
+        mLevelNumber = levelNumber;
+        mDestinationDoor = destinationDoor;
+        mIsLocked = isLocked;
     }
 
     public DoorModel(String doorType) {
         super();
-        baseModelType = BaseModelType.DOOR;
-        sDoorType = doorType;
+        mBaseModelType = BaseModelType.DOOR;
+        mDoorType = doorType;
     }
 
     public String getDoorType() {
-        return sDoorType;
+        return mDoorType;
     }
 
     public int getLevelNumber() {
-        return sLevelNumber;
+        return mLevelNumber;
     }
 
     public String getDestinationDoor() {
-        if(sDestinationDoor != null && !sDestinationDoor.isEmpty()) {
-            return sDestinationDoor;
+        if(mDestinationDoor != null && !mDestinationDoor.isEmpty()) {
+            return mDestinationDoor;
         }
         return DoorType.PREVIOUS;
     }
 
     public boolean getIsLocked() {
-        return sIsLocked;
+        return mIsLocked;
     }
 
     public void setIsLocked(boolean isLocked) {
-        sIsLocked = isLocked;
+        mIsLocked = isLocked;
     }
 
 }

@@ -9,7 +9,7 @@ public class HeartModel extends BaseModel {
 
     public HeartModel() {
         super();
-        baseModelType = BaseModelType.HEART;
+        mBaseModelType = BaseModelType.HEART;
     }
 
 }

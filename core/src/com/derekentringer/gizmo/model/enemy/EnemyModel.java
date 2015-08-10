@@ -5,22 +5,21 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class EnemyModel extends BaseModel {
 
-    protected BaseModelType baseModelType;
-    private int healthDamage;
+    private int mHealthDamage;
 
     public EnemyModel() {
     }
 
     public BaseModelType getBaseModelType() {
-        return baseModelType;
+        return mBaseModelType;
     }
 
     public int getHealthDamage() {
-        return healthDamage;
+        return mHealthDamage;
     }
 
     public void setHealthDamage(int damage) {
-        healthDamage = damage;
+        mHealthDamage = damage;
     }
 
 }
