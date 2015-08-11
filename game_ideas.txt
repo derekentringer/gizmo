@@ -1,20 +1,25 @@
 TODO
 -----
 
-add ghost boss animations and attacks
+refactor cameras and create more camera effects
 
 check door bugs
 
+look more into door animation transitions
 
+add ghost boss animations and attacks
+
+add barking ability for ghosts (the most basic attack)
+
+moar enemies
+
+create gizmo attacks (rolling, jump-lunge, guns)
 
 add a power up for jumping
 add barking ability
 add a power up for barking
 
 phantoms run away when gizmo barks
-
-refactor up how the tiled cameras are created
-refactor how the three tile maps are loaded
 
 
 player stats
