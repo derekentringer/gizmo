@@ -129,8 +129,8 @@ public class HudStage extends Stage implements IHudStageDelegate {
         mHudHealthPosition.x = Math.abs(crop.x) / scale;
         mHudHealthPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - mCurrentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        GLog.d("hudPosition.x: " + mHudHealthPosition.x);
-        GLog.d("hudPosition.y: " + mHudHealthPosition.y);
+        GLog.d(TAG, "hudPosition.x: " + mHudHealthPosition.x);
+        GLog.d(TAG, "hudPosition.y: " + mHudHealthPosition.y);
 
         mHudCamera.update();
     }

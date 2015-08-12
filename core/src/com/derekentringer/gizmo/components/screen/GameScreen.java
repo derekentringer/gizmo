@@ -85,9 +85,9 @@ public class GameScreen implements Screen {
 
         hudStage.updateHudLayout(scale, crop, h);
 
-        GLog.d("RESIZE: " + scale);
-        GLog.d("RESIZE: " + crop);
-        GLog.d("RESIZE: " + h);
+        GLog.d(TAG, "RESIZE: " + scale);
+        GLog.d(TAG, "RESIZE: " + crop);
+        GLog.d(TAG, "RESIZE: " + h);
     }
 
     @Override

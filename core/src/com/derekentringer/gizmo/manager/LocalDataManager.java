@@ -26,7 +26,7 @@ public class LocalDataManager {
     public static void savePlayerActorData(PlayerModel playerModel) {
         Json json = new Json();
         String playerDataString = json.toJson(playerModel, PlayerModel.class);
-        GLog.d("*** SAVING PLAYER DATA *** " + playerDataString);
+        GLog.d(TAG, "*** SAVING PLAYER DATA *** " + playerDataString);
         writeFile(GAME_SAVE_FILE, playerDataString);
     }
 
@@ -35,12 +35,12 @@ public class LocalDataManager {
         if (!saveFile.isEmpty()) {
             Json json = new Json();
             PlayerModel playerData = json.fromJson(PlayerModel.class, saveFile);
-            GLog.d("*** LOADED PLAYER DATA *** ");
-            GLog.d("getPlayerHearts: " + playerData.getPlayerHearts());
-            GLog.d("getPlayerLives: " + playerData.getPlayerLives());
-            GLog.d("getPlayerHealth: " + playerData.getPlayerHealth());
-            GLog.d("getPlayerKeys: " + playerData.getPlayerKeys().size());
-            GLog.d("getCurrentLevel: " + playerData.getCurrentLevel());
+            GLog.d(TAG, "*** LOADED PLAYER DATA *** ");
+            GLog.d(TAG, "getPlayerHearts: " + playerData.getPlayerHearts());
+            GLog.d(TAG, "getPlayerLives: " + playerData.getPlayerLives());
+            GLog.d(TAG, "getPlayerHealth: " + playerData.getPlayerHealth());
+            GLog.d(TAG, "getPlayerKeys: " + playerData.getPlayerKeys().size());
+            GLog.d(TAG, "getCurrentLevel: " + playerData.getCurrentLevel());
             return playerData;
         }
         return null;
@@ -48,12 +48,12 @@ public class LocalDataManager {
 
     public static LevelModel loadLevelData(LevelModel levelModel) {
         String fileName = levelModel.getLevelInt() + "_" + LEVEL_SAVE_SUFFIX;
-        GLog.d("*** LOADING LEVEL DATA *** " + fileName);
+        GLog.d(TAG, "*** LOADING LEVEL DATA *** " + fileName);
         String savedLevelFile = readFile(fileName);
         if (!savedLevelFile.isEmpty()) {
             Json json = new Json();
             LevelModel loadedLevelModel = json.fromJson(LevelModel.class, savedLevelFile);
-            GLog.d("*** LOADED LEVEL DATA *** ");
+            GLog.d(TAG, "*** LOADED LEVEL DATA *** ");
             return loadedLevelModel;
         }
         return null;
@@ -63,7 +63,7 @@ public class LocalDataManager {
         String fileName = levelModel.getLevelInt() + "_" + LEVEL_SAVE_SUFFIX;
         Json json = new Json();
         String levelModelString = json.toJson(levelModel, LevelModel.class);
-        GLog.d("*** SAVING LEVEL DATA *** " + levelModelString);
+        GLog.d(TAG, "*** SAVING LEVEL DATA *** " + levelModelString);
         writeFile(fileName, levelModelString);
     }
 

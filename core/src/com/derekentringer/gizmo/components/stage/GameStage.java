@@ -123,7 +123,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }*/
 
     public void loadLevel(LevelModel level, String whichDoor) {
-        GLog.d("loading level: " + level.getLevelInt());
+        GLog.d(TAG, "loading level: " + level.getLevelInt());
         if (LocalDataManager.loadLevelData(level) != null) {
             mLoadedLevelModel = LocalDataManager.loadLevelData(level);
         }

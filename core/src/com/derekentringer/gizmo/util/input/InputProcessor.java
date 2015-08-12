@@ -19,7 +19,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown(int keycode) {
-        GLog.d("keycode: " + keycode);
+        GLog.d(TAG, "keycode: " + keycode);
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
@@ -78,17 +78,17 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public void connected(Controller controller) {
-        GLog.d("controller connected: " + controller);
+        GLog.d(TAG, "controller connected: " + controller);
     }
 
     @Override
     public void disconnected(Controller controller) {
-        GLog.d("controller disconnected: " + controller);
+        GLog.d(TAG, "controller disconnected: " + controller);
     }
 
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
-        GLog.d("buttonCode: " + buttonCode);
+        GLog.d(TAG, "buttonCode: " + buttonCode);
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
@@ -133,9 +133,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-        GLog.d("controller: " + controller);
-        GLog.d("povCode: " + povCode);
-        GLog.d("value: " + value);
+        GLog.d(TAG, "controller: " + controller);
+        GLog.d(TAG, "povCode: " + povCode);
+        GLog.d(TAG, "value: " + value);
         if (value == BaseController.BUTTON_DPAD_RIGHT
                 || value == BaseController.BUTTON_DPAD_UP_RIGHT
                 || value == BaseController.BUTTON_DPAD_RIGHT_DOWN) {
