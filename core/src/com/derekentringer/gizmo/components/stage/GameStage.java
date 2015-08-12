@@ -36,6 +36,7 @@ import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
+import com.derekentringer.gizmo.util.log.GLog;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 
@@ -120,7 +121,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     }*/
 
     public void loadLevel(LevelModel level, String whichDoor) {
-        System.out.println("loading level: " + level.getLevelInt());
+        GLog.d("loading level: " + level.getLevelInt());
         if (LocalDataManager.loadLevelData(level) != null) {
             mLoadedLevelModel = LocalDataManager.loadLevelData(level);
         }
@@ -525,7 +526,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
-        if(!Constants.DEBUGGING) {
+        if(!Constants.IS_DEBUGGING) {
             backgroundMusic.play();
             backgroundMusic.setLooping(true);
             backgroundMusic.setVolume(0.2f);

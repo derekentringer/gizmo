@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Json;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class LocalDataManager {
 
@@ -23,7 +24,7 @@ public class LocalDataManager {
     public static void savePlayerActorData(PlayerModel playerModel) {
         Json json = new Json();
         String playerDataString = json.toJson(playerModel, PlayerModel.class);
-        System.out.println("*** SAVING PLAYER DATA *** " + playerDataString);
+        GLog.d("*** SAVING PLAYER DATA *** " + playerDataString);
         writeFile(GAME_SAVE_FILE, playerDataString);
     }
 
@@ -32,12 +33,12 @@ public class LocalDataManager {
         if (!saveFile.isEmpty()) {
             Json json = new Json();
             PlayerModel playerData = json.fromJson(PlayerModel.class, saveFile);
-            System.out.println("*** LOADED PLAYER DATA *** ");
-            System.out.println("getPlayerHearts: " + playerData.getPlayerHearts());
-            System.out.println("getPlayerLives: " + playerData.getPlayerLives());
-            System.out.println("getPlayerHealth: " + playerData.getPlayerHealth());
-            System.out.println("getPlayerKeys: " + playerData.getPlayerKeys().size());
-            System.out.println("getCurrentLevel: " + playerData.getCurrentLevel());
+            GLog.d("*** LOADED PLAYER DATA *** ");
+            GLog.d("getPlayerHearts: " + playerData.getPlayerHearts());
+            GLog.d("getPlayerLives: " + playerData.getPlayerLives());
+            GLog.d("getPlayerHealth: " + playerData.getPlayerHealth());
+            GLog.d("getPlayerKeys: " + playerData.getPlayerKeys().size());
+            GLog.d("getCurrentLevel: " + playerData.getCurrentLevel());
             return playerData;
         }
         return null;
@@ -45,12 +46,12 @@ public class LocalDataManager {
 
     public static LevelModel loadLevelData(LevelModel levelModel) {
         String fileName = levelModel.getLevelInt() + "_" + LEVEL_SAVE_SUFFIX;
-        System.out.println("*** LOADING LEVEL DATA *** " + fileName);
+        GLog.d("*** LOADING LEVEL DATA *** " + fileName);
         String savedLevelFile = readFile(fileName);
         if (!savedLevelFile.isEmpty()) {
             Json json = new Json();
             LevelModel loadedLevelModel = json.fromJson(LevelModel.class, savedLevelFile);
-            System.out.println("*** LOADED LEVEL DATA *** ");
+            GLog.d("*** LOADED LEVEL DATA *** ");
             return loadedLevelModel;
         }
         return null;
@@ -60,13 +61,13 @@ public class LocalDataManager {
         String fileName = levelModel.getLevelInt() + "_" + LEVEL_SAVE_SUFFIX;
         Json json = new Json();
         String levelModelString = json.toJson(levelModel, LevelModel.class);
-        System.out.println("*** SAVING LEVEL DATA *** " + levelModelString);
+        GLog.d("*** SAVING LEVEL DATA *** " + levelModelString);
         writeFile(fileName, levelModelString);
     }
 
     public static void writeFile(String fileName, String string) {
         FileHandle file = Gdx.files.local(fileName);
-        if (!Constants.DEBUGGING) {
+        if (!Constants.IS_DEBUG) {
             file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(string), false);
         }
         else {
@@ -79,7 +80,7 @@ public class LocalDataManager {
         if (file != null && file.exists()) {
             String string = file.readString();
             if (!string.isEmpty()) {
-                if (!Constants.DEBUGGING) {
+                if (!Constants.IS_DEBUG) {
                     return com.badlogic.gdx.utils.Base64Coder.decodeString(string);
                 }
                 else {

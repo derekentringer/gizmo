@@ -1,13 +1,15 @@
 package com.derekentringer.gizmo.settings;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Logger;
 import com.derekentringer.gizmo.model.level.LevelModel;
 
 import java.util.ArrayList;
 
 public class Constants {
 
-    public static final boolean DEBUGGING = true;
+    public static final boolean IS_DEBUG = true;
+    public static final int LOG_LEVEL = Logger.DEBUG;
 
     //rendering
     public static final float TIME_STEP = 1 / 300f;

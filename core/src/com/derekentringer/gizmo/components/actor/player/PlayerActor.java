@@ -341,7 +341,7 @@ public class PlayerActor extends BaseActor {
 
     private void playJumpSfx() {
         Sound jumpSfx = Gizmo.assetManager.get("res/sfx/jump.ogg", Sound.class);
-        if (!Constants.DEBUGGING) {
+        if (!Constants.IS_DEBUG) {
             jumpSfx.play();
         }
     }

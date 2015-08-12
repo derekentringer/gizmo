@@ -11,6 +11,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class HudStage extends Stage implements IHudStageDelegate {
 
@@ -126,8 +127,8 @@ public class HudStage extends Stage implements IHudStageDelegate {
         mHudHealthPosition.x = Math.abs(crop.x) / scale;
         mHudHealthPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - mCurrentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        System.out.println("hudPosition.x: " + mHudHealthPosition.x);
-        System.out.println("hudPosition.y: " + mHudHealthPosition.y);
+        GLog.d("hudPosition.x: " + mHudHealthPosition.x);
+        GLog.d("hudPosition.y: " + mHudHealthPosition.y);
 
         mHudCamera.update();
     }

@@ -9,6 +9,7 @@ import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.components.stage.GameStage;
 import com.derekentringer.gizmo.components.stage.HudStage;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class GameScreen implements Screen {
 
@@ -82,9 +83,9 @@ public class GameScreen implements Screen {
 
         hudStage.updateHudLayout(scale, crop, h);
 
-        System.out.println("RESIZE: " + scale);
-        System.out.println("RESIZE: " + crop);
-        System.out.println("RESIZE: " + h);
+        GLog.d("RESIZE: " + scale);
+        GLog.d("RESIZE: " + crop);
+        GLog.d("RESIZE: " + h);
     }
 
     @Override

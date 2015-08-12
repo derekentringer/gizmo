@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.derekentringer.gizmo.util.input.controller.BaseController;
 import com.derekentringer.gizmo.util.input.controller.NexusPlayerController;
 import com.derekentringer.gizmo.util.input.controller.PS4Controller;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class InputProcessor extends InputAdapter implements ControllerListener {
 
@@ -16,7 +17,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown(int keycode) {
-        System.out.println("keycode: " + keycode);
+        GLog.d("keycode: " + keycode);
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
@@ -75,17 +76,17 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public void connected(Controller controller) {
-        System.out.println("controller connected: " + controller);
+        GLog.d("controller connected: " + controller);
     }
 
     @Override
     public void disconnected(Controller controller) {
-        System.out.println("controller disconnected: " + controller);
+        GLog.d("controller disconnected: " + controller);
     }
 
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
-        System.out.println("buttonCode: " + buttonCode);
+        GLog.d("buttonCode: " + buttonCode);
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
@@ -130,9 +131,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-        System.out.println("controller: " + controller);
-        System.out.println("povCode: " + povCode);
-        System.out.println("value: " + value);
+        GLog.d("controller: " + controller);
+        GLog.d("povCode: " + povCode);
+        GLog.d("value: " + value);
         if (value == BaseController.BUTTON_DPAD_RIGHT
                 || value == BaseController.BUTTON_DPAD_UP_RIGHT
                 || value == BaseController.BUTTON_DPAD_RIGHT_DOWN) {
