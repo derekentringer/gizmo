@@ -15,6 +15,8 @@ import com.derekentringer.gizmo.util.log.GLog;
 
 public class HudStage extends Stage implements IHudStageDelegate {
 
+    private static final String TAG = HudStage.class.getSimpleName();
+
     private static final int HUD_PADDING = 10;
 
     private OrthographicCamera mHudCamera;

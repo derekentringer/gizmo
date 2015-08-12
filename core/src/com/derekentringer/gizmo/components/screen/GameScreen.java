@@ -13,6 +13,8 @@ import com.derekentringer.gizmo.util.log.GLog;
 
 public class GameScreen implements Screen {
 
+    private static final String TAG = GameScreen.class.getSimpleName();
+
     private HudStage hudStage;
     private GameStage gameStage;
     private Rectangle viewPort;

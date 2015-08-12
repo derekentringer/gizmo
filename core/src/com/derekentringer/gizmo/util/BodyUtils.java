@@ -13,6 +13,8 @@ import com.derekentringer.gizmo.settings.Constants;
 
 public class BodyUtils {
 
+    private static final String TAG = BodyUtils.class.getSimpleName();
+
     public static boolean bodyTypeCheck(Body body, BaseModelType baseModelType) {
         BaseModel userData = (BaseModel) body.getUserData();
         return userData != null && userData.getBaseModelType().equals(baseModelType);

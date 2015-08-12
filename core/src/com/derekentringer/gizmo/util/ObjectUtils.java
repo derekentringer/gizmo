@@ -13,6 +13,8 @@ import com.derekentringer.gizmo.model.object.LifeModel;
 
 public class ObjectUtils {
 
+    private static final String TAG = ObjectUtils.class.getSimpleName();
+
     public static Body createHeart(BaseModel userData, World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();

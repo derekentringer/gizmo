@@ -11,6 +11,8 @@ import com.derekentringer.gizmo.settings.Constants;
 
 public abstract class BaseActor extends Actor {
 
+    private static final String TAG = BaseActor.class.getSimpleName();
+
     public static final int FACING_RIGHT = 1;
     public static final int FACING_LEFT = 2;
 

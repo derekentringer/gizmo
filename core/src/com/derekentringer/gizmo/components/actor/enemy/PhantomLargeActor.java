@@ -10,6 +10,8 @@ import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 
 public class PhantomLargeActor extends BaseActor {
 
+    private static final String TAG = PhantomLargeActor.class.getSimpleName();
+
     private PhantomLargeModel mPhantomLargeModel = new PhantomLargeModel();
 
     private TextureRegion[] mPhantomSprite;

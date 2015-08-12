@@ -13,6 +13,8 @@ import com.derekentringer.gizmo.util.log.GLog;
 
 public class InputProcessor extends InputAdapter implements ControllerListener {
 
+    private static final String TAG = InputProcessor.class.getSimpleName();
+
     //KEYBOARD
 
     @Override

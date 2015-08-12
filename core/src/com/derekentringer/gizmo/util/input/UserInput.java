@@ -2,6 +2,8 @@ package com.derekentringer.gizmo.util.input;
 
 public class UserInput {
 
+    private static final String TAG = UserInput.class.getSimpleName();
+
     public static boolean[] currentKey;
     public static boolean[] previousKey;
 

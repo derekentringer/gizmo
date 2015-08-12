@@ -10,6 +10,8 @@ import com.derekentringer.gizmo.util.log.GLog;
 
 public class LocalDataManager {
 
+    private static final String TAG = LocalDataManager.class.getSimpleName();
+
     private static final String GAME_SAVE_FILE = "game.sav";
     private static final String LEVEL_SAVE_SUFFIX = "level.sav";
 

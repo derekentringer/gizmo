@@ -6,6 +6,8 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class FixtureUtils {
 
+    private static final String TAG = FixtureUtils.class.getSimpleName();
+
     public static boolean fixtureIsPlayerHitArea(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
         return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_HIT_AREA);

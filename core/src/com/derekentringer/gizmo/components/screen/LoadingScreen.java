@@ -7,6 +7,8 @@ import com.derekentringer.gizmo.Gizmo;
 
 public class LoadingScreen extends AbstractScreen {
 
+    private static final String TAG = LoadingScreen.class.getSimpleName();
+
     public LoadingScreen(Gizmo game) {
         super(game);
     }

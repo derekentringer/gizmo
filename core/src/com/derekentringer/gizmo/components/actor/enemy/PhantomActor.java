@@ -13,6 +13,8 @@ import com.derekentringer.gizmo.util.WorldUtils;
 
 public class PhantomActor extends BaseActor {
 
+    private static final String TAG = PhantomActor.class.getSimpleName();
+
     private static final float MOVEMENT_FORCE = 0.1f;
     private static final int MOVEMENT_PADDING = 7;
 

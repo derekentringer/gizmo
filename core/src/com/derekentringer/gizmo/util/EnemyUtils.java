@@ -10,6 +10,8 @@ import com.derekentringer.gizmo.model.BaseModel;
 
 public class EnemyUtils {
 
+    private static final String TAG = EnemyUtils.class.getSimpleName();
+
     public static Body createPhantom(BaseModel userData, World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();

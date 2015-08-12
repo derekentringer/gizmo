@@ -10,6 +10,8 @@ import com.derekentringer.gizmo.model.object.LifeModel;
 
 public class LifeActor extends BaseActor {
 
+    private static final String TAG = LifeActor.class.getSimpleName();
+
     private LifeModel mLifeModel = new LifeModel();
 
     private TextureRegion[] mLifeSprite;

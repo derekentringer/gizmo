@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 public class PlayerActor extends BaseActor {
 
+    private static final String TAG = PlayerActor.class.getSimpleName();
+
     private static final float RUNNING_FORCE = 1f;
     private static final float JUMP_FORCE = 5f;
     private static final float JUMP_FORCE_RESET = -1.2f;

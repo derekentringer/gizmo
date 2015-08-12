@@ -10,6 +10,8 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 
 public class HeartActor extends BaseActor {
 
+    private static final String TAG = HeartActor.class.getSimpleName();
+
     private HeartModel mHeartModel = new HeartModel();
 
     private TextureRegion[] mHeartSprite;

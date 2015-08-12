@@ -7,6 +7,8 @@ import com.derekentringer.gizmo.settings.Constants;
 
 public class WorldUtils {
 
+    private static final String TAG = WorldUtils.class.getSimpleName();
+
     public static World createWorld() {
         return new World(Constants.WORLD_GRAVITY, true);
     }

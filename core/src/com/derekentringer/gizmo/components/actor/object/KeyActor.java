@@ -10,6 +10,8 @@ import com.derekentringer.gizmo.model.object.KeyModel;
 
 public class KeyActor extends BaseActor {
 
+    private static final String TAG = BaseActor.class.getSimpleName();
+
     private KeyModel mKeyModel = new KeyModel();
 
     private TextureRegion[] mKeySprite;

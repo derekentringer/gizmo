@@ -7,6 +7,8 @@ import com.derekentringer.gizmo.model.structure.GroundModel;
 
 public class GroundActor extends BaseActor {
 
+    private static final String TAG = GroundActor.class.getSimpleName();
+
     private GroundModel mGroundModel = new GroundModel();
 
     public GroundActor(Body body) {

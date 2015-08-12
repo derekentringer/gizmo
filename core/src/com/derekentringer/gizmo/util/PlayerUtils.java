@@ -11,6 +11,8 @@ import com.derekentringer.gizmo.model.player.PlayerHitAreaModel;
 
 public class PlayerUtils {
 
+    private static final String TAG = PlayerUtils.class.getSimpleName();
+
     public static Body createPlayer(World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();

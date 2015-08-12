@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AnimationManager {
 
+    private static final String TAG = AnimationManager.class.getSimpleName();
+
     private TextureRegion[] mFrames;
     private float mTime;
     private float mDelay;

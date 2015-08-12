@@ -49,6 +49,8 @@ import java.util.ArrayList;
 
 public class MapParser extends Stage {
 
+    private static final String TAG = MapParser.class.getSimpleName();
+
     public IMapParserDelegate delegate = null;
 
     public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();

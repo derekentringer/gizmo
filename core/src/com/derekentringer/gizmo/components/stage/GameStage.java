@@ -44,6 +44,8 @@ import java.util.ArrayList;
 
 public class GameStage extends Stage implements ContactListener, IPlayerDelegate, IMapParserDelegate {
 
+    private static final String TAG = GameStage.class.getSimpleName();
+
     // TODO create flag for debugging in new camera class
     //private OrthographicCamera box2dDebugCamera;
     //private Box2DDebugRenderer box2dDebugRenderer;
