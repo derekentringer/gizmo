@@ -1,9 +1,6 @@
 package com.derekentringer.gizmo.components.stage;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -20,6 +17,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
+import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
@@ -46,22 +44,13 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
 
     private static final String TAG = GameStage.class.getSimpleName();
 
-    // TODO create flag for debugging in new camera class
-    //private OrthographicCamera box2dDebugCamera;
-    //private Box2DDebugRenderer box2dDebugRenderer;
-
     public IHudStageDelegate hudStageDelegate = null;
-
-    private OrthographicCamera mMainCamera;
-    private OrthographicCamera mMidBackgroundCamera;
-    private OrthographicCamera mBackgroundCamera;
 
     private World mWorld;
     private MapParser mMapParser;
     private SpriteBatch mSpriteBatch;
 
-    private float mEffectiveViewportWidth;
-    private float mEffectiveViewportHeight;
+    private CameraManager mCameraManager = new CameraManager();
 
     private PlayerActor mPlayerActor;
     private PlayerModel mPlayerModel;
@@ -82,10 +71,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mLevelModel = level;
         setupWorld();
         loadLevel(level, DoorType.PREVIOUS);
-        //setupDebugRendererCamera();
-        setupMainCamera();
-        setupMidBackgroundCamera();
-        setupBackgroundCamera();
+        mCameraManager.createGameCameras();
     }
 
     private void setupWorld() {
@@ -93,34 +79,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mWorld = WorldUtils.createWorld();
         mWorld.setContactListener(this);
     }
-
-    //TODO create new camera class
-    private void setupMainCamera() {
-        mMainCamera = new OrthographicCamera();
-        mMainCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mMainCamera.update();
-    }
-
-    private void setupMidBackgroundCamera() {
-        mMidBackgroundCamera = new OrthographicCamera();
-        mMidBackgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mMidBackgroundCamera.zoom = 1.3f;
-        mMidBackgroundCamera.update();
-    }
-
-    private void setupBackgroundCamera() {
-        mBackgroundCamera = new OrthographicCamera();
-        mBackgroundCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mBackgroundCamera.zoom = 1.7f;
-        mBackgroundCamera.update();
-    }
-
-    /*private void setupDebugRendererCamera() {
-        box2dDebugRenderer = new Box2DDebugRenderer();
-        box2dDebugCamera = new OrthographicCamera();
-        box2dDebugCamera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
-        box2dDebugCamera.update();
-    }*/
 
     public void loadLevel(LevelModel level, String whichDoor) {
         GLog.d(TAG, "loading level: " + level.getLevelInt());
@@ -238,19 +196,19 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         deleteObsoleteActors();
 
         //tiled maps render camera
-        mMapParser.getTiledMapBackgroundRenderer().setView(mBackgroundCamera);
+        mMapParser.getTiledMapBackgroundRenderer().setView(mCameraManager.getBackgroundCamera());
         mMapParser.getTiledMapBackgroundRenderer().render();
 
-        mMapParser.getTiledMapMidBackgroundRenderer().setView(mMidBackgroundCamera);
+        mMapParser.getTiledMapMidBackgroundRenderer().setView(mCameraManager.getMidBackgroundCamera());
         mMapParser.getTiledMapMidBackgroundRenderer().render();
 
-        mMapParser.getTiledMapRenderer().setView(mMainCamera);
+        mMapParser.getTiledMapRenderer().setView(mCameraManager.getMainCamera());
         mMapParser.getTiledMapRenderer().render();
 
         // mWorld debugRenderer camera
-        // box2dDebugRenderer.render(mWorld, box2dDebugCamera.combined);
+        // box2dDebugRenderer.render(mWorld, mCameraManager.getDebugRendererCamera().combined);
 
-        mSpriteBatch.setProjectionMatrix(mMainCamera.combined);
+        mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
         for (BaseActor actor : mMapParser.actorsArray) {
             actor.render(mSpriteBatch);
@@ -259,7 +217,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             }
         }
 
-        updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y);
+        mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
         handlePlayerPosition(mPlayerActor.getPosition().y);
         handlePlayerDied();
     }
@@ -307,35 +265,6 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
                 mMapParser.actorsArray.remove(j);
             }
         }
-    }
-
-    private void updateCameraPlayerMovement(float playerX, float playerY) {
-        MapProperties prop = mMapParser.getTiledMap().getProperties();
-        int mapWidth = prop.get("width", Integer.class);
-        int mapHeight = prop.get("height", Integer.class);
-
-        mEffectiveViewportWidth = mMainCamera.viewportWidth * mMainCamera.zoom;
-        mEffectiveViewportHeight = mMainCamera.viewportHeight * mMainCamera.zoom;
-
-        float minWidth = mEffectiveViewportWidth / 2f;
-        float minHeight = mEffectiveViewportHeight / 2f;
-        float maxWidth = (mapWidth * mMapParser.getTileSize()) - (mEffectiveViewportWidth / 2f);
-        float maxHeight = (mapHeight * mMapParser.getTileSize()) - (mEffectiveViewportHeight / 2f);
-
-        mMainCamera.position.x = Math.round(MathUtils.clamp(mMainCamera.position.x + (playerX * Constants.PPM - mMainCamera.position.x) * 0.1f, minWidth, maxWidth));
-        mMainCamera.position.y = Math.round(MathUtils.clamp(mMainCamera.position.y + (playerY * Constants.PPM - mMainCamera.position.y) * 0.1f, minHeight, maxHeight));
-
-        mMainCamera.update();
-
-        mMidBackgroundCamera.position.x = Math.round(MathUtils.clamp(mMidBackgroundCamera.position.x + (playerX * Constants.PPM - mMidBackgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
-        mMidBackgroundCamera.position.y = Math.round(MathUtils.clamp(mMidBackgroundCamera.position.y + (playerY * Constants.PPM - mMidBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
-
-        mMidBackgroundCamera.update();
-
-        mBackgroundCamera.position.x = Math.round(MathUtils.clamp(mBackgroundCamera.position.x + (playerX * Constants.PPM - mBackgroundCamera.position.x) * 0.1f, minWidth, maxWidth));
-        mBackgroundCamera.position.y = Math.round(MathUtils.clamp(mBackgroundCamera.position.y + (playerY * Constants.PPM - mBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
-
-        mBackgroundCamera.update();
     }
 
     private void handlePlayerPosition(float playerY) {
