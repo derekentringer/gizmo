@@ -1,6 +1,8 @@
 TODO
 -----
 
+when picking up a heart set full heath
+
 refactor cameras and create more camera effects
 
 check door bugs
