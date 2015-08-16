@@ -471,10 +471,10 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }
 
-        hudStageDelegate.setHudHealthHearts(mPlayerModel.getPlayerHearts());
+        hudStageDelegate.setHudHealthHearts(mPlayerActor.getPlayerModel().getPlayerHearts());
         hudStageDelegate.resetHudShapes();
-        hudStageDelegate.setHudHealth(mPlayerModel.getPlayerHealth());
-        hudStageDelegate.setHudLives(mPlayerModel.getPlayerLives());
+        hudStageDelegate.setHudHealth(mPlayerActor.getPlayerModel().getPlayerHealth());
+        hudStageDelegate.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
     }
 
     @Override
@@ -516,7 +516,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
     private void killPlayer() {
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
-        hudStageDelegate.setHudLives(mPlayerModel.getPlayerLives());
+        hudStageDelegate.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
         LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
         mIsPlayerDead = true;
     }
