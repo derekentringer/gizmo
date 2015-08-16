@@ -218,7 +218,8 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
 
         mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
-        handlePlayerPosition(mPlayerActor.getPosition().y);
+
+        handlePlayerOffMap(mPlayerActor.getPosition().y);
         handlePlayerDied();
     }
 
@@ -267,7 +268,7 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         }
     }
 
-    private void handlePlayerPosition(float playerY) {
+    private void handlePlayerOffMap(float playerY) {
         if (playerY * Constants.PPM < 0) {
             playerIsOffMap(true);
         }
