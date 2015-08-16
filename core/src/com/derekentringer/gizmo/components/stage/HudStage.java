@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
+import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
 

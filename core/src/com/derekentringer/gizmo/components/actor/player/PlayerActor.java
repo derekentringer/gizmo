@@ -21,7 +21,7 @@ public class PlayerActor extends BaseActor {
 
     private static final String TAG = PlayerActor.class.getSimpleName();
 
-    private static final float RUNNING_FORCE = 1f;
+    private static final float WALKING_FORCE = 1.2f;
     private static final float JUMP_FORCE = 5f;
     private static final float JUMP_FORCE_RESET = -1.2f;
     public static final int FLINCHING_LENGTH = 3;
@@ -279,7 +279,7 @@ public class PlayerActor extends BaseActor {
                 setAnimation(mJumpUpLeftSprites, 1 / 12f);
             }
         }
-        BodyUtils.applyLinearImpulseToBody(mBody, -RUNNING_FORCE, "x");
+        BodyUtils.applyLinearImpulseToBody(mBody, -WALKING_FORCE, "x");
         setFacingDirection(FACING_LEFT);
     }
 
@@ -301,7 +301,7 @@ public class PlayerActor extends BaseActor {
                 setAnimation(mJumpUpRightSprites, 1 / 12f);
             }
         }
-        BodyUtils.applyLinearImpulseToBody(mBody, RUNNING_FORCE, "x");
+        BodyUtils.applyLinearImpulseToBody(mBody, WALKING_FORCE, "x");
         setFacingDirection(FACING_RIGHT);
     }
 
