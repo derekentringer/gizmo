@@ -191,6 +191,7 @@ public class PlayerActor extends BaseActor {
     public void addHealthHeart(HeartModel heartModel) {
         if (mLastHeartAdded == null || !mLastHeartAdded.equals(heartModel)) {
             mPlayerModel.setPlayerHearts(mPlayerModel.getPlayerHearts() + 1);
+            mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
             mLastHeartAdded = heartModel;
         }
     }

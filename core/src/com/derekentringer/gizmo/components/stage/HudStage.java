@@ -165,6 +165,8 @@ public class HudStage extends Stage implements IHudStageDelegate {
         else if (mHearts == 10) {
             mCurrentHealthTexture = mHudHeartsTen;
         }
+        resetHudShapes();
+        setHudHealth(mHearts * PlayerModel.HEART_HEALTH_AMOUNT);
     }
 
     @Override
