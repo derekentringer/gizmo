@@ -1,9 +1,7 @@
 TODO
 -----
 
-
-
-refactor cameras and create more camera effects
+create more camera effects
 
 check door bugs
 

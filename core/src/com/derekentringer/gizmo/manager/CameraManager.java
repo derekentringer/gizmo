@@ -103,6 +103,12 @@ public class CameraManager {
         mBackgroundCamera.position.y = Math.round(MathUtils.clamp(mBackgroundCamera.position.y + (playerY * Constants.PPM - mBackgroundCamera.position.y) * 0.1f, minHeight, maxHeight));
 
         mBackgroundCamera.update();
+
+        //TODO
+        /*mBox2dDebugCamera.position.x = Math.round(MathUtils.clamp(mBox2dDebugCamera.position.x + (playerX - mBox2dDebugCamera.position.x) * 0.1f, minWidth, maxWidth));
+        mBox2dDebugCamera.position.y = Math.round(MathUtils.clamp(mBox2dDebugCamera.position.y + (playerY - mBox2dDebugCamera.position.y) * 0.1f, minHeight, maxHeight));
+
+        mBox2dDebugCamera.update();*/
     }
 
 }
