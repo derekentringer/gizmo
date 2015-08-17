@@ -24,6 +24,9 @@ public class CameraManager {
         createMainCamera();
         createMidBackgroundCamera();
         createBackgroundCamera();
+        if(Constants.IS_DEBUG_BOX2D) {
+            createDebugRendererCamera();
+        }
     }
 
     public void createMainCamera() {
@@ -63,6 +66,10 @@ public class CameraManager {
         mBox2dDebugCamera = new OrthographicCamera();
         mBox2dDebugCamera.setToOrtho(false, WorldUtils.ppmCalc(Constants.GAME_WIDTH), WorldUtils.ppmCalc(Constants.GAME_HEIGHT));
         mBox2dDebugCamera.update();
+    }
+
+    public Box2DDebugRenderer getBox2dDebugRenderer() {
+        return mBox2dDebugRenderer;
     }
 
     public OrthographicCamera getDebugRendererCamera() {

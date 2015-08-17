@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Constants {
 
     public static final boolean IS_DEBUG = true;
+    public static final boolean IS_DEBUG_BOX2D = true;
     public static final int LOG_LEVEL = Logger.DEBUG;
 
     //rendering

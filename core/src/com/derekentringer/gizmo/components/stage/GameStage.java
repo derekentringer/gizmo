@@ -205,8 +205,9 @@ public class GameStage extends Stage implements ContactListener, IPlayerDelegate
         mMapParser.getTiledMapRenderer().setView(mCameraManager.getMainCamera());
         mMapParser.getTiledMapRenderer().render();
 
-        // mWorld debugRenderer camera
-        // box2dDebugRenderer.render(mWorld, mCameraManager.getDebugRendererCamera().combined);
+        if (Constants.IS_DEBUG_BOX2D) {
+            mCameraManager.getBox2dDebugRenderer().render(mWorld, mCameraManager.getDebugRendererCamera().combined);
+        }
 
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
