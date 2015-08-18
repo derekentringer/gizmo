@@ -20,6 +20,8 @@ public class CameraManager {
     private float mEffectiveViewportWidth;
     private float mEffectiveViewportHeight;
 
+    private boolean mShakeCamera;
+
     public void createGameCameras() {
         createMainCamera();
         createMidBackgroundCamera();
@@ -104,11 +106,31 @@ public class CameraManager {
 
         mBackgroundCamera.update();
 
-        //TODO
+        // TODO this toggles correctly
+        // TODO but does not stay with camera
         /*mBox2dDebugCamera.position.x = Math.round(MathUtils.clamp(mBox2dDebugCamera.position.x + (playerX - mBox2dDebugCamera.position.x) * 0.1f, minWidth, maxWidth));
         mBox2dDebugCamera.position.y = Math.round(MathUtils.clamp(mBox2dDebugCamera.position.y + (playerY - mBox2dDebugCamera.position.y) * 0.1f, minHeight, maxHeight));
 
         mBox2dDebugCamera.update();*/
+    }
+
+    private float mRumbleX;
+    private float mRumbleY;
+    public void shakeCamera(float delta, float power) {
+
+        mRumbleX = (MathUtils.random() - 0.5f) * 2 * power;
+        mRumbleY = (MathUtils.random() - 0.5f) * 2 * power;
+
+        mMainCamera.translate(-mRumbleX, -mRumbleY);
+
+    }
+
+    public void setShakeCamera(boolean shake) {
+        mShakeCamera = shake;
+    }
+
+    public boolean getShakeCamera() {
+        return mShakeCamera;
     }
 
 }

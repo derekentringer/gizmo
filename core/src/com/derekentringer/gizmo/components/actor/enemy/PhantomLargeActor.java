@@ -2,6 +2,7 @@ package com.derekentringer.gizmo.components.actor.enemy;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
@@ -13,6 +14,8 @@ public class PhantomLargeActor extends BaseActor {
     private static final String TAG = PhantomLargeActor.class.getSimpleName();
 
     private PhantomLargeModel mPhantomLargeModel = new PhantomLargeModel();
+
+    private Vector2 mPlayerPosition = new Vector2();
 
     private TextureRegion[] mPhantomSprite;
     private Texture mPhantomLarge;
@@ -27,6 +30,25 @@ public class PhantomLargeActor extends BaseActor {
     @Override
     public BaseModel getPlayerModel() {
         return mPhantomLargeModel;
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if(getPlayerPosition().x < getPosition().x) {
+
+        }
+        else {
+
+        }
+    }
+
+    public Vector2 getPlayerPosition() {
+        return mPlayerPosition;
+    }
+
+    public void setPlayerPosition(float xPos) {
+        mPlayerPosition.x = xPos;
     }
 
 }
