@@ -3,6 +3,7 @@ package com.derekentringer.gizmo.manager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -116,12 +117,12 @@ public class CameraManager {
 
     private float mRumbleX;
     private float mRumbleY;
-    public void shakeCamera(float delta, float power) {
+    public Vector2 shakeCamera(float power) {
 
-        mRumbleX = (MathUtils.random() - 0.5f) * 2 * power;
-        mRumbleY = (MathUtils.random() - 0.5f) * 2 * power;
+        mRumbleX = MathUtils.random() * power;
+        mRumbleY = MathUtils.random() * power;
 
-        mMainCamera.translate(-mRumbleX, -mRumbleY);
+        return new Vector2(-mRumbleX, -mRumbleY);
 
     }
 

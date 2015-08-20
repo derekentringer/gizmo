@@ -27,6 +27,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorOffActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorOtherActor;
+import com.derekentringer.gizmo.components.stage.GameStage;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
@@ -55,6 +56,7 @@ public class MapParser extends Stage {
 
     public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();
 
+    private GameStage mGameStage;
     private TiledMap mTiledMap;
     private TiledMap mTiledMapMidBackground;
     private TiledMap mTiledMapBackground;
@@ -67,7 +69,9 @@ public class MapParser extends Stage {
 
     private LevelModel mLoadedLevelModel;
 
-    public MapParser(LevelModel loadedLevelModel, String tileMapName, String tileMapMidBackground, String tileMapBackground) {
+    public MapParser(GameStage gameStage, LevelModel loadedLevelModel, String tileMapName, String tileMapMidBackground, String tileMapBackground) {
+        mGameStage = gameStage;
+
         mLoadedLevelModel = loadedLevelModel;
 
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
@@ -175,6 +179,7 @@ public class MapParser extends Stage {
                     phantomLargeActor.setName(PhantomLargeModel.PHANTOM_LARGE);
                     addActor(phantomLargeActor);
                     actorsArray.add(phantomLargeActor);
+                    phantomLargeActor.addListener(mGameStage);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER_DESTINATIONS)) {
                     if (whichDoor.equalsIgnoreCase(mapObject.getProperties().get("name").toString())) {

@@ -29,7 +29,7 @@ public class PlayerActor extends BaseActor {
 
     private PlayerModel mPlayerModel = new PlayerModel();
 
-    public IPlayerDelegate delegate = null;
+    public IPlayerDelegate playerDelegate = null;
 
     private TextureRegion[] mRunningRightSprites;
     private TextureRegion[] mRunningLeftSprites;
@@ -141,7 +141,7 @@ public class PlayerActor extends BaseActor {
         if (!mIsFlinching) {
             mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() - healthDamage);
             applyFlinchForce();
-            delegate.playerGotHit(mPlayerModel.getPlayerHealth());
+            playerDelegate.playerGotHit(mPlayerModel.getPlayerHealth());
         }
     }
 
@@ -162,7 +162,7 @@ public class PlayerActor extends BaseActor {
     public void deIncrementLives() {
         mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() - 1);
         if (mPlayerModel.getPlayerLives() <= 0) {
-            delegate.playerZeroLives();
+            playerDelegate.playerZeroLives();
         }
     }
 

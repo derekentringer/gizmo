@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
+import com.derekentringer.gizmo.components.actor.enemy.interfaces.IEnemy;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
@@ -42,7 +43,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParserDelegate, IPlayerDelegate, ContactListener  {
+public class GameStage extends Stage implements IMapParserDelegate, IPlayerDelegate, IEnemy, ContactListener  {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -90,7 +91,7 @@ public class GameStage extends Stage implements IMapParserDelegate, IPlayerDeleg
         else {
             mLoadedLevelModel = level;
         }
-        mMapParser = new MapParser(mLoadedLevelModel, level.getLevelMap(), level.getLevelMidMap(), level.getLevelBackMap());
+        mMapParser = new MapParser(this, mLoadedLevelModel, level.getLevelMap(), level.getLevelMidMap(), level.getLevelBackMap());
         mMapParser.delegate = this;
         mMapParser.createTileMapLayers(mWorld);
         mMapParser.createTileMapObjects(mWorld, whichDoor);
@@ -234,12 +235,8 @@ public class GameStage extends Stage implements IMapParserDelegate, IPlayerDeleg
         UserInput.update();
         handleInput();
 
-        if(mCameraManager.getShakeCamera()) {
-            mCameraManager.shakeCamera(delta, 2);
-        }
-        else {
-            mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
-        }
+        //add check to shake camera here
+        mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
 
         for (BaseActor actor : mMapParser.actorsArray) {
             actor.update(delta);
@@ -397,7 +394,7 @@ public class GameStage extends Stage implements IMapParserDelegate, IPlayerDeleg
     @Override
     public void setPlayerActor(PlayerActor playerActor) {
         mPlayerActor = playerActor;
-        mPlayerActor.delegate = this;
+        mPlayerActor.playerDelegate = this;
         if (LocalDataManager.loadPlayerActorData() != null) {
             mPlayerModel = LocalDataManager.loadPlayerActorData();
             playerActor.initPlayerData(mPlayerModel);
@@ -466,6 +463,12 @@ public class GameStage extends Stage implements IMapParserDelegate, IPlayerDeleg
         LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
         LocalDataManager.saveLevelData(mLoadedLevelModel);
     }
+
+    @Override
+    public void shakeCamera(boolean shake) {
+        mCameraManager.setShakeCamera(shake);
+    }
+
 
     /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);

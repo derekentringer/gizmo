@@ -6,8 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.enemy.interfaces.IEnemy;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
+
+import java.util.ArrayList;
 
 public class PhantomLargeActor extends BaseActor {
 
@@ -15,10 +18,16 @@ public class PhantomLargeActor extends BaseActor {
 
     private PhantomLargeModel mPhantomLargeModel = new PhantomLargeModel();
 
+    private ArrayList<IEnemy> listeners = new ArrayList<IEnemy>();
+
     private Vector2 mPlayerPosition = new Vector2();
 
     private TextureRegion[] mPhantomSprite;
     private Texture mPhantomLarge;
+
+    public void addListener(IEnemy listener) {
+        listeners.add(listener);
+    }
 
     public PhantomLargeActor(Body body) {
         super(body);
@@ -35,11 +44,15 @@ public class PhantomLargeActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(getPlayerPosition().x < getPosition().x) {
-
+        if(getPlayerPosition().x < (getPosition().x - 5)) {
+            for(IEnemy listener : listeners){
+                listener.shakeCamera(true);
+            }
         }
         else {
-
+            for(IEnemy listener : listeners){
+                listener.shakeCamera(false);
+            }
         }
     }
 
