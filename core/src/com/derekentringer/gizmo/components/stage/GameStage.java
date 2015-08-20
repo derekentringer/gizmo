@@ -39,11 +39,11 @@ import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
 import com.derekentringer.gizmo.util.map.MapParser;
-import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
+import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParserDelegate, IPlayer, IEnemy, ContactListener  {
+public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, ContactListener  {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -92,7 +92,7 @@ public class GameStage extends Stage implements IMapParserDelegate, IPlayer, IEn
             mLoadedLevelModel = level;
         }
         mMapParser = new MapParser(this, mLoadedLevelModel, level.getLevelMap(), level.getLevelMidMap(), level.getLevelBackMap());
-        mMapParser.delegate = this;
+        mMapParser.addListener(this);
         mMapParser.createTileMapLayers(mWorld);
         mMapParser.createTileMapObjects(mWorld, whichDoor);
     }

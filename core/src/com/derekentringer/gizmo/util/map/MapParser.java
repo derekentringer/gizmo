@@ -44,7 +44,7 @@ import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
-import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
+import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class MapParser extends Stage {
 
     private static final String TAG = MapParser.class.getSimpleName();
 
-    public IMapParserDelegate delegate = null;
+    private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
 
     public final ArrayList<BaseActor> actorsArray = new ArrayList<BaseActor>();
 
@@ -86,6 +86,10 @@ public class MapParser extends Stage {
 
         mTiledMapBackground = new TmxMapLoader().load(tileMapBackground, params);
         mTiledMapBackgroundRenderer = new OrthogonalTiledMapRenderer(mTiledMapBackground);
+    }
+
+    public void addListener(IMapParser listener) {
+        listeners.add(listener);
     }
 
     public void createTileMapLayers(World world) {
@@ -224,7 +228,9 @@ public class MapParser extends Stage {
         playerActor.setName(PlayerModel.PLAYER);
         addActor(playerActor);
         actorsArray.add(playerActor);
-        delegate.setPlayerActor(playerActor);
+        for(IMapParser listener : listeners){
+            listener.setPlayerActor(playerActor);
+        }
     }
 
     private void createLockedGoldDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
@@ -232,7 +238,9 @@ public class MapParser extends Stage {
         doorGoldActor.setName(DoorType.LOCKED_GOLD);
         addActor(doorGoldActor);
         actorsArray.add(doorGoldActor);
-        delegate.setLockedGoldDoor(doorGoldActor);
+        for(IMapParser listener : listeners){
+            listener.setLockedGoldDoor(doorGoldActor);
+        }
     }
 
     private void createLockedBronzeDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
@@ -240,7 +248,9 @@ public class MapParser extends Stage {
         doorBronzeActor.setName(DoorType.LOCKED_BRONZE);
         addActor(doorBronzeActor);
         actorsArray.add(doorBronzeActor);
-        delegate.setLockedBronzeDoor(doorBronzeActor);
+        for(IMapParser listener : listeners){
+            listener.setLockedBronzeDoor(doorBronzeActor);
+        }
     }
 
     private void createLockedBloodDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
@@ -248,7 +258,9 @@ public class MapParser extends Stage {
         doorBloodActor.setName(DoorType.LOCKED_BLOOD);
         addActor(doorBloodActor);
         actorsArray.add(doorBloodActor);
-        delegate.setLockedBloodDoor(doorBloodActor);
+        for(IMapParser listener : listeners){
+            listener.setLockedBloodDoor(doorBloodActor);
+        }
     }
 
     private void createLockedBlackDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
@@ -256,7 +268,9 @@ public class MapParser extends Stage {
         doorBlackActor.setName(DoorType.LOCKED_BLACK);
         addActor(doorBlackActor);
         actorsArray.add(doorBlackActor);
-        delegate.setLockedBlackDoor(doorBlackActor);
+        for(IMapParser listener : listeners){
+            listener.setLockedBlackDoor(doorBlackActor);
+        }
     }
 
     private void createOtherDoorActor(World world, int levelNumber, String doorTypeDest, boolean isLocked, int row, int col) {
