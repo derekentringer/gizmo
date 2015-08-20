@@ -7,11 +7,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
-import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BodyUtils;
 
@@ -21,6 +21,8 @@ public class PlayerActor extends BaseActor {
 
     private static final String TAG = PlayerActor.class.getSimpleName();
 
+    private ArrayList<IPlayer> listeners = new ArrayList<IPlayer>();
+
     private static final float WALKING_FORCE = 1.2f;
     private static final float JUMP_FORCE = 5f;
     private static final float JUMP_FORCE_RESET = -1.2f;
@@ -28,8 +30,6 @@ public class PlayerActor extends BaseActor {
     private static final float FLINCH_FORCE = 50f;
 
     private PlayerModel mPlayerModel = new PlayerModel();
-
-    public IPlayerDelegate playerDelegate = null;
 
     private TextureRegion[] mRunningRightSprites;
     private TextureRegion[] mRunningLeftSprites;
@@ -125,6 +125,10 @@ public class PlayerActor extends BaseActor {
         return mPlayerModel;
     }
 
+    public void addListener(IPlayer listener) {
+        listeners.add(listener);
+    }
+
     public void initPlayerData(PlayerModel playerModel) {
         mPlayerModel.setPlayerHearts(playerModel.getPlayerHearts());
         mPlayerModel.setPlayerHealth(playerModel.getPlayerHealth());
@@ -141,7 +145,9 @@ public class PlayerActor extends BaseActor {
         if (!mIsFlinching) {
             mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() - healthDamage);
             applyFlinchForce();
-            playerDelegate.playerGotHit(mPlayerModel.getPlayerHealth());
+            for(IPlayer listener : listeners){
+                listener.playerGotHit(mPlayerModel.getPlayerHealth());
+            }
         }
     }
 
@@ -162,7 +168,9 @@ public class PlayerActor extends BaseActor {
     public void deIncrementLives() {
         mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() - 1);
         if (mPlayerModel.getPlayerLives() <= 0) {
-            playerDelegate.playerZeroLives();
+            for(IPlayer listener : listeners){
+                listener.playerZeroLives();
+            }
         }
     }
 

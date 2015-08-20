@@ -13,7 +13,7 @@ import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
 import com.derekentringer.gizmo.components.actor.enemy.interfaces.IEnemy;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
-import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayerDelegate;
+import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
@@ -43,7 +43,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParserDelegate;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParserDelegate, IPlayerDelegate, IEnemy, ContactListener  {
+public class GameStage extends Stage implements IMapParserDelegate, IPlayer, IEnemy, ContactListener  {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -394,7 +394,7 @@ public class GameStage extends Stage implements IMapParserDelegate, IPlayerDeleg
     @Override
     public void setPlayerActor(PlayerActor playerActor) {
         mPlayerActor = playerActor;
-        mPlayerActor.playerDelegate = this;
+        mPlayerActor.addListener(this);
         if (LocalDataManager.loadPlayerActorData() != null) {
             mPlayerModel = LocalDataManager.loadPlayerActorData();
             playerActor.initPlayerData(mPlayerModel);
