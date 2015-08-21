@@ -20,6 +20,8 @@ public abstract class BaseActor extends Actor {
 
     public int mFacingDirection;
 
+    private boolean mIsPlayingAnimation;
+
     protected Body mBody;
     protected AnimationManager mAnimationManager;
     protected float mWidth;
@@ -44,7 +46,9 @@ public abstract class BaseActor extends Actor {
     }
 
     public void update(float delayTime) {
-        mAnimationManager.update(delayTime);
+        if(getIsPlayingAnimation()) {
+            mAnimationManager.update(delayTime);
+        }
     }
 
     public void render(SpriteBatch spriteBatch) {
@@ -91,4 +95,15 @@ public abstract class BaseActor extends Actor {
         return mFacingDirection;
     }
 
+    public boolean getIsPlayingAnimation() {
+        return mIsPlayingAnimation;
+    }
+
+    public void setIsPlayingAnimation(boolean isPlayingAnimation) {
+        mIsPlayingAnimation = isPlayingAnimation;
+    }
+
+    public int getTimesPlayed() {
+        return mAnimationManager.getTimesPlayed();
+    }
 }

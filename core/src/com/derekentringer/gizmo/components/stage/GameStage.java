@@ -18,6 +18,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
+import com.derekentringer.gizmo.components.actor.structure.door.interfaces.IDoor;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
@@ -43,7 +44,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, ContactListener  {
+public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDoor, ContactListener  {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -352,7 +353,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
 
                         // TODO animate locked doors
-                        // mDoorGoldActor.startAnimation();
+                        mDoorGoldActor.startAnimation();
 
                         mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
                         loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
@@ -493,6 +494,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
     @Override
     public void shakeCamera(boolean shake) {
         mCameraManager.setShakeCamera(shake);
+    }
+
+    @Override
+    public void doorAnimationComplete() {
+
     }
 
 

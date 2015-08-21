@@ -21,7 +21,6 @@ public class PhantomLargeActor extends BaseActor {
     private ArrayList<IEnemy> listeners = new ArrayList<IEnemy>();
 
     private Vector2 mPlayerPosition = new Vector2();
-
     private TextureRegion[] mPhantomSprite;
     private Texture mPhantomLarge;
 
