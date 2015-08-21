@@ -1,6 +1,6 @@
 package com.derekentringer.gizmo.components.stage.interfaces;
 
-public interface IHudStageDelegate {
+public interface IHudStage {
     void setHudHealthHearts(int hearts);
     void setHudHealth(int health);
     void resetHudShapes();

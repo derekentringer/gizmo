@@ -17,18 +17,23 @@ public class GameScreen implements Screen {
 
     private HudStage hudStage;
     private GameStage gameStage;
+
     private Rectangle viewPort;
     private int levelToLoad = 0;
 
     //private FPSLogger fpsLogger = new FPSLogger();
 
     public GameScreen() {
+
         Constants.buildGameLevelList();
+
         gameStage = new GameStage();
         hudStage = new HudStage(gameStage);
+
         if (LocalDataManager.loadPlayerActorData() != null) {
             levelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
         }
+
         gameStage.init(Constants.gameLevels.get(levelToLoad));
     }
 
@@ -39,12 +44,14 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         //clear the screen
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //set the viewport
-        Gdx.gl.glViewport((int) viewPort.x, (int) viewPort.y,
-                (int) viewPort.width, (int) viewPort.height);
+        Gdx.gl.glViewport((int) viewPort.x,
+                (int) viewPort.y,
+                (int) viewPort.width,
+                (int) viewPort.height);
 
         //update the game stage
         gameStage.act(delta);

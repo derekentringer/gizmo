@@ -18,7 +18,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
-import com.derekentringer.gizmo.components.stage.interfaces.IHudStageDelegate;
+import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.BaseModelType;
@@ -47,7 +47,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
 
     private static final String TAG = GameStage.class.getSimpleName();
 
-    public IHudStageDelegate hudStageDelegate = null;
+    private ArrayList<IHudStage> listeners = new ArrayList<IHudStage>();
 
     private World mWorld;
     private MapParser mMapParser;
@@ -68,6 +68,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
     private boolean alreadyEntered = false;
 
     public GameStage() {
+    }
+
+    public void addListener(IHudStage listener) {
+        listeners.add(listener);
     }
 
     public void init(LevelModel level) {
@@ -155,13 +159,21 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
             mLoadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
-            hudStageDelegate.setHudHealthHearts(mPlayerActor.getHealthHearts());
+
+            for(IHudStage listener : listeners){
+                listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
+            }
+
             mDeleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
             mLoadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
-            hudStageDelegate.setHudHealthHearts(mPlayerActor.getHealthHearts());
+
+            for(IHudStage listener : listeners){
+                listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
+            }
+
             mDeleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
         }
 
@@ -169,13 +181,21 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.incrementLives();
             mLoadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
-            hudStageDelegate.setHudLives(mPlayerActor.getPlayerLives());
+
+            for(IHudStage listener : listeners){
+                listener.setHudLives(mPlayerActor.getPlayerLives());
+            }
+
             mDeleteBodies.add(new DeleteBody((LifeModel) a.getBody().getUserData(), a.getBody()));
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.incrementLives();
             mLoadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
-            hudStageDelegate.setHudLives(mPlayerActor.getPlayerLives());
+
+            for(IHudStage listener : listeners){
+                listener.setHudLives(mPlayerActor.getPlayerLives());
+            }
+
             mDeleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
         }
     }
@@ -409,10 +429,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }
 
-        hudStageDelegate.setHudHealthHearts(mPlayerActor.getPlayerModel().getPlayerHearts());
-        hudStageDelegate.resetHudShapes();
-        hudStageDelegate.setHudHealth(mPlayerActor.getPlayerModel().getPlayerHealth());
-        hudStageDelegate.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
+        for(IHudStage listener : listeners){
+            listener.setHudHealthHearts(mPlayerActor.getPlayerModel().getPlayerHearts());
+            listener.resetHudShapes();
+            listener.setHudHealth(mPlayerActor.getPlayerModel().getPlayerHealth());
+            listener.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
+        }
     }
 
     @Override
@@ -439,7 +461,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
 
     @Override
     public void playerGotHit(int playerHealth) {
-        hudStageDelegate.setHudHealth(playerHealth);
+        for(IHudStage listener : listeners) {
+            listener.setHudHealth(playerHealth);
+        }
         if (playerHealth <= 0) {
             killPlayer();
         }
@@ -454,7 +478,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, Con
     private void killPlayer() {
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
-        hudStageDelegate.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
+        for(IHudStage listener : listeners) {
+            listener.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
+        }
         LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
         mIsPlayerDead = true;
     }
