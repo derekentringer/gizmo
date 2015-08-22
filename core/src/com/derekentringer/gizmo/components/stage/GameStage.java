@@ -354,28 +354,24 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
                 if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_GOLD)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mDoorGoldActor.addListener(this);
                         mDoorGoldActor.startAnimation();
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BRONZE)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mDoorBronzeActor.addListener(this);
                         mDoorBronzeActor.startAnimation();
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLOOD)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mDoorBloodActor.addListener(this);
                         mDoorBloodActor.startAnimation();
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLACK)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mDoorBlackActor.addListener(this);
                         mDoorBlackActor.startAnimation();
                     }
                 }
@@ -440,21 +436,25 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     @Override
     public void setLockedGoldDoor(DoorGoldActor doorGoldActor) {
         mDoorGoldActor = doorGoldActor;
+        mDoorGoldActor.addListener(this);
     }
 
     @Override
     public void setLockedBronzeDoor(DoorBronzeActor bronzeDoorActor) {
         mDoorBronzeActor = bronzeDoorActor;
+        mDoorBronzeActor.addListener(this);
     }
 
     @Override
     public void setLockedBloodDoor(DoorBloodActor bloodDoorActor) {
         mDoorBloodActor = bloodDoorActor;
+        mDoorBloodActor.addListener(this);
     }
 
     @Override
     public void setLockedBlackDoor(DoorBlackActor blackDoorActor) {
         mDoorBlackActor = blackDoorActor;
+        mDoorBlackActor.addListener(this);
     }
 
     @Override

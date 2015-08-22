@@ -55,5 +55,5 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
             }
         }
     }
-    
+
 }
