@@ -24,10 +24,10 @@ public class DoorBronzeActor extends BaseActor implements IBaseActor {
         super(body);
         addListener(this);
         if(isLocked) {
-            mDoorBronze = Gizmo.assetManager.get("res/images/door_bronze_opening.png", Texture.class);
+            mDoorBronze = Gizmo.assetManager.get("res/images/doors/door_bronze_opening.png", Texture.class);
         }
         else {
-            mDoorBronze = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);
+            mDoorBronze = Gizmo.assetManager.get("res/images/doors/door_opened.png", Texture.class);
         }
         mDoorBronzeSprite = TextureRegion.split(mDoorBronze, 32, 32)[0];
         setIsPlayingAnimation(false);

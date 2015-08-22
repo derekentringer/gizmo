@@ -20,7 +20,7 @@ public class HeartActor extends BaseActor {
     public HeartActor(Body body) {
         super(body);
 
-        mHeart = Gizmo.assetManager.get("res/images/heart.png", Texture.class);
+        mHeart = Gizmo.assetManager.get("res/images/objects/heart.png", Texture.class);
         mHeartSprite = TextureRegion.split(mHeart, 32, 32)[0];
 
         setAnimation(mHeartSprite, 1 / 12f);

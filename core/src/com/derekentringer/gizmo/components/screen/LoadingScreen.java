@@ -31,47 +31,47 @@ public class LoadingScreen extends AbstractScreen {
         game.assetManager.load("res/images/hud/hud_hearts_nine.png", Texture.class);
         game.assetManager.load("res/images/hud/hud_hearts_ten.png", Texture.class);
 
-        game.assetManager.load("res/images/gizmo_running_left.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_running_right.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_standing_right_large.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_standing_left_large.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_running_left.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_running_right.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_standing_right_large.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_standing_left_large.png", Texture.class);
 
-        game.assetManager.load("res/images/gizmo_jump_up_right_large.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_up_left_large.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_fall_right_large.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_fall_left_large.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_up_right_large.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_up_left_large.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
 
-        game.assetManager.load("res/images/gizmo_running_flinching_left.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_running_flinching_right.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_standing_left_large_flinching.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_standing_right_large_flinching.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_up_left_large_flinching.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_up_right_large_flinching.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_fall_left_large_flinching.png", Texture.class);
-        game.assetManager.load("res/images/gizmo_jump_fall_right_large_flinching.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_running_flinching_left.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_running_flinching_right.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_standing_left_large_flinching.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_standing_right_large_flinching.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_up_left_large_flinching.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_up_right_large_flinching.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_fall_left_large_flinching.png", Texture.class);
+        game.assetManager.load("res/images/gizmo/gizmo_jump_fall_right_large_flinching.png", Texture.class);
 
         game.assetManager.load("res/images/enemies/phantom/phantom_left.png", Texture.class);
         game.assetManager.load("res/images/enemies/phantom/phantom_right.png", Texture.class);
         game.assetManager.load("res/images/enemies/phantom/phantom_large.png", Texture.class);
 
-        game.assetManager.load("res/images/key_gold.png", Texture.class);
-        game.assetManager.load("res/images/key_bronze.png", Texture.class);
-        game.assetManager.load("res/images/key_blood.png", Texture.class);
+        game.assetManager.load("res/images/objects/key_gold.png", Texture.class);
+        game.assetManager.load("res/images/objects/key_bronze.png", Texture.class);
+        game.assetManager.load("res/images/objects/key_blood.png", Texture.class);
 
-        game.assetManager.load("res/images/heart.png", Texture.class);
-        game.assetManager.load("res/images/life.png", Texture.class);
+        game.assetManager.load("res/images/objects/heart.png", Texture.class);
+        game.assetManager.load("res/images/objects/life.png", Texture.class);
 
-        game.assetManager.load("res/images/door_gold.png", Texture.class);
-        game.assetManager.load("res/images/door_bronze.png", Texture.class);
-        game.assetManager.load("res/images/door_blood.png", Texture.class);
-        game.assetManager.load("res/images/door_black.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_gold.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_bronze.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_blood.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_black.png", Texture.class);
 
-        game.assetManager.load("res/images/door_gold_opening.png", Texture.class);
-        game.assetManager.load("res/images/door_bronze_opening.png", Texture.class);
-        game.assetManager.load("res/images/door_blood_opening.png", Texture.class);
-        game.assetManager.load("res/images/door_black_opening.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_gold_opening.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_bronze_opening.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_blood_opening.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_black_opening.png", Texture.class);
 
-        game.assetManager.load("res/images/door_opened.png", Texture.class);
+        game.assetManager.load("res/images/doors/door_opened.png", Texture.class);
 
         game.assetManager.load("res/music/background.ogg", Music.class);
         game.assetManager.load("res/sfx/jump.ogg", Sound.class);
