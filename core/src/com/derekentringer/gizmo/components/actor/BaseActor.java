@@ -54,9 +54,9 @@ public abstract class BaseActor extends Actor {
     }
 
     public void update(float delayTime) {
-        if(getIsPlayingAnimation()) {
+        if (getIsPlayingAnimation()) {
             mAnimationManager.update(delayTime);
-            if(mAnimationManager.didAnimationRunOnce()) {
+            if (mAnimationManager.didAnimationRunOnce()) {
                 setIsAnimationFinished(true);
             }
         }
@@ -115,7 +115,7 @@ public abstract class BaseActor extends Actor {
     }
 
     public void setIsAnimationFinished(boolean isFinished) {
-        for(IBaseActor listener : listeners){
+        for (IBaseActor listener : listeners) {
             listener.isAnimationFinished(isFinished);
         }
     }

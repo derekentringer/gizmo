@@ -45,7 +45,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IEnemy, IDoor, ContactListener  {
+public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IEnemy, IDoor, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -165,7 +165,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mPlayerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
             mLoadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
 
-            for(IGameStage listener : listeners){
+            for (IGameStage listener : listeners) {
                 listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
             }
 
@@ -175,7 +175,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mPlayerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
             mLoadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
 
-            for(IGameStage listener : listeners){
+            for (IGameStage listener : listeners) {
                 listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
             }
 
@@ -187,7 +187,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mPlayerActor.incrementLives();
             mLoadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
 
-            for(IGameStage listener : listeners){
+            for (IGameStage listener : listeners) {
                 listener.setHudLives(mPlayerActor.getPlayerLives());
             }
 
@@ -197,7 +197,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mPlayerActor.incrementLives();
             mLoadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
 
-            for(IGameStage listener : listeners){
+            for (IGameStage listener : listeners) {
                 listener.setHudLives(mPlayerActor.getPlayerLives());
             }
 
@@ -280,7 +280,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             //delete the actor from our actorsArray
             //look thru delete Bodies arraylist
             //delete the associated mBody
-            for (int e=0; e < mMapParser.actorsArray.size(); e++) {
+            for (int e = 0; e < mMapParser.actorsArray.size(); e++) {
                 BaseActor actorToDelete = mMapParser.actorsArray.get(e);
                 if (actorToDelete.mBaseModel.equals(mDeleteBodies.get(i).getBaseModel())) {
                     mMapParser.actorsArray.remove(e);
@@ -313,7 +313,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
             if (mPlayerActor.getBaseModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
-                loadLevel(Constants.gameLevels.get(0),  DoorType.PREVIOUS);
+                loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
             }
             else {
                 loadLevel(mLevelModel, DoorType.PREVIOUS);
@@ -394,7 +394,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     }
 
     private void transitionLevel(String doorType) {
-        for(IGameStage listener : listeners){
+        for (IGameStage listener : listeners) {
             listener.setTransition(doorType, true);
         }
     }
@@ -432,7 +432,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }
 
-        for(IGameStage listener : listeners){
+        for (IGameStage listener : listeners) {
             listener.setHudHealthHearts(mPlayerActor.getBaseModel().getPlayerHearts());
             listener.resetHudShapes();
             listener.setHudHealth(mPlayerActor.getBaseModel().getPlayerHealth());
@@ -471,7 +471,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
     @Override
     public void playerGotHit(int playerHealth) {
-        for(IGameStage listener : listeners) {
+        for (IGameStage listener : listeners) {
             listener.setHudHealth(playerHealth);
         }
         if (playerHealth <= 0) {
@@ -488,7 +488,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     private void killPlayer() {
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
-        for(IGameStage listener : listeners) {
+        for (IGameStage listener : listeners) {
             listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
         }
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());

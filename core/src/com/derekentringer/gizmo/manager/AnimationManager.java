@@ -48,7 +48,7 @@ public class AnimationManager {
         if (mCurrentFrame == mFrames.length) {
             mCurrentFrame = 0;
             mTimesPlayed++;
-            if(mTimesPlayed == 1) {
+            if (mTimesPlayed == 1) {
                 mDidAnimationRunOnce = true;
             }
         }
