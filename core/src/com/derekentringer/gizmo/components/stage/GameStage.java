@@ -19,6 +19,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.components.actor.structure.door.interfaces.IDoor;
+import com.derekentringer.gizmo.components.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
@@ -44,11 +45,11 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDoor, ContactListener  {
+public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IEnemy, IDoor, ContactListener  {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
-    private ArrayList<IHudStage> listeners = new ArrayList<IHudStage>();
+    private ArrayList<IGameStage> listeners = new ArrayList<IGameStage>();
 
     private World mWorld;
     private MapParser mMapParser;
@@ -74,7 +75,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     public GameStage() {
     }
 
-    public void addListener(IHudStage listener) {
+    public void addListener(IGameStage listener) {
         listeners.add(listener);
     }
 
@@ -164,7 +165,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
             mPlayerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
             mLoadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
 
-            for(IHudStage listener : listeners){
+            for(IGameStage listener : listeners){
                 listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
             }
 
@@ -174,7 +175,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
             mPlayerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
             mLoadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
 
-            for(IHudStage listener : listeners){
+            for(IGameStage listener : listeners){
                 listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
             }
 
@@ -186,7 +187,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
             mPlayerActor.incrementLives();
             mLoadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
 
-            for(IHudStage listener : listeners){
+            for(IGameStage listener : listeners){
                 listener.setHudLives(mPlayerActor.getPlayerLives());
             }
 
@@ -196,7 +197,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
             mPlayerActor.incrementLives();
             mLoadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
 
-            for(IHudStage listener : listeners){
+            for(IGameStage listener : listeners){
                 listener.setHudLives(mPlayerActor.getPlayerLives());
             }
 
@@ -376,28 +377,25 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
-                    transitionLevel();
-                    //loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+                    transitionLevel(DoorType.OTHER);
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
                     if (mLevelModel.getLevelInt() > 0) {
-                        transitionLevel();
-                        //loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.NEXT);
+                        transitionLevel(DoorType.PREVIOUS);
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
                     if (mLevelModel.getLevelInt() < Constants.gameLevels.size() - 1) {
-                        transitionLevel();
-                        //loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.PREVIOUS);
+                        transitionLevel(DoorType.NEXT);
                     }
                 }
             }
         }
     }
 
-    private void transitionLevel() {
-        for(IHudStage listener : listeners){
-            listener.setTransition(true);
+    private void transitionLevel(String doorType) {
+        for(IGameStage listener : listeners){
+            listener.setTransition(doorType, true);
         }
     }
 
@@ -434,7 +432,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }
 
-        for(IHudStage listener : listeners){
+        for(IGameStage listener : listeners){
             listener.setHudHealthHearts(mPlayerActor.getBaseModel().getPlayerHearts());
             listener.resetHudShapes();
             listener.setHudHealth(mPlayerActor.getBaseModel().getPlayerHealth());
@@ -473,7 +471,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
 
     @Override
     public void playerGotHit(int playerHealth) {
-        for(IHudStage listener : listeners) {
+        for(IGameStage listener : listeners) {
             listener.setHudHealth(playerHealth);
         }
         if (playerHealth <= 0) {
@@ -490,7 +488,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     private void killPlayer() {
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
-        for(IHudStage listener : listeners) {
+        for(IGameStage listener : listeners) {
             listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
         }
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
@@ -510,9 +508,24 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     @Override
     public void doorAnimationComplete(BaseActor actor) {
         actor.setIsPlayingAnimation(false);
-        transitionLevel();
-        //mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-        //loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+        transitionLevel(DoorType.LOCKED);
+    }
+
+    @Override
+    public void hudFadeInComplete(String doorType) {
+        if (doorType.equals(DoorType.OTHER)) {
+            loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+        }
+        else if (doorType.equals(DoorType.PREVIOUS)) {
+            loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.NEXT);
+        }
+        else if (doorType.equals(DoorType.NEXT)) {
+            loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.PREVIOUS);
+        }
+        else {
+            mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+            loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+        }
     }
 
     /*private void startBackgroundMusic() {

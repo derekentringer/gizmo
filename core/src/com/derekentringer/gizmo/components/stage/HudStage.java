@@ -10,19 +10,24 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.components.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
 
-public class HudStage extends Stage implements IHudStage {
+import java.util.ArrayList;
+
+public class HudStage extends Stage implements IGameStage {
 
     private static final String TAG = HudStage.class.getSimpleName();
+
+    private ArrayList<IHudStage> listeners = new ArrayList<IHudStage>();
 
     private static final int HUD_PADDING = 10;
 
     private static final float TIME_TO_FADE = 2;
-    private static final int FADE_DELAY = 600;
+    private static final int FADE_DELAY = 800;
     private static final String FADE_IN = "FADE_IN";
     private static final String FADE_OUT = "FADE_OUT";
     private static final String FADE_COMPLETE = "FADE_COMPLETE";
@@ -64,15 +69,19 @@ public class HudStage extends Stage implements IHudStage {
     private float mRedShapeWidth;
     private float mRedShapeHeight = 20;
 
+    private String mDoorType;
     private boolean mShowTransition;
     private String mFadeStatus;
     private float mTimeAccumulated;
     private float mNewAlpha;
+    private boolean mAlreadyRan;
 
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
-        setupCamera();
+        mHudCamera = new OrthographicCamera();
+        mHudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mHudCamera.update();
 
         mRedShapeRenderer = new ShapeRenderer();
         mWhiteShapeRenderer = new ShapeRenderer();
@@ -101,10 +110,8 @@ public class HudStage extends Stage implements IHudStage {
         mCurrentHealthTexture = mHudHeartsTwo;
     }
 
-    private void setupCamera() {
-        mHudCamera = new OrthographicCamera();
-        mHudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mHudCamera.update();
+    public void addListener(IHudStage listener) {
+        listeners.add(listener);
     }
 
     @Override
@@ -118,6 +125,7 @@ public class HudStage extends Stage implements IHudStage {
             mRedShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mTransitionShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
         }
+
         mWhiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         mWhiteShapeRenderer.setColor(Color.WHITE);
         mWhiteShapeRenderer.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
@@ -166,9 +174,13 @@ public class HudStage extends Stage implements IHudStage {
                 mNewAlpha = 1;
             }
             drawOverlay(0, 0, 0, mNewAlpha);
-            if (mNewAlpha >= 1) {
+            if (mNewAlpha >= 1 && !mAlreadyRan) {
+                mAlreadyRan = true;
+                //fire off listener to load new level
+                for(IHudStage listener : listeners){
+                    listener.hudFadeInComplete(mDoorType);
+                }
                 sleep(delta);
-                //fire off listener to load new level here
             }
         }
 
@@ -176,12 +188,13 @@ public class HudStage extends Stage implements IHudStage {
         if (mFadeStatus.equalsIgnoreCase(FADE_COMPLETE)) {
             GLog.d(TAG, "fading complete");
             mShowTransition = false;
+            mAlreadyRan = false;
         }
     }
 
     private void sleep(float delta) {
-        //this could be used to adjust
-        //the fade back in
+        // this could be used to adjust
+        // the fade back in
         //mTimeAccumulated += delta;
         Thread t = new Thread() {
             public void run() {
@@ -220,7 +233,8 @@ public class HudStage extends Stage implements IHudStage {
         mHudCamera.update();
     }
 
-    public void setTransition(boolean transition) {
+    public void setTransition(String doorType, boolean transition) {
+        mDoorType = doorType;
         mShowTransition = transition;
         mFadeStatus = FADE_IN;
     }

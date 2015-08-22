@@ -29,6 +29,7 @@ public class GameScreen implements Screen {
 
         gameStage = new GameStage();
         hudStage = new HudStage(gameStage);
+        hudStage.addListener(gameStage);
 
         if (LocalDataManager.loadPlayerActorData() != null) {
             levelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();

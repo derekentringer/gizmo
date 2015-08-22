@@ -122,7 +122,7 @@ public class CameraManager {
         mRumbleX = MathUtils.random() * power;
         mRumbleY = MathUtils.random() * power;
 
-        return new Vector2(-mRumbleX, -mRumbleY);
+        return new Vector2(mRumbleX, mRumbleY);
 
     }
 
