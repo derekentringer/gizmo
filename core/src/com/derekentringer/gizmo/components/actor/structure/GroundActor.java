@@ -16,7 +16,7 @@ public class GroundActor extends BaseActor {
     }
 
     @Override
-    public BaseModel getPlayerModel() {
+    public BaseModel getBaseModel() {
         return mGroundModel;
     }
 

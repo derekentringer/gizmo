@@ -121,7 +121,7 @@ public class PlayerActor extends BaseActor {
     }
 
     @Override
-    public PlayerModel getPlayerModel() {
+    public PlayerModel getBaseModel() {
         return mPlayerModel;
     }
 

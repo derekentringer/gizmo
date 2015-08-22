@@ -11,7 +11,7 @@ public class DoorActor extends BaseActor {
     }
 
     @Override
-    public BaseModel getPlayerModel() {
+    public BaseModel getBaseModel() {
         return null;
     }
 

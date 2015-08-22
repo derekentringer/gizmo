@@ -311,7 +311,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
             mIsPlayerDead = false;
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
-            if (mPlayerActor.getPlayerModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
+            if (mPlayerActor.getBaseModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
                 loadLevel(Constants.gameLevels.get(0),  DoorType.PREVIOUS);
             }
             else {
@@ -400,7 +400,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
         WorldUtils.destroyBodies(mWorld);
 
         mPlayerActor.setCurrentLevel(newLevel);
-        LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
 
         LocalDataManager.saveLevelData(mLoadedLevelModel);
 
@@ -426,10 +426,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
         }
 
         for(IHudStage listener : listeners){
-            listener.setHudHealthHearts(mPlayerActor.getPlayerModel().getPlayerHearts());
+            listener.setHudHealthHearts(mPlayerActor.getBaseModel().getPlayerHearts());
             listener.resetHudShapes();
-            listener.setHudHealth(mPlayerActor.getPlayerModel().getPlayerHealth());
-            listener.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
+            listener.setHudHealth(mPlayerActor.getBaseModel().getPlayerHealth());
+            listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
         }
     }
 
@@ -482,14 +482,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
         for(IHudStage listener : listeners) {
-            listener.setHudLives(mPlayerActor.getPlayerModel().getPlayerLives());
+            listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
         }
-        LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         mIsPlayerDead = true;
     }
 
     public void quitGame() {
-        LocalDataManager.savePlayerActorData(mPlayerActor.getPlayerModel());
+        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         LocalDataManager.saveLevelData(mLoadedLevelModel);
     }
 

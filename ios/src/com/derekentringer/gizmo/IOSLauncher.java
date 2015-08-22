@@ -1,13 +1,13 @@
 package com.derekentringer.gizmo;
 
+import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
+import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
+
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.UIApplication;
 
-import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
-import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.derekentringer.gizmo.Gizmo;
-
 public class IOSLauncher extends IOSApplication.Delegate {
+
     @Override
     protected IOSApplication createApplication() {
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
@@ -19,4 +19,5 @@ public class IOSLauncher extends IOSApplication.Delegate {
         UIApplication.main(argv, null, IOSLauncher.class);
         pool.close();
     }
+
 }

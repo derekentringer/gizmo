@@ -1,7 +1,6 @@
 package com.derekentringer.gizmo.model;
 
 public enum BaseModelType {
-
     LEVEL,
     GROUND,
     WALL,
@@ -13,5 +12,4 @@ public enum BaseModelType {
     KEY,
     HEART,
     LIFE
-
 }

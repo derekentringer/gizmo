@@ -39,7 +39,7 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
     }
 
     @Override
-    public BaseModel getPlayerModel() {
+    public BaseModel getBaseModel() {
         return null;
     }
 
