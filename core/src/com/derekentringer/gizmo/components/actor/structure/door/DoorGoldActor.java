@@ -5,22 +5,24 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
-import com.derekentringer.gizmo.components.actor.enemy.interfaces.IEnemy;
+import com.derekentringer.gizmo.components.actor.IBaseActor;
+import com.derekentringer.gizmo.components.actor.structure.door.interfaces.IDoor;
 import com.derekentringer.gizmo.model.BaseModel;
 
 import java.util.ArrayList;
 
-public class DoorGoldActor extends BaseActor {
+public class DoorGoldActor extends BaseActor implements IBaseActor {
 
     private static final String TAG = DoorGoldActor.class.getSimpleName();
 
-    private ArrayList<IEnemy> listeners = new ArrayList<IEnemy>();
+    private ArrayList<IDoor> listeners = new ArrayList<IDoor>();
 
     private TextureRegion[] mDoorGoldSprite;
     private Texture mDoorGold;
 
     public DoorGoldActor(Body body, boolean isLocked) {
         super(body);
+        addListener(this);
         if(isLocked) {
             mDoorGold = Gizmo.assetManager.get("res/images/door_gold_open.png", Texture.class);
         }
@@ -32,6 +34,10 @@ public class DoorGoldActor extends BaseActor {
         setAnimation(mDoorGoldSprite, 1 / 12f);
     }
 
+    public void addListener(IDoor listener) {
+        listeners.add(listener);
+    }
+
     @Override
     public BaseModel getPlayerModel() {
         return null;
@@ -41,4 +47,12 @@ public class DoorGoldActor extends BaseActor {
         setIsPlayingAnimation(true);
     }
 
+    @Override
+    public void isAnimationFinished(boolean isFinished) {
+        if (isFinished) {
+            for (IDoor listener : listeners) {
+                listener.doorAnimationComplete(this);
+            }
+        }
+    }
 }

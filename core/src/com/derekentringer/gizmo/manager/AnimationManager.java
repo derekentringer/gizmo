@@ -11,6 +11,7 @@ public class AnimationManager {
     private float mDelay;
     private int mCurrentFrame;
     private int mTimesPlayed;
+    private boolean mIsAnimationFinished;
 
     public AnimationManager() {
     }
@@ -47,6 +48,9 @@ public class AnimationManager {
         if (mCurrentFrame == mFrames.length) {
             mCurrentFrame = 0;
             mTimesPlayed++;
+            if(mTimesPlayed == 1) {
+                mIsAnimationFinished = true;
+            }
         }
     }
 
@@ -56,6 +60,10 @@ public class AnimationManager {
 
     public int getTimesPlayed() {
         return mTimesPlayed;
+    }
+
+    public boolean isAnimationFinished() {
+        return mIsAnimationFinished;
     }
 
 }

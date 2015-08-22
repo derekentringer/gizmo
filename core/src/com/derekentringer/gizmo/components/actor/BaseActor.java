@@ -5,13 +5,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.manager.AnimationManager;
+import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.settings.Constants;
+
+import java.util.ArrayList;
 
 public abstract class BaseActor extends Actor {
 
     private static final String TAG = BaseActor.class.getSimpleName();
+
+    private ArrayList<IBaseActor> listeners = new ArrayList<IBaseActor>();
 
     public static final int FACING_RIGHT = 1;
     public static final int FACING_LEFT = 2;
@@ -20,7 +24,7 @@ public abstract class BaseActor extends Actor {
 
     public int mFacingDirection;
 
-    private boolean mIsPlayingAnimation;
+    private boolean mIsPlayingAnimation = true;
 
     protected Body mBody;
     protected AnimationManager mAnimationManager;
@@ -37,6 +41,10 @@ public abstract class BaseActor extends Actor {
         mAnimationManager = new AnimationManager();
     }
 
+    public void addListener(IBaseActor listener) {
+        listeners.add(listener);
+    }
+
     public void setAnimation(TextureRegion[] textureRegion, float delay) {
         setCurrentTextureRegion(textureRegion);
         mCurrentTextureRegion = textureRegion;
@@ -48,6 +56,9 @@ public abstract class BaseActor extends Actor {
     public void update(float delayTime) {
         if(getIsPlayingAnimation()) {
             mAnimationManager.update(delayTime);
+            if(mAnimationManager.isAnimationFinished()) {
+                setIsAnimationFinished(true);
+            }
         }
     }
 
@@ -103,7 +114,10 @@ public abstract class BaseActor extends Actor {
         mIsPlayingAnimation = isPlayingAnimation;
     }
 
-    public int getTimesPlayed() {
-        return mAnimationManager.getTimesPlayed();
+    public void setIsAnimationFinished(boolean isFinished) {
+        for(IBaseActor listener : listeners){
+            listener.isAnimationFinished(isFinished);
+        }
     }
+
 }

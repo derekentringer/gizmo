@@ -65,6 +65,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     private LevelModel mLoadedLevelModel;
 
     private DoorGoldActor mDoorGoldActor;
+    private DoorBronzeActor mDoorBronzeActor;
+    private DoorBloodActor mDoorBloodActor;
+    private DoorBlackActor mDoorBlackActor;
 
     private boolean alreadyEntered = false;
 
@@ -351,33 +354,29 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
                 if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_GOLD)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-
-                        // TODO animate locked doors
+                        mDoorGoldActor.addListener(this);
                         mDoorGoldActor.startAnimation();
-
-                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BRONZE)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+                        mDoorBronzeActor.addListener(this);
+                        mDoorBronzeActor.startAnimation();
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLOOD)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+                        mDoorBloodActor.addListener(this);
+                        mDoorBloodActor.startAnimation();
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLACK)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
-                        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-                        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+                        mDoorBlackActor.addListener(this);
+                        mDoorBlackActor.startAnimation();
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
@@ -445,14 +444,17 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
 
     @Override
     public void setLockedBronzeDoor(DoorBronzeActor bronzeDoorActor) {
+        mDoorBronzeActor = bronzeDoorActor;
     }
 
     @Override
     public void setLockedBloodDoor(DoorBloodActor bloodDoorActor) {
+        mDoorBloodActor = bloodDoorActor;
     }
 
     @Override
     public void setLockedBlackDoor(DoorBlackActor blackDoorActor) {
+        mDoorBlackActor = blackDoorActor;
     }
 
     @Override
@@ -497,8 +499,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     }
 
     @Override
-    public void doorAnimationComplete() {
-
+    public void doorAnimationComplete(BaseActor actor) {
+        actor.setIsPlayingAnimation(false);
+        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
     }
 
 
