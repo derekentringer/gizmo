@@ -55,4 +55,5 @@ public class DoorBronzeActor extends BaseActor implements IBaseActor {
             }
         }
     }
+
 }
