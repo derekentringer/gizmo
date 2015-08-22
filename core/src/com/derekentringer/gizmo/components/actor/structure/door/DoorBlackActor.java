@@ -24,7 +24,7 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
         super(body);
         addListener(this);
         if(isLocked) {
-            mDoorBlack = Gizmo.assetManager.get("res/images/door_gold_open.png", Texture.class);
+            mDoorBlack = Gizmo.assetManager.get("res/images/door_black_opening.png", Texture.class);
         }
         else {
             mDoorBlack = Gizmo.assetManager.get("res/images/door_opened.png", Texture.class);

@@ -66,7 +66,10 @@ public class LoadingScreen extends AbstractScreen {
         game.assetManager.load("res/images/door_blood.png", Texture.class);
         game.assetManager.load("res/images/door_black.png", Texture.class);
 
-        game.assetManager.load("res/images/door_gold_open.png", Texture.class);
+        game.assetManager.load("res/images/door_gold_opening.png", Texture.class);
+        game.assetManager.load("res/images/door_bronze_opening.png", Texture.class);
+        game.assetManager.load("res/images/door_blood_opening.png", Texture.class);
+        game.assetManager.load("res/images/door_black_opening.png", Texture.class);
 
         game.assetManager.load("res/images/door_opened.png", Texture.class);
 
