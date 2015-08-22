@@ -11,7 +11,7 @@ public class AnimationManager {
     private float mDelay;
     private int mCurrentFrame;
     private int mTimesPlayed;
-    private boolean mIsAnimationFinished;
+    private boolean mDidAnimationRunOnce;
 
     public AnimationManager() {
     }
@@ -49,7 +49,7 @@ public class AnimationManager {
             mCurrentFrame = 0;
             mTimesPlayed++;
             if(mTimesPlayed == 1) {
-                mIsAnimationFinished = true;
+                mDidAnimationRunOnce = true;
             }
         }
     }
@@ -62,8 +62,8 @@ public class AnimationManager {
         return mTimesPlayed;
     }
 
-    public boolean isAnimationFinished() {
-        return mIsAnimationFinished;
+    public boolean didAnimationRunOnce() {
+        return mDidAnimationRunOnce;
     }
 
 }

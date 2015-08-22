@@ -504,7 +504,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
         mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
         loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
     }
-    
+
     /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
         if(!Constants.IS_DEBUGGING) {

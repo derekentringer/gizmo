@@ -56,7 +56,7 @@ public abstract class BaseActor extends Actor {
     public void update(float delayTime) {
         if(getIsPlayingAnimation()) {
             mAnimationManager.update(delayTime);
-            if(mAnimationManager.isAnimationFinished()) {
+            if(mAnimationManager.didAnimationRunOnce()) {
                 setIsAnimationFinished(true);
             }
         }
