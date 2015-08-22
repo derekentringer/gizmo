@@ -1,11 +1,9 @@
 TODO
 -----
 
+gizmo upgrades
+
 create more camera effects
-
-check door bugs
-
-look more into door animation transitions
 
 add ghost boss animations and attacks
 
