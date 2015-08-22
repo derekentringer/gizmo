@@ -20,6 +20,9 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
     private TextureRegion[] mDoorBlackSprite;
     private Texture mDoorBlack;
 
+    private TextureRegion[] mDoorOpenSprite;
+    private Texture mDoorOpen;
+
     public DoorBlackActor(Body body, boolean isLocked) {
         super(body);
         addListener(this);
@@ -29,6 +32,10 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
         else {
             mDoorBlack = Gizmo.assetManager.get("res/images/doors/door_opened.png", Texture.class);
         }
+
+        mDoorOpen = Gizmo.assetManager.get("res/images/doors/door_opened.png", Texture.class);
+        mDoorOpenSprite = TextureRegion.split(mDoorOpen, 32, 32)[0];
+        
         mDoorBlackSprite = TextureRegion.split(mDoorBlack, 32, 32)[0];
         setIsPlayingAnimation(false);
         setAnimation(mDoorBlackSprite, 1 / 12f);
@@ -50,6 +57,7 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
     @Override
     public void isAnimationFinished(boolean isFinished) {
         if (isFinished) {
+            setAnimation(mDoorOpenSprite, 1 / 12f);
             for (IDoor listener : listeners) {
                 listener.doorAnimationComplete(this);
             }
