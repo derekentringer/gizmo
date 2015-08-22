@@ -47,11 +47,7 @@
    eJztzkERAAAIA6CFsX9GU+z0AQlIAH6Z6wAAAABAyQJ4jgAl
   </data>
  </layer>
- <objectgroup name="phantom">
-  <object id="14" x="592" y="622">
-   <ellipse/>
-  </object>
- </objectgroup>
+ <objectgroup name="phantom"/>
  <objectgroup name="key">
   <object id="8" x="913" y="618">
    <properties>

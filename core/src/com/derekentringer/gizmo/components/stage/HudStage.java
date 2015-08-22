@@ -1,6 +1,8 @@
 package com.derekentringer.gizmo.components.stage;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,6 +20,12 @@ public class HudStage extends Stage implements IHudStage {
     private static final String TAG = HudStage.class.getSimpleName();
 
     private static final int HUD_PADDING = 10;
+
+    private static final float TIME_TO_FADE = 2;
+    private static final int FADE_DELAY = 600;
+    private static final String FADE_IN = "FADE_IN";
+    private static final String FADE_OUT = "FADE_OUT";
+    private static final String FADE_COMPLETE = "FADE_COMPLETE";
 
     private OrthographicCamera mHudCamera;
     private SpriteBatch mSpriteBatch;
@@ -49,11 +57,17 @@ public class HudStage extends Stage implements IHudStage {
 
     private ShapeRenderer mRedShapeRenderer;
     private ShapeRenderer mWhiteShapeRenderer;
+    private ShapeRenderer mTransitionShapeRenderer;
     private boolean mProjectionMatrixSet;
 
     private float mInitialWidth;
     private float mRedShapeWidth;
     private float mRedShapeHeight = 20;
+
+    private boolean mShowTransition;
+    private String mFadeStatus;
+    private float mTimeAccumulated;
+    private float mNewAlpha;
 
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
@@ -62,6 +76,7 @@ public class HudStage extends Stage implements IHudStage {
 
         mRedShapeRenderer = new ShapeRenderer();
         mWhiteShapeRenderer = new ShapeRenderer();
+        mTransitionShapeRenderer = new ShapeRenderer();
         mProjectionMatrixSet = false;
 
         mSpriteBatch = new SpriteBatch();
@@ -101,6 +116,7 @@ public class HudStage extends Stage implements IHudStage {
         if (!mProjectionMatrixSet) {
             mWhiteShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mRedShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mTransitionShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
         }
         mWhiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         mWhiteShapeRenderer.setColor(Color.WHITE);
@@ -121,6 +137,74 @@ public class HudStage extends Stage implements IHudStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        if (mShowTransition) {
+            dimTheStageLights(delta);
+        }
+    }
+
+    private void dimTheStageLights(float delta) {
+        // fade out
+        if (mFadeStatus.equalsIgnoreCase(FADE_OUT)) {
+            GLog.d(TAG, "fading out: " + mNewAlpha);
+            mTimeAccumulated += delta;
+            mNewAlpha = 1 - (mTimeAccumulated / TIME_TO_FADE);
+            if (mNewAlpha < 0) {
+                mNewAlpha = 0;
+            }
+            drawOverlay(0, 0, 0, mNewAlpha);
+            if (mNewAlpha <= 0) {
+                mTimeAccumulated = 0;
+                mFadeStatus = FADE_COMPLETE;
+            }
+        }
+        // fade in
+        else if (mFadeStatus.equalsIgnoreCase(FADE_IN)) {
+            GLog.d(TAG, "fading in: " + mNewAlpha);
+            mTimeAccumulated += delta;
+            mNewAlpha += (mTimeAccumulated / TIME_TO_FADE);
+            if (mNewAlpha > 1) {
+                mNewAlpha = 1;
+            }
+            drawOverlay(0, 0, 0, mNewAlpha);
+            if (mNewAlpha >= 1) {
+                sleep(delta);
+                //fire off listener to load new level here
+            }
+        }
+
+        // fade complete
+        if (mFadeStatus.equalsIgnoreCase(FADE_COMPLETE)) {
+            GLog.d(TAG, "fading complete");
+            mShowTransition = false;
+        }
+    }
+
+    private void sleep(float delta) {
+        //this could be used to adjust
+        //the fade back in
+        //mTimeAccumulated += delta;
+        Thread t = new Thread() {
+            public void run() {
+                try {
+                    sleep(FADE_DELAY);
+                }
+                catch (InterruptedException ie) {
+                    ie.printStackTrace();
+                }
+                finally {
+                    mFadeStatus = FADE_OUT;
+                }
+            }
+        };
+        t.start();
+    }
+
+    private void drawOverlay(float r, float g, float b, float a) {
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        mTransitionShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        mTransitionShapeRenderer.setColor(r, g, b, a);
+        mTransitionShapeRenderer.rect(0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mTransitionShapeRenderer.end();
     }
 
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
@@ -134,6 +218,11 @@ public class HudStage extends Stage implements IHudStage {
         GLog.d(TAG, "hudPosition.y: " + mHudHealthPosition.y);
 
         mHudCamera.update();
+    }
+
+    public void setTransition(boolean transition) {
+        mShowTransition = transition;
+        mFadeStatus = FADE_IN;
     }
 
     @Override

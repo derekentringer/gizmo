@@ -376,19 +376,28 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
-                    loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+                    transitionLevel();
+                    //loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
                     if (mLevelModel.getLevelInt() > 0) {
-                        loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.NEXT);
+                        transitionLevel();
+                        //loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.NEXT);
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
                     if (mLevelModel.getLevelInt() < Constants.gameLevels.size() - 1) {
-                        loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.PREVIOUS);
+                        transitionLevel();
+                        //loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.PREVIOUS);
                     }
                 }
             }
+        }
+    }
+
+    private void transitionLevel() {
+        for(IHudStage listener : listeners){
+            listener.setTransition(true);
         }
     }
 
@@ -501,8 +510,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IEnemy, IDo
     @Override
     public void doorAnimationComplete(BaseActor actor) {
         actor.setIsPlayingAnimation(false);
-        mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-        loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+        transitionLevel();
+        //mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+        //loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
     }
 
     /*private void startBackgroundMusic() {

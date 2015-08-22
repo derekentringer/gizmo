@@ -5,4 +5,5 @@ public interface IHudStage {
     void setHudHealth(int health);
     void resetHudShapes();
     void setHudLives(int lives);
+    void setTransition(boolean transition);
 }
