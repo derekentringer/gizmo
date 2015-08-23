@@ -24,17 +24,13 @@ public class GameScreen implements Screen {
     //private FPSLogger fpsLogger = new FPSLogger();
 
     public GameScreen() {
-
         Constants.buildGameLevelList();
-
         gameStage = new GameStage();
         hudStage = new HudStage(gameStage);
         hudStage.addListener(gameStage);
-
         if (LocalDataManager.loadPlayerActorData() != null) {
             levelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
         }
-
         gameStage.init(Constants.gameLevels.get(levelToLoad));
     }
 

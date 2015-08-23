@@ -220,7 +220,14 @@ public class HudStage extends Stage implements IGameStage {
         mTransitionShapeRenderer.end();
     }
 
+    public void setTransition(String doorType, boolean transition) {
+        mDoorType = doorType;
+        mShowTransition = transition;
+        mFadeStatus = FADE_IN;
+    }
+
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
+        GLog.d(TAG, "updateHudLayout");
         mHudLivesPosition.x = Math.abs(crop.x) / scale;
         mHudLivesPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
@@ -233,14 +240,9 @@ public class HudStage extends Stage implements IGameStage {
         mHudCamera.update();
     }
 
-    public void setTransition(String doorType, boolean transition) {
-        mDoorType = doorType;
-        mShowTransition = transition;
-        mFadeStatus = FADE_IN;
-    }
-
     @Override
     public void setHudHealthHearts(int hearts) {
+        GLog.d(TAG, "setHudHealthHearts");
         mHearts = hearts;
         if (mHearts == 2) {
             mCurrentHealthTexture = mHudHeartsTwo;
@@ -275,6 +277,7 @@ public class HudStage extends Stage implements IGameStage {
 
     @Override
     public void setHudHealth(int health) {
+        GLog.d(TAG, "setHudHealth");
         float fullHealth = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
         float percentFull = health / fullHealth;
         float newWidth = percentFull * mInitialWidth;
@@ -294,6 +297,7 @@ public class HudStage extends Stage implements IGameStage {
 
     @Override
     public void resetHudShapes() {
+        GLog.d(TAG, "resetHudShapes");
         mInitialWidth = mHearts * 18;
         mRedShapeWidth = mInitialWidth;
         mRedShapeHeight = 20;
@@ -301,6 +305,7 @@ public class HudStage extends Stage implements IGameStage {
 
     @Override
     public void setHudLives(int lives) {
+        GLog.d(TAG, "setHudLives");
         mLives = lives;
         if(mLives == 5) {
             mCurrentLivesTexture = mHudLivesFive;
