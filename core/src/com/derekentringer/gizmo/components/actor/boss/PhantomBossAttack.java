@@ -72,7 +72,7 @@ public class PhantomBossAttack extends Stage {
     }
 
     private void releasePhantoms() {
-        PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(mPlayerPosition.x -1, mPlayerPosition.y + 1)));
+        PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(mPlayerPosition.x, mPlayerPosition.y)));
         phantomActor.setName(PhantomModel.PHANTOM);
         addActor(phantomActor);
         for (IPhantomBossAttack listener : listeners) {

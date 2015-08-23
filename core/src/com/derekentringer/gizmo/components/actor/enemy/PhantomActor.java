@@ -74,8 +74,8 @@ public class PhantomActor extends BaseActor {
         return mPlayerPosition;
     }
 
-    public void setPlayerPosition(float xPos) {
-        mPlayerPosition.x = xPos;
+    public void setPlayerPosition(Vector2 playerPosition) {
+        mPlayerPosition.x = playerPosition.x;
     }
 
 }

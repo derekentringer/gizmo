@@ -50,8 +50,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
     private static final String TAG = GameStage.class.getSimpleName();
 
-    private ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
-
     private ArrayList<IGameStage> listeners = new ArrayList<IGameStage>();
 
     private World mWorld;
@@ -82,12 +80,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         listeners.add(listener);
     }
 
-    public void addToActorsArray(BaseActor actor) {
-        GLog.d(TAG, "actor added: " + actor);
-        mActorsArray.add(actor);
-        GLog.d(TAG, "mActorsArray.size = " + mActorsArray.size());
-    }
-
     public void init(LevelModel level) {
         mLevelModel = level;
         setupWorld();
@@ -109,6 +101,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         else {
             mLoadedLevelModel = level;
         }
+
         mMapParser = new MapParser(this, mLoadedLevelModel, level.getLevelMap(), level.getLevelMidMap(), level.getLevelBackMap());
         mMapParser.addListener(this);
         mMapParser.createTileMapLayers(mWorld);
@@ -248,15 +241,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
-        GLog.d(TAG, "***** mActorsArray.size = "+mActorsArray.size());
-
-        for (BaseActor actor : mActorsArray) {
+        for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.render(mSpriteBatch);
             if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
-                ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition().x);
+                ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
             else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                ((PhantomBoss) actor).setPlayerPosition(mPlayerActor.getPosition().x);
+                ((PhantomBoss) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
 
@@ -274,7 +265,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         //add check to shake camera here
         mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
 
-        for (BaseActor actor : mActorsArray) {
+        for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.update(delta);
             actor.act(delta);
         }
@@ -291,13 +282,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             //delete the actor from our actorsArray
             //look thru delete Bodies arraylist
             //delete the associated mBody
-            for (int e = 0; e < mActorsArray.size(); e++) {
-                BaseActor actorToDelete = mActorsArray.get(e);
+            for (int e = 0; e < mMapParser.getActorsArray().size(); e++) {
+                BaseActor actorToDelete = mMapParser.getActorsArray().get(e);
                 if (actorToDelete.mBaseModel.equals(mDeleteBodies.get(i).getBaseModel())) {
 
-                    GLog.d(TAG, "DELETING OBSOLETE ACTOR" + mActorsArray.get(e));
+                    GLog.d(TAG, "DELETING OBSOLETE ACTOR: " + mMapParser.getActorsArray().get(e));
 
-                    mActorsArray.remove(e);
+                    mMapParser.getActorsArray().remove(e);
                     actorToDelete.remove();
                     //delete the mBody
                     WorldUtils.destroyBody(mWorld, mDeleteBodies.get(i).getBody());
@@ -307,13 +298,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             }
         }
         //remove any actor that falls off the stage
-        for (int j = 0; j < mActorsArray.size(); j++) {
-            if (mActorsArray.get(j).getPosition().y * Constants.PPM < 0) {
+        for (int j = 0; j < mMapParser.getActorsArray().size(); j++) {
+            if (mMapParser.getActorsArray().get(j).getPosition().y * Constants.PPM < 0) {
 
-                GLog.d(TAG, "ACTOR FELL OFF STAGE " + mActorsArray.get(j));
+                GLog.d(TAG, "ACTOR FELL OFF STAGE " + mMapParser.getActorsArray().get(j));
 
-                mActorsArray.get(j).remove();
-                mActorsArray.remove(j);
+                mMapParser.getActorsArray().get(j).remove();
+                mMapParser.getActorsArray().remove(j);
             }
         }
     }
@@ -525,7 +516,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     @Override
     public void phantomBossAddPhantomActor(BaseActor actor) {
         GLog.d(TAG, "adding actor: "+ actor.getBaseModel().getBaseModelType().toString());
-        addToActorsArray(actor);
+        mMapParser.addToActorsArray(actor);
     }
 
     @Override

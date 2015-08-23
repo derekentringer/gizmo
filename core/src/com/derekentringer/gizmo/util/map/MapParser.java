@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.boss.PhantomBoss;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
@@ -51,6 +52,8 @@ public class MapParser extends Stage {
 
     private static final String TAG = MapParser.class.getSimpleName();
 
+    private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
+
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
 
     private GameStage mGameStage;
@@ -87,6 +90,14 @@ public class MapParser extends Stage {
 
     public void addListener(IMapParser listener) {
         listeners.add(listener);
+    }
+
+    public void addToActorsArray(BaseActor actor) {
+        mActorsArray.add(actor);
+    }
+
+    public ArrayList<BaseActor> getActorsArray() {
+        return mActorsArray;
     }
 
     public void createTileMapLayers(World world) {
@@ -173,13 +184,13 @@ public class MapParser extends Stage {
                     PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), world, getMapObjectCoords(mapObject)));
                     phantomActor.setName(PhantomModel.PHANTOM);
                     addActor(phantomActor);
-                    mGameStage.addToActorsArray(phantomActor);
+                    addToActorsArray(phantomActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
                     PhantomBoss phantomBoss = new PhantomBoss(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(), world, getMapObjectCoords(mapObject)));
                     phantomBoss.setName(PhantomLargeModel.PHANTOM_LARGE);
                     addActor(phantomBoss);
-                    mGameStage.addToActorsArray(phantomBoss);
+                    addToActorsArray(phantomBoss);
                     phantomBoss.addListener(mGameStage);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER_DESTINATIONS)) {
@@ -193,7 +204,7 @@ public class MapParser extends Stage {
                         KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, getMapObjectCoords(mapObject)), keyType);
                         keyActor.setName(KeyModel.KEY);
                         addActor(keyActor);
-                        mGameStage.addToActorsArray(keyActor);
+                        addToActorsArray(keyActor);
                     }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
@@ -203,7 +214,7 @@ public class MapParser extends Stage {
                         HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, getMapObjectCoords(mapObject)));
                         heartActor.setName(HeartModel.HEART);
                         addActor(heartActor);
-                        mGameStage.addToActorsArray(heartActor);
+                        addToActorsArray(heartActor);
                     }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(LifeModel.LIFE)) {
@@ -213,7 +224,7 @@ public class MapParser extends Stage {
                         LifeActor lifeActor = new LifeActor(ObjectUtils.createLife(new LifeModel(), world, getMapObjectCoords(mapObject)));
                         lifeActor.setName(LifeModel.LIFE);
                         addActor(lifeActor);
-                        mGameStage.addToActorsArray(lifeActor);
+                        addToActorsArray(lifeActor);
                     }
                 }
             }
@@ -224,7 +235,7 @@ public class MapParser extends Stage {
         PlayerActor playerActor = new PlayerActor(PlayerUtils.createPlayer(world, coordinates));
         playerActor.setName(PlayerModel.PLAYER);
         addActor(playerActor);
-        mGameStage.addToActorsArray(playerActor);
+        addToActorsArray(playerActor);
         for(IMapParser listener : listeners){
             listener.setPlayerActor(playerActor);
         }
@@ -234,7 +245,7 @@ public class MapParser extends Stage {
         DoorGoldActor doorGoldActor = new DoorGoldActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_GOLD, levelNumber, doorTypeDest, isLocked), world, mTileSize, row, col, true), isLocked);
         doorGoldActor.setName(DoorType.LOCKED_GOLD);
         addActor(doorGoldActor);
-        mGameStage.addToActorsArray(doorGoldActor);
+        addToActorsArray(doorGoldActor);
         for(IMapParser listener : listeners){
             listener.setLockedGoldDoor(doorGoldActor);
         }
@@ -244,7 +255,7 @@ public class MapParser extends Stage {
         DoorBronzeActor doorBronzeActor = new DoorBronzeActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BRONZE, levelNumber, doorTypeDest, isLocked), world, mTileSize, row, col, true), isLocked);
         doorBronzeActor.setName(DoorType.LOCKED_BRONZE);
         addActor(doorBronzeActor);
-        mGameStage.addToActorsArray(doorBronzeActor);
+        addToActorsArray(doorBronzeActor);
         for(IMapParser listener : listeners){
             listener.setLockedBronzeDoor(doorBronzeActor);
         }
@@ -254,7 +265,7 @@ public class MapParser extends Stage {
         DoorBloodActor doorBloodActor = new DoorBloodActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLOOD, levelNumber, doorTypeDest, isLocked), world, mTileSize, row, col, true), isLocked);
         doorBloodActor.setName(DoorType.LOCKED_BLOOD);
         addActor(doorBloodActor);
-        mGameStage.addToActorsArray(doorBloodActor);
+        addToActorsArray(doorBloodActor);
         for(IMapParser listener : listeners){
             listener.setLockedBloodDoor(doorBloodActor);
         }
@@ -264,7 +275,7 @@ public class MapParser extends Stage {
         DoorBlackActor doorBlackActor = new DoorBlackActor(BodyUtils.createStaticBody(new DoorModel(DoorType.LOCKED_BLACK, levelNumber, doorTypeDest, isLocked), world, mTileSize, row, col, true), isLocked);
         doorBlackActor.setName(DoorType.LOCKED_BLACK);
         addActor(doorBlackActor);
-        mGameStage.addToActorsArray(doorBlackActor);
+        addToActorsArray(doorBlackActor);
         for(IMapParser listener : listeners){
             listener.setLockedBlackDoor(doorBlackActor);
         }
