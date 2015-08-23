@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
+import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.boss.PhantomBoss;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
@@ -45,9 +46,11 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IPhantomBoss, IDoor, ContactListener {
+public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
+
+    private ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
 
     private ArrayList<IGameStage> listeners = new ArrayList<IGameStage>();
 
@@ -77,6 +80,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
     public void addListener(IGameStage listener) {
         listeners.add(listener);
+    }
+
+    public void addToActorsArray(BaseActor actor) {
+        GLog.d(TAG, "actor added: " + actor);
+        mActorsArray.add(actor);
+        GLog.d(TAG, "mActorsArray.size = " + mActorsArray.size());
     }
 
     public void init(LevelModel level) {
@@ -239,7 +248,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
-        for (BaseActor actor : mMapParser.actorsArray) {
+        GLog.d(TAG, "***** mActorsArray.size = "+mActorsArray.size());
+
+        for (BaseActor actor : mActorsArray) {
             actor.render(mSpriteBatch);
             if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
                 ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition().x);
@@ -263,7 +274,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         //add check to shake camera here
         mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
 
-        for (BaseActor actor : mMapParser.actorsArray) {
+        for (BaseActor actor : mActorsArray) {
             actor.update(delta);
             actor.act(delta);
         }
@@ -280,10 +291,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             //delete the actor from our actorsArray
             //look thru delete Bodies arraylist
             //delete the associated mBody
-            for (int e = 0; e < mMapParser.actorsArray.size(); e++) {
-                BaseActor actorToDelete = mMapParser.actorsArray.get(e);
+            for (int e = 0; e < mActorsArray.size(); e++) {
+                BaseActor actorToDelete = mActorsArray.get(e);
                 if (actorToDelete.mBaseModel.equals(mDeleteBodies.get(i).getBaseModel())) {
-                    mMapParser.actorsArray.remove(e);
+
+                    GLog.d(TAG, "DELETING OBSOLETE ACTOR" + mActorsArray.get(e));
+
+                    mActorsArray.remove(e);
                     actorToDelete.remove();
                     //delete the mBody
                     WorldUtils.destroyBody(mWorld, mDeleteBodies.get(i).getBody());
@@ -293,10 +307,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             }
         }
         //remove any actor that falls off the stage
-        for (int j = 0; j < mMapParser.actorsArray.size(); j++) {
-            if (mMapParser.actorsArray.get(j).getPosition().y * Constants.PPM < 0) {
-                mMapParser.actorsArray.get(j).remove();
-                mMapParser.actorsArray.remove(j);
+        for (int j = 0; j < mActorsArray.size(); j++) {
+            if (mActorsArray.get(j).getPosition().y * Constants.PPM < 0) {
+
+                GLog.d(TAG, "ACTOR FELL OFF STAGE " + mActorsArray.get(j));
+
+                mActorsArray.get(j).remove();
+                mActorsArray.remove(j);
             }
         }
     }
@@ -501,16 +518,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     }
 
     @Override
-    public void shakeCamera(boolean shake) {
+    public void phantomBossShakeCamera(boolean shake) {
         mCameraManager.setShakeCamera(shake);
     }
 
     @Override
-    public void breatheFire() {
-    }
-
-    @Override
-    public void releasePhantoms() {
+    public void phantomBossAddPhantomActor(BaseActor actor) {
+        GLog.d(TAG, "adding actor: "+ actor.getBaseModel().getBaseModelType().toString());
+        addToActorsArray(actor);
     }
 
     @Override
@@ -535,6 +550,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }
     }
+
+
 
     /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
