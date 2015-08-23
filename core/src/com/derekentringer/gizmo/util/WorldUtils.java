@@ -39,10 +39,9 @@ public class WorldUtils {
         return dimension * Constants.PPM;
     }
 
-    public static float generatRandomPositiveNegitiveValue(float max , float min) {
-        //Random rand = new Random();
-        float ii = -min + (float) (Math.random() * ((max - (-min)) + 1));
-        return ii;
+    public static float generatRandomPositiveNegativeValue(float max, float min) {
+        float i = -min + (float) (Math.random() * ((max - (-min)) + 1));
+        return i;
     }
 
 }

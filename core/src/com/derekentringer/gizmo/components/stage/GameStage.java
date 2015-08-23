@@ -267,7 +267,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
         }
         else {
-            mCameraManager.updateCameraPlayerMovement(WorldUtils.generatRandomPositiveNegitiveValue(mPlayerActor.getPosition().x, -mPlayerActor.getPosition().x), WorldUtils.generatRandomPositiveNegitiveValue(mPlayerActor.getPosition().y, -mPlayerActor.getPosition().y), mMapParser);
+            mCameraManager.updateCameraPlayerMovement(WorldUtils.generatRandomPositiveNegativeValue(mPlayerActor.getPosition().x, -mPlayerActor.getPosition().x), WorldUtils.generatRandomPositiveNegativeValue(mPlayerActor.getPosition().y, -mPlayerActor.getPosition().y), mMapParser);
         }
 
         for (BaseActor actor : mMapParser.getActorsArray()) {

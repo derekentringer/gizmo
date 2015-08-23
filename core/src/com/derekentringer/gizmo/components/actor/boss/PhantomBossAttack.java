@@ -1,5 +1,6 @@
 package com.derekentringer.gizmo.components.actor.boss;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -8,7 +9,6 @@ import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
-import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
@@ -21,9 +21,15 @@ public class PhantomBossAttack extends Stage {
     private static final int ATTACK_DELAY = 4000;
     private static final int SHAKE_DELAY = 3000;
 
+    private static final int MAX_PHANTOMS = 1;
+    private static final int MIN_PHANTOMS = 0;
+    private static final int MAX_PHANTOMS_ALLOWED = 6;
+
     private World mWorld;
     private Vector2 mPlayerPosition;
     private boolean mAttackInitiated;
+
+    private int mTotalPhantoms;
 
     public PhantomBossAttack(World world) {
         mWorld = world;
@@ -39,7 +45,7 @@ public class PhantomBossAttack extends Stage {
     }
 
     private void startAttackTimer() {
-        if(!getAttackInitiated()) {
+        if (!getAttackInitiated()) {
 
             setAttackInitiated(true);
 
@@ -48,17 +54,15 @@ public class PhantomBossAttack extends Stage {
                     try {
                         sleep(ATTACK_DELAY);
                     }
-                    catch (InterruptedException ie) {
-                        ie.printStackTrace();
+                    catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                     finally {
-                        GLog.d(TAG, "attack and shake");
-
                         for (IPhantomBossAttack listener : listeners) {
                             listener.phantomBossShakeCamera(true);
                         }
                         startShakingTimer();
-                        releasePhantoms();
+                        releasePhantoms(MathUtils.random(MIN_PHANTOMS, MAX_PHANTOMS));
                         setAttackInitiated(false);
                     }
                 }
@@ -73,11 +77,10 @@ public class PhantomBossAttack extends Stage {
                 try {
                     sleep(SHAKE_DELAY);
                 }
-                catch (InterruptedException ie) {
-                    ie.printStackTrace();
+                catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 finally {
-                    GLog.d(TAG, "stop shaking");
                     for (IPhantomBossAttack listener : listeners) {
                         listener.phantomBossShakeCamera(false);
                     }
@@ -98,12 +101,17 @@ public class PhantomBossAttack extends Stage {
     private void breatheFire() {
     }
 
-    private void releasePhantoms() {
-        PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
-        phantomActor.setName(PhantomModel.PHANTOM);
-        addActor(phantomActor);
-        for (IPhantomBossAttack listener : listeners) {
-            listener.phantomBossAddPhantomActor(phantomActor);
+    private void releasePhantoms(float amountOfPhantoms) {
+        for (int i = 0; i <= amountOfPhantoms; i++) {
+            if (mTotalPhantoms < MAX_PHANTOMS_ALLOWED) {
+                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
+                phantomActor.setName(PhantomModel.PHANTOM);
+                addActor(phantomActor);
+                for (IPhantomBossAttack listener : listeners) {
+                    listener.phantomBossAddPhantomActor(phantomActor);
+                }
+                mTotalPhantoms++;
+            }
         }
     }
 
