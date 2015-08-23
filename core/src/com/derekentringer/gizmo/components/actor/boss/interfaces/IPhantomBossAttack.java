@@ -4,4 +4,5 @@ import com.derekentringer.gizmo.components.actor.BaseActor;
 
 public interface IPhantomBossAttack {
     void phantomBossAddPhantomActor(BaseActor actor);
+    void phantomBossShakeCamera(boolean shake);
 }

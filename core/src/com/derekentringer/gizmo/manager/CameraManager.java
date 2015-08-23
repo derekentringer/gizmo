@@ -3,7 +3,6 @@ package com.derekentringer.gizmo.manager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -113,17 +112,6 @@ public class CameraManager {
         mBox2dDebugCamera.position.y = Math.round(MathUtils.clamp(mBox2dDebugCamera.position.y + (playerY - mBox2dDebugCamera.position.y) * 0.1f, minHeight, maxHeight));
 
         mBox2dDebugCamera.update();*/
-    }
-
-    private float mRumbleX;
-    private float mRumbleY;
-    public Vector2 shakeCamera(float power) {
-
-        mRumbleX = MathUtils.random() * power;
-        mRumbleY = MathUtils.random() * power;
-
-        return new Vector2(mRumbleX, mRumbleY);
-
     }
 
     public void setShakeCamera(boolean shake) {

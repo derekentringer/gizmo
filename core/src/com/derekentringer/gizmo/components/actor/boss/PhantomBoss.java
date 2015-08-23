@@ -56,16 +56,10 @@ public class PhantomBoss extends BaseActor {
     public void act(float delta) {
         super.act(delta);
         if (getPlayerPosition().x > (getPosition().x - 5)) {
-            for (IPhantomBoss listener : listeners) {
-                listener.phantomBossShakeCamera(true);
-                mPhantomBossAttack.initiate(getPlayerPosition());
-            }
+            mPhantomBossAttack.initiate(getPlayerPosition());
         }
         else {
-            for (IPhantomBoss listener : listeners) {
-                listener.phantomBossShakeCamera(false);
-                mPhantomBossAttack.setAttackInitiated(false);
-            }
+            mPhantomBossAttack.setAttackInitiated(false);
         }
     }
 

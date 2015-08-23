@@ -19,6 +19,7 @@ public class PhantomBossAttack extends Stage {
     private ArrayList<IPhantomBossAttack> listeners = new ArrayList<IPhantomBossAttack>();
 
     private static final int ATTACK_DELAY = 4000;
+    private static final int SHAKE_DELAY = 3000;
 
     private World mWorld;
     private Vector2 mPlayerPosition;
@@ -51,7 +52,12 @@ public class PhantomBossAttack extends Stage {
                         ie.printStackTrace();
                     }
                     finally {
-                        GLog.d(TAG, "ATTACK!");
+                        GLog.d(TAG, "attack and shake");
+
+                        for (IPhantomBossAttack listener : listeners) {
+                            listener.phantomBossShakeCamera(true);
+                        }
+                        startShakingTimer();
                         releasePhantoms();
                         setAttackInitiated(false);
                     }
@@ -59,6 +65,26 @@ public class PhantomBossAttack extends Stage {
             };
             t.start();
         }
+    }
+
+    private void startShakingTimer() {
+        Thread t = new Thread() {
+            public void run() {
+                try {
+                    sleep(SHAKE_DELAY);
+                }
+                catch (InterruptedException ie) {
+                    ie.printStackTrace();
+                }
+                finally {
+                    GLog.d(TAG, "stop shaking");
+                    for (IPhantomBossAttack listener : listeners) {
+                        listener.phantomBossShakeCamera(false);
+                    }
+                }
+            }
+        };
+        t.start();
     }
 
     public boolean getAttackInitiated() {

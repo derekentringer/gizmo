@@ -504,6 +504,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         for (IGameStage listener : listeners) {
             listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
         }
+        mCameraManager.setShakeCamera(false);
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         mIsPlayerDead = true;
     }
@@ -520,7 +521,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
     @Override
     public void phantomBossAddPhantomActor(BaseActor actor) {
-        GLog.d(TAG, "adding actor: "+ actor.getBaseModel().getBaseModelType().toString());
+        GLog.d(TAG, "adding actor: " + actor.getBaseModel().getBaseModelType().toString());
         mMapParser.addToActorsArray(actor);
     }
 
@@ -546,8 +547,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }
     }
-
-
 
     /*private void startBackgroundMusic() {
         Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
