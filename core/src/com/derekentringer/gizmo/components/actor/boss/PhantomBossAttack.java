@@ -7,6 +7,7 @@ import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAtt
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.EnemyUtils;
+import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class PhantomBossAttack extends Stage {
     }
 
     private void releasePhantoms() {
-        PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(mPlayerPosition.x, mPlayerPosition.y)));
+        PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
         phantomActor.setName(PhantomModel.PHANTOM);
         addActor(phantomActor);
         for (IPhantomBossAttack listener : listeners) {

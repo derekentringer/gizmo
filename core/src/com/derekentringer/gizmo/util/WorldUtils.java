@@ -35,4 +35,14 @@ public class WorldUtils {
         return dimension / Constants.PPM;
     }
 
+    public static float ppmCalcReverse(float dimension) {
+        return dimension * Constants.PPM;
+    }
+
+    public static float generatRandomPositiveNegitiveValue(float max , float min) {
+        //Random rand = new Random();
+        float ii = -min + (float) (Math.random() * ((max - (-min)) + 1));
+        return ii;
+    }
+
 }
