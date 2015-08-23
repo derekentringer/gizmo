@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
-import com.derekentringer.gizmo.components.actor.enemy.PhantomLargeActor;
-import com.derekentringer.gizmo.components.actor.enemy.interfaces.IEnemy;
+import com.derekentringer.gizmo.components.actor.boss.PhantomBoss;
+import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
@@ -45,7 +45,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IEnemy, IDoor, ContactListener {
+public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IPhantomBoss, IDoor, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -245,7 +245,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition().x);
             }
             else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                ((PhantomLargeActor) actor).setPlayerPosition(mPlayerActor.getPosition().x);
+                ((PhantomBoss) actor).setPlayerPosition(mPlayerActor.getPosition().x);
             }
         }
 
@@ -503,6 +503,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     @Override
     public void shakeCamera(boolean shake) {
         mCameraManager.setShakeCamera(shake);
+    }
+
+    @Override
+    public void breatheFire() {
+    }
+
+    @Override
+    public void releasePhantoms() {
     }
 
     @Override

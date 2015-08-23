@@ -52,7 +52,8 @@ public class LoadingScreen extends AbstractScreen {
 
         game.assetManager.load("res/images/enemies/phantom/phantom_left.png", Texture.class);
         game.assetManager.load("res/images/enemies/phantom/phantom_right.png", Texture.class);
-        game.assetManager.load("res/images/enemies/phantom/phantom_large.png", Texture.class);
+
+        game.assetManager.load("res/images/enemies/boss/phantom.png", Texture.class);
 
         game.assetManager.load("res/images/objects/key_gold.png", Texture.class);
         game.assetManager.load("res/images/objects/key_bronze.png", Texture.class);
