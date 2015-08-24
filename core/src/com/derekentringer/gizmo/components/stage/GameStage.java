@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
-import com.derekentringer.gizmo.components.actor.boss.PhantomBoss;
+import com.derekentringer.gizmo.components.actor.boss.PhantomBossActor;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
@@ -247,7 +247,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
             else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                ((PhantomBoss) actor).setPlayerPosition(mPlayerActor.getPosition());
+                ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
 
@@ -520,7 +520,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     }
 
     @Override
-    public void phantomBossAddPhantomActor(BaseActor actor) {
+    public void phantomBossAddActor(BaseActor actor) {
         GLog.d(TAG, "adding actor: " + actor.getBaseModel().getBaseModelType().toString());
         mMapParser.addToActorsArray(actor);
     }

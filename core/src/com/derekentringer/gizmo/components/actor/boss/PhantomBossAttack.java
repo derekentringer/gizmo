@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.model.enemy.FireBallModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -27,6 +28,7 @@ public class PhantomBossAttack extends Stage {
 
     private World mWorld;
     private Vector2 mPlayerPosition;
+    private Vector2 mPhantomPosition;
     private boolean mAttackInitiated;
 
     private int mTotalPhantoms;
@@ -39,8 +41,9 @@ public class PhantomBossAttack extends Stage {
         listeners.add(listener);
     }
 
-    public void initiate(Vector2 playerPosition) {
+    public void initiate(Vector2 playerPosition, Vector2 phantomPosition) {
         mPlayerPosition = playerPosition;
+        mPhantomPosition = phantomPosition;
         startAttackTimer();
     }
 
@@ -83,6 +86,7 @@ public class PhantomBossAttack extends Stage {
                 finally {
                     for (IPhantomBossAttack listener : listeners) {
                         listener.phantomBossShakeCamera(false);
+                        breatheFire();
                     }
                 }
             }
@@ -99,6 +103,12 @@ public class PhantomBossAttack extends Stage {
     }
 
     private void breatheFire() {
+        FireBallActor fireBallActor = new FireBallActor(EnemyUtils.createFireBall(new FireBallModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPhantomPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y))));
+        fireBallActor.setName(FireBallModel.FIREBALL);
+        addActor(fireBallActor);
+        for (IPhantomBossAttack listener : listeners) {
+            listener.phantomBossAddActor(fireBallActor);
+        }
     }
 
     private void releasePhantoms(float amountOfPhantoms) {
@@ -108,7 +118,7 @@ public class PhantomBossAttack extends Stage {
                 phantomActor.setName(PhantomModel.PHANTOM);
                 addActor(phantomActor);
                 for (IPhantomBossAttack listener : listeners) {
-                    listener.phantomBossAddPhantomActor(phantomActor);
+                    listener.phantomBossAddActor(phantomActor);
                 }
                 mTotalPhantoms++;
             }

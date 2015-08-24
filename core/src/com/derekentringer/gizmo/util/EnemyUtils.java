@@ -52,4 +52,24 @@ public class EnemyUtils {
         return body;
     }
 
+    public static Body createFireBall(BaseModel userData, World world, Vector2 coordinates) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(13), WorldUtils.ppmCalc(13));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = false;
+        body.createFixture(fixtureDef).setUserData(userData);
+
+        body.setUserData(userData);
+
+        shape.dispose();
+        return body;
+    }
+
 }

@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
-import com.derekentringer.gizmo.components.actor.boss.PhantomBoss;
+import com.derekentringer.gizmo.components.actor.boss.PhantomBossActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
 import com.derekentringer.gizmo.components.actor.object.KeyActor;
@@ -187,7 +187,7 @@ public class MapParser extends Stage {
                     addToActorsArray(phantomActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                    PhantomBoss phantomBoss = new PhantomBoss(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(), world, getMapObjectCoords(mapObject)));
+                    PhantomBossActor phantomBoss = new PhantomBossActor(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(), world, getMapObjectCoords(mapObject)));
                     phantomBoss.setName(PhantomLargeModel.PHANTOM_LARGE);
                     addActor(phantomBoss);
                     addToActorsArray(phantomBoss);
