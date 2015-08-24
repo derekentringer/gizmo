@@ -53,6 +53,7 @@ public class MapParser extends Stage {
     private static final String TAG = MapParser.class.getSimpleName();
 
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
+    private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
 
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
 
@@ -98,6 +99,14 @@ public class MapParser extends Stage {
 
     public ArrayList<BaseActor> getActorsArray() {
         return mActorsArray;
+    }
+
+    public void addToTempActorsArray(BaseActor actor) {
+        mTempActorsArray.add(actor);
+    }
+
+    public ArrayList<BaseActor> getTempActorsArray() {
+        return mTempActorsArray;
     }
 
     public void createTileMapLayers(World world) {

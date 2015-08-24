@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.model.enemy.FireBallModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -103,13 +104,13 @@ public class PhantomBossAttack extends Stage {
     }
 
     private void breatheFire() {
-        /*GLog.d(TAG, "breatheFire");
+        GLog.d(TAG, "breatheFire");
         FireBallActor fireBallActor = new FireBallActor(EnemyUtils.createFireBall(new FireBallModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPhantomPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y))));
         fireBallActor.setName(FireBallModel.FIREBALL);
         addActor(fireBallActor);
         for (IPhantomBossAttack listener : listeners) {
             listener.phantomBossAddActor(fireBallActor);
-        }*/
+        }
     }
 
     private void releasePhantoms(float amountOfPhantoms) {

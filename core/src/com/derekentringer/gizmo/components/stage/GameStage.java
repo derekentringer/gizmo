@@ -224,6 +224,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         super.draw();
 
         deleteObsoleteActors();
+        updateMapParserArrays();
 
         //tiled maps render camera
         mMapParser.getTiledMapBackgroundRenderer().setView(mCameraManager.getBackgroundCamera());
@@ -311,6 +312,15 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 mMapParser.getActorsArray().get(j).remove();
                 mMapParser.getActorsArray().remove(j);
             }
+        }
+    }
+
+    private void updateMapParserArrays() {
+        for (int i = 0; i < mMapParser.getTempActorsArray().size(); i++) {
+            mMapParser.addToActorsArray(mMapParser.getTempActorsArray().get(i));
+        }
+        for (int i = 0; i < mMapParser.getTempActorsArray().size(); i++) {
+            mMapParser.getTempActorsArray().get(i).remove();
         }
     }
 
@@ -522,7 +532,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     @Override
     public void phantomBossAddActor(BaseActor actor) {
         GLog.d(TAG, "adding actor: " + actor.getBaseModel().getBaseModelType().toString());
-        mMapParser.addToActorsArray(actor);
+        mMapParser.addToTempActorsArray(actor);
     }
 
     @Override
