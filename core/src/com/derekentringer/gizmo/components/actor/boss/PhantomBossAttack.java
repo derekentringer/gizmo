@@ -6,10 +6,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
-import com.derekentringer.gizmo.model.enemy.FireBallModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
@@ -86,8 +86,8 @@ public class PhantomBossAttack extends Stage {
                 finally {
                     for (IPhantomBossAttack listener : listeners) {
                         listener.phantomBossShakeCamera(false);
-                        breatheFire();
                     }
+                    breatheFire();
                 }
             }
         };
@@ -103,15 +103,17 @@ public class PhantomBossAttack extends Stage {
     }
 
     private void breatheFire() {
+        /*GLog.d(TAG, "breatheFire");
         FireBallActor fireBallActor = new FireBallActor(EnemyUtils.createFireBall(new FireBallModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPhantomPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y))));
         fireBallActor.setName(FireBallModel.FIREBALL);
         addActor(fireBallActor);
         for (IPhantomBossAttack listener : listeners) {
             listener.phantomBossAddActor(fireBallActor);
-        }
+        }*/
     }
 
     private void releasePhantoms(float amountOfPhantoms) {
+        GLog.d(TAG, "releasePhantoms");
         for (int i = 0; i <= amountOfPhantoms; i++) {
             if (mTotalPhantoms < MAX_PHANTOMS_ALLOWED) {
                 PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));

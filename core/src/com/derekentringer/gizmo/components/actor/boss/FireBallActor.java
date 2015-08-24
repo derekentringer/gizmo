@@ -13,7 +13,7 @@ public class FireBallActor extends BaseActor {
 
     private static final String TAG = FireBallActor.class.getSimpleName();
 
-    private static final int MOVEMENT_FORCE = 5;
+    private static final float MOVEMENT_FORCE = 1f;
 
     private FireBallModel mFireBallModel = new FireBallModel();
 
