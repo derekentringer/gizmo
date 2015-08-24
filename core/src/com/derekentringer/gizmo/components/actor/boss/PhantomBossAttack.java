@@ -88,7 +88,7 @@ public class PhantomBossAttack extends Stage {
                     for (IPhantomBossAttack listener : listeners) {
                         listener.phantomBossShakeCamera(false);
                     }
-                    breatheFire();
+                    //breatheFire();
                 }
             }
         };
