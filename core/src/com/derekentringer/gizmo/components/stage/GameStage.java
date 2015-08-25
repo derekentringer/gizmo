@@ -303,11 +303,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 }
             }
         }
-        //remove any actor that falls off the stage
+        //remove any actor that falls off the stage or goes out of bounds
         for (int j = 0; j < mMapParser.getActorsArray().size(); j++) {
-            if (mMapParser.getActorsArray().get(j).getPosition().y * Constants.PPM < 0) {
+            if (mMapParser.getActorsArray().get(j).getPosition().y * Constants.PPM < 0
+                    || mMapParser.getActorsArray().get(j).getPosition().x * Constants.PPM < 0) {
 
-                GLog.d(TAG, "ACTOR FELL OFF STAGE " + mMapParser.getActorsArray().get(j));
+                GLog.d(TAG, "ACTOR OFF STAGE " + mMapParser.getActorsArray().get(j));
 
                 mMapParser.getActorsArray().get(j).remove();
                 mMapParser.getActorsArray().remove(j);
