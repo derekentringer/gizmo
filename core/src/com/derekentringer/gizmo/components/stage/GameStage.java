@@ -9,10 +9,10 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
-import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
-import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.boss.PhantomBossActor;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
+import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
+import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
@@ -312,6 +312,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
                 mMapParser.getActorsArray().get(j).remove();
                 mMapParser.getActorsArray().remove(j);
+
+                //TODO delete fireballs as they exit in the x direction
+                /*if (mMapParser.getActorsArray().get(j).getBaseModel().getBaseModelType() == BaseModelType.ENEMY) {
+                    mDeleteBodies.add(new DeleteBody((FireBallModel) b.getBody().getUserData(), b.getBody()));
+                }*/
             }
         }
     }
