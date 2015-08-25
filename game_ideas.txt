@@ -1,18 +1,16 @@
 TODO
 -----
 
-gizmo upgrades
+need to delete fireball as it exits on .x axis
 
-create more camera effects
-
-add ghost boss animations and attacks
+gizmo upgrades - some attacks
+create gizmo attacks (rolling, jump-lunge, guns)
 
 add barking ability for ghosts (the most basic attack)
 
 moar enemies
 
-create gizmo attacks (rolling, jump-lunge, guns)
-
+ideas for attacks:
 add a power up for jumping
 add barking ability
 add a power up for barking
@@ -20,7 +18,7 @@ add a power up for barking
 phantoms run away when gizmo barks
 
 
-player stats
+player stats - show keys? inventory
 destroyable blocks
 start screen
 make a larger level
