@@ -56,10 +56,7 @@ public class PhantomBossActor extends BaseActor {
     public void act(float delta) {
         super.act(delta);
         if (getPlayerPosition().x > (getPosition().x - 5)) {
-            mPhantomBossAttack.initiate(getPlayerPosition(), getPosition());
-        }
-        else {
-            mPhantomBossAttack.setAttackInitiated(false);
+            mPhantomBossAttack.attack(delta, getPlayerPosition(), getPosition());
         }
     }
 

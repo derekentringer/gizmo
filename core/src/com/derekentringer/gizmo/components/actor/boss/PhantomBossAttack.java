@@ -22,15 +22,21 @@ public class PhantomBossAttack extends Stage {
 
     private static final int ATTACK_DELAY = 4000;
     private static final int SHAKE_DELAY = 3000;
+    private static final int SHAKE_LENGTH = 4000;
 
     private static final int MAX_PHANTOMS = 1;
     private static final int MIN_PHANTOMS = 0;
     private static final int MAX_PHANTOMS_ALLOWED = 6;
 
     private World mWorld;
+
     private Vector2 mPlayerPosition;
     private Vector2 mPhantomPosition;
+
+    private boolean mShakingInitiated;
     private boolean mAttackInitiated;
+    private float mTotalTimePassedShaking;
+    private float mTotalTimePassedAttack;
 
     private int mTotalPhantoms;
 
@@ -42,13 +48,85 @@ public class PhantomBossAttack extends Stage {
         listeners.add(listener);
     }
 
-    public void initiate(Vector2 playerPosition, Vector2 phantomPosition) {
+    public void attack(float delta, Vector2 playerPosition, Vector2 phantomPosition) {
+
         mPlayerPosition = playerPosition;
         mPhantomPosition = phantomPosition;
-        startAttackTimer();
+
+        float mDelta = delta * 1000;
+
+        if (!getShakingInitiated()) {
+
+            mTotalTimePassedShaking += mDelta;
+
+            if (mTotalTimePassedShaking > SHAKE_DELAY) {
+                for (IPhantomBossAttack listener : listeners) {
+                    listener.phantomBossShakeCamera(true);
+                }
+                turnOffShaking();
+                setShakingInitiated(true);
+            }
+        }
+        else {
+            mTotalTimePassedShaking = 0;
+        }
+
+        if (!getAttackInitiated()) {
+
+            mTotalTimePassedAttack += mDelta;
+
+            if (mTotalTimePassedAttack > ATTACK_DELAY) {
+                mTotalTimePassedAttack = 0;
+                releasePhantoms(MathUtils.random(MIN_PHANTOMS, MAX_PHANTOMS));
+                //breatheFire();
+                turnOffPhantoms();
+                setAttackInitiated(true);
+            }
+        }
+        else {
+            mTotalTimePassedAttack = 0;
+        }
+
     }
 
-    private void startAttackTimer() {
+    private void turnOffShaking() {
+        Thread t = new Thread() {
+            public void run() {
+                try {
+                    sleep(SHAKE_LENGTH);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    for (IPhantomBossAttack listener : listeners) {
+                        listener.phantomBossShakeCamera(false);
+                    }
+                    setShakingInitiated(false);
+                }
+            }
+        };
+        t.start();
+    }
+
+    private void turnOffPhantoms() {
+        Thread t = new Thread() {
+            public void run() {
+                try {
+                    sleep(ATTACK_DELAY);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    setAttackInitiated(false);
+                }
+            }
+        };
+        t.start();
+    }
+
+    /*private void startAttackTimer() {
         if (!getAttackInitiated()) {
 
             setAttackInitiated(true);
@@ -93,7 +171,7 @@ public class PhantomBossAttack extends Stage {
             }
         };
         t.start();
-    }
+    }*/
 
     public boolean getAttackInitiated() {
         return mAttackInitiated;
@@ -101,6 +179,30 @@ public class PhantomBossAttack extends Stage {
 
     public void setAttackInitiated(boolean initiated) {
         mAttackInitiated = initiated;
+    }
+
+    public boolean getShakingInitiated() {
+        return mShakingInitiated;
+    }
+
+    public void setShakingInitiated(boolean shaking) {
+        mShakingInitiated = shaking;
+    }
+
+    public float getTotalTimePassedShaking() {
+        return mTotalTimePassedShaking;
+    }
+
+    public void setTotalTimePassedShaking(float time) {
+        mTotalTimePassedShaking = time;
+    }
+
+    public float getTotalTimePassedAttack() {
+        return mTotalTimePassedAttack;
+    }
+
+    public void setTotalTimePassedAttack(float time) {
+        mTotalTimePassedAttack = time;
     }
 
     private void breatheFire() {
