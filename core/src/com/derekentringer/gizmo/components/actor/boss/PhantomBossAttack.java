@@ -20,6 +20,7 @@ public class PhantomBossAttack extends Stage {
     private ArrayList<IPhantomBossAttack> listeners = new ArrayList<IPhantomBossAttack>();
 
     private static final int PHANTOM_ATTACK_DELAY = 4000;
+    private static final int FIREBALL_ATTACK_DELAY = 6000;
 
     private static final int SHAKE_DELAY = 2000;
     private static final int SHAKE_LENGTH = 4000;
@@ -34,9 +35,12 @@ public class PhantomBossAttack extends Stage {
     private Vector2 mPhantomPosition;
 
     private boolean mShakingInitiated;
-    private boolean mAttackInitiated;
+    private boolean mPhantomAttackInitiated;
+    private boolean mFireBallAttackInitiated;
+
     private float mTotalTimePassedShaking;
     private float mTotalTimePassedPhantomAttack;
+    private float mTotalTimePassedFireBallAttack;
 
     private int mTotalPhantoms;
 
@@ -54,6 +58,7 @@ public class PhantomBossAttack extends Stage {
 
         float mDelta = delta * 1000;
 
+        // shaking
         if (!getShakingInitiated()) {
             mTotalTimePassedShaking += mDelta;
             if (mTotalTimePassedShaking > SHAKE_DELAY) {
@@ -68,6 +73,7 @@ public class PhantomBossAttack extends Stage {
             mTotalTimePassedShaking = 0;
         }
 
+        // phantoms
         if (!getPhantomAttackInitiated()) {
             mTotalTimePassedPhantomAttack += mDelta;
             if (mTotalTimePassedPhantomAttack > PHANTOM_ATTACK_DELAY) {
@@ -80,6 +86,18 @@ public class PhantomBossAttack extends Stage {
             mTotalTimePassedPhantomAttack = 0;
         }
 
+        // fireballs
+        if (!getFireBallAttackInitiated()) {
+            mTotalTimePassedFireBallAttack += mDelta;
+            if (mTotalTimePassedFireBallAttack > FIREBALL_ATTACK_DELAY) {
+                breatheFire();
+                turnOffFireBall();
+                setFireBallAttackInitiated(true);
+            }
+        }
+        else {
+            mTotalTimePassedFireBallAttack = 0;
+        }
     }
 
     private void turnOffShaking() {
@@ -119,6 +137,23 @@ public class PhantomBossAttack extends Stage {
         t.start();
     }
 
+    private void turnOffFireBall() {
+        Thread t = new Thread() {
+            public void run() {
+                try {
+                    sleep(FIREBALL_ATTACK_DELAY);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    setFireBallAttackInitiated(false);
+                }
+            }
+        };
+        t.start();
+    }
+
     public boolean getShakingInitiated() {
         return mShakingInitiated;
     }
@@ -128,11 +163,19 @@ public class PhantomBossAttack extends Stage {
     }
 
     public boolean getPhantomAttackInitiated() {
-        return mAttackInitiated;
+        return mPhantomAttackInitiated;
     }
 
     public void setPhantomAttackInitiated(boolean initiated) {
-        mAttackInitiated = initiated;
+        mPhantomAttackInitiated = initiated;
+    }
+
+    public boolean getFireBallAttackInitiated() {
+        return mFireBallAttackInitiated;
+    }
+
+    public void setFireBallAttackInitiated(boolean initiated) {
+        mFireBallAttackInitiated = initiated;
     }
 
     private void releasePhantoms(float amountOfPhantoms) {

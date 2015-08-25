@@ -58,7 +58,7 @@ public class EnemyUtils {
         PolygonShape shape = new PolygonShape();
 
         bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
-        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
         Body body = world.createBody(bodyDef);
 
         shape.setAsBox(WorldUtils.ppmCalc(13), WorldUtils.ppmCalc(13));

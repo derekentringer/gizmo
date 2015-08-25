@@ -7,13 +7,12 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.enemy.FireBallModel;
-import com.derekentringer.gizmo.util.BodyUtils;
 
 public class FireBallActor extends BaseActor {
 
     private static final String TAG = FireBallActor.class.getSimpleName();
 
-    private static final float MOVEMENT_FORCE = 1f;
+    private static final float MOVEMENT_FORCE = -1;
 
     private FireBallModel mFireBallModel = new FireBallModel();
 
@@ -37,7 +36,7 @@ public class FireBallActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
+        mBody.setLinearVelocity(MOVEMENT_FORCE, 0);
     }
 
 }
