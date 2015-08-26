@@ -5,6 +5,7 @@ fix jumping bug
 
 check out the fireball...looks like frame is missing
 
+doors are still strange going back to last room without moving
 
 gizmo upgrades - some attacks
 create gizmo attacks (rolling, jump-lunge, guns)

@@ -530,7 +530,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
     @Override
     public void phantomBossAddActor(BaseActor actor) {
-        GLog.d(TAG, "adding actor: " + actor.getBaseModel().getBaseModelType().toString());
         mMapParser.addToTempActorsArray(actor);
     }
 
