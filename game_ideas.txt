@@ -1,6 +1,10 @@
 TODO
 -----
 
+fix jumping bug
+
+check out the fireball...looks like frame is missing
+
 
 gizmo upgrades - some attacks
 create gizmo attacks (rolling, jump-lunge, guns)
