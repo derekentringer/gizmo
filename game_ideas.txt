@@ -1,7 +1,6 @@
 TODO
 -----
 
-need to delete fireball as it exits on .x axis
 
 gizmo upgrades - some attacks
 create gizmo attacks (rolling, jump-lunge, guns)
