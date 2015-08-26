@@ -20,6 +20,7 @@ public abstract class BaseActor extends Actor {
     public static final int FACING_RIGHT = 1;
     public static final int FACING_LEFT = 2;
 
+    //TODO this shouldn't be public
     public BaseModel mBaseModel;
 
     public int mFacingDirection;
@@ -30,6 +31,8 @@ public abstract class BaseActor extends Actor {
     protected AnimationManager mAnimationManager;
     protected float mWidth;
     protected float mHeight;
+
+    private boolean mIsDeleted;
 
     private TextureRegion[] mCurrentTextureRegion;
 
@@ -86,6 +89,10 @@ public abstract class BaseActor extends Actor {
         return mBody;
     }
 
+    public void setBody(Body body) {
+        mBody = body;
+    }
+
     public Vector2 getPosition() {
         return mBody.getPosition();
     }
@@ -118,6 +125,14 @@ public abstract class BaseActor extends Actor {
         for (IBaseActor listener : listeners) {
             listener.isAnimationFinished(isFinished);
         }
+    }
+
+    public boolean getIsDeleted() {
+        return mIsDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        mIsDeleted = isDeleted;
     }
 
 }

@@ -21,10 +21,8 @@ public class FireBallActor extends BaseActor {
 
     public FireBallActor(Body body) {
         super(body);
-
         mFireBall = Gizmo.assetManager.get("res/images/enemies/boss/fireball.png", Texture.class);
         mFireBallSprite = TextureRegion.split(mFireBall, 64, 64)[0];
-
         setAnimation(mFireBallSprite, 1 / 12f);
     }
 

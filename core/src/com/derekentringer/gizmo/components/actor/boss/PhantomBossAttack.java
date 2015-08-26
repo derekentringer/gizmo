@@ -56,11 +56,11 @@ public class PhantomBossAttack extends Stage {
         mPlayerPosition = playerPosition;
         mPhantomPosition = phantomPosition;
 
-        float mDelta = delta * 1000;
+        float mDeltaToSeconds = delta * 1000;
 
         // shaking
         if (!getShakingInitiated()) {
-            mTotalTimePassedShaking += mDelta;
+            mTotalTimePassedShaking += mDeltaToSeconds;
             if (mTotalTimePassedShaking > SHAKE_DELAY) {
                 for (IPhantomBossAttack listener : listeners) {
                     listener.phantomBossShakeCamera(true);
@@ -75,7 +75,7 @@ public class PhantomBossAttack extends Stage {
 
         // phantoms
         if (!getPhantomAttackInitiated()) {
-            mTotalTimePassedPhantomAttack += mDelta;
+            mTotalTimePassedPhantomAttack += mDeltaToSeconds;
             if (mTotalTimePassedPhantomAttack > PHANTOM_ATTACK_DELAY) {
                 releasePhantoms(MathUtils.random(MIN_PHANTOMS, MAX_PHANTOMS));
                 turnOffPhantoms();
@@ -88,7 +88,7 @@ public class PhantomBossAttack extends Stage {
 
         // fireballs
         if (!getFireBallAttackInitiated()) {
-            mTotalTimePassedFireBallAttack += mDelta;
+            mTotalTimePassedFireBallAttack += mDeltaToSeconds;
             if (mTotalTimePassedFireBallAttack > FIREBALL_ATTACK_DELAY) {
                 breatheFire();
                 turnOffFireBall();

@@ -51,17 +51,17 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     private static final String TAG = GameStage.class.getSimpleName();
 
     private ArrayList<IGameStage> listeners = new ArrayList<IGameStage>();
+    private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
+
+    private CameraManager mCameraManager = new CameraManager();
 
     private World mWorld;
     private MapParser mMapParser;
     private SpriteBatch mSpriteBatch;
 
-    private CameraManager mCameraManager = new CameraManager();
-
     private PlayerActor mPlayerActor;
     private PlayerModel mPlayerModel;
     private boolean mIsPlayerDead = false;
-    private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
     private LevelModel mLevelModel;
     private LevelModel mLoadedLevelModel;
@@ -70,7 +70,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     private DoorBronzeActor mDoorBronzeActor;
     private DoorBloodActor mDoorBloodActor;
     private DoorBlackActor mDoorBlackActor;
-
     private boolean alreadyEntered = false;
 
     public GameStage() {
@@ -223,8 +222,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     public void draw() {
         super.draw();
 
-        deleteObsoleteActors();
         updateMapParserArrays();
+        deleteObsoleteActors();
 
         //tiled maps render camera
         mMapParser.getTiledMapBackgroundRenderer().setView(mCameraManager.getBackgroundCamera());
@@ -251,7 +250,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
-
         handlePlayerOffMap(mPlayerActor.getPosition().y);
         handlePlayerDied();
     }
@@ -303,6 +301,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 }
             }
         }
+
+        //TODO still needed?
         //remove any actor that falls off the stage or goes out of bounds
         for (int j = 0; j < mMapParser.getActorsArray().size(); j++) {
             if (mMapParser.getActorsArray().get(j).getPosition().y * Constants.PPM < 0
@@ -312,11 +312,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
                 mMapParser.getActorsArray().get(j).remove();
                 mMapParser.getActorsArray().remove(j);
-
-                //TODO delete fireballs as they exit in the x direction
-                /*if (mMapParser.getActorsArray().get(j).getBaseModel().getBaseModelType() == BaseModelType.ENEMY) {
-                    mDeleteBodies.add(new DeleteBody((FireBallModel) b.getBody().getUserData(), b.getBody()));
-                }*/
             }
         }
     }
@@ -325,9 +320,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         for (int i = 0; i < mMapParser.getTempActorsArray().size(); i++) {
             mMapParser.addToActorsArray(mMapParser.getTempActorsArray().get(i));
         }
-        for (int i = 0; i < mMapParser.getTempActorsArray().size(); i++) {
-            mMapParser.getTempActorsArray().get(i).remove();
-        }
+        mMapParser.getTempActorsArray().clear();
     }
 
     private void handlePlayerOffMap(float playerY) {

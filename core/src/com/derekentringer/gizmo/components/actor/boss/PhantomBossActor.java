@@ -22,7 +22,6 @@ public class PhantomBossActor extends BaseActor {
 
     private ArrayList<IPhantomBoss> listeners = new ArrayList<IPhantomBoss>();
 
-    private World mWorld;
     private GameStage mGameStage;
     private Vector2 mPlayerPosition = new Vector2();
     private TextureRegion[] mPhantomSprite;
@@ -36,7 +35,6 @@ public class PhantomBossActor extends BaseActor {
 
     public PhantomBossActor(World world, GameStage gameStage, Body body) {
         super(body);
-        mWorld = world;
         mGameStage = gameStage;
 
         mPhantomLarge = Gizmo.assetManager.get("res/images/enemies/boss/phantom.png", Texture.class);
