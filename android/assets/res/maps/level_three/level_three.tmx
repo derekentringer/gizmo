@@ -62,7 +62,7 @@
   <properties>
    <property name="doorType" value="previousdoor"/>
   </properties>
-  <object id="1" x="272" y="592">
+  <object id="1" x="304" y="592">
    <properties>
     <property name="name" value="doorprevious"/>
    </properties>

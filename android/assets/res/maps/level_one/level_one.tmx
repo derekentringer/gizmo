@@ -104,7 +104,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="26" x="1680" y="561">
+  <object id="26" x="1648" y="561">
    <properties>
     <property name="name" value="doornext"/>
    </properties>
