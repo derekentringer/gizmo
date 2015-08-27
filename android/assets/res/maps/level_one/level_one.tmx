@@ -16,7 +16,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmOtugzAMhc0fnqBBZe0q0fd/yDVSjjhYDs5tTJolq02wHX/BhISbiAT5/3JLuqTfKCvp/NEt6b1TNxV7O9HZyAPq+WlfKHinxIs+MI9k1cxnMTWzZvTiW/MFtsgZUnuRo2AcjieDmGtsS1m1n2aWxDqlNuq5R0bVgcXc6gdukb2eJ9nXK/3sWrGuZu6dq5l4IyfqGrytrH/B7I2neSfZ12jw9rBeyVw63pZswMrPdO+9vYq7dqwoISnqejTvlaxeHlGwTo3kLXmmcnFHMZ/d35WYRc7XqxLWmvxLc22Ze8sW717eb6BPM5fErsm/Jt+WGrPsI5feT8KOeUvil45f+/y12OfGYd7FsK/hKM2jV3pywvPL7yOu59nwsWL35lcS17sPXJdrxg77Z5wLRY6srSxPx8/z99a9nD3vlS1mrMt6fwVmL9dcvg/H1/M/s8ndd6seZznGwDk/d95vyef7oy/Hz8r7t6Tk/YvfHPPZe+IrqTd+1GdS+KMt6rrQdQj2wXzm4T4+8yE+WFfJf78ata5acWPdv2iM2H6r9oPGR93wnj9Qm/fHfNaFoA1ftkG/JfxdBHsV/uVc0K+/pWieHL9uryrmovp4Lngt5jnhX52rlbu+HlScIMc8rLm5JxbNy+23cZ3P65wL/+dvNmijvmP/D4lyS20=
+   eJzdmOtuwyAMhZ0/eYISNWtXKX3/h1yROOqpZcBclkmzZCWAMf6IQyAXEQny/+WSdEvXKDvp+tIj6XVQD+X7KOhqxAGt9dN9oeBdEi/qwDyTVTOXfGpmzVjzb80X2CJnSOVNPgXjsD+ZxNxi62XV/TSzJNYllZHPIzIrDyzm3n7gFnnn8yLv9Uq/u5avs5lH52ol3siJvAZvL+tfMNfG07yLvNdo8I6wnsnsHe9INmDld3r02Z7F3TpWlJAUeT2b90zWWhxRsE7N5PW8Uzm/s5hLz3cnZpHyeuVhbYnfG2vP3Fu2+PbyfgN1mtnjuyX+lnh7csyyj1x6Pwk75vX4947f+v712OfGYd7NsG/h8MYxKiMx4f3l7xHyeRZDT7vlt/YcOC/3jB32zzgXSsHWG2uUu6NvqX9t3cvZ817Z4sC6rPdXHuZS+63Qz9O/ZJN77jj7sqzKB875ufN+D/P3Sx8liEzcvyWe7y+uvJe2fFg59pW0Nn7Ue1L0R1lUu1A7BPtgPvNwHZ/54B+su+T/X3m/wa0S/cW8f5D/WH6q8o3GRt7wnj9QmffHfNaFoIy+bIN6S/i/CPYqfOVYUK//pWieHL8u78rnpup4Lngt5jnhq47Vil23B+UnyGcc1txcE4vm5fLTaOfzOsfC9/zPBmXkd6z/AVfvTAk=
   </data>
  </layer>
  <layer name="dooroff" width="60" height="23">
@@ -31,7 +31,7 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlksKwCAMRNM7NEKP0PtfsJsKQZoaRRut82Dwg4uExCFEAIA/sBkE1qN33dFXOqd3ABXk6snK/S70BV6etr/IC83j4ftzMkPNVust+cc8//rIYOZcl161ZtJnjh60yCPtfcs5EvM9aMxZoyWh4G0uZ4s/s1C4xQ9rupeqpSRXGa8VeO/8XDG4BBY=
+   eJztlksKwDAIRO0dYqBH6P0v2E0DEmrzIdammQdDPrhQlEEiAMAf2CoE1sO675grncM7gQ5K/WTlPwi9gZenhQd5oXk8fH9OZujZarOFPaoMds51seo1k75zWDCijnz2a96JVO9O39w1RhIbYks1S8/RYlkoXuKbM79L9dJSq8y3Fnjv/JyKyQQC
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
