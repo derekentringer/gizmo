@@ -90,7 +90,7 @@ public class PhantomBossAttack extends Stage {
         if (!getFireBallAttackInitiated()) {
             mTotalTimePassedFireBallAttack += mDeltaToSeconds;
             if (mTotalTimePassedFireBallAttack > FIREBALL_ATTACK_DELAY) {
-                breatheFire();
+                shootFire();
                 turnOffFireBall();
                 setFireBallAttackInitiated(true);
             }
@@ -192,7 +192,7 @@ public class PhantomBossAttack extends Stage {
         }
     }
 
-    private void breatheFire() {
+    private void shootFire() {
         FireBallActor fireBallActor = new FireBallActor(EnemyUtils.createFireBall(new FireBallModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPhantomPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y))));
         fireBallActor.setName(FireBallModel.FIREBALL);
         addActor(fireBallActor);
