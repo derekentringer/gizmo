@@ -5,7 +5,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmOtqwzAMhZU/eYIkbEsptH+293/CYfChJ6eS7KRdKTtgcqkv+mRZdjqZ2Wz/X1MtS70WfSZlpHIJykj1h6BE/Uf1B2d8LpnNKOAdKi/e9bB9BEV5PQav/5aPIp/vYbfKOdfnhXiVMeLzeDNmtbknJjzWKLYuFvNbZUWfHM/WwarqYfZ86c1LxpvZFXFrPA+2zVc/wtBi9Zij2ILNe+KhhzWLtZF4Cyfi2mqdI6zMHHEwa288ZG0/aMwWN3gHu+XoVtseZRyRzVk8ZHPrjZvZDlZe05n/ehUxs81RPY/b81M2bsQ714K4hlan/V55c8esXr1sDTDvHhv4ijwV8bI9R6Q50+PlMXrXwFFh7wUztMr9I7y6TluxyLyPzK32W8Q5cKE6Z7pf7Zbf2A9Hx23tZ7p3PoMVbZH3+TxZpPE81uvq/H62fj+0bI7i/8j+4OUr5uX55XwFf3MsMt9Vnk+ddrVsPcqq9mp+1jN10SptNW/o+tbnR3UkN2X2Mi/24Clp6+VKCLwnen61eu1FXtbzlbaFtI+r3eLZW9uvEPIL2/tt98xF+M7n733PT5Dnt8LHOYtz+7vJ238jVrM4Vr5qMbr+tXAO5m8efoezFAr2Xmb2xN+i7yI+88/0zOdj/dZd7P47k+sM0o7XOf8vgrMKX9mWZ4vHROF37Atl0PlVW9kHk22ZZqk7y/3i9MXt2ad8jp9se6bn/ha65zH0nv+zmW07z+X9L0r8REw=
+   eJzdmOtqwzAMhZU/eYIkdEsptH+293/CYfChJ6eS7KRdGTtgcqkv+mRZdjqZ2Wz/X1MtS70WfSRlpHINykj1h6BE/Uf1B2d8LpnNKOAdKi/e9bCdgqK8HoPXf8tHkc/3sFvlnOvzQrzKGPF5vBmz2twTEx5rFFtXi/mtsqJPjmfrYFX1MHu+9OYl483sirg1ngfb5qtvYWixesxRbMHmPfHQw5rF2ki8hRNxbbXOEVZmjjiYtTcesrYnGrPFDd7B7jm61bZHGUdkcxYP2dx642a2g5XXdOa/XkXMbHNUz+P2/JSNG/HOtSCuodVpv1fe3DGrVy9bA8y7xwa+Ik9FvGzPEWnO9Hh5jN41cFTYe8EMrXL/DK+u01YsMu8zc6v9FnEOXKjOhe5Xu+c39sPRcVv7me6dr2BFW+R9Pk8WaTyP9bo6v1+s3w8tm6P4P7I/ePmKeXl+OV/B3xyLzHeT53OnXS1bj7KqvZqf9UxdtEpbzRu6vvX5WR3JTZm9zIs9eEraerkSAu+Znt+tXnuRl/V8pW0h7eNm93j21vY7hPzC9n7ZI3MRvvP5e9/zE+T5rfBxzuLc/tfk7b8RK+Qxf9ZidP1t4RzM3zz8DmcpFOy9zOyJv0WnoM67xWf+mZ75fKzfuos9fmdynUHa8Trn/0VwVuEr2/Jq8Zgo/I59oQw6v2or+2CyLdMsdWe5X5y+uD37lM/xk23P9NzfQvc8ht7zfzazbee5vP8BJkRERw==
   </data>
  </layer>
  <layer name="dooroff" width="60" height="23">
@@ -15,12 +15,12 @@
  </layer>
  <layer name="backgroundforeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlUEOgCAMBHkHEA7+/5FeJGkaSqxVWsPORa0N2WWlpgQAAADEo3oLWEzzFuDIblkf5H437+W6Ut81xdgHSYNFWz/XhdQKe/ZCmjlabaP+Y1DzRvKlnb08yydrrEDya8k3Yq4di1/a0wb1COeVI2Wh9cvrUeYTJyvrlJnflmw5f/HfsDLbq0ze50mvxFtz9C9YvjsA7nACFD0Gbg==
+   eJztldEOgCAIRf0OdT74/x/Z2nJjDCqihCbnpSJq93qTUgqCIAgCf1RrAZNp1gIMWS3rDs5X816OI/Rdk4914DRotI19XUCtoGsruJkj1Ub1d6JmDedLOntxlk/eMQPOryZfj7kONH5hTyPqHvYrhstC6hfXvcwnTBbWIZyf/dmWdDl/8d/QcrYmGdzPF70Ub83Rv6D57oLgDhuyNgZT
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztld0JwCAMhJMdVHCE7r9gH6o0hCpS4k/tfXAYVMolRksEAADgC/BsA2AYfz7rlXMvebPwzCqeXQemZx+leQBacbMNgC7seq76bQZ1WMnT1Rtv+uMw9LU6PinSXa+aWlnxnx0MvyXz03WRPZgVkrwYndhnjWWuPZC1cw+xvMOltRzHwd534QT3iQOQ
+   eJztlFkKwCAMRJM7qNAj9P4X7EeVhqAiJS6182AwqMhkaYkAAAB8AZ5tAAzjz71eOfeSNwvPrOLZdWDK+yjtA9CKm20AdGHXvup/M6jDSp7u2XgzH6ehr9XxUQc99aqpFd2PFQiGb8nccnVJM5gUorxYnbhnjWWuPZC1c5lYfsOlsxQfg73vwgX4eQOQ
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -62,13 +62,13 @@
   <properties>
    <property name="doorType" value="previousdoor"/>
   </properties>
-  <object id="1" x="311" y="592">
+  <object id="1" x="320" y="592">
    <properties>
     <property name="name" value="doorprevious"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="3" x="1641" y="560.5">
+  <object id="3" x="1632" y="560.5">
    <properties>
     <property name="name" value="doornext"/>
    </properties>

@@ -71,13 +71,13 @@
   </object>
  </objectgroup>
  <objectgroup name="playerdestinations">
-  <object id="1" x="278.5" y="655.5">
+  <object id="1" x="288.5" y="655.5">
    <properties>
     <property name="name" value="doorprevious"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="11" x="1706.5" y="560.5">
+  <object id="11" x="1695.5" y="560.5">
    <properties>
     <property name="name" value="doornext"/>
    </properties>
