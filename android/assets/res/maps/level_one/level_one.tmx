@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="82">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="83">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="keyType" value="black"/>
+   </properties>
+  </tile>
   <tile id="37">
    <properties>
     <property name="destination" value="doorPrevious"/>
@@ -71,6 +76,12 @@
   <properties>
    <property name="keyType" value="blood"/>
   </properties>
+  <object id="82" x="367.667" y="107">
+   <properties>
+    <property name="keyType" value="black"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup name="life">
   <object id="79" x="1680" y="205">

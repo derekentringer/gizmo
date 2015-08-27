@@ -5,17 +5,17 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmO1u5CAMRcmfeYIm6qyqlfL+L7mLytWc3l4IST9U1RLKhATjA7Zx5qmUspZXef6lrcpTa1u7Vrn9b/fQav8+0CU5mndv7Qade0f3Pmgj/YlBvEvjVV96v8eaZIaVzEf2+7jRGH+PHKVxru1+g71kPsPa4+X8aV/Z1/MDt8eZkz6OK411affyZ7fxI6y9tSbf0Rok3/T1SYy3ZhN55c9LyflqJl4T60+Vyls55ddVrvD6s+/Ou2fy81IeOXqGN0lvbvqm54Jenu7FP/15L+9tSbnC87NY2Xe0RiPWKi/27Civep74G3STObEmZj9nqqytya+vCpn/hGcpn/rz0Xj3t1l7yFxFeYq8C9psXv5qmfW1NEbMVXT2irmKs87as4R2L4+Y0dpuHR200ff/Ci/Hilc2sd5Y8O4VUYyoZhOr5pF+P0sZa0fnwBnRHmtOryeXNMjG85rE91g5MbF6jeHMV+KJOYNjyTvyM+pxX0vCGFFjTdOrU0fn15m45fnFHLei/x5Hv9XjubaXL+XTWkvFsHhH31rpjErxPGLd0cd72aQ9OMvK587L3C9uzTH7TTRz7jO+pNfrbfLyG3jE66y9fWZeln7FC3lHrFfysLNK/HvQv/epg3LEW8p7v3FfTjXrZ/DOSjp/vX4r5eETM62UtzUqfejqf0ZJNAfXkn3yL+YS2aOrxP3C4+BIWJczP9OHPsKc1lO/ub46E7UePCO5LiNRLDK3b3alLfcwZjOGoxzM37J3Q6MdXAvm4rS/ydZkuz9fTQ/rK39X/ZXhpbXnE/f8Xqct/M06R/fa59r/D0bAU74=
+   eJzdmG2O3CAQRPGfOcHa2olWkXz/SyYolPZtbfFhbxJFaQl5jA30g+4Cz0spZS+/7PU/LdVeWjnatdrjZ3mGUuvPQV+y2bhnKw/0eXb6Pgdl1H9iEO/WeFWX3u+xJlthJfPMf283auPvkaM0zr3dH/CXzFdYe7wcP60r63px4P44c+qP7Upj3dq94tl9/Aprb67JN5uDFJs+P4nx0Xwir+J5K1mvVvI1sf6rVnkrp+K62h1ef/a3dfeKPm/lXaNXeJP1xmZsuhb0dLqX/4zns3z2JWmF67NYWTeboxFrtTd7NtNV14nvoW8yJ9bE7PtMtb0VxfVdI/O38CzpqT8ftfd4W/WHzNWkU+TdUFZ1+U/baqylNmKupr1XzNWcddWfLZRnec8Zze3R6YM++vrf4WVb8connjc2vHvHlCM6s4lV46h/30uZa7N94IppjTWmnye31Mja85rM11iamFj9jOHMd/KJmsG25B3FGfvxWEvGHFHhmaZ3Th3tX1fylvsXNW5H/TO2/tiPa21PLxXTmkvlsHhH31ppj0r5PGJ1XsWzfNIaXGXlc+el9otbY6x+E63s+8wvZy1gll/8Bh7xOmtvnanL6l/5Qt4R6x0dTqzF7uUDfWEftBlvKZ/jxmM5nVl/B++qpf3Xz2+lfMyDFW6eURlDd/8zSqYxOJesU3xRS+SPrrKUA8yDmfFcTn1mDH2FOc2nfnN+tSdqPrhHcl5Gplykth92pS/P0OYwhpkG87f8PVDoB+eCWpzWN/mafPfnu/XD85W/q/rK8NbK64V7fq/TF/7mOUf3Wuda/wMFC1PX
   </data>
  </layer>
  <layer name="dooroff" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt08EJACAMA8CuYd1/TxF8KQ5gvYOQLJAIAAAAqKGt/KBfdlV52Zx++cCUW8MLBnjYAOo=
+   eJzt0rENACAMA7C+Qf8/lImFA2gr7CVrIiUCAAAAmGpVF3jobM3SFv399Im8EibYgA4Amg==
   </data>
  </layer>
  <layer name="backgroundforeground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztmGEOgyAMhTmH1f3g/odcSGhSOxtWbJGxfgmRErG8BvVpSsEq7E8vwIlDGM+d86TxWXixGNcLjXmQPrUdF9ebjU2I+Tgn14aaUWurTr8KakN9wOLVQG24f3Ptt+57K0Y/TzfSruIgCALKqp5PwvNdN2Mtrb0b9Yd3a7mzowWaNX2TF4S+lpILfYflHtR4GboXvPcq9dFQ81nk1NSOnuvtgaiPzunsOwu92nv1WsPv1ZJL8pl3PKdGw0hf65Vr1W8viX/TO/rfyRuviAnL
+   eJztmFEOhCAMRDmHVT+4/yE3JDTpVhu2UFjEvsRIiVAGQUdDcFZh//cAOnEI9bGynVQ/CyeLcbxQaAfhqu246W82NiHm9ZyYD9SMWkvz9FRQG+oDFq8GasP1G3O5tO+tGP083chxFzuO41BW9XwSPd91M86ltXej/rB1Lnd2tkAzpl/yglDWknKh77BcgxovQ9eCpJ3217J2qI+GnM/iPmvmjl4reSArb0R9dAzfvjNRq71WrzV8r6Zcks9s8ZwaDSN9ba9cq357SbxN7+h/Jx+bXgol
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -30,7 +30,7 @@
  </layer>
  <layer name="doornext" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzskJACAMAEHr8ey/O9ODkIDMwP63NQAAAPjDjk71RKIZreqJRD0a1RMAjy4WYgEM
+   eJztzjENAAAIA7B5wb9HROwgJK2CJgAAAAA/zHUAoLS86AAk
   </data>
  </layer>
  <layer name="doorprevious" width="60" height="23">
@@ -68,7 +68,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="11" x="1728.5" y="560.5">
+  <object id="11" x="1743.5" y="560.5">
    <properties>
     <property name="name" value="doornext"/>
    </properties>

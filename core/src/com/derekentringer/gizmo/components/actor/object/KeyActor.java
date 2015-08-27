@@ -28,6 +28,9 @@ public class KeyActor extends BaseActor {
         else if (keyType.equalsIgnoreCase(KeyModel.KEY_BLOOD)) {
             mKey = Gizmo.assetManager.get("res/images/objects/key_blood.png", Texture.class);
         }
+        else if (keyType.equalsIgnoreCase(KeyModel.KEY_BLACK)) {
+            mKey = Gizmo.assetManager.get("res/images/objects/key_black.png", Texture.class);
+        }
         mKeySprite = TextureRegion.split(mKey, 32, 32)[0];
         setAnimation(mKeySprite, 1 / 12f);
     }

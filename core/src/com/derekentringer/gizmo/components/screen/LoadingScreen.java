@@ -59,6 +59,7 @@ public class LoadingScreen extends AbstractScreen {
         game.assetManager.load("res/images/objects/key_gold.png", Texture.class);
         game.assetManager.load("res/images/objects/key_bronze.png", Texture.class);
         game.assetManager.load("res/images/objects/key_blood.png", Texture.class);
+        game.assetManager.load("res/images/objects/key_black.png", Texture.class);
 
         game.assetManager.load("res/images/objects/heart.png", Texture.class);
         game.assetManager.load("res/images/objects/life.png", Texture.class);
