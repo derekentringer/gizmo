@@ -237,7 +237,7 @@ public class PlayerActor extends BaseActor {
                 }
             }
         }
-        BodyUtils.applyLinearImpulseToBody(mBody, JUMP_FORCE, "y");
+        mBody.setLinearVelocity(0, JUMP_FORCE);
         playJumpSfx();
     }
 
