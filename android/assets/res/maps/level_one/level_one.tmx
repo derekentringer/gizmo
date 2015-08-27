@@ -98,13 +98,13 @@
   <properties>
    <property name="name" value="topleft"/>
   </properties>
-  <object id="11" x="143.5" y="623">
+  <object id="11" x="182.5" y="623">
    <properties>
     <property name="name" value="doorprevious"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="26" x="1648" y="561">
+  <object id="26" x="1642" y="561">
    <properties>
     <property name="name" value="doornext"/>
    </properties>

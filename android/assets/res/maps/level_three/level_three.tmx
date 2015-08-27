@@ -62,13 +62,13 @@
   <properties>
    <property name="doorType" value="previousdoor"/>
   </properties>
-  <object id="1" x="304" y="592">
+  <object id="1" x="311" y="592">
    <properties>
     <property name="name" value="doorprevious"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="3" x="1680" y="560.5">
+  <object id="3" x="1641" y="560.5">
    <properties>
     <property name="name" value="doornext"/>
    </properties>
