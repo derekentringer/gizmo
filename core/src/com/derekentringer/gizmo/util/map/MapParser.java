@@ -245,7 +245,7 @@ public class MapParser extends Stage {
         playerActor.setName(PlayerModel.PLAYER);
         addActor(playerActor);
         addToActorsArray(playerActor);
-        for(IMapParser listener : listeners){
+        for (IMapParser listener : listeners) {
             listener.setPlayerActor(playerActor);
         }
     }
@@ -255,7 +255,7 @@ public class MapParser extends Stage {
         doorGoldActor.setName(DoorType.LOCKED_GOLD);
         addActor(doorGoldActor);
         addToActorsArray(doorGoldActor);
-        for(IMapParser listener : listeners){
+        for (IMapParser listener : listeners) {
             listener.setLockedGoldDoor(doorGoldActor);
         }
     }
@@ -265,7 +265,7 @@ public class MapParser extends Stage {
         doorBronzeActor.setName(DoorType.LOCKED_BRONZE);
         addActor(doorBronzeActor);
         addToActorsArray(doorBronzeActor);
-        for(IMapParser listener : listeners){
+        for (IMapParser listener : listeners) {
             listener.setLockedBronzeDoor(doorBronzeActor);
         }
     }
@@ -275,7 +275,7 @@ public class MapParser extends Stage {
         doorBloodActor.setName(DoorType.LOCKED_BLOOD);
         addActor(doorBloodActor);
         addToActorsArray(doorBloodActor);
-        for(IMapParser listener : listeners){
+        for (IMapParser listener : listeners) {
             listener.setLockedBloodDoor(doorBloodActor);
         }
     }
@@ -285,7 +285,7 @@ public class MapParser extends Stage {
         doorBlackActor.setName(DoorType.LOCKED_BLACK);
         addActor(doorBlackActor);
         addToActorsArray(doorBlackActor);
-        for(IMapParser listener : listeners){
+        for (IMapParser listener : listeners) {
             listener.setLockedBlackDoor(doorBlackActor);
         }
     }
