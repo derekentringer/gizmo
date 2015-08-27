@@ -26,7 +26,7 @@ public class DoorBronzeActor extends BaseActor implements IBaseActor {
     public DoorBronzeActor(Body body, boolean isLocked) {
         super(body);
         addListener(this);
-        if(isLocked) {
+        if (isLocked) {
             mDoorBronze = Gizmo.assetManager.get("res/images/doors/door_bronze_opening.png", Texture.class);
         }
         else {

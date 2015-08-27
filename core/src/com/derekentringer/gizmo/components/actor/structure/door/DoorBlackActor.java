@@ -26,7 +26,7 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
     public DoorBlackActor(Body body, boolean isLocked) {
         super(body);
         addListener(this);
-        if(isLocked) {
+        if (isLocked) {
             mDoorBlack = Gizmo.assetManager.get("res/images/doors/door_black_opening.png", Texture.class);
         }
         else {
@@ -35,7 +35,7 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
 
         mDoorOpen = Gizmo.assetManager.get("res/images/doors/door_opened.png", Texture.class);
         mDoorOpenSprite = TextureRegion.split(mDoorOpen, 32, 32)[0];
-        
+
         mDoorBlackSprite = TextureRegion.split(mDoorBlack, 32, 32)[0];
         setIsPlayingAnimation(false);
         setAnimation(mDoorBlackSprite, 1 / 12f);
