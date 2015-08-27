@@ -1,6 +1,8 @@
 TODO
 -----
 
+add body filters so that player can walk thru phantoms and fireballs go thru phantoms
+
 doors are still strange going back to last room without moving
 
 gizmo upgrades - some attacks
