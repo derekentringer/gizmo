@@ -26,7 +26,7 @@ public class HudStage extends Stage implements IGameStage {
 
     private static final int HUD_PADDING = 10;
 
-    private static final float TIME_TO_FADE = 2;
+    private static final float TIME_TO_FADE = 1;
     private static final int FADE_DELAY = 800;
     private static final String FADE_IN = "FADE_IN";
     private static final String FADE_OUT = "FADE_OUT";
@@ -74,7 +74,7 @@ public class HudStage extends Stage implements IGameStage {
     private String mFadeStatus;
     private float mTimeAccumulated;
     private float mNewAlpha;
-    private boolean mAlreadyRan;
+    private boolean isFadeInAlreadyRun;
 
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
@@ -153,7 +153,6 @@ public class HudStage extends Stage implements IGameStage {
     private void dimTheStageLights(float delta) {
         // fade out
         if (mFadeStatus.equalsIgnoreCase(FADE_OUT)) {
-            GLog.d(TAG, "fading out: " + mNewAlpha);
             mTimeAccumulated += delta;
             mNewAlpha = 1 - (mTimeAccumulated / TIME_TO_FADE);
             if (mNewAlpha < 0) {
@@ -165,22 +164,22 @@ public class HudStage extends Stage implements IGameStage {
                 mFadeStatus = FADE_COMPLETE;
             }
         }
+
         // fade in
         else if (mFadeStatus.equalsIgnoreCase(FADE_IN)) {
-            GLog.d(TAG, "fading in: " + mNewAlpha);
             mTimeAccumulated += delta;
             mNewAlpha += (mTimeAccumulated / TIME_TO_FADE);
             if (mNewAlpha > 1) {
                 mNewAlpha = 1;
             }
             drawOverlay(0, 0, 0, mNewAlpha);
-            if (mNewAlpha >= 1 && !mAlreadyRan) {
-                mAlreadyRan = true;
+            if (mNewAlpha >= 1 && !isFadeInAlreadyRun) {
+                isFadeInAlreadyRun = true; //this is the PROBLEM
                 //fire off listener to load new level
                 for(IHudStage listener : listeners){
                     listener.hudFadeInComplete(mDoorType);
                 }
-                sleep(delta);
+                startFadeDelay(delta);
             }
         }
 
@@ -188,11 +187,11 @@ public class HudStage extends Stage implements IGameStage {
         if (mFadeStatus.equalsIgnoreCase(FADE_COMPLETE)) {
             GLog.d(TAG, "fading complete");
             mShowTransition = false;
-            mAlreadyRan = false;
+            isFadeInAlreadyRun = false;
         }
     }
 
-    private void sleep(float delta) {
+    private void startFadeDelay(float delta) {
         // this could be used to adjust
         // the fade back in
         //mTimeAccumulated += delta;
@@ -291,7 +290,6 @@ public class HudStage extends Stage implements IGameStage {
         else if (mHearts == 3 && health > 9) {
             newWidth = newWidth + 1;
         }
-
         mRedShapeWidth = newWidth;
     }
 

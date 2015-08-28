@@ -51,8 +51,8 @@
  </layer>
  <layer name="doorother" width="60" height="23">
   <properties>
-   <property name="destination" value="topleft"/>
-   <property name="levelnumber" value="2"/>
+   <property name="destination" value="topright"/>
+   <property name="levelnumber" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjEBAAAMAiCjrH/KxfAQEpDAnmsHAAAAAJj0aK4AIQ==
