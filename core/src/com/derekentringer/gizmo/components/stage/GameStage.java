@@ -38,6 +38,7 @@ import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
+import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -222,10 +223,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     public void draw() {
         super.draw();
 
+        // handle removed actors
         updateMapParserArrays();
         deleteObsoleteActors();
 
-        //tiled maps render camera
+        //tiled maps render camera updates
         mMapParser.getTiledMapBackgroundRenderer().setView(mCameraManager.getBackgroundCamera());
         mMapParser.getTiledMapBackgroundRenderer().render();
 
@@ -241,6 +243,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
+        // actor render loop
         for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.render(mSpriteBatch);
             if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
@@ -250,6 +253,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
+
+        // checks for the player position
         handlePlayerOffMap(mPlayerActor.getPosition().y);
         handlePlayerDied();
     }
@@ -258,6 +263,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     public void act(float delta) {
         super.act(delta);
 
+        // input
         UserInput.update();
         handleInput();
 
@@ -269,11 +275,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mCameraManager.updateCameraPlayerMovement(WorldUtils.generatRandomPositiveNegativeValue(mPlayerActor.getPosition().x, -mPlayerActor.getPosition().x), WorldUtils.generatRandomPositiveNegativeValue(mPlayerActor.getPosition().y, -mPlayerActor.getPosition().y), mMapParser);
         }
 
+        // actor loops
         for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.update(delta);
             actor.act(delta);
         }
 
+        // game loop step
         Constants.ACCUMULATOR += delta;
         while (Constants.ACCUMULATOR >= delta) {
             mWorld.step(Constants.TIME_STEP, 6, 2);
@@ -281,11 +289,22 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         }
     }
 
+    @Override
+    public void dispose() {
+        mPlayerActor.remove();
+        mMapParser.dispose();
+    }
+
+    public void quitGame() {
+        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
+        LocalDataManager.saveLevelData(mLoadedLevelModel);
+    }
+
     private void deleteObsoleteActors() {
         for (int i = 0; i < mDeleteBodies.size(); i++) {
-            //delete the actor from our actorsArray
             //look thru delete Bodies arraylist
             //delete the associated mBody
+            //delete the actor from our actorsArray
             for (int e = 0; e < mMapParser.getActorsArray().size(); e++) {
                 BaseActor actorToDelete = mMapParser.getActorsArray().get(e);
                 if (actorToDelete.mBaseModel.equals(mDeleteBodies.get(i).getBaseModel())) {
@@ -302,8 +321,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             }
         }
 
-        //TODO still needed?
-        //remove any actor that falls off the stage or goes out of bounds
+        // remove any actor from actor array that
+        // falls off the stage or goes out of bounds
         for (int j = 0; j < mMapParser.getActorsArray().size(); j++) {
             if (mMapParser.getActorsArray().get(j).getPosition().y * Constants.PPM < 0
                     || mMapParser.getActorsArray().get(j).getPosition().x * Constants.PPM < 0) {
@@ -335,7 +354,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
             if (mPlayerActor.getBaseModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
-                loadLevel(Constants.gameLevels.get(0), DoorType.PREVIOUS);
+                loadLevel(GameLevelUtils.gameLevels.get(0), DoorType.PREVIOUS);
             }
             else {
                 loadLevel(mLevelModel, DoorType.PREVIOUS);
@@ -407,7 +426,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                     }
                 }
                 else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
-                    if (mLevelModel.getLevelInt() < Constants.gameLevels.size() - 1) {
+                    if (mLevelModel.getLevelInt() < GameLevelUtils.gameLevels.size() - 1) {
                         transitionLevel(DoorType.NEXT);
                     }
                 }
@@ -423,7 +442,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
     private void loadNewLevel(int newLevel, String whichDoor) {
         alreadyEntered = true;
-        mLevelModel = Constants.gameLevels.get(newLevel);
+        mLevelModel = GameLevelUtils.gameLevels.get(newLevel);
 
         mMapParser.destroyTiledMap();
         WorldUtils.destroyBodies(mWorld);
@@ -433,7 +452,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
         LocalDataManager.saveLevelData(mLoadedLevelModel);
 
-        loadLevel(Constants.gameLevels.get(newLevel), whichDoor);
+        loadLevel(GameLevelUtils.gameLevels.get(newLevel), whichDoor);
     }
 
     @Override
@@ -516,11 +535,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         mCameraManager.setShakeCamera(false);
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         mIsPlayerDead = true;
-    }
-
-    public void quitGame() {
-        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
-        LocalDataManager.saveLevelData(mLoadedLevelModel);
     }
 
     @Override

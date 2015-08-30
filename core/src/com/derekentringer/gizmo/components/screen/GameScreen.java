@@ -9,29 +9,30 @@ import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.components.stage.GameStage;
 import com.derekentringer.gizmo.components.stage.HudStage;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.log.GLog;
 
 public class GameScreen implements Screen {
 
     private static final String TAG = GameScreen.class.getSimpleName();
 
-    private HudStage hudStage;
-    private GameStage gameStage;
+    private HudStage mHudStage;
+    private GameStage mGameStage;
 
-    private Rectangle viewPort;
-    private int levelToLoad = 0;
+    private Rectangle mViewPort;
+    private int mLevelToLoad = 0;
 
-    //private FPSLogger fpsLogger = new FPSLogger();
+    //private FPSLogger mFpsLogger = new FPSLogger();
 
     public GameScreen() {
-        Constants.buildGameLevelList();
-        gameStage = new GameStage();
-        hudStage = new HudStage(gameStage);
-        hudStage.addListener(gameStage);
+        GameLevelUtils.buildGameLevelList();
+        mGameStage = new GameStage();
+        mHudStage = new HudStage(mGameStage);
+        mHudStage.addListener(mGameStage);
         if (LocalDataManager.loadPlayerActorData() != null) {
-            levelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
+            mLevelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
         }
-        gameStage.init(Constants.gameLevels.get(levelToLoad));
+        mGameStage.init(GameLevelUtils.gameLevels.get(mLevelToLoad));
     }
 
     @Override
@@ -45,20 +46,20 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //set the viewport
-        Gdx.gl.glViewport((int) viewPort.x,
-                (int) viewPort.y,
-                (int) viewPort.width,
-                (int) viewPort.height);
+        Gdx.gl.glViewport((int) mViewPort.x,
+                (int) mViewPort.y,
+                (int) mViewPort.width,
+                (int) mViewPort.height);
 
         //update the game stage
-        gameStage.act(delta);
-        gameStage.draw();
+        mGameStage.act(delta);
+        mGameStage.draw();
 
         //update the hud stage
-        hudStage.act(delta);
-        hudStage.draw();
+        mHudStage.act(delta);
+        mHudStage.draw();
 
-        //fpsLogger.log();
+        //mFpsLogger.log();
     }
 
     @Override
@@ -86,9 +87,9 @@ public class GameScreen implements Screen {
         w = (float) Constants.GAME_WIDTH * scale;
         h = (float) Constants.GAME_HEIGHT * scale;
 
-        viewPort = new Rectangle(crop.x, crop.y, w, h);
+        mViewPort = new Rectangle(crop.x, crop.y, w, h);
 
-        hudStage.updateHudLayout(scale, crop, h);
+        mHudStage.updateHudLayout(scale, crop, h);
 
         GLog.d(TAG, "RESIZE: " + scale);
         GLog.d(TAG, "RESIZE: " + crop);
@@ -105,13 +106,13 @@ public class GameScreen implements Screen {
 
     @Override
     public void hide() {
-        gameStage.quitGame();
+        mGameStage.quitGame();
     }
 
     @Override
     public void dispose() {
-        hudStage.dispose();
-        gameStage.dispose();
+        mHudStage.dispose();
+        mGameStage.dispose();
     }
 
 }

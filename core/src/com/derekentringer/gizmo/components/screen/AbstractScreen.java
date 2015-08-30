@@ -5,10 +5,10 @@ import com.derekentringer.gizmo.Gizmo;
 
 public abstract class AbstractScreen implements Screen {
 
-    protected Gizmo game;
+    protected Gizmo mGizmoGame;
 
-    public AbstractScreen(Gizmo game) {
-        this.game = game;
+    public AbstractScreen(Gizmo gizmoGame) {
+        this.mGizmoGame = gizmoGame;
     }
 
     @Override
@@ -21,6 +21,7 @@ public abstract class AbstractScreen implements Screen {
 
     @Override
     public void dispose() {
+        this.dispose();
     }
 
 }
