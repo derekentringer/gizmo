@@ -83,7 +83,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     public void init(LevelModel level) {
         mLevelModel = level;
         setupWorld();
-        loadLevel(level, DoorType.PREVIOUS);
+        loadLevel(level, DoorType.DOOR_PREVIOUS);
         mCameraManager.createGameCameras();
     }
 
@@ -354,10 +354,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
             if (mPlayerActor.getBaseModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
-                loadLevel(GameLevelUtils.gameLevels.get(0), DoorType.PREVIOUS);
+                loadLevel(GameLevelUtils.gameLevels.get(0), DoorType.DOOR_PREVIOUS);
             }
             else {
-                loadLevel(mLevelModel, DoorType.PREVIOUS);
+                loadLevel(mLevelModel, DoorType.DOOR_PREVIOUS);
             }
         }
     }
@@ -393,41 +393,41 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                 return;
             }
             if (mPlayerActor.getIsAtDoor()) {
-                if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_GOLD)) {
+                if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_LOCKED_GOLD)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_GOLD)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
                         mDoorGoldActor.startAnimation();
                     }
                 }
-                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BRONZE)) {
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_LOCKED_BRONZE)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BRONZE)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
                         mDoorBronzeActor.startAnimation();
                     }
                 }
-                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLOOD)) {
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_LOCKED_BLOOD)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLOOD)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
                         mDoorBloodActor.startAnimation();
                     }
                 }
-                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.LOCKED_BLACK)) {
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_LOCKED_BLACK)) {
                     if (mPlayerActor.hasCorrectKey(KeyModel.KEY_BLACK)
                             || !mPlayerActor.getIsAtDoorUserData().getIsLocked()) {
                         mDoorBlackActor.startAnimation();
                     }
                 }
-                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.OTHER)) {
-                    transitionLevel(DoorType.OTHER);
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_OTHER)) {
+                    transitionLevel(DoorType.DOOR_OTHER);
                 }
-                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.PREVIOUS)) {
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_PREVIOUS)) {
                     if (mLevelModel.getLevelInt() > 0) {
-                        transitionLevel(DoorType.PREVIOUS);
+                        transitionLevel(DoorType.DOOR_PREVIOUS);
                     }
                 }
-                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.NEXT)) {
+                else if (mPlayerActor.getIsAtDoorUserData().getDoorType().equals(DoorType.DOOR_NEXT)) {
                     if (mLevelModel.getLevelInt() < GameLevelUtils.gameLevels.size() - 1) {
-                        transitionLevel(DoorType.NEXT);
+                        transitionLevel(DoorType.DOOR_NEXT);
                     }
                 }
             }
@@ -550,19 +550,19 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     @Override
     public void doorAnimationComplete(BaseActor actor) {
         actor.setIsPlayingAnimation(false);
-        transitionLevel(DoorType.LOCKED);
+        transitionLevel(DoorType.DOOR_LOCKED);
     }
 
     @Override
     public void hudFadeInComplete(String doorType) {
-        if (doorType.equals(DoorType.OTHER)) {
+        if (doorType.equals(DoorType.DOOR_OTHER)) {
             loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }
-        else if (doorType.equals(DoorType.PREVIOUS)) {
-            loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.NEXT);
+        else if (doorType.equals(DoorType.DOOR_PREVIOUS)) {
+            loadNewLevel(mLevelModel.getLevelInt() - 1, DoorType.DOOR_NEXT);
         }
-        else if (doorType.equals(DoorType.NEXT)) {
-            loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.PREVIOUS);
+        else if (doorType.equals(DoorType.DOOR_NEXT)) {
+            loadNewLevel(mLevelModel.getLevelInt() + 1, DoorType.DOOR_PREVIOUS);
         }
         else {
             mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());

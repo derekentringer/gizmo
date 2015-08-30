@@ -10,6 +10,7 @@ public final class DoorType {
     public static final String DOOR_LOCKED_BRONZE = "DOOR_LOCKED_BRONZE";
     public static final String DOOR_LOCKED_BLOOD = "DOOR_LOCKED_BLOOD";
     public static final String DOOR_LOCKED_BLACK = "DOOR_LOCKED_BLACK";
+    public static final String DOOR_LOCKED = "DOOR_LOCKED";
 
     private DoorType() {
     }

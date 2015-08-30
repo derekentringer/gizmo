@@ -41,7 +41,7 @@ public class DoorModel extends BaseModel {
         if(mDestinationDoor != null && !mDestinationDoor.isEmpty()) {
             return mDestinationDoor;
         }
-        return DoorType.PREVIOUS;
+        return DoorType.DOOR_PREVIOUS;
     }
 
     public boolean getIsLocked() {
