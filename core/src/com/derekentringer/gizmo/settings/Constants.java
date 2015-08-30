@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class Constants {
 
+    //When a collision occurs, the collider will check it’s categoryBits against the collided’s maskBits.
+    public static final short ENEMY_ENTITY = 0x1;    // 0001
+    public static final short WORLD_ENTITY = 0x1 << 1; // 0010 or 0x2 in hex
+
     public static final boolean IS_DEBUG = true;
     public static final boolean IS_DEBUG_BOX2D = false;
     public static final int LOG_LEVEL = Logger.DEBUG;

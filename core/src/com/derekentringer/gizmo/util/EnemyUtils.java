@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class EnemyUtils {
 
@@ -24,6 +25,10 @@ public class EnemyUtils {
         shape.setAsBox(WorldUtils.ppmCalc(6), WorldUtils.ppmCalc(13));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
+
         body.createFixture(fixtureDef).setUserData(userData);
 
         body.setUserData(userData);
@@ -64,6 +69,10 @@ public class EnemyUtils {
         shape.setAsBox(WorldUtils.ppmCalc(13), WorldUtils.ppmCalc(13));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
+        
         body.createFixture(fixtureDef).setUserData(userData);
 
         body.setUserData(userData);

@@ -6,8 +6,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.player.PlayerHitAreaModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.settings.Constants;
 
 public class PlayerUtils {
 
@@ -33,6 +34,9 @@ public class PlayerUtils {
         shape.setAsBox(WorldUtils.ppmCalc(7), WorldUtils.ppmCalc(1), center, 0);
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
+
+        fixtureDef.filter.maskBits = Constants.WORLD_ENTITY|Constants.ENEMY_ENTITY;
+
         body.createFixture(fixtureDef).setUserData(new PlayerHitAreaModel());
 
         body.setUserData(new PlayerModel());
