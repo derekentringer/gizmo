@@ -8,12 +8,12 @@
    eJzdmOtuwyAMRuFPnqCJ2qmalPd/yQ2NTz1zPy7JLppmCaXhYnzANqSXlNKaPuT6T0uRSy1bfRZZ3svNlFK/d3RJRvPutSzQuTd0753S0+8YxJsrr+pc/xarkxlWMo/sj+N6Y2I/cqTKudb3DfaS+Qhri5fzu31lXcsPoj2R2enjuFRZc32XP0cbv8LaWmvyjdbA+WZcH8e4VJvIK3/OyeermXh1rH9VCm/hlF8XOcMb23477x7Jzzk9cvQMr5PW3PTNmAtaeboV//TnPT3b4nJFzM9iZd1ojXqsRe6hbZRXY554NbrJ7Fgdczxniqy1yK/PCplfTJvLp7G9Nz7626w9ZC6iPEXejDKbl39aZn3NjRFzEZ29Yi5C1uWA7mzKLT1iRmu7NXRELld3dO3VV7yyifeNXJ9HWNlPMaI7m1g1j/THs5SxNjoHjoj2WHPG+2RGv9Z4105b4h4rJzrWeMeIzGfiSXuqPdNY8tLPWnvrfC22S69iRIV3mtY9tXd+HYlbnl/McSvqtb8jVvedEkU+rbVUDIu3963lzigXzz3WeHeVP8sm7YHGzLKmxhjp1R6LW3PMfhPNnPuML3fmill28Ru4JY61tc/My9KveCFvj/VMHnasKbzLBtpCHZQRb0rPfhN92d1Zv4N3Vtz5S3+iT4x4yc07Kn3o7H9GTjQH15J18i/mEtmjp4T5LaXPuW5GeC9nfqYPfYXZrad+c311Jmo9eEZyXXqiWGRu38KTttzMmC0wjHIwf8veDYV2cC2Yi93+Olud7bF9DXp4v4p9VV8Y7rVcD7zze5228DfvOXrXPpf6N0lsVAo=
   </data>
  </layer>
- <layer name="dooroff" width="60" height="23">
+ <layer name="door_off" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJzt0rENACAMA7C+Qf8/lImFA2gr7CVrIiUCAAAAmGpVF3jobM3SFv399Im8EibYgA4Amg==
   </data>
  </layer>
- <layer name="backgroundforeground" width="60" height="23">
+ <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztmFEOhCAMRDmHVT+4/yE3JDTpVhu2UFjEvsRIiVAGQUdDcFZh//cAOnEI9bGynVQ/CyeLcbxQaAfhqu246W82NiHm9ZyYD9SMWkvz9FRQG+oDFq8GasP1G3O5tO+tGP083chxFzuO41BW9XwSPd91M86ltXej/rB1Lnd2tkAzpl/yglDWknKh77BcgxovQ9eCpJ3217J2qI+GnM/iPmvmjl4reSArb0R9dAzfvjNRq71WrzV8r6Zcks9s8ZwaDSN9ba9cq357SbxN7+h/Jx+bXgol
   </data>
@@ -28,29 +28,29 @@
    eJztV9EOgCAItH9Qt/7/R3soN2YHaoqWdhurGCI3EMmYExsRC76Dzl1ir+cmiCMSdJ4ItfGMfdifrovt4xgRhxhINwtW4+uAznaPoh9Wyy/ihnI+C1Dttqpn2nNRv0bvUj/nfCF7aa0GX673jwaq3TfG2QoolzPzRfmNdY6x+yJS929urp+cV9Rrwmyodf6len6yX0mcKTsNztK8UbNXqv5zfe/mfvfUgONbe15TcWn756DVn3NqtQVK/SC+vkMco/5JRs0bo+43rfm5Vz2X4uvntwVW4/tjThy0FwbX
   </data>
  </layer>
- <layer name="doornext" width="60" height="23">
+ <layer name="door_next" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
- <layer name="doorprevious" width="60" height="23">
+ <layer name="door_previous" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LNOwiJK2CJgAAAADw01wHoLRpXAAg
   </data>
  </layer>
- <layer name="doorlockedgold" width="60" height="23">
+ <layer name="door_locked_gold" width="60" height="23">
   <properties>
-   <property name="destination" value="topleftright"/>
-   <property name="levelnumber" value="0"/>
+   <property name="destination" value="top_left_right"/>
+   <property name="level_number" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzkERAAAIA6CFsX9GU+z0AQlIAH6Z6wAAAABAyQJ4jgAl
   </data>
  </layer>
- <layer name="doorlockedblack" width="60" height="23">
+ <layer name="door_locked_black" width="60" height="23">
   <properties>
-   <property name="destination" value="doorprevious"/>
-   <property name="levelnumber" value="2"/>
+   <property name="destination" value="door_previous"/>
+   <property name="level_number" value="2"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7B5wb9HROwgJK2CJgAAAAA/zHUAoLS86AAk
@@ -60,7 +60,7 @@
  <objectgroup name="key">
   <object id="8" x="913" y="618">
    <properties>
-    <property name="keyType" value="gold"/>
+    <property name="key_type" value="gold"/>
    </properties>
    <ellipse/>
   </object>
@@ -70,22 +70,22 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="playerdestinations">
+ <objectgroup name="player_destinations">
   <object id="1" x="288.5" y="655.5">
    <properties>
-    <property name="name" value="doorprevious"/>
+    <property name="destination_name" value="door_previous"/>
    </properties>
    <ellipse/>
   </object>
   <object id="11" x="1695.5" y="560.5">
    <properties>
-    <property name="name" value="doornext"/>
+    <property name="destination_name" value="door_next"/>
    </properties>
    <ellipse/>
   </object>
   <object id="23" x="1696" y="144">
    <properties>
-    <property name="name" value="topright"/>
+    <property name="destination_name" value="top_right"/>
    </properties>
    <ellipse/>
   </object>

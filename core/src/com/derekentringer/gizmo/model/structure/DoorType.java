@@ -2,15 +2,14 @@ package com.derekentringer.gizmo.model.structure;
 
 public final class DoorType {
 
-    public static final String DOOR_OFF = "dooroff";
-    public static final String NEXT = "doornext";
-    public static final String PREVIOUS = "doorprevious";
-    public static final String OTHER = "doorother";
-    public static final String LOCKED = "doorlocked";
-    public static final String LOCKED_GOLD = "doorlockedgold";
-    public static final String LOCKED_BRONZE = "doorlockedbronze";
-    public static final String LOCKED_BLOOD = "doorlockedblood";
-    public static final String LOCKED_BLACK = "doorlockedblack";
+    public static final String DOOR_OFF = "DOOR_OFF";
+    public static final String DOOR_NEXT = "DOOR_NEXT";
+    public static final String DOOR_PREVIOUS = "DOOR_PREVIOUS";
+    public static final String DOOR_OTHER = "DOOR_OTHER";
+    public static final String DOOR_LOCKED_GOLD = "DOOR_LOCKED_GOLD";
+    public static final String DOOR_LOCKED_BRONZE = "DOOR_LOCKED_BRONZE";
+    public static final String DOOR_LOCKED_BLOOD = "DOOR_LOCKED_BLOOD";
+    public static final String DOOR_LOCKED_BLACK = "DOOR_LOCKED_BLACK";
 
     private DoorType() {
     }

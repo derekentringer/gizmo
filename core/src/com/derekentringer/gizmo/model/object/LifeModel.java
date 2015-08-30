@@ -5,7 +5,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class LifeModel extends BaseModel {
 
-    public static final String LIFE = "life";
+    public static final String LIFE = "LIFE";
 
     public LifeModel() {
         super();

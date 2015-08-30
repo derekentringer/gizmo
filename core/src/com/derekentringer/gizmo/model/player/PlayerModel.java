@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class PlayerModel extends BaseModel {
 
-    public static final String PLAYER = "player";
-    public static final String PLAYER_DESTINATIONS = "playerdestinations";
+    public static final String PLAYER = "PLAYER";
+    public static final String PLAYER_DESTINATIONS = "PLAYER_DESTINATIONS";
 
     public static final int HEART_HEALTH_AMOUNT = 10;
 

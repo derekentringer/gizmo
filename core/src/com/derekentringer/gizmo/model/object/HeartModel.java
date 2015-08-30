@@ -5,7 +5,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class HeartModel extends BaseModel {
 
-    public static final String HEART = "heart";
+    public static final String HEART = "HEART";
 
     public HeartModel() {
         super();

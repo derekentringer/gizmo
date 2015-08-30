@@ -5,12 +5,12 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class KeyModel extends BaseModel {
 
-    public static final String KEY = "key";
+    public static final String KEY = "KEY";
 
-    public static final String KEY_GOLD = "gold";
-    public static final String KEY_BRONZE = "bronze";
-    public static final String KEY_BLOOD = "blood";
-    public static final String KEY_BLACK = "black";
+    public static final String KEY_GOLD = "GOLD";
+    public static final String KEY_BRONZE = "BRONZE";
+    public static final String KEY_BLOOD = "BLOOD";
+    public static final String KEY_BLACK = "BLACK";
 
     private String mKeyType;
 

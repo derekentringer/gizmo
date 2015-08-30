@@ -4,7 +4,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 
 public class FireBallModel extends EnemyModel {
 
-    public static final String FIREBALL = "fireball";
+    public static final String FIREBALL = "FIREBALL";
 
     private int mHealthDamage = 5;
 

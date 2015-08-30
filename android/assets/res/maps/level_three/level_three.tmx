@@ -13,12 +13,12 @@
    eJzdmOtqwzAMhZU/eYIkdEsptH+293/CYfChJ6eS7KRdGTtgcqkv+mRZdjqZ2Wz/X1MtS70WfSRlpHINykj1h6BE/Uf1B2d8LpnNKOAdKi/e9bCdgqK8HoPXf8tHkc/3sFvlnOvzQrzKGPF5vBmz2twTEx5rFFtXi/mtsqJPjmfrYFX1MHu+9OYl483sirg1ngfb5qtvYWixesxRbMHmPfHQw5rF2ki8hRNxbbXOEVZmjjiYtTcesrYnGrPFDd7B7jm61bZHGUdkcxYP2dx642a2g5XXdOa/XkXMbHNUz+P2/JSNG/HOtSCuodVpv1fe3DGrVy9bA8y7xwa+Ik9FvGzPEWnO9Hh5jN41cFTYe8EMrXL/DK+u01YsMu8zc6v9FnEOXKjOhe5Xu+c39sPRcVv7me6dr2BFW+R9Pk8WaTyP9bo6v1+s3w8tm6P4P7I/ePmKeXl+OV/B3xyLzHeT53OnXS1bj7KqvZqf9UxdtEpbzRu6vvX5WR3JTZm9zIs9eEraerkSAu+Znt+tXnuRl/V8pW0h7eNm93j21vY7hPzC9n7ZI3MRvvP5e9/zE+T5rfBxzuLc/tfk7b8RK+Qxf9ZidP1t4RzM3zz8DmcpFOy9zOyJv0WnoM67xWf+mZ75fKzfuos9fmdynUHa8Trn/0VwVuEr2/Jq8Zgo/I59oQw6v2or+2CyLdMsdWe5X5y+uD37lM/xk23P9NzfQvc8ht7zfzazbee5vP8BJkRERw==
   </data>
  </layer>
- <layer name="dooroff" width="60" height="23">
+ <layer name="door_off" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztz7cNACAAAzDOoEz8/yQM8ALVlqKsSQjAK+ruAQvNr3HrCgAAuFPpSSM/yKN/+QucrQGueADb
   </data>
  </layer>
- <layer name="backgroundforeground" width="60" height="23">
+ <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztldEOgCAIRf0OdT74/x/Z2nJjDCqihCbnpSJq93qTUgqCIAgCf1RrAZNp1gIMWS3rDs5X816OI/Rdk4914DRotI19XUCtoGsruJkj1Ub1d6JmDedLOntxlk/eMQPOryZfj7kONH5hTyPqHvYrhstC6hfXvcwnTBbWIZyf/dmWdDl/8d/QcrYmGdzPF70Ub83Rv6D57oLgDhuyNgZT
   </data>
@@ -33,55 +33,48 @@
    eJztllEKwCAMQ/UOreD9LzrGFIpkY1/9SPqgyLIJzVqsrT30EAaet+YromZgz1fs7+fPvff7EcLD6i852LGeII0FAxqzXwca+gcsoFrO9CzyQH5RzVlAvavWz8x+Ue8yn881j7jPK7X5q9bPavdnNb9q/Yz8jvQs8qj7Rs0jdpjrW+hwAQofBCI=
   </data>
  </layer>
- <layer name="doornext" width="60" height="23">
+ <layer name="door_next" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
- <layer name="doorprevious" width="60" height="23">
+ <layer name="door_previous" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LnnkgIa2CJgAAAAC/zXUAoBajAAAg
   </data>
  </layer>
- <layer name="doorlockedbronze" width="60" height="23">
+ <layer name="door_locked_bronze" width="60" height="23">
   <properties>
-   <property name="destination" value="topleftright"/>
-   <property name="levelnumber" value="0"/>
+   <property name="destination" value="top_left_right"/>
+   <property name="level_number" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
  <objectgroup name="phantom"/>
- <objectgroup name="phantomlarge">
+ <objectgroup name="phantom_large">
   <object id="34" x="1265" y="305">
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="key">
-  <properties>
-   <property name="keyType" value="blood"/>
-  </properties>
- </objectgroup>
- <objectgroup name="playerdestinations">
-  <properties>
-   <property name="doorType" value="previousdoor"/>
-  </properties>
+ <objectgroup name="key"/>
+ <objectgroup name="player_destinations">
   <object id="1" x="320" y="592">
    <properties>
-    <property name="name" value="doorprevious"/>
+    <property name="destination_name" value="door_previous"/>
    </properties>
    <ellipse/>
   </object>
   <object id="3" x="1632" y="560.5">
    <properties>
-    <property name="name" value="doornext"/>
+    <property name="destination_name" value="door_next"/>
    </properties>
    <ellipse/>
   </object>
   <object id="36" x="143.333" y="174">
    <properties>
-    <property name="name" value="topleft"/>
+    <property name="destination_name" value="top_left"/>
    </properties>
    <ellipse/>
   </object>
