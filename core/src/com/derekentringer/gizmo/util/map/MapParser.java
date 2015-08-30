@@ -57,10 +57,10 @@ public class MapParser extends Stage {
 
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
 
-    private static final String LEVEL_NUMBER = "LEVEL_NUMBER";
-    private static final String DESTINATION = "DESTINATION";
-    private static final String DESTINATION_NAME = "DESTINATION_NAME";
-    private static final String KEY_TYPE = "KEY_TYPE";
+    private static final String LEVEL_NUMBER = "level_number";
+    private static final String DESTINATION = "destination";
+    private static final String DESTINATION_NAME = "destination_name";
+    private static final String KEY_TYPE = "key_type";
 
     private GameStage mGameStage;
     private TiledMap mTiledMap;
