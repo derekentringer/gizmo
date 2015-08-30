@@ -27,7 +27,7 @@ public class HudStage extends Stage implements IGameStage {
     private static final int HUD_PADDING = 10;
 
     private static final float TIME_TO_FADE = 1;
-    private static final int FADE_DELAY = 800;
+    private static final int FADE_DELAY = 900;
     private static final String FADE_IN = "FADE_IN";
     private static final String FADE_OUT = "FADE_OUT";
     private static final String FADE_COMPLETE = "FADE_COMPLETE";

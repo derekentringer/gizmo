@@ -1,7 +1,7 @@
 TODO
 -----
 
-level transitions are bugged when going back and forth too quick
+
 
 add body filters so that player can walk thru phantoms and fireballs go thru phantoms
 
