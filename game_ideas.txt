@@ -1,7 +1,7 @@
 TODO
 -----
 
-
+add animations when picking up objects
 
 add body filters so that player can walk thru phantoms and fireballs go thru phantoms
 
