@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.derekentringer.gizmo.model.player.PlayerHitAreaModel;
+import com.derekentringer.gizmo.model.player.PlayerFootSensorModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 
@@ -37,7 +37,7 @@ public class PlayerUtils {
 
         fixtureDef.filter.maskBits = Constants.WORLD_ENTITY|Constants.ENEMY_ENTITY;
 
-        body.createFixture(fixtureDef).setUserData(new PlayerHitAreaModel());
+        body.createFixture(fixtureDef).setUserData(new PlayerFootSensorModel());
 
         body.setUserData(new PlayerModel());
 
