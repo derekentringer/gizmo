@@ -1,6 +1,12 @@
 TODO
 -----
 
+add new screens
+	- start
+	- choose game save slot
+	- pause
+	- inventory
+
 add animations when picking up objects
 
 gizmo upgrades - some attacks
