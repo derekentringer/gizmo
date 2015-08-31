@@ -11,28 +11,23 @@ add animations when picking up objects
 
 gizmo upgrades - some attacks
 create gizmo attacks (rolling, jump-lunge, guns)
+add a power up for jumping
+add barking ability
+add a power up for barking
 
 add barking ability for ghosts (the most basic attack)
 
 moar enemies
 
-ideas for attacks:
-add a power up for jumping
-add barking ability
-add a power up for barking
-
 phantoms run away when gizmo barks
 
+need to map xbox360, xbox one, and ouya controllers
 
 player stats - show keys? inventory
 destroyable blocks
 start screen
-make a larger level
-animate tiles in game
 redesign gizmo
-design enemy
 design more blocks for dungeons
-design objects
 falling blocks
 
 - game is linear, but, certain ways to advance past levels 
