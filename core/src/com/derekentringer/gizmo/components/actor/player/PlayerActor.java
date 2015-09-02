@@ -25,7 +25,7 @@ public class PlayerActor extends BaseActor {
 
     private static final float WALKING_FORCE = 1.2f;
     private static final float JUMP_FORCE = 5f;
-    private static final float JUMP_FORCE_RESET = -1.2f;
+    private static final float JUMP_FORCE_RESET = -1.5f;
     public static final int FLINCHING_LENGTH = 3;
     private static final float FLINCH_FORCE = 50f;
 
