@@ -1,9 +1,10 @@
 TODO
 -----
 
+gizmo upgrades - some attacks (rolling, jump-lunge, guns)
+
 add animations when picking up objects
 	- pickup ghosts as weapons (think mario 2)
-
 
 add new screens
 	- start
@@ -11,9 +12,6 @@ add new screens
 	- pause
 	- inventory
 
-
-gizmo upgrades - some attacks
-create gizmo attacks (rolling, jump-lunge, guns)
 add a power up for jumping
 add barking ability
 add a power up for barking
