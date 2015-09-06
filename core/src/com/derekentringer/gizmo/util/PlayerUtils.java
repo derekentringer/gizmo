@@ -35,7 +35,7 @@ public class PlayerUtils {
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
 
-        fixtureDef.filter.maskBits = Constants.WORLD_ENTITY|Constants.ENEMY_ENTITY;
+        fixtureDef.filter.categoryBits = Constants.PLAYER_ENTITY;
 
         body.createFixture(fixtureDef).setUserData(new PlayerFootSensorModel());
 

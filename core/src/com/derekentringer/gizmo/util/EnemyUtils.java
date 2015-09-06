@@ -26,8 +26,8 @@ public class EnemyUtils {
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
 
-        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
-        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
+        fixtureDef.filter.categoryBits = Constants.ENEMY_ENTITY;
+        fixtureDef.filter.maskBits = Constants.WORLD_ENTITY | Constants.PLAYER_ENTITY | Constants.PLAYER_ATTACK_ENTITY;
 
         body.createFixture(fixtureDef).setUserData(userData);
 
@@ -49,6 +49,10 @@ public class EnemyUtils {
         shape.setAsBox(WorldUtils.ppmCalc(100), WorldUtils.ppmCalc(150));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.ENEMY_ENTITY;
+        fixtureDef.filter.maskBits = Constants.WORLD_ENTITY | Constants.PLAYER_ENTITY | Constants.PLAYER_ATTACK_ENTITY;
+
         body.createFixture(fixtureDef).setUserData(userData);
 
         body.setUserData(userData);
@@ -70,7 +74,7 @@ public class EnemyUtils {
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
 
-        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
+        fixtureDef.filter.categoryBits = Constants.ENEMY_ATTACK_ENTITY;
         fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
         
         body.createFixture(fixtureDef).setUserData(userData);

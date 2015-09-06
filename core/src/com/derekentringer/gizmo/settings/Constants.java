@@ -5,10 +5,13 @@ import com.badlogic.gdx.utils.Logger;
 
 public class Constants {
 
-    // when a collision occurs, the collider will check it’s
-    // categoryBits against the collided’s maskBits.
-    public static final short ENEMY_ENTITY = 0x1;      // 0001
-    public static final short WORLD_ENTITY = 0x1 << 1; // 0010 or 0x2 in hex
+    // categoryBits declares what entity is is
+    // maskBits declares which entities collide with
+    public static final short WORLD_ENTITY = 0x1;
+    public static final short PLAYER_ENTITY = 0x1 << 1;
+    public static final short PLAYER_ATTACK_ENTITY = 0x1<< 2;
+    public static final short ENEMY_ENTITY = 0x1 << 3;
+    public static final short ENEMY_ATTACK_ENTITY = 0x1 << 4;
 
     // debugging
     public static final boolean IS_DEBUG = true;

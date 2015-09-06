@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.WorldUtils;
 
 public class ItemUtils {
@@ -20,12 +21,16 @@ public class ItemUtils {
         PolygonShape shape = new PolygonShape();
 
         bodyDef.position.set(coordinates.x, coordinates.y);
-        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
         Body body = world.createBody(bodyDef);
 
         shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
         fixtureDef.shape = shape;
-        fixtureDef.isSensor = true;
+        fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
+
         body.createFixture(fixtureDef).setUserData(new HeartModel());
 
         body.setUserData(userData);

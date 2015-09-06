@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.components.actor.player.item;
+package com.derekentringer.gizmo.components.actor.item;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,7 +13,7 @@ public class BoomerangWoodActor extends BaseActor {
 
     private static final String TAG = BoomerangWoodActor.class.getSimpleName();
 
-    private static final float MOVEMENT_FORCE = 3;
+    private static final float MOVEMENT_FORCE = 1;
 
     private BoomerangWoodModel mBoomerangWoodModel = new BoomerangWoodModel();
 
@@ -24,8 +24,6 @@ public class BoomerangWoodActor extends BaseActor {
 
     public BoomerangWoodActor(Body body, int playerFacingDirection) {
         super(body);
-
-        mBody = body;
 
         mPlayerFacingDirection = playerFacingDirection;
 

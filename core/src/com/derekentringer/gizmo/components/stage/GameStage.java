@@ -15,7 +15,7 @@ import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAtt
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
-import com.derekentringer.gizmo.components.actor.player.item.BoomerangWoodActor;
+import com.derekentringer.gizmo.components.actor.item.BoomerangWoodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
@@ -140,6 +140,18 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsGround(a)) {
             mPlayerActor.setIsOnGround(true);
         }
+
+
+
+        // player attack collisions
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
+            GLog.d(TAG, "HIT ENEMY");
+        }
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY)) {
+            GLog.d(TAG, "HIT ENEMY");
+        }
+
+
 
         // player/enemy collisions
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
@@ -443,6 +455,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
 
             BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
             boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
+
             mMapParser.addToTempActorsArray(boomerangWoodActor);
         }
     }

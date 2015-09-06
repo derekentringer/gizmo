@@ -44,7 +44,7 @@ public class BodyUtils {
         }
     }
 
-    public static Body createStaticBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
+    public static Body createStaticWorldBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set(
@@ -68,6 +68,8 @@ public class BodyUtils {
         fixtureDef.filter.categoryBits = 1;
         fixtureDef.filter.maskBits = -1;
         fixtureDef.isSensor = isSensor;
+
+        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
 
         Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef).setUserData(userData);
