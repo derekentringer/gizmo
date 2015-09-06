@@ -8,7 +8,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.player.item.BoomerangModel;
+import com.derekentringer.gizmo.model.item.BoomerangModel;
 
 import java.util.ArrayList;
 

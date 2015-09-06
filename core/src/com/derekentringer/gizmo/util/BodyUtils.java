@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.enemy.EnemyModel;
 import com.derekentringer.gizmo.settings.Constants;
 
 public class BodyUtils {
@@ -18,11 +17,6 @@ public class BodyUtils {
     public static boolean bodyTypeCheck(Body body, BaseModelType baseModelType) {
         BaseModel userData = (BaseModel) body.getUserData();
         return userData != null && userData.getBaseModelType().equals(baseModelType);
-    }
-
-    public static int getEnemyBodyDamageAmount(Body body) {
-        EnemyModel userData = (EnemyModel) body.getUserData();
-        return userData.getHealthDamage();
     }
 
     public static void applyLinearImpulseToBody(Body body, float force, String direction) {

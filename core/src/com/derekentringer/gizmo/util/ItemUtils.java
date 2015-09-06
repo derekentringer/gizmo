@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.util.map;
+package com.derekentringer.gizmo.util;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -8,12 +8,17 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.settings.Constants;
-import com.derekentringer.gizmo.util.WorldUtils;
 
 public class ItemUtils {
 
     private static final String TAG = ItemUtils.class.getSimpleName();
+
+    public static int getItemHealthDamage(Body body) {
+        BaseItemModel itemModel = (BaseItemModel) body.getUserData();
+        return itemModel.getHealthDamage();
+    }
 
     public static Body createBoomerang(BaseModel userData, World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();

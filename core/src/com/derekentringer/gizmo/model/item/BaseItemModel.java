@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.model.player.item;
+package com.derekentringer.gizmo.model.item;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;

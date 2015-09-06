@@ -29,6 +29,7 @@ import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
+import com.derekentringer.gizmo.model.enemy.EnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
@@ -36,17 +37,18 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.player.item.BoomerangModel;
+import com.derekentringer.gizmo.model.item.BoomerangModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BodyUtils;
+import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
-import com.derekentringer.gizmo.util.map.ItemUtils;
+import com.derekentringer.gizmo.util.ItemUtils;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
@@ -77,8 +79,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     private DoorBloodActor mDoorBloodActor;
     private DoorBlackActor mDoorBlackActor;
     private boolean alreadyEntered = false;
-
-    private boolean alreadyActivated = false;
 
     private boolean isItemActive;
 
@@ -147,30 +147,31 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mPlayerActor.setIsOnGround(true);
         }
 
-
-
-        // player attack collisions
+        // player attack with items collisions
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
-
+            EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));
+            if (EnemyUtils.getEnemyHealth(b.getBody()) <= 0) {
+                mDeleteBodies.add(new DeleteBody((EnemyModel) b.getBody().getUserData(), b.getBody()));
+            }
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY)) {
-            GLog.d(TAG, "HIT ENEMY");
+            EnemyUtils.setEnemyHealth(a.getBody(), ItemUtils.getItemHealthDamage(b.getBody()));
+            if (EnemyUtils.getEnemyHealth(a.getBody()) <= 0) {
+                mDeleteBodies.add(new DeleteBody((EnemyModel) a.getBody().getUserData(), a.getBody()));
+            }
         }
-
-
 
         // player/enemy collisions
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(a.getBody()));
+            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(a.getBody()));
             mPlayerActor.setIsFlinching(true);
             mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.setHitEnemy(BodyUtils.getEnemyBodyDamageAmount(b.getBody()));
+            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(b.getBody()));
             mPlayerActor.setIsFlinching(true);
             mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
-
 
 
         // pickup a key
