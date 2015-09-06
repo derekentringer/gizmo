@@ -36,7 +36,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.player.item.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.player.item.BoomerangModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
@@ -151,7 +151,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
         // player attack collisions
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
-            GLog.d(TAG, "HIT ENEMY");
+
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY)) {
             GLog.d(TAG, "HIT ENEMY");
@@ -170,6 +170,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mPlayerActor.setIsFlinching(true);
             mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
+
+
 
         // pickup a key
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
@@ -273,7 +275,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
                 ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
-            else if (actor.getName().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+            else if (actor.getName().equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)) {
                 ((BoomerangWoodActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
@@ -460,8 +462,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         if (UserInput.isDown(UserInput.ATTACK)) {
             if (!isItemActive) {
                 isItemActive = true;
-                BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
-                boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
+                BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
+                boomerangWoodActor.setName(BoomerangModel.BOOMERANG_WOOD);
                 mMapParser.addToTempActorsArray(boomerangWoodActor);
                 boomerangWoodActor.addListener(this);
             }
