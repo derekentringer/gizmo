@@ -3,6 +3,7 @@ package com.derekentringer.gizmo.model.player;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.player.item.BaseItemModel;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
+
+    private ArrayList<BaseItemModel> mPlayerItemsList = new ArrayList<BaseItemModel>();
 
     private int mCurrentLevel;
     private int mPlayerLives;
@@ -63,12 +66,12 @@ public class PlayerModel extends BaseModel {
         return mPlayerHealth;
     }
 
-    public void addPlayerKey(KeyModel keyData) {
-        mKeyList.add(keyData);
-    }
-
     public ArrayList<KeyModel> getPlayerKeys() {
         return mKeyList;
+    }
+
+    public void addPlayerKey(KeyModel keyData) {
+        mKeyList.add(keyData);
     }
 
     public void removePlayerKey(String keyType) {
@@ -77,6 +80,18 @@ public class PlayerModel extends BaseModel {
                 mKeyList.remove(i);
             }
         }
+    }
+
+    public ArrayList<BaseItemModel> getPlayerItems() {
+        return mPlayerItemsList;
+    }
+
+    public void addPlayerItem(BaseItemModel playerItem) {
+        mPlayerItemsList.add(playerItem);
+    }
+
+    public void removePlayerItem(BaseItemModel playerItem) {
+        mPlayerItemsList.remove(playerItem);
     }
 
 }

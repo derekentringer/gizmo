@@ -28,6 +28,7 @@ public class UserInput {
 
     public static void setKey(int i, boolean b) {
         currentKey[i] = b;
+
     }
 
     public static boolean isDown(int i) {

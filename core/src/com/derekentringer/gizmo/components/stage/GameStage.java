@@ -13,6 +13,7 @@ import com.derekentringer.gizmo.components.actor.boss.PhantomBossActor;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.components.actor.item.IItems;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.components.actor.item.BoomerangWoodActor;
@@ -25,6 +26,7 @@ import com.derekentringer.gizmo.components.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
@@ -50,7 +52,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
+public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -75,6 +77,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
     private DoorBloodActor mDoorBloodActor;
     private DoorBlackActor mDoorBlackActor;
     private boolean alreadyEntered = false;
+
+    private boolean alreadyActivated = false;
+
+    private boolean isItemActive;
 
     public GameStage() {
     }
@@ -267,6 +273,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
                 ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
+            else if (actor.getName().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+                ((BoomerangWoodActor) actor).setPlayerPosition(mPlayerActor.getPosition());
+            }
         }
 
         // checks for the player position
@@ -449,14 +458,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
         }
 
         if (UserInput.isDown(UserInput.ATTACK)) {
-
-            //TODO use the current item eventually
-            //mPlayerActor.getCurrentItem();
-
-            BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
-            boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
-
-            mMapParser.addToTempActorsArray(boomerangWoodActor);
+            if (!isItemActive) {
+                isItemActive = true;
+                BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
+                boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
+                mMapParser.addToTempActorsArray(boomerangWoodActor);
+                boomerangWoodActor.addListener(this);
+            }
         }
     }
 
@@ -594,6 +602,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
             mLoadedLevelModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
             loadNewLevel(mPlayerActor.getIsAtDoorUserData().getLevelNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }
+    }
+
+    @Override
+    public void removePlayerItemFromStage(BaseActor actor) {
+        isItemActive = false;
+        mDeleteBodies.add(new DeleteBody((BaseModel) actor.getBody().getUserData(), actor.getBody()));
     }
 
     /*private void startBackgroundMusic() {
