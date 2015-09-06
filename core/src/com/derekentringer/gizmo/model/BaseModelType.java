@@ -8,6 +8,7 @@ public enum BaseModelType {
     DOOR_OFF,
     PLAYER,
     PLAYER_HIT_AREA,
+    PLAYER_ITEM,
     ENEMY,
     KEY,
     HEART,

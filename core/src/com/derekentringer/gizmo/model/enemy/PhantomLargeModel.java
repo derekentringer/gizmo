@@ -6,6 +6,7 @@ public class PhantomLargeModel extends EnemyModel {
 
     public static final String PHANTOM_LARGE = "PHANTOM_LARGE";
 
+    private int mHealth = 20;
     private int mHealthDamage = 10;
 
     public PhantomLargeModel() {
@@ -14,13 +15,18 @@ public class PhantomLargeModel extends EnemyModel {
     }
 
     @Override
-    public int getHealthDamage() {
-        return mHealthDamage;
+    public int getHealth() {
+        return mHealth;
     }
 
     @Override
-    public void setHealthDamage(int damage) {
-        mHealthDamage = damage;
+    public void setHealth(int health) {
+        mHealth = health;
+    }
+
+    @Override
+    public int getHealthDamage() {
+        return mHealthDamage;
     }
 
 }

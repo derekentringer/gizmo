@@ -15,6 +15,7 @@ import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAtt
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
+import com.derekentringer.gizmo.components.actor.player.item.BoomerangWoodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
@@ -33,6 +34,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.player.item.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
@@ -42,6 +44,7 @@ import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
+import com.derekentringer.gizmo.util.map.ItemUtils;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
@@ -431,6 +434,16 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IHudStage, 
                     }
                 }
             }
+        }
+
+        if (UserInput.isDown(UserInput.ATTACK)) {
+
+            //TODO use the current item eventually
+            //mPlayerActor.getCurrentItem();
+
+            BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
+            boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
+            mMapParser.addToTempActorsArray(boomerangWoodActor);
         }
     }
 

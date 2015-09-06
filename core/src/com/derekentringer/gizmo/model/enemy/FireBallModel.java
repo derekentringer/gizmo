@@ -18,9 +18,4 @@ public class FireBallModel extends EnemyModel {
         return mHealthDamage;
     }
 
-    @Override
-    public void setHealthDamage(int damage) {
-        mHealthDamage = damage;
-    }
-
 }
