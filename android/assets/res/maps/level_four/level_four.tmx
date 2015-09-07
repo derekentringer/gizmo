@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="90">
+ <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
+  <image source="../tileset/bricks.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="keyType" value="black"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="destination" value="doorPrevious"/>
+    <property name="level" value="0"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztll0KxCAMhN0XT6CLfez9L7kIBoaQ4C8YWQcGS21Nv04qda6uz0Feod0Ml/fyWuGdvf8k3qy3jEG5Rjtfm7PAG8BZqfCmgXVOypdYkTe5MfXyr1BvJlkSL/fL7Iuf4tbaVvIlBiljjRuZrfNSxo49OzFz1Zh7au/O1wvWhLweRqodO2vPahWvtGdhvh7upX7ge4MlXuxnSdI+zVlJmK9F3pb/BuJLcEx9PFN7dz8To/QOsvgeNVpjN29Qjvk10voR5gM7dwKvlHXLdxiA82ucd9YRfEI/W/Dlvbz/xPsDUwsNpg==
+  </data>
+ </layer>
+ <layer name="door_off" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIBDFsvH+j7AiAkLTLrVcFAAB8leuBRRkFAPioAcIOAEw=
+  </data>
+ </layer>
+ <layer name="background_foreground" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzt00EKwCAMRNE5R1Nd9P6HFMFSmwMojP+BZJaRIRIA4DR3mu4iTXfvP5+tW6xR9O+3bNxlhd5pHTmm7Cr09Vvlf8PXeDkDAADASwPBZwJs
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzt0bEJACAMBMC4g0u4/4JWdmIjRNE7SP+fjwAAAG7RTgdIUib3m1XnV/8z61HTU+Qa+9V4Z0cA9nQoJQBh
+  </data>
+ </layer>
+ <layer name="wall" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzt1FkKwCAMRVHdQ9L9L1WEfIhUQYiV2HtAHD6CD4eUAOBdPr2BD+Wuv1mf8ebMMlivmdV6sbE07WnGavMIRnlXqVOd3bzyetXZzeut/u0+Rzlf8p6tE0WU/xkAAMwV82AB9A==
+  </data>
+ </layer>
+ <layer name="door_other" width="60" height="23">
+  <properties>
+   <property name="destination" value="top_left_left"/>
+   <property name="level_number" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7A5wb9LROwgJK2CJgAAAD/MdQAAoLQmzwAg
+  </data>
+ </layer>
+ <objectgroup name="phantom"/>
+ <objectgroup name="player_destinations">
+  <properties>
+   <property name="name" value="top_left"/>
+  </properties>
+  <object id="89" x="1120" y="432.667">
+   <properties>
+    <property name="destination_name" value="right"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="player_item">
+  <object id="88" x="784.667" y="363.333">
+   <properties>
+    <property name="boomerang_type" value="BOOMERANG_WOOD"/>
+    <property name="item_type" value="boomerang"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

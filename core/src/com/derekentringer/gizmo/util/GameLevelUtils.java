@@ -24,9 +24,15 @@ public class GameLevelUtils {
                 "res/maps/level_three/mid_background.tmx",
                 "res/maps/level_three/background.tmx");
 
+        LevelModel levelFour = new LevelModel(3,
+                "res/maps/level_four/level_four.tmx",
+                "res/maps/level_four/mid_background.tmx",
+                "res/maps/level_four/background.tmx");
+
         gameLevels.add(levelOne);
         gameLevels.add(levelTwo);
         gameLevels.add(levelThree);
+        gameLevels.add(levelFour);
     }
 
 }

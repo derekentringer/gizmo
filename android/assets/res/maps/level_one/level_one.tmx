@@ -16,7 +16,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmPGOgyAMxus/PsE087Zb4t7/IW8kfNm3ppQCnpdck0aBUvrDiuBFRBb5/3LJuuZrko10fume9Tqou/K9OzobcUBr/XRfKHinzIs6MFuschCzN3+aWTPW/FvzBbbEueTyKp+CcZgVMsrcYhtl1f00s2TWKZeRzyMymvMec28/cIu883mS93ql313L19nMo3M1E2/iRF6Dt5f1L5hr42neSd5rNHhHWM9kjo63Zxuw8js9+mzP4m4dK8mSFXl9NO+ZrLU4kmCdOpI38k6V/B7F7D3fjZhF/PUqwtoSfzTWnrm3bPHt5f0G6rz9Rsl3S/wt8fbkmGWfuPR+EnbMG/EfHb/1/euxL43DvKth38IRjWNURmLC+8vfI+TzUQw97Zbf2nPgvNwKdtg/41wojm001iT3QF+vf23dK9nzXtniwLqs91cRZq/95vSL9PdsSs8dZ1+WWfnAOb903u9h/n7pw4MoxP1bEvn+4sp7acuHlWNfWWvjJ71nRX+URbULtUOwD+YzD9fxmQ/+wbpJ+f9V9BvcKslfyvsH+U/lpyrfaGzkDe/5Fyrz/pjPuhCU0ZdtUG8J/xfBXoWvHAvq9b8UzVPi1+VN+VxVHc8Fr8U8J3zVsVqx6/ZF+VnkMw5rbq6ZRfNy+Wm083mdY+F7/meDMvI71f8ABmRLwQ==
+   eJzdmGFuwyAMhZ0/OUETLVtXKbv/IVtLPOXVMmAgy6RZslqIMf6IQ0xuIrLI/5db0jX9qmyk80v3pB+Duhvfe0FnJw5obZwdCwXvlHjRB2aPVU5iLq2fZbaMNf/eeoFNOZfUXuVdMA+zQkaZW2yjrHacZZbEOqU28nlERnO+xNw7DtwiRz5PcuxX9tn1fF3NPLpWM/EqJ/IavL2sf8Fcm8/yTnLs0eAdYb2SOTrfnmzAys/06L29irt1LpUlKfL6bN4rWWtxqGCfOpM38kzl/J7FXLq/GzGLlPerCGtL/NFYe9bes8W7l+sN9JXqjZzvlvhb4u3JMc9euWw9CTvmjfiPzt/6/PXY5+Zh3tWxb+GIxjEqIzHh+eX3EfL5LIae657f2n3gvNwydqifcS6Ugm00VpV7YGxpfG3fy9lzrexxYF+29VWEuXT9qzAuMr5kk7vvOPuyzMYHzvm5834P8/dLHyWITNy/JZH3L365lvZ8eDn2mbQ2v+o9KcajLea60HUI6mA+83Afn/ngH6yb5L9fRd/BraL+NO8f5F/bP6bN8SJvuOZfqM31MZ91IWhjLNug3xP+LoJahX85FvTbbynM5P3PtTfjczV9vBa8F/Oa8K+N1YvdXl+Mn0Xe4/DWJlc/1ZTP6xwL/+dvNmgjv7X/Cas9S3g=
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
@@ -26,7 +26,7 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztV9EKwyAM7He0tg/7/48cwoRwuxjTRh3Dg+ESNcl5Uei2LSwsLPwf0uwCBuOaXcBgHIq/t+6z+krj21t3LW9vaHmj68Hze4E9Sm+Lb1QdmMeyWe6IWiy+NZ0TjNKPPoxj6c18ET1n8a3d4zLHtPLqyfK09IAXHn01zVjtXr7ZPp177sDDFzXQ+Gbb6sWIPTVod90TQ8sf0c/ZLud5KmvYHUcUntf23S8sZtnDuGg1M92t+4nz++cn197RV9bN3gTtnWA5e+orscOI/hpKD7Aa5Dz6mHbZl8CWo/Q/4fsE8qzY+Rywrvxn9WAMTYcWvrO+U1p6xIvot/bXMbOfZ2A03zdM4hIJ
+   eJztV+0KwyAM9Dn69WPv/5BFWCDcLmraWLfhQbFJ1eS8RGhKExMTE/+HbXQCD+MYncDDWA1/b91H1ZXFt7fuVtzesOJG54Pn9wL7Kb1rfKPywDg1m8WOyKXGt6TzBqP2ow/3qenNfBE1V+Nb6mP5xrTy6snitNSAFx59Lc1Y7l6+2d6da67Awxc1sPhmu1aLEWtKsHrds4cVP6Kesy3nuRtzWI8jhOeRPuuF7SlrGBcrZ6Y7+qzaECzvR8+9oq/Om90J1j3BYvbUV2OBEf0lSA2wHPR39DHtsm8DW4/af4fvHeizYuezwjx5Z/ngHpYOLXxH/ae01IgX7K4V2+rNX4TuAaz1Ffwtd+23Q/jgkwp2BE6ZkRNq
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -60,8 +60,8 @@
  </layer>
  <layer name="door_locked_blood" width="60" height="23">
   <properties>
-   <property name="destination" value="door_previous"/>
-   <property name="level_number" value="0"/>
+   <property name="destination" value="right"/>
+   <property name="level_number" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7Cpwb9E/hkgIa2CJvDTXAcAAAAAoCzcZgAn
@@ -130,13 +130,5 @@
   </object>
  </objectgroup>
  <objectgroup name="heart"/>
- <objectgroup name="player_item">
-  <object id="86" x="432" y="556.5">
-   <properties>
-    <property name="boomerang_type" value="BOOMERANG_WOOD"/>
-    <property name="item_type" value="boomerang"/>
-   </properties>
-   <ellipse/>
-  </object>
- </objectgroup>
+ <objectgroup name="player_item"/>
 </map>

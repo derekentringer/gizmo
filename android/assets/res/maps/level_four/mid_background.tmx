@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="1">
+ <tileset firstgid="1" name="bricks_mid_background" tilewidth="32" tileheight="32">
+  <image source="../tileset/bricks_mid_background.png" width="256" height="160"/>
+ </tileset>
+ <layer name="background" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztVu0OgzAIpO/Q+mNfP3z/h9xMJLsgpajUuWWXEBekcAdtHVEMbsFxZ8c1OO7s+OvVMXZlcRz+89Xx6MpiHfbcnd843z1cfkWvd+befWrpvTtzTIj4jmt3Z/TcrLg1Zztin2g5kIPV01p9OTOL5xoNvfSiz+p/7bsq/db3t4de64y09G6ZjexR1Hwj7gstx1690n/0fl5b7xN6Pff0EXq3nL0tej3/sX9pvp6z2Uvv2Hjfeofcy8sujhyReq162jvOmxtra3uQ15TZkqO+VUfyaiFX/MNsGodpDXOtrdc45tnSbKhZ083xGg8Jj94MhmCtzE2uKWRzzRCnxRO9e4U9yEoOjLPQ2gOyzwycK/8uECfjkTvnZZ3sK7TkK2fMPqJlDeyfrD3Qci8OIpZnh7m4FuZLwmQtyR/n2JoHr2EUeGq6mGuit55BxNV8cp4Jnk/E9BS/
+  </data>
+ </layer>
+</map>
