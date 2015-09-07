@@ -1,6 +1,5 @@
 package com.derekentringer.gizmo.components.actor.player;
 
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -13,7 +12,6 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
-import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BodyUtils;
 
 import java.util.ArrayList;
@@ -375,10 +373,10 @@ public class PlayerActor extends BaseActor {
     }
 
     private void playJumpSfx() {
-        Sound jumpSfx = Gizmo.assetManager.get("res/sfx/jump.ogg", Sound.class);
+        /*Sound jumpSfx = Gizmo.assetManager.get("res/sfx/jump.ogg", Sound.class);
         if (!Constants.IS_DEBUG) {
             jumpSfx.play();
-        }
+        }*/
     }
 
     public static void startFlinchingTimer(final PlayerActor playerActor) {

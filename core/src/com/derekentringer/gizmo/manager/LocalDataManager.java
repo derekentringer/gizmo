@@ -42,6 +42,7 @@ public class LocalDataManager {
             GLog.d(TAG, "getPlayerHealth: " + playerData.getPlayerHealth());
             GLog.d(TAG, "getPlayerKeys: " + playerData.getPlayerKeys().size());
             GLog.d(TAG, "getCurrentLevel: " + playerData.getCurrentLevel());
+
             return playerData;
         }
         return null;
