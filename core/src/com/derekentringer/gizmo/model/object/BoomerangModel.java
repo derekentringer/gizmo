@@ -7,20 +7,20 @@ public class BoomerangModel extends BaseItemModel {
 
     public static final String BOOMERANG = "BOOMERANG";
 
-    public static final String BOOMERANG_WOOD = "WOOD";
-    public static final String BOOMERANG_AMETHYST = "BAMETHYST";
-    public static final String BOOMERANG_EMERALD = "EMERALD";
+    public static final String BOOMERANG_WOOD = "BOOMERANG_WOOD";
+    public static final String BOOMERANG_AMETHYST = "BOOMERANG_AMETHYST";
+    public static final String BOOMERANG_EMERALD = "BOOMERANG_EMERALD";
 
     private String mBoomerangType;
 
     public BoomerangModel() {
         super();
-        mBaseModelType = BaseModelType.BOOMERANG;
+        mBaseModelType = BaseModelType.PLAYER_ITEM;
     }
 
     public BoomerangModel(String boomerangType) {
         super();
-        mBaseModelType = BaseModelType.BOOMERANG;
+        mBaseModelType = BaseModelType.PLAYER_ITEM;
         mBoomerangType = boomerangType;
     }
 

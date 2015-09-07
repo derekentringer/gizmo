@@ -133,7 +133,7 @@
  <objectgroup name="player_item">
   <object id="86" x="432" y="556.5">
    <properties>
-    <property name="boomerang_type" value="wood"/>
+    <property name="boomerang_type" value="BOOMERANG_WOOD"/>
     <property name="item_type" value="boomerang"/>
    </properties>
    <ellipse/>

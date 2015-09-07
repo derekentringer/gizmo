@@ -248,13 +248,9 @@ public class MapParser extends Stage {
                     }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(BaseItemModel.PLAYER_ITEM)) {
-
-
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
-
-                    // TODO there may be bugs with looping thru
+                    // TODO there may be bugs with looping thru different player items
                     if (!loopThruPickedUpItemsArray(mLoadedLevelModel.getmPickedUpItems(), itemType)) {
-
                         if (itemType.equalsIgnoreCase(BaseItemModel.BOOMERANG)) {
                             String boomerangType = (String) mapObject.getProperties().get(BOOMERANG_TYPE);
                             BoomerangActor boomerangActor = new BoomerangActor(ObjectUtils.createBoomerang(new BoomerangModel(boomerangType), world, getMapObjectCoords(mapObject)), boomerangType);
@@ -262,7 +258,6 @@ public class MapParser extends Stage {
                             addActor(boomerangActor);
                             addToActorsArray(boomerangActor);
                         }
-
                     }
                 }
             }

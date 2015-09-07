@@ -12,6 +12,5 @@ public enum BaseModelType {
     ENEMY,
     KEY,
     HEART,
-    LIFE,
-    BOOMERANG
+    LIFE
 }

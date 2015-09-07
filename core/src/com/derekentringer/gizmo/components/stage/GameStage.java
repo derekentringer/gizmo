@@ -175,7 +175,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
 
-
         // pickup a key
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addKey((KeyModel) a.getBody().getUserData());
@@ -234,12 +233,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
         //picked up a boomerang
         //TODO this should work for all BaseModelType.PLAYER_ITEMS
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.BOOMERANG) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addItem((BaseItemModel) a.getBody().getUserData());
             mLoadedLevelModel.addPickedUpItem((BaseItemModel) a.getBody().getUserData());
             mDeleteBodies.add(new DeleteBody((BaseItemModel) a.getBody().getUserData(), a.getBody()));
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.BOOMERANG) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addItem((BaseItemModel) b.getBody().getUserData());
             mLoadedLevelModel.addPickedUpItem((BaseItemModel) b.getBody().getUserData());
             mDeleteBodies.add(new DeleteBody((BaseItemModel) b.getBody().getUserData(), b.getBody()));
