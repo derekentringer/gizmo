@@ -233,6 +233,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         }
 
         //picked up a boomerang
+        //TODO this should work for all BaseModelType.PLAYER_ITEMS
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.BOOMERANG) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addItem((BaseItemModel) a.getBody().getUserData());
             mLoadedLevelModel.addPickedUpItem((BaseItemModel) a.getBody().getUserData());
