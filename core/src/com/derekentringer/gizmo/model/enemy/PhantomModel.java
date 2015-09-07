@@ -6,7 +6,7 @@ public class PhantomModel extends EnemyModel {
 
     public static final String PHANTOM = "PHANTOM";
 
-    private int mHealth = 2;
+    private int mHealth = 4;
     private int mHealthDamage = 5;
 
     public PhantomModel() {

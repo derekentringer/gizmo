@@ -13,10 +13,10 @@ import com.derekentringer.gizmo.components.actor.boss.PhantomBossActor;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.components.actor.item.BoomerangWoodActor;
 import com.derekentringer.gizmo.components.actor.item.IItems;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
-import com.derekentringer.gizmo.components.actor.item.BoomerangWoodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBronzeActor;
@@ -32,12 +32,14 @@ import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.EnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.item.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.item.BoomerangModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
@@ -45,10 +47,10 @@ import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.GameLevelUtils;
+import com.derekentringer.gizmo.util.ItemUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
-import com.derekentringer.gizmo.util.ItemUtils;
 import com.derekentringer.gizmo.util.map.MapParser;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
@@ -229,6 +231,18 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
             mDeleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
         }
+
+        //picked up a boomerang
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.BOOMERANG) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
+            mPlayerActor.addItem((BaseItemModel) a.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpItem((BaseItemModel) a.getBody().getUserData());
+            mDeleteBodies.add(new DeleteBody((BaseItemModel) a.getBody().getUserData(), a.getBody()));
+        }
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.BOOMERANG) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
+            mPlayerActor.addItem((BaseItemModel) b.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpItem((BaseItemModel) b.getBody().getUserData());
+            mDeleteBodies.add(new DeleteBody((BaseItemModel) b.getBody().getUserData(), b.getBody()));
+        }
     }
 
     @Override
@@ -276,7 +290,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
                 ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
-            else if (actor.getName().equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)) {
+            else if (actor.getName().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
                 ((BoomerangWoodActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
@@ -461,12 +475,16 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         }
 
         if (UserInput.isDown(UserInput.ATTACK)) {
-            if (!isItemActive) {
-                isItemActive = true;
-                BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
-                boomerangWoodActor.setName(BoomerangModel.BOOMERANG_WOOD);
-                mMapParser.addToTempActorsArray(boomerangWoodActor);
-                boomerangWoodActor.addListener(this);
+            // TODO check current item
+            // TODO this will require a inventory system
+            if (mPlayerActor.hasCorrectItem(BoomerangModel.BOOMERANG_WOOD)) {
+                if (!isItemActive) {
+                    isItemActive = true;
+                    BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
+                    boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
+                    mMapParser.addToTempActorsArray(boomerangWoodActor);
+                    boomerangWoodActor.addListener(this);
+                }
             }
         }
     }

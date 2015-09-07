@@ -2,6 +2,7 @@ package com.derekentringer.gizmo.model.level;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class LevelModel extends BaseModel {
 
+    private ArrayList<BaseItemModel> mPickedUpItems = new ArrayList<BaseItemModel>();
     private ArrayList<KeyModel> mPickedUpKeys = new ArrayList<KeyModel>();
     private ArrayList<HeartModel> mPickedUpHearts = new ArrayList<HeartModel>();
     private ArrayList<LifeModel> mPickedUpLives = new ArrayList<LifeModel>();
@@ -62,6 +64,14 @@ public class LevelModel extends BaseModel {
 
     public void setLevelBackMap(String levelBackMap) {
         mLevelBackMap = levelBackMap;
+    }
+
+    public void addPickedUpItem(BaseItemModel itemModel) {
+        mPickedUpItems.add(itemModel);
+    }
+
+    public ArrayList<BaseItemModel> getmPickedUpItems() {
+        return mPickedUpItems;
     }
 
     public void addPickedUpKey(KeyModel keyModel) {

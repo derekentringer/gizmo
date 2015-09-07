@@ -8,7 +8,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.item.BoomerangModel;
+import com.derekentringer.gizmo.model.item.BoomerangWoodModel;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class BoomerangWoodActor extends BaseActor {
     private static final float MOVEMENT_FORCE = 4;
     private static final float MAX_DISTANCE = 1;
 
-    private BoomerangModel mBoomerangModel = new BoomerangModel();
+    private BoomerangWoodModel mBoomerangModel = new BoomerangWoodModel();
 
     private int mPlayerFacingDirection;
     private Vector2 mPlayerPosition = new Vector2();

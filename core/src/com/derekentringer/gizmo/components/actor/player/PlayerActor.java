@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
@@ -74,6 +75,7 @@ public class PlayerActor extends BaseActor {
 
     private KeyModel mLastKeyAdded;
     private HeartModel mLastHeartAdded;
+    private BaseItemModel mLastItemAdded;
 
     public PlayerActor(Body body) {
         super(body);
@@ -137,6 +139,11 @@ public class PlayerActor extends BaseActor {
         if (playerModel.getPlayerKeys().size() > 0) {
             for (int i = 0; i < playerModel.getPlayerKeys().size(); i++) {
                 mPlayerModel.addPlayerKey(playerModel.getPlayerKeys().get(i));
+            }
+        }
+        if (playerModel.getPlayerItems().size() > 0) {
+            for (int i = 0; i < playerModel.getPlayerItems().size(); i++) {
+                mPlayerModel.addPlayerItem(playerModel.getPlayerItems().get(i));
             }
         }
     }
@@ -206,6 +213,23 @@ public class PlayerActor extends BaseActor {
 
     public int getHealthHearts() {
         return mPlayerModel.getPlayerHearts();
+    }
+
+    public void addItem(BaseItemModel itemModel) {
+        if (mLastItemAdded == null || !mLastItemAdded.equals(itemModel)) {
+            mPlayerModel.addPlayerItem(itemModel);
+            mLastItemAdded = itemModel;
+        }
+    }
+
+    public boolean hasCorrectItem(String itemType) {
+        ArrayList<BaseItemModel> playerItems = mPlayerModel.getPlayerItems();
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i).getItemType().equalsIgnoreCase(itemType)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setCurrentLevel(int level) {

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.boss.PhantomBossActor;
 import com.derekentringer.gizmo.components.actor.enemy.PhantomActor;
+import com.derekentringer.gizmo.components.actor.object.BoomerangActor;
 import com.derekentringer.gizmo.components.actor.object.HeartActor;
 import com.derekentringer.gizmo.components.actor.object.KeyActor;
 import com.derekentringer.gizmo.components.actor.object.LifeActor;
@@ -30,7 +31,9 @@ import com.derekentringer.gizmo.components.actor.structure.door.DoorOtherActor;
 import com.derekentringer.gizmo.components.stage.GameStage;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
@@ -61,6 +64,9 @@ public class MapParser extends Stage {
     private static final String DESTINATION = "destination";
     private static final String DESTINATION_NAME = "destination_name";
     private static final String KEY_TYPE = "key_type";
+
+    private static final String ITEM_TYPE = "item_type";
+    private static final String BOOMERANG_TYPE = "boomerang_type";
 
     private GameStage mGameStage;
     private TiledMap mTiledMap;
@@ -241,6 +247,24 @@ public class MapParser extends Stage {
                         addToActorsArray(lifeActor);
                     }
                 }
+                else if (mapLayer.getName().equalsIgnoreCase(BaseItemModel.PLAYER_ITEM)) {
+
+
+                    String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
+
+                    // TODO there may be bugs with looping thru
+                    if (!loopThruPickedUpItemsArray(mLoadedLevelModel.getmPickedUpItems(), itemType)) {
+
+                        if (itemType.equalsIgnoreCase(BaseItemModel.BOOMERANG)) {
+                            String boomerangType = (String) mapObject.getProperties().get(BOOMERANG_TYPE);
+                            BoomerangActor boomerangActor = new BoomerangActor(ObjectUtils.createBoomerang(new BoomerangModel(boomerangType), world, getMapObjectCoords(mapObject)), boomerangType);
+                            boomerangActor.setName(BoomerangModel.BOOMERANG);
+                            addActor(boomerangActor);
+                            addToActorsArray(boomerangActor);
+                        }
+
+                    }
+                }
             }
         }
     }
@@ -321,6 +345,16 @@ public class MapParser extends Stage {
     private static boolean loopThruOpenedDoorsArray(ArrayList<DoorModel> array, String targetValue) {
         for (DoorModel lookingForDoor : array) {
             if (lookingForDoor.getDoorType().equalsIgnoreCase(targetValue)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean loopThruPickedUpItemsArray(ArrayList<BaseItemModel> array, String targetValue) {
+        for (BaseItemModel lookingForItem : array) {
+            // TODO the getBaseModelType might cause issues with other items
+            if (lookingForItem.getBaseModelType().toString().equalsIgnoreCase(targetValue)) {
                 return true;
             }
         }
