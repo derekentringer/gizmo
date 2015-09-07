@@ -92,7 +92,7 @@ public class EnemyUtils {
         fixtureDef.isSensor = false;
 
         fixtureDef.filter.categoryBits = Constants.ENEMY_ATTACK_ENTITY;
-        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
+        fixtureDef.filter.maskBits = Constants.PLAYER_ENTITY;
 
         body.createFixture(fixtureDef).setUserData(userData);
 
