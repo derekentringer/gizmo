@@ -1,6 +1,17 @@
 TODO
 -----
 
+quitting in level 4 and restarting game causes crash because of Door.PREVIOUS
+
+give enemies flinching animation
+
+enemy killed animation
+
+dropped items - rubies/life 
+
+dropped live powerups should 'explode' into small hearts that are sparkling
+	- these will be random between 1-5 each giving 1hp
+
 gizmo upgrades - some attacks (rolling, jump-lunge, guns)
 
 add animations when picking up objects
