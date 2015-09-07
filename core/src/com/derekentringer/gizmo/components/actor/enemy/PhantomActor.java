@@ -16,7 +16,10 @@ public class PhantomActor extends BaseActor {
     private static final String TAG = PhantomActor.class.getSimpleName();
 
     private static final float MOVEMENT_FORCE = 0.1f;
-    private static final int MOVEMENT_PADDING = 7;
+    private static final float MOVEMENT_PADDING = WorldUtils.ppmCalc(7);
+
+    private static final int PLAYER_DETECTION_X = 3;
+    private static final int PLAYER_DETECTION_Y = 1;
 
     private PhantomModel mPhantomModel = new PhantomModel();
 
@@ -49,13 +52,17 @@ public class PhantomActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (getPosition().x > getPlayerPosition().x + WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
+
+        if (isPlayerDetectedNegative()) {
             BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_LEFT);
         }
-        else if (getPosition().x < getPlayerPosition().x - WorldUtils.ppmCalc(MOVEMENT_PADDING)) {
+        else if (isPlayerDetectedPositive()) {
             BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
             setFacingDirection(FACING_RIGHT);
+        }
+        else {
+            BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
         }
 
         if (mFacingDirection == FACING_LEFT) {
@@ -70,12 +77,35 @@ public class PhantomActor extends BaseActor {
         }
     }
 
+    private boolean isPlayerCloseNegativeX() {
+        return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING;
+    }
+
+    private boolean isPlayerDetectedNegative() {
+        return getPosition().x > getPlayerPosition().x
+                && (getPosition().x - PLAYER_DETECTION_X) < getPlayerPosition().x
+                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
+                || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+    }
+
+    private boolean isPlayerClosePositiveX() {
+        return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING;
+    }
+
+    private boolean isPlayerDetectedPositive() {
+        return getPosition().x < getPlayerPosition().x
+                && (getPosition().x + PLAYER_DETECTION_X) > getPlayerPosition().x
+                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
+                || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+    }
+
     public Vector2 getPlayerPosition() {
         return mPlayerPosition;
     }
 
     public void setPlayerPosition(Vector2 playerPosition) {
         mPlayerPosition.x = playerPosition.x;
+        mPlayerPosition.y = playerPosition.y;
     }
 
 }
