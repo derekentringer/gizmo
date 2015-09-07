@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="90">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="91">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="192"/>
   <tile id="0">
@@ -16,7 +16,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztll0KxCAMhN0XT6CLfez9L7kIBoaQ4C8YWQcGS21Nv04qda6uz0Feod0Ml/fyWuGdvf8k3qy3jEG5Rjtfm7PAG8BZqfCmgXVOypdYkTe5MfXyr1BvJlkSL/fL7Iuf4tbaVvIlBiljjRuZrfNSxo49OzFz1Zh7au/O1wvWhLweRqodO2vPahWvtGdhvh7upX7ge4MlXuxnSdI+zVlJmK9F3pb/BuJLcEx9PFN7dz8To/QOsvgeNVpjN29Qjvk10voR5gM7dwKvlHXLdxiA82ucd9YRfEI/W/Dlvbz/xPsDUwsNpg==
+   eJzFl+GKhDAMhHN/fAIV9+e+/0veChbC+E3rHikXCGLV1kkm0zRibOvHt4/vl6/iu3h+tqXrBs82eLbJdzq3ju3p/QpTbPQva/RjoeMajx3G9KrzUIwrLMe+4c052OOeu/y+y2WPF3swJ/TdPH8VXv2vbzirfMvf0HzKmd53NFaN1/Ey48q4w4zTPfGUuN3wzcJLeSPOKgdOe19XxTTiAtUzramYK6zHJ1dnpx0X3gPmIY12+SQtdjoyA6/TyhzjQ/Ae8TcjjVZO51hXGMWytz+cRnjV3+LL5a/LG17SdFfnFUYaQTknLi/BOXa4M+a2NnHL7RMVppx1e1FeM/97w6w2whxmzd5+UWHEX6fZDe8C7izjXdI14q6HtD/P6CdVH2hvaR7BeEmzcn6X9G3jg+qj4/eM/tn1BzrujHRasTZr94TJ5bpSr2i/p3PLiOcZc+axM5qX+vkZeHu9fu/8oP2lalTEPTZOFynu1f2VO+O4enbnCZcD0vneGK01A69icD3uiNc/ME74XDzpH/4DL+m246D230/iNDqnzeTzk/NLT9MIL9Uw8aZXR1V4FaM7j5GOORyUM6pZx/scr2o+j/JJWJ5ynWJDc2nMNecz8bqadvriOPttTbgz2VO8v/hISoc=
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
@@ -31,12 +31,12 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0bEJACAMBMC4g0u4/4JWdmIjRNE7SP+fjwAAAG7RTgdIUib3m1XnV/8z61HTU+Qa+9V4Z0cA9nQoJQBh
+   eJzt0bENACAIRFHdAdzB/ReUgsJCLZXgf8kFEhoIpQAAAACIor9e4JJmEYtaqve/qYeZemSqGazuyHLbzvxDfbwLACCGAeEWAWA=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1FkKwCAMRVHdQ9L9L1WEfIhUQYiV2HtAHD6CD4eUAOBdPr2BD+Wuv1mf8ebMMlivmdV6sbE07WnGavMIRnlXqVOd3bzyetXZzeut/u0+Rzlf8p6tE0WU/xkAAMwV82AB9A==
+   eJzt09sKQBEQhWEPMbz/o+4bSrKVGrT4v5LDhaxmhAAAffH0AzayPL+Q2Zr9zZnbrPV5zMOquaxTZ6/gL+8slZ7wyut1z2pedXmtn1Xqy/89e48KlfoCAICxD3BiApM=
   </data>
  </layer>
  <layer name="door_other" width="60" height="23">
@@ -53,7 +53,7 @@
   <properties>
    <property name="name" value="top_left"/>
   </properties>
-  <object id="89" x="1120" y="432.667">
+  <object id="89" x="1120" y="430.667">
    <properties>
     <property name="destination_name" value="right"/>
    </properties>
@@ -64,7 +64,7 @@
   <object id="88" x="784.667" y="363.333">
    <properties>
     <property name="boomerang_type" value="BOOMERANG_WOOD"/>
-    <property name="item_type" value="boomerang"/>
+    <property name="item_type" value="BOOMERANG_WOOD"/>
    </properties>
    <ellipse/>
   </object>

@@ -231,8 +231,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mDeleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
         }
 
-        //picked up a boomerang
-        //TODO this should work for all BaseModelType.PLAYER_ITEMS
+        //pick up any type of PLAYER_ITEM
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
             mPlayerActor.addItem((BaseItemModel) a.getBody().getUserData());
             mLoadedLevelModel.addPickedUpItem((BaseItemModel) a.getBody().getUserData());

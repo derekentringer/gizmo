@@ -12,6 +12,7 @@ public class BoomerangModel extends BaseItemModel {
     public static final String BOOMERANG_EMERALD = "BOOMERANG_EMERALD";
 
     private String mBoomerangType;
+    private String mItemType;
 
     public BoomerangModel() {
         super();
@@ -22,11 +23,17 @@ public class BoomerangModel extends BaseItemModel {
         super();
         mBaseModelType = BaseModelType.PLAYER_ITEM;
         mBoomerangType = boomerangType;
+        mItemType = boomerangType;
     }
 
     @Override
     public String getItemType() {
-        return mBoomerangType;
+        return mItemType;
+    }
+
+    @Override
+    public void setItemType(String itemType) {
+        mItemType = itemType;
     }
 
 }
