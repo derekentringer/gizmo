@@ -52,18 +52,12 @@ public class PhantomActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-
-        if (isPlayerCloseNegativeX()) {
+        if (isPlayerBehind()) {
             setFacingDirection(FACING_LEFT);
-        }
-        else if (isPlayerClosePositiveX()) {
-            setFacingDirection(FACING_RIGHT);
-        }
-
-        if (isPlayerDetectedNegative()) {
             BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
         }
-        else if (isPlayerDetectedPositive()) {
+        else if (isPlayerInFront()) {
+            setFacingDirection(FACING_RIGHT);
             BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
         }
         else {
@@ -82,25 +76,19 @@ public class PhantomActor extends BaseActor {
         }
     }
 
-    private boolean isPlayerCloseNegativeX() {
-        return getPosition().x > getPlayerPosition().x;
+    //TODO work on Y axis detection
+    private boolean isPlayerBehind() {
+        return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING;
+                //&& (getPosition().x - (PLAYER_DETECTION_X + MOVEMENT_PADDING)) < getPlayerPosition().x
+                //&& ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
+                //|| (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
     }
 
-    private boolean isPlayerClosePositiveX() {
-        return getPosition().x < getPlayerPosition().x;
-    }
-
-    //TODO MOVEMENT_PADDING isn't working anymore
-    private boolean isPlayerDetectedNegative() {
-        return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING
-                && (getPosition().x - (PLAYER_DETECTION_X + MOVEMENT_PADDING)) < getPlayerPosition().x
-                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
-    }
-
-    private boolean isPlayerDetectedPositive() {
-        return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING
-                && (getPosition().x + (PLAYER_DETECTION_X - MOVEMENT_PADDING)) > getPlayerPosition().x
-                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+    private boolean isPlayerInFront() {
+        return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING;
+                //&& (getPosition().x + (PLAYER_DETECTION_X - MOVEMENT_PADDING)) > getPlayerPosition().x
+                //&& ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
+                //|| (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
     }
 
     public Vector2 getPlayerPosition() {
