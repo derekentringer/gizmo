@@ -53,13 +53,18 @@ public class PhantomActor extends BaseActor {
     public void act(float delta) {
         super.act(delta);
 
+        if (isPlayerCloseNegativeX()) {
+            setFacingDirection(FACING_LEFT);
+        }
+        else if (isPlayerClosePositiveX()) {
+            setFacingDirection(FACING_RIGHT);
+        }
+
         if (isPlayerDetectedNegative()) {
             BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
-            setFacingDirection(FACING_LEFT);
         }
         else if (isPlayerDetectedPositive()) {
             BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
-            setFacingDirection(FACING_RIGHT);
         }
         else {
             BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
@@ -78,13 +83,14 @@ public class PhantomActor extends BaseActor {
     }
 
     private boolean isPlayerCloseNegativeX() {
-        return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING;
+        return getPosition().x > getPlayerPosition().x;
     }
 
     private boolean isPlayerClosePositiveX() {
-        return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING;
+        return getPosition().x < getPlayerPosition().x;
     }
 
+    //TODO MOVEMENT_PADDING isn't working anymore
     private boolean isPlayerDetectedNegative() {
         return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING
                 && (getPosition().x - (PLAYER_DETECTION_X + MOVEMENT_PADDING)) < getPlayerPosition().x
