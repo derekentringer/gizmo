@@ -79,7 +79,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="life">
+ <objectgroup name="heart">
   <object id="35" x="1488.67" y="525.333">
    <ellipse/>
   </object>
