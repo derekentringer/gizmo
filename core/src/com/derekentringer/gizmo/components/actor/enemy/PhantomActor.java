@@ -81,22 +81,20 @@ public class PhantomActor extends BaseActor {
         return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING;
     }
 
-    private boolean isPlayerDetectedNegative() {
-        return getPosition().x > getPlayerPosition().x
-                && (getPosition().x - PLAYER_DETECTION_X) < getPlayerPosition().x
-                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
-                || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
-    }
-
     private boolean isPlayerClosePositiveX() {
         return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING;
     }
 
+    private boolean isPlayerDetectedNegative() {
+        return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING
+                && (getPosition().x - (PLAYER_DETECTION_X + MOVEMENT_PADDING)) < getPlayerPosition().x
+                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+    }
+
     private boolean isPlayerDetectedPositive() {
-        return getPosition().x < getPlayerPosition().x
-                && (getPosition().x + PLAYER_DETECTION_X) > getPlayerPosition().x
-                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
-                || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+        return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING
+                && (getPosition().x + (PLAYER_DETECTION_X - MOVEMENT_PADDING)) > getPlayerPosition().x
+                && ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y || (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
     }
 
     public Vector2 getPlayerPosition() {

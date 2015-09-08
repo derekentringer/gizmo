@@ -68,7 +68,7 @@
   </data>
  </layer>
  <objectgroup name="phantom">
-  <object id="68" x="847" y="619">
+  <object id="68" x="495" y="619">
    <ellipse/>
   </object>
  </objectgroup>
