@@ -6,7 +6,7 @@ public class PhantomLargeModel extends EnemyModel {
 
     public static final String PHANTOM_LARGE = "PHANTOM_LARGE";
 
-    private int mHealth = 40;
+    private int mHealth = 50;
     private int mHealthDamage = 10;
 
     public PhantomLargeModel() {
