@@ -351,7 +351,6 @@ public class MapParser extends Stage {
 
     private static boolean loopThruPickedUpItemsArray(ArrayList<BaseItemModel> array, String targetValue) {
         for (BaseItemModel lookingForItem : array) {
-            // TODO the getBaseModelType might cause issues with other items
             if (lookingForItem.getItemType().equalsIgnoreCase(targetValue)) {
                 return true;
             }
