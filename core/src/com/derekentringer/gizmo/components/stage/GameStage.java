@@ -393,12 +393,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mIsPlayerDead = false;
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
-            if (mPlayerActor.getBaseModel().getPlayerLives() == PlayerModel.DEFAULT_LIVES) {
-                loadLevel(GameLevelUtils.gameLevels.get(0), DoorType.DOOR_PREVIOUS);
-            }
-            else {
-                loadLevel(mLevelModel, DoorType.DOOR_PREVIOUS);
-            }
+            //TODO could load first room of multiple rooms
+            loadLevel(mLevelModel, DoorType.DOOR_PREVIOUS);
         }
     }
 
