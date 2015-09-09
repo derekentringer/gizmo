@@ -3,6 +3,10 @@ TODO
 
 if the boomerang actor is destroyed, it is lost from the player
 
+bug with levels loading?
+
+boss too hard?
+
 give enemies flinching animation
 
 enemy killed animation

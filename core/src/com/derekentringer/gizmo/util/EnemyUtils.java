@@ -61,6 +61,7 @@ public class EnemyUtils {
 
         bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
         bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.gravityScale = 100;
         Body body = world.createBody(bodyDef);
 
         shape.setAsBox(WorldUtils.ppmCalc(100), WorldUtils.ppmCalc(150));

@@ -496,6 +496,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
     private void loadNewLevel(int newLevel, String whichDoor) {
         alreadyEntered = true;
+        isItemActive = false;
+
         mLevelModel = GameLevelUtils.gameLevels.get(newLevel);
 
         mMapParser.destroyTiledMap();
