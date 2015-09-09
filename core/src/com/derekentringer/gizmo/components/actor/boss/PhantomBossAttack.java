@@ -19,8 +19,8 @@ public class PhantomBossAttack extends Stage {
 
     private ArrayList<IPhantomBossAttack> listeners = new ArrayList<IPhantomBossAttack>();
 
-    private static final int PHANTOM_ATTACK_DELAY = 2000;
-    private static final int FIREBALL_ATTACK_DELAY = 1000;
+    private static final int PHANTOM_ATTACK_DELAY = 3000;
+    private static final int FIREBALL_ATTACK_DELAY = 1500;
 
     private static final int SHAKE_DELAY = 1500;
     private static final int SHAKE_LENGTH = 4000;
