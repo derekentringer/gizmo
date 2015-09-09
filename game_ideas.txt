@@ -1,9 +1,7 @@
 TODO
 -----
 
-dying in level 3 took the boomerang away somehow 
-
-hook up controller attack moves
+if the boomerang actor is destroyed, it is lost from the player
 
 give enemies flinching animation
 
