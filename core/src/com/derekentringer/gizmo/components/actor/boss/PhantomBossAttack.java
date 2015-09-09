@@ -19,15 +19,15 @@ public class PhantomBossAttack extends Stage {
 
     private ArrayList<IPhantomBossAttack> listeners = new ArrayList<IPhantomBossAttack>();
 
-    private static final int PHANTOM_ATTACK_DELAY = 5000;
-    private static final int FIREBALL_ATTACK_DELAY = 2000;
+    private static final int PHANTOM_ATTACK_DELAY = 2000;
+    private static final int FIREBALL_ATTACK_DELAY = 1000;
 
-    private static final int SHAKE_DELAY = 2000;
+    private static final int SHAKE_DELAY = 1500;
     private static final int SHAKE_LENGTH = 4000;
 
-    private static final int MAX_PHANTOMS = 1;
+    private static final int MAX_PHANTOMS = 0;
     private static final int MIN_PHANTOMS = 0;
-    private static final int MAX_PHANTOMS_ALLOWED = 6;
+    private static final int MAX_PHANTOMS_ALLOWED = 100;
 
     private World mWorld;
 
@@ -181,7 +181,7 @@ public class PhantomBossAttack extends Stage {
     private void releasePhantoms(float amountOfPhantoms) {
         for (int i = 0; i <= amountOfPhantoms; i++) {
             if (mTotalPhantoms < MAX_PHANTOMS_ALLOWED) {
-                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - MathUtils.random(1, 2)), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
+                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - MathUtils.random(0.5f, 1f)), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
                 phantomActor.setName(PhantomModel.PHANTOM);
                 addActor(phantomActor);
                 for (IPhantomBossAttack listener : listeners) {
