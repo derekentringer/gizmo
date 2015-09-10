@@ -23,6 +23,7 @@ public class PlayerActor extends BaseActor {
     private ArrayList<IPlayer> listeners = new ArrayList<IPlayer>();
 
     private static final float WALKING_FORCE = 1.2f;
+    private static final float RUNNING_FORCE = 1.2f;
     private static final float JUMP_FORCE = 5f;
     private static final float JUMP_FORCE_RESET = -1.5f;
     public static final int FLINCHING_LENGTH = 3;
@@ -291,7 +292,7 @@ public class PlayerActor extends BaseActor {
         BodyUtils.applyLinearImpulseToBody(mBody, JUMP_FORCE_RESET, "y");
     }
 
-    public void moveLeft() {
+    public void moveLeft(boolean isRunning) {
         if (mIsFlinching) {
             if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingRunningLeftSprites)) {
                 setAnimation(mFlinchingRunningLeftSprites, 1 / 12f);
@@ -309,11 +310,18 @@ public class PlayerActor extends BaseActor {
                 setAnimation(mJumpUpLeftSprites, 1 / 12f);
             }
         }
-        BodyUtils.applyLinearImpulseToBody(mBody, -WALKING_FORCE, "x");
+
+        if (isRunning) {
+            BodyUtils.applyLinearImpulseToBody(mBody, -WALKING_FORCE * RUNNING_FORCE, "x");
+        }
+        else {
+            BodyUtils.applyLinearImpulseToBody(mBody, -WALKING_FORCE, "x");
+        }
+
         setFacingDirection(FACING_LEFT);
     }
 
-    public void moveRight() {
+    public void moveRight(boolean isRunning) {
         if (mIsFlinching) {
             if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingRunningRightSprites)) {
                 setAnimation(mFlinchingRunningRightSprites, 1 / 12f);
@@ -331,7 +339,14 @@ public class PlayerActor extends BaseActor {
                 setAnimation(mJumpUpRightSprites, 1 / 12f);
             }
         }
-        BodyUtils.applyLinearImpulseToBody(mBody, WALKING_FORCE, "x");
+
+        if (isRunning) {
+            BodyUtils.applyLinearImpulseToBody(mBody, WALKING_FORCE * RUNNING_FORCE, "x");
+        }
+        else {
+            BodyUtils.applyLinearImpulseToBody(mBody, WALKING_FORCE, "x");
+        }
+
         setFacingDirection(FACING_RIGHT);
     }
 
