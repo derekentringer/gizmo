@@ -27,7 +27,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || keycode == Input.Keys.SHIFT_RIGHT) {
             UserInput.setKey(UserInput.RUN, true);
         }
-        if (keycode == Input.Keys.E) {
+        if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK, true);
         }
         //arrow key movement
@@ -62,7 +62,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || keycode == Input.Keys.SHIFT_RIGHT) {
             UserInput.setKey(UserInput.RUN, false);
         }
-        if (keycode == Input.Keys.E) {
+        if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK, false);
         }
         //arrow key movement

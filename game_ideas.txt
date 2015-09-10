@@ -1,6 +1,8 @@
 TODO
 -----
 
+boomerang shouldn't rotate...should be shimmering like hearts/lives
+
 give enemies flinching animation
 
 enemy killed animation
