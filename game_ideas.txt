@@ -1,17 +1,11 @@
 TODO
 -----
 
-if the boomerang actor is destroyed, it is lost from the player
-
-bug with levels loading?
-
-boss too hard?
-
 give enemies flinching animation
 
 enemy killed animation
 
-dropped items - rubies/life 
+dropped items - rubies/life
 
 dropped live powerups should 'explode' into small hearts that are sparkling
 	- these will be random between 1-5 each giving 1hp

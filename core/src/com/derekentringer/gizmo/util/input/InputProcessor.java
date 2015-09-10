@@ -23,7 +23,11 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
-        if (keycode == Input.Keys.SHIFT_LEFT || keycode == Input.Keys.SHIFT_RIGHT) {
+        if (keycode == Input.Keys.SHIFT_LEFT
+                || keycode == Input.Keys.SHIFT_RIGHT) {
+            UserInput.setKey(UserInput.RUN, true);
+        }
+        if (keycode == Input.Keys.E) {
             UserInput.setKey(UserInput.ATTACK, true);
         }
         //arrow key movement
@@ -54,7 +58,11 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
-        if (keycode == Input.Keys.SHIFT_LEFT || keycode == Input.Keys.SHIFT_RIGHT) {
+        if (keycode == Input.Keys.SHIFT_LEFT
+                || keycode == Input.Keys.SHIFT_RIGHT) {
+            UserInput.setKey(UserInput.RUN, false);
+        }
+        if (keycode == Input.Keys.E) {
             UserInput.setKey(UserInput.ATTACK, false);
         }
         //arrow key movement
@@ -99,11 +107,15 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
-        else if (buttonCode == PS4Controller.BUTTON_SQUARE
+        if (buttonCode == PS4Controller.BUTTON_CIRCLE
+                || buttonCode == NexusPlayerController.BUTTON_B) {
+            UserInput.setKey(UserInput.RUN, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_SQUARE
                 || buttonCode == NexusPlayerController.BUTTON_X) {
             UserInput.setKey(UserInput.ATTACK, true);
         }
-        else if (buttonCode == PS4Controller.BUTTON_TRIANGLE
+        if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
@@ -116,11 +128,15 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
-        else if (buttonCode == PS4Controller.BUTTON_SQUARE
+        if (buttonCode == PS4Controller.BUTTON_CIRCLE
+                || buttonCode == NexusPlayerController.BUTTON_B) {
+            UserInput.setKey(UserInput.RUN, false);
+        }
+        if (buttonCode == PS4Controller.BUTTON_SQUARE
                 || buttonCode == NexusPlayerController.BUTTON_X) {
             UserInput.setKey(UserInput.ATTACK, false);
         }
-        else if (buttonCode == PS4Controller.BUTTON_TRIANGLE
+        if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
         }

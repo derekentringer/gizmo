@@ -4,7 +4,7 @@ public class PS4Controller extends BaseController {
 
     public static final int BUTTON_SQUARE = 0;
     public static final int BUTTON_X = 1;
-    public static final int BUTTON_O = 2;
+    public static final int BUTTON_CIRCLE = 2;
     public static final int BUTTON_TRIANGLE = 3;
     public static final int BUTTON_START = 9;
     public static final int BUTTON_SELECT = 8;

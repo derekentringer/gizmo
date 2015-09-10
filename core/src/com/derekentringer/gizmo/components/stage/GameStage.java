@@ -399,13 +399,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     }
 
     private void handleInput() {
-        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
-            if (mPlayerActor.getIsOnGround()) {
-                mPlayerActor.setIsOnGround(false);
-                mPlayerActor.jump();
-            }
-        }
-
         // walk left
         if (UserInput.isDown(UserInput.LEFT_BUTTON)) {
             alreadyEntered = false;
@@ -432,14 +425,26 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mPlayerActor.moveRight(true);
         }
 
-        if (!UserInput.isDown(UserInput.LEFT_BUTTON) && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+        // stop running/waling
+        if (!UserInput.isDown(UserInput.LEFT_BUTTON)
+                && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
             mPlayerActor.stoppedMoving();
         }
 
+        // jump
+        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+            if (mPlayerActor.getIsOnGround()) {
+                mPlayerActor.setIsOnGround(false);
+                mPlayerActor.jump();
+            }
+        }
+
+        // stop jumping
         if (!UserInput.isDown(UserInput.JUMP_BUTTON)) {
             mPlayerActor.stopJumping();
         }
 
+        // enter a door
         if (UserInput.isDown(UserInput.ENTER_DOOR)) {
             if (alreadyEntered) {
                 return;
@@ -485,6 +490,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             }
         }
 
+        // kill stuff
         if (UserInput.isDown(UserInput.ATTACK)) {
             // TODO check current item
             // TODO this will require a inventory system

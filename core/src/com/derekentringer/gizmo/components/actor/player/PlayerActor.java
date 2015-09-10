@@ -23,7 +23,7 @@ public class PlayerActor extends BaseActor {
     private ArrayList<IPlayer> listeners = new ArrayList<IPlayer>();
 
     private static final float WALKING_FORCE = 1.2f;
-    private static final float RUNNING_FORCE = 1.2f;
+    private static final float RUNNING_FORCE = 1.6f;
     private static final float JUMP_FORCE = 5f;
     private static final float JUMP_FORCE_RESET = -1.5f;
     public static final int FLINCHING_LENGTH = 3;
