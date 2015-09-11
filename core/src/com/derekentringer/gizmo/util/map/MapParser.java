@@ -185,6 +185,10 @@ public class MapParser extends Stage {
                             createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get(LEVEL_NUMBER).toString()),
                                     tiledMapTileLayer.getProperties().get(DESTINATION).toString(), false, row, col);
                         }
+                        else if (curLayerName.equalsIgnoreCase(WallModel.TILE_WALL_INVISIBLE)) {
+                            GroundActor groundActor = new GroundActor(BodyUtils.createStaticWorldBody(new WallModel(), world, mTileSize, row, col, false));
+                            addActor(groundActor);
+                        }
                     }
                 }
             }
