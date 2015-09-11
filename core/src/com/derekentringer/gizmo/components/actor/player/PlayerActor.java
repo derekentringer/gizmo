@@ -76,6 +76,8 @@ public class PlayerActor extends BaseActor {
     private HeartModel mLastHeartAdded;
     private BaseItemModel mLastItemAdded;
 
+    private boolean mIsItemActive = false;
+
     public PlayerActor(Body body) {
         super(body);
 
@@ -434,6 +436,14 @@ public class PlayerActor extends BaseActor {
 
     public boolean getIsFlinching() {
         return mIsFlinching;
+    }
+
+    public boolean getIsItemActive() {
+        return mIsItemActive;
+    }
+
+    public void setIsItemActive(boolean isItemActive) {
+        mIsItemActive = isItemActive;
     }
 
 }

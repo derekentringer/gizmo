@@ -82,8 +82,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     private DoorBlackActor mDoorBlackActor;
     private boolean alreadyEntered = false;
 
-    private boolean isItemActive;
-
     public GameStage() {
     }
 
@@ -425,7 +423,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             mPlayerActor.moveRight(true);
         }
 
-        // stop running/waling
+        // stop running/walking
         if (!UserInput.isDown(UserInput.LEFT_BUTTON)
                 && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
             mPlayerActor.stoppedMoving();
@@ -495,8 +493,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             // TODO check current item
             // TODO this will require a inventory system
             if (mPlayerActor.hasCorrectItem(BoomerangModel.BOOMERANG_WOOD)) {
-                if (!isItemActive) {
-                    isItemActive = true;
+                if (!mPlayerActor.getIsItemActive()) {
+                    mPlayerActor.setIsItemActive(true);
                     BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
                     boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
                     mMapParser.addToTempActorsArray(boomerangWoodActor);
@@ -514,7 +512,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
     private void loadNewLevel(int newLevel, String whichDoor) {
         alreadyEntered = true;
-        isItemActive = false;
+        mPlayerActor.setIsItemActive(false);
 
         mLevelModel = GameLevelUtils.gameLevels.get(newLevel);
 
@@ -533,6 +531,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     public void setPlayerActor(PlayerActor playerActor) {
         mPlayerActor = playerActor;
         mPlayerActor.addListener(this);
+        mPlayerActor.setIsItemActive(false);
         if (LocalDataManager.loadPlayerActorData() != null) {
             mPlayerModel = LocalDataManager.loadPlayerActorData();
             playerActor.initPlayerData(mPlayerModel);
@@ -646,7 +645,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
     @Override
     public void removePlayerItemFromStage(BaseActor actor) {
-        isItemActive = false;
+        mPlayerActor.setIsItemActive(false);
         mDeleteBodies.add(new DeleteBody((BaseModel) actor.getBody().getUserData(), actor.getBody()));
     }
 
