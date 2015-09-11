@@ -11,12 +11,15 @@ import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.components.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
+import com.derekentringer.gizmo.util.BodyUtils;
 
 import java.util.ArrayList;
 
 public class PhantomBossActor extends BaseActor {
 
     private static final String TAG = PhantomBossActor.class.getSimpleName();
+
+    private static final float MOVEMENT_FORCE = 0.5f;
 
     private PhantomLargeModel mPhantomLargeModel = new PhantomLargeModel();
 
@@ -56,6 +59,7 @@ public class PhantomBossActor extends BaseActor {
         if (getPlayerPosition().x > (getPosition().x - 5)) {
             mPhantomBossAttack.attack(delta, getPlayerPosition(), getPosition());
         }
+        BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
     }
 
     public Vector2 getPlayerPosition() {
