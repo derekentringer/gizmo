@@ -398,7 +398,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
 
     private void handleInput() {
         // walk left
-        if (UserInput.isDown(UserInput.LEFT_BUTTON)) {
+        if (UserInput.isDown(UserInput.LEFT_BUTTON)
+                && !UserInput.isDown(UserInput.RUN)) {
             alreadyEntered = false;
             mPlayerActor.moveLeft(false);
         }
@@ -411,7 +412,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         }
 
         // walk right
-        if (UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+        if (UserInput.isDown(UserInput.RIGHT_BUTTON)
+                && !UserInput.isDown(UserInput.RUN)) {
             alreadyEntered = false;
             mPlayerActor.moveRight(false);
         }
