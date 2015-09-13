@@ -7,18 +7,20 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 
-public class LifeActor extends BaseActor {
+public class DropHeartActor extends BaseActor {
 
-    private static final String TAG = LifeActor.class.getSimpleName();
+    private static final String TAG = DropHeartActor.class.getSimpleName();
 
-    private TextureRegion[] mLifeSprite;
-    private Texture mLife;
+    private TextureRegion[] mDropHeartSprite;
+    private Texture mDropHeart;
 
-    public LifeActor(Body body) {
+    public DropHeartActor(Body body) {
         super(body);
-        mLife = Gizmo.assetManager.get("res/images/objects/life.png", Texture.class);
-        mLifeSprite = TextureRegion.split(mLife, 32, 32)[0];
-        setAnimation(mLifeSprite, 1 / 12f);
+
+        mDropHeart = Gizmo.assetManager.get("res/images/items/drop_heart.png", Texture.class);
+        mDropHeartSprite = TextureRegion.split(mDropHeart, 32, 32)[0];
+
+        setAnimation(mDropHeartSprite, 1 / 12f);
     }
 
     @Override

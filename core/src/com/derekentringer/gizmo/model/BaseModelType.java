@@ -12,5 +12,6 @@ public enum BaseModelType {
     ENEMY,
     KEY,
     HEART,
+    HEART_SMALL,
     LIFE
 }

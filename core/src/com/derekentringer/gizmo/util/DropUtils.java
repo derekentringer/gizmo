@@ -11,7 +11,7 @@ import com.derekentringer.gizmo.settings.Constants;
 
 public class DropUtils {
 
-    public static Body createDrop(BaseModel userData, World world, Vector2 coordinates) {
+    public static Body createDropHeart(BaseModel userData, World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
@@ -20,7 +20,7 @@ public class DropUtils {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 
-        shape.setAsBox(WorldUtils.ppmCalc(6), WorldUtils.ppmCalc(6));
+        shape.setAsBox(WorldUtils.ppmCalc(2), WorldUtils.ppmCalc(2));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
 

@@ -6,15 +6,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.enemy.FireBallModel;
 
 public class FireBallActor extends BaseActor {
 
     private static final String TAG = FireBallActor.class.getSimpleName();
 
     private static final float MOVEMENT_FORCE = -1;
-
-    private FireBallModel mFireBallModel = new FireBallModel();
 
     private TextureRegion[] mFireBallSprite;
     private Texture mFireBall;
@@ -28,7 +25,7 @@ public class FireBallActor extends BaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return mFireBallModel;
+        return mBaseModel;
     }
 
     @Override

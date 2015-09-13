@@ -12,8 +12,6 @@ public class KeyActor extends BaseActor {
 
     private static final String TAG = KeyActor.class.getSimpleName();
 
-    private KeyModel mKeyModel = new KeyModel();
-
     private TextureRegion[] mKeySprite;
     private Texture mKey;
 
@@ -37,7 +35,7 @@ public class KeyActor extends BaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return mKeyModel;
+        return mBaseModel;
     }
 
 }
