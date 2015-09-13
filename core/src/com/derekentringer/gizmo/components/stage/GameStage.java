@@ -357,7 +357,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     private void addDroppedItems() {
         for (int i = 0; i < mMapParser.getDroppedItemPositionArray().size(); i++) {
-            mDropManager.addDrop(mWorld, mMapParser.getDroppedItemPositionArray().get(i));
+            mDropManager.addDropHeart(mWorld, mMapParser.getDroppedItemPositionArray().get(i));
         }
         mMapParser.resetDroppedItemPositionArray();
     }

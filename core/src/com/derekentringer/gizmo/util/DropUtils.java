@@ -36,8 +36,4 @@ public class DropUtils {
         return body;
     }
 
-    public static void animateDrop() {
-
-    }
-
 }
