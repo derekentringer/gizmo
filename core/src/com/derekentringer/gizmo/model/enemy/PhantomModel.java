@@ -8,6 +8,7 @@ public class PhantomModel extends EnemyModel {
 
     private int mHealth = 4;
     private int mHealthDamage = 5;
+    private boolean mDoesLootDrop;
 
     public PhantomModel() {
         super();
@@ -27,6 +28,16 @@ public class PhantomModel extends EnemyModel {
     @Override
     public int getHealthDamage() {
         return mHealthDamage;
+    }
+
+    @Override
+    public boolean getDoesLootDrop() {
+        return mDoesLootDrop;
+    }
+
+    @Override
+    public void setDoesLootDrop(boolean doesLootDrop) {
+        mDoesLootDrop = doesLootDrop;
     }
 
 }

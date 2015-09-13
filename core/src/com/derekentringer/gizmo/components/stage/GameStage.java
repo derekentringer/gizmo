@@ -25,6 +25,7 @@ import com.derekentringer.gizmo.components.actor.structure.door.interfaces.IDoor
 import com.derekentringer.gizmo.components.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
+import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
@@ -151,6 +152,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));
             if (EnemyUtils.getEnemyHealth(b.getBody()) <= 0) {
+                DropManager.calculateDroppedItems();
                 mDeleteBodies.add(new DeleteBody((EnemyModel) b.getBody().getUserData(), b.getBody()));
             }
         }

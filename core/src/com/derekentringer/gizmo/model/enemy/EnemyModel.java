@@ -7,6 +7,7 @@ public class EnemyModel extends BaseModel {
 
     private int mHealth;
     private int mHealthDamage;
+    private boolean mDoesLootDrop;
 
     public EnemyModel() {
     }
@@ -25,6 +26,14 @@ public class EnemyModel extends BaseModel {
 
     public int getHealthDamage() {
         return mHealthDamage;
+    }
+
+    public boolean getDoesLootDrop() {
+        return mDoesLootDrop;
+    }
+
+    public void setDoesLootDrop(boolean doesLootDrop) {
+        mDoesLootDrop = doesLootDrop;
     }
 
 }

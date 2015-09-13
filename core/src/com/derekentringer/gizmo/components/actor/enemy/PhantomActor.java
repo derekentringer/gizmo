@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 
@@ -20,8 +19,6 @@ public class PhantomActor extends BaseActor {
 
     private static final int PLAYER_DETECTION_X = 3;
     private static final int PLAYER_DETECTION_Y = 1;
-
-    private PhantomModel mPhantomModel = new PhantomModel();
 
     private TextureRegion[] mPhantomLeftSprite;
     private TextureRegion[] mPhantomRightSprite;
@@ -46,7 +43,7 @@ public class PhantomActor extends BaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return mPhantomModel;
+        return mBaseModel;
     }
 
     @Override

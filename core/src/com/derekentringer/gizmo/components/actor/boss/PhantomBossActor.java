@@ -10,7 +10,6 @@ import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.boss.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.components.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 
 import java.util.ArrayList;
@@ -20,8 +19,6 @@ public class PhantomBossActor extends BaseActor {
     private static final String TAG = PhantomBossActor.class.getSimpleName();
 
     private static final float MOVEMENT_FORCE = 0.5f;
-
-    private PhantomLargeModel mPhantomLargeModel = new PhantomLargeModel();
 
     private ArrayList<IPhantomBoss> listeners = new ArrayList<IPhantomBoss>();
 
@@ -50,7 +47,7 @@ public class PhantomBossActor extends BaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return mPhantomLargeModel;
+        return mBaseModel;
     }
 
     @Override

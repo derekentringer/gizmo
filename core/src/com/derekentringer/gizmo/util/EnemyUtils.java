@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.enemy.EnemyModel;
 import com.derekentringer.gizmo.settings.Constants;
 
@@ -15,8 +16,8 @@ public class EnemyUtils {
     private static final String TAG = EnemyUtils.class.getSimpleName();
 
     public static int getEnemyBodyDamageAmount(Body body) {
-        EnemyModel userData = (EnemyModel) body.getUserData();
-        return userData.getHealthDamage();
+        EnemyModel enemyModel = (EnemyModel) body.getUserData();
+        return enemyModel.getHealthDamage();
     }
 
     public static int getEnemyHealth(Body body) {
@@ -28,6 +29,11 @@ public class EnemyUtils {
         EnemyModel enemyModel = (EnemyModel) body.getUserData();
         int newHealth = enemyModel.getHealth() - health;
         enemyModel.setHealth(newHealth);
+    }
+
+    public static void getEnemyBaseModelType(Body body) {
+        EnemyModel enemyModel = (EnemyModel) body.getUserData();
+        BaseModelType baseType = enemyModel.getBaseModelType();
     }
 
     public static Body createPhantom(BaseModel userData, World world, Vector2 coordinates) {
