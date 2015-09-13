@@ -56,6 +56,7 @@ public class MapParser extends Stage {
     private static final String TAG = MapParser.class.getSimpleName();
 
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
+    private final ArrayList<Vector2> mDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
 
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
@@ -106,6 +107,18 @@ public class MapParser extends Stage {
 
     public void addToActorsArray(BaseActor actor) {
         mActorsArray.add(actor);
+    }
+
+    public ArrayList<Vector2> getDroppedItemPositionArray() {
+        return mDroppedItemPositionArray;
+    }
+
+    public void addToDroppedItemPositionArray(Vector2 position) {
+        mDroppedItemPositionArray.add(position);
+    }
+
+    public void resetDroppedItemPositionArray() {
+        mDroppedItemPositionArray.clear();
     }
 
     public ArrayList<BaseActor> getActorsArray() {

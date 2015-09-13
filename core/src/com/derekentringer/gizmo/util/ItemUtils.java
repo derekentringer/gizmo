@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.settings.Constants;
 
@@ -36,7 +35,7 @@ public class ItemUtils {
         fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
         fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
 
-        body.createFixture(fixtureDef).setUserData(new HeartModel());
+        body.createFixture(fixtureDef).setUserData(userData);
 
         body.setUserData(userData);
 

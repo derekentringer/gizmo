@@ -27,6 +27,7 @@ import com.derekentringer.gizmo.components.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
@@ -57,7 +58,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
+public class GameStage extends Stage implements IMapParser, IPlayer, IDropManager, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -65,6 +66,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
     private CameraManager mCameraManager = new CameraManager();
+    private DropManager mDropManager = new DropManager();
 
     private World mWorld;
     private MapParser mMapParser;
@@ -95,6 +97,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         setupWorld();
         loadLevel(level, DoorType.DOOR_PREVIOUS);
         mCameraManager.createGameCameras();
+        mDropManager.addListener(this);
     }
 
     private void setupWorld() {
@@ -153,9 +156,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));
             if (EnemyUtils.getEnemyHealth(b.getBody()) <= 0) {
 
-                //TODO
-                DropManager dropManager = new DropManager();
-                dropManager.calculateDroppedItems(mWorld, this, mMapParser, EnemyUtils.getEnemyDropsLoot(b.getBody()), b.getBody().getPosition());
+                if (EnemyUtils.getEnemyDropsLoot(b.getBody())) {
+                    mMapParser.addToDroppedItemPositionArray(b.getBody().getPosition());
+                }
 
                 mDeleteBodies.add(new DeleteBody((EnemyModel) b.getBody().getUserData(), b.getBody()));
             }
@@ -164,9 +167,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
             EnemyUtils.setEnemyHealth(a.getBody(), ItemUtils.getItemHealthDamage(b.getBody()));
             if (EnemyUtils.getEnemyHealth(a.getBody()) <= 0) {
 
-                //TODO
-                DropManager dropManager = new DropManager();
-                dropManager.calculateDroppedItems(mWorld, this, mMapParser, EnemyUtils.getEnemyDropsLoot(a.getBody()), a.getBody().getPosition());
+                if (EnemyUtils.getEnemyDropsLoot(a.getBody())) {
+                    mMapParser.addToDroppedItemPositionArray(a.getBody().getPosition());
+                }
 
                 mDeleteBodies.add(new DeleteBody((EnemyModel) a.getBody().getUserData(), a.getBody()));
             }
@@ -269,6 +272,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     public void draw() {
         super.draw();
 
+        // create dropped item actors
+        addDroppedItems();
+
         // handle removed actors
         updateMapParserArrays();
         deleteObsoleteActors();
@@ -347,6 +353,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     public void quitGame() {
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         LocalDataManager.saveLevelData(mLoadedLevelModel);
+    }
+
+    private void addDroppedItems() {
+        for (int i = 0; i < mMapParser.getDroppedItemPositionArray().size(); i++) {
+            mDropManager.addDrop(mWorld, mMapParser.getDroppedItemPositionArray().get(i));
+        }
+        mMapParser.resetDroppedItemPositionArray();
     }
 
     private void deleteObsoleteActors() {
@@ -660,6 +673,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
     public void removePlayerItemFromStage(BaseActor actor) {
         mPlayerActor.setIsItemActive(false);
         mDeleteBodies.add(new DeleteBody((BaseModel) actor.getBody().getUserData(), actor.getBody()));
+    }
+
+    @Override
+    public void addDroppedItem(BaseActor actor) {
+        mMapParser.addToTempActorsArray(actor);
     }
 
     /*private void startBackgroundMusic() {

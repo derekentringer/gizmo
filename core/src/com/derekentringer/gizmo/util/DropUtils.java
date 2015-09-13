@@ -16,7 +16,7 @@ public class DropUtils {
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
 
-        bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
+        bodyDef.position.set(coordinates.x, coordinates.y);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 
@@ -32,6 +32,7 @@ public class DropUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 

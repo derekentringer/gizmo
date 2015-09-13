@@ -4,28 +4,34 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.components.actor.object.DropHeartActor;
-import com.derekentringer.gizmo.components.stage.GameStage;
+import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.util.DropUtils;
-import com.derekentringer.gizmo.util.map.MapParser;
+
+import java.util.ArrayList;
 
 public class DropManager extends Stage {
 
     private static final String TAG = DropManager.class.getSimpleName();
 
-    public void calculateDroppedItems(World world, GameStage gameStage, MapParser mapParser, boolean dropsLoot, Vector2 coordinates) {
-        if (dropsLoot) {
+    private ArrayList<IDropManager> listeners = new ArrayList<IDropManager>();
 
-            //determine what we are going to drop
-            //create the items
+    public void addListener(IDropManager listener) {
+        listeners.add(listener);
+    }
 
-            DropHeartActor dropHeartActor = new DropHeartActor(DropUtils.createDropHeart(new DropHeartModel(), world, coordinates));
-            dropHeartActor.setName(DropHeartModel.HEART_SMALL);
-            addActor(dropHeartActor);
-            mapParser.addToTempActorsArray(dropHeartActor);
+    public void addDrop(World world, Vector2 coordinates) {
 
-            //DropUtils.animateDrop();
+        //determine what we are going to drop
+        //create the items
+
+        DropHeartActor dropHeartActor = new DropHeartActor(DropUtils.createDropHeart(new DropHeartModel(), world, coordinates));
+        dropHeartActor.setName(DropHeartModel.HEART_SMALL);
+        for (IDropManager listener : listeners) {
+            listener.addDroppedItem(dropHeartActor);
         }
+
+        //DropUtils.animateDrop();
     }
 
 }
