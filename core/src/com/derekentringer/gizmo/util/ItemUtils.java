@@ -41,6 +41,7 @@ public class ItemUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 

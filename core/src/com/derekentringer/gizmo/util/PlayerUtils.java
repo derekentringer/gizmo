@@ -42,6 +42,7 @@ public class PlayerUtils {
         body.setUserData(new PlayerModel());
 
         shape.dispose();
+
         return body;
     }
 

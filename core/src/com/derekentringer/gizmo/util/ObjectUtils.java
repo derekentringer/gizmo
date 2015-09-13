@@ -33,6 +33,7 @@ public class ObjectUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 
@@ -53,6 +54,7 @@ public class ObjectUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 
@@ -73,6 +75,7 @@ public class ObjectUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 
@@ -93,6 +96,7 @@ public class ObjectUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 
@@ -113,6 +117,7 @@ public class ObjectUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 

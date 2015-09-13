@@ -32,8 +32,7 @@ public class EnemyUtils {
 
     public static boolean getEnemyDropsLoot(Body body) {
         EnemyModel enemyModel = (EnemyModel) body.getUserData();
-        boolean dropsLoot = enemyModel.getDoesLootDrop();
-        return dropsLoot;
+        return enemyModel.getDoesLootDrop();
     }
 
     public static Body createPhantom(BaseModel userData, World world, Vector2 coordinates) {
@@ -57,6 +56,7 @@ public class EnemyUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 
@@ -82,6 +82,7 @@ public class EnemyUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 
@@ -106,6 +107,7 @@ public class EnemyUtils {
         body.setUserData(userData);
 
         shape.dispose();
+
         return body;
     }
 

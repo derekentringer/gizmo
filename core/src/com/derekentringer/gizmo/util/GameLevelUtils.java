@@ -8,6 +8,7 @@ public class GameLevelUtils {
 
     public static final ArrayList<LevelModel> gameLevels = new ArrayList<LevelModel>();
 
+    // TODO put this into a json file
     public static void buildGameLevelList() {
         LevelModel levelOne = new LevelModel(0,
                 "res/maps/level_one/level_one.tmx",
