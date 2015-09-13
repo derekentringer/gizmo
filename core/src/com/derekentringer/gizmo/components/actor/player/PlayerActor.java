@@ -8,11 +8,13 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.components.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
@@ -210,6 +212,12 @@ public class PlayerActor extends BaseActor {
             mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
             mLastHeartAdded = heartModel;
         }
+    }
+
+    public void addHealth(DropHeartModel itemModel) {
+        GLog.d(TAG, "addHealth: " + itemModel.getHealthAmount());
+        mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() + itemModel.getHealthAmount());
+        GLog.d(TAG, "mPlayerModel.getHealth: " + mPlayerModel.getPlayerHealth());
     }
 
     public int getHealthHearts() {

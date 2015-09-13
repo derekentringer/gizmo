@@ -38,6 +38,7 @@ import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.item.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
+import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
@@ -253,6 +254,18 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             mPlayerActor.addItem((BaseItemModel) b.getBody().getUserData());
             mLoadedLevelModel.addPickedUpItem((BaseItemModel) b.getBody().getUserData());
             mDeleteBodies.add(new DeleteBody((BaseItemModel) b.getBody().getUserData(), b.getBody()));
+        }
+
+        //pick up HEART_SMALL with PLAYER
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.HEART_SMALL)) {
+            mPlayerActor.addHealth((DropHeartModel) b.getBody().getUserData());
+            mDeleteBodies.add(new DeleteBody((DropHeartModel) b.getBody().getUserData(), b.getBody()));
+            updateHud();
+        }
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.HEART_SMALL)) {
+            mPlayerActor.addHealth((DropHeartModel) a.getBody().getUserData());
+            mDeleteBodies.add(new DeleteBody((DropHeartModel) a.getBody().getUserData(), a.getBody()));
+            updateHud();
         }
     }
 
@@ -572,6 +585,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }
 
+        updateHud();
+    }
+
+    private void updateHud() {
         for (IGameStage listener : listeners) {
             listener.setHudHealthHearts(mPlayerActor.getBaseModel().getPlayerHearts());
             listener.resetHudShapes();

@@ -21,7 +21,6 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
-
     private ArrayList<BaseItemModel> mPlayerItemsList = new ArrayList<BaseItemModel>();
 
     private int mCurrentLevel;
@@ -60,6 +59,9 @@ public class PlayerModel extends BaseModel {
 
     public void setPlayerHealth(int health) {
         mPlayerHealth = health;
+        if (mPlayerHealth > (getPlayerHearts() * HEART_HEALTH_AMOUNT)) {
+            mPlayerHealth = getPlayerHearts() * HEART_HEALTH_AMOUNT;
+        }
     }
 
     public int getPlayerHealth() {
