@@ -24,6 +24,10 @@ public class EnemyModel extends BaseModel {
         mHealth = health;
     }
 
+    public void setHealDamage(int healthDamage) {
+        mHealthDamage = healthDamage;
+    }
+
     public int getHealthDamage() {
         return mHealthDamage;
     }

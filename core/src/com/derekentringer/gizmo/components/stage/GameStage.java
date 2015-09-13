@@ -152,13 +152,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IItems, IHu
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));
             if (EnemyUtils.getEnemyHealth(b.getBody()) <= 0) {
-                DropManager.calculateDroppedItems();
+                DropManager.calculateDroppedItems(EnemyUtils.getEnemyDropsLoot(a.getBody()));
                 mDeleteBodies.add(new DeleteBody((EnemyModel) b.getBody().getUserData(), b.getBody()));
             }
         }
         else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(a.getBody(), ItemUtils.getItemHealthDamage(b.getBody()));
             if (EnemyUtils.getEnemyHealth(a.getBody()) <= 0) {
+                DropManager.calculateDroppedItems(EnemyUtils.getEnemyDropsLoot(a.getBody()));
                 mDeleteBodies.add(new DeleteBody((EnemyModel) a.getBody().getUserData(), a.getBody()));
             }
         }

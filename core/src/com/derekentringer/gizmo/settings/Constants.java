@@ -12,6 +12,7 @@ public class Constants {
     public static final short PLAYER_ATTACK_ENTITY = 0x1<< 2;
     public static final short ENEMY_ENTITY = 0x1 << 3;
     public static final short ENEMY_ATTACK_ENTITY = 0x1 << 4;
+    public static final short DROP_ENTITY = 0x1 << 5;
 
     // debugging
     public static final boolean IS_DEBUG = true;

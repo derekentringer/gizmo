@@ -181,7 +181,7 @@ public class PhantomBossAttack extends Stage {
     private void releasePhantoms(float amountOfPhantoms) {
         for (int i = 0; i <= amountOfPhantoms; i++) {
             if (mTotalPhantoms < MAX_PHANTOMS_ALLOWED) {
-                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - MathUtils.random(0.5f, 1f)), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
+                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(true), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - MathUtils.random(0.5f, 1f)), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
                 phantomActor.setName(PhantomModel.PHANTOM);
                 addActor(phantomActor);
                 for (IPhantomBossAttack listener : listeners) {

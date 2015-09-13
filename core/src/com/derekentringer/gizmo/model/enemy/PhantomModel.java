@@ -10,9 +10,10 @@ public class PhantomModel extends EnemyModel {
     private int mHealthDamage = 5;
     private boolean mDoesLootDrop;
 
-    public PhantomModel() {
+    public PhantomModel(boolean dropsLoot) {
         super();
         mBaseModelType = BaseModelType.ENEMY;
+        mDoesLootDrop = dropsLoot;
     }
 
     @Override

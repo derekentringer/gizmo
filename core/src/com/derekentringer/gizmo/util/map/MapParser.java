@@ -201,7 +201,7 @@ public class MapParser extends Stage {
 
             for (MapObject mapObject : mapLayer.getObjects()) {
                 if (mapLayer.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
-                    PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(), world, getMapObjectCoords(mapObject)));
+                    PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(true), world, getMapObjectCoords(mapObject)));
                     phantomActor.setName(PhantomModel.PHANTOM);
                     addActor(phantomActor);
                     addToActorsArray(phantomActor);
