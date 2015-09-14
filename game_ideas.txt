@@ -1,16 +1,12 @@
 TODO
 -----
 
-boomerang shouldn't rotate...should be shimmering like hearts/lives
+smarter phantoms - aware of players Y position and X and Y buffers
 
 give enemies flinching animation
 
-enemy killed animation
+dropped items - rubies
 
-dropped items - rubies/life
-
-dropped live powerups should 'explode' into small hearts that are sparkling
-	- these will be random between 1-5 each giving 1hp
 
 add debug mode for the game
 	- teleport to any level/destination
