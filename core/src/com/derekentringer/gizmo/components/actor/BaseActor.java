@@ -26,6 +26,7 @@ public abstract class BaseActor extends Actor {
     public int mFacingDirection;
 
     private boolean mIsPlayingAnimation = true;
+    private boolean mPlayAnimationOnce = true;
 
     protected Body mBody;
     protected AnimationManager mAnimationManager;
@@ -125,14 +126,6 @@ public abstract class BaseActor extends Actor {
         for (IBaseActor listener : listeners) {
             listener.isAnimationFinished(isFinished);
         }
-    }
-
-    public boolean getIsDeleted() {
-        return mIsDeleted;
-    }
-
-    public void setIsDeleted(boolean isDeleted) {
-        mIsDeleted = isDeleted;
     }
 
 }

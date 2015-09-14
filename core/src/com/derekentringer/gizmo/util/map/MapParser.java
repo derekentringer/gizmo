@@ -20,6 +20,7 @@ import com.derekentringer.gizmo.components.actor.object.KeyActor;
 import com.derekentringer.gizmo.components.actor.object.LifeActor;
 import com.derekentringer.gizmo.components.actor.player.PlayerActor;
 import com.derekentringer.gizmo.components.actor.structure.GroundActor;
+import com.derekentringer.gizmo.components.actor.structure.LavaActor;
 import com.derekentringer.gizmo.components.actor.structure.WallActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.components.actor.structure.door.DoorBlackActor;
@@ -42,6 +43,7 @@ import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorOffModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.model.structure.GroundModel;
+import com.derekentringer.gizmo.model.structure.LavaModel;
 import com.derekentringer.gizmo.model.structure.WallModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
@@ -166,6 +168,11 @@ public class MapParser extends Stage {
                             WallActor wallActor = new WallActor(BodyUtils.createStaticWorldBody(new WallModel(), world, mTileSize, row, col, false));
                             addActor(wallActor);
                         }
+                        if (curLayerName.equalsIgnoreCase(LavaModel.LAVA)) {
+                            LavaActor lavaActor = new LavaActor(BodyUtils.createStaticWorldBody(new LavaModel(), world, mTileSize, row, col, true));
+                            lavaActor.setName(LavaModel.LAVA);
+                            addToActorsArray(lavaActor);
+                        }
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_PREVIOUS)) {
                             DoorActor doorActor = new DoorActor(BodyUtils.createStaticWorldBody(new DoorModel(DoorType.DOOR_PREVIOUS), world, mTileSize, row, col, true));
                             addActor(doorActor);
@@ -193,6 +200,10 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_LOCKED_BLACK)) {
                             createLockedBlackDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get(LEVEL_NUMBER).toString()),
                                     tiledMapTileLayer.getProperties().get(DESTINATION).toString(), checkIfDoorLocked(DoorType.DOOR_LOCKED_BLACK), row, col);
+                        }
+                        else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OTHER)) {
+                            createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get(LEVEL_NUMBER).toString()),
+                                    tiledMapTileLayer.getProperties().get(DESTINATION).toString(), false, row, col);
                         }
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OTHER)) {
                             createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get(LEVEL_NUMBER).toString()),

@@ -10,10 +10,6 @@ public class DoorModel extends BaseModel {
     private String mDestinationDoor;
     private boolean mIsLocked;
 
-    public DoorModel() {
-        super();
-    }
-
     public DoorModel(String doorType, int levelNumber, String destinationDoor, boolean isLocked) {
         super();
         mBaseModelType = BaseModelType.DOOR;

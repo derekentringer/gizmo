@@ -49,6 +49,7 @@ public class PhantomActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
+
         if (isPlayerBehind()) {
             setFacingDirection(FACING_LEFT);
             BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
