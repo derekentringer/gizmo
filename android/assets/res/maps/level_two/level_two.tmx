@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="34">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
-  <image source="../tileset/bricks.png" width="256" height="224"/>
+  <image source="../tileset/bricks.png" width="256" height="192"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -15,12 +15,12 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztl20OwiAMhjmBB1inPzjAdv/bKQlNah1iaUGHfRLCx9jKy4C9C8GZhVV5/8VkFOOIlevXN+1n0oo6oNIPwqvmVL+Zj6gvC8tLxJxQM2qtzdNZQW2oD1h9NlAbrt+Yy7V9b4X2PJWykHRUdxzHoYw+o75Nz2/dL86ltXej/lA7lyvLLZCM6ZO4UChLSbHQd1iuQYmXoWuhpJ0+T7N2qI+GHM/iPUvmjvblHmh7pP2gvRXqo2N49p2JVu2teq3hezXFKvlMjeeUaBjpa3vFmvXfq8S/6R3NHWnoCis=
+   eJztl2EOwiAMhXsCD7BOf3CA7f63UxKa1LqKhYIO+RIyYGzlMWAPgMkorJXPX1x60Y+QuX99U38mraQDM+0QXjXH8s29R21ZxFUjpESaSWtunM4KaSN9KMqjQdpo/oaUz617L2r3UysLS0flyWQy4fTeo75Ny3/dL46lt3fj/rB2LFdx9cDSp0/iopK3EmOR7/CcgxYvw+eCpp2/r2bucB+NKZ7Hd7aMHW8rPdD2SPtBfSncRwd49p2RUu2ler2RazXG0nxmjee0aOjpa1vFGvXspfEvemkPIL3y3InQ5hx6B7/MCwA=
   </data>
  </layer>
  <layer name="lava" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7BZwr85PCx8tEkTAAAAAIA/pnxhARw7Aq8=
+   eJztwzENAAAIA7BJwr86PCx8tEkTAAAAAIA/pnxhARbfAqE=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
