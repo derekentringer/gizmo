@@ -12,15 +12,14 @@ public class BoomerangActor extends BaseActor {
 
     private static final String TAG = BoomerangActor.class.getSimpleName();
 
-    private BoomerangModel mBoomerangModel = new BoomerangModel();
-
     private TextureRegion[] mBoomerangSprite;
     private Texture mBoomerangTexture;
 
+    //TODO add the rest of the boomerangs
     public BoomerangActor(Body body, String boomerangType) {
         super(body);
         if (boomerangType.equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)) {
-            mBoomerangTexture = Gizmo.assetManager.get("res/images/items/boomerang_wood_pickup.png", Texture.class);
+            mBoomerangTexture = Gizmo.assetManager.get("res/images/items/boomerang_wood_pickup_shine.png", Texture.class);
         }
         else if (boomerangType.equalsIgnoreCase(BoomerangModel.BOOMERANG_AMETHYST)) {
             mBoomerangTexture = Gizmo.assetManager.get("res/images/items/boomerang_wood_pickup.png", Texture.class);
@@ -34,7 +33,7 @@ public class BoomerangActor extends BaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return mBoomerangModel;
+        return mBaseModel;
     }
 
 }
