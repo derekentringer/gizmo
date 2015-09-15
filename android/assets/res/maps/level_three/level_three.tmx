@@ -10,12 +10,17 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmOtqwzAMhZU/eYIkdEsptH+293/CYfChJ6eS7KRdGTtgcqkv+mRZdjqZ2Wz/X1MtS70WfSRlpHINykj1h6BE/Uf1B2d8LpnNKOAdKi/e9bCdgqK8HoPXf8tHkc/3sFvlnOvzQrzKGPF5vBmz2twTEx5rFFtXi/mtsqJPjmfrYFX1MHu+9OYl483sirg1ngfb5qtvYWixesxRbMHmPfHQw5rF2ki8hRNxbbXOEVZmjjiYtTcesrYnGrPFDd7B7jm61bZHGUdkcxYP2dx642a2g5XXdOa/XkXMbHNUz+P2/JSNG/HOtSCuodVpv1fe3DGrVy9bA8y7xwa+Ik9FvGzPEWnO9Hh5jN41cFTYe8EMrXL/DK+u01YsMu8zc6v9FnEOXKjOhe5Xu+c39sPRcVv7me6dr2BFW+R9Pk8WaTyP9bo6v1+s3w8tm6P4P7I/ePmKeXl+OV/B3xyLzHeT53OnXS1bj7KqvZqf9UxdtEpbzRu6vvX5WR3JTZm9zIs9eEraerkSAu+Znt+tXnuRl/V8pW0h7eNm93j21vY7hPzC9n7ZI3MRvvP5e9/zE+T5rfBxzuLc/tfk7b8RK+Qxf9ZidP1t4RzM3zz8DmcpFOy9zOyJv0WnoM67xWf+mZ75fKzfuos9fmdynUHa8Trn/0VwVuEr2/Jq8Zgo/I59oQw6v2or+2CyLdMsdWe5X5y+uD37lM/xk23P9NzfQvc8ht7zfzazbee5vP8BJkRERw==
+   eJzdmF2OwjAMhN2XnqCtYIuQ4GW5/wlXkTJiGGwnLSxa7UhRf0gaf47jJExmNtv/11TLUq9Fx6SMVC5BGan+EJTo+1H9wemfS2YzCniHyot3PWyHoCivx+B9v+WjyOdb2K1yzvV5IV5ljPg83oxZbe6JCY81iq2LxfxWWfFNjmfrYFX1MHu+9MYl483sirg1ngd7zFc3YWixesxRbMHmLfHQw5rF2ki8hRNxbbXOHlZmjjiYtTcesrYH6rPFDd7B7jm61bZHGUdkcxYP2dh6/Wa2g5XndOa/XkXMbHNUz+P2/JT1G/HOtSCuodVpv1Xe2DGrVy+bA8y7xQa+Ik9FvGzPHmnO9Hi5j945sFdYe8EMrXL/Cq/O01YsMu8rY6vfLeIcuFCdM92vds9v7Ie9/bbWM10738GKtsj7vJ8s0nge63V1fj9bvx9aNkfxv2d98PIV8/L4cr6CvzkWme8qz6dOu1q27mVVezU/6566aJW2mjd0fuvzq9qTmzJ7mRdr8JS09XIlBN4TPX9avfYiL+v+SttC+o2r3ePZm9ufEPIL2/ttz8xFOOfzed/zE+T5rfBxzuLc/tfkrb8RK+Qxf9VidP1tYR/MZx5+h70UCtZeZvbEZ9EpqPNp8Z5/pmfeH+tZd7HncybXGaQdz3P+XwR7Fb6yLe8W94nC79gXyqDjq7ayDyZ7ZJql7iz3bMe7BD/z9ejc8382eMY4l/c/mhVC/w==
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztz7cNACAAAzDOoEz8/yQM8ALVlqKsSQjAK+ruAQvNr3HrCgAAuFPpSSM/yKN/+QucrQGueADb
+  </data>
+ </layer>
+ <layer name="lava" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwzEJAAAMA7BKmn91M9GrJJAEAAAAAGDTlbY8iN8DYQ==
   </data>
  </layer>
  <layer name="background_foreground" width="60" height="23">
