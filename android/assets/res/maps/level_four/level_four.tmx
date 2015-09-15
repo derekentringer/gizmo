@@ -26,7 +26,7 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt00EKwCAMRNE5R1Nd9P6HFMFSmwMojP+BZJaRIRIA4DR3mu4iTXfvP5+tW6xR9O+3bNxlhd5pHTmm7Cr09Vvlf8PXeDkDAADASwPBZwJs
+   eJzt0jEKwCAMheGcw1iH7t7/elWItGToWOH1/yDkCQ6GaAYA+JuaujpPXd2a89z6im8co3pkj7OyudMW2R9Zldv9n+es/eWughKVMwAAALRcan0CkA==
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
