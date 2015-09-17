@@ -107,17 +107,17 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
-        if (buttonCode == PS4Controller.BUTTON_CIRCLE
-                || buttonCode == NexusPlayerController.BUTTON_B) {
-            UserInput.setKey(UserInput.RUN, true);
-        }
         if (buttonCode == PS4Controller.BUTTON_SQUARE
                 || buttonCode == NexusPlayerController.BUTTON_X) {
-            UserInput.setKey(UserInput.ATTACK, true);
+            UserInput.setKey(UserInput.RUN, true);
         }
         if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_RB
+                || buttonCode == NexusPlayerController.RB) {
+            UserInput.setKey(UserInput.ATTACK, true);
         }
         return true;
     }
@@ -128,17 +128,17 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
-        if (buttonCode == PS4Controller.BUTTON_CIRCLE
-                || buttonCode == NexusPlayerController.BUTTON_B) {
-            UserInput.setKey(UserInput.RUN, false);
-        }
         if (buttonCode == PS4Controller.BUTTON_SQUARE
                 || buttonCode == NexusPlayerController.BUTTON_X) {
-            UserInput.setKey(UserInput.ATTACK, false);
+            UserInput.setKey(UserInput.RUN, false);
         }
         if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
+        }
+        if (buttonCode == PS4Controller.BUTTON_RB
+                || buttonCode == NexusPlayerController.RB) {
+            UserInput.setKey(UserInput.ATTACK, false);
         }
         return true;
     }
