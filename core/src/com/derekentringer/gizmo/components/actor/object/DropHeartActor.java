@@ -16,6 +16,10 @@ public class DropHeartActor extends BaseActor {
     private TextureRegion[] mDropHeartSprite;
     private Texture mDropHeart;
 
+    float mTimeAccumulated;
+    float speedY;
+    float speedX;
+    
     public DropHeartActor(Body body) {
         super(body);
 
@@ -31,10 +35,6 @@ public class DropHeartActor extends BaseActor {
     public BaseModel getBaseModel() {
         return mBaseModel;
     }
-
-    float mTimeAccumulated;
-    float speedY;
-    float speedX;
 
     @Override
     public void act(float delta) {
