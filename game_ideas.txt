@@ -1,6 +1,12 @@
 TODO
 -----
 
+add new screens
+	- start
+	- choose game save slot
+	- pause
+	- inventory
+	
 smarter phantoms - aware of players Y position and X and Y buffers
 
 give enemies flinching animation
@@ -19,11 +25,7 @@ gizmo upgrades - some attacks (rolling, jump-lunge, guns)
 add animations when picking up objects
 	- pickup ghosts as weapons (think mario 2)
 
-add new screens
-	- start
-	- choose game save slot
-	- pause
-	- inventory
+
 
 add a power up for jumping
 add barking ability
