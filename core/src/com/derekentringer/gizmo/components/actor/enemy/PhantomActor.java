@@ -9,6 +9,7 @@ import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class PhantomActor extends BaseActor {
 
@@ -17,8 +18,8 @@ public class PhantomActor extends BaseActor {
     private static final float MOVEMENT_FORCE = 0.1f;
     private static final float MOVEMENT_PADDING = WorldUtils.ppmCalc(7);
 
-    private static final int PLAYER_DETECTION_X = 3;
     private static final int PLAYER_DETECTION_Y = 1;
+    private static final int PLAYER_DETECTION_X = 1;
 
     private TextureRegion[] mPhantomLeftSprite;
     private TextureRegion[] mPhantomRightSprite;
@@ -50,13 +51,29 @@ public class PhantomActor extends BaseActor {
     public void act(float delta) {
         super.act(delta);
 
-        if (isPlayerBehind()) {
-            setFacingDirection(FACING_LEFT);
-            BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
-        }
-        else if (isPlayerInFront()) {
-            setFacingDirection(FACING_RIGHT);
-            BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
+        if (!isPlayerAbove() && !isPlayerBelow()) {
+
+            GLog.d(TAG, "isPlayerAbove: " + isPlayerAbove());
+            GLog.d(TAG, "isPlayerBelow: " + isPlayerBelow());
+
+            if (isPlayerBehind()) {
+
+                GLog.d(TAG, "isPlayerBehind: " + isPlayerBehind());
+
+                setFacingDirection(FACING_LEFT);
+                BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
+            }
+            else if (isPlayerInFront()) {
+
+                GLog.d(TAG, "isPlayerInFront: " + isPlayerInFront());
+
+                setFacingDirection(FACING_RIGHT);
+                BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
+            }
+            else {
+                BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
+            }
+
         }
         else {
             BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
@@ -74,20 +91,27 @@ public class PhantomActor extends BaseActor {
         }
     }
 
-    //TODO work on Y axis detection
-    private boolean isPlayerBehind() {
-        return getPosition().x > getPlayerPosition().x + MOVEMENT_PADDING;
-                //&& (getPosition().x - (PLAYER_DETECTION_X + MOVEMENT_PADDING)) < getPlayerPosition().x
-                //&& ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
-                //|| (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+    private boolean isPlayerAbove() {
+        return getPosition().y < getPlayerPosition().y - PLAYER_DETECTION_Y;
     }
 
-    private boolean isPlayerInFront() {
-        return getPosition().x < getPlayerPosition().x - MOVEMENT_PADDING;
-                //&& (getPosition().x + (PLAYER_DETECTION_X - MOVEMENT_PADDING)) > getPlayerPosition().x
-                //&& ((getPosition().y - PLAYER_DETECTION_Y) > getPlayerPosition().y
-                //|| (getPosition().y + PLAYER_DETECTION_Y) > getPlayerPosition().y);
+    private boolean isPlayerBelow() {
+        return getPosition().y > getPlayerPosition().y + PLAYER_DETECTION_Y;
     }
+
+
+
+
+    private boolean isPlayerInFront() {
+        return getPosition().x < getPlayerPosition().x - PLAYER_DETECTION_X;
+    }
+
+    private boolean isPlayerBehind() {
+        return getPosition().x > getPlayerPosition().x + PLAYER_DETECTION_X;
+    }
+
+
+    
 
     public Vector2 getPlayerPosition() {
         return mPlayerPosition;
