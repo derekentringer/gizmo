@@ -18,13 +18,16 @@ public class PhantomActor extends BaseActor {
     private static final float MOVEMENT_FORCE = 0.1f;
     private static final float MOVEMENT_PADDING = WorldUtils.ppmCalc(7);
 
-    private static final int PLAYER_DETECTION_Y = 1;
-    private static final int PLAYER_DETECTION_X = 1;
+    private static final float PLAYER_DETECTION_Y = 1f;
+    private static final float PLAYER_DETECTION_X = 4f;
 
     private TextureRegion[] mPhantomLeftSprite;
     private TextureRegion[] mPhantomRightSprite;
     private Texture mPhantomLeft;
     private Texture mPhantomRight;
+
+    private float phantomRadiusFront = getPosition().x + PLAYER_DETECTION_X;
+    private float phantomRadiusBehind = getPosition().x - PLAYER_DETECTION_X;
 
     private Vector2 mPlayerPosition = new Vector2();
 
@@ -99,19 +102,15 @@ public class PhantomActor extends BaseActor {
         return getPosition().y > getPlayerPosition().y + PLAYER_DETECTION_Y;
     }
 
-
-
-
     private boolean isPlayerInFront() {
-        return getPosition().x < getPlayerPosition().x - PLAYER_DETECTION_X;
+        return getPlayerPosition().x < phantomRadiusFront
+                && getPlayerPosition().x > getPosition().x;
     }
 
     private boolean isPlayerBehind() {
-        return getPosition().x > getPlayerPosition().x + PLAYER_DETECTION_X;
+        return getPlayerPosition().x > phantomRadiusBehind
+                && getPlayerPosition().x < getPosition().x;
     }
-
-
-    
 
     public Vector2 getPlayerPosition() {
         return mPlayerPosition;
