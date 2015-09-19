@@ -9,7 +9,6 @@ import com.derekentringer.gizmo.components.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
-import com.derekentringer.gizmo.util.log.GLog;
 
 public class PhantomActor extends BaseActor {
 
@@ -53,30 +52,19 @@ public class PhantomActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-
+        
         if (!isPlayerAbove() && !isPlayerBelow()) {
-
-            GLog.d(TAG, "isPlayerAbove: " + isPlayerAbove());
-            GLog.d(TAG, "isPlayerBelow: " + isPlayerBelow());
-
             if (isPlayerBehind()) {
-
-                GLog.d(TAG, "isPlayerBehind: " + isPlayerBehind());
-
                 setFacingDirection(FACING_LEFT);
                 BodyUtils.applyLinearImpulseToBody(mBody, -MOVEMENT_FORCE, "x");
             }
             else if (isPlayerInFront()) {
-
-                GLog.d(TAG, "isPlayerInFront: " + isPlayerInFront());
-
                 setFacingDirection(FACING_RIGHT);
                 BodyUtils.applyLinearImpulseToBody(mBody, MOVEMENT_FORCE, "x");
             }
             else {
                 BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
             }
-
         }
         else {
             BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
