@@ -7,7 +7,6 @@ add new screens
 	- pause
 	- inventory
 	
-smarter phantoms - aware of players Y position and X and Y buffers
 
 give enemies flinching animation
 
