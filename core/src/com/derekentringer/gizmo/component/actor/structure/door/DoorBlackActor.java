@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.IBaseActor;
+import com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor;
 import com.derekentringer.gizmo.model.BaseModel;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
 
     private static final String TAG = DoorBlackActor.class.getSimpleName();
 
-    private ArrayList<com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor> listeners = new ArrayList<com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor>();
+    private ArrayList<IDoor> listeners = new ArrayList<IDoor>();
 
     private TextureRegion[] mDoorBlackSprite;
     private Texture mDoorBlack;
@@ -40,13 +41,13 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
         setAnimation(mDoorBlackSprite, 1 / 12f);
     }
 
-    public void addListener(com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor listener) {
+    public void addListener(IDoor listener) {
         listeners.add(listener);
     }
 
     @Override
     public BaseModel getBaseModel() {
-        return null;
+        return mBaseModel;
     }
 
     public void startAnimation() {
@@ -57,7 +58,7 @@ public class DoorBlackActor extends BaseActor implements IBaseActor {
     public void isAnimationFinished(boolean isFinished) {
         if (isFinished) {
             setAnimation(mDoorOpenSprite, 1 / 12f);
-            for (com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor listener : listeners) {
+            for (IDoor listener : listeners) {
                 listener.doorAnimationComplete(this);
             }
         }

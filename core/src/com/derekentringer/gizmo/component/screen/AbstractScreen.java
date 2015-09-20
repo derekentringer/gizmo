@@ -8,7 +8,7 @@ public abstract class AbstractScreen implements Screen {
     protected Gizmo mGizmoGame;
 
     public AbstractScreen(Gizmo gizmoGame) {
-        this.mGizmoGame = gizmoGame;
+        mGizmoGame = gizmoGame;
     }
 
     @Override

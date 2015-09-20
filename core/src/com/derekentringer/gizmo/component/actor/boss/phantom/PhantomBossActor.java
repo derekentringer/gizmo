@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
+import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 
@@ -32,7 +33,7 @@ public class PhantomBossActor extends BaseActor {
         listeners.add(listener);
     }
 
-    public PhantomBossActor(World world, com.derekentringer.gizmo.component.stage.GameStage gameStage, Body body) {
+    public PhantomBossActor(World world, GameStage gameStage, Body body) {
         super(body);
         mGameStage = gameStage;
 

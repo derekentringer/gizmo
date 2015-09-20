@@ -154,6 +154,29 @@ public class PhantomBossAttack extends Stage {
         t.start();
     }
 
+    private void releasePhantoms(float amountOfPhantoms) {
+        for (int i = 0; i <= amountOfPhantoms; i++) {
+            if (mTotalPhantoms < MAX_PHANTOMS_ALLOWED) {
+                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(true), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - MathUtils.random(0.5f, 1f)), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
+                phantomActor.setName(PhantomModel.PHANTOM);
+                addActor(phantomActor);
+                for (IPhantomBossAttack listener : listeners) {
+                    listener.phantomBossAddActor(phantomActor);
+                }
+                mTotalPhantoms++;
+            }
+        }
+    }
+
+    private void shootFire() {
+        FireBallActor fireBallActor = new FireBallActor(EnemyUtils.createFireBall(new FireBallModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPhantomPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y))));
+        fireBallActor.setName(FireBallModel.FIREBALL);
+        addActor(fireBallActor);
+        for (IPhantomBossAttack listener : listeners) {
+            listener.phantomBossAddActor(fireBallActor);
+        }
+    }
+
     public boolean getShakingInitiated() {
         return mShakingInitiated;
     }
@@ -176,29 +199,6 @@ public class PhantomBossAttack extends Stage {
 
     public void setFireBallAttackInitiated(boolean initiated) {
         mFireBallAttackInitiated = initiated;
-    }
-
-    private void releasePhantoms(float amountOfPhantoms) {
-        for (int i = 0; i <= amountOfPhantoms; i++) {
-            if (mTotalPhantoms < MAX_PHANTOMS_ALLOWED) {
-                PhantomActor phantomActor = new PhantomActor(EnemyUtils.createPhantom(new PhantomModel(true), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPlayerPosition.x - MathUtils.random(0.5f, 1f)), WorldUtils.ppmCalcReverse(mPlayerPosition.y + 3))));
-                phantomActor.setName(PhantomModel.PHANTOM);
-                addActor(phantomActor);
-                for (IPhantomBossAttack listener : listeners) {
-                    listener.phantomBossAddActor(phantomActor);
-                }
-                mTotalPhantoms++;
-            }
-        }
-    }
-
-    private void shootFire() {
-        FireBallActor fireBallActor = new FireBallActor(EnemyUtils.createFireBall(new FireBallModel(), mWorld, new Vector2(WorldUtils.ppmCalcReverse(mPhantomPosition.x - 1), WorldUtils.ppmCalcReverse(mPlayerPosition.y))));
-        fireBallActor.setName(FireBallModel.FIREBALL);
-        addActor(fireBallActor);
-        for (IPhantomBossAttack listener : listeners) {
-            listener.phantomBossAddActor(fireBallActor);
-        }
     }
 
 }

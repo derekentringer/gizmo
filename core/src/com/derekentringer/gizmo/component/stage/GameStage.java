@@ -16,6 +16,7 @@ import com.derekentringer.gizmo.component.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.component.actor.item.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
+import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBronzeActor;
@@ -58,7 +59,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer, IDropManager, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
+public class GameStage extends Stage implements IMapParser, IPlayer, IDropManager, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 

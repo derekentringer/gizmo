@@ -26,14 +26,11 @@ public abstract class BaseActor extends Actor {
     public int mFacingDirection;
 
     private boolean mIsPlayingAnimation = true;
-    private boolean mPlayAnimationOnce = true;
 
     protected Body mBody;
     protected AnimationManager mAnimationManager;
     protected float mWidth;
     protected float mHeight;
-
-    private boolean mIsDeleted;
 
     private TextureRegion[] mCurrentTextureRegion;
 

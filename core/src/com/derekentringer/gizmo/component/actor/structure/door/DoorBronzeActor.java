@@ -47,7 +47,7 @@ public class DoorBronzeActor extends BaseActor implements IBaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return null;
+        return mBaseModel;
     }
 
     public void startAnimation() {

@@ -5,8 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.HudStage;
+import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -16,9 +17,10 @@ public class GameScreen implements Screen {
     private static final String TAG = GameScreen.class.getSimpleName();
 
     private HudStage mHudStage;
-    private com.derekentringer.gizmo.component.stage.GameStage mGameStage;
+    private GameStage mGameStage;
 
     private Rectangle mViewPort;
+
     private int mLevelToLoad = 0;
 
     //private FPSLogger mFpsLogger = new FPSLogger();

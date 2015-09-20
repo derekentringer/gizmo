@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.IBaseActor;
+import com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor;
 import com.derekentringer.gizmo.model.BaseModel;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
 
     private static final String TAG = DoorGoldActor.class.getSimpleName();
 
-    private ArrayList<com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor> listeners = new ArrayList<com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor>();
+    private ArrayList<IDoor> listeners = new ArrayList<IDoor>();
 
     private TextureRegion[] mDoorGoldSprite;
     private Texture mDoorGold;
@@ -46,7 +47,7 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return null;
+        return mBaseModel;
     }
 
     public void startAnimation() {

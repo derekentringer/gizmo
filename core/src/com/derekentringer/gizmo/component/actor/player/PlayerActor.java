@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
+import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
@@ -21,7 +22,7 @@ public class PlayerActor extends BaseActor {
 
     private static final String TAG = PlayerActor.class.getSimpleName();
 
-    private ArrayList<com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer> listeners = new ArrayList<com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer>();
+    private ArrayList<IPlayer> listeners = new ArrayList<IPlayer>();
 
     private static final float WALKING_FORCE = 1.2f;
     private static final float RUNNING_FORCE = 1.6f;
@@ -129,7 +130,7 @@ public class PlayerActor extends BaseActor {
         return mPlayerModel;
     }
 
-    public void addListener(com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer listener) {
+    public void addListener(IPlayer listener) {
         listeners.add(listener);
     }
 
@@ -154,7 +155,7 @@ public class PlayerActor extends BaseActor {
         if (!mIsFlinching) {
             mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() - healthDamage);
             applyFlinchForce();
-            for(com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer listener : listeners){
+            for(IPlayer listener : listeners){
                 listener.playerGotHit(mPlayerModel.getPlayerHealth());
             }
         }
@@ -177,7 +178,7 @@ public class PlayerActor extends BaseActor {
     public void deIncrementLives() {
         mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() - 1);
         if (mPlayerModel.getPlayerLives() <= 0) {
-            for(com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer listener : listeners){
+            for(IPlayer listener : listeners){
                 listener.playerZeroLives();
             }
         }

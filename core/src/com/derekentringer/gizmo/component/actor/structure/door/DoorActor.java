@@ -12,7 +12,7 @@ public class DoorActor extends BaseActor {
 
     @Override
     public BaseModel getBaseModel() {
-        return null;
+        return mBaseModel;
     }
 
 }
