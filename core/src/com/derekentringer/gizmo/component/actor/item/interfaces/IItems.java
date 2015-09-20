@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.item;
+package com.derekentringer.gizmo.component.actor.item.interfaces;
 
 import com.derekentringer.gizmo.component.actor.BaseActor;
 

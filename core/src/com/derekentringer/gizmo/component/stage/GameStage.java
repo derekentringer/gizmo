@@ -14,7 +14,7 @@ import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantom
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.component.actor.item.BoomerangWoodActor;
-import com.derekentringer.gizmo.component.actor.item.IItems;
+import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
