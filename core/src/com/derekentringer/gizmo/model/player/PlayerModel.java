@@ -21,12 +21,12 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
-    private ArrayList<BaseItemModel> mPlayerItemsList = new ArrayList<BaseItemModel>();
+    private ArrayList<BaseItemModel> mItemsList = new ArrayList<BaseItemModel>();
 
     private int mCurrentLevel;
-    private int mPlayerLives;
-    private int mPlayerHearts;
-    private int mPlayerHealth;
+    private int mLives;
+    private int mHearts;
+    private int mHealth;
 
     public PlayerModel() {
         super();
@@ -41,42 +41,42 @@ public class PlayerModel extends BaseModel {
         return mCurrentLevel;
     }
 
-    public void setPlayerLives(int lives) {
-        mPlayerLives = lives;
+    public void setLives(int lives) {
+        mLives = lives;
     }
 
-    public int getPlayerLives() {
-        return mPlayerLives;
+    public int getLives() {
+        return mLives;
     }
 
-    public void setPlayerHearts(int hearts) {
-        mPlayerHearts = hearts;
+    public void setHearts(int hearts) {
+        mHearts = hearts;
     }
 
-    public int getPlayerHearts() {
-        return mPlayerHearts;
+    public int getHearts() {
+        return mHearts;
     }
 
-    public void setPlayerHealth(int health) {
-        mPlayerHealth = health;
-        if (mPlayerHealth > (getPlayerHearts() * HEART_HEALTH_AMOUNT)) {
-            mPlayerHealth = getPlayerHearts() * HEART_HEALTH_AMOUNT;
+    public void setHealth(int health) {
+        mHealth = health;
+        if (mHealth > (getHearts() * HEART_HEALTH_AMOUNT)) {
+            mHealth = getHearts() * HEART_HEALTH_AMOUNT;
         }
     }
 
-    public int getPlayerHealth() {
-        return mPlayerHealth;
+    public int getHealth() {
+        return mHealth;
     }
 
-    public ArrayList<KeyModel> getPlayerKeys() {
+    public ArrayList<KeyModel> getKeys() {
         return mKeyList;
     }
 
-    public void addPlayerKey(KeyModel keyData) {
+    public void addKey(KeyModel keyData) {
         mKeyList.add(keyData);
     }
 
-    public void removePlayerKey(String keyType) {
+    public void removeKey(String keyType) {
         for (int i=0; i < mKeyList.size(); i++) {
             if (mKeyList.get(i).getKeyType().equalsIgnoreCase(keyType)) {
                 mKeyList.remove(i);
@@ -84,16 +84,16 @@ public class PlayerModel extends BaseModel {
         }
     }
 
-    public ArrayList<BaseItemModel> getPlayerItems() {
-        return mPlayerItemsList;
+    public ArrayList<BaseItemModel> getItems() {
+        return mItemsList;
     }
 
-    public void addPlayerItem(BaseItemModel playerItem) {
-        mPlayerItemsList.add(playerItem);
+    public void addItem(BaseItemModel playerItem) {
+        mItemsList.add(playerItem);
     }
 
-    public void removePlayerItem(BaseItemModel playerItem) {
-        mPlayerItemsList.remove(playerItem);
+    public void removeItem(BaseItemModel playerItem) {
+        mItemsList.remove(playerItem);
     }
 
 }

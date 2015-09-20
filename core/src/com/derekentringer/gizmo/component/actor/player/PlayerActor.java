@@ -135,49 +135,49 @@ public class PlayerActor extends BaseActor {
     }
 
     public void initPlayerData(PlayerModel playerModel) {
-        mPlayerModel.setPlayerHearts(playerModel.getPlayerHearts());
-        mPlayerModel.setPlayerHealth(playerModel.getPlayerHealth());
-        mPlayerModel.setPlayerLives(playerModel.getPlayerLives());
+        mPlayerModel.setHearts(playerModel.getHearts());
+        mPlayerModel.setHealth(playerModel.getHealth());
+        mPlayerModel.setLives(playerModel.getLives());
         mPlayerModel.setCurrentLevel(playerModel.getCurrentLevel());
-        if (playerModel.getPlayerKeys().size() > 0) {
-            for (int i = 0; i < playerModel.getPlayerKeys().size(); i++) {
-                mPlayerModel.addPlayerKey(playerModel.getPlayerKeys().get(i));
+        if (playerModel.getKeys().size() > 0) {
+            for (int i = 0; i < playerModel.getKeys().size(); i++) {
+                mPlayerModel.addKey(playerModel.getKeys().get(i));
             }
         }
-        if (playerModel.getPlayerItems().size() > 0) {
-            for (int i = 0; i < playerModel.getPlayerItems().size(); i++) {
-                mPlayerModel.addPlayerItem(playerModel.getPlayerItems().get(i));
+        if (playerModel.getItems().size() > 0) {
+            for (int i = 0; i < playerModel.getItems().size(); i++) {
+                mPlayerModel.addItem(playerModel.getItems().get(i));
             }
         }
     }
 
     public void setHitEnemy(int healthDamage) {
         if (!mIsFlinching) {
-            mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() - healthDamage);
+            mPlayerModel.setHealth(mPlayerModel.getHealth() - healthDamage);
             applyFlinchForce();
             for(IPlayer listener : listeners){
-                listener.playerGotHit(mPlayerModel.getPlayerHealth());
+                listener.playerGotHit(mPlayerModel.getHealth());
             }
         }
     }
 
     public void resetHealth() {
-        mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
+        mPlayerModel.setHealth(mPlayerModel.getHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
     }
 
     public void resetLives() {
-        mPlayerModel.setPlayerLives(mPlayerModel.DEFAULT_LIVES);
+        mPlayerModel.setLives(mPlayerModel.DEFAULT_LIVES);
     }
 
     public void incrementLives() {
-        if (mPlayerModel.getPlayerLives() < mPlayerModel.DEFAULT_MAX_LIVES) {
-            mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() + 1);
+        if (mPlayerModel.getLives() < mPlayerModel.DEFAULT_MAX_LIVES) {
+            mPlayerModel.setLives(mPlayerModel.getLives() + 1);
         }
     }
 
     public void deIncrementLives() {
-        mPlayerModel.setPlayerLives(mPlayerModel.getPlayerLives() - 1);
-        if (mPlayerModel.getPlayerLives() <= 0) {
+        mPlayerModel.setLives(mPlayerModel.getLives() - 1);
+        if (mPlayerModel.getLives() <= 0) {
             for(IPlayer listener : listeners){
                 listener.playerZeroLives();
             }
@@ -185,21 +185,21 @@ public class PlayerActor extends BaseActor {
     }
 
     public int getPlayerLives() {
-        return mPlayerModel.getPlayerLives();
+        return mPlayerModel.getLives();
     }
 
     public void addKey(KeyModel keyModel) {
         if (mLastKeyAdded == null || !mLastKeyAdded.equals(keyModel)) {
-            mPlayerModel.addPlayerKey(keyModel);
+            mPlayerModel.addKey(keyModel);
             mLastKeyAdded = keyModel;
         }
     }
 
     public boolean hasCorrectKey(String keyType) {
-        ArrayList<KeyModel> playerKeys = mPlayerModel.getPlayerKeys();
+        ArrayList<KeyModel> playerKeys = mPlayerModel.getKeys();
         for (int i = 0; i < playerKeys.size(); i++) {
             if (playerKeys.get(i).getKeyType().equalsIgnoreCase(keyType)) {
-                mPlayerModel.removePlayerKey(keyType);
+                mPlayerModel.removeKey(keyType);
                 return true;
             }
         }
@@ -208,31 +208,31 @@ public class PlayerActor extends BaseActor {
 
     public void addHealthHeart(HeartModel heartModel) {
         if (mLastHeartAdded == null || !mLastHeartAdded.equals(heartModel)) {
-            mPlayerModel.setPlayerHearts(mPlayerModel.getPlayerHearts() + 1);
-            mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
+            mPlayerModel.setHearts(mPlayerModel.getHearts() + 1);
+            mPlayerModel.setHealth(mPlayerModel.getHearts() * PlayerModel.HEART_HEALTH_AMOUNT);
             mLastHeartAdded = heartModel;
         }
     }
 
     public void addHealth(DropHeartModel itemModel) {
         GLog.d(TAG, "addHealth: " + itemModel.getHealthAmount());
-        mPlayerModel.setPlayerHealth(mPlayerModel.getPlayerHealth() + itemModel.getHealthAmount());
-        GLog.d(TAG, "mPlayerModel.getHealth: " + mPlayerModel.getPlayerHealth());
+        mPlayerModel.setHealth(mPlayerModel.getHealth() + itemModel.getHealthAmount());
+        GLog.d(TAG, "mPlayerModel.getHealth: " + mPlayerModel.getHealth());
     }
 
     public int getHealthHearts() {
-        return mPlayerModel.getPlayerHearts();
+        return mPlayerModel.getHearts();
     }
 
     public void addItem(BaseItemModel itemModel) {
         if (mLastItemAdded == null || !mLastItemAdded.equals(itemModel)) {
-            mPlayerModel.addPlayerItem(itemModel);
+            mPlayerModel.addItem(itemModel);
             mLastItemAdded = itemModel;
         }
     }
 
     public boolean hasCorrectItem(String itemType) {
-        ArrayList<BaseItemModel> playerItems = mPlayerModel.getPlayerItems();
+        ArrayList<BaseItemModel> playerItems = mPlayerModel.getItems();
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getItemType().equalsIgnoreCase(itemType)) {
                 return true;

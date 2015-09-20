@@ -36,11 +36,11 @@ public class LocalDataManager {
             Json json = new Json();
             PlayerModel playerData = json.fromJson(PlayerModel.class, saveFile);
             GLog.d(TAG, "*** LOADED PLAYER DATA *** ");
-            GLog.d(TAG, "getPlayerItems: " + playerData.getPlayerItems());
-            GLog.d(TAG, "getPlayerHearts: " + playerData.getPlayerHearts());
-            GLog.d(TAG, "getPlayerLives: " + playerData.getPlayerLives());
-            GLog.d(TAG, "getPlayerHealth: " + playerData.getPlayerHealth());
-            GLog.d(TAG, "getPlayerKeys: " + playerData.getPlayerKeys().size());
+            GLog.d(TAG, "getItems: " + playerData.getItems());
+            GLog.d(TAG, "getHearts: " + playerData.getHearts());
+            GLog.d(TAG, "getLives: " + playerData.getLives());
+            GLog.d(TAG, "getHealth: " + playerData.getHealth());
+            GLog.d(TAG, "getKeys: " + playerData.getKeys());
             GLog.d(TAG, "getCurrentLevel: " + playerData.getCurrentLevel());
 
             return playerData;

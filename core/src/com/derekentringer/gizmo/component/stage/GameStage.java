@@ -577,9 +577,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
         else {
             mPlayerModel = new PlayerModel();
-            mPlayerModel.setPlayerHearts(PlayerModel.DEFAULT_HEARTS);
-            mPlayerModel.setPlayerHealth(PlayerModel.DEFAULT_HEALTH);
-            mPlayerModel.setPlayerLives(PlayerModel.DEFAULT_LIVES);
+            mPlayerModel.setHearts(PlayerModel.DEFAULT_HEARTS);
+            mPlayerModel.setHealth(PlayerModel.DEFAULT_HEALTH);
+            mPlayerModel.setLives(PlayerModel.DEFAULT_LIVES);
             mPlayerModel.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
             playerActor.initPlayerData(mPlayerModel);
             LocalDataManager.savePlayerActorData(mPlayerModel);
@@ -590,10 +590,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     private void updateHud() {
         for (IGameStage listener : listeners) {
-            listener.setHudHealthHearts(mPlayerActor.getBaseModel().getPlayerHearts());
+            listener.setHudHealthHearts(mPlayerActor.getBaseModel().getHearts());
             listener.resetHudShapes();
-            listener.setHudHealth(mPlayerActor.getBaseModel().getPlayerHealth());
-            listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
+            listener.setHudHealth(mPlayerActor.getBaseModel().getHealth());
+            listener.setHudLives(mPlayerActor.getBaseModel().getLives());
         }
     }
 
@@ -646,7 +646,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
         for (IGameStage listener : listeners) {
-            listener.setHudLives(mPlayerActor.getBaseModel().getPlayerLives());
+            listener.setHudLives(mPlayerActor.getBaseModel().getLives());
         }
         mCameraManager.setShakeCamera(false);
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
