@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.controllers.Controllers;
-import com.derekentringer.gizmo.components.screen.LoadingScreen;
+import com.derekentringer.gizmo.component.screen.LoadingScreen;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.InputProcessor;
 
