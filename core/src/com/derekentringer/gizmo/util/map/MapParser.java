@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.boss.PhantomBossActor;
+import com.derekentringer.gizmo.component.actor.boss.phantom.PhantomBossActor;
 import com.derekentringer.gizmo.component.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.component.actor.object.BoomerangActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
