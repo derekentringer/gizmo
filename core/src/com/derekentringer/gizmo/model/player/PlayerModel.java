@@ -21,7 +21,7 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_LEVEL = 0;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
-    private ArrayList<BaseItemModel> mItemsList = new ArrayList<BaseItemModel>();
+    private ArrayList<BaseItemModel> mItemList = new ArrayList<BaseItemModel>();
 
     private int mCurrentLevel;
     private int mLives;
@@ -85,15 +85,15 @@ public class PlayerModel extends BaseModel {
     }
 
     public ArrayList<BaseItemModel> getItems() {
-        return mItemsList;
+        return mItemList;
     }
 
     public void addItem(BaseItemModel playerItem) {
-        mItemsList.add(playerItem);
+        mItemList.add(playerItem);
     }
 
     public void removeItem(BaseItemModel playerItem) {
-        mItemsList.remove(playerItem);
+        mItemList.remove(playerItem);
     }
 
 }

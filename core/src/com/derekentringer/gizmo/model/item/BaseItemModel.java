@@ -13,6 +13,7 @@ public class BaseItemModel extends BaseModel {
     private String mItemType;
 
     public BaseItemModel() {
+        super();
     }
 
     public BaseModelType getBaseModelType() {
@@ -21,6 +22,10 @@ public class BaseItemModel extends BaseModel {
 
     public int getHealthDamage() {
         return mHealthDamage;
+    }
+
+    public void setHealthDamage(int healthDamage) {
+        mHealthDamage = healthDamage;
     }
 
     public String getItemType() {

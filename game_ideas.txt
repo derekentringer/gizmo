@@ -1,6 +1,8 @@
 TODO
 -----
 
+fix up items models - start with boomerang - saving items info is saving class info - this can be better
+
 add new screens
 	- start
 	- choose game save slot
