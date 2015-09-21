@@ -225,7 +225,6 @@ public class PlayerActor extends BaseActor {
     }
 
     public void addItem(BaseItemModel itemModel) {
-        //TODO more data added here than needed including .class info
         if (mLastItemAdded == null || !mLastItemAdded.equals(itemModel)) {
             mPlayerModel.addItem(itemModel);
             mLastItemAdded = itemModel;
