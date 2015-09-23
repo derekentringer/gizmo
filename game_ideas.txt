@@ -1,5 +1,11 @@
 TODO
 -----
+costumes
+	- raptor
+	- taco
+	- mech
+
+diamond drops
 
 add new screens
 	- start
