@@ -1,5 +1,12 @@
 TODO
 -----
+
+test on nexus player after android gradle updates
+
+google play
+	- save files to the cloud
+	- achievements
+
 costumes
 	- raptor
 	- taco
