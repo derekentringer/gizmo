@@ -3,7 +3,7 @@ TODO
 
 test on nexus player after android gradle updates
 
-google play
+google play (https://developers.google.com/games/services/)
 	- save files to the cloud
 	- achievements
 
