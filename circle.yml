@@ -1,0 +1,7 @@
+test:
+  override:
+    - ./gradlew clean android:assembleRelease --recompile-scripts --refresh-dependencies --parallel --stacktrace
+
+general:
+  artifacts:
+    - "app/build/outputs/apk/gizmo-debug.apk" # Installable APK that users can install live on the bleeding edge
