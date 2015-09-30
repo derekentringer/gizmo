@@ -1,6 +1,14 @@
+#
+# Build configuration for Circle CI
+#
+
+general:
+    artifacts:
+        - /home/ubuntu/gizmo/app/build/outputs/apk/
+
 machine:
     environment:
-        ANDROID_HOME: /home/ubuntu/android
+        ANDROID_HOME: /usr/local/android-sdk-linux
     java:
         version: oraclejdk6
 
@@ -9,7 +17,7 @@ dependencies:
         - echo y | android update sdk --no-ui --all --filter "android-23"
 
 test:
-    pre:
+    override:
         - (./gradlew android:assembleRelease):
             timeout: 360
         - (./gradlew desktop:dist):
