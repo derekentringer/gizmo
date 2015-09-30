@@ -4,13 +4,13 @@
 
 general:
     artifacts:
-        - /home/ubuntu/gizmo/app/build/outputs/apk/
+        - /home/ubuntu/Gizmo/app/build/outputs/apk/
 
 machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
     java:
-        version: oraclejdk6
+        version: oraclejdk7
 
 dependencies:
     pre:
