@@ -16,11 +16,9 @@ dependencies:
     pre:
         - echo y | android update sdk --no-ui --all --filter platform-tools,tools,android-23,build-tools-23.0.1,extra-android-m2repository,extra-android-support,extra-google-m2repository
 
-
-
-# test:
-#     override:
-#         - (./gradlew android:assembleRelease):
-#             timeout: 360
-#         - (./gradlew desktop:dist):
-#             timeout: 360
+test:
+    override:
+        - (./gradlew android:assembleRelease):
+            timeout: 360
+        - (./gradlew desktop:dist):
+            timeout: 360
