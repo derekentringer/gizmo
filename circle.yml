@@ -1,0 +1,16 @@
+machine:
+    environment:
+        ANDROID_HOME: /home/ubuntu/android
+    java:
+        version: oraclejdk6
+
+dependencies:
+    pre:
+        - echo y | android update sdk --no-ui --all --filter "android-23"
+
+test:
+    pre:
+        - (./gradlew android:assembleRelease):
+            timeout: 360
+        - (./gradlew desktop:dist):
+            timeout: 360
