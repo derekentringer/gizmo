@@ -16,9 +16,9 @@ dependencies:
     pre:
         - echo y | android update sdk --no-ui --all --filter "android-23"
 
-test:
-    override:
-        - (./gradlew android:assembleRelease):
-            timeout: 360
-        - (./gradlew desktop:dist):
-            timeout: 360
+# test:
+#     override:
+#         - (./gradlew android:assembleRelease):
+#             timeout: 360
+#         - (./gradlew desktop:dist):
+#             timeout: 360
