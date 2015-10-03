@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.derekentringer.gizmo.IGameService;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.PhantomBossActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
@@ -93,12 +94,19 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         listeners.add(listener);
     }
 
-    public void init(LevelModel level) {
+    public void init(LevelModel level, IGameService gameService) {
         mLevelModel = level;
         setupWorld();
         loadLevel(level, DoorType.DOOR_PREVIOUS);
         mCameraManager.createGameCameras();
         mDropManager.addListener(this);
+
+        // TODO test
+        // use steam achievements for pc/mac?
+        if (gameService != null) {
+            gameService.unlockAchievement("CgkI2aLN-rkTEAIQAQ");
+        }
+
     }
 
     private void setupWorld() {

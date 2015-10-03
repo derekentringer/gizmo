@@ -1,10 +1,10 @@
 package com.derekentringer.gizmo.component.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.HudStage;
 import com.derekentringer.gizmo.manager.LocalDataManager;
@@ -12,7 +12,7 @@ import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.log.GLog;
 
-public class GameScreen implements Screen {
+public class GameScreen extends AbstractScreen {
 
     private static final String TAG = GameScreen.class.getSimpleName();
 
@@ -25,7 +25,8 @@ public class GameScreen implements Screen {
 
     //private FPSLogger mFpsLogger = new FPSLogger();
 
-    public GameScreen() {
+    public GameScreen(Gizmo gizmoGame) {
+        super(gizmoGame);
         GameLevelUtils.buildGameLevelList();
         mGameStage = new com.derekentringer.gizmo.component.stage.GameStage();
         mHudStage = new HudStage(mGameStage);
@@ -33,7 +34,7 @@ public class GameScreen implements Screen {
         if (LocalDataManager.loadPlayerActorData() != null) {
             mLevelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
         }
-        mGameStage.init(GameLevelUtils.gameLevels.get(mLevelToLoad));
+        mGameStage.init(GameLevelUtils.gameLevels.get(mLevelToLoad), gizmoGame.mGameService);
     }
 
     @Override

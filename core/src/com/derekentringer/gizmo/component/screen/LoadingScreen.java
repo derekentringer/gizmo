@@ -93,7 +93,7 @@ public class LoadingScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         if (mGizmoGame.assetManager.update()) {
-            mGizmoGame.setScreen(new com.derekentringer.gizmo.component.screen.GameScreen());
+            mGizmoGame.setScreen(new GameScreen(mGizmoGame));
         }
     }
 

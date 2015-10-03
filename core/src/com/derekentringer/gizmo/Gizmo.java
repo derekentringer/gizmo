@@ -12,6 +12,12 @@ public class Gizmo extends Game {
 
     public static AssetManager assetManager = new AssetManager();
 
+    public IGameService mGameService;
+
+    public Gizmo(IGameService gameService) {
+        mGameService = gameService;
+    }
+
     @Override
     public void create() {
         Controllers.addListener(new InputProcessor());

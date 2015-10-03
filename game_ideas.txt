@@ -1,7 +1,6 @@
 TODO
 -----
 
-test on nexus player after android gradle updates
 
 google play (https://developers.google.com/games/services/)
 	- save files to the cloud
@@ -23,7 +22,6 @@ add new screens
 
 give enemies flinching animation
 
-dropped items - rubies
 
 
 add debug mode for the game
