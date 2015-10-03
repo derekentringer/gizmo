@@ -1,11 +1,17 @@
 TODO
 -----
 
-test on nexus player after android gradle updates
+add new screens
+	- start
+	- choose game save slot
+	- pause
+	- inventory
 
-google play (https://developers.google.com/games/services/)
-	- save files to the cloud
-	- achievements
+add debug mode for the game
+	- teleport to any level/destination
+	- give full lives
+	- give full health
+	- give any items
 
 costumes
 	- raptor
@@ -14,23 +20,7 @@ costumes
 
 diamond drops
 
-add new screens
-	- start
-	- choose game save slot
-	- pause
-	- inventory
-	
-
 give enemies flinching animation
-
-dropped items - rubies
-
-
-add debug mode for the game
-	- teleport to any level/destination
-	- give full lives
-	- give full health
-	- give any items
 
 gizmo upgrades - some attacks (rolling, jump-lunge, guns)
 
