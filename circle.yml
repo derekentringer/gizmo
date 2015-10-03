@@ -20,5 +20,8 @@ test:
     override:
         - (./gradlew android:assembleRelease):
             timeout: 360
+        - cp -r gizmo/build/outputs $CIRCLE_ARTIFACTS
+
         - (./gradlew desktop:dist):
             timeout: 360
+        - cp -r gizmo/build/outputs $CIRCLE_ARTIFACTS
