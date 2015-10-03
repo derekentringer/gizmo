@@ -64,7 +64,7 @@ project(":android") {
         compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
         compile "com.android.support:leanback-v17:22.2.0"
         compile "com.android.support:appcompat-v7:22.2.0"
-        //compile 'com.google.android.gms:play-services:8.1.0'
+        compile "com.google.android.gms:play-services:8.1.0"
     }
 }
 

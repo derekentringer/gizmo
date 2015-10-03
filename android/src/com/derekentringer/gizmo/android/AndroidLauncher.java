@@ -4,12 +4,11 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.derekentringer.gizmo.IGameService;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.IGameService;
 import com.derekentringer.gizmo.util.log.GLog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.Wearable;
 
 public class AndroidLauncher extends AndroidApplication implements IGameService, GoogleApiClient.ConnectionCallbacks {
 
@@ -35,7 +34,6 @@ public class AndroidLauncher extends AndroidApplication implements IGameService,
                         GLog.d(TAG, "GoogleApiClient - onConnectionFailed");
                     }
                 })
-                .addApi(Wearable.API)
                 .build();
         mGoogleApiClient.connect();
     }
