@@ -1,6 +1,13 @@
 TODO
 -----
 
+clean up the project
+	- assets/res/
+	
+'magnitize' the item drops towards the player when close
+
+give enemies flinching animation
+
 add new screens
 	- start
 	- choose game save slot
@@ -20,14 +27,17 @@ costumes
 
 diamond drops
 
-give enemies flinching animation
-
 gizmo upgrades - some attacks (rolling, jump-lunge, guns)
 
 add animations when picking up objects
 	- pickup ghosts as weapons (think mario 2)
 
-
+add Google Play Services & Steam Services
+	- login
+	- logout
+	- game saves
+	- high scores
+	- achievements
 
 add a power up for jumping
 add barking ability
@@ -43,10 +53,9 @@ need to map xbox360, xbox one, and ouya controllers
 
 player stats - show keys? inventory
 destroyable blocks
-start screen
-redesign gizmo
-design more blocks for dungeons
 falling blocks
+design more blocks for dungeons
+
 
 - game is linear, but, certain ways to advance past levels 
 with power ups and digging (hidden)

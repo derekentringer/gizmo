@@ -1,7 +1,5 @@
 package com.derekentringer.gizmo.component.screen;
 
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.derekentringer.gizmo.Gizmo;
 
@@ -84,8 +82,8 @@ public class LoadingScreen extends AbstractScreen {
 
         mGizmoGame.assetManager.load("res/images/tiles/lava.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/music/background.ogg", Music.class);
-        mGizmoGame.assetManager.load("res/sfx/jump.ogg", Sound.class);
+        //mGizmoGame.assetManager.load("res/music/background.ogg", Music.class);
+        //mGizmoGame.assetManager.load("res/sfx/jump.ogg", Sound.class);
 
         mGizmoGame.assetManager.finishLoading();
     }
