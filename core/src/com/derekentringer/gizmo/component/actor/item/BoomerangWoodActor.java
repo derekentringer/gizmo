@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
+import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.model.BaseModel;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class BoomerangWoodActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (mPlayerFacingDirection == com.derekentringer.gizmo.component.actor.player.PlayerActor.FACING_RIGHT) {
+        if (mPlayerFacingDirection == PlayerActor.FACING_RIGHT) {
             if (mBody.getPosition().x <= getPlayerPosition().x + MAX_DISTANCE && !mComingBack) {
                 mBody.setLinearVelocity(MOVEMENT_FORCE, 0);
             }

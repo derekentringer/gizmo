@@ -3,6 +3,7 @@ package com.derekentringer.gizmo.component.actor.object;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
@@ -13,8 +14,18 @@ public class DropHeartActor extends BaseActor {
 
     private static final String TAG = DropHeartActor.class.getSimpleName();
 
+    private static final int MOVEMENT_FORCE = 4;
+    private static final float PLAYER_DETECTION = 0.5f;
+
+    private float heartRadiusFront = getPosition().x + PLAYER_DETECTION;
+    private float heartRadiusBehind = getPosition().x - PLAYER_DETECTION;
+    private float heartRadiusAbove = getPosition().y + PLAYER_DETECTION;
+    private float heartRadiusBelow = getPosition().y - PLAYER_DETECTION;
+
     private TextureRegion[] mDropHeartSprite;
     private Texture mDropHeart;
+
+    private Vector2 mPlayerPosition = new Vector2();
 
     float mTimeAccumulated;
     float speedY;
@@ -39,22 +50,43 @@ public class DropHeartActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
+
         mTimeAccumulated += delta;
         speedY = 0.5f - (mTimeAccumulated / 1);
-        if (speedY <= 0) {
-            speedY = -0.3f;
+
+        if (getPlayerPosition().x < heartRadiusFront
+                && getPlayerPosition().x > heartRadiusBehind
+                && getPlayerPosition().y < heartRadiusAbove
+                && getPlayerPosition().y > heartRadiusBelow) {
+            mBody.setLinearVelocity((getPlayerPosition().x - getPosition().x) * MOVEMENT_FORCE, (getPlayerPosition().y - getPosition().y) * MOVEMENT_FORCE);
+            return;
         }
-        if (speedY > 0) {
-            speedX = speedX - (mTimeAccumulated / 1);
-            if (speedX <= 0) {
+        else {
+            if (speedY <= 0) {
+                speedY = -0.3f;
+            }
+            if (speedY > 0) {
+                speedX = speedX - (mTimeAccumulated / 1);
+                if (speedX <= 0) {
+                    speedX = 0;
+                }
+            }
+            else {
                 speedX = 0;
             }
         }
-        else {
-            speedX = 0;
-        }
+
         BodyUtils.applyLinearImpulseToBody(mBody, speedY, "y");
         BodyUtils.applyLinearImpulseToBody(mBody, speedX, "x");
+    }
+
+    public Vector2 getPlayerPosition() {
+        return mPlayerPosition;
+    }
+
+    public void setPlayerPosition(Vector2 playerPosition) {
+        mPlayerPosition.x = playerPosition.x;
+        mPlayerPosition.y = playerPosition.y;
     }
 
 }

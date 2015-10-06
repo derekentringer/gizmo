@@ -15,6 +15,7 @@ import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantom
 import com.derekentringer.gizmo.component.actor.enemy.PhantomActor;
 import com.derekentringer.gizmo.component.actor.item.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
+import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
@@ -319,6 +320,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             }
             else if (actor.getName().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
                 ((BoomerangWoodActor) actor).setPlayerPosition(mPlayerActor.getPosition());
+            }
+            else if (actor.getName().equalsIgnoreCase(DropHeartModel.HEART_SMALL)) {
+                ((DropHeartActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
 
