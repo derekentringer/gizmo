@@ -4,7 +4,7 @@ TODO
 clean up the project, move all of the pyxel files out of the project, leave the outputs
 	- assets/res/
 	
-'magnitize' the item drops towards the player when close
+have the boomerang bounce off walls and ground
 
 give enemies flinching animation
 
