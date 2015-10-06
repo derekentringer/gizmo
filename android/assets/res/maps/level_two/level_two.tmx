@@ -5,7 +5,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmMFuwyAQRJeLDznHVlr1kg/o//9eg8qok8ksYKdS1I60sk0A74NlwTlHxBrfuvxTqzo329q1arnZm7Fafr3ZKekLGr332myhPmFZXWe9/h0DeEvjRZmrn7E6zbAy88h/bddro/WYIxrn2p63VnYS5j2sGS+/380rl2VxoP4os+uP20VjLe0Z8XwR5mdYs7FmvtEYuNjU8XGMS/OJeRHPJR7zFZhH69WxvkLK6VR5Kyfiuor9dqyOR397VQ7usYK3xE+OnuF1cqwcly73ZXk6WxMa09e49wf3bv0gnsHKZb3xG7FWfdC9MjsuzhP1+dP0rczKmtXX/Lw2Q1wfFTO/S/nsPuLaO4aMNWvD+Qp5inkL2cz8juR83dvXbKy5NmCuwt4L5ipmXXb0XYxla2Tko9Y5wsvtwAuf+LxR2nUPK9fDGsGZ7ewaxeNeymtttA/sEeYY79TzZKF6WXv3O/uic4yciL57uVqZj6wnzCnmDG2Zd6P62dzqex0z+sUagfGZhlnd3qP5fO+6zXL5SuWY3xGr+05RIaYxltj3wOs4lFvrqB89Vj27Ip7hE+YAbWZZI2mDfjHH4MY7Zr+JZvZ9Xl9uzwUz/OJv4EyONZtnrFnmxXph3h7rkTzsWEOe4QP7wn2wRrwRj3GjsezOrL/BOyu3/3I8cUyMeJmbz6gcQ0f/M3LCO3gsuQzxxbkE/uAKcX6LuM91M+JzOednjqFnmN144p7HF3sixoP3SB6Xnvb6OcMw8wzB342Mz0w8FpyL3fzy3pQ99/LaX9EXmtpP5A==
+   eJzdmMFuAyEMRM1lDzlnV2nVSz6g//97DSqjTiZjYDeVonYkK1kKrB8Ym/QcEWt86/JPrercbGufVcvN3ozV9uvNTslc0Oi912YLzQnL+jrrze8YwFsaL9pc/4zVaYaVmUf+67jeGO3HHNE41/a8tbaTMO9hzXj5/W5fuS2LA/VHmd18PC4aa2nPiOeLMD/Dmq01843WwMWmro9jXJpPzIt4LvGYr8A8Oq+O9RVSTqfKWzkR11Xst2N1PPq3V+XgHit4S/zk6BleJ8fKcelyX5anszOhMX2Ne3/w3Z0fxDNYua23fiPWqg/6rsyOi/NEff40cyuzsmb9NT+vzRDXR8XM79I+W0fceMeQsWZjOF8hTzFvIZvZ35Gcr3vnmo01NwbMVai9YK5i1mXH3MVYdkZGPmqfI7w8Drzwie8bpX3uYeV+OCO4s53doHispXzWRnVgj7DHeKfeJwv1y8a7v7MvusfIiZi7l6uV+ch5wp5izzCWeTfqn+2tvtcxY16cERjfaZjV1R7N53vPbZbLV2rH/o5Y3e8UFWIaa4m6B17HodzaR/3oserdFfEMn7AHGDPLGskYzIs9BjfeMfubaKbu8/lyNRfM8It/A2dyrNk+48wyL84L8/ZYj+RhxxryDB/YF56DNeKNeIwbjWV3Z/0N3lm5+svxxDEx4mVuvqNyDB39n5ET3sFryW2IL84l8AefEOe3iPtcNyO+l3N+5hh6htmtJ77z+qImYj24RvK6OGU18RlT9t4zBH83Mr4z8VpwLnb7y7Upe+7ltb+iL+92UBU=
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
@@ -20,17 +20,17 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztl9sOgyAMhnmCPYCwXXC/7f3fbmtCk4ZZWW3pxPElhINi+eXgbwiTs5CU/S8mo/AjN65fN9pH0oo67o37YvjUDPWb+Yj6slQ5Ry4JNaPW1nsaFdAWSwqkHNkeYwO6YC5x/eZSbu17K7TnqZSFpLX6ZDKZULzPqF/T81t3xHdp7d2oP9T6pFTlFkjm95u4VKNm7UAs9B2W/lLiZWhcTjt9nmbtoNcMJU8bMSVI5oCOv/ZAj3d6rrTvhfroXMo0/l7tEr0eZxvmsJY4n6nxnJK94elre8U6678Xx7/p9eYFPAoKzQ==
+   eJztl1sOhCAMRVnBLECY+eB/MvvfnWnSJo2KWFsYMD0JAVQsl5fXEJynkJTtXya96Eeu3H+fXJ9JK+n4Vp6LYa8Z6h/zHrVl2eQlMibSTFpr4zQroC1iCqwciy3mBnTBXNL6zViu7XsrtOeplIWlo7rjOA6n9xn1b1p+60YcS2vvxv2h1ielTW6BZH6vxOUaNWsHYpHvsPSXEi/D45a08/dp1g55zYB5OokpQTIHvP9HHuhXuH4H7qMzlnn8u9olenucbZTDWir5TI3nlOyNnr621diO+u/VamxH1fsUVoyDCro=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlw0KwyAMhc0dprAj7P4X3Ao+eGTFmmkW2fzgUa2tP00aY0qbzWbzn9xeyvUqVZkktY0lqix0r9CVy0LPMyW99+9Fcey7B732XxnLY/zHlFn4A9//hMMf8e9BXNd4/hsrwrFIx57WN0c7x7BDiDUr0uNDZ8/0vJeNc1kJtrfFduwv1vXzfjZKVByO8HXOF6LAHLyJ3l81iHXfItrOHljWs5r9rXDefkVEHNH7fkuRjOapM88kV7ZEfgnhjIZyDyMxxuP8JQ3NBN9Jj8vtXI/Kue5B487iCU/hB8o=
+   eJztl30KwyAMxc0dprAj7J/e/3hdwcceaXE6zSKbP3hUa+tHk8YYwmKxWPwnt6divkpWJEluY4kqC91LdOWy0PNMCuf+rUiGfdeg1/4rY1mM/xgyC3vg+59w+CP+PYjrGst/Y0Y4FunYU/rmaOcYdgixZkZqfOjqmZr3YuNcZoLt3WI79pfW9fN+1otXHPbwdc4XvMAcrPHeXzWIdd/C284WtKxnNvu3wnn7OzziiN73S/KkN08deSYp2XILr/wSwhkN5Rp6YozF+UsutJFGge+kx+V2rnvlXHencUexA7PcCIA=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztl+EOhCAIx+0d1K33f9H7cLkx9kexUC6938YqpgSBaCF8OYhE8Fx06ZJ4XY+KJCJFl4nQMVkYX95P5/Hx3EcUAwfpVmG3eBPQxelezGO3/KLYUM5XAdWuVT3Tnov6Nbqv9XPJloQ0l2MRb8sXL1Dt/qKfVqBcrhwvyi/XJWHcG2ntv9pc312vvDeVs+Go9V+r57v+93wjK1taaueNJ+9q1b/W9hn0+48GKd6n67Xl12j7EqP6s6ZWLei1g+LNE/zw+ifxOm947W+jzs+z6rmXt69fC3aLV8Pp7cCfbj66bAaZ
+   eJztl2EOgCAIRu0O6tb9L9qPcmPsQ7FQS3sbq5gSBKI5d7IR8eA56cIl/rpuGQlEki4SoWOiMD69n87j47mPKAYO0s3CavEGoPPdvejHavlFsaGczwKqXat6pj0X9Wt0n+vnki0JaS7HIt6SL6NAtftGP61AuZw5XpRfrgvCuC9S2n+1ub67XnlvSmfDVus/V893/a/5Rla2tOTOG0/eVap/re3d6fcfDVK8T9drya/W9iVa9WdNrVpQawfFGzv4MeqfZNR5Y9T+1ur83Kuea/n6+rVgtXh/5uQAj9gGgA==
   </data>
  </layer>
  <layer name="door_next" width="60" height="23">
@@ -82,13 +82,13 @@
   </object>
  </objectgroup>
  <objectgroup name="key">
-  <object id="8" x="913" y="589">
+  <object id="8" x="913" y="587">
    <properties>
     <property name="key_type" value="gold"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="34" x="400.333" y="686">
+  <object id="34" x="400.333" y="683">
    <properties>
     <property name="key_type" value="black"/>
    </properties>
