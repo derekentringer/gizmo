@@ -22,6 +22,7 @@ import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.structure.GroundActor;
 import com.derekentringer.gizmo.component.actor.structure.LavaActor;
 import com.derekentringer.gizmo.component.actor.structure.WallActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
@@ -39,6 +40,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.DestroyableBlockModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorOffModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
@@ -167,6 +169,12 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(WallModel.TILE_WALL)) {
                             WallActor wallActor = new WallActor(BodyUtils.createStaticWorldBody(new WallModel(), world, mTileSize, row, col, false));
                             addActor(wallActor);
+                        }
+                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockModel.DESTROYABLE_BLOCK_DIRT)) {
+                            DestroyableBlockActor destroyableBlockActor = new DestroyableBlockActor(BodyUtils.createStaticWorldBody(new DestroyableBlockModel(), world, mTileSize, row, col, false));
+                            destroyableBlockActor.setName(DestroyableBlockModel.DESTROYABLE_BLOCK_DIRT);
+                            addActor(destroyableBlockActor);
+                            addToActorsArray(destroyableBlockActor);
                         }
                         if (curLayerName.equalsIgnoreCase(LavaModel.LAVA)) {
                             LavaActor lavaActor = new LavaActor(BodyUtils.createStaticWorldBody(new LavaModel(), world, mTileSize, row, col, true));

@@ -59,8 +59,6 @@ public class BodyUtils {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.friction = 0;
         fixtureDef.shape = chainShape;
-        fixtureDef.filter.categoryBits = 1;
-        fixtureDef.filter.maskBits = -1;
         fixtureDef.isSensor = isSensor;
 
         fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;

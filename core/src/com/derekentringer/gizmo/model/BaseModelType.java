@@ -14,5 +14,6 @@ public enum BaseModelType {
     HEART,
     HEART_SMALL,
     LIFE,
-    LAVA
+    LAVA,
+    DESTROYABLE_BLOCK
 }
