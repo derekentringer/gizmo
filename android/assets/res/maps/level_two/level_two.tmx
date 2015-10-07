@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="37">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="38">
  <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32">
   <image source="../tileset/bricks.png" width="256" height="192"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmEFuwyAQRfEmi6xjK626yQF6/+s1qDz1d/LHgFMpUr80sk0Az4NhwLmUUtbyres/tapLs61dq053ezNWy293Oyd9od57b81O0ieW1XW2179jgHdpvJS5+hmr0wirMvf8j+322sR6ylEa59qet1Z2DswzrBmvvt/Nq5ZlcRD9icyuP21XGuvSnonna2B+hjUba+XrjYGLzTg+jvHUfFJe4nkpj/kK5t56dayvUOR0qryVk7iuUr8dq+OJv70qB++xwruUnxw9wuvkWDUuXe7L8nS2JmJM38pvf7h364d4hlXL9savx1r1IfeR2XFpnqjPn6bvyBxZs/oxP6/NiOujUub3UD66j7j2jiFjzdpoviJPKe8iNjK/PTlfZ/sajTXXBuYq9l6Yq5T1NNH3YixbIz0fY50jvNoOXnzS88bSrjOsWo81wpnt4hqVx71U11pvH5gRc8w743lykXpZe/e7+hLnmJxI33u5OjIfWU/MKXNGW+XdpH42t/G9jpl+WSOYnmmU1e09MZ/Prtssl69Szvz2WN13ShQxzViy78HrOCJ3rBP92GONZ1fiGZ+YA9qMspakDf0yx3DzjtFvopF9X9eX23Nhxi/9Bs7kWLN5Zs0qL+tFefdYj+Rhx1rCMz6oL9qHqsdbymPcxFh2Z9a/4B2V2381njQmerzKrWdUjaGj/xk58Q4dSy0jvjSX4A9XpOfVyDsiPZdrftYYeobZjSf3Or7siYyH7pE6Lk6z/s0wjDwj/N3E9MykY6G52M2v7k3u+b/oC/SaT/U=
+   eJzdmEFuAyEMRZlNFllnRmnVTQ7Q+1+vQeWpv873AJNKkfolKxkKjB8Ym/RSSlnLt67/1Kouzbb2WXW625ux2n672zmZC/Xee2t2kjmxrK+zvfkdA7xL46XN9c9YnUZYlbnnfxy3Nyb2U47SONf2vLW2c2CeYc149f1uX7Uti4PoT2R28+m40liX9kw8XwPzM6zZWitfbw1cbMb1cYyn5pPyEs9LecxXMPfOq2N9hSKnU+WtnMR1lfrtWB1P/NurcvAeK7xL+cnRI7xOjlXj0uW+LE9nZyLG9K389ofv7vwQz7Bq29769VirPuR7ZHZcmifq86eZOzJH1qx/zM9rM+L6qJT5PbSP1hE33jFkrNkYzVfkKeVdxEb2tyfn6+xco7HmxsBcRe2FuUpZTxNzL8ayM9LzMfY5wqvj4MUnvW8s7XOGVftxRrizXdyg8lhL9az16sCM2GPeGe+Ti/TLxru/qy9xj8mJzL2XqyPzkfPEnrJnjFXeTfpnexvf65iZlzOC6Z1GWV3tifl89txmuXyVdva3x+p+p0QR06wldQ9exxG5Y5/oxx5rvLsSz/jEHjBmlLUkY5iXPYabd4z+Jhqp+3q+XM2FGb/0N3Amx5rtM2dWeTkvyrvHeiQPO9YSnvFBfdE5VD3eUh7jJsayu7P+Be+oXP3VeNKY6PEqt95RNYaO/s/IiXfoWmob8aW5BH/4RHpfjbwj0nu55meNoWeY3XryXdeXmsh6aI3UdXGa9W+GYeQZ4e8mpncmXQvNxW5/tTa5WvVf9AXj3k/g
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
@@ -25,7 +25,7 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlw0OgyAMhekdBnfY/S84SXjJS2eUDmvZxpe8CKL82FpKSovFYvGfPDbldpWmTJLWxhJVFrpX6MploeeZkt7796I49t2DXvuvjOUx/vOSWfgD3/+E6o/49yCuazz/jRnhWKRjz9E3RzvHsCrEmhnp8aG9Z3rey8a5zATb22I79hfr+nk/GyUqDkf4OucLUWAO3kTvrxrEuruItrMHlvXMZn8rnLefERFH9L5/pEhG89QrzyRntkR+CeGMhnIPIzHG4/wlO/IA30mPy+1cvzvnwvy+OdervABqsQfv
+   eJztlwEOgyAMRekdBnfw/hfcTPjJT2eUDkuJ4yU/oqiArR9IabFYLP6T10e5HqUqk6TWsUSVha4VOnJZ6H6mpO/3e1Ec392CHvtT2vJof7ulF/4g939hz0f8exCfazz/jRlhL9Lec/bNUc8etgteMyMtOXR0T8tz2diXmeB4W2LH+WIdP89nvUT5cESu83ohCvTBm+j5VQOvG0V0nD2wjGe2+FvhdfsVET6i5/0zRdK7Tr1zT3IVS6wvIezRUG6hx2M89l9yIA/wnXS7XM/nI70Y8Rs9B3jwBnttCAQ=
   </data>
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
@@ -87,7 +87,7 @@
   </object>
  </objectgroup>
  <objectgroup name="key">
-  <object id="8" x="913" y="587">
+  <object id="8" x="913" y="584">
    <properties>
     <property name="key_type" value="gold"/>
    </properties>
@@ -120,7 +120,7 @@
   </object>
  </objectgroup>
  <objectgroup name="life">
-  <object id="36" x="399.333" y="685.333">
+  <object id="36" x="399.333" y="688.333">
    <ellipse/>
   </object>
  </objectgroup>
