@@ -1,7 +1,9 @@
 TODO
 -----
 
-add diamonds for drops
+destroyable blocks are ready for player collision tests and attacks
+
+add diamonds for drops on dirt destroyables
 
 clean up the project, move all of the pyxel files out of the project, leave the outputs
 	- assets/res/
