@@ -5,9 +5,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.derekentringer.gizmo.settings.Constants;
 
+import java.util.Random;
+
 public class WorldUtils {
 
     private static final String TAG = WorldUtils.class.getSimpleName();
+
+    private static Random rnd = new Random();
 
     public static World createWorld() {
         return new World(Constants.WORLD_GRAVITY, true);
@@ -42,6 +46,10 @@ public class WorldUtils {
     public static float generatRandomPositiveNegativeValue(float max, float min) {
         float i = -min + (float) (Math.random() * ((max - (-min)) + 1));
         return i;
+    }
+
+    public static boolean randomBoolean() {
+        return rnd.nextBoolean();
     }
 
 }

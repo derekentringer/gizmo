@@ -40,7 +40,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.structure.DestroyableBlockModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorOffModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
@@ -51,6 +51,7 @@ import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
+import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
@@ -170,9 +171,9 @@ public class MapParser extends Stage {
                             WallActor wallActor = new WallActor(BodyUtils.createStaticWorldBody(new WallModel(), world, mTileSize, row, col, false));
                             addActor(wallActor);
                         }
-                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockModel.DESTROYABLE_BLOCK_DIRT)) {
-                            DestroyableBlockActor destroyableBlockActor = new DestroyableBlockActor(BodyUtils.createStaticWorldBody(new DestroyableBlockModel(), world, mTileSize, row, col, false));
-                            destroyableBlockActor.setName(DestroyableBlockModel.DESTROYABLE_BLOCK_DIRT);
+                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT)) {
+                            DestroyableBlockActor destroyableBlockActor = new DestroyableBlockActor(BodyUtils.createStaticWorldBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean()), world, mTileSize, row, col, false));
+                            destroyableBlockActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
                             addActor(destroyableBlockActor);
                             addToActorsArray(destroyableBlockActor);
                         }

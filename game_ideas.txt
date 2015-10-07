@@ -1,6 +1,8 @@
 TODO
 -----
 
+add diamonds for drops
+
 clean up the project, move all of the pyxel files out of the project, leave the outputs
 	- assets/res/
 	
@@ -24,8 +26,6 @@ costumes
 	- raptor
 	- taco
 	- mech
-
-diamond drops
 
 gizmo upgrades - some attacks (rolling, jump-lunge, guns)
 

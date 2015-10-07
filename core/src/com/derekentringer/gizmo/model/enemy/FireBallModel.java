@@ -2,7 +2,7 @@ package com.derekentringer.gizmo.model.enemy;
 
 import com.derekentringer.gizmo.model.BaseModelType;
 
-public class FireBallModel extends EnemyModel {
+public class FireBallModel extends BaseEnemyModel {
 
     public static final String FIREBALL = "FIREBALL";
 

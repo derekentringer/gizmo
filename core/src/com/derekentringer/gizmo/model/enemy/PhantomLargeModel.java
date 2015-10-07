@@ -2,7 +2,7 @@ package com.derekentringer.gizmo.model.enemy;
 
 import com.derekentringer.gizmo.model.BaseModelType;
 
-public class PhantomLargeModel extends EnemyModel {
+public class PhantomLargeModel extends BaseEnemyModel {
 
     public static final String PHANTOM_LARGE = "PHANTOM_LARGE";
 
