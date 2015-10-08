@@ -13,11 +13,6 @@ public class FixtureUtils {
         return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_HIT_AREA);
     }
 
-    public static boolean fixtureIsDoor(Fixture fixture) {
-        BaseModel userData = (BaseModel) fixture.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.DOOR);
-    }
-
     public static boolean fixtureIsGround(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
         return userData != null
@@ -25,9 +20,9 @@ public class FixtureUtils {
                 || userData.getBaseModelType().equals(BaseModelType.DESTROYABLE_BLOCK));
     }
 
-    public static boolean fixtureIsWall(Fixture fixture) {
+    public static boolean fixtureIsDestroyable(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.WALL);
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.DESTROYABLE_BLOCK);
     }
 
 }

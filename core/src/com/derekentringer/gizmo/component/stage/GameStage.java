@@ -153,6 +153,16 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             mPlayerActor.setIsOnGround(true);
         }
 
+        // player fixture and destroyable detection
+        if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsDestroyable(b)) {
+            mPlayerActor.setIsOnGround(true);
+            mPlayerActor.setIsTouchingDestroyable(true);
+        }
+        else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsDestroyable(a)) {
+            mPlayerActor.setIsOnGround(true);
+            mPlayerActor.setIsTouchingDestroyable(true);
+        }
+
         // player attack with items collisions
         if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));

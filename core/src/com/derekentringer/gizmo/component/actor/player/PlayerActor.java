@@ -71,6 +71,7 @@ public class PlayerActor extends BaseActor {
 
     private DoorModel mIsAtDoorUserData;
     private boolean mIsOnGround;
+    private boolean mIsTouchingDestroyable;
     private boolean mIsAtDoor;
     private static boolean mIsFlinching;
 
@@ -420,6 +421,14 @@ public class PlayerActor extends BaseActor {
 
     public boolean getIsOnGround() {
         return mIsOnGround;
+    }
+
+    public void setIsTouchingDestroyable(boolean onDestroyable) {
+        mIsTouchingDestroyable = onDestroyable;
+    }
+
+    public boolean getIsTouchingDestroyable() {
+        return mIsTouchingDestroyable;
     }
 
     public void setIsAtDoor(boolean atDoor) {
