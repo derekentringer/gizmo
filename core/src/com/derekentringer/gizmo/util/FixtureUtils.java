@@ -20,7 +20,9 @@ public class FixtureUtils {
 
     public static boolean fixtureIsGround(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.GROUND);
+        return userData != null
+                && (userData.getBaseModelType().equals(BaseModelType.GROUND)
+                || userData.getBaseModelType().equals(BaseModelType.DESTROYABLE_BLOCK));
     }
 
     public static boolean fixtureIsWall(Fixture fixture) {
