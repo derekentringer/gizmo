@@ -17,7 +17,7 @@ public class PhantomActor extends BaseActor {
     private static final float MOVEMENT_FORCE = 0.1f;
     private static final float MOVEMENT_PADDING = WorldUtils.ppmCalc(7);
 
-    private static final float PLAYER_DETECTION_Y = 1f;
+    private static final float PLAYER_DETECTION_Y = 3f;
     private static final float PLAYER_DETECTION_X = 4f;
 
     private TextureRegion[] mPhantomLeftSprite;
