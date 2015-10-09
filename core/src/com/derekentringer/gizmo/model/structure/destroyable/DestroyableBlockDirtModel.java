@@ -6,7 +6,7 @@ public class DestroyableBlockDirtModel extends BaseDestroyableModel {
 
     public static final String DESTROYABLE_BLOCK_DIRT = "DESTROYABLE_BLOCK_DIRT";
 
-    private int mHealth = 2;
+    private int mHealth = 50;
     private boolean mDoesLootDrop;
 
     public DestroyableBlockDirtModel(boolean doesLootDrop) {

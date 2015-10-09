@@ -1,7 +1,9 @@
 TODO
 -----
 
-destroyable blocks are ready for player collision tests and attacks
+add digging left and right
+
+save out removed blocks
 
 add diamonds for drops on dirt destroyables
 

@@ -46,7 +46,9 @@ import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
+import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
@@ -156,13 +158,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // player fixture and destroyable detection
         if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsDestroyable(b)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setIsTouchingDestroyable(true);
+            mPlayerActor.setTouchingDestroyable(b.getBody());
 
             //mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) b.getBody().getUserData(), b.getBody()));
         }
         else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsDestroyable(a)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setIsTouchingDestroyable(true);
+            mPlayerActor.setTouchingDestroyable(a.getBody());
 
             //mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) a.getBody().getUserData(), a.getBody()));
         }
@@ -501,9 +503,19 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
-            if (mPlayerActor.getIsTouchingDestroyable()) {
-                mPlayerActor.dig();
+            mPlayerActor.dig();
 
+            BlockUtils.setBlockHealth(mPlayerActor.getTouchingDestroyable(), mPlayerModel.getDiggingPower());
+            if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingDestroyable()) <= 0) {
+
+                if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingDestroyable())) {
+                    mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingDestroyable().getPosition());
+                }
+
+                mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData(), mPlayerActor.getTouchingDestroyable()));
+
+                //TODO save out block info
+                //mLoadedLevelModel.addRemovedBlock((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData());
             }
         }
 

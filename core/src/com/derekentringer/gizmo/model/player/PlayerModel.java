@@ -27,6 +27,7 @@ public class PlayerModel extends BaseModel {
     private int mLives;
     private int mHearts;
     private int mHealth;
+    private int mDiggingPower = 1;
 
     public PlayerModel() {
         super();
@@ -66,6 +67,14 @@ public class PlayerModel extends BaseModel {
 
     public int getHealth() {
         return mHealth;
+    }
+
+    public int getDiggingPower() {
+        return mDiggingPower;
+    }
+
+    public void setDiggingPower(int diggingPower) {
+        mDiggingPower = diggingPower;
     }
 
     public ArrayList<KeyModel> getKeys() {
