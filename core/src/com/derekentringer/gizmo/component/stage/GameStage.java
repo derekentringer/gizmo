@@ -157,10 +157,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsDestroyable(b)) {
             mPlayerActor.setIsOnGround(true);
             mPlayerActor.setIsTouchingDestroyable(true);
+
+            //mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) b.getBody().getUserData(), b.getBody()));
         }
         else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsDestroyable(a)) {
             mPlayerActor.setIsOnGround(true);
             mPlayerActor.setIsTouchingDestroyable(true);
+
+            //mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) a.getBody().getUserData(), a.getBody()));
         }
 
         // player attack with items collisions
@@ -493,6 +497,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // stop jumping
         if (!UserInput.isDown(UserInput.JUMP_BUTTON)) {
             mPlayerActor.stopJumping();
+        }
+
+        // dig
+        if (UserInput.isDown(UserInput.DIG_BUTTON)) {
+            if (mPlayerActor.getIsTouchingDestroyable()) {
+                mPlayerActor.dig();
+
+            }
         }
 
         // enter a door

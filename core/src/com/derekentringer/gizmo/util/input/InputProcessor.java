@@ -23,6 +23,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
+        if (keycode == Input.Keys.G) {
+            UserInput.setKey(UserInput.DIG_BUTTON, true);
+        }
         if (keycode == Input.Keys.SHIFT_LEFT
                 || keycode == Input.Keys.SHIFT_RIGHT) {
             UserInput.setKey(UserInput.RUN, true);
@@ -57,6 +60,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
+        }
+        if (keycode == Input.Keys.G) {
+            UserInput.setKey(UserInput.DIG_BUTTON, false);
         }
         if (keycode == Input.Keys.SHIFT_LEFT
                 || keycode == Input.Keys.SHIFT_RIGHT) {

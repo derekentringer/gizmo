@@ -246,6 +246,10 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setCurrentLevel(level);
     }
 
+    public void dig() {
+
+    }
+
     public void jump() {
         if (mIsFlinching) {
             if (getFacingDirection() == FACING_RIGHT) {

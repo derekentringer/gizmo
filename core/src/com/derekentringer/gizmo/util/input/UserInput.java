@@ -7,7 +7,7 @@ public class UserInput {
     public static boolean[] currentKey;
     public static boolean[] previousKey;
 
-    public static final int NUM_KEYS = 6;
+    public static final int NUM_KEYS = 7;
 
     public static final int JUMP_BUTTON = 0;
     public static final int LEFT_BUTTON = 1;
@@ -15,6 +15,7 @@ public class UserInput {
     public static final int ENTER_DOOR = 3;
     public static final int ATTACK = 4;
     public static final int RUN = 5;
+    public static final int DIG_BUTTON = 6;
 
     static {
         currentKey = new boolean[NUM_KEYS];
