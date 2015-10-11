@@ -517,18 +517,39 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
-            mPlayerActor.dig();
             
+            mPlayerActor.dig();
 
-            BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom(), mPlayerModel.getDiggingPower());
-            if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom()) <= 0) {
-                if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableBottom())) {
-                    mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
+            if (UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+                BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight(), mPlayerModel.getDiggingPower());
+                if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight()) <= 0) {
+                    if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableRight())) {
+                        mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
+                    }
+                    mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData(), mPlayerActor.getTouchingBodyDestroyableRight()));
+                    mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData());
                 }
-                mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
-                mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
             }
-
+            else if (UserInput.isDown(UserInput.LEFT_BUTTON)) {
+                BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft(), mPlayerModel.getDiggingPower());
+                if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft()) <= 0) {
+                    if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableLeft())) {
+                        mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableLeft().getPosition());
+                    }
+                    mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData(), mPlayerActor.getTouchingBodyDestroyableLeft()));
+                    mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData());
+                }
+            }
+            else {
+                BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom(), mPlayerModel.getDiggingPower());
+                if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom()) <= 0) {
+                    if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableBottom())) {
+                        mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
+                    }
+                    mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
+                    mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
+                }
+            }
         }
 
         // enter a door
