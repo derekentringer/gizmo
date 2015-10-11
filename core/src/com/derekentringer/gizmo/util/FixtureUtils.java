@@ -8,9 +8,24 @@ public class FixtureUtils {
 
     private static final String TAG = FixtureUtils.class.getSimpleName();
 
+    public static boolean fixtureIsPlayerHitAreaTop(Fixture fixture) {
+        BaseModel userData = (BaseModel) fixture.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_SENSOR_TOP);
+    }
+
+    public static boolean fixtureIsPlayerHitAreaRight(Fixture fixture) {
+        BaseModel userData = (BaseModel) fixture.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_SENSOR_RIGHT);
+    }
+
     public static boolean fixtureIsPlayerHitAreaBottom(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
         return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_SENSOR_BOTTOM);
+    }
+
+    public static boolean fixtureIsPlayerHitAreaLeft(Fixture fixture) {
+        BaseModel userData = (BaseModel) fixture.getUserData();
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_SENSOR_LEFT);
     }
 
     public static boolean fixtureIsGround(Fixture fixture) {
