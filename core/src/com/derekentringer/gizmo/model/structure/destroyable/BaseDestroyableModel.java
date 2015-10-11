@@ -1,5 +1,6 @@
 package com.derekentringer.gizmo.model.structure.destroyable;
 
+import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 
@@ -7,6 +8,7 @@ public class BaseDestroyableModel extends BaseModel {
 
     private int mHealth;
     private boolean mDoesLootDrop;
+    private Vector2 mBlockPosition;
 
     public BaseDestroyableModel() {
     }
@@ -29,6 +31,14 @@ public class BaseDestroyableModel extends BaseModel {
 
     public void setDoesLootDrop(boolean doesLootDrop) {
         mDoesLootDrop = doesLootDrop;
+    }
+
+    public Vector2 getPosition() {
+        return mBlockPosition;
+    }
+
+    public void setPosition(Vector2 position) {
+        mBlockPosition = position;
     }
 
 }

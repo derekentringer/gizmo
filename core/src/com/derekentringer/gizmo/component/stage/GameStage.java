@@ -504,18 +504,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
             mPlayerActor.dig();
-
             BlockUtils.setBlockHealth(mPlayerActor.getTouchingDestroyable(), mPlayerModel.getDiggingPower());
             if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingDestroyable()) <= 0) {
-
                 if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingDestroyable())) {
                     mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingDestroyable().getPosition());
                 }
-
                 mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData(), mPlayerActor.getTouchingDestroyable()));
-
-                //TODO save out block info
-                //mLoadedLevelModel.addRemovedBlock((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData());
+                mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData());
             }
         }
 
@@ -619,6 +614,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             mPlayerModel.setHealth(PlayerModel.DEFAULT_HEALTH);
             mPlayerModel.setLives(PlayerModel.DEFAULT_LIVES);
             mPlayerModel.setCurrentLevel(PlayerModel.DEFAULT_LEVEL);
+            mPlayerModel.setDiggingPower(PlayerModel.DEFAULT_DIGGING_POWER);
             playerActor.initPlayerData(mPlayerModel);
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }

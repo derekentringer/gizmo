@@ -40,6 +40,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorOffModel;
@@ -172,10 +173,13 @@ public class MapParser extends Stage {
                             addActor(wallActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT)) {
-                            DestroyableBlockActor destroyableBlockActor = new DestroyableBlockActor(BodyUtils.createStaticWorldBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean()), world, mTileSize, row, col, false));
-                            destroyableBlockActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
-                            addActor(destroyableBlockActor);
-                            addToActorsArray(destroyableBlockActor);
+                            Vector2 blockPosition = new Vector2(row, col);
+                            if (!loopThruDestroyedBlocksArray(mLoadedLevelModel.getDestroyedBlockList(), blockPosition)) {
+                                DestroyableBlockActor destroyableBlockActor = new DestroyableBlockActor(BodyUtils.createStaticWorldBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                destroyableBlockActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
+                                addActor(destroyableBlockActor);
+                                addToActorsArray(destroyableBlockActor);
+                            }
                         }
                         if (curLayerName.equalsIgnoreCase(LavaModel.LAVA)) {
                             LavaActor lavaActor = new LavaActor(BodyUtils.createStaticWorldBody(new LavaModel(), world, mTileSize, row, col, true));
@@ -385,6 +389,15 @@ public class MapParser extends Stage {
     private static boolean loopThruPickedUpItemsArray(ArrayList<BaseItemModel> array, String targetValue) {
         for (BaseItemModel lookingForItem : array) {
             if (lookingForItem.getItemType().equalsIgnoreCase(targetValue)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean loopThruDestroyedBlocksArray(ArrayList<BaseDestroyableModel> array, Vector2 targetValue) {
+        for (BaseDestroyableModel lookingForItem : array) {
+            if (lookingForItem.getPosition().equals(targetValue)) {
                 return true;
             }
         }

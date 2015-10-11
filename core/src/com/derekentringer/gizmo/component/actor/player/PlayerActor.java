@@ -139,6 +139,7 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setHearts(playerModel.getHearts());
         mPlayerModel.setHealth(playerModel.getHealth());
         mPlayerModel.setLives(playerModel.getLives());
+        mPlayerModel.setDiggingPower(playerModel.getDiggingPower());
         mPlayerModel.setCurrentLevel(playerModel.getCurrentLevel());
         if (playerModel.getKeys().size() > 0) {
             for (int i = 0; i < playerModel.getKeys().size(); i++) {
@@ -246,10 +247,6 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setCurrentLevel(level);
     }
 
-    public void dig() {
-
-    }
-
     public void jump() {
         if (mIsFlinching) {
             if (getFacingDirection() == FACING_RIGHT) {
@@ -305,6 +302,10 @@ public class PlayerActor extends BaseActor {
             }
         }
         BodyUtils.applyLinearImpulseToBody(mBody, JUMP_FORCE_RESET, "y");
+    }
+
+    public void dig() {
+        //TODO set dig animation
     }
 
     public void moveLeft(boolean isRunning) {

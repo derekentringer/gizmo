@@ -7,6 +7,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
+import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class LevelModel extends BaseModel {
     private ArrayList<HeartModel> mPickedUpHearts = new ArrayList<HeartModel>();
     private ArrayList<LifeModel> mPickedUpLives = new ArrayList<LifeModel>();
     private ArrayList<DoorModel> mOpenedDoors = new ArrayList<DoorModel>();
+    private ArrayList<BaseDestroyableModel> mDestroyedBlockList = new ArrayList<BaseDestroyableModel>();
 
     private int mLevelInt;
     private String mLevelMap;
@@ -104,6 +106,14 @@ public class LevelModel extends BaseModel {
 
     public ArrayList<DoorModel> getOpenedDoors() {
         return mOpenedDoors;
+    }
+
+    public ArrayList<BaseDestroyableModel> getDestroyedBlockList() {
+        return mDestroyedBlockList;
+    }
+
+    public void addDestroyedBlock(BaseDestroyableModel block) {
+        mDestroyedBlockList.add(block);
     }
 
 }

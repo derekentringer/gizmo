@@ -2,8 +2,8 @@ package com.derekentringer.gizmo.model.player;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
 
 import java.util.ArrayList;
 
@@ -14,11 +14,12 @@ public class PlayerModel extends BaseModel {
 
     public static final int HEART_HEALTH_AMOUNT = 10;
 
+    public static final int DEFAULT_LEVEL = 0;
     public static final int DEFAULT_HEARTS = 2;
     public static final int DEFAULT_HEALTH = 20;
     public static final int DEFAULT_LIVES = 2;
     public static final int DEFAULT_MAX_LIVES = 5;
-    public static final int DEFAULT_LEVEL = 0;
+    public static final int DEFAULT_DIGGING_POWER = 1;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
     private ArrayList<BaseItemModel> mItemList = new ArrayList<BaseItemModel>();
@@ -27,6 +28,7 @@ public class PlayerModel extends BaseModel {
     private int mLives;
     private int mHearts;
     private int mHealth;
+    //TODO
     private int mDiggingPower = 1;
 
     public PlayerModel() {
