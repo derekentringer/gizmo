@@ -10,7 +10,7 @@ public class FixtureUtils {
 
     public static boolean fixtureIsPlayerHitAreaBottom(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_HIT_AREA_BOTTOM);
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_SENSOR_BOTTOM);
     }
 
     public static boolean fixtureIsGround(Fixture fixture) {
