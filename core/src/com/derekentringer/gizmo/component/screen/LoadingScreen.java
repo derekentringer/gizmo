@@ -13,75 +13,73 @@ public class LoadingScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        mGizmoGame.assetManager.load("res/images/hud/hud_lives_one.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_lives_two.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_lives_three.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_lives_four.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_lives_five.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_lives_one.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_lives_two.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_lives_three.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_lives_four.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_lives_five.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_two.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_three.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_four.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_five.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_six.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_seven.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_eight.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_nine.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/hud/hud_hearts_ten.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_two.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_three.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_four.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_five.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_six.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_seven.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_eight.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_nine.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/hud/hud_hearts_ten.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_running_left.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_running_right.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_standing_right_large.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_standing_left_large.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_running_left.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_running_right.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_standing_right_large.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_standing_left_large.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_up_right_large.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_up_left_large.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_up_right_large.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_up_left_large.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_running_flinching_left.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_running_flinching_right.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_standing_left_large_flinching.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_standing_right_large_flinching.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_up_left_large_flinching.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_up_right_large_flinching.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_fall_left_large_flinching.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/gizmo/gizmo_jump_fall_right_large_flinching.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_running_flinching_left.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_running_flinching_right.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_standing_left_large_flinching.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_standing_right_large_flinching.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_up_left_large_flinching.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_up_right_large_flinching.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_fall_left_large_flinching.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/gizmo/gizmo_jump_fall_right_large_flinching.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/enemies/phantom/phantom_left.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/enemies/phantom/phantom_right.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/enemy/phantom/phantom_left.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/enemy/phantom/phantom_right.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/enemies/boss/phantom.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/enemies/boss/fireball.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/boss/phantom/phantom.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/character/boss/phantom/fireball.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/objects/key_gold.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/objects/key_bronze.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/objects/key_blood.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/objects/key_black.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/object/key_gold.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/object/key_bronze.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/object/key_blood.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/object/key_black.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/objects/heart.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/objects/life.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/object/heart.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/object/life.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/items/drop_heart.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/drop/drop_heart.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/doors/door_gold.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/doors/door_bronze.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/doors/door_blood.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/doors/door_black.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_gold.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_bronze.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_blood.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_black.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/doors/door_gold_opening.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/doors/door_bronze_opening.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/doors/door_blood_opening.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/doors/door_black_opening.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_gold_opening.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_bronze_opening.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_blood_opening.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_black_opening.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/door/door_opened.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/doors/door_opened.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/item/boomerang_wood.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/item/boomerang_wood_pickup_shine.png", Texture.class);
 
-        mGizmoGame.assetManager.load("res/images/items/boomerang_wood.png", Texture.class);
-        mGizmoGame.assetManager.load("res/images/items/boomerang_wood_pickup_shine.png", Texture.class);
-
-        mGizmoGame.assetManager.load("res/images/tiles/lava.png", Texture.class);
-
-        mGizmoGame.assetManager.load("res/images/tiles/destroyable_block_dirt.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/tile/lava.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/tile/destroyable_block_dirt.png", Texture.class);
 
         //mGizmoGame.assetManager.load("res/music/background.ogg", Music.class);
         //mGizmoGame.assetManager.load("res/sfx/jump.ogg", Sound.class);
