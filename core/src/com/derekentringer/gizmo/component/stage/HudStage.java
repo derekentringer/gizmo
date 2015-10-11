@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
+import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -21,7 +22,7 @@ public class HudStage extends Stage implements IGameStage {
 
     private static final String TAG = HudStage.class.getSimpleName();
 
-    private ArrayList<com.derekentringer.gizmo.component.stage.interfaces.IHudStage> listeners = new ArrayList<com.derekentringer.gizmo.component.stage.interfaces.IHudStage>();
+    private ArrayList<IHudStage> listeners = new ArrayList<IHudStage>();
 
     private static final int HUD_PADDING = 10;
 
@@ -89,27 +90,27 @@ public class HudStage extends Stage implements IGameStage {
 
         mSpriteBatch = new SpriteBatch();
 
-        mHudLivesOne = Gizmo.assetManager.get("res/images/hud/hud_lives_one.png", Texture.class);
-        mHudLivesTwo = Gizmo.assetManager.get("res/images/hud/hud_lives_two.png", Texture.class);
-        mHudLivesThree = Gizmo.assetManager.get("res/images/hud/hud_lives_three.png", Texture.class);
-        mHudLivesFour = Gizmo.assetManager.get("res/images/hud/hud_lives_four.png", Texture.class);
-        mHudLivesFive = Gizmo.assetManager.get("res/images/hud/hud_lives_five.png", Texture.class);
+        mHudLivesOne = Gizmo.assetManager.get("res/image/hud/hud_lives_one.png", Texture.class);
+        mHudLivesTwo = Gizmo.assetManager.get("res/image/hud/hud_lives_two.png", Texture.class);
+        mHudLivesThree = Gizmo.assetManager.get("res/image/hud/hud_lives_three.png", Texture.class);
+        mHudLivesFour = Gizmo.assetManager.get("res/image/hud/hud_lives_four.png", Texture.class);
+        mHudLivesFive = Gizmo.assetManager.get("res/image/hud/hud_lives_five.png", Texture.class);
 
-        mHudHeartsTwo = Gizmo.assetManager.get("res/images/hud/hud_hearts_two.png", Texture.class);
-        mHudHeartsThree = Gizmo.assetManager.get("res/images/hud/hud_hearts_three.png", Texture.class);
-        mHudHeartsFour = Gizmo.assetManager.get("res/images/hud/hud_hearts_four.png", Texture.class);
-        mHudHeartsFive = Gizmo.assetManager.get("res/images/hud/hud_hearts_five.png", Texture.class);
-        mHudHeartsSix = Gizmo.assetManager.get("res/images/hud/hud_hearts_six.png", Texture.class);
-        mHudHeartsSeven = Gizmo.assetManager.get("res/images/hud/hud_hearts_seven.png", Texture.class);
-        mHudHeartsEight = Gizmo.assetManager.get("res/images/hud/hud_hearts_eight.png", Texture.class);
-        mHudHeartsNine = Gizmo.assetManager.get("res/images/hud/hud_hearts_nine.png", Texture.class);
-        mHudHeartsTen = Gizmo.assetManager.get("res/images/hud/hud_hearts_ten.png", Texture.class);
+        mHudHeartsTwo = Gizmo.assetManager.get("res/image/hud/hud_hearts_two.png", Texture.class);
+        mHudHeartsThree = Gizmo.assetManager.get("res/image/hud/hud_hearts_three.png", Texture.class);
+        mHudHeartsFour = Gizmo.assetManager.get("res/image/hud/hud_hearts_four.png", Texture.class);
+        mHudHeartsFive = Gizmo.assetManager.get("res/image/hud/hud_hearts_five.png", Texture.class);
+        mHudHeartsSix = Gizmo.assetManager.get("res/image/hud/hud_hearts_six.png", Texture.class);
+        mHudHeartsSeven = Gizmo.assetManager.get("res/image/hud/hud_hearts_seven.png", Texture.class);
+        mHudHeartsEight = Gizmo.assetManager.get("res/image/hud/hud_hearts_eight.png", Texture.class);
+        mHudHeartsNine = Gizmo.assetManager.get("res/image/hud/hud_hearts_nine.png", Texture.class);
+        mHudHeartsTen = Gizmo.assetManager.get("res/image/hud/hud_hearts_ten.png", Texture.class);
 
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
     }
 
-    public void addListener(com.derekentringer.gizmo.component.stage.interfaces.IHudStage listener) {
+    public void addListener(IHudStage listener) {
         listeners.add(listener);
     }
 

@@ -17,7 +17,7 @@ public class LavaActor extends BaseActor {
     public LavaActor(Body body) {
         super(body);
 
-        mLava = Gizmo.assetManager.get("res/images/tiles/lava.png", Texture.class);
+        mLava = Gizmo.assetManager.get("res/image/tile/lava.png", Texture.class);
         mLavaSprite = TextureRegion.split(mLava, 32, 32)[0];
 
         setIsPlayingAnimation(true);

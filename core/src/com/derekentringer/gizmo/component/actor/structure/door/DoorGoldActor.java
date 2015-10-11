@@ -27,13 +27,13 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
         super(body);
         addListener(this);
         if (isLocked) {
-            mDoorGold = Gizmo.assetManager.get("res/images/doors/door_gold_opening.png", Texture.class);
+            mDoorGold = Gizmo.assetManager.get("res/image/door/door_gold_opening.png", Texture.class);
         }
         else {
-            mDoorGold = Gizmo.assetManager.get("res/images/doors/door_opened.png", Texture.class);
+            mDoorGold = Gizmo.assetManager.get("res/image/door/door_opened.png", Texture.class);
         }
 
-        mDoorOpen = Gizmo.assetManager.get("res/images/doors/door_opened.png", Texture.class);
+        mDoorOpen = Gizmo.assetManager.get("res/image/door/door_opened.png", Texture.class);
         mDoorOpenSprite = TextureRegion.split(mDoorOpen, 32, 32)[0];
 
         mDoorGoldSprite = TextureRegion.split(mDoorGold, 32, 32)[0];
@@ -41,7 +41,7 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
         setAnimation(mDoorGoldSprite, 1 / 12f);
     }
 
-    public void addListener(com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor listener) {
+    public void addListener(IDoor listener) {
         listeners.add(listener);
     }
 
@@ -58,7 +58,7 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
     public void isAnimationFinished(boolean isFinished) {
         if (isFinished) {
             setAnimation(mDoorOpenSprite, 1 / 12f);
-            for (com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor listener : listeners) {
+            for (IDoor listener : listeners) {
                 listener.doorAnimationComplete(this);
             }
         }

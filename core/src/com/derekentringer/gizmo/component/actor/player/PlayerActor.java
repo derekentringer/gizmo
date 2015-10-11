@@ -87,24 +87,24 @@ public class PlayerActor extends BaseActor {
     public PlayerActor(Body body) {
         super(body);
 
-        mGizmoRunningRight = Gizmo.assetManager.get("res/images/gizmo/gizmo_running_right.png", Texture.class);
-        mGizmoRunningLeft = Gizmo.assetManager.get("res/images/gizmo/gizmo_running_left.png", Texture.class);
-        mGizmoStandingRight = Gizmo.assetManager.get("res/images/gizmo/gizmo_standing_right_large.png", Texture.class);
-        mGizmoStandingLeft = Gizmo.assetManager.get("res/images/gizmo/gizmo_standing_left_large.png", Texture.class);
+        mGizmoRunningRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_right.png", Texture.class);
+        mGizmoRunningLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_left.png", Texture.class);
+        mGizmoStandingRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_right_large.png", Texture.class);
+        mGizmoStandingLeft = Gizmo.assetManager.get("res/image/gizmo/gizmo_standing_left_large.png", Texture.class);
 
-        mGizmoJumpUpRightSprites = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_up_right_large.png", Texture.class);
-        mGizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_up_left_large.png", Texture.class);
-        mGizmoFallRightSprites = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
-        mGizmoFallLeftSprites = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
+        mGizmoJumpUpRightSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_right_large.png", Texture.class);
+        mGizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_left_large.png", Texture.class);
+        mGizmoFallRightSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
+        mGizmoFallLeftSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
 
-        mGizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/images/gizmo/gizmo_running_flinching_left.png", Texture.class);
-        mGizmoFlinchingRunningRight = Gizmo.assetManager.get("res/images/gizmo/gizmo_running_flinching_right.png", Texture.class);
-        mGizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/images/gizmo/gizmo_standing_left_large_flinching.png", Texture.class);
-        mGizmoFlinchingStandingRight = Gizmo.assetManager.get("res/images/gizmo/gizmo_standing_right_large_flinching.png", Texture.class);
-        mGizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_up_right_large_flinching.png", Texture.class);
-        mGizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_up_left_large_flinching.png", Texture.class);
-        mGizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_fall_right_large_flinching.png", Texture.class);
-        mGizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/images/gizmo/gizmo_jump_fall_left_large_flinching.png", Texture.class);
+        mGizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_flinching_left.png", Texture.class);
+        mGizmoFlinchingRunningRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_flinching_right.png", Texture.class);
+        mGizmoFlinchingStandingLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_left_large_flinching.png", Texture.class);
+        mGizmoFlinchingStandingRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_right_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpUpRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_right_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpUpLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_left_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_right_large_flinching.png", Texture.class);
+        mGizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_left_large_flinching.png", Texture.class);
 
         mRunningRightSprites = TextureRegion.split(mGizmoRunningRight, 32, 32)[0];
         mRunningLeftSprites = TextureRegion.split(mGizmoRunningLeft, 32, 32)[0];

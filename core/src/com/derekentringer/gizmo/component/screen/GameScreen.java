@@ -27,7 +27,7 @@ public class GameScreen implements Screen {
 
     public GameScreen() {
         GameLevelUtils.buildGameLevelList();
-        mGameStage = new com.derekentringer.gizmo.component.stage.GameStage();
+        mGameStage = new GameStage();
         mHudStage = new HudStage(mGameStage);
         mHudStage.addListener(mGameStage);
         if (LocalDataManager.loadPlayerActorData() != null) {

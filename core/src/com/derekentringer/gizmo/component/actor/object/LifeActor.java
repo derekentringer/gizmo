@@ -16,7 +16,7 @@ public class LifeActor extends BaseActor {
 
     public LifeActor(Body body) {
         super(body);
-        mLife = Gizmo.assetManager.get("res/images/objects/life.png", Texture.class);
+        mLife = Gizmo.assetManager.get("res/image/object/life.png", Texture.class);
         mLifeSprite = TextureRegion.split(mLife, 32, 32)[0];
         setAnimation(mLifeSprite, 1 / 12f);
     }

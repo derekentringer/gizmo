@@ -34,7 +34,7 @@ public class DropHeartActor extends BaseActor {
     public DropHeartActor(Body body) {
         super(body);
 
-        mDropHeart = Gizmo.assetManager.get("res/images/items/drop_heart.png", Texture.class);
+        mDropHeart = Gizmo.assetManager.get("res/image/drop/drop_heart.png", Texture.class);
         mDropHeartSprite = TextureRegion.split(mDropHeart, 8, 8)[0];
 
         setAnimation(mDropHeartSprite, 1 / 12f);

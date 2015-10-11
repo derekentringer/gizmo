@@ -33,7 +33,7 @@ public class BoomerangWoodActor extends BaseActor {
 
         mPlayerFacingDirection = playerFacingDirection;
 
-        mBoomerangWoodTexture = Gizmo.assetManager.get("res/images/items/boomerang_wood.png", Texture.class);
+        mBoomerangWoodTexture = Gizmo.assetManager.get("res/image/item/boomerang_wood.png", Texture.class);
         mBoomerangWoodSprite = TextureRegion.split(mBoomerangWoodTexture, 32, 32)[0];
         setAnimation(mBoomerangWoodSprite, 1 / 12f);
     }
