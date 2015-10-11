@@ -25,6 +25,10 @@ public class LevelModel extends BaseModel {
     private String mLevelMidMap;
     private String mLevelBackMap;
 
+    private KeyModel mLastKeyAdded;
+    private HeartModel mLastHeartAdded;
+    private BaseDestroyableModel mLastBlockAdded;
+
     public LevelModel() {
     }
 
@@ -72,12 +76,15 @@ public class LevelModel extends BaseModel {
         mPickedUpItems.add(itemModel);
     }
 
-    public ArrayList<BaseItemModel> getmPickedUpItems() {
+    public ArrayList<BaseItemModel> getPickedUpItems() {
         return mPickedUpItems;
     }
 
     public void addPickedUpKey(KeyModel keyModel) {
-        mPickedUpKeys.add(keyModel);
+        if (mLastKeyAdded == null || !mLastKeyAdded.equals(keyModel)) {
+            mPickedUpKeys.add(keyModel);
+            mLastKeyAdded = keyModel;
+        }
     }
 
     public ArrayList<KeyModel> getPickedUpKeys() {
@@ -85,7 +92,10 @@ public class LevelModel extends BaseModel {
     }
 
     public void addPickedUpHeart(HeartModel heartModel) {
-        mPickedUpHearts.add(heartModel);
+        if (mLastHeartAdded == null || !mLastHeartAdded.equals(heartModel)) {
+            mPickedUpHearts.add(heartModel);
+            mLastHeartAdded = heartModel;
+        }
     }
 
     public ArrayList<HeartModel> getPickedUpHearts() {
@@ -113,7 +123,10 @@ public class LevelModel extends BaseModel {
     }
 
     public void addDestroyedBlock(BaseDestroyableModel block) {
-        mDestroyedBlockList.add(block);
+        if (block != null && (mLastBlockAdded == null || !mLastBlockAdded.equals(block))) {
+            mDestroyedBlockList.add(block);
+            mLastBlockAdded = block;
+        }
     }
 
 }

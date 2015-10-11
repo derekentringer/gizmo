@@ -288,7 +288,7 @@ public class MapParser extends Stage {
 
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
 
-                    if (!loopThruPickedUpItemsArray(mLoadedLevelModel.getmPickedUpItems(), itemType)) {
+                    if (!loopThruPickedUpItemsArray(mLoadedLevelModel.getPickedUpItems(), itemType)) {
                         if (itemType.equalsIgnoreCase(BaseItemModel.BOOMERANG_WOOD)) {
                             String boomerangType = (String) mapObject.getProperties().get(BOOMERANG_TYPE);
                             BoomerangActor boomerangActor = new BoomerangActor(ObjectUtils.createBoomerang(new BoomerangModel(boomerangType), world, getMapObjectCoords(mapObject)), boomerangType);
@@ -397,7 +397,8 @@ public class MapParser extends Stage {
 
     private static boolean loopThruDestroyedBlocksArray(ArrayList<BaseDestroyableModel> array, Vector2 targetValue) {
         for (BaseDestroyableModel lookingForItem : array) {
-            if (lookingForItem.getPosition().equals(targetValue)) {
+            if (lookingForItem != null
+                    && lookingForItem.getPosition().equals(targetValue)) {
                 return true;
             }
         }
