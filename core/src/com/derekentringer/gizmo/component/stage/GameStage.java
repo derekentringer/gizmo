@@ -148,25 +148,23 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
 
         // player fixture and ground detection
-        if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsGround(b)) {
+        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(a) && FixtureUtils.fixtureIsGround(b)) {
             mPlayerActor.setIsOnGround(true);
         }
-        else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsGround(a)) {
+        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(b) && FixtureUtils.fixtureIsGround(a)) {
             mPlayerActor.setIsOnGround(true);
         }
 
         // player fixture and destroyable detection
-        if (FixtureUtils.fixtureIsPlayerHitArea(a) && FixtureUtils.fixtureIsDestroyable(b)) {
+
+        //bottom fixture dig detection
+        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(a) && FixtureUtils.fixtureIsDestroyable(b)) {
             mPlayerActor.setIsOnGround(true);
             mPlayerActor.setTouchingDestroyable(b.getBody());
-
-            //mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) b.getBody().getUserData(), b.getBody()));
         }
-        else if (FixtureUtils.fixtureIsPlayerHitArea(b) && FixtureUtils.fixtureIsDestroyable(a)) {
+        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(b) && FixtureUtils.fixtureIsDestroyable(a)) {
             mPlayerActor.setIsOnGround(true);
             mPlayerActor.setTouchingDestroyable(a.getBody());
-
-            //mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) a.getBody().getUserData(), a.getBody()));
         }
 
         // player attack with items collisions

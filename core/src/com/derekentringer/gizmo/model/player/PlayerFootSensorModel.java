@@ -7,7 +7,7 @@ public class PlayerFootSensorModel extends BaseModel {
 
     public PlayerFootSensorModel() {
         super();
-        mBaseModelType = BaseModelType.PLAYER_HIT_AREA;
+        mBaseModelType = BaseModelType.PLAYER_HIT_AREA_BOTTOM;
     }
 
 }

@@ -8,9 +8,9 @@ public class FixtureUtils {
 
     private static final String TAG = FixtureUtils.class.getSimpleName();
 
-    public static boolean fixtureIsPlayerHitArea(Fixture fixture) {
+    public static boolean fixtureIsPlayerHitAreaBottom(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_HIT_AREA);
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.PLAYER_HIT_AREA_BOTTOM);
     }
 
     public static boolean fixtureIsGround(Fixture fixture) {
