@@ -517,11 +517,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
-
-
-
             mPlayerActor.dig();
-
             if (UserInput.isDown(UserInput.RIGHT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableRight() != null) {
                 BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight(), mPlayerModel.getDiggingPower());
                 if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight()) <= 0) {
