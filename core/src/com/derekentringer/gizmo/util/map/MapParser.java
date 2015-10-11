@@ -31,6 +31,7 @@ import com.derekentringer.gizmo.component.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorOffActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorOtherActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
+import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
@@ -40,14 +41,14 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
-import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.model.structure.DoorOffModel;
 import com.derekentringer.gizmo.model.structure.DoorType;
 import com.derekentringer.gizmo.model.structure.GroundModel;
 import com.derekentringer.gizmo.model.structure.LavaModel;
 import com.derekentringer.gizmo.model.structure.WallModel;
+import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
@@ -162,6 +163,10 @@ public class MapParser extends Stage {
                         }
                         if (cell.getTile() == null) {
                             continue;
+                        }
+
+                        if (curLayerName.equalsIgnoreCase(BaseModel.TILE_IGNORE)) {
+                            cell.setTile(null);
                         }
 
                         if (curLayerName.equalsIgnoreCase(GroundModel.TILE_GROUND)) {

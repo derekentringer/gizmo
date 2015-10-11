@@ -77,6 +77,11 @@
    eJztzjENAAAIA7Cpwb9E/hkgIa2CJvDTXAcAAAAAoCzcZgAn
   </data>
  </layer>
+ <layer name="ignore" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENACAMA8FM5P3Ho6WkgojcSd/bVQAAAAB0ltcDLpv0N1u/yUETLf+tAoU=
+  </data>
+ </layer>
  <objectgroup name="phantom">
   <object id="68" x="815" y="619">
    <ellipse/>
