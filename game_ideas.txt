@@ -4,9 +4,6 @@ TODO
 create digging animation
 
 add diamonds for drops on dirt destroyables
-
-clean up the project, move all of the pyxel files out of the project, leave the outputs
-	- assets/res/
 	
 have the boomerang bounce off walls and ground
 
