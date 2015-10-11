@@ -1,8 +1,6 @@
 TODO
 -----
 
-add digging left and right
-
 create digging animation
 
 add diamonds for drops on dirt destroyables
