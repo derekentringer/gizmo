@@ -3,7 +3,7 @@ TODO
 
 add digging left and right
 
-save out removed blocks
+create digging animation
 
 add diamonds for drops on dirt destroyables
 
