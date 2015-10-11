@@ -2,6 +2,7 @@ package com.derekentringer.gizmo.manager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
@@ -12,8 +13,9 @@ public class LocalDataManager {
 
     private static final String TAG = LocalDataManager.class.getSimpleName();
 
+    private static final String GAME_SAVE_DIR = "sav/";
     private static final String GAME_SAVE_FILE = "game.sav";
-    private static final String LEVEL_SAVE_SUFFIX = "level.sav";
+    private static final String LEVEL_SAVE_SUFFIX = "_level.sav";
 
     public static void resetAllPlayerData() {
         FileHandle file = Gdx.files.local(GAME_SAVE_FILE);
@@ -49,7 +51,7 @@ public class LocalDataManager {
     }
 
     public static LevelModel loadLevelData(LevelModel levelModel) {
-        String fileName = levelModel.getLevelInt() + "_" + LEVEL_SAVE_SUFFIX;
+        String fileName = levelModel.getLevelInt() + LEVEL_SAVE_SUFFIX;
         GLog.d(TAG, "*** LOADING LEVEL DATA *** " + fileName);
         String savedLevelFile = readFile(fileName);
         if (!savedLevelFile.isEmpty()) {
@@ -62,7 +64,7 @@ public class LocalDataManager {
     }
 
     public static void saveLevelData(LevelModel levelModel) {
-        String fileName = levelModel.getLevelInt() + "_" + LEVEL_SAVE_SUFFIX;
+        String fileName = levelModel.getLevelInt() + LEVEL_SAVE_SUFFIX;
         Json json = new Json();
         String levelModelString = json.toJson(levelModel, LevelModel.class);
         GLog.d(TAG, "*** SAVING LEVEL DATA *** " + levelModelString);
@@ -70,9 +72,9 @@ public class LocalDataManager {
     }
 
     public static void writeFile(String fileName, String string) {
-        FileHandle file = Gdx.files.local(fileName);
+        FileHandle file = Gdx.files.local(GAME_SAVE_DIR + fileName);
         if (!Constants.IS_DEBUG) {
-            file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(string), false);
+            file.writeString(Base64Coder.encodeString(string), false);
         }
         else {
             file.writeString(string, false);
@@ -80,12 +82,12 @@ public class LocalDataManager {
     }
 
     public static String readFile(String fileName) {
-        FileHandle file = Gdx.files.local(fileName);
+        FileHandle file = Gdx.files.local(GAME_SAVE_DIR + fileName);
         if (file != null && file.exists()) {
             String string = file.readString();
             if (!string.isEmpty()) {
                 if (!Constants.IS_DEBUG) {
-                    return com.badlogic.gdx.utils.Base64Coder.decodeString(string);
+                    return Base64Coder.decodeString(string);
                 }
                 else {
                     return string;
