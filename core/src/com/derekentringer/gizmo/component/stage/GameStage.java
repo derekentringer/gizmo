@@ -157,14 +157,30 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // player fixture and destroyable detection
 
-        //bottom fixture dig detection
+        // right fixture sensor detection
+        if (FixtureUtils.fixtureIsPlayerHitAreaRight(a) && FixtureUtils.fixtureIsDestroyable(b)) {
+            mPlayerActor.setTouchingBodyDestroyableRight(b.getBody());
+        }
+        else if (FixtureUtils.fixtureIsPlayerHitAreaRight(b) && FixtureUtils.fixtureIsDestroyable(a)) {
+            mPlayerActor.setTouchingBodyDestroyableRight(a.getBody());
+        }
+
+        // bottom fixture sensor detection
         if (FixtureUtils.fixtureIsPlayerHitAreaBottom(a) && FixtureUtils.fixtureIsDestroyable(b)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingDestroyableBottom(b.getBody());
+            mPlayerActor.setTouchingBodyDestroyableBottom(b.getBody());
         }
         else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(b) && FixtureUtils.fixtureIsDestroyable(a)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingDestroyableBottom(a.getBody());
+            mPlayerActor.setTouchingBodyDestroyableBottom(a.getBody());
+        }
+
+        // left fixture sensor detection
+        if (FixtureUtils.fixtureIsPlayerHitAreaLeft(a) && FixtureUtils.fixtureIsDestroyable(b)) {
+            mPlayerActor.setTouchingBodyDestroyableLeft(b.getBody());
+        }
+        else if (FixtureUtils.fixtureIsPlayerHitAreaLeft(b) && FixtureUtils.fixtureIsDestroyable(a)) {
+            mPlayerActor.setTouchingBodyDestroyableLeft(a.getBody());
         }
 
         // player attack with items collisions
@@ -502,14 +518,17 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
             mPlayerActor.dig();
-            BlockUtils.setBlockHealth(mPlayerActor.getTouchingDestroyableBottom(), mPlayerModel.getDiggingPower());
-            if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingDestroyableBottom()) <= 0) {
-                if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingDestroyableBottom())) {
-                    mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingDestroyableBottom().getPosition());
+            
+
+            BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom(), mPlayerModel.getDiggingPower());
+            if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom()) <= 0) {
+                if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableBottom())) {
+                    mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
                 }
-                mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingDestroyableBottom().getUserData(), mPlayerActor.getTouchingDestroyableBottom()));
-                mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingDestroyableBottom().getUserData());
+                mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
+                mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
             }
+
         }
 
         // enter a door

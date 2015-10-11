@@ -447,19 +447,19 @@ public class PlayerActor extends BaseActor {
         mTouchingBodyDestroyableRight = bodyDestroyable;
     }
 
-    public Body getTouchingDestroyableBottom() {
+    public Body getTouchingBodyDestroyableBottom() {
         return mTouchingBodyDestroyableBottom;
     }
 
-    public void setTouchingDestroyableBottom(Body bodyDestroyable) {
+    public void setTouchingBodyDestroyableBottom(Body bodyDestroyable) {
         mTouchingBodyDestroyableBottom = bodyDestroyable;
     }
 
-    public Body getTouchingDestroyableLeft() {
+    public Body getTouchingBodyDestroyableLeft() {
         return mTouchingBodyDestroyableLeft;
     }
 
-    public void setTouchingDestroyableLeft(Body bodyDestroyable) {
+    public void setTouchingBodyDestroyableLeft(Body bodyDestroyable) {
         mTouchingBodyDestroyableLeft = bodyDestroyable;
     }
 
