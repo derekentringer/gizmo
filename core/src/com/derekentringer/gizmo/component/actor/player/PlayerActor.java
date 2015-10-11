@@ -90,7 +90,7 @@ public class PlayerActor extends BaseActor {
         mGizmoRunningRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_right.png", Texture.class);
         mGizmoRunningLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_left.png", Texture.class);
         mGizmoStandingRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_right_large.png", Texture.class);
-        mGizmoStandingLeft = Gizmo.assetManager.get("res/image/gizmo/gizmo_standing_left_large.png", Texture.class);
+        mGizmoStandingLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_left_large.png", Texture.class);
 
         mGizmoJumpUpRightSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_right_large.png", Texture.class);
         mGizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_left_large.png", Texture.class);
