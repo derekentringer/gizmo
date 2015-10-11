@@ -160,11 +160,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         //bottom fixture dig detection
         if (FixtureUtils.fixtureIsPlayerHitAreaBottom(a) && FixtureUtils.fixtureIsDestroyable(b)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingDestroyable(b.getBody());
+            mPlayerActor.setTouchingDestroyableBottom(b.getBody());
         }
         else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(b) && FixtureUtils.fixtureIsDestroyable(a)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingDestroyable(a.getBody());
+            mPlayerActor.setTouchingDestroyableBottom(a.getBody());
         }
 
         // player attack with items collisions
@@ -502,13 +502,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
             mPlayerActor.dig();
-            BlockUtils.setBlockHealth(mPlayerActor.getTouchingDestroyable(), mPlayerModel.getDiggingPower());
-            if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingDestroyable()) <= 0) {
-                if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingDestroyable())) {
-                    mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingDestroyable().getPosition());
+            BlockUtils.setBlockHealth(mPlayerActor.getTouchingDestroyableBottom(), mPlayerModel.getDiggingPower());
+            if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingDestroyableBottom()) <= 0) {
+                if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingDestroyableBottom())) {
+                    mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingDestroyableBottom().getPosition());
                 }
-                mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData(), mPlayerActor.getTouchingDestroyable()));
-                mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingDestroyable().getUserData());
+                mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingDestroyableBottom().getUserData(), mPlayerActor.getTouchingDestroyableBottom()));
+                mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingDestroyableBottom().getUserData());
             }
         }
 

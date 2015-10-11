@@ -71,7 +71,10 @@ public class PlayerActor extends BaseActor {
 
     private DoorModel mIsAtDoorUserData;
     private boolean mIsOnGround;
-    private Body mTouchingBodyDestroyable;
+    private Body mTouchingBodyDestroyableTop;
+    private Body mTouchingBodyDestroyableRight;
+    private Body mTouchingBodyDestroyableBottom;
+    private Body mTouchingBodyDestroyableLeft;
     private boolean mIsAtDoor;
     private static boolean mIsFlinching;
 
@@ -428,12 +431,36 @@ public class PlayerActor extends BaseActor {
         return mIsOnGround;
     }
 
-    public void setTouchingDestroyable(Body bodyDestroyable) {
-        mTouchingBodyDestroyable = bodyDestroyable;
+    public Body getTouchingBodyDestroyableTop() {
+        return mTouchingBodyDestroyableTop;
     }
 
-    public Body getTouchingDestroyable() {
-        return mTouchingBodyDestroyable;
+    public void setTouchingBodyDestroyableTop(Body bodyDestroyable) {
+        mTouchingBodyDestroyableTop = bodyDestroyable;
+    }
+
+    public Body getTouchingBodyDestroyableRight() {
+        return mTouchingBodyDestroyableRight;
+    }
+
+    public void setTouchingBodyDestroyableRight(Body bodyDestroyable) {
+        mTouchingBodyDestroyableRight = bodyDestroyable;
+    }
+
+    public Body getTouchingDestroyableBottom() {
+        return mTouchingBodyDestroyableBottom;
+    }
+
+    public void setTouchingDestroyableBottom(Body bodyDestroyable) {
+        mTouchingBodyDestroyableBottom = bodyDestroyable;
+    }
+
+    public Body getTouchingDestroyableLeft() {
+        return mTouchingBodyDestroyableLeft;
+    }
+
+    public void setTouchingDestroyableLeft(Body bodyDestroyable) {
+        mTouchingBodyDestroyableLeft = bodyDestroyable;
     }
 
     public void setIsAtDoor(boolean atDoor) {
