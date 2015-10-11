@@ -160,7 +160,7 @@ public class PlayerActor extends BaseActor {
         if (!mIsFlinching) {
             mPlayerModel.setHealth(mPlayerModel.getHealth() - healthDamage);
             applyFlinchForce();
-            for(IPlayer listener : listeners){
+            for (IPlayer listener : listeners) {
                 listener.playerGotHit(mPlayerModel.getHealth());
             }
         }
@@ -183,7 +183,7 @@ public class PlayerActor extends BaseActor {
     public void deIncrementLives() {
         mPlayerModel.setLives(mPlayerModel.getLives() - 1);
         if (mPlayerModel.getLives() <= 0) {
-            for(IPlayer listener : listeners){
+            for (IPlayer listener : listeners) {
                 listener.playerZeroLives();
             }
         }

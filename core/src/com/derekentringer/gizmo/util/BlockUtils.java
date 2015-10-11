@@ -12,7 +12,9 @@ public class BlockUtils {
         if (baseDestroyableModel != null) {
             return baseDestroyableModel.getHealth();
         }
-        else return 0;
+        else {
+            return 0;
+        }
     }
 
     public static void setBlockHealth(Body body, int health) {
@@ -28,7 +30,9 @@ public class BlockUtils {
         if (baseDestroyableModel != null) {
             return baseDestroyableModel.getDoesLootDrop();
         }
-        else return false;
+        else {
+            return false;
+        }
     }
 
 }
