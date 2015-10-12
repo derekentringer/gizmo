@@ -39,6 +39,7 @@ import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.item.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
+import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -297,6 +298,18 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             mDeleteBodies.add(new DeleteBody((DropHeartModel) a.getBody().getUserData(), a.getBody()));
             updateHud();
         }
+
+        //pick up CRYSTAL_BLUE with PLAYER
+        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.CRYSTAL_BLUE)) {
+            mPlayerActor.incrementCrystalBlueAmount();
+            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) b.getBody().getUserData(), b.getBody()));
+            updateHud();
+        }
+        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.CRYSTAL_BLUE)) {
+            mPlayerActor.incrementCrystalBlueAmount();
+            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) a.getBody().getUserData(), a.getBody()));
+            updateHud();
+        }
     }
 
     @Override
@@ -353,6 +366,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             else if (actor.getName().equalsIgnoreCase(DropHeartModel.HEART_SMALL)) {
                 ((DropHeartActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
+
         }
 
         // checks for the player position

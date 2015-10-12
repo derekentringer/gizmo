@@ -4,8 +4,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.manager.interfaces.IDropManager;
+import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.util.DropUtils;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -41,7 +43,7 @@ public class DropManager extends Stage {
         }
         else if (whichDrop == DROP_TYPE_CRYSTAL_BLUE) {
             GLog.d(TAG, "addDropCrystalBlue: " + coordinates.x + ", " + coordinates.y);
-            //addDropCrystalBlue(world, coordinates);
+            addDropCrystalBlue(world, coordinates);
         }
     }
 
@@ -56,7 +58,7 @@ public class DropManager extends Stage {
         }
     }
 
-    /*public void addDropCrystalBlue(World world, Vector2 coordinates) {
+    public void addDropCrystalBlue(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_DROPS, MAX_DROPS);
         for (int i = 0; i <= drops; i++) {
             GLog.d(TAG, "addDropCrystalBlue: " + coordinates.x + ", " + coordinates.y);
@@ -66,6 +68,6 @@ public class DropManager extends Stage {
                 listener.addDroppedItem(dropCrystalBlueActor);
             }
         }
-    }*/
+    }
 
 }

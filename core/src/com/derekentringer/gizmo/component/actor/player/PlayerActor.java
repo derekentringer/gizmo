@@ -250,6 +250,16 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setCurrentLevel(level);
     }
 
+    public int getCrystalBlueAmount() {
+        GLog.d(TAG, "getCrystalBlueAmount: " + mPlayerModel.getCrystalBlueAmount());
+        return mPlayerModel.getCrystalBlueAmount();
+    }
+
+    public void incrementCrystalBlueAmount() {
+        mPlayerModel.incrementCrystalBlueAmount();
+        GLog.d(TAG, "total blue crystals: " + mPlayerModel.getCrystalBlueAmount());
+    }
+
     public void jump() {
         if (mIsFlinching) {
             if (getFacingDirection() == FACING_RIGHT) {

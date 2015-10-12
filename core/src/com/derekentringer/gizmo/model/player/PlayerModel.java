@@ -31,6 +31,8 @@ public class PlayerModel extends BaseModel {
     //TODO
     private int mDiggingPower = 1;
 
+    private int mCrystalBlueAmount;
+
     public PlayerModel() {
         super();
         mBaseModelType = BaseModelType.PLAYER;
@@ -105,6 +107,14 @@ public class PlayerModel extends BaseModel {
 
     public void removeItem(BaseItemModel playerItem) {
         mItemList.remove(playerItem);
+    }
+
+    public int getCrystalBlueAmount() {
+        return mCrystalBlueAmount;
+    }
+
+    public void incrementCrystalBlueAmount() {
+        mCrystalBlueAmount = mCrystalBlueAmount + 1;
     }
 
 }

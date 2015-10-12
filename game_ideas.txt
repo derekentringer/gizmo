@@ -4,7 +4,9 @@ TODO
 create digging animation
 
 add diamonds for drops on dirt destroyables
-	
+
+clean up drop actors, models, and BaseModelTypes - need a BaseDropActor
+
 have the boomerang bounce off walls and ground
 
 give enemies flinching animation

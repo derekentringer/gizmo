@@ -1,0 +1,92 @@
+package com.derekentringer.gizmo.component.actor.object;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.component.actor.BaseActor;
+import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.util.BodyUtils;
+
+public class DropCrystalBlueActor extends BaseActor {
+
+    private static final String TAG = DropCrystalBlueActor.class.getSimpleName();
+
+    private static final int MOVEMENT_FORCE = 4;
+    private static final float PLAYER_DETECTION = 0.5f;
+
+    private float heartRadiusFront = getPosition().x + PLAYER_DETECTION;
+    private float heartRadiusBehind = getPosition().x - PLAYER_DETECTION;
+    private float heartRadiusAbove = getPosition().y + PLAYER_DETECTION;
+    private float heartRadiusBelow = getPosition().y - PLAYER_DETECTION;
+
+    private TextureRegion[] mDropHeartSprite;
+    private Texture mDropHeart;
+
+    private Vector2 mPlayerPosition = new Vector2();
+
+    float mTimeAccumulated;
+    float speedY;
+    float speedX;
+
+    public DropCrystalBlueActor(Body body) {
+        super(body);
+
+        mDropHeart = Gizmo.assetManager.get("res/image/drop/drop_crystal_blue.png", Texture.class);
+        mDropHeartSprite = TextureRegion.split(mDropHeart, 8, 8)[0];
+
+        setAnimation(mDropHeartSprite, 1 / 12f);
+
+        speedX = MathUtils.random(-2, 2);
+    }
+
+    @Override
+    public BaseModel getBaseModel() {
+        return mBaseModel;
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        mTimeAccumulated += delta;
+        speedY = 0.5f - (mTimeAccumulated / 1);
+
+        if (getPlayerPosition().x < heartRadiusFront
+                && getPlayerPosition().x > heartRadiusBehind
+                && getPlayerPosition().y < heartRadiusAbove
+                && getPlayerPosition().y > heartRadiusBelow) {
+            mBody.setLinearVelocity((getPlayerPosition().x - getPosition().x) * MOVEMENT_FORCE, (getPlayerPosition().y - getPosition().y) * MOVEMENT_FORCE);
+            return;
+        }
+        else {
+            if (speedY <= 0) {
+                speedY = -0.3f;
+            }
+            if (speedY > 0) {
+                speedX = speedX - (mTimeAccumulated / 1);
+                if (speedX <= 0) {
+                    speedX = 0;
+                }
+            }
+            else {
+                speedX = 0;
+            }
+        }
+
+        BodyUtils.applyLinearImpulseToBody(mBody, speedY, "y");
+        BodyUtils.applyLinearImpulseToBody(mBody, speedX, "x");
+    }
+
+    public Vector2 getPlayerPosition() {
+        return mPlayerPosition;
+    }
+
+    public void setPlayerPosition(Vector2 playerPosition) {
+        mPlayerPosition.x = playerPosition.x;
+        mPlayerPosition.y = playerPosition.y;
+    }
+
+}
