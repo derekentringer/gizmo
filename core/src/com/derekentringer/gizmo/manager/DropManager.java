@@ -19,19 +19,35 @@ public class DropManager extends Stage {
 
     private static final String TAG = DropManager.class.getSimpleName();
 
+    private static final int DROP_TYPE_HEART = 0;
+    private static final int DROP_TYPE_CRYSTAL_BLUE = 1;
+
     private static final int MIN_DROPS = 0;
     private static final int MAX_DROPS = 5;
 
     private ArrayList<IDropManager> listeners = new ArrayList<IDropManager>();
 
+    private int whichDrop;
+
     public void addListener(IDropManager listener) {
         listeners.add(listener);
+    }
+
+    public void randomDrop(World world, Vector2 coordinates) {
+        whichDrop = MathUtils.random(DROP_TYPE_HEART, DROP_TYPE_CRYSTAL_BLUE);
+        if (whichDrop == DROP_TYPE_HEART) {
+            GLog.d(TAG, "addDropHeart: " + coordinates.x + ", " + coordinates.y);
+            addDropHeart(world, coordinates);
+        }
+        else if (whichDrop == DROP_TYPE_CRYSTAL_BLUE) {
+            GLog.d(TAG, "addDropCrystalBlue: " + coordinates.x + ", " + coordinates.y);
+            //addDropCrystalBlue(world, coordinates);
+        }
     }
 
     public void addDropHeart(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_DROPS, MAX_DROPS);
         for (int i = 0; i <= drops; i++) {
-            GLog.d(TAG, "addDropHeart: " + coordinates.x + ", " + coordinates.y);
             DropHeartActor dropHeartActor = new DropHeartActor(DropUtils.createDropHeart(new DropHeartModel(), world, coordinates));
             dropHeartActor.setName(DropHeartModel.HEART_SMALL);
             for (IDropManager listener : listeners) {
@@ -39,5 +55,17 @@ public class DropManager extends Stage {
             }
         }
     }
+
+    /*public void addDropCrystalBlue(World world, Vector2 coordinates) {
+        int drops = MathUtils.random(MIN_DROPS, MAX_DROPS);
+        for (int i = 0; i <= drops; i++) {
+            GLog.d(TAG, "addDropCrystalBlue: " + coordinates.x + ", " + coordinates.y);
+            DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDropHeart(new DropCrystalBlueModel(), world, coordinates));
+            dropCrystalBlueActor.setName(DropCrystalBlueModel.CRYSTAL_BLUE);
+            for (IDropManager listener : listeners) {
+                listener.addDroppedItem(dropCrystalBlueActor);
+            }
+        }
+    }*/
 
 }

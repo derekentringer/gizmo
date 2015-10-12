@@ -156,7 +156,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
 
         // player fixture and destroyable detection
-
         // right fixture sensor detection
         if (FixtureUtils.fixtureIsPlayerHitAreaRight(a) && FixtureUtils.fixtureIsDestroyable(b)) {
             mPlayerActor.setTouchingBodyDestroyableRight(b.getBody());
@@ -404,7 +403,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     private void addDroppedItems() {
         for (int i = 0; i < mMapParser.getDroppedItemPositionArray().size(); i++) {
-            mDropManager.addDropHeart(mWorld, mMapParser.getDroppedItemPositionArray().get(i));
+            mDropManager.randomDrop(mWorld, mMapParser.getDroppedItemPositionArray().get(i));
         }
         mMapParser.resetDroppedItemPositionArray();
     }
