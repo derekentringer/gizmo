@@ -631,8 +631,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         WorldUtils.destroyBodies(mWorld);
 
         mPlayerActor.setCurrentLevel(newLevel);
-        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
 
+        LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         LocalDataManager.saveLevelData(mLoadedLevelModel);
 
         loadLevel(GameLevelUtils.gameLevels.get(newLevel), whichDoor);

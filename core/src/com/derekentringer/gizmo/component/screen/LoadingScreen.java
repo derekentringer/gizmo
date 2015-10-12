@@ -63,6 +63,7 @@ public class LoadingScreen extends AbstractScreen {
         mGizmoGame.assetManager.load("res/image/object/life.png", Texture.class);
 
         mGizmoGame.assetManager.load("res/image/drop/drop_heart.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/drop/drop_crystal_blue.png", Texture.class);
 
         mGizmoGame.assetManager.load("res/image/door/door_gold.png", Texture.class);
         mGizmoGame.assetManager.load("res/image/door/door_bronze.png", Texture.class);
