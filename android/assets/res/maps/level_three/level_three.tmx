@@ -33,6 +33,11 @@
    eJztlFkKwCAMRJM7qNAj9P4X7EeVhqAiJS6182AwqMhkaYkAAAB8AZ5tAAzjz71eOfeSNwvPrOLZdWDK+yjtA9CKm20AdGHXvup/M6jDSp7u2XgzH6ehr9XxUQc99aqpFd2PFQiGb8nccnVJM5gUorxYnbhnjWWuPZC1c5lYfsOlsxQfg73vwgX4eQOQ
   </data>
  </layer>
+ <layer name="destroyable_block_dirt" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+  </data>
+ </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztllEKwCAMQ/UOreD9LzrGFIpkY1/9SPqgyLIJzVqsrT30EAaet+YromZgz1fs7+fPvff7EcLD6i852LGeII0FAxqzXwca+gcsoFrO9CzyQH5RzVlAvavWz8x+Ue8yn881j7jPK7X5q9bPavdnNb9q/Yz8jvQs8qj7Rs0jdpjrW+hwAQofBCI=
@@ -55,6 +60,11 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+  </data>
+ </layer>
+ <layer name="ignore" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzwENACAAw7Arun95uICQtwq2BAAAALb0dcBlzdZzs/Xc7D3Dzw5liAHN
   </data>
  </layer>
  <objectgroup name="phantom"/>
