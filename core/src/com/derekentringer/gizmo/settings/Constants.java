@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Logger;
 
 public class Constants {
 
-    // categoryBits declares what entity is is
+    // categoryBits declares what entity it is
     // maskBits declares which entities collide with
     public static final short WORLD_ENTITY = 0x1;
     public static final short PLAYER_ENTITY = 0x1 << 1;

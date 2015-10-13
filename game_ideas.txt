@@ -1,7 +1,7 @@
 TODO
 -----
 
-create digging animation
+fireballs are borked
 
 clean up drop actors, models, and BaseModelTypes - need a BaseDropActor
 
