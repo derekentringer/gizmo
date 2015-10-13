@@ -64,7 +64,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzwENACAAw7Arun95uICQtwq2BAAAALb0dcBlzdZzs/Xc7D3Dzw5liAHN
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
  <objectgroup name="phantom"/>
