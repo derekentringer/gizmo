@@ -41,7 +41,7 @@
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztz7ENACAMA8Fs5P23o6WkgojcSd/bVQAAAAB0ltcDLpv0N1u/yUETLRWEApM=
+   eJzt0cEJACAQA8F0lP678y8iCqKG26kgSyQAAAAAAOb8esBFVp1eq06vld27s7lvpfdvqbtXjL5J/uqUBuTNBj8=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -79,7 +79,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztz7ENACAMA8FM5P3Ho6WkgojcSd/bVQAAAAB0ltcDLpv0N1u/yUETLf+tAoU=
+   eJzt0cEJACAQA8FUlP7L8y8iCqKG26kgSyQAAAAAAOb8esBFVp1eq06vld27s7lvpfdvqbtXjL5J/uqUBnjtBh0=
   </data>
  </layer>
  <objectgroup name="phantom">
@@ -90,9 +90,6 @@
    <ellipse/>
   </object>
   <object id="92" x="208" y="108">
-   <ellipse/>
-  </object>
-  <object id="93" x="367.333" y="652">
    <ellipse/>
   </object>
  </objectgroup>

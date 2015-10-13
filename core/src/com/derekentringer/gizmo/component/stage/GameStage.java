@@ -513,8 +513,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
 
         // stop running/walking
-        if (!UserInput.isDown(UserInput.LEFT_BUTTON)
-                && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
+        if (!UserInput.isDown(UserInput.DIG_BUTTON)
+                && !UserInput.isDown(UserInput.LEFT_BUTTON) && !UserInput.isDown(UserInput.RIGHT_BUTTON)) {
             mPlayerActor.stoppedMoving();
         }
 
@@ -533,7 +533,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // dig
         if (UserInput.isDown(UserInput.DIG_BUTTON)) {
+
             mPlayerActor.dig();
+
             if (UserInput.isDown(UserInput.RIGHT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableRight() != null) {
                 BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight(), mPlayerModel.getDiggingPower());
                 if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight()) <= 0) {

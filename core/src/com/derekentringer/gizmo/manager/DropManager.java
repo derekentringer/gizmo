@@ -16,9 +16,6 @@ import java.util.ArrayList;
 
 public class DropManager extends Stage {
 
-    // TODO drops will need to be dynamic
-    // TODO right now we are just dropping hearts directly
-
     private static final String TAG = DropManager.class.getSimpleName();
 
     private static final int DROP_TYPE_HEART = 0;

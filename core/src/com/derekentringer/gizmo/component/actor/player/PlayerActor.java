@@ -41,6 +41,8 @@ public class PlayerActor extends BaseActor {
     private TextureRegion[] mJumpUpLeftSprites;
     private TextureRegion[] mJumpFallRightSprites;
     private TextureRegion[] mJumpFallLeftSprites;
+    private TextureRegion[] mDiggingRightSprites;
+    private TextureRegion[] mDiggingLeftSprites;
 
     private TextureRegion[] mFlinchingRunningLeftSprites;
     private TextureRegion[] mFlinchingRunningRightSprites;
@@ -55,10 +57,12 @@ public class PlayerActor extends BaseActor {
     private Texture mGizmoRunningLeft;
     private Texture mGizmoStandingRight;
     private Texture mGizmoStandingLeft;
-    private Texture mGizmoJumpUpRightSprites;
-    private Texture mGizmoJumpUpLeftSprites;
-    private Texture mGizmoFallRightSprites;
-    private Texture mGizmoFallLeftSprites;
+    private Texture mGizmoJumpUpRight;
+    private Texture mGizmoJumpUpLeft;
+    private Texture mGizmoFallRight;
+    private Texture mGizmoFallLeft;
+    private Texture mGizmoDiggingRight;
+    private Texture mGizmoDiggingLeft;
 
     private Texture mGizmoFlinchingRunningLeft;
     private Texture mGizmoFlinchingRunningRight;
@@ -92,10 +96,10 @@ public class PlayerActor extends BaseActor {
         mGizmoStandingRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_right_large.png", Texture.class);
         mGizmoStandingLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_standing_left_large.png", Texture.class);
 
-        mGizmoJumpUpRightSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_right_large.png", Texture.class);
-        mGizmoJumpUpLeftSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_left_large.png", Texture.class);
-        mGizmoFallRightSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
-        mGizmoFallLeftSprites = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
+        mGizmoJumpUpRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_right_large.png", Texture.class);
+        mGizmoJumpUpLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_up_left_large.png", Texture.class);
+        mGizmoFallRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_right_large.png", Texture.class);
+        mGizmoFallLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_left_large.png", Texture.class);
 
         mGizmoFlinchingRunningLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_flinching_left.png", Texture.class);
         mGizmoFlinchingRunningRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_running_flinching_right.png", Texture.class);
@@ -106,15 +110,18 @@ public class PlayerActor extends BaseActor {
         mGizmoFlinchingJumpFallRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_right_large_flinching.png", Texture.class);
         mGizmoFlinchingJumpFallLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_jump_fall_left_large_flinching.png", Texture.class);
 
+        mGizmoDiggingRight = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_digging_right.png", Texture.class);
+        mGizmoDiggingLeft = Gizmo.assetManager.get("res/image/character/gizmo/gizmo_digging_left.png", Texture.class);
+
         mRunningRightSprites = TextureRegion.split(mGizmoRunningRight, 32, 32)[0];
         mRunningLeftSprites = TextureRegion.split(mGizmoRunningLeft, 32, 32)[0];
         mStandingRightSprites = TextureRegion.split(mGizmoStandingRight, 32, 32)[0];
         mStandingLeftSprites = TextureRegion.split(mGizmoStandingLeft, 32, 32)[0];
 
-        mJumpUpRightSprites = TextureRegion.split(mGizmoJumpUpRightSprites, 32, 32)[0];
-        mJumpUpLeftSprites = TextureRegion.split(mGizmoJumpUpLeftSprites, 32, 32)[0];
-        mJumpFallRightSprites = TextureRegion.split(mGizmoFallRightSprites, 32, 32)[0];
-        mJumpFallLeftSprites = TextureRegion.split(mGizmoFallLeftSprites, 32, 32)[0];
+        mJumpUpRightSprites = TextureRegion.split(mGizmoJumpUpRight, 32, 32)[0];
+        mJumpUpLeftSprites = TextureRegion.split(mGizmoJumpUpLeft, 32, 32)[0];
+        mJumpFallRightSprites = TextureRegion.split(mGizmoFallRight, 32, 32)[0];
+        mJumpFallLeftSprites = TextureRegion.split(mGizmoFallLeft, 32, 32)[0];
 
         mFlinchingRunningLeftSprites = TextureRegion.split(mGizmoFlinchingRunningLeft, 32, 32)[0];
         mFlinchingRunningRightSprites = TextureRegion.split(mGizmoFlinchingRunningRight, 32, 32)[0];
@@ -124,6 +131,9 @@ public class PlayerActor extends BaseActor {
         mFlinchingJumpUpLeftSprites = TextureRegion.split(mGizmoFlinchingJumpUpLeft, 32, 32)[0];
         mFlinchingJumpFallRightSprites = TextureRegion.split(mGizmoFlinchingJumpFallRight, 32, 32)[0];
         mFlinchingJumpFallLeftSprites = TextureRegion.split(mGizmoFlinchingJumpFallLeft, 32, 32)[0];
+
+        mDiggingRightSprites = TextureRegion.split(mGizmoDiggingRight, 32, 32)[0];
+        mDiggingLeftSprites = TextureRegion.split(mGizmoDiggingLeft, 32, 32)[0];
 
         setAnimation(mRunningRightSprites, 1 / 12f);
         setFacingDirection(FACING_RIGHT);
@@ -318,24 +328,40 @@ public class PlayerActor extends BaseActor {
     }
 
     public void dig() {
-        //TODO set dig animation
+        if (getFacingDirection() == FACING_RIGHT) {
+            if (!getCurrentTextureRegion().equals(mDiggingRightSprites)) {
+                GLog.d(TAG, "dig right");
+                GLog.d(TAG, getCurrentTextureRegion().toString());
+                setAnimation(mDiggingRightSprites, 1 / 12f);
+            }
+        }
+        else {
+            if (!getCurrentTextureRegion().equals(mDiggingLeftSprites)) {
+                GLog.d(TAG, "dig left");
+                GLog.d(TAG, getCurrentTextureRegion().toString());
+                setAnimation(mDiggingLeftSprites, 1 / 12f);
+            }
+        }
     }
 
     public void moveLeft(boolean isRunning) {
         if (mIsFlinching) {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingRunningLeftSprites)) {
+            if (getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mFlinchingRunningLeftSprites)) {
                 setAnimation(mFlinchingRunningLeftSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingJumpUpLeftSprites)
-                    && !getCurrentTextureRegion().equals(mFlinchingJumpFallLeftSprites)) {
+            if (!getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mFlinchingJumpUpLeftSprites)) {
                 setAnimation(mFlinchingJumpUpLeftSprites, 1 / 12f);
             }
         }
         else {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(mRunningLeftSprites)) {
+            if (getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mRunningLeftSprites)) {
                 setAnimation(mRunningLeftSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mJumpUpLeftSprites)) {
+            if (!getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mJumpUpLeftSprites)) {
                 setAnimation(mJumpUpLeftSprites, 1 / 12f);
             }
         }
@@ -352,19 +378,22 @@ public class PlayerActor extends BaseActor {
 
     public void moveRight(boolean isRunning) {
         if (mIsFlinching) {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingRunningRightSprites)) {
+            if (getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mFlinchingRunningRightSprites)) {
                 setAnimation(mFlinchingRunningRightSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingJumpUpRightSprites)
-                    && !getCurrentTextureRegion().equals(mFlinchingJumpFallRightSprites)) {
+            if (!getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mFlinchingJumpUpRightSprites)) {
                 setAnimation(mFlinchingJumpUpRightSprites, 1 / 12f);
             }
         }
         else {
-            if (getIsOnGround() && !getCurrentTextureRegion().equals(mRunningRightSprites)) {
+            if (getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mRunningRightSprites)) {
                 setAnimation(mRunningRightSprites, 1 / 12f);
             }
-            if (!getIsOnGround() && !getCurrentTextureRegion().equals(mJumpUpRightSprites)) {
+            if (!getIsOnGround()
+                    && !getCurrentTextureRegion().equals(mJumpUpRightSprites)) {
                 setAnimation(mJumpUpRightSprites, 1 / 12f);
             }
         }
@@ -394,12 +423,16 @@ public class PlayerActor extends BaseActor {
         }
         else {
             if (mFacingDirection == FACING_LEFT) {
-                if (getIsOnGround() && !getCurrentTextureRegion().equals(mStandingLeftSprites)) {
+                if (getIsOnGround()
+                        && !getCurrentTextureRegion().equals(mStandingLeftSprites)
+                        /*&& !getCurrentTextureRegion().equals(mDiggingLeftSprites)*/) {
                     setAnimation(mStandingLeftSprites, 1 / 12f);
                 }
             }
             else {
-                if (getIsOnGround() && !getCurrentTextureRegion().equals(mStandingRightSprites)) {
+                if (getIsOnGround()
+                        && !getCurrentTextureRegion().equals(mStandingRightSprites)
+                        /*&& !getCurrentTextureRegion().equals(mDiggingRightSprites)*/) {
                     setAnimation(mStandingRightSprites, 1 / 12f);
                 }
             }
