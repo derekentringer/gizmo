@@ -14,6 +14,7 @@ import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;
+import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
@@ -357,7 +358,8 @@ public class PlayerActor extends BaseActor {
         }
         else {
             if (getIsOnGround()
-                    && !getCurrentTextureRegion().equals(mRunningLeftSprites)) {
+                    && !getCurrentTextureRegion().equals(mRunningLeftSprites)
+                    && !getCurrentTextureRegion().equals(mDiggingLeftSprites)) {
                 setAnimation(mRunningLeftSprites, 1 / 12f);
             }
             if (!getIsOnGround()
@@ -389,7 +391,8 @@ public class PlayerActor extends BaseActor {
         }
         else {
             if (getIsOnGround()
-                    && !getCurrentTextureRegion().equals(mRunningRightSprites)) {
+                    && !getCurrentTextureRegion().equals(mRunningRightSprites)
+                    && !getCurrentTextureRegion().equals(mDiggingRightSprites)) {
                 setAnimation(mRunningRightSprites, 1 / 12f);
             }
             if (!getIsOnGround()
@@ -425,14 +428,14 @@ public class PlayerActor extends BaseActor {
             if (mFacingDirection == FACING_LEFT) {
                 if (getIsOnGround()
                         && !getCurrentTextureRegion().equals(mStandingLeftSprites)
-                        /*&& !getCurrentTextureRegion().equals(mDiggingLeftSprites)*/) {
+                        && !UserInput.isDown(UserInput.DIG_BUTTON)) {
                     setAnimation(mStandingLeftSprites, 1 / 12f);
                 }
             }
             else {
                 if (getIsOnGround()
                         && !getCurrentTextureRegion().equals(mStandingRightSprites)
-                        /*&& !getCurrentTextureRegion().equals(mDiggingRightSprites)*/) {
+                        && !UserInput.isDown(UserInput.DIG_BUTTON)) {
                     setAnimation(mStandingRightSprites, 1 / 12f);
                 }
             }
