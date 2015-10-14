@@ -26,7 +26,7 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztllkKwzAMRPPVQ2SD9t/3v14JVKBOZ7zFiSn4QUmkOLaWsdNpGtTw6B3AjViuz65RDAaDGGvvAG5mEf6r69CrzirfvdO6V6PWbR0P1u8F9l39TuXbKg5cJ2WztVvEkso31ucVrt6PPpwn1W/ma6E5tU+XxHP/jPWqtJ9snRwNlFLSX9WzAP6dzJtjb4Xv1FCSL/ZAaf6wU1rEGtW8E0Pt9ZKaqXq30PNhWz03MYbtccTy3KdfvbA57R2Wi4qZ9R19ShvG/Pn5sUwDKXzcTA/snAjT91kU3D2OU/6a748xwxX9MUwDTGP+OfpY7w7fCra/ev+ZfM/ga8XqE2Cc3bN4cA7Vh5x8r/6/qsjRSCnsrDVbfbP/Eb8HUOt2Dpidc9YOOG+PsxMr
+   eJztlmsKgzAQhP3VQ/iC9gK5/+2K0IXtdCYvo6GQD4ruGpN9TGKnaVDDo3cAN2K5PrtGMRgMYqy9A7iZRfivrkOvOqt8907rXo1at3U8WL8X2Hf1O5VvqzhwnZTN1m4RSyrfWJ9XuHo/+nCeVL+Zr4Xm1D5dEs/9M9ar0n6ydXI0UEpJf1XPAvh3Mm+OvRW+U0NJvtgDpfnDTmkRa1TzTgy110tqpurdQs+HbfXcxBi2xxHLc59+9cLmtHdYLipm1nf0KW0Y8+fnxzINpPBxMz2wcyJM32dRcPc4Tvlrvj/GDFf0xzANMI355+hjvTt8K9j+6v1n8j2DrxWrT4Bxds/iwTlUH3Lyvfr/qiJHI6Wws9Zs9c3+R/weQK3bOWB2zlk74LwBCtITQQ==
   </data>
  </layer>
  <layer name="lava" width="60" height="23">

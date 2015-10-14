@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="93">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="96">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
   <image source="../tileset/gizmo.png" width="256" height="192"/>
   <tile id="0">
@@ -16,7 +16,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzFl+GKhDAMhHN/fAIV9+e+/0veChbC+E3rHikXCGLV1kkm0zRibOvHt4/vl6/iu3h+tqXrBs82eLbJdzq3ju3p/QpTbPQva/RjoeMajx3G9KrzUIwrLMe+4c052OOeu/y+y2WPF3swJ/TdPH8VXv2vbzirfMvf0HzKmd53NFaN1/Ey48q4w4zTPfGUuN3wzcJLeSPOKgdOe19XxTTiAtUzramYK6zHJ1dnpx0X3gPmIY12+SQtdjoyA6/TyhzjQ/Ae8TcjjVZO51hXGMWytz+cRnjV3+LL5a/LG17SdFfnFUYaQTknLi/BOXa4M+a2NnHL7RMVppx1e1FeM/97w6w2whxmzd5+UWHEX6fZDe8C7izjXdI14q6HtD/P6CdVH2hvaR7BeEmzcn6X9G3jg+qj4/eM/tn1BzrujHRasTZr94TJ5bpSr2i/p3PLiOcZc+axM5qX+vkZeHu9fu/8oP2lalTEPTZOFynu1f2VO+O4enbnCZcD0vneGK01A69icD3uiNc/ME74XDzpH/4DL+m246D230/iNDqnzeTzk/NLT9MIL9Uw8aZXR1V4FaM7j5GOORyUM6pZx/scr2o+j/JJWJ5ynWJDc2nMNecz8bqadvriOPttTbgz2VO8v/hISoc=
+   eJztllFuhDAMRM0PJyDR9nMP0Ptfr0XC0nSYMbCFbj+wZCECIX72xGSKiOnb+3Kd4B7Hmhjjd9XzBtcmnjXxrNE8/jaPdfHtvTHjO8Pi/J6KReVM5U3FxHObubqa8FzOIeczuXJ8gHF+t4vvufyq+vI8p4su1lb567SOqgvWJrlwzhA/c8BxvapZpbUW6/qwdrc0imNcA3bWK2q4xZrX6bKLNebxMOPqXulUabvKUaP1lPaSO/cssru6MavS52zP5cpMlVYVj1uzYnb7AnnV3q/05PbZbI+F9wHMan+rWrj+rGro+oirMa/Zo+ZV+cU4khV5k/moqR7Nmnb/Iu4TlW6w3iqXjrniZX+Sj4t/LJ68qqdX+1xpxv0zB3KXG5XL1HHyJoOqseNG5rOt0m+OHTUVezKzbTGf7RHrumIOOP69HsV6ypB3hOvZxudG1vxvTPGqnoX1HWFu5o31xn2W+zL346utypPq08yalveOqTproX1e7Bgj9zRmRh0723MW4355NeMWM58vuUdFrPv7q/bXrMjszoNsWP93xXsW8xF7d7y333777f/JvwCiBYjU
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
@@ -24,19 +24,34 @@
    eJztzjENAAAIBDFsvH+j7AiAkLTLrVcFAAB8leuBRRkFAPioAcIOAEw=
   </data>
  </layer>
+ <layer name="lava" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzt0sENACAIBDAGcv/5fLiBRIGkTXgfhIsAAAA41uPp4Oc+1TdX5Gcyp/brJru6G1lTfgPQ0QYrwgpR
+  </data>
+ </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0jEKwCAMheGcw1iH7t7/elWItGToWOH1/yDkCQ6GaAYA+JuaujpPXd2a89z6im8co3pkj7OyudMW2R9Zldv9n+es/eWughKVMwAAALRcan0CkA==
+   eJzt0kEKwCAMRNGcw1gXvYD3v10VIi1ZdFlh+h+EjODCEM0AAH9TU1fnqatbc55bX/GNY1SP7HFWNnfaIvsjq3K7//Octb/cVVCicgYAAICWC5m1ApQ=
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0bENACAIRFHdAdzB/ReUgsJCLZXgf8kFEhoIpQAAAACIor9e4JJmEYtaqve/qYeZemSqGazuyHLbzvxDfbwLACCGAeEWAWA=
+   eJzt1NEJwCAMRVHdIbpD91+wFhQeJbWlf8Z74CESEaJiSgAAAEBMtcVaSo/JaDKvzpri1N/c99U9co/WRtTxp9HFXGegdzPOZTd5UvPebAReH1F6e6J3+OUfAQDEdwJ36gQN
+  </data>
+ </layer>
+ <layer name="destroyable_block_dirt" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzzEKACAMBMF7kv9/nY2FlY2ggczAloFcAgBAZWNV4Ye92/tTyf/Nr3XbCwDQ1QThlQPx
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt09sKQBEQhWEPMbz/o+4bSrKVGrT4v5LDhaxmhAAAffH0AzayPL+Q2Zr9zZnbrPV5zMOquaxTZ6/gL+8slZ7wyut1z2pedXmtn1Xqy/89e48KlfoCAICxD3BiApM=
+   eJzt09EKwCAIBVD7B/P/P3UvCU4a7MG20ntgNCNi4h0RAMBc//sDPsRjrdAzuzpzz75Xu9/Hw2bVd5nUJ4ia5QmZ0NlE0Czo3G02fC3urLizb7PS6J4/f7/d330eT/+ZaovuzSaq393zEq1aTqrNFwAAIKsL77YE3w==
+  </data>
+ </layer>
+ <layer name="walk_through" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzrENACAIBECHAPcfVQpsXMBE75JP+K8YAwCAX2QlKrPv3bO3OHreeRMAAJ61AEn4ARE=
   </data>
  </layer>
  <layer name="door_other" width="60" height="23">
@@ -46,6 +61,11 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LROwgJK2CJgAAAD/MdQAAoLQmzwAg
+  </data>
+ </layer>
+ <layer name="ignore" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzzEKACAMBMF7kf9/no2FlY2ggczAloFcAgBAZWNV4Ye92/tTyf/Nr3XbCwDQ1QQOdgPH
   </data>
  </layer>
  <objectgroup name="phantom"/>
@@ -72,6 +92,16 @@
     <property name="boomerang_type" value="BOOMERANG_WOOD"/>
     <property name="item_type" value="BOOMERANG_WOOD"/>
    </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="life">
+  <object id="93" x="273" y="368">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="heart">
+  <object id="95" x="1872" y="335">
    <ellipse/>
   </object>
  </objectgroup>

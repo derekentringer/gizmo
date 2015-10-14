@@ -10,7 +10,7 @@
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzdmN1qwzAMhZWbPEESuqUE2pvtZu//esPgw05VSVbcNpQdEGky/+izZdneJCKz/H9N1Zb6LPoIbCS7ODZS+cExr32v/GD0zxb5DAPvUHnxLcN2ckzzWgxW+60x8sZ8D7tUzrm+L8SrGT0+izdi1j5nYsJi9WLrIj6/VFa0yfEsCVatDLM1lta8RLyRXx63judBbvPVt2JosVrMXmzB5z3xkGGNYm0k3sKJuJZapoeVmT0OZs3GQ1T3RH22uME7yF+ObtXNKOLwfI7iIZpbq9/Id7Dymo7GLyuPmX32ylnc1jhF/Xq8czXENbQa9ffKmjtmtcpFa4B59/jAT+Qpj5f96ZHOmRYv95FdA73C3gtmaFW/H+HV67QVi8z7yNzqdos4By5UZlO/kd94HHr7be1neu98BivqIu/zebJIx/NYn6vx903y49Dy2Yv/nv3BylfMy/PL+Qrj7cXiVW55z0m/Wr72smp/dX7WZ+qiTdXVeUOvb37/SfrW8rsnF3v+Mi/24Cmoa+VKCLxnej9aWX+Rl/X5SteFdBvXamVOrbV9hJBf2N8vuWcuwj2f7/vWOEHWuBU+zlmc299N1v7rsUIW82c1oeerhXMw33n4G85SMOy9zGyJ76KTU+Zo8Zl/pnc+H+u77iL390wuM6h6vM75/yI4q/CTfXm2uE8Yf+Ox0Ayv8und9QsKCj+p
+   eJzdmN1qwzAMhZWbPEESuqUE2pvtbu//dsPgw05VSVbcNpQdEGky/+izZdneJCKz/H9N1Zb6LPoIbCS7ODZS+cExr32v/GD0zxb5DAPvUHnxLcN2ckzzWgxW+60x8sZ8D7tUzrm+L8SrGT0+izdi1j5nYsJi9WLrIj6/VFa0yfEsCVatDLM1lta8RLyRXx63judBbvPVt2JosVrMXmzB5z3xkGGNYm0k3sKJuJZapoeVmT0OZs3GQ1T3RH22uME7yF+ObtXNKOLwfI7iIZpbq9/Id7Dymo7GLyuPmX32ylnc1jhF/Xq8czXENbQa9ffKmjtmtcpFa4B59/jAT+Qpj5f96ZHOmRYv95FdA73C3gtmaFW/H+HV67QVi8z7yNzqdos4By5UZlO/kd94HHr7be1neu98BivqIu/zebJIx/NYn6vx903y49Dy2Yv/nv3BylfMy/PL+Qrj7cXiVW55z0m/Wr72smp/dX7WZ+qiTdXVeUOvb37/SfrW8rsnF3v+Mi/24Cmoa+VKCLxnej9aWX+Rl/X5SteFdBvXamVOrbV9hJBf2N8vuWcuwj2f7/vWOEHWuBU+zlmc299N1v7rsUIW82c1oeerhXMw33n4G85SMOy9zGyJ76KTU+Zo8Zl/pnc+H+u77iL390wuM6h6vM75/yI4q/CTfXm2uE8Yf+Ox0Ayv8und9QsjMj+t
   </data>
  </layer>
  <layer name="door_off" width="60" height="23">
@@ -25,7 +25,7 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztldEKgCAMRfcdKj707v//XgQJQ3ZNsdrAnRdtWdy7rUXkOI7jOPZI2gJ+JmsLUGS3Wh9sv5v3cq/cdyIbeUAaVrTV7zqyWGyutUAzZ1abdP4QYtogX7Oztwh7i/Mb+S0gPvIei3WtIL8j/cxzwmsZm9USqI4jWnu5sjKfWsJknIP8XM9mWqvzF/+NVXo5Cex+eDgrgfrO4gx8g5W+c5wRTh4uBso=
+   eJztlWEKgCAMhXcOFX90Ae9/uwgShuyZYrWB+/5oy+K9bS0ix3Ecx7FH0hbwM1lbgCK71fpg+928l3vlvhPZyAPSsKKtfteRxWJzrQWaObPapPOHENMG+ZqdvUXYW5zfyG8B8ZH3WKxrBfkd6WeeE17L2KyWQHUc0drLlZX51BIm4xzk53o201qdv/hvrNLLSWD3w8NZCdR3FmfgG6z0neOMcAKD/gbY
   </data>
  </layer>
  <layer name="ground" width="60" height="23">
@@ -35,7 +35,7 @@
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt07ENADAIAzA+4v/vuvYCWhRbyg4oVAEAAPypXw8woK8wJ+3eaR1L+6uuvJ1hswOY2gKT
+   eJztz8ENACAMA7FsVPafji8TFFBtKf9cAgAA8KZ1+0CDdYw+dftAs8qs5sqs5sq8ZvjZBrmiApc=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
