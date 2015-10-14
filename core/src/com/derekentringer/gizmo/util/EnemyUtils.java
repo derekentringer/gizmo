@@ -35,6 +35,11 @@ public class EnemyUtils {
         return enemyModel.getDoesLootDrop();
     }
 
+    public static boolean isEnemyBoss(Body body) {
+        BaseEnemyModel enemyModel = (BaseEnemyModel) body.getUserData();
+        return enemyModel.isBoss();
+    }
+
     public static Body createPhantom(BaseModel userData, World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();

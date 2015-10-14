@@ -8,6 +8,7 @@ public class BaseEnemyModel extends BaseModel {
     private int mHealth;
     private int mHealthDamage;
     private boolean mDoesLootDrop;
+    private boolean mIsBoss;
 
     public BaseEnemyModel() {
     }
@@ -38,6 +39,14 @@ public class BaseEnemyModel extends BaseModel {
 
     public void setDoesLootDrop(boolean doesLootDrop) {
         mDoesLootDrop = doesLootDrop;
+    }
+
+    public boolean isBoss() {
+        return mIsBoss;
+    }
+
+    public void setIsBoss(boolean isBoss) {
+        mIsBoss = isBoss;
     }
 
 }

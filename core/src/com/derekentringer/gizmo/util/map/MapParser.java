@@ -64,6 +64,7 @@ public class MapParser extends Stage {
 
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
     private final ArrayList<Vector2> mDroppedItemPositionArray = new ArrayList<Vector2>();
+    private final ArrayList<Vector2> mBossDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
 
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
@@ -127,6 +128,22 @@ public class MapParser extends Stage {
     public void resetDroppedItemPositionArray() {
         mDroppedItemPositionArray.clear();
     }
+
+
+
+    public ArrayList<Vector2> getBossDroppedItemPositionArray() {
+        return mBossDroppedItemPositionArray;
+    }
+
+    public void addToBossDroppedItemPositionArray(Vector2 position) {
+        mBossDroppedItemPositionArray.add(position);
+    }
+
+    public void resetBossDroppedItemPositionArray() {
+        mBossDroppedItemPositionArray.clear();
+    }
+
+
 
     public ArrayList<BaseActor> getActorsArray() {
         return mActorsArray;
@@ -249,7 +266,7 @@ public class MapParser extends Stage {
                     addToActorsArray(phantomActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                    PhantomBossActor phantomBoss = new PhantomBossActor(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(), world, getMapObjectCoords(mapObject)));
+                    PhantomBossActor phantomBoss = new PhantomBossActor(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(true), world, getMapObjectCoords(mapObject)));
                     phantomBoss.setName(PhantomLargeModel.PHANTOM_LARGE);
                     addActor(phantomBoss);
                     addToActorsArray(phantomBoss);

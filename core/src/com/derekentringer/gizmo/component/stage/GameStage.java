@@ -189,7 +189,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));
             if (EnemyUtils.getEnemyHealth(b.getBody()) <= 0) {
 
-                if (EnemyUtils.getEnemyDropsLoot(b.getBody())) {
+                if (EnemyUtils.isEnemyBoss(b.getBody())) {
+                    if (EnemyUtils.getEnemyDropsLoot(b.getBody())) {
+                        mMapParser.addToBossDroppedItemPositionArray(b.getBody().getPosition());
+                    }
+                }
+                else if (EnemyUtils.getEnemyDropsLoot(b.getBody())) {
                     mMapParser.addToDroppedItemPositionArray(b.getBody().getPosition());
                 }
 
@@ -200,7 +205,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             EnemyUtils.setEnemyHealth(a.getBody(), ItemUtils.getItemHealthDamage(b.getBody()));
             if (EnemyUtils.getEnemyHealth(a.getBody()) <= 0) {
 
-                if (EnemyUtils.getEnemyDropsLoot(a.getBody())) {
+                if (EnemyUtils.isEnemyBoss(a.getBody())) {
+                    if (EnemyUtils.getEnemyDropsLoot(a.getBody())) {
+                        mMapParser.addToBossDroppedItemPositionArray(a.getBody().getPosition());
+                    }
+                }
+                else if (EnemyUtils.getEnemyDropsLoot(a.getBody())) {
                     mMapParser.addToDroppedItemPositionArray(a.getBody().getPosition());
                 }
 
@@ -422,7 +432,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         for (int i = 0; i < mMapParser.getDroppedItemPositionArray().size(); i++) {
             mDropManager.randomDrop(mWorld, mMapParser.getDroppedItemPositionArray().get(i));
         }
+        for (int i = 0; i < mMapParser.getBossDroppedItemPositionArray().size(); i++) {
+            mDropManager.bossDropCrystals(mWorld, mMapParser.getBossDroppedItemPositionArray().get(i));
+        }
         mMapParser.resetDroppedItemPositionArray();
+        mMapParser.resetBossDroppedItemPositionArray();
     }
 
     private void deleteObsoleteActors() {
