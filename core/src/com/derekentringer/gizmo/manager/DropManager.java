@@ -18,8 +18,10 @@ public class DropManager extends Stage {
 
     private static final String TAG = DropManager.class.getSimpleName();
 
+    //25% chance for a drop
+    //plus chance for zero drops
     private static final int DROP_TYPE_HEART = 0;
-    private static final int DROP_TYPE_CRYSTAL_BLUE = 1;
+    private static final int DROP_TYPE_CRYSTAL_BLUE = 3;
 
     private static final int MIN_DROPS = 0;
     private static final int MAX_DROPS = 5;
