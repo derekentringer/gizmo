@@ -129,8 +129,6 @@ public class MapParser extends Stage {
         mDroppedItemPositionArray.clear();
     }
 
-
-
     public ArrayList<Vector2> getBossDroppedItemPositionArray() {
         return mBossDroppedItemPositionArray;
     }
@@ -142,8 +140,6 @@ public class MapParser extends Stage {
     public void resetBossDroppedItemPositionArray() {
         mBossDroppedItemPositionArray.clear();
     }
-
-
 
     public ArrayList<BaseActor> getActorsArray() {
         return mActorsArray;
