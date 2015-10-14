@@ -93,14 +93,12 @@ public class EnemyUtils {
 
         bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
         bodyDef.type = BodyDef.BodyType.KinematicBody;
+
         Body body = world.createBody(bodyDef);
 
         shape.setAsBox(WorldUtils.ppmCalc(13), WorldUtils.ppmCalc(13));
         fixtureDef.shape = shape;
-        fixtureDef.isSensor = false;
-
-        fixtureDef.filter.categoryBits = Constants.ENEMY_ATTACK_ENTITY;
-        fixtureDef.filter.maskBits = Constants.PLAYER_ENTITY;
+        fixtureDef.isSensor = true;
 
         body.createFixture(fixtureDef).setUserData(userData);
 
