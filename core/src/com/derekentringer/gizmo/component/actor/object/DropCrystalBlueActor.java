@@ -31,7 +31,7 @@ public class DropCrystalBlueActor extends BaseActor {
     float speedY;
     float speedX;
 
-    public DropCrystalBlueActor(Body body) {
+    public DropCrystalBlueActor(Body body, boolean isBoss) {
         super(body);
 
         mDropHeart = Gizmo.assetManager.get("res/image/drop/drop_crystal_blue.png", Texture.class);
@@ -39,7 +39,12 @@ public class DropCrystalBlueActor extends BaseActor {
 
         setAnimation(mDropHeartSprite, 1 / 12f);
 
-        speedX = MathUtils.random(-2, 2);
+        if (isBoss) {
+            speedX = MathUtils.random(-8, 8);
+        }
+        else {
+            speedX = MathUtils.random(-2, 2);
+        }
     }
 
     @Override
