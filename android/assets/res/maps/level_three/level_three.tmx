@@ -35,7 +35,7 @@
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+   eJzt07ENADAIAzA+4v/vuvYCWhRbyg4oVAEAAPypXw8woK8wJ+3eaR1L+6uuvJ1hswOY2gKT
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -64,7 +64,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+   eJzt07ENADAIAzAu4v/zuvYCWhRbyg4oVAEAAPypXw8woK8wJ+3eaR1L+6uuvJ1hswNJ0gKF
   </data>
  </layer>
  <objectgroup name="phantom"/>
