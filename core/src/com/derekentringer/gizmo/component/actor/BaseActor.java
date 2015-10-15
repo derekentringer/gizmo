@@ -15,28 +15,29 @@ public class BaseActor extends Actor {
 
     private static final String TAG = BaseActor.class.getSimpleName();
 
-    private ArrayList<IBaseActor> listeners = new ArrayList<IBaseActor>();
-    private BaseModel mBaseModel;
-    private boolean mIsPlayingAnimation = true;
-    private TextureRegion[] mCurrentTextureRegion;
+    public static final int FACING_RIGHT = 1;
+    public static final int FACING_LEFT = 2;
 
     protected Body mBody;
     protected AnimationManager mAnimationManager;
     protected float mWidth;
     protected float mHeight;
 
+    private ArrayList<IBaseActor> listeners = new ArrayList<IBaseActor>();
+    private BaseModel mBaseModel;
+    private boolean mIsPlayingAnimation = true;
+    private TextureRegion[] mCurrentTextureRegion;
+
     public int mFacingDirection;
-    public static final int FACING_RIGHT = 1;
-    public static final int FACING_LEFT = 2;
-
-    public BaseModel getBaseModel() {
-        return mBaseModel;
-    }
-
+    
     public BaseActor(Body body) {
         mBody = body;
         mBaseModel = (BaseModel) body.getUserData();
         mAnimationManager = new AnimationManager();
+    }
+
+    public BaseModel getBaseModel() {
+        return mBaseModel;
     }
 
     public void addListener(IBaseActor listener) {
@@ -66,10 +67,6 @@ public class BaseActor extends Actor {
                 mBody.getPosition().x * Constants.PPM - mWidth / 2,
                 mBody.getPosition().y * Constants.PPM - mHeight / 2);
         spriteBatch.end();
-    }
-
-    @Override
-    public void act(float delta) {
     }
 
     public void setCurrentTextureRegion(TextureRegion[] textureRegion) {
