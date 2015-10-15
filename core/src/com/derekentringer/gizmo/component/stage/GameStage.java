@@ -1,6 +1,7 @@
 package com.derekentringer.gizmo.component.stage;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -129,196 +130,203 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     @Override
     public void beginContact(Contact contact) {
-        Fixture a = contact.getFixtureA();
-        Fixture b = contact.getFixtureB();
+        
+        Fixture fixtureA = contact.getFixtureA();
+        Fixture fixtureB = contact.getFixtureB();
+
+        Body bodyA = contact.getFixtureA().getBody();
+        Body bodyB = contact.getFixtureB().getBody();
+
+        Object userDataA = bodyA.getUserData();
+        Object userDataB = bodyB.getUserData();
 
         // player at door
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.DOOR)) {
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.DOOR)) {
             mPlayerActor.setIsAtDoor(true);
-            mPlayerActor.setIsAtDoorUserData((DoorModel) b.getBody().getUserData());
+            mPlayerActor.setIsAtDoorUserData((DoorModel) userDataB);
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.DOOR)) {
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.DOOR)) {
             mPlayerActor.setIsAtDoor(true);
-            mPlayerActor.setIsAtDoorUserData((DoorModel) a.getBody().getUserData());
+            mPlayerActor.setIsAtDoorUserData((DoorModel) userDataA);
         }
 
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.DOOR_OFF)) {
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.DOOR_OFF)) {
             mPlayerActor.setIsAtDoor(false);
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.DOOR_OFF)) {
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.DOOR_OFF)) {
             mPlayerActor.setIsAtDoor(false);
         }
 
         // player fixture and ground detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(a) && FixtureUtils.fixtureIsGround(b)) {
+        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureA) && FixtureUtils.fixtureIsGround(fixtureB)) {
             mPlayerActor.setIsOnGround(true);
         }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(b) && FixtureUtils.fixtureIsGround(a)) {
+        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureB) && FixtureUtils.fixtureIsGround(fixtureA)) {
             mPlayerActor.setIsOnGround(true);
         }
 
         // player fixture and destroyable detection
         // right fixture sensor detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaRight(a) && FixtureUtils.fixtureIsDestroyable(b)) {
-            mPlayerActor.setTouchingBodyDestroyableRight(b.getBody());
+        if (FixtureUtils.fixtureIsPlayerHitAreaRight(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
+            mPlayerActor.setTouchingBodyDestroyableRight(fixtureB.getBody());
         }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaRight(b) && FixtureUtils.fixtureIsDestroyable(a)) {
-            mPlayerActor.setTouchingBodyDestroyableRight(a.getBody());
+        else if (FixtureUtils.fixtureIsPlayerHitAreaRight(fixtureB) && FixtureUtils.fixtureIsDestroyable(fixtureA)) {
+            mPlayerActor.setTouchingBodyDestroyableRight(bodyA);
         }
 
         // bottom fixture sensor detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(a) && FixtureUtils.fixtureIsDestroyable(b)) {
+        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingBodyDestroyableBottom(b.getBody());
+            mPlayerActor.setTouchingBodyDestroyableBottom(bodyB);
         }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(b) && FixtureUtils.fixtureIsDestroyable(a)) {
+        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureB) && FixtureUtils.fixtureIsDestroyable(fixtureA)) {
             mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingBodyDestroyableBottom(a.getBody());
+            mPlayerActor.setTouchingBodyDestroyableBottom(bodyA);
         }
 
         // left fixture sensor detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaLeft(a) && FixtureUtils.fixtureIsDestroyable(b)) {
-            mPlayerActor.setTouchingBodyDestroyableLeft(b.getBody());
+        if (FixtureUtils.fixtureIsPlayerHitAreaLeft(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
+            mPlayerActor.setTouchingBodyDestroyableLeft(bodyB);
         }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaLeft(b) && FixtureUtils.fixtureIsDestroyable(a)) {
-            mPlayerActor.setTouchingBodyDestroyableLeft(a.getBody());
+        else if (FixtureUtils.fixtureIsPlayerHitAreaLeft(fixtureB) && FixtureUtils.fixtureIsDestroyable(fixtureA)) {
+            mPlayerActor.setTouchingBodyDestroyableLeft(bodyA);
         }
 
         // player attack with items collisions
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(b.getBody(), ItemUtils.getItemHealthDamage(a.getBody()));
-            if (EnemyUtils.getEnemyHealth(b.getBody()) <= 0) {
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
+            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
+            if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
 
-                if (EnemyUtils.isEnemyBoss(b.getBody())) {
-                    if (EnemyUtils.getEnemyDropsLoot(b.getBody())) {
-                        mMapParser.addToBossDroppedItemPositionArray(b.getBody().getPosition());
+                if (EnemyUtils.isEnemyBoss(bodyB)) {
+                    if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
+                        mMapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
                     }
                 }
-                else if (EnemyUtils.getEnemyDropsLoot(b.getBody())) {
-                    mMapParser.addToDroppedItemPositionArray(b.getBody().getPosition());
+                else if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
+                    mMapParser.addToDroppedItemPositionArray(bodyB.getPosition());
                 }
 
-                mDeleteBodies.add(new DeleteBody((BaseEnemyModel) b.getBody().getUserData(), b.getBody()));
+                mDeleteBodies.add(new DeleteBody((BaseEnemyModel) userDataB, bodyB));
             }
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(a.getBody(), ItemUtils.getItemHealthDamage(b.getBody()));
-            if (EnemyUtils.getEnemyHealth(a.getBody()) <= 0) {
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
+            EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
+            if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
 
-                if (EnemyUtils.isEnemyBoss(a.getBody())) {
-                    if (EnemyUtils.getEnemyDropsLoot(a.getBody())) {
-                        mMapParser.addToBossDroppedItemPositionArray(a.getBody().getPosition());
+                if (EnemyUtils.isEnemyBoss(bodyA)) {
+                    if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
+                        mMapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
                     }
                 }
-                else if (EnemyUtils.getEnemyDropsLoot(a.getBody())) {
-                    mMapParser.addToDroppedItemPositionArray(a.getBody().getPosition());
+                else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
+                    mMapParser.addToDroppedItemPositionArray(bodyA.getPosition());
                 }
 
-                mDeleteBodies.add(new DeleteBody((BaseEnemyModel) a.getBody().getUserData(), a.getBody()));
+                mDeleteBodies.add(new DeleteBody((BaseEnemyModel) userDataA, bodyA));
             }
         }
 
         // player/enemy collisions
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(a.getBody()));
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(bodyA));
             mPlayerActor.setIsFlinching(true);
             mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(b.getBody()));
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(bodyB));
             mPlayerActor.setIsFlinching(true);
             mPlayerActor.startFlinchingTimer(mPlayerActor);
         }
 
         // pickup a key
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.addKey((KeyModel) a.getBody().getUserData());
-            mLoadedLevelModel.addPickedUpKey((KeyModel) a.getBody().getUserData());
-            mDeleteBodies.add(new DeleteBody((KeyModel) a.getBody().getUserData(), a.getBody()));
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mPlayerActor.addKey((KeyModel) userDataA);
+            mLoadedLevelModel.addPickedUpKey((KeyModel) userDataA);
+            mDeleteBodies.add(new DeleteBody((KeyModel) userDataA, bodyA));
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.KEY) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.addKey((KeyModel) b.getBody().getUserData());
-            mLoadedLevelModel.addPickedUpKey((KeyModel) b.getBody().getUserData());
-            mDeleteBodies.add(new DeleteBody((KeyModel) b.getBody().getUserData(), b.getBody()));
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mPlayerActor.addKey((KeyModel) userDataB);
+            mLoadedLevelModel.addPickedUpKey((KeyModel) userDataB);
+            mDeleteBodies.add(new DeleteBody((KeyModel) userDataB, bodyB));
         }
 
         // pickup a heart
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.addHealthHeart((HeartModel) a.getBody().getUserData());
-            mLoadedLevelModel.addPickedUpHeart((HeartModel) a.getBody().getUserData());
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mPlayerActor.addHealthHeart((HeartModel) userDataA);
+            mLoadedLevelModel.addPickedUpHeart((HeartModel) userDataA);
 
             for (IGameStage listener : listeners) {
                 listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
             }
 
-            mDeleteBodies.add(new DeleteBody((HeartModel) a.getBody().getUserData(), a.getBody()));
+            mDeleteBodies.add(new DeleteBody((HeartModel) userDataA, bodyA));
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.HEART) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.addHealthHeart((HeartModel) b.getBody().getUserData());
-            mLoadedLevelModel.addPickedUpHeart((HeartModel) b.getBody().getUserData());
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mPlayerActor.addHealthHeart((HeartModel) userDataB);
+            mLoadedLevelModel.addPickedUpHeart((HeartModel) userDataB);
 
             for (IGameStage listener : listeners) {
                 listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
             }
 
-            mDeleteBodies.add(new DeleteBody((HeartModel) b.getBody().getUserData(), b.getBody()));
+            mDeleteBodies.add(new DeleteBody((HeartModel) userDataB, bodyB));
         }
 
         // pickup a life
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             mPlayerActor.incrementLives();
-            mLoadedLevelModel.addPickedUpLife((LifeModel) a.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpLife((LifeModel) userDataA);
 
             for (IGameStage listener : listeners) {
                 listener.setHudLives(mPlayerActor.getPlayerLives());
             }
 
-            mDeleteBodies.add(new DeleteBody((LifeModel) a.getBody().getUserData(), a.getBody()));
+            mDeleteBodies.add(new DeleteBody((LifeModel) userDataA, bodyA));
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             mPlayerActor.incrementLives();
-            mLoadedLevelModel.addPickedUpLife((LifeModel) b.getBody().getUserData());
+            mLoadedLevelModel.addPickedUpLife((LifeModel) userDataB);
 
             for (IGameStage listener : listeners) {
                 listener.setHudLives(mPlayerActor.getPlayerLives());
             }
 
-            mDeleteBodies.add(new DeleteBody((LifeModel) b.getBody().getUserData(), b.getBody()));
+            mDeleteBodies.add(new DeleteBody((LifeModel) userDataB, bodyB));
         }
 
         //pick up any type of PLAYER_ITEM
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.addItem((BaseItemModel) a.getBody().getUserData());
-            mLoadedLevelModel.addPickedUpItem((BaseItemModel) a.getBody().getUserData());
-            mDeleteBodies.add(new DeleteBody((BaseItemModel) a.getBody().getUserData(), a.getBody()));
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mPlayerActor.addItem((BaseItemModel) userDataA);
+            mLoadedLevelModel.addPickedUpItem((BaseItemModel) userDataA);
+            mDeleteBodies.add(new DeleteBody((BaseItemModel) userDataA, bodyA));
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER)) {
-            mPlayerActor.addItem((BaseItemModel) b.getBody().getUserData());
-            mLoadedLevelModel.addPickedUpItem((BaseItemModel) b.getBody().getUserData());
-            mDeleteBodies.add(new DeleteBody((BaseItemModel) b.getBody().getUserData(), b.getBody()));
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mPlayerActor.addItem((BaseItemModel) userDataB);
+            mLoadedLevelModel.addPickedUpItem((BaseItemModel) userDataB);
+            mDeleteBodies.add(new DeleteBody((BaseItemModel) userDataB, bodyB));
         }
 
         //pick up HEART_SMALL with PLAYER
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.HEART_SMALL)) {
-            mPlayerActor.addHealth((DropHeartModel) b.getBody().getUserData());
-            mDeleteBodies.add(new DeleteBody((DropHeartModel) b.getBody().getUserData(), b.getBody()));
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART_SMALL)) {
+            mPlayerActor.addHealth((DropHeartModel) userDataB);
+            mDeleteBodies.add(new DeleteBody((DropHeartModel) userDataB, bodyB));
             updateHud();
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.HEART_SMALL)) {
-            mPlayerActor.addHealth((DropHeartModel) a.getBody().getUserData());
-            mDeleteBodies.add(new DeleteBody((DropHeartModel) a.getBody().getUserData(), a.getBody()));
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART_SMALL)) {
+            mPlayerActor.addHealth((DropHeartModel) userDataA);
+            mDeleteBodies.add(new DeleteBody((DropHeartModel) userDataA, bodyA));
             updateHud();
         }
 
         //pick up CRYSTAL_BLUE with PLAYER
-        if (BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.CRYSTAL_BLUE)) {
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.CRYSTAL_BLUE)) {
             mPlayerActor.incrementCrystalBlueAmount();
-            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) b.getBody().getUserData(), b.getBody()));
+            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) userDataB, bodyB));
             updateHud();
         }
-        else if (BodyUtils.bodyTypeCheck(b.getBody(), BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(a.getBody(), BaseModelType.CRYSTAL_BLUE)) {
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.CRYSTAL_BLUE)) {
             mPlayerActor.incrementCrystalBlueAmount();
-            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) a.getBody().getUserData(), a.getBody()));
+            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) userDataA, bodyA));
             updateHud();
         }
     }
