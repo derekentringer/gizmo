@@ -30,7 +30,7 @@
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1yEOADAIA0B+xP9/N4uYmNmSwV1STepKBACvZEl3ugIAwLnuWzI3uXVnCj/IvxbJgwNP
+   eJzt1yEOADAIA0CexP9fNzsxO0S5S6pJXakCYEpfSadrri09AQAmpW+sfuTXnS02/SBpDuswA5E=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
