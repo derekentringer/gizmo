@@ -7,17 +7,17 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 
-public class DestroyableBlockMarsActor extends BaseActor {
+public class DestroyableBlockClayActor extends BaseActor {
 
-    private static final String TAG = DestroyableBlockMarsActor.class.getSimpleName();
+    private static final String TAG = DestroyableBlockClayActor.class.getSimpleName();
 
     private TextureRegion[] mDestroyableBlockSprite;
     private Texture mDestroyableBlock;
 
-    public DestroyableBlockMarsActor(Body body) {
+    public DestroyableBlockClayActor(Body body) {
         super(body);
 
-        mDestroyableBlock = Gizmo.assetManager.get("res/image/tile/destroyable_block_mars.png", Texture.class);
+        mDestroyableBlock = Gizmo.assetManager.get("res/image/tile/destroyable_block_clay.png", Texture.class);
         mDestroyableBlockSprite = TextureRegion.split(mDestroyableBlock, 32, 32)[0];
 
         setIsPlayingAnimation(false);

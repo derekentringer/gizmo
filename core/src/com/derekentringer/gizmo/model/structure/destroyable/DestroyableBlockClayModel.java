@@ -3,19 +3,19 @@ package com.derekentringer.gizmo.model.structure.destroyable;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.model.BaseModelType;
 
-public class DestroyableBlockMarsModel extends BaseDestroyableModel {
+public class DestroyableBlockClayModel extends BaseDestroyableModel {
 
-    public static final String DESTROYABLE_BLOCK_MARS = "DESTROYABLE_BLOCK_MARS";
+    public static final String DESTROYABLE_BLOCK_CLAY = "DESTROYABLE_BLOCK_CLAY";
 
     private int mHealth = 1000000;
     private boolean mDoesLootDrop;
     private Vector2 mBlockPosition = new Vector2();
 
-    public DestroyableBlockMarsModel() {
+    public DestroyableBlockClayModel() {
 
     }
 
-    public DestroyableBlockMarsModel(boolean doesLootDrop, float posX, float posY) {
+    public DestroyableBlockClayModel(boolean doesLootDrop, float posX, float posY) {
         super();
         mBaseModelType = BaseModelType.DESTROYABLE_BLOCK;
         mDoesLootDrop = doesLootDrop;

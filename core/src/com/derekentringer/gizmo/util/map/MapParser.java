@@ -23,7 +23,7 @@ import com.derekentringer.gizmo.component.actor.structure.GroundActor;
 import com.derekentringer.gizmo.component.actor.structure.LavaActor;
 import com.derekentringer.gizmo.component.actor.structure.WallActor;
 import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockDirtActor;
-import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockMarsActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockClayActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
@@ -50,7 +50,7 @@ import com.derekentringer.gizmo.model.structure.LavaModel;
 import com.derekentringer.gizmo.model.structure.WallModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
-import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockMarsModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockClayModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
@@ -201,11 +201,11 @@ public class MapParser extends Stage {
                                 addToActorsArray(destroyableBlockDirtActor);
                             }
                         }
-                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockMarsModel.DESTROYABLE_BLOCK_MARS)) {
+                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY)) {
                             Vector2 blockPosition = new Vector2(row, col);
                             if (!loopThruDestroyedBlocksArray(mLoadedLevelModel.getDestroyedBlockList(), blockPosition)) {
-                                DestroyableBlockMarsActor destroyableBlockMarsActor = new DestroyableBlockMarsActor(BodyUtils.createStaticWorldBody(new DestroyableBlockMarsModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
-                                destroyableBlockMarsActor.setName(DestroyableBlockMarsModel.DESTROYABLE_BLOCK_MARS);
+                                DestroyableBlockClayActor destroyableBlockMarsActor = new DestroyableBlockClayActor(BodyUtils.createStaticWorldBody(new DestroyableBlockClayModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                destroyableBlockMarsActor.setName(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY);
                                 addActor(destroyableBlockMarsActor);
                                 addToActorsArray(destroyableBlockMarsActor);
                             }
