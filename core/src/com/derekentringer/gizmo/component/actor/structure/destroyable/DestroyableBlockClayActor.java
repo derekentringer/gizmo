@@ -4,10 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 
-public class DestroyableBlockClayActor extends BaseActor {
+public class DestroyableBlockClayActor extends BaseDestroyableBlockActor {
 
     private static final String TAG = DestroyableBlockClayActor.class.getSimpleName();
 
@@ -22,11 +20,6 @@ public class DestroyableBlockClayActor extends BaseActor {
 
         setIsPlayingAnimation(false);
         setAnimation(mDestroyableBlockSprite, 1 / 12f);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
 }
