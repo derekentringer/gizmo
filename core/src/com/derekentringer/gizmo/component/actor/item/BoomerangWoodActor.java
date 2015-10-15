@@ -8,7 +8,6 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
-import com.derekentringer.gizmo.model.BaseModel;
 
 import java.util.ArrayList;
 
@@ -40,11 +39,6 @@ public class BoomerangWoodActor extends BaseActor {
 
     public void addListener(IItems listener) {
         listeners.add(listener);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     @Override

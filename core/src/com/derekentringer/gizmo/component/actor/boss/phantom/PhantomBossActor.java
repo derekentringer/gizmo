@@ -9,7 +9,6 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.stage.GameStage;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 
 import java.util.ArrayList;
@@ -43,11 +42,6 @@ public class PhantomBossActor extends BaseActor {
 
         mPhantomBossAttack = new PhantomBossAttack(world);
         mPhantomBossAttack.addListener(mGameStage);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     @Override

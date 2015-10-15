@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 
 public class BoomerangActor extends BaseActor {
@@ -29,11 +28,6 @@ public class BoomerangActor extends BaseActor {
         }
         mBoomerangSprite = TextureRegion.split(mBoomerangTexture, 32, 32)[0];
         setAnimation(mBoomerangSprite, 1 / 12f);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
 }

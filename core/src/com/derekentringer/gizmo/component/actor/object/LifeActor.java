@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 
 public class LifeActor extends BaseActor {
 
@@ -19,11 +18,6 @@ public class LifeActor extends BaseActor {
         mLife = Gizmo.assetManager.get("res/image/object/life.png", Texture.class);
         mLifeSprite = TextureRegion.split(mLife, 32, 32)[0];
         setAnimation(mLifeSprite, 1 / 12f);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
 }

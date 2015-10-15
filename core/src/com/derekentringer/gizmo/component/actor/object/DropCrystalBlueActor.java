@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 
 public class DropCrystalBlueActor extends BaseActor {
@@ -64,11 +63,6 @@ public class DropCrystalBlueActor extends BaseActor {
             speedX = MathUtils.random(speedXOne, speedXTwo);
             speedY = MathUtils.random(speedYOne, speedYTwo);
         }
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     @Override

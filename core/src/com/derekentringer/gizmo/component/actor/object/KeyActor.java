@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 
 public class KeyActor extends BaseActor {
@@ -31,11 +30,6 @@ public class KeyActor extends BaseActor {
         }
         mKeySprite = TextureRegion.split(mKey, 32, 32)[0];
         setAnimation(mKeySprite, 1 / 12f);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
 }

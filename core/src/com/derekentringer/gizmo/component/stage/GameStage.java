@@ -454,7 +454,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             //delete the actor from our actorsArray
             for (int e = 0; e < mMapParser.getActorsArray().size(); e++) {
                 BaseActor actorToDelete = mMapParser.getActorsArray().get(e);
-                if (actorToDelete.mBaseModel.equals(mDeleteBodies.get(i).getBaseModel())) {
+                if (actorToDelete.getBaseModel().equals(mDeleteBodies.get(i).getBaseModel())) {
 
                     GLog.d(TAG, "DELETING OBSOLETE ACTOR: " + mMapParser.getActorsArray().get(e));
 

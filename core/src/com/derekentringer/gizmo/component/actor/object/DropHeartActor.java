@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 
 public class DropHeartActor extends BaseActor {
@@ -42,11 +41,6 @@ public class DropHeartActor extends BaseActor {
 
         speedX = MathUtils.random(-1, 1);
         speedY = MathUtils.random(0, 1);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     @Override

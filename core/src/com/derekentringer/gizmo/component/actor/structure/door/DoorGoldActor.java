@@ -7,7 +7,6 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.IBaseActor;
 import com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor;
-import com.derekentringer.gizmo.model.BaseModel;
 
 import java.util.ArrayList;
 
@@ -43,11 +42,6 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
 
     public void addListener(IDoor listener) {
         listeners.add(listener);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     public void startAnimation() {

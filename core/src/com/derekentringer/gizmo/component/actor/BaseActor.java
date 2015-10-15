@@ -11,30 +11,27 @@ import com.derekentringer.gizmo.settings.Constants;
 
 import java.util.ArrayList;
 
-public abstract class BaseActor extends Actor {
+public class BaseActor extends Actor {
 
     private static final String TAG = BaseActor.class.getSimpleName();
 
     private ArrayList<IBaseActor> listeners = new ArrayList<IBaseActor>();
-
-    public static final int FACING_RIGHT = 1;
-    public static final int FACING_LEFT = 2;
-
-    //TODO this shouldn't be public
-    public BaseModel mBaseModel;
-
-    public int mFacingDirection;
-
+    private BaseModel mBaseModel;
     private boolean mIsPlayingAnimation = true;
+    private TextureRegion[] mCurrentTextureRegion;
 
     protected Body mBody;
     protected AnimationManager mAnimationManager;
     protected float mWidth;
     protected float mHeight;
 
-    private TextureRegion[] mCurrentTextureRegion;
+    public int mFacingDirection;
+    public static final int FACING_RIGHT = 1;
+    public static final int FACING_LEFT = 2;
 
-    public abstract BaseModel getBaseModel();
+    public BaseModel getBaseModel() {
+        return mBaseModel;
+    }
 
     public BaseActor(Body body) {
         mBody = body;

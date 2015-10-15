@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 
 public class FireBallActor extends BaseActor {
 
@@ -21,11 +20,6 @@ public class FireBallActor extends BaseActor {
         mFireBall = Gizmo.assetManager.get("res/image/character/boss/phantom/fireball.png", Texture.class);
         mFireBallSprite = TextureRegion.split(mFireBall, 64, 64)[0];
         setAnimation(mFireBallSprite, 1 / 12f);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     @Override

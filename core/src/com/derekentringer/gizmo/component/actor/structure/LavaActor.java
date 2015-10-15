@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 
 public class LavaActor extends BaseActor {
 
@@ -22,11 +21,6 @@ public class LavaActor extends BaseActor {
 
         setIsPlayingAnimation(true);
         setAnimation(mLavaSprite, 1 / 12f);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
 }

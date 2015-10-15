@@ -2,7 +2,6 @@ package com.derekentringer.gizmo.component.actor.structure;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 
 public class WallActor extends BaseActor {
 
@@ -10,11 +9,6 @@ public class WallActor extends BaseActor {
 
     public WallActor(Body body) {
         super(body);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
 }

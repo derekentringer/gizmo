@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 
@@ -42,11 +41,6 @@ public class PhantomActor extends BaseActor {
         setAnimation(mPhantomLeftSprite, 1 / 12f);
 
         setFacingDirection(FACING_LEFT);
-    }
-
-    @Override
-    public BaseModel getBaseModel() {
-        return mBaseModel;
     }
 
     @Override
