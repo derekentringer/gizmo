@@ -7,7 +7,7 @@ public class DestroyableBlockClayModel extends BaseDestroyableModel {
 
     public static final String DESTROYABLE_BLOCK_CLAY = "DESTROYABLE_BLOCK_CLAY";
 
-    private int mHealth = 1000000;
+    private int mHealth = 100;
     private boolean mDoesLootDrop;
     private Vector2 mBlockPosition = new Vector2();
 

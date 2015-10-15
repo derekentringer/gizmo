@@ -39,6 +39,7 @@ public class DropManager extends Stage {
 
     public void randomDrop(World world, Vector2 coordinates) {
         whichDrop = MathUtils.random(DROP_TYPE_HEART, DROP_TYPE_CRYSTAL_BLUE);
+        GLog.d(TAG, "random drop: 0 or 3" + whichDrop);
         if (whichDrop == DROP_TYPE_HEART) {
             GLog.d(TAG, "addDropHeart: " + coordinates.x + ", " + coordinates.y);
             addDropHeart(world, coordinates);
