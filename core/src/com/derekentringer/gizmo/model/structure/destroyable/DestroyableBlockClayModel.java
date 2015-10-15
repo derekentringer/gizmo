@@ -12,7 +12,6 @@ public class DestroyableBlockClayModel extends BaseDestroyableModel {
     private Vector2 mBlockPosition = new Vector2();
 
     public DestroyableBlockClayModel() {
-
     }
 
     public DestroyableBlockClayModel(boolean doesLootDrop, float posX, float posY) {

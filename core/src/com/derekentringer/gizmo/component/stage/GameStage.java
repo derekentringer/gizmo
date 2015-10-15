@@ -130,7 +130,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     @Override
     public void beginContact(Contact contact) {
-        
+
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 

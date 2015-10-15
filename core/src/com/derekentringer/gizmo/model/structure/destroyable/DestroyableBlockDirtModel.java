@@ -12,7 +12,6 @@ public class DestroyableBlockDirtModel extends BaseDestroyableModel {
     private Vector2 mBlockPosition = new Vector2();
 
     public DestroyableBlockDirtModel() {
-
     }
 
     public DestroyableBlockDirtModel(boolean doesLootDrop, float posX, float posY) {
