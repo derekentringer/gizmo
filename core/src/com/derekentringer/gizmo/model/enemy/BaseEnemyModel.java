@@ -1,20 +1,15 @@
 package com.derekentringer.gizmo.model.enemy;
 
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.BaseModelType;
 
 public class BaseEnemyModel extends BaseModel {
 
-    private int mHealth;
-    private int mHealthDamage;
-    private boolean mDoesLootDrop;
-    private boolean mIsBoss;
+    protected int mHealth;
+    protected int mHealthDamage;
+    protected boolean mDoesLootDrop;
+    protected boolean mIsBoss;
 
     public BaseEnemyModel() {
-    }
-
-    public BaseModelType getBaseModelType() {
-        return mBaseModelType;
     }
 
     public int getHealth() {

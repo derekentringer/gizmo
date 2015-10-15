@@ -1,6 +1,6 @@
 package com.derekentringer.gizmo.model;
 
-public abstract class BaseModel {
+public class BaseModel {
 
     public static final String TILE_IGNORE = "ignore";
 
