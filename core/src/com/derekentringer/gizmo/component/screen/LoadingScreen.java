@@ -83,7 +83,9 @@ public class LoadingScreen extends AbstractScreen {
         mGizmoGame.assetManager.load("res/image/item/boomerang_wood_pickup_shine.png", Texture.class);
 
         mGizmoGame.assetManager.load("res/image/tile/lava.png", Texture.class);
+
         mGizmoGame.assetManager.load("res/image/tile/destroyable_block_dirt.png", Texture.class);
+        mGizmoGame.assetManager.load("res/image/tile/destroyable_block_mars.png", Texture.class);
 
         //mGizmoGame.assetManager.load("res/music/background.ogg", Music.class);
         //mGizmoGame.assetManager.load("res/sfx/jump.ogg", Sound.class);

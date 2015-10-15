@@ -22,7 +22,8 @@ import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.structure.GroundActor;
 import com.derekentringer.gizmo.component.actor.structure.LavaActor;
 import com.derekentringer.gizmo.component.actor.structure.WallActor;
-import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockDirtActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockMarsActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
@@ -49,6 +50,7 @@ import com.derekentringer.gizmo.model.structure.LavaModel;
 import com.derekentringer.gizmo.model.structure.WallModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockMarsModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
@@ -193,10 +195,19 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT)) {
                             Vector2 blockPosition = new Vector2(row, col);
                             if (!loopThruDestroyedBlocksArray(mLoadedLevelModel.getDestroyedBlockList(), blockPosition)) {
-                                DestroyableBlockActor destroyableBlockActor = new DestroyableBlockActor(BodyUtils.createStaticWorldBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
-                                destroyableBlockActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
-                                addActor(destroyableBlockActor);
-                                addToActorsArray(destroyableBlockActor);
+                                DestroyableBlockDirtActor destroyableBlockDirtActor = new DestroyableBlockDirtActor(BodyUtils.createStaticWorldBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                destroyableBlockDirtActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
+                                addActor(destroyableBlockDirtActor);
+                                addToActorsArray(destroyableBlockDirtActor);
+                            }
+                        }
+                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockMarsModel.DESTROYABLE_BLOCK_MARS)) {
+                            Vector2 blockPosition = new Vector2(row, col);
+                            if (!loopThruDestroyedBlocksArray(mLoadedLevelModel.getDestroyedBlockList(), blockPosition)) {
+                                DestroyableBlockMarsActor destroyableBlockMarsActor = new DestroyableBlockMarsActor(BodyUtils.createStaticWorldBody(new DestroyableBlockMarsModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                destroyableBlockMarsActor.setName(DestroyableBlockMarsModel.DESTROYABLE_BLOCK_MARS);
+                                addActor(destroyableBlockMarsActor);
+                                addToActorsArray(destroyableBlockMarsActor);
                             }
                         }
                         if (curLayerName.equalsIgnoreCase(LavaModel.LAVA)) {

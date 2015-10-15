@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="96">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
-  <image source="../tileset/gizmo.png" width="256" height="192"/>
+  <image source="../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
    <properties>
     <property name="keyType" value="black"/>
@@ -44,6 +44,11 @@
    eJztzzEKACAMBMF7kv9/nY2FlY2ggczAloFcAgBAZWNV4Ye92/tTyf/Nr3XbCwDQ1QThlQPx
   </data>
  </layer>
+ <layer name="destroyable_block_mars" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENACAMA0GPlP2no6WFAhTlTvreTgAAeqrfAx6pra7qsKT33xvT/gIATLUA4HsDYQ==
+  </data>
+ </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJzt09EKwCAIBVD7B/P/P3UvCU4a7MG20ntgNCNi4h0RAMBc//sDPsRjrdAzuzpzz75Xu9/Hw2bVd5nUJ4ia5QmZ0NlE0Czo3G02fC3urLizb7PS6J4/f7/d330eT/+ZaovuzSaq393zEq1aTqrNFwAAIKsL77YE3w==
@@ -65,7 +70,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzzEKACAMBMF7kf9/no2FlY2ggczAloFcAgBAZWNV4Ye92/tTyf/Nr3XbCwDQ1QQOdgPH
+   eJzt0bEJACAMRcFMJGT/5awEC5s0iuQOXp9PIgAA/pSvD7gkt14ZhyqyWESf/y7d9gIAdDUB2BwEWQ==
   </data>
  </layer>
  <objectgroup name="phantom"/>

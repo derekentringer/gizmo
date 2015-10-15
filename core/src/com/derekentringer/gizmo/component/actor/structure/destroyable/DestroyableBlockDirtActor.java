@@ -7,14 +7,14 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.model.BaseModel;
 
-public class DestroyableBlockActor extends BaseActor {
+public class DestroyableBlockDirtActor extends BaseActor {
 
-    private static final String TAG = DestroyableBlockActor.class.getSimpleName();
+    private static final String TAG = DestroyableBlockDirtActor.class.getSimpleName();
 
     private TextureRegion[] mDestroyableBlockSprite;
     private Texture mDestroyableBlock;
 
-    public DestroyableBlockActor(Body body) {
+    public DestroyableBlockDirtActor(Body body) {
         super(body);
 
         mDestroyableBlock = Gizmo.assetManager.get("res/image/tile/destroyable_block_dirt.png", Texture.class);
