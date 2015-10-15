@@ -1,11 +1,6 @@
 TODO
 -----
 
-new block to dig thru (red)
-
-clean up drop actors, models, and BaseModelTypes 
-	- need to create a BaseDropActor class
-
 have the boomerang bounce off walls and ground
 
 give enemies flinching animation (something diff than the player blinking)
