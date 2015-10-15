@@ -1,13 +1,18 @@
 TODO
 -----
 
-make drops go more than just X randomly
+new block to dig thru (red)
 
-clean up drop actors, models, and BaseModelTypes - need a BaseDropActor
+clean up drop actors, models, and BaseModelTypes 
+	- need to create a BaseDropActor class
 
 have the boomerang bounce off walls and ground
 
-give enemies flinching animation
+give enemies flinching animation (something diff than the player blinking)
+
+dynamic levels or placed blocks and enemies based on player progression
+	- if the player has been to a certain stage in the game (loaded from game.sav) areas of a map can change slightly
+	- this would be certain layers in the tiled maps being shown
 
 add new screens
 	- start
