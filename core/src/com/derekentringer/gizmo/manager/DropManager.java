@@ -63,7 +63,6 @@ public class DropManager extends Stage {
     public void addDropCrystalBlue(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_DROPS, MAX_DROPS);
         for (int i = 0; i <= drops; i++) {
-            GLog.d(TAG, "addDropCrystalBlue: " + coordinates.x + ", " + coordinates.y);
             DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDropHeart(new DropCrystalBlueModel(), world, coordinates), false);
             dropCrystalBlueActor.setName(DropCrystalBlueModel.CRYSTAL_BLUE);
             for (IDropManager listener : listeners) {
@@ -75,7 +74,6 @@ public class DropManager extends Stage {
     public void bossDropCrystals(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_BOSS_DROPS, MAX_BOSS_DROPS);
         for (int i = 0; i <= drops; i++) {
-            GLog.d(TAG, "bossDropCrystals");
             DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDropHeart(new DropCrystalBlueModel(), world, coordinates), true);
             dropCrystalBlueActor.setName(DropCrystalBlueModel.CRYSTAL_BLUE);
             for (IDropManager listener : listeners) {

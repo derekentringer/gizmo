@@ -31,10 +31,6 @@ public class DropHeartActor extends BaseActor {
 
     private float speedY;
     private float speedX;
-    private float speedYOne;
-    private float speedXOne;
-    private float speedYTwo;
-    private float speedXTwo;
     
     public DropHeartActor(Body body) {
         super(body);
@@ -44,14 +40,8 @@ public class DropHeartActor extends BaseActor {
 
         setAnimation(mDropHeartSprite, 1 / 12f);
 
-        speedXOne = MathUtils.random(-1, 1);
-        speedXTwo = MathUtils.random(-2, 2);
-
-        speedYOne = MathUtils.random(0, 1);
-        speedYTwo = MathUtils.random(0, 2);
-
-        speedX = MathUtils.random(speedXOne, speedXTwo);
-        speedY = MathUtils.random(speedYOne, speedYTwo);
+        speedX = MathUtils.random(-1, 1);
+        speedY = MathUtils.random(0, 1);
     }
 
     @Override
@@ -75,7 +65,7 @@ public class DropHeartActor extends BaseActor {
         }
         else {
             if (speedY <= 0) {
-                speedY = -1f;
+                speedY = -0.75f;
             }
             if (speedY > 0) {
                 speedX = speedX - (mTimeAccumulated / 1);
