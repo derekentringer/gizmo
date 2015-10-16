@@ -1,6 +1,8 @@
 TODO
 -----
 
+there are dispose problems on nexus player
+
 have the boomerang bounce off walls and ground
 
 give enemies flinching animation (something diff than the player blinking)
