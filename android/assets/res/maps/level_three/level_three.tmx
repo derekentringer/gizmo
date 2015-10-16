@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="37">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
-  <image source="../tileset/gizmo.png" width="256" height="192"/>
+  <image source="../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
    <properties>
     <property name="name" value="topleft"/>
@@ -30,12 +30,17 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlFkKwCAMRJM7qNAj9P4X7EeVhqAiJS6182AwqMhkaYkAAAB8AZ5tAAzjz71eOfeSNwvPrOLZdWDK+yjtA9CKm20AdGHXvup/M6jDSp7u2XgzH6ehr9XxUQc99aqpFd2PFQiGb8nccnVJM5gUorxYnbhnjWWuPZC1c5lYfsOlsxQfg73vwgX4eQOQ
+   eJztlEsKwCAMROMdVPAI3fb+h+uihgZRkRI/tfNgaKilTCZBIgAAAF/AzDYAhvHnWa/ce8mbhmeT1LNzMJT3UXoPQCt2tgHQhV3nmt7NoI5J5OjejTf7cSj6Wh0XFejJq6ZW0nmsgFf8l+wtlwvvIMtHOfG04jttNHvtgczOZuozKnfGmXEdBnvfhQtkjAPe
   </data>
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJzt07ENADAIAzBO4v/ruvYCWhRbyg4oVAEAAPypXw8woK8wJ+3eaR1L+6uuvJ1hswPn4gKh
+  </data>
+ </layer>
+ <layer name="destroyable_block_fall" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
