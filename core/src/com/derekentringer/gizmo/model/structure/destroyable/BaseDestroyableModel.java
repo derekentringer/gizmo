@@ -5,9 +5,9 @@ import com.derekentringer.gizmo.model.BaseModel;
 
 public class BaseDestroyableModel extends BaseModel {
 
-    private int mHealth;
-    private boolean mDoesLootDrop;
-    private Vector2 mBlockPosition;
+    protected int mHealth;
+    protected boolean mDoesLootDrop;
+    protected Vector2 mBlockPosition;
 
     public BaseDestroyableModel() {
     }

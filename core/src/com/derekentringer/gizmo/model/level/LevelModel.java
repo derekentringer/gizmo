@@ -6,7 +6,7 @@ import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
-import com.derekentringer.gizmo.model.structure.DoorModel;
+import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 
 import java.util.ArrayList;
