@@ -9,11 +9,10 @@ public class BaseItemModel extends BaseModel {
 
     public static final String BOOMERANG_WOOD = "BOOMERANG_WOOD";
 
-    private int mHealthDamage;
-    private String mItemType;
+    protected int mHealthDamage;
+    protected String mItemType;
 
     public BaseItemModel() {
-        super();
     }
 
     public BaseModelType getBaseModelType() {
