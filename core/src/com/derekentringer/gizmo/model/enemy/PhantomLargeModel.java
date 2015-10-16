@@ -6,13 +6,18 @@ public class PhantomLargeModel extends BaseEnemyModel {
 
     public static final String PHANTOM_LARGE = "PHANTOM_LARGE";
 
+    private static final int DEFAULT_HEALTH = 4;
+    private static final int DEFAULT_HEALTH_DAMAGE = 10;
+    private static final boolean IS_BOSS = true;
+
     public PhantomLargeModel(boolean dropsLoot) {
         super();
+        
         mBaseModelType = BaseModelType.ENEMY;
-        mHealth = 4;
-        mHealthDamage = 10;
+        mHealth = DEFAULT_HEALTH;
+        mHealthDamage = DEFAULT_HEALTH_DAMAGE;
+        mIsBoss = IS_BOSS;
         mDoesLootDrop = dropsLoot;
-        mIsBoss = true;
     }
 
 }

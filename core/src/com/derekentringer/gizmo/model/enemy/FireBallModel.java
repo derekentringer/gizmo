@@ -6,10 +6,13 @@ public class FireBallModel extends BaseEnemyModel {
 
     public static final String FIREBALL = "FIREBALL";
 
+    private static final int DEFAULT_HEALTH_DAMAGE = 5;
+
     public FireBallModel() {
         super();
+
         mBaseModelType = BaseModelType.ENEMY;
-        mHealthDamage = 5;
+        mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }
 
 }
