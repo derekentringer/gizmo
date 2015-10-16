@@ -6,39 +6,15 @@ public class PhantomModel extends BaseEnemyModel {
 
     public static final String PHANTOM = "PHANTOM";
 
-    private int mHealth = 4;
-    private int mHealthDamage = 5;
-    private boolean mDoesLootDrop;
+    private static final int DEFAULT_HEALTH = 4;
+    private static final int DEFAULT_HEALTH_DAMAGE = 5;
 
     public PhantomModel(boolean dropsLoot) {
         super();
+        mHealth = DEFAULT_HEALTH;
+        mHealthDamage = DEFAULT_HEALTH_DAMAGE;
         mBaseModelType = BaseModelType.ENEMY;
         mDoesLootDrop = dropsLoot;
-    }
-
-    @Override
-    public int getHealth() {
-        return mHealth;
-    }
-
-    @Override
-    public void setHealth(int health) {
-        mHealth = health;
-    }
-
-    @Override
-    public int getHealthDamage() {
-        return mHealthDamage;
-    }
-
-    @Override
-    public boolean getDoesLootDrop() {
-        return mDoesLootDrop;
-    }
-
-    @Override
-    public void setDoesLootDrop(boolean doesLootDrop) {
-        mDoesLootDrop = doesLootDrop;
     }
 
 }

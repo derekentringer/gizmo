@@ -12,7 +12,7 @@ public class PhantomLargeModel extends BaseEnemyModel {
 
     public PhantomLargeModel(boolean dropsLoot) {
         super();
-        
+
         mBaseModelType = BaseModelType.ENEMY;
         mHealth = DEFAULT_HEALTH;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
