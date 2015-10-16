@@ -427,8 +427,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     @Override
     public void dispose() {
-        mPlayerActor.remove();
-        mMapParser.dispose();
     }
 
     public void quitGame() {
