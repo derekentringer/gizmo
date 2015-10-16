@@ -8,7 +8,6 @@ public class LifeModel extends BaseModel {
     public static final String LIFE = "LIFE";
 
     public LifeModel() {
-        super();
         mBaseModelType = BaseModelType.LIFE;
     }
 

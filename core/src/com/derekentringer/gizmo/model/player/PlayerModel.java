@@ -35,7 +35,6 @@ public class PlayerModel extends BaseModel {
     private int mCrystalBlueAmount;
 
     public PlayerModel() {
-        super();
         mBaseModelType = BaseModelType.PLAYER;
     }
 

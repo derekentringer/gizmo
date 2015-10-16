@@ -12,12 +12,10 @@ public class BoomerangModel extends BaseItemModel {
     public static final String BOOMERANG_EMERALD = "BOOMERANG_EMERALD";
 
     public BoomerangModel() {
-        super();
         mBaseModelType = BaseModelType.PLAYER_ITEM;
     }
 
     public BoomerangModel(String boomerangType) {
-        super();
         mBaseModelType = BaseModelType.PLAYER_ITEM;
         mItemType = boomerangType;
     }

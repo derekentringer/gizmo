@@ -15,12 +15,10 @@ public class KeyModel extends BaseModel {
     private String mKeyType;
 
     public KeyModel() {
-        super();
         mBaseModelType = BaseModelType.KEY;
     }
 
     public KeyModel(String keyType) {
-        super();
         mBaseModelType = BaseModelType.KEY;
         mKeyType = keyType;
     }

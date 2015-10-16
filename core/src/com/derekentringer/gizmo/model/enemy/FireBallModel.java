@@ -9,8 +9,6 @@ public class FireBallModel extends BaseEnemyModel {
     private static final int DEFAULT_HEALTH_DAMAGE = 5;
 
     public FireBallModel() {
-        super();
-
         mBaseModelType = BaseModelType.ENEMY;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }

@@ -11,8 +11,6 @@ public class PhantomLargeModel extends BaseEnemyModel {
     private static final boolean IS_BOSS = true;
 
     public PhantomLargeModel(boolean dropsLoot) {
-        super();
-
         mBaseModelType = BaseModelType.ENEMY;
         mHealth = DEFAULT_HEALTH;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;

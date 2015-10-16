@@ -10,7 +10,6 @@ public class PhantomModel extends BaseEnemyModel {
     private static final int DEFAULT_HEALTH_DAMAGE = 5;
 
     public PhantomModel(boolean dropsLoot) {
-        super();
         mHealth = DEFAULT_HEALTH;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
         mBaseModelType = BaseModelType.ENEMY;

@@ -10,7 +10,6 @@ public class DropHeartModel extends BaseModel {
     public int mHealthAmount = 1;
 
     public DropHeartModel() {
-        super();
         mBaseModelType = BaseModelType.HEART_SMALL;
     }
 

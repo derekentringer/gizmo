@@ -9,7 +9,6 @@ public class BoomerangWoodModel extends BaseItemModel {
     private static final int DEFAULT_HEALTH_DAMAGE = 2;
 
     public BoomerangWoodModel() {
-        super();
         mBaseModelType = BaseModelType.PLAYER_ITEM;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }

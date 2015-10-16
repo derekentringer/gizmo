@@ -12,7 +12,6 @@ public class DestroyableBlockClayModel extends BaseDestroyableModel {
     }
 
     public DestroyableBlockClayModel(boolean doesLootDrop, float posX, float posY) {
-        super();
         mBaseModelType = BaseModelType.DESTROYABLE_BLOCK;
         mHealth = DEFAULT_HEALTH;
         mDoesLootDrop = doesLootDrop;
