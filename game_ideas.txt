@@ -3,6 +3,17 @@ TODO
 
 falling blocks
 
+HUD for crystals
+
+"poof" for destroying a block or enemy
+
+trail of dust when running?
+
+fix the boomerang following too slowly
+
+phantoms fail when directly below or above
+	- need to add a buffer
+
 there are dispose problems on nexus player
 
 have the boomerang bounce off walls and ground
