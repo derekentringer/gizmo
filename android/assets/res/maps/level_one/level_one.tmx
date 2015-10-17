@@ -49,6 +49,11 @@
    eJztwzEJAAAMA7BKmn91e2uhkEASAAAAAJZcBbY8L24AkQ==
   </data>
  </layer>
+ <layer name="destroyable_block_fall" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+  </data>
+ </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJztmOEKgCAMhPUddO//qP3IwbArJobkrQ9GNBbt2JViSifZRAH3mqstSrvmh6gmNCcmbI3c1Ov77XN9fd8j0tCDcojirPsSM3rrm40sAvXsnVu0+e4I0rajT70gT+7oUy9ovsx6kXeZv180S2a9aL7M/6uZ9XdHovn5329w643mZ6RXlnexjn+/EW89YoZNr55d6bmapKtGFs0jOlg0j3AAE2kFQg==

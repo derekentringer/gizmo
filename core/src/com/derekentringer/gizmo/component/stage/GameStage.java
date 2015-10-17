@@ -20,6 +20,7 @@ import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockFallActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBronzeActor;
@@ -47,9 +48,11 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockFallModel;
+import com.derekentringer.gizmo.model.structure.destroyable.interfaces.IDestroyable;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.model.structure.door.DoorType;
-import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -65,7 +68,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends Stage implements IMapParser, IPlayer, IDropManager, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, ContactListener {
+public class GameStage extends Stage implements IMapParser, IPlayer, IDropManager, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, IDestroyable, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -387,6 +390,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             }
             else if (actor.getName().equalsIgnoreCase(DropCrystalBlueModel.CRYSTAL_BLUE)) {
                 ((DropCrystalBlueActor) actor).setPlayerPosition(mPlayerActor.getPosition());
+            }
+            else if (actor.getName().equalsIgnoreCase(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL)) {
+                ((DestroyableBlockFallActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
         }
 
@@ -806,6 +812,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     @Override
     public void addDroppedItem(BaseActor actor) {
         mMapParser.addToTempActorsArray(actor);
+    }
+
+    @Override
+    public void removeBlockFromMap(BaseActor baseActor) {
+        mLoadedLevelModel.addDestroyedBlock((BaseDestroyableModel) baseActor.getBody().getUserData());
     }
 
     /*private void startBackgroundMusic() {

@@ -32,12 +32,12 @@ public class FixtureUtils {
         BaseModel userData = (BaseModel) fixture.getUserData();
         return userData != null
                 && (userData.getBaseModelType().equals(BaseModelType.GROUND)
-                || userData.getBaseModelType().equals(BaseModelType.DESTROYABLE_BLOCK));
+                || userData.getBaseModelType().equals(BaseModelType.BLOCK_DESTROYABLE));
     }
 
     public static boolean fixtureIsDestroyable(Fixture fixture) {
         BaseModel userData = (BaseModel) fixture.getUserData();
-        return userData != null && userData.getBaseModelType().equals(BaseModelType.DESTROYABLE_BLOCK);
+        return userData != null && userData.getBaseModelType().equals(BaseModelType.BLOCK_DESTROYABLE);
     }
 
 }

@@ -19,5 +19,6 @@ public enum BaseModelType {
     CRYSTAL_BLUE,
     LIFE,
     LAVA,
-    DESTROYABLE_BLOCK
+    BLOCK_DESTROYABLE,
+    BLOCK_DESTROYABLE_FALL
 }

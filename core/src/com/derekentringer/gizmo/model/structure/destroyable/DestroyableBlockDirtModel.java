@@ -12,7 +12,7 @@ public class DestroyableBlockDirtModel extends BaseDestroyableModel {
     }
 
     public DestroyableBlockDirtModel(boolean doesLootDrop, float posX, float posY) {
-        mBaseModelType = BaseModelType.DESTROYABLE_BLOCK;
+        mBaseModelType = BaseModelType.BLOCK_DESTROYABLE;
         mHealth = DEFAULT_HEALTH;
         mDoesLootDrop = doesLootDrop;
         mBlockPosition.add(posX, posY);

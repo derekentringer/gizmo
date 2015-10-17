@@ -38,9 +38,44 @@ public class BodyUtils {
         }
     }
 
+    //TODO cleanup
     public static Body createStaticWorldBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set(
+                (col + 0.5f) * tileSize / Constants.PPM,
+                (row + 0.5f) * tileSize / Constants.PPM
+        );
+
+        //don't have to use chainshape here...there are other options
+        ChainShape chainShape = new ChainShape();
+        Vector2[] v = new Vector2[5];
+        v[0] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[1] = new Vector2(-tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[2] = new Vector2(tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[3] = new Vector2(tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[4] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        chainShape.createChain(v);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = 0;
+        fixtureDef.shape = chainShape;
+        fixtureDef.isSensor = isSensor;
+
+        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
+
+        Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef).setUserData(userData);
+        body.setUserData(userData);
+
+        chainShape.dispose();
+        return body;
+    }
+
+    //TODO cleanup
+    public static Body createDynamicWorldBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(
                 (col + 0.5f) * tileSize / Constants.PPM,
                 (row + 0.5f) * tileSize / Constants.PPM

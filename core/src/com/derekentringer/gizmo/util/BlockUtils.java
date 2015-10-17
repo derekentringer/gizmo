@@ -18,7 +18,6 @@ public class BlockUtils {
     }
 
     public static void setBlockHealth(Body body, int health) {
-        //TODO this crashes sometimes
         BaseDestroyableModel baseDestroyableModel = (BaseDestroyableModel) body.getUserData();
         if (baseDestroyableModel != null) {
             int newHealth = baseDestroyableModel.getHealth() - health;

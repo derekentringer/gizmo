@@ -76,10 +76,13 @@ public class PlayerActor extends BaseActor {
 
     private DoorModel mIsAtDoorUserData;
     private boolean mIsOnGround;
+
     private Body mTouchingBodyDestroyableTop;
     private Body mTouchingBodyDestroyableRight;
     private Body mTouchingBodyDestroyableBottom;
     private Body mTouchingBodyDestroyableLeft;
+    private Body mTouchingBodyDestroyableFall;
+
     private boolean mIsAtDoor;
     private static boolean mIsFlinching;
 

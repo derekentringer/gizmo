@@ -30,7 +30,7 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlEsKwCAMROMdVPAI3fb+h+uihgZRkRI/tfNgaKilTCZBIgAAAF/AzDYAhvHnWa/ce8mbhmeT1LNzMJT3UXoPQCt2tgHQhV3nmt7NoI5J5OjejTf7cSj6Wh0XFejJq6ZW0nmsgFf8l+wtlwvvIMtHOfG04jttNHvtgczOZuozKnfGmXEdBnvfhQtkjAPe
+   eJzt1G0KgCAMBuB5BxU6Qve/YD9yJGOKxPzI3gdGoyJep0QEAABf4GYHgGH+vNcrr72UzSKzE/3sOTjSc5TuA7TyswNAF7vuq/w3Q50TFeg+G2/Ox2mYa3Uh1UHPvGrVSu7HCqLht/K1aXPhM8gVU4Xs6rP3rFmutYd8dl7pmfaMZ8b9MSz1Xi7aNQN6
   </data>
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
@@ -40,7 +40,7 @@
  </layer>
  <layer name="destroyable_block_fall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+   eJztwzENAAAIwLBJwr86HizwtUkLAAAAAKDm8mcBmlAAYQ==
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -69,7 +69,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt07ENADAIAzAu4v/zuvYCWhRbyg4oVAEAAPypXw8woK8wJ+3eaR1L+6uuvJ1hswNJ0gKF
+   eJzt07ENACAIBEAmonD/4WwsXAA04S75nicQAQAA8Kd8PUCDvEKfafuedmPT/ipjXmfqrBPqbNQaAuk=
   </data>
  </layer>
  <objectgroup name="phantom"/>

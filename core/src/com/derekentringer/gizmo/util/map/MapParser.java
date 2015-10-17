@@ -22,8 +22,9 @@ import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.structure.GroundActor;
 import com.derekentringer.gizmo.component.actor.structure.LavaActor;
 import com.derekentringer.gizmo.component.actor.structure.WallActor;
-import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockDirtActor;
 import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockClayActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockDirtActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockFallActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
@@ -42,15 +43,16 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.structure.door.DoorModel;
-import com.derekentringer.gizmo.model.structure.door.DoorOffModel;
-import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.model.structure.GroundModel;
 import com.derekentringer.gizmo.model.structure.LavaModel;
 import com.derekentringer.gizmo.model.structure.WallModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
-import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockClayModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockDirtModel;
+import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockFallModel;
+import com.derekentringer.gizmo.model.structure.door.DoorModel;
+import com.derekentringer.gizmo.model.structure.door.DoorOffModel;
+import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
@@ -204,13 +206,23 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY)) {
                             Vector2 blockPosition = new Vector2(row, col);
                             if (!loopThruDestroyedBlocksArray(mLoadedLevelModel.getDestroyedBlockList(), blockPosition)) {
-                                DestroyableBlockClayActor destroyableBlockMarsActor = new DestroyableBlockClayActor(BodyUtils.createStaticWorldBody(new DestroyableBlockClayModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
-                                destroyableBlockMarsActor.setName(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY);
-                                addActor(destroyableBlockMarsActor);
-                                addToActorsArray(destroyableBlockMarsActor);
+                                DestroyableBlockClayActor destroyableBlockClayActor = new DestroyableBlockClayActor(BodyUtils.createStaticWorldBody(new DestroyableBlockClayModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                destroyableBlockClayActor.setName(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY);
+                                addActor(destroyableBlockClayActor);
+                                addToActorsArray(destroyableBlockClayActor);
                             }
                         }
-                        if (curLayerName.equalsIgnoreCase(LavaModel.LAVA)) {
+                        else if (curLayerName.equalsIgnoreCase(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL)) {
+                            Vector2 blockPosition = new Vector2(row, col);
+                            if (!loopThruDestroyedBlocksArray(mLoadedLevelModel.getDestroyedBlockList(), blockPosition)) {
+                                DestroyableBlockFallActor destroyableBlockFallActor = new DestroyableBlockFallActor(BodyUtils.createDynamicWorldBody(new DestroyableBlockFallModel(row, col), world, mTileSize, row, col, false));
+                                destroyableBlockFallActor.setName(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL);
+                                addActor(destroyableBlockFallActor);
+                                addToActorsArray(destroyableBlockFallActor);
+                                destroyableBlockFallActor.addListener(mGameStage);
+                            }
+                        }
+                        else if (curLayerName.equalsIgnoreCase(LavaModel.LAVA)) {
                             LavaActor lavaActor = new LavaActor(BodyUtils.createStaticWorldBody(new LavaModel(), world, mTileSize, row, col, true));
                             lavaActor.setName(LavaModel.LAVA);
                             addToActorsArray(lavaActor);

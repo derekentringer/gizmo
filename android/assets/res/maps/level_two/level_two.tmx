@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="38">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
-  <image source="../tileset/gizmo.png" width="256" height="192"/>
+  <image source="../tileset/gizmo.png" width="256" height="224"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -25,12 +25,17 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlw0OwyAIheUO0zvs/hfcTHzJC2tWrKXYzS8harX+gYgpLRaLxX/yeEtuqTTJJNLqWETlhb4VSjkv1J4p6bN/L4pj3xb02n9lLI/xn6fMwh/Y/hGqPeLsQbis8TwbM8K+SPueb3uOevZhVeBrZsRiQ1ttLP/lzrnMBOu7R3dsL73r5/tslCg/HGHrHC9EgTl4E32/RhOtZ4/971lPhP7P9OMct+8RfWfq98FV7wULM8Wpe7pEfAnBGw15CyM2yG89jDlq07IhHui56rGKKl8Zc/Fe3jnWq7wAGPYH7w==
+   eJztlw0OwiAMhekdhDt4/wsqCS95qcQVWVdUvqQBBuOvpZSUNpvN5j+5PSW3VJpkEml1LKLyQt8KpZwXas+U9Nq/F8Wxbwt67b8ylsf491Nm4Q9s/xOqPeLsQbis8TwbK8K+SPued3uOevZhVeBrVsRiQ702lv/y4FxWgvU9oju2l9H18302S5QfjrB1jheiwBy8ib5fo4nWs8f+j6wnQv9n+nGO24+IvjP1++Cq94KFleLUI10ivoTgjYa8hRkb5Lcexpy1aemIB725iqrn8pUxF+/lN8d6lQcXngfu
   </data>
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
    eJzt1yEOADAIA0CexP9fNzsxO0S5S6pJXakCYEpfSadrri09AQAmpW+sfuTXnS02/SBpDuswA5E=
+  </data>
+ </layer>
+ <layer name="destroyable_block_fall" width="60" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7BJwr867ikgIa2CJgAAAAAAba4DTy1WEAAx
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -68,7 +73,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1yEOADAIA0BexP+fNzsxO0S5S6pJXakCYEpfSadrri09AQAmpW+sfuTXnS02/SBpDoz5A2s=
+   eJzt16ENADAIBEAmQnT/4WorakHAXfIW8g4iAOiST6bTda4tPQEAOk2/sfKTqj1bdPwgp3j+VhfQKQOd
   </data>
  </layer>
  <objectgroup name="phantom">

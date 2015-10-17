@@ -84,6 +84,7 @@ public class LoadingScreen extends AbstractScreen {
 
         mGizmoGame.assetManager.load("res/image/tile/lava.png", Texture.class);
 
+        mGizmoGame.assetManager.load("res/image/tile/destroyable_block_fall.png", Texture.class);
         mGizmoGame.assetManager.load("res/image/tile/destroyable_block_dirt.png", Texture.class);
         mGizmoGame.assetManager.load("res/image/tile/destroyable_block_clay.png", Texture.class);
 
