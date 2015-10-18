@@ -1,6 +1,8 @@
 TODO
 -----
 
+clean up beginContact override
+
 "poof" for destroying a block or enemy
 
 HUD for crystals

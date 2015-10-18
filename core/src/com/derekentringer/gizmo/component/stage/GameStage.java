@@ -29,6 +29,7 @@ import com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
+import com.derekentringer.gizmo.manager.ContactManager;
 import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.manager.interfaces.IDropManager;
@@ -51,7 +52,6 @@ import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockFallModel;
 import com.derekentringer.gizmo.model.structure.destroyable.interfaces.IDestroyable;
-import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BlockUtils;
@@ -76,6 +76,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
     private CameraManager mCameraManager = new CameraManager();
+    private ContactManager mContactManager = new ContactManager();
     private DropManager mDropManager = new DropManager();
 
     private World mWorld;
@@ -143,22 +144,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         Object userDataA = bodyA.getUserData();
         Object userDataB = bodyB.getUserData();
 
-        // player at door
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.DOOR)) {
-            mPlayerActor.setIsAtDoor(true);
-            mPlayerActor.setIsAtDoorUserData((DoorModel) userDataB);
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.DOOR)) {
-            mPlayerActor.setIsAtDoor(true);
-            mPlayerActor.setIsAtDoorUserData((DoorModel) userDataA);
-        }
 
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.DOOR_OFF)) {
-            mPlayerActor.setIsAtDoor(false);
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.DOOR_OFF)) {
-            mPlayerActor.setIsAtDoor(false);
-        }
+        mContactManager.isPlayerAtDoor(mPlayerActor, bodyA, bodyB);
 
         // player fixture and ground detection
         if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureA) && FixtureUtils.fixtureIsGround(fixtureB)) {
