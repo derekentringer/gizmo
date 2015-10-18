@@ -44,9 +44,7 @@ import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
-import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
-import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockFallModel;
@@ -145,67 +143,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         ContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
         ContactManager.setPlayerAttacking(mMapParser, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
+        ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedLevelModel, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedLevelModel, mDeleteBodies, listeners, bodyA, bodyB);
+        ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedLevelModel, mDeleteBodies, listeners, bodyA, bodyB);
 
 
 
 
-
-
-        // pickup a key
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            mPlayerActor.addKey((KeyModel) userDataA);
-            mLoadedLevelModel.addPickedUpKey((KeyModel) userDataA);
-            mDeleteBodies.add(new DeleteBody((KeyModel) userDataA, bodyA));
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            mPlayerActor.addKey((KeyModel) userDataB);
-            mLoadedLevelModel.addPickedUpKey((KeyModel) userDataB);
-            mDeleteBodies.add(new DeleteBody((KeyModel) userDataB, bodyB));
-        }
-
-        // pickup a heart
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            mPlayerActor.addHealthHeart((HeartModel) userDataA);
-            mLoadedLevelModel.addPickedUpHeart((HeartModel) userDataA);
-
-            for (IGameStage listener : listeners) {
-                listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
-            }
-
-            mDeleteBodies.add(new DeleteBody((HeartModel) userDataA, bodyA));
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            mPlayerActor.addHealthHeart((HeartModel) userDataB);
-            mLoadedLevelModel.addPickedUpHeart((HeartModel) userDataB);
-
-            for (IGameStage listener : listeners) {
-                listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
-            }
-
-            mDeleteBodies.add(new DeleteBody((HeartModel) userDataB, bodyB));
-        }
-
-        // pickup a life
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            mPlayerActor.incrementLives();
-            mLoadedLevelModel.addPickedUpLife((LifeModel) userDataA);
-
-            for (IGameStage listener : listeners) {
-                listener.setHudLives(mPlayerActor.getPlayerLives());
-            }
-
-            mDeleteBodies.add(new DeleteBody((LifeModel) userDataA, bodyA));
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            mPlayerActor.incrementLives();
-            mLoadedLevelModel.addPickedUpLife((LifeModel) userDataB);
-
-            for (IGameStage listener : listeners) {
-                listener.setHudLives(mPlayerActor.getPlayerLives());
-            }
-
-            mDeleteBodies.add(new DeleteBody((LifeModel) userDataB, bodyB));
-        }
+        
 
         //pick up any type of PLAYER_ITEM
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {

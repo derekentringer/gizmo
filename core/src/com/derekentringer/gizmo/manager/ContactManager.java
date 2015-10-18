@@ -3,9 +3,14 @@ package com.derekentringer.gizmo.manager;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
+import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
+import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
@@ -123,6 +128,68 @@ public class ContactManager {
             playerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(bodyB));
             playerActor.setIsFlinching(true);
             playerActor.startFlinchingTimer(playerActor);
+        }
+    }
+
+    public static void setPlayerPickupKey(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+        // pickup a key
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            playerActor.addKey((KeyModel) bodyA.getUserData());
+            loadedLevelModel.addPickedUpKey((KeyModel) bodyA.getUserData());
+            deleteBodies.add(new DeleteBody((KeyModel) bodyA.getUserData(), bodyA));
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            playerActor.addKey((KeyModel) bodyB.getUserData());
+            loadedLevelModel.addPickedUpKey((KeyModel) bodyB.getUserData());
+            deleteBodies.add(new DeleteBody((KeyModel) bodyB.getUserData(), bodyB));
+        }
+    }
+
+    public static void setPlayerPickupHeart(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+        // pickup a heart
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            playerActor.addHealthHeart((HeartModel) bodyA.getUserData());
+            loadedLevelModel.addPickedUpHeart((HeartModel) bodyA.getUserData());
+
+            for (IGameStage listener : listeners) {
+                listener.setHudHealthHearts(playerActor.getHealthHearts());
+            }
+
+            deleteBodies.add(new DeleteBody((HeartModel) bodyA.getUserData(), bodyA));
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            playerActor.addHealthHeart((HeartModel) bodyB.getUserData());
+            loadedLevelModel.addPickedUpHeart((HeartModel) bodyB.getUserData());
+
+            for (IGameStage listener : listeners) {
+                listener.setHudHealthHearts(playerActor.getHealthHearts());
+            }
+
+            deleteBodies.add(new DeleteBody((HeartModel) bodyB.getUserData(), bodyB));
+        }
+    }
+
+    public static void setPlayerPickupLife(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+        // pickup a life
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            playerActor.incrementLives();
+            loadedLevelModel.addPickedUpLife((LifeModel) bodyA.getUserData());
+
+            for (IGameStage listener : listeners) {
+                listener.setHudLives(playerActor.getPlayerLives());
+            }
+
+            deleteBodies.add(new DeleteBody((LifeModel) bodyA.getUserData(), bodyA));
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            playerActor.incrementLives();
+            loadedLevelModel.addPickedUpLife((LifeModel) bodyB.getUserData());
+
+            for (IGameStage listener : listeners) {
+                listener.setHudLives(playerActor.getPlayerLives());
+            }
+
+            deleteBodies.add(new DeleteBody((LifeModel) bodyB.getUserData(), bodyB));
         }
     }
 
