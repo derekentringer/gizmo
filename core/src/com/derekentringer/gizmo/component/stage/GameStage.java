@@ -57,7 +57,6 @@ import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
-import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.ItemUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -144,43 +143,12 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         Object userDataA = bodyA.getUserData();
         Object userDataB = bodyB.getUserData();
 
+        mContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
+        mContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
+        mContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
 
-        mContactManager.isPlayerAtDoor(mPlayerActor, bodyA, bodyB);
 
-        // player fixture and ground detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureA) && FixtureUtils.fixtureIsGround(fixtureB)) {
-            mPlayerActor.setIsOnGround(true);
-        }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureB) && FixtureUtils.fixtureIsGround(fixtureA)) {
-            mPlayerActor.setIsOnGround(true);
-        }
-
-        // player fixture and destroyable detection
-        // right fixture sensor detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaRight(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
-            mPlayerActor.setTouchingBodyDestroyableRight(fixtureB.getBody());
-        }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaRight(fixtureB) && FixtureUtils.fixtureIsDestroyable(fixtureA)) {
-            mPlayerActor.setTouchingBodyDestroyableRight(bodyA);
-        }
-
-        // bottom fixture sensor detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
-            mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingBodyDestroyableBottom(bodyB);
-        }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureB) && FixtureUtils.fixtureIsDestroyable(fixtureA)) {
-            mPlayerActor.setIsOnGround(true);
-            mPlayerActor.setTouchingBodyDestroyableBottom(bodyA);
-        }
-
-        // left fixture sensor detection
-        if (FixtureUtils.fixtureIsPlayerHitAreaLeft(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
-            mPlayerActor.setTouchingBodyDestroyableLeft(bodyB);
-        }
-        else if (FixtureUtils.fixtureIsPlayerHitAreaLeft(fixtureB) && FixtureUtils.fixtureIsDestroyable(fixtureA)) {
-            mPlayerActor.setTouchingBodyDestroyableLeft(bodyA);
-        }
+        
 
         // player attack with items collisions
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
