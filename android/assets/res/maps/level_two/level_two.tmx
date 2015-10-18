@@ -110,7 +110,7 @@
   </object>
  </objectgroup>
  <objectgroup name="player_destinations">
-  <object id="1" x="288.5" y="655.5">
+  <object id="1" x="192.5" y="655.5">
    <properties>
     <property name="destination_name" value="door_previous"/>
    </properties>
