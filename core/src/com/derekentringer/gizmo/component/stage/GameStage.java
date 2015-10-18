@@ -34,11 +34,9 @@ import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.item.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
@@ -52,7 +50,6 @@ import com.derekentringer.gizmo.model.structure.destroyable.interfaces.IDestroya
 import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BlockUtils;
-import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.ItemUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -128,15 +125,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     @Override
     public void beginContact(Contact contact) {
-
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
-
-        Object userDataA = bodyA.getUserData();
-        Object userDataB = bodyB.getUserData();
 
         ContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
         ContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
@@ -146,47 +139,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedLevelModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedLevelModel, mDeleteBodies, listeners, bodyA, bodyB);
         ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedLevelModel, mDeleteBodies, listeners, bodyA, bodyB);
-
-
-
-
-        
-
-        //pick up any type of PLAYER_ITEM
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            mPlayerActor.addItem((BaseItemModel) userDataA);
-            mLoadedLevelModel.addPickedUpItem((BaseItemModel) userDataA);
-            mDeleteBodies.add(new DeleteBody((BaseItemModel) userDataA, bodyA));
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            mPlayerActor.addItem((BaseItemModel) userDataB);
-            mLoadedLevelModel.addPickedUpItem((BaseItemModel) userDataB);
-            mDeleteBodies.add(new DeleteBody((BaseItemModel) userDataB, bodyB));
-        }
-
-        //pick up HEART_SMALL with PLAYER
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART_SMALL)) {
-            mPlayerActor.addHealth((DropHeartModel) userDataB);
-            mDeleteBodies.add(new DeleteBody((DropHeartModel) userDataB, bodyB));
-            updateHud();
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART_SMALL)) {
-            mPlayerActor.addHealth((DropHeartModel) userDataA);
-            mDeleteBodies.add(new DeleteBody((DropHeartModel) userDataA, bodyA));
-            updateHud();
-        }
-
-        //pick up CRYSTAL_BLUE with PLAYER
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.CRYSTAL_BLUE)) {
-            mPlayerActor.incrementCrystalBlueAmount();
-            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) userDataB, bodyB));
-            updateHud();
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.CRYSTAL_BLUE)) {
-            mPlayerActor.incrementCrystalBlueAmount();
-            mDeleteBodies.add(new DeleteBody((DropCrystalBlueModel) userDataA, bodyA));
-            updateHud();
-        }
+        ContactManager.setPlayerPickupItem(mPlayerActor, mLoadedLevelModel, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerPickupSmallCrystalBlue(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
     }
 
     @Override
@@ -560,7 +515,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         updateHud();
     }
 
-    private void updateHud() {
+    public void updateHud() {
         for (IGameStage listener : listeners) {
             listener.setHudHealthHearts(mPlayerActor.getBaseModel().getHearts());
             listener.resetHudShapes();

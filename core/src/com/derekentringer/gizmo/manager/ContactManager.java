@@ -3,11 +3,15 @@ package com.derekentringer.gizmo.manager;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
+import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
+import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
@@ -190,6 +194,48 @@ public class ContactManager {
             }
 
             deleteBodies.add(new DeleteBody((LifeModel) bodyB.getUserData(), bodyB));
+        }
+    }
+
+    public static void setPlayerPickupItem(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+        //pick up any type of PLAYER_ITEM
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            playerActor.addItem((BaseItemModel) bodyA.getUserData());
+            loadedLevelModel.addPickedUpItem((BaseItemModel) bodyA.getUserData());
+            deleteBodies.add(new DeleteBody((BaseItemModel) bodyA.getUserData(), bodyA));
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            playerActor.addItem((BaseItemModel) bodyB.getUserData());
+            loadedLevelModel.addPickedUpItem((BaseItemModel) bodyB.getUserData());
+            deleteBodies.add(new DeleteBody((BaseItemModel) bodyB.getUserData(), bodyB));
+        }
+    }
+
+    public static void setPlayerPickupSmallHeart(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+        //pick up HEART_SMALL with PLAYER
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART_SMALL)) {
+            playerActor.addHealth((DropHeartModel) bodyB.getUserData());
+            deleteBodies.add(new DeleteBody((DropHeartModel) bodyB.getUserData(), bodyB));
+            gameStage.updateHud();
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART_SMALL)) {
+            playerActor.addHealth((DropHeartModel) bodyA.getUserData());
+            deleteBodies.add(new DeleteBody((DropHeartModel) bodyA.getUserData(), bodyA));
+            gameStage.updateHud();
+        }
+    }
+
+    public static void setPlayerPickupSmallCrystalBlue(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+        //pick up CRYSTAL_BLUE with PLAYER
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.CRYSTAL_BLUE)) {
+            playerActor.incrementCrystalBlueAmount();
+            deleteBodies.add(new DeleteBody((DropCrystalBlueModel) bodyB.getUserData(), bodyB));
+            gameStage.updateHud();
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.CRYSTAL_BLUE)) {
+            playerActor.incrementCrystalBlueAmount();
+            deleteBodies.add(new DeleteBody((DropCrystalBlueModel) bodyA.getUserData(), bodyA));
+            gameStage.updateHud();
         }
     }
 
