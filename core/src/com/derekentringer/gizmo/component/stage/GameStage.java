@@ -36,7 +36,6 @@ import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
-import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
@@ -56,7 +55,6 @@ import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
-import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.ItemUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -75,7 +73,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
     private CameraManager mCameraManager = new CameraManager();
-    private ContactManager mContactManager = new ContactManager();
     private DropManager mDropManager = new DropManager();
 
     private World mWorld;
@@ -143,58 +140,16 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         Object userDataA = bodyA.getUserData();
         Object userDataB = bodyB.getUserData();
 
-        mContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
-        mContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
-        mContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
+        ContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
+        ContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
+        ContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
+        ContactManager.setPlayerAttacking(mMapParser, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
 
 
-        
 
-        // player attack with items collisions
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
-            if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
 
-                if (EnemyUtils.isEnemyBoss(bodyB)) {
-                    if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
-                        mMapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
-                    }
-                }
-                else if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
-                    mMapParser.addToDroppedItemPositionArray(bodyB.getPosition());
-                }
 
-                mDeleteBodies.add(new DeleteBody((BaseEnemyModel) userDataB, bodyB));
-            }
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
-            if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
-
-                if (EnemyUtils.isEnemyBoss(bodyA)) {
-                    if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
-                        mMapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
-                    }
-                }
-                else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
-                    mMapParser.addToDroppedItemPositionArray(bodyA.getPosition());
-                }
-
-                mDeleteBodies.add(new DeleteBody((BaseEnemyModel) userDataA, bodyA));
-            }
-        }
-
-        // player/enemy collisions
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(bodyA));
-            mPlayerActor.setIsFlinching(true);
-            mPlayerActor.startFlinchingTimer(mPlayerActor);
-        }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            mPlayerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(bodyB));
-            mPlayerActor.setIsFlinching(true);
-            mPlayerActor.startFlinchingTimer(mPlayerActor);
-        }
 
         // pickup a key
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {

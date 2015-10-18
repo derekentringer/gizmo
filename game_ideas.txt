@@ -3,6 +3,8 @@ TODO
 
 clean up beginContact override
 
+when player dies
+
 "poof" for destroying a block or enemy
 
 HUD for crystals
