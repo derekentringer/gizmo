@@ -1,11 +1,9 @@
 TODO
 -----
 
-falling blocks
+"poof" for destroying a block or enemy
 
 HUD for crystals
-
-"poof" for destroying a block or enemy
 
 trail of dust when running?
 
