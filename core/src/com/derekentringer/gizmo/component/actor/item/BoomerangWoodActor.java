@@ -18,6 +18,7 @@ public class BoomerangWoodActor extends BaseActor {
     private ArrayList<IItems> listeners = new ArrayList<IItems>();
 
     private static final float MOVEMENT_FORCE = 4;
+    private static final float MOVEMENT_FORCE_BACK = 5;
     private static final float MAX_DISTANCE = 1;
 
     private int mPlayerFacingDirection;
@@ -50,7 +51,7 @@ public class BoomerangWoodActor extends BaseActor {
             }
             else {
                 mComingBack = true;
-                mBody.setLinearVelocity((getPlayerPosition().x - getPosition().x) * MOVEMENT_FORCE, (getPlayerPosition().y - getPosition().y) * MOVEMENT_FORCE);
+                mBody.setLinearVelocity((getPlayerPosition().x - getPosition().x) * MOVEMENT_FORCE_BACK, (getPlayerPosition().y - getPosition().y) * MOVEMENT_FORCE_BACK);
                 if (mBody.getPosition().x <= getPlayerPosition().x + 0.1) {
                     for (IItems listener : listeners) {
                         listener.removePlayerItemFromStage(this);
@@ -64,7 +65,7 @@ public class BoomerangWoodActor extends BaseActor {
             }
             else {
                 mComingBack = true;
-                mBody.setLinearVelocity((getPlayerPosition().x - getPosition().x) * MOVEMENT_FORCE, (getPlayerPosition().y - getPosition().y) * MOVEMENT_FORCE);
+                mBody.setLinearVelocity((getPlayerPosition().x - getPosition().x) * MOVEMENT_FORCE_BACK, (getPlayerPosition().y - getPosition().y) * MOVEMENT_FORCE_BACK);
                 if (mBody.getPosition().x >= getPlayerPosition().x - 0.1) {
                     for (IItems listener : listeners) {
                         listener.removePlayerItemFromStage(this);

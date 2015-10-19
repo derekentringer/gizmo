@@ -1,7 +1,6 @@
 TODO
 -----
 
-
 when player dies blocks are not saved in the level
 
 "poof" for destroying a block or enemy
