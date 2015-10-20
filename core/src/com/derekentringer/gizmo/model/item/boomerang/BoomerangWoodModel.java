@@ -1,6 +1,7 @@
-package com.derekentringer.gizmo.model.item;
+package com.derekentringer.gizmo.model.item.boomerang;
 
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.item.BaseItemModel;
 
 public class BoomerangWoodModel extends BaseItemModel {
 

@@ -7,8 +7,6 @@ public class BaseItemModel extends BaseModel {
 
     public static final String PLAYER_ITEM = "PLAYER_ITEM";
 
-    public static final String BOOMERANG_WOOD = "BOOMERANG_WOOD";
-
     protected int mHealthDamage;
     protected String mItemType;
 

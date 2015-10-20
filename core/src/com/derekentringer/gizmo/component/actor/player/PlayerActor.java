@@ -8,6 +8,11 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -261,6 +266,25 @@ public class PlayerActor extends BaseActor {
             }
         }
         return false;
+    }
+
+    public String getBestBoomerang() {
+        if (hasCorrectItem(BoomerangModel.BOOMERANG_BLOODSTONE)) {
+            return BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE;
+        }
+        else if (hasCorrectItem(BoomerangModel.BOOMERANG_AMETHYST)) {
+            return BoomerangAmethystModel.BOOMERANG_AMETHYST;
+        }
+        else if (hasCorrectItem(BoomerangModel.BOOMERANG_EMERALD)) {
+            return BoomerangEmeraldModel.BOOMERANG_EMERALD;
+        }
+        else if (hasCorrectItem(BoomerangModel.BOOMERANG_WOOD)) {
+            return BoomerangWoodModel.BOOMERANG_WOOD;
+        }
+        else {
+            return null;
+        }
+
     }
 
     public void setCurrentLevel(int level) {

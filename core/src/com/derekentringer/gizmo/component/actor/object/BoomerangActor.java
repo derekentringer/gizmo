@@ -14,17 +14,19 @@ public class BoomerangActor extends BaseActor {
     private TextureRegion[] mBoomerangSprite;
     private Texture mBoomerangTexture;
 
-    //TODO add the rest of the boomerangs
     public BoomerangActor(Body body, String boomerangType) {
         super(body);
         if (boomerangType.equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)) {
             mBoomerangTexture = Gizmo.assetManager.get("res/image/item/boomerang_wood_pickup_shine.png", Texture.class);
         }
         else if (boomerangType.equalsIgnoreCase(BoomerangModel.BOOMERANG_AMETHYST)) {
-            mBoomerangTexture = Gizmo.assetManager.get("res/image/item/boomerang_wood_pickup_shine.png", Texture.class);
+            mBoomerangTexture = Gizmo.assetManager.get("res/image/item/boomerang_amethyst_pickup_shine.png", Texture.class);
         }
         else if (boomerangType.equalsIgnoreCase(BoomerangModel.BOOMERANG_EMERALD)) {
-            mBoomerangTexture = Gizmo.assetManager.get("res/image/item/boomerang_wood_pickup_shine.png", Texture.class);
+            mBoomerangTexture = Gizmo.assetManager.get("res/image/item/boomerang_emerald_pickup_shine.png", Texture.class);
+        }
+        else if (boomerangType.equalsIgnoreCase(BoomerangModel.BOOMERANG_BLOODSTONE)) {
+            mBoomerangTexture = Gizmo.assetManager.get("res/image/item/boomerang_bloodstone_pickup_shine.png", Texture.class);
         }
         mBoomerangSprite = TextureRegion.split(mBoomerangTexture, 32, 32)[0];
         setAnimation(mBoomerangSprite, 1 / 12f);

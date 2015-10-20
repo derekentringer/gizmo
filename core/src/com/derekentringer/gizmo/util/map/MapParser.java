@@ -326,20 +326,21 @@ public class MapParser extends Stage {
                     }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(BaseItemModel.PLAYER_ITEM)) {
-
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
-
                     if (!loopThruPickedUpItemsArray(mLoadedLevelModel.getPickedUpItems(), itemType)) {
-                        if (itemType.equalsIgnoreCase(BaseItemModel.BOOMERANG_WOOD)) {
-                            String boomerangType = (String) mapObject.getProperties().get(BOOMERANG_TYPE);
-                            BoomerangActor boomerangActor = new BoomerangActor(ObjectUtils.createBoomerang(new BoomerangModel(boomerangType), world, getMapObjectCoords(mapObject)), boomerangType);
+
+                        // boomerangs
+                        if (itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)
+                                || itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_EMERALD)
+                                || itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_AMETHYST)
+                                || itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_BLOODSTONE) ) {
+                            BoomerangActor boomerangActor = new BoomerangActor(ObjectUtils.createBoomerang(new BoomerangModel(itemType), world, getMapObjectCoords(mapObject)), itemType);
                             boomerangActor.setName(BoomerangModel.BOOMERANG);
                             addActor(boomerangActor);
                             addToActorsArray(boomerangActor);
                         }
-                        //TODO add other items here
-                    }
 
+                    }
                 }
             }
         }

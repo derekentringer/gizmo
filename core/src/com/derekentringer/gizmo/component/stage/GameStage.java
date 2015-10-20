@@ -14,7 +14,10 @@ import com.derekentringer.gizmo.component.actor.boss.phantom.PhantomBossActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.enemy.PhantomActor;
-import com.derekentringer.gizmo.component.actor.item.BoomerangWoodActor;
+import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangAmethystActor;
+import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangBloodStoneActor;
+import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangEmeraldActor;
+import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
@@ -37,9 +40,11 @@ import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
-import com.derekentringer.gizmo.model.item.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.level.LevelModel;
-import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -193,6 +198,15 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             }
             else if (actor.getName().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
                 ((BoomerangWoodActor) actor).setPlayerPosition(mPlayerActor.getPosition());
+            }
+            else if (actor.getName().equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
+                ((BoomerangEmeraldActor) actor).setPlayerPosition(mPlayerActor.getPosition());
+            }
+            else if (actor.getName().equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
+                ((BoomerangAmethystActor) actor).setPlayerPosition(mPlayerActor.getPosition());
+            }
+            else if (actor.getName().equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
+                ((BoomerangBloodStoneActor) actor).setPlayerPosition(mPlayerActor.getPosition());
             }
             else if (actor.getName().equalsIgnoreCase(DropHeartModel.HEART_SMALL)) {
                 ((DropHeartActor) actor).setPlayerPosition(mPlayerActor.getPosition());
@@ -452,17 +466,26 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             }
         }
 
-        // kill stuff
+        // attack & kill stuff
         if (UserInput.isDown(UserInput.ATTACK)) {
             // TODO check current item
             // TODO this will require a inventory system
-            if (mPlayerActor.hasCorrectItem(BoomerangModel.BOOMERANG_WOOD)) {
+            String bestPlayerBoomerang = mPlayerActor.getBestBoomerang();
+            if (bestPlayerBoomerang != null) {
                 if (!mPlayerActor.getIsItemActive()) {
                     mPlayerActor.setIsItemActive(true);
-                    BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), mWorld, mPlayerActor.getPosition()), mPlayerActor.getFacingDirection());
-                    boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);
-                    mMapParser.addToTempActorsArray(boomerangWoodActor);
-                    boomerangWoodActor.addListener(this);
+                    if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+                        ItemUtils.createWoodBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                    }
+                    else if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
+                        ItemUtils.createEmeraldBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                    }
+                    else if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
+                        ItemUtils.createAmethystBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                    }
+                    else if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
+                        ItemUtils.createBloodStoneBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                    }
                 }
             }
         }

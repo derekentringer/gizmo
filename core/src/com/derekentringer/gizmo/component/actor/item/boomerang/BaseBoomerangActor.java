@@ -1,41 +1,32 @@
-package com.derekentringer.gizmo.component.actor.item;
+package com.derekentringer.gizmo.component.actor.item.boomerang;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 
 import java.util.ArrayList;
 
-public class BoomerangWoodActor extends BaseActor {
+public class BaseBoomerangActor extends BaseActor {
 
-    private static final String TAG = BoomerangWoodActor.class.getSimpleName();
+    protected ArrayList<IItems> listeners = new ArrayList<IItems>();
 
-    private ArrayList<IItems> listeners = new ArrayList<IItems>();
+    protected static final float MOVEMENT_FORCE = 4;
+    protected static final float MOVEMENT_FORCE_BACK = 5;
+    protected static final float MAX_DISTANCE = 1;
 
-    private static final float MOVEMENT_FORCE = 4;
-    private static final float MOVEMENT_FORCE_BACK = 5;
-    private static final float MAX_DISTANCE = 1;
+    protected TextureRegion[] mBoomerangSprite;
+    protected Texture mBoomerangTexture;
 
-    private int mPlayerFacingDirection;
-    private Vector2 mPlayerPosition = new Vector2();
-    private boolean mComingBack;
+    protected int mPlayerFacingDirection;
+    protected Vector2 mPlayerPosition = new Vector2();
+    protected boolean mComingBack;
 
-    private TextureRegion[] mBoomerangWoodSprite;
-    private Texture mBoomerangWoodTexture;
-
-    public BoomerangWoodActor(Body body, int playerFacingDirection) {
+    public BaseBoomerangActor(Body body) {
         super(body);
-
-        mPlayerFacingDirection = playerFacingDirection;
-
-        mBoomerangWoodTexture = Gizmo.assetManager.get("res/image/item/boomerang_wood.png", Texture.class);
-        mBoomerangWoodSprite = TextureRegion.split(mBoomerangWoodTexture, 32, 32)[0];
-        setAnimation(mBoomerangWoodSprite, 1 / 12f);
     }
 
     public void addListener(IItems listener) {
