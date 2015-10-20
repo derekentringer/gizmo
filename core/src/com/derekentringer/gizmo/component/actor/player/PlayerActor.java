@@ -284,7 +284,6 @@ public class PlayerActor extends BaseActor {
         else {
             return null;
         }
-
     }
 
     public void setCurrentLevel(int level) {
