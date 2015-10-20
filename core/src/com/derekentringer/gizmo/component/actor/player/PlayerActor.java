@@ -268,7 +268,7 @@ public class PlayerActor extends BaseActor {
         return false;
     }
 
-    public String getBestBoomerang() {
+    public String getPlayerBestBoomerang() {
         if (hasCorrectItem(BoomerangModel.BOOMERANG_BLOODSTONE)) {
             return BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE;
         }

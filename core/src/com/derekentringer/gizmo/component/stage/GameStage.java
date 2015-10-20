@@ -188,6 +188,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
         // actor render loop
+        // TODO make better?? don't let this get out of control
         for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.render(mSpriteBatch);
             if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
@@ -232,7 +233,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         UserInput.update();
         handleInput();
 
-        //add check to shake camera here
+        // check to shake camera
         if (!mCameraManager.getShakeCamera()) {
             mCameraManager.updateCameraPlayerMovement(mPlayerActor.getPosition().x, mPlayerActor.getPosition().y, mMapParser);
         }
@@ -470,20 +471,20 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         if (UserInput.isDown(UserInput.ATTACK)) {
             // TODO check current item
             // TODO this will require a inventory system
-            String bestPlayerBoomerang = mPlayerActor.getBestBoomerang();
-            if (bestPlayerBoomerang != null) {
+            String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
+            if (playerBestBoomerang != null) {
                 if (!mPlayerActor.getIsItemActive()) {
                     mPlayerActor.setIsItemActive(true);
-                    if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+                    if (playerBestBoomerang.equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
                         ItemUtils.createWoodBoomerang(mWorld, mPlayerActor, mMapParser, this);
                     }
-                    else if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
+                    else if (playerBestBoomerang.equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
                         ItemUtils.createEmeraldBoomerang(mWorld, mPlayerActor, mMapParser, this);
                     }
-                    else if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
+                    else if (playerBestBoomerang.equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
                         ItemUtils.createAmethystBoomerang(mWorld, mPlayerActor, mMapParser, this);
                     }
-                    else if (bestPlayerBoomerang.equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
+                    else if (playerBestBoomerang.equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
                         ItemUtils.createBloodStoneBoomerang(mWorld, mPlayerActor, mMapParser, this);
                     }
                 }
