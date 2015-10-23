@@ -9,6 +9,9 @@ import java.util.ArrayList
 
 class PlayerModel : BaseModel() {
 
+    val keys = ArrayList<KeyModel>()
+    val items = ArrayList<BaseItemModel>()
+
     companion object {
         val PLAYER = "PLAYER"
         val PLAYER_DESTINATIONS = "PLAYER_DESTINATIONS"
@@ -26,8 +29,6 @@ class PlayerModel : BaseModel() {
         mBaseModelType = BaseModelType.PLAYER
     }
 
-    val keys = ArrayList<KeyModel>()
-    val items = ArrayList<BaseItemModel>()
     var currentLevel: Int = 0
     var lives: Int = 0
     var hearts: Int = 0
@@ -42,11 +43,7 @@ class PlayerModel : BaseModel() {
 
     //TODO
     var diggingPower = 1
-
     var crystalBlueAmount: Int = 0
-        private set
-
-
 
     fun addKey(keyData: KeyModel) {
         keys.add(keyData)
