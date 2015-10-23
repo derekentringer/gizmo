@@ -35,6 +35,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java"
+    apply plugin: "kotlin"
 
     dependencies {
         compile project(":core")
@@ -48,6 +49,7 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
+    apply plugin: "kotlin-android"
 
     configurations { natives }
 
@@ -88,7 +90,6 @@ project(":html") {
     apply plugin: "gwt"
     apply plugin: "war"
 
-
     dependencies {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion"
@@ -104,12 +105,13 @@ project(":html") {
 
 project(":core") {
     apply plugin: "java"
-
+    apply plugin: "kotlin"
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-1038"
     }
 }
 

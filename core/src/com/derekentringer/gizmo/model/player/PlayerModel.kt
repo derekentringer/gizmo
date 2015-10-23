@@ -50,7 +50,7 @@ class PlayerModel : BaseModel() {
     }
 
     fun removeKey(keyType: String) {
-        for (i in 0..keys.size) {
+        for (i in 0..keys.size - 1) {
             if (keys[i].keyType.equals(keyType)) {
                 keys.removeAt(i)
             }
