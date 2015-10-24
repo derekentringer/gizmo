@@ -16,10 +16,10 @@ public class DropCrystalBlueActor extends BaseActor {
     private static final int MOVEMENT_FORCE = 4;
     private static final float PLAYER_DETECTION = 0.5f;
 
-    private float heartRadiusFront = getPosition().x + PLAYER_DETECTION;
-    private float heartRadiusBehind = getPosition().x - PLAYER_DETECTION;
-    private float heartRadiusAbove = getPosition().y + PLAYER_DETECTION;
-    private float heartRadiusBelow = getPosition().y - PLAYER_DETECTION;
+    private float heartRadiusFront;
+    private float heartRadiusBehind;
+    private float heartRadiusAbove;
+    private float heartRadiusBelow;
 
     private TextureRegion[] mDropHeartSprite;
     private Texture mDropHeart;
@@ -68,6 +68,11 @@ public class DropCrystalBlueActor extends BaseActor {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        heartRadiusFront = getPosition().x + PLAYER_DETECTION;
+        heartRadiusBehind = getPosition().x - PLAYER_DETECTION;
+        heartRadiusAbove = getPosition().y + PLAYER_DETECTION;
+        heartRadiusBelow = getPosition().y - PLAYER_DETECTION;
 
         mTimeAccumulated += delta;
         speedY = speedY - (mTimeAccumulated / 1);
