@@ -107,8 +107,8 @@ public class LoadingScreen extends BaseScreen {
     public void render(float delta) {
         if (Gizmo.assetManager.update()) {
 
-            mGizmo.setScreen(new GameScreen());
             //mGizmo.setScreen(new StartScreen());
+            mGizmo.setScreen(new GameScreen());
 
         }
     }

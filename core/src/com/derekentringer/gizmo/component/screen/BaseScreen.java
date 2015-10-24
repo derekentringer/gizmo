@@ -13,10 +13,12 @@ public class BaseScreen implements Screen {
     private static final String TAG = BaseScreen.class.getSimpleName();
 
     public Rectangle baseViewPort;
-    public float baseScale = 1f;
-    public Vector2 baseCrop = new Vector2(0f, 0f);
+
     public float baseWidth = Constants.GAME_WIDTH;
     public float baseHeight = Constants.GAME_HEIGHT;
+    public float baseScale = 1f;
+    public Vector2 baseCrop = new Vector2(0f, 0f);
+
 
     public BaseScreen() {
 
@@ -56,8 +58,8 @@ public class BaseScreen implements Screen {
             baseScale = (float) width / (float) Constants.GAME_WIDTH;
         }
 
-        baseWidth = (float) Constants.GAME_WIDTH * baseScale;
-        baseHeight = (float) Constants.GAME_HEIGHT * baseScale;
+        baseWidth = Constants.GAME_WIDTH * baseScale;
+        baseHeight = Constants.GAME_HEIGHT * baseScale;
 
         baseViewPort = new Rectangle(baseCrop.x, baseCrop.y, baseWidth, baseHeight);
         
