@@ -1,14 +1,17 @@
 package com.derekentringer.gizmo.component.screen;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.derekentringer.gizmo.Gizmo;
 
-public class LoadingScreen extends AbstractScreen {
+public class LoadingScreen implements Screen {
 
     private static final String TAG = LoadingScreen.class.getSimpleName();
 
-    public LoadingScreen(Gizmo gizmoGame) {
-        super(gizmoGame);
+    private Gizmo mGizmo;
+
+    public LoadingScreen(Gizmo gizmo) {
+        mGizmo = gizmo;
     }
 
     @Override
@@ -104,7 +107,7 @@ public class LoadingScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         if (Gizmo.assetManager.update()) {
-            mGizmoGame.setScreen(new GameScreen());
+            mGizmo.setScreen(new GameScreen());
         }
     }
 
@@ -126,7 +129,6 @@ public class LoadingScreen extends AbstractScreen {
 
     @Override
     public void dispose() {
-        Gizmo.assetManager.dispose();
     }
 
 }
