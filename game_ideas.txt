@@ -1,6 +1,9 @@
 TODO
 -----
 
+use the player sensors to detect where the enemy is hitting the player
+	- let the player stand on enemies
+	
 "poof" for destroying a block or enemy
 
 HUD for crystals
