@@ -1,9 +1,9 @@
 package com.derekentringer.gizmo.component.screen;
 
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.derekentringer.gizmo.Gizmo;
 
-public class StartScreen implements Screen {
+public class StartScreen extends ScreenAdapter {
 
     private Gizmo mGizmo;
 

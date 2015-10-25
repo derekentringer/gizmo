@@ -1,10 +1,10 @@
 package com.derekentringer.gizmo.component.screen;
 
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.derekentringer.gizmo.Gizmo;
 
-public class LoadingScreen implements Screen {
+public class LoadingScreen extends ScreenAdapter {
 
     private static final String TAG = LoadingScreen.class.getSimpleName();
 
