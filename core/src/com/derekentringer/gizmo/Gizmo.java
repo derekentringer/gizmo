@@ -13,19 +13,23 @@ public class Gizmo extends Game {
 
     private static final String TAG = Gizmo.class.getSimpleName();
 
-    public static AssetManager assetManager = new AssetManager();
+    public static AssetManager assetManager;
 
     @Override
     public void create() {
         Controllers.addListener(new InputProcessor());
         Gdx.input.setInputProcessor(new InputProcessor());
         Gdx.app.setLogLevel(Constants.LOG_LEVEL);
+        assetManager = new AssetManager();
         setScreen(new LoadingScreen(this));
     }
 
     @Override
     public void dispose () {
         GLog.d(TAG, "dispose");
+        super.dispose();
+        this.getScreen().dispose();
+        assetManager.dispose();
     }
 
     @Override
@@ -34,7 +38,7 @@ public class Gizmo extends Game {
     }
 
     @Override
-    public void resume () {
+    public void resume() {
         GLog.d(TAG, "dispose");
     }
 

@@ -111,7 +111,6 @@ public class LoadingScreen extends ScreenAdapter {
     public void render(float delta) {
         if (Gizmo.assetManager.update()) {
             mGizmo.setScreen(new StartScreen(mGizmo));
-            this.dispose();
         }
     }
 

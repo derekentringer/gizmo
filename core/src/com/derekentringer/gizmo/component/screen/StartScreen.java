@@ -63,6 +63,7 @@ public class StartScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         GLog.d(TAG, "dispose");
+        this.mStartStage.dispose();
     }
 
 }
