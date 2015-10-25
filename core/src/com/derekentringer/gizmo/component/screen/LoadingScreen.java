@@ -16,6 +16,8 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        Gizmo.assetManager.load("res/image/start/heart.png", Texture.class);
+
         Gizmo.assetManager.load("res/image/hud/hud_lives_one.png", Texture.class);
         Gizmo.assetManager.load("res/image/hud/hud_lives_two.png", Texture.class);
         Gizmo.assetManager.load("res/image/hud/hud_lives_three.png", Texture.class);
@@ -107,8 +109,8 @@ public class LoadingScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         if (Gizmo.assetManager.update()) {
-            mGizmo.setScreen(new GameScreen());
-            //mGizmo.setScreen(new StartScreen(mGizmo));
+            //mGizmo.setScreen(new GameScreen());
+            mGizmo.setScreen(new StartScreen(mGizmo));
         }
     }
 

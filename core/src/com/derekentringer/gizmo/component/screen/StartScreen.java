@@ -3,6 +3,7 @@ package com.derekentringer.gizmo.component.screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.math.Rectangle;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.component.stage.StartStage;
 import com.derekentringer.gizmo.util.ScreenUtils;
 
 public class StartScreen extends ScreenAdapter {
@@ -11,10 +12,12 @@ public class StartScreen extends ScreenAdapter {
 
     private Rectangle mViewPort;
 
+    private StartStage mStartStage;
     private Gizmo mGizmo;
 
     public StartScreen(Gizmo gizmo) {
         mGizmo = gizmo;
+        mStartStage = new StartStage();
     }
 
     @Override
@@ -25,11 +28,16 @@ public class StartScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.renderScreen(mViewPort);
+
+        //update the start stage
+        mStartStage.act(delta);
+        mStartStage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
         mViewPort = ScreenUtils.resizeScreen(width, height);
+        mStartStage.updateStartScreen(ScreenUtils.scale, ScreenUtils.crop, ScreenUtils.scaledWidth, ScreenUtils.scaledHeight);
     }
 
     @Override
