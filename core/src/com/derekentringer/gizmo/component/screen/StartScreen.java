@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.StartStage;
 import com.derekentringer.gizmo.util.ScreenUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class StartScreen extends ScreenAdapter {
 
@@ -22,6 +23,7 @@ public class StartScreen extends ScreenAdapter {
 
     public void startGame() {
         mGizmo.setScreen(new GameScreen());
+        this.dispose();
     }
 
     @Override
@@ -45,22 +47,22 @@ public class StartScreen extends ScreenAdapter {
 
     @Override
     public void pause() {
-
+        GLog.d(TAG, "pause");
     }
 
     @Override
     public void resume() {
-
+        GLog.d(TAG, "resume");
     }
 
     @Override
     public void hide() {
-
+        GLog.d(TAG, "hide");
     }
 
     @Override
     public void dispose() {
-
+        GLog.d(TAG, "dispose");
     }
 
 }

@@ -322,4 +322,9 @@ public class HudStage extends Stage implements IGameStage {
         }
     }
 
+    @Override
+    public void dispose() {
+        GLog.d(TAG, "dispose");
+    }
+
 }

@@ -257,11 +257,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     @Override
     public void dispose() {
+        GLog.d(TAG, "dispose");
     }
 
     public void quitGame() {
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         LocalDataManager.saveLevelData(mLoadedLevelModel);
+        this.dispose();
     }
 
     private void addDroppedItems() {

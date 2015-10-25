@@ -3,6 +3,7 @@ package com.derekentringer.gizmo.component.screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class LoadingScreen extends ScreenAdapter {
 
@@ -110,6 +111,7 @@ public class LoadingScreen extends ScreenAdapter {
     public void render(float delta) {
         if (Gizmo.assetManager.update()) {
             mGizmo.setScreen(new StartScreen(mGizmo));
+            this.dispose();
         }
     }
 
@@ -119,18 +121,22 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void pause() {
+        GLog.d(TAG, "pause");
     }
 
     @Override
     public void resume() {
+        GLog.d(TAG, "resume");
     }
 
     @Override
     public void hide() {
+        GLog.d(TAG, "hide");
     }
 
     @Override
     public void dispose() {
+        GLog.d(TAG, "dispose");
     }
 
 }

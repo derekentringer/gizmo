@@ -13,6 +13,7 @@ import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
+import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
@@ -87,6 +88,11 @@ public class StartStage extends Stage {
         if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
             mStartScreen.startGame();
         }
+    }
+
+    @Override
+    public void dispose() {
+        GLog.d(TAG, "dispose");
     }
 
 }

@@ -7,6 +7,7 @@ import com.derekentringer.gizmo.component.stage.HudStage;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.util.GameLevelUtils;
 import com.derekentringer.gizmo.util.ScreenUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class GameScreen extends ScreenAdapter {
 
@@ -59,10 +60,12 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void pause() {
+        GLog.d(TAG, "pause");
     }
 
     @Override
     public void resume() {
+        GLog.d(TAG, "resume");
     }
 
     @Override
@@ -72,8 +75,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        mHudStage.dispose();
-        mGameStage.dispose();
+        GLog.d(TAG, "dispose");
     }
 
 }
