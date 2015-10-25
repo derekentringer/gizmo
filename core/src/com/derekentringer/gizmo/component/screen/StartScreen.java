@@ -17,7 +17,11 @@ public class StartScreen extends ScreenAdapter {
 
     public StartScreen(Gizmo gizmo) {
         mGizmo = gizmo;
-        mStartStage = new StartStage();
+        mStartStage = new StartStage(this);
+    }
+
+    public void startGame() {
+        mGizmo.setScreen(new GameScreen());
     }
 
     @Override
@@ -37,7 +41,6 @@ public class StartScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         mViewPort = ScreenUtils.resizeScreen(width, height);
-        mStartStage.updateStartScreen(ScreenUtils.scale, ScreenUtils.crop, ScreenUtils.scaledWidth, ScreenUtils.scaledHeight);
     }
 
     @Override
