@@ -11,6 +11,9 @@ public class PS4Controller extends BaseController {
     public static final int BUTTON_LB = 4;
     public static final int BUTTON_RB = 5;
 
+    public static final int BUTTON_RT = 5;
+    public static final int BUTTON_LT = 4;
+
     public static final int AXIS_LEFT_PUSHED = 10;
     public static final int AXIS_RIGHT_PUSHED = 11;
 

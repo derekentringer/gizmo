@@ -13,8 +13,8 @@ public class UserInput {
     public static final int LEFT_BUTTON = 1;
     public static final int RIGHT_BUTTON = 2;
     public static final int ENTER_DOOR = 3;
-    public static final int ATTACK = 4;
-    public static final int RUN = 5;
+    public static final int ATTACK_BUTTON = 4;
+    public static final int RUN_BUTTON = 5;
     public static final int DIG_BUTTON = 6;
 
     static {

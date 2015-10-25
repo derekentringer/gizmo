@@ -23,15 +23,15 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
-        if (keycode == Input.Keys.G) {
+        if (keycode == Input.Keys.E) {
             UserInput.setKey(UserInput.DIG_BUTTON, true);
         }
         if (keycode == Input.Keys.SHIFT_LEFT
                 || keycode == Input.Keys.SHIFT_RIGHT) {
-            UserInput.setKey(UserInput.RUN, true);
+            UserInput.setKey(UserInput.RUN_BUTTON, true);
         }
         if (keycode == Input.Keys.F) {
-            UserInput.setKey(UserInput.ATTACK, true);
+            UserInput.setKey(UserInput.ATTACK_BUTTON, true);
         }
         //arrow key movement
         if (keycode == Input.Keys.UP) {
@@ -61,15 +61,15 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
-        if (keycode == Input.Keys.G) {
+        if (keycode == Input.Keys.E) {
             UserInput.setKey(UserInput.DIG_BUTTON, false);
         }
         if (keycode == Input.Keys.SHIFT_LEFT
                 || keycode == Input.Keys.SHIFT_RIGHT) {
-            UserInput.setKey(UserInput.RUN, false);
+            UserInput.setKey(UserInput.RUN_BUTTON, false);
         }
         if (keycode == Input.Keys.F) {
-            UserInput.setKey(UserInput.ATTACK, false);
+            UserInput.setKey(UserInput.ATTACK_BUTTON, false);
         }
         //arrow key movement
         if (keycode == Input.Keys.UP) {
@@ -115,16 +115,20 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         if (buttonCode == PS4Controller.BUTTON_SQUARE
                 || buttonCode == NexusPlayerController.BUTTON_X) {
-            UserInput.setKey(UserInput.RUN, true);
+            UserInput.setKey(UserInput.RUN_BUTTON, true);
         }
         if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
         }
-        if (buttonCode == PS4Controller.BUTTON_RB
-                || buttonCode == NexusPlayerController.RB) {
-            UserInput.setKey(UserInput.ATTACK, true);
+        /*if (buttonCode == PS4Controller.BUTTON_RT
+                || buttonCode == NexusPlayerController.BUTTON_RT) {
+            UserInput.setKey(UserInput.ATTACK_BUTTON, true);
         }
+        if (buttonCode == PS4Controller.BUTTON_LT
+                || buttonCode == NexusPlayerController.BUTTON_LT) {
+            UserInput.setKey(UserInput.DIG_BUTTON, true);
+        }*/
         return true;
     }
 
@@ -136,21 +140,47 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         if (buttonCode == PS4Controller.BUTTON_SQUARE
                 || buttonCode == NexusPlayerController.BUTTON_X) {
-            UserInput.setKey(UserInput.RUN, false);
+            UserInput.setKey(UserInput.RUN_BUTTON, false);
         }
         if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
-        if (buttonCode == PS4Controller.BUTTON_RB
-                || buttonCode == NexusPlayerController.RB) {
-            UserInput.setKey(UserInput.ATTACK, false);
+        /*if (buttonCode == PS4Controller.BUTTON_RT
+                || buttonCode == NexusPlayerController.BUTTON_RT) {
+            UserInput.setKey(UserInput.ATTACK_BUTTON, false);
         }
+        if (buttonCode == PS4Controller.BUTTON_LT
+                || buttonCode == NexusPlayerController.BUTTON_LT) {
+            UserInput.setKey(UserInput.DIG_BUTTON, false);
+        }*/
         return true;
     }
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
+        GLog.d(TAG, "axisCode: " + axisCode + " " + value);
+
+        if ((axisCode == PS4Controller.BUTTON_RT
+                || axisCode == NexusPlayerController.BUTTON_RT)
+                && value > 0) {
+            UserInput.setKey(UserInput.ATTACK_BUTTON, true);
+        }
+        else if (axisCode == PS4Controller.BUTTON_RT
+                || axisCode == NexusPlayerController.BUTTON_RT) {
+            UserInput.setKey(UserInput.ATTACK_BUTTON, false);
+        }
+
+        if ((axisCode == PS4Controller.BUTTON_LT
+                || axisCode == NexusPlayerController.BUTTON_LT)
+                && value > 0) {
+            UserInput.setKey(UserInput.DIG_BUTTON, true);
+        }
+        else if (axisCode == PS4Controller.BUTTON_LT
+                || axisCode == NexusPlayerController.BUTTON_LT) {
+            UserInput.setKey(UserInput.DIG_BUTTON, false);
+        }
+
         if (controller.getAxis(PS4Controller.AXIS_X) > 0.2f) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
         }

@@ -337,28 +337,28 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private void handleInput() {
         // walk left
         if (UserInput.isDown(UserInput.LEFT_BUTTON)
-                && !UserInput.isDown(UserInput.RUN)) {
+                && !UserInput.isDown(UserInput.RUN_BUTTON)) {
             alreadyEntered = false;
             mPlayerActor.moveLeft(false);
         }
 
         // run left
         if (UserInput.isDown(UserInput.LEFT_BUTTON)
-                && UserInput.isDown(UserInput.RUN)) {
+                && UserInput.isDown(UserInput.RUN_BUTTON)) {
             alreadyEntered = false;
             mPlayerActor.moveLeft(true);
         }
 
         // walk right
         if (UserInput.isDown(UserInput.RIGHT_BUTTON)
-                && !UserInput.isDown(UserInput.RUN)) {
+                && !UserInput.isDown(UserInput.RUN_BUTTON)) {
             alreadyEntered = false;
             mPlayerActor.moveRight(false);
         }
 
         // run right
         if (UserInput.isDown(UserInput.RIGHT_BUTTON)
-                && UserInput.isDown(UserInput.RUN)) {
+                && UserInput.isDown(UserInput.RUN_BUTTON)) {
             alreadyEntered = false;
             mPlayerActor.moveRight(true);
         }
@@ -469,7 +469,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
 
         // attack & kill stuff
-        if (UserInput.isDown(UserInput.ATTACK)) {
+        if (UserInput.isDown(UserInput.ATTACK_BUTTON)) {
             // TODO check current item
             // TODO this will require a inventory system
             String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
