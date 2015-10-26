@@ -34,12 +34,12 @@ public class Gizmo extends Game {
 
     @Override
     public void pause () {
-        GLog.d(TAG, "dispose");
+        GLog.d(TAG, "pause");
     }
 
     @Override
     public void resume() {
-        GLog.d(TAG, "dispose");
+        GLog.d(TAG, "rename");
     }
 
 }
