@@ -5,7 +5,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 public class BaseController {
 
     public static final String CONTROLLER_NEXUS = "ASUS Gamepad";
-    public static final String CONTROLLER_PS4 = "";
+    public static final String CONTROLLER_PS4 = "Sony Computer Entertainment Wireless Controller";
 
     public static final int AXIS_X = 0;
     public static final int AXIS_Y = 1;

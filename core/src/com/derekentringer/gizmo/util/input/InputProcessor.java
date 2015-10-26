@@ -20,6 +20,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     @Override
     public boolean keyDown(int keycode) {
         GLog.d(TAG, "keycode: " + keycode);
+
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
@@ -33,6 +34,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK_BUTTON, true);
         }
+
         //arrow key movement
         if (keycode == Input.Keys.UP) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
@@ -43,6 +45,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.LEFT) {
             UserInput.setKey(UserInput.LEFT_BUTTON, true);
         }
+
         //wsad key movement
         if (keycode == Input.Keys.W) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
@@ -71,6 +74,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK_BUTTON, false);
         }
+
         //arrow key movement
         if (keycode == Input.Keys.UP) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
@@ -81,6 +85,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.LEFT) {
             UserInput.setKey(UserInput.LEFT_BUTTON, false);
         }
+
         //wsad key movement
         if (keycode == Input.Keys.W) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
@@ -108,7 +113,8 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
-        GLog.d(TAG, "buttonCode: " + buttonCode);
+        GLog.d(TAG, "buttonDown Code: " + buttonCode);
+
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
@@ -143,7 +149,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
-        GLog.d(TAG, "axisCode: " + axisCode + " " + value);
+        //GLog.d(TAG, "axisCode: " + axisCode + " " + value);
 
         if (controller.getName().equalsIgnoreCase(BaseController.CONTROLLER_NEXUS)) {
             if (controller.getAxis(NexusPlayerController.BUTTON_RT) > 0.2f) {
@@ -194,9 +200,8 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-        GLog.d(TAG, "controller: " + controller);
-        GLog.d(TAG, "povCode: " + povCode);
-        GLog.d(TAG, "value: " + value);
+        GLog.d(TAG, "povCode: " + povCode + " " + value);
+
         if (value == BaseController.BUTTON_DPAD_RIGHT
                 || value == BaseController.BUTTON_DPAD_UP_RIGHT
                 || value == BaseController.BUTTON_DPAD_RIGHT_DOWN) {
