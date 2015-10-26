@@ -1,6 +1,10 @@
 TODO
 -----
 
+do not respawn boss after killed
+
+add font support
+
 use the player sensors to detect where the enemy is hitting the player
 	- let the player stand on enemies
 	
