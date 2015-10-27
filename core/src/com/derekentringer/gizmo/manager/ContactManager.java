@@ -89,12 +89,14 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerAttacking(MapParser mapParser, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public static void setPlayerAttacking(MapParser mapParser, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         // player attack with items collisions
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
+                    //TODO add destroy animation
+                    loadedLevelModel.addDestroyedBoss((BaseEnemyModel) bodyB.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
                     }
@@ -109,6 +111,8 @@ public class ContactManager {
             EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
+                    //TODO add destroy animation
+                    loadedLevelModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
                     }

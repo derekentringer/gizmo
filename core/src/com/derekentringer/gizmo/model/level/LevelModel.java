@@ -2,12 +2,13 @@ package com.derekentringer.gizmo.model.level;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
-import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
+import com.derekentringer.gizmo.model.structure.door.DoorModel;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class LevelModel extends BaseModel {
     private ArrayList<LifeModel> mPickedUpLives = new ArrayList<LifeModel>();
     private ArrayList<DoorModel> mOpenedDoors = new ArrayList<DoorModel>();
     private ArrayList<BaseDestroyableModel> mDestroyedBlockList = new ArrayList<BaseDestroyableModel>();
+    private ArrayList<BaseEnemyModel> mDestroyedBossList = new ArrayList<BaseEnemyModel>();
 
     private int mLevelInt;
     private String mLevelMap;
@@ -28,6 +30,7 @@ public class LevelModel extends BaseModel {
     private KeyModel mLastKeyAdded;
     private HeartModel mLastHeartAdded;
     private BaseDestroyableModel mLastBlockAdded;
+    private BaseEnemyModel mLastBossAdded;
 
     public LevelModel() {
     }
@@ -126,6 +129,17 @@ public class LevelModel extends BaseModel {
         if (block != null && (mLastBlockAdded == null || !mLastBlockAdded.equals(block))) {
             mDestroyedBlockList.add(block);
             mLastBlockAdded = block;
+        }
+    }
+
+    public ArrayList<BaseEnemyModel> getDestroyedBossList() {
+        return mDestroyedBossList;
+    }
+
+    public void addDestroyedBoss(BaseEnemyModel boss) {
+        if (boss != null && (mLastBossAdded == null || !mLastBossAdded.equals(boss))) {
+            mDestroyedBossList.add(boss);
+            mLastBossAdded = boss;
         }
     }
 

@@ -138,7 +138,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         ContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
         ContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
-        ContactManager.setPlayerAttacking(mMapParser, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerAttacking(mMapParser, mLoadedLevelModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedLevelModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedLevelModel, mDeleteBodies, listeners, bodyA, bodyB);
@@ -389,6 +389,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
                 if (UserInput.isDown(UserInput.RIGHT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableRight() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight()) <= 0) {
+                        //TODO add destroyed animation
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableRight())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
                         }

@@ -75,6 +75,9 @@
  <objectgroup name="phantom"/>
  <objectgroup name="phantom_large">
   <object id="34" x="1265" y="305">
+   <properties>
+    <property name="boss_type" value="phantom"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>

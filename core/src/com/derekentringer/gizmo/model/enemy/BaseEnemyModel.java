@@ -8,6 +8,7 @@ public class BaseEnemyModel extends BaseModel {
     protected int mHealthDamage;
     protected boolean mDoesLootDrop;
     protected boolean mIsBoss;
+    protected String mBossType;
 
     public BaseEnemyModel() {
     }
@@ -42,6 +43,14 @@ public class BaseEnemyModel extends BaseModel {
 
     public void setIsBoss(boolean isBoss) {
         mIsBoss = isBoss;
+    }
+
+    public void setBossType(String bossType) {
+        mBossType = bossType;
+    }
+
+    public String getBossType() {
+        return mBossType;
     }
 
 }

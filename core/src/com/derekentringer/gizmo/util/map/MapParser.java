@@ -34,6 +34,7 @@ import com.derekentringer.gizmo.component.actor.structure.door.DoorOffActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorOtherActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
@@ -77,9 +78,9 @@ public class MapParser extends Stage {
     private static final String DESTINATION = "destination";
     private static final String DESTINATION_NAME = "destination_name";
     private static final String KEY_TYPE = "key_type";
+    private static final String BOSS_TYPE = "boss_type";
 
     private static final String ITEM_TYPE = "item_type";
-    private static final String BOOMERANG_TYPE = "boomerang_type";
 
     private GameStage mGameStage;
     private TiledMap mTiledMap;
@@ -285,11 +286,14 @@ public class MapParser extends Stage {
                     addToActorsArray(phantomActor);
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                    PhantomBossActor phantomBoss = new PhantomBossActor(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(true), world, getMapObjectCoords(mapObject)));
-                    phantomBoss.setName(PhantomLargeModel.PHANTOM_LARGE);
-                    addActor(phantomBoss);
-                    addToActorsArray(phantomBoss);
-                    phantomBoss.addListener(mGameStage);
+                    String bossType = (String) mapObject.getProperties().get(BOSS_TYPE);
+                    if (!loopThruDestroyedBossArray(mLoadedLevelModel.getDestroyedBossList(), bossType)) {
+                        PhantomBossActor phantomBoss = new PhantomBossActor(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(true, bossType), world, getMapObjectCoords(mapObject)));
+                        phantomBoss.setName(PhantomLargeModel.PHANTOM_LARGE);
+                        addActor(phantomBoss);
+                        addToActorsArray(phantomBoss);
+                        phantomBoss.addListener(mGameStage);
+                    }
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PlayerModel.PLAYER_DESTINATIONS)) {
                     if (whichDoor.equalsIgnoreCase(mapObject.getProperties().get(DESTINATION_NAME).toString())) {
@@ -441,6 +445,15 @@ public class MapParser extends Stage {
         for (BaseDestroyableModel lookingForItem : array) {
             if (lookingForItem != null
                     && lookingForItem.getPosition().equals(targetValue)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean loopThruDestroyedBossArray(ArrayList<BaseEnemyModel> array, String targetValue) {
+        for (BaseEnemyModel lookingForBoss : array) {
+            if (lookingForBoss.getBossType().equalsIgnoreCase(targetValue)) {
                 return true;
             }
         }

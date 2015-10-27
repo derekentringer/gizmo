@@ -21,7 +21,7 @@ public class PhantomBossActor extends BaseActor {
 
     private ArrayList<IPhantomBoss> listeners = new ArrayList<IPhantomBoss>();
 
-    private com.derekentringer.gizmo.component.stage.GameStage mGameStage;
+    private GameStage mGameStage;
     private Vector2 mPlayerPosition = new Vector2();
     private TextureRegion[] mPhantomSprite;
     private Texture mPhantomLarge;
