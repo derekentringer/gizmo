@@ -79,7 +79,6 @@ public class MapParser extends Stage {
     private static final String DESTINATION_NAME = "destination_name";
     private static final String KEY_TYPE = "key_type";
     private static final String BOSS_TYPE = "boss_type";
-
     private static final String ITEM_TYPE = "item_type";
 
     private GameStage mGameStage;
