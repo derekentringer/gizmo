@@ -1,8 +1,12 @@
 package com.derekentringer.gizmo.util.input;
 
+import com.badlogic.gdx.controllers.Controller;
+
 public class UserInput {
 
     private static final String TAG = UserInput.class.getSimpleName();
+
+    private static Controller mController;
 
     public static boolean[] currentKey;
     public static boolean[] previousKey;
@@ -20,6 +24,14 @@ public class UserInput {
     static {
         currentKey = new boolean[NUM_KEYS];
         previousKey = new boolean[NUM_KEYS];
+    }
+
+    public static void setController(Controller controller) {
+        mController = controller;
+    }
+
+    public static Controller getController() {
+        return mController;
     }
 
     public static void update() {

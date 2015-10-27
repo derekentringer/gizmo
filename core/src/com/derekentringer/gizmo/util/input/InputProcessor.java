@@ -104,6 +104,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     @Override
     public void connected(Controller controller) {
         GLog.d(TAG, "controller connected: " + controller.getName());
+        UserInput.setController(controller);
     }
 
     @Override

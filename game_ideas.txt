@@ -1,8 +1,7 @@
 TODO
 -----
 
-
-add font support
+start screen displays amount of hears player has gathered
 
 add destroy animation
 

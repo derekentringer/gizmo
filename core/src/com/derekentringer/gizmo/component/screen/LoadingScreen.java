@@ -18,13 +18,6 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-
-        Gizmo.assetManager.load("res/font/gizmo_14.fnt", BitmapFont.class);
-        Gizmo.assetManager.load("res/font/gizmo_13.fnt", BitmapFont.class);
-        Gizmo.assetManager.load("res/font/gizmo_12.fnt", BitmapFont.class);
-        Gizmo.assetManager.load("res/font/gizmo_11.fnt", BitmapFont.class);
-        Gizmo.assetManager.load("res/font/gizmo_10.fnt", BitmapFont.class);
-        Gizmo.assetManager.load("res/font/gizmo_09.fnt", BitmapFont.class);
         Gizmo.assetManager.load("res/font/gizmo.fnt", BitmapFont.class);
 
         Gizmo.assetManager.load("res/image/start/heart.png", Texture.class);

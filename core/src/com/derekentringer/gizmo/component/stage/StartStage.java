@@ -16,6 +16,7 @@ import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
+import com.derekentringer.gizmo.util.input.controller.BaseController;
 import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
@@ -31,14 +32,19 @@ public class StartStage extends Stage {
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
+    private String mControllerStartString = "press A to start";
+    private String mPCMacStartString = "press space to start";
+
+    private String mControllerName;
+    private String mStartScreenString;
+
     private BitmapFont mBitmapFont;
     private GlyphLayout layout;
 
     private int centerScreenX = Constants.GAME_WIDTH / 2;
     private int centerScreenY = Constants.GAME_HEIGHT / 2;
 
-    final float fontX;
-    final float fontY;
+    private float fontX;
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
@@ -51,12 +57,23 @@ public class StartStage extends Stage {
         mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
-        layout = new GlyphLayout(mBitmapFont, "press any button");
-
-        fontX = centerScreenX - layout.width / 2;
-        fontY = centerScreenY + layout.height / 2;
-
+        loadControllerName();
         loadStartStageActors();
+    }
+
+    private void loadControllerName() {
+        if (UserInput.getController() != null) {
+            mControllerName = UserInput.getController().getName();
+            if (mControllerName.equalsIgnoreCase(BaseController.CONTROLLER_NEXUS)
+                    || mControllerName.equalsIgnoreCase(BaseController.CONTROLLER_PS4)) {
+                mStartScreenString = mControllerStartString;
+            }
+        }
+        else {
+            mStartScreenString = mPCMacStartString;
+        }
+        layout = new GlyphLayout(mBitmapFont, mStartScreenString);
+        fontX = centerScreenX - layout.width / 2;
     }
 
     private void loadStartStageActors() {
@@ -78,7 +95,7 @@ public class StartStage extends Stage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mBitmapFont.draw(mSpriteBatch, "press any button", fontX, 25);
+            mBitmapFont.draw(mSpriteBatch, mStartScreenString, fontX, 25);
         mSpriteBatch.end();
     }
 
