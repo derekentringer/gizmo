@@ -1,10 +1,13 @@
 package com.derekentringer.gizmo.component.stage;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
@@ -28,8 +31,14 @@ public class StartStage extends Stage {
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
+    private BitmapFont mBitmapFont;
+    private GlyphLayout layout;
+
     private int centerScreenX = Constants.GAME_WIDTH / 2;
     private int centerScreenY = Constants.GAME_HEIGHT / 2;
+
+    final float fontX;
+    final float fontY;
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
@@ -38,8 +47,14 @@ public class StartStage extends Stage {
         mStartStageCamera.update();
 
         mWorld = WorldUtils.createWorld();
-
         mSpriteBatch = new SpriteBatch();
+        mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
+        mBitmapFont.getData().setScale(0.3f, 0.3f);
+
+        layout = new GlyphLayout(mBitmapFont, "press any button");
+
+        fontX = centerScreenX - layout.width / 2;
+        fontY = centerScreenY + layout.height / 2;
 
         loadStartStageActors();
     }
@@ -60,6 +75,11 @@ public class StartStage extends Stage {
         for (BaseActor actor : mStartStageActorsArray) {
             actor.render(mSpriteBatch);
         }
+
+        mSpriteBatch.enableBlending();
+        mSpriteBatch.begin();
+            mBitmapFont.draw(mSpriteBatch, "press any button", fontX, 25);
+        mSpriteBatch.end();
     }
 
     @Override
