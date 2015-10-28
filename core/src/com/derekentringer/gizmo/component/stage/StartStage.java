@@ -12,6 +12,7 @@ import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
 import com.derekentringer.gizmo.model.object.HeartModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
@@ -40,6 +41,8 @@ public class StartStage extends Stage {
 
     private float fontX;
 
+    private PlayerModel mPlayerModel;
+
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
         mStartStageCamera = new OrthographicCamera();
@@ -51,8 +54,20 @@ public class StartStage extends Stage {
         mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
+        loadPlayerModel();
         addStartText();
-        loadStartStageActors();
+        //loadStartStageActors();
+    }
+
+    private void loadPlayerModel() {
+        /*if (LocalDataManager.loadPlayerActorData() != null) {
+            mPlayerModel = LocalDataManager.loadPlayerActorData();
+            int playerHearts = 15;
+            for (int i=0; i < playerHearts; i++) {
+                loadHeart(new Vector2(centerScreenX - (i * 18), centerScreenY));
+            }
+        }*/
+        loadHeart(new Vector2(centerScreenX, centerScreenY));
     }
 
     private void addStartText() {
@@ -60,8 +75,8 @@ public class StartStage extends Stage {
         fontX = centerScreenX - layout.width / 2;
     }
 
-    private void loadStartStageActors() {
-        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, new Vector2(centerScreenX, centerScreenY)));
+    private void loadHeart(Vector2 position) {
+        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, position));
         heartActor.setName(HeartModel.HEART);
         addActor(heartActor);
         mStartStageActorsArray.add(heartActor);

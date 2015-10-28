@@ -176,7 +176,7 @@ public class HudStage extends Stage implements IGameStage {
             if (mNewAlpha >= 1 && !isFadeInAlreadyRun) {
                 isFadeInAlreadyRun = true; //this is the PROBLEM
                 //fire off listener to load new level
-                for(com.derekentringer.gizmo.component.stage.interfaces.IHudStage listener : listeners){
+                for(IHudStage listener : listeners){
                     listener.hudFadeInComplete(mDoorType);
                 }
                 startFadeDelay(delta);
