@@ -16,7 +16,6 @@ import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
-import com.derekentringer.gizmo.util.input.controller.BaseController;
 import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
@@ -32,12 +31,7 @@ public class StartStage extends Stage {
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
-    private String mControllerStartString = "press A to start";
-    private String mPCMacStartString = "press space to start";
-
-    private String mControllerName;
-    private String mStartScreenString;
-
+    private String mStartScreenString = "press any key";
     private BitmapFont mBitmapFont;
     private GlyphLayout layout;
 
@@ -57,21 +51,11 @@ public class StartStage extends Stage {
         mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
-        loadControllerName();
+        addStartText();
         loadStartStageActors();
     }
 
-    private void loadControllerName() {
-        if (UserInput.getController() != null) {
-            mControllerName = UserInput.getController().getName();
-            if (mControllerName.equalsIgnoreCase(BaseController.CONTROLLER_NEXUS)
-                    || mControllerName.equalsIgnoreCase(BaseController.CONTROLLER_PS4)) {
-                mStartScreenString = mControllerStartString;
-            }
-        }
-        else {
-            mStartScreenString = mPCMacStartString;
-        }
+    private void addStartText() {
         layout = new GlyphLayout(mBitmapFont, mStartScreenString);
         fontX = centerScreenX - layout.width / 2;
     }
@@ -122,7 +106,7 @@ public class StartStage extends Stage {
     }
 
     private void handleInput() {
-        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+        if (UserInput.isDown(UserInput.ANY_KEY)) {
             mStartScreen.startGame();
         }
     }

@@ -11,8 +11,9 @@ public class UserInput {
     public static boolean[] currentKey;
     public static boolean[] previousKey;
 
-    public static final int NUM_KEYS = 7;
+    public static final int NUM_KEYS = 8;
 
+    public static final int ANY_KEY = 7;
     public static final int JUMP_BUTTON = 0;
     public static final int LEFT_BUTTON = 1;
     public static final int RIGHT_BUTTON = 2;

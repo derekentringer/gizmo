@@ -19,7 +19,11 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown(int keycode) {
-        GLog.d(TAG, "keycode: " + keycode);
+        GLog.d(TAG, "keyDown keycode: " + keycode);
+
+        if(keycode > -1) {
+            UserInput.setKey(UserInput.ANY_KEY, true);
+        }
 
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
@@ -61,6 +65,12 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyUp(int keycode) {
+        GLog.d(TAG, "keyUp keycode: " + keycode);
+
+        if(keycode > -1) {
+            UserInput.setKey(UserInput.ANY_KEY, false);
+        }
+
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
         }
