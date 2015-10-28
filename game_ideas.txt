@@ -17,8 +17,6 @@ trail of dust when running?
 phantoms fail when directly below or above
 	- need to add a buffer
 
-there are dispose problems on nexus player
-
 have the boomerang bounce off walls and ground
 
 give enemies flinching animation (something diff than the player blinking)
