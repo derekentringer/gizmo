@@ -60,9 +60,11 @@ public class StageUtils {
             drawOverlay(0, 0, 0, newAlpha, transitionShapeRenderer);
             if (newAlpha >= 1 && !isFadeInAlreadyRun) {
                 isFadeInAlreadyRun = true; //this is the PROBLEM
-                //fire off listener to load new level
-                for(IHudStage listener : listeners){
-                    listener.hudFadeInComplete(doorType);
+                if (doorType != null) {
+                    //fire off listener to load new level
+                    for (IHudStage listener : listeners) {
+                        listener.hudFadeInComplete(doorType);
+                    }
                 }
                 startFadeDelay();
             }
