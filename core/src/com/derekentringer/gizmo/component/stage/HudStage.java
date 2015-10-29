@@ -1,8 +1,6 @@
 package com.derekentringer.gizmo.component.stage;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +12,7 @@ import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.StageUtils;
 import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
@@ -69,12 +68,8 @@ public class HudStage extends Stage implements IGameStage {
     private float mRedShapeWidth;
     private float mRedShapeHeight = 20;
 
+    private StageUtils mStageUtils = new StageUtils();
     private String mDoorType;
-    private boolean mShowTransition;
-    private String mFadeStatus;
-    private float mTimeAccumulated;
-    private float mNewAlpha;
-    private boolean isFadeInAlreadyRun;
 
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
@@ -123,7 +118,7 @@ public class HudStage extends Stage implements IGameStage {
         if (!mProjectionMatrixSet) {
             mWhiteShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mRedShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
-            mTransitionShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mStageUtils.setProjectionMatrix(mTransitionShapeRenderer, mSpriteBatch);
         }
 
         mWhiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -145,84 +140,15 @@ public class HudStage extends Stage implements IGameStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (mShowTransition) {
-            dimTheStageLights(delta);
+        if (mStageUtils.getShowTransition()) {
+            mStageUtils.fadeStageLights(delta, mTransitionShapeRenderer, listeners, mDoorType);
         }
-    }
-
-    private void dimTheStageLights(float delta) {
-        // fade out
-        if (mFadeStatus.equalsIgnoreCase(FADE_OUT)) {
-            mTimeAccumulated += delta;
-            mNewAlpha = 1 - (mTimeAccumulated / TIME_TO_FADE);
-            if (mNewAlpha < 0) {
-                mNewAlpha = 0;
-            }
-            drawOverlay(0, 0, 0, mNewAlpha);
-            if (mNewAlpha <= 0) {
-                mTimeAccumulated = 0;
-                mFadeStatus = FADE_COMPLETE;
-            }
-        }
-
-        // fade in
-        else if (mFadeStatus.equalsIgnoreCase(FADE_IN)) {
-            mTimeAccumulated += delta;
-            mNewAlpha += (mTimeAccumulated / TIME_TO_FADE);
-            if (mNewAlpha > 1) {
-                mNewAlpha = 1;
-            }
-            drawOverlay(0, 0, 0, mNewAlpha);
-            if (mNewAlpha >= 1 && !isFadeInAlreadyRun) {
-                isFadeInAlreadyRun = true; //this is the PROBLEM
-                //fire off listener to load new level
-                for(IHudStage listener : listeners){
-                    listener.hudFadeInComplete(mDoorType);
-                }
-                startFadeDelay(delta);
-            }
-        }
-
-        // fade complete
-        if (mFadeStatus.equalsIgnoreCase(FADE_COMPLETE)) {
-            GLog.d(TAG, "fading complete");
-            mShowTransition = false;
-            isFadeInAlreadyRun = false;
-        }
-    }
-
-    private void startFadeDelay(float delta) {
-        // this could be used to adjust
-        // the fade back in
-        //mTimeAccumulated += delta;
-        Thread t = new Thread() {
-            public void run() {
-                try {
-                    sleep(FADE_DELAY);
-                }
-                catch (InterruptedException ie) {
-                    ie.printStackTrace();
-                }
-                finally {
-                    mFadeStatus = FADE_OUT;
-                }
-            }
-        };
-        t.start();
-    }
-
-    private void drawOverlay(float r, float g, float b, float a) {
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        mTransitionShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        mTransitionShapeRenderer.setColor(r, g, b, a);
-        mTransitionShapeRenderer.rect(0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mTransitionShapeRenderer.end();
     }
 
     public void setTransition(String doorType, boolean transition) {
         mDoorType = doorType;
-        mShowTransition = transition;
-        mFadeStatus = FADE_IN;
+        mStageUtils.setShowTransitions(transition);
+        mStageUtils.setFadeStatus(mStageUtils.FADE_STATUS_IN);
     }
 
     public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {

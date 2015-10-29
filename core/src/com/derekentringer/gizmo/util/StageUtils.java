@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.settings.Constants;
-import com.derekentringer.gizmo.util.log.GLog;
+
+import java.util.ArrayList;
 
 public class StageUtils {
 
@@ -18,21 +20,21 @@ public class StageUtils {
     private static final float TIME_TO_FADE = 1;
     private static final int FADE_DELAY = 900;
 
-    private static ShapeRenderer transitionShapeRenderer;
+    private ShapeRenderer transitionShapeRenderer;
 
-    private static String currentFadeStatus;
-    private static float timeAccumulated;
-    private static float newAlpha;
-    private static boolean isFadeInAlreadyRun;
-    private static boolean showFadeTransition;
+    private float timeAccumulated;
+    private float newAlpha;
+    private boolean isFadeInAlreadyRun;
+    private boolean showFadeTransition;
 
-    public static void setProjectionMatrix(ShapeRenderer shapeRenderer, SpriteBatch spriteBatch) {
+    private String currentFadeStatus = FADE_STATUS_IN;
+
+    public void setProjectionMatrix(ShapeRenderer shapeRenderer, SpriteBatch spriteBatch) {
         shapeRenderer.setProjectionMatrix(spriteBatch.getProjectionMatrix());
     }
 
-    public static void fadeStageLights(float delta, ShapeRenderer shapeRenderer, String fadeStatus) {
+    public void fadeStageLights(float delta, ShapeRenderer shapeRenderer, ArrayList<IHudStage> listeners, String doorType) {
         transitionShapeRenderer = shapeRenderer;
-        currentFadeStatus = fadeStatus;
 
         // fade out
         if (currentFadeStatus.equalsIgnoreCase(FADE_STATUS_OUT)) {
@@ -59,22 +61,22 @@ public class StageUtils {
             if (newAlpha >= 1 && !isFadeInAlreadyRun) {
                 isFadeInAlreadyRun = true; //this is the PROBLEM
                 //fire off listener to load new level
-                /*for(IHudStage listener : listeners){
-                    listener.hudFadeInComplete(mDoorType);
-                }*/
-                startFadeDelay(delta);
+                for(IHudStage listener : listeners){
+                    listener.hudFadeInComplete(doorType);
+                }
+                startFadeDelay();
             }
         }
 
         // fade complete
         if (currentFadeStatus.equalsIgnoreCase(FADE_STATUS_COMPLETE)) {
-            GLog.d(TAG, "fading complete");
+            //GLog.d(TAG, "fading complete");
             showFadeTransition = false;
             isFadeInAlreadyRun = false;
         }
     }
 
-    private static void drawOverlay(float r, float g, float b, float a, ShapeRenderer shapeRenderer) {
+    private void drawOverlay(float r, float g, float b, float a, ShapeRenderer shapeRenderer) {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(r, g, b, a);
@@ -82,7 +84,7 @@ public class StageUtils {
         shapeRenderer.end();
     }
 
-    private static void startFadeDelay(float delta) {
+    private void startFadeDelay() {
         Thread t = new Thread() {
             public void run() {
                 try {
@@ -99,8 +101,20 @@ public class StageUtils {
         t.start();
     }
 
-    public static boolean getShowTransition() {
+    public boolean getShowTransition() {
         return showFadeTransition;
+    }
+
+    public void setShowTransitions(boolean fadeTransitions) {
+        showFadeTransition = fadeTransitions;
+    }
+
+    public String getFadeStatus() {
+        return currentFadeStatus;
+    }
+
+    public void setFadeStatus(String fadeStatus) {
+        currentFadeStatus = fadeStatus;
     }
 
 }
