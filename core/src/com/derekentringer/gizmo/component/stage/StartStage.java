@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,6 +16,7 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
+import com.derekentringer.gizmo.util.StageUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -26,6 +28,10 @@ public class StartStage extends Stage {
     public static final String TAG = StartStage.class.getSimpleName();
 
     private final ArrayList<BaseActor> mStartStageActorsArray = new ArrayList<BaseActor>();
+
+    private StageUtils mStageUtils = new StageUtils();
+    private boolean mProjectionMatrixSet;
+    private ShapeRenderer mTransitionShapeRenderer;
 
     private StartScreen mStartScreen;
     private World mWorld;
@@ -44,6 +50,9 @@ public class StartStage extends Stage {
     private PlayerModel mPlayerModel;
 
     public StartStage(StartScreen startScreen) {
+        mProjectionMatrixSet = false;
+        mTransitionShapeRenderer = new ShapeRenderer();
+
         mStartScreen = startScreen;
         mStartStageCamera = new OrthographicCamera();
         mStartStageCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
@@ -56,7 +65,6 @@ public class StartStage extends Stage {
 
         loadPlayerModel();
         addStartText();
-        //loadStartStageActors();
     }
 
     private void loadPlayerModel() {
@@ -88,6 +96,10 @@ public class StartStage extends Stage {
 
         mSpriteBatch.setProjectionMatrix(mStartStageCamera.combined);
 
+        if (!mProjectionMatrixSet) {
+            mStageUtils.setProjectionMatrix(mTransitionShapeRenderer, mSpriteBatch);
+        }
+
         for (BaseActor actor : mStartStageActorsArray) {
             actor.render(mSpriteBatch);
         }
@@ -101,6 +113,10 @@ public class StartStage extends Stage {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if (mStageUtils.getShowTransition()) {
+            mStageUtils.fadeStageLights(delta, mTransitionShapeRenderer, listeners, mDoorType);
+        }
 
         // input
         UserInput.update();
@@ -122,7 +138,9 @@ public class StartStage extends Stage {
 
     private void handleInput() {
         if (UserInput.isDown(UserInput.ANY_KEY)) {
-            mStartScreen.startGame();
+            //mStartScreen.startGame();
+            mStageUtils.setShowTransitions(true);
+            mStageUtils.setFadeStatus(mStageUtils.FADE_STATUS_IN);
         }
     }
 
