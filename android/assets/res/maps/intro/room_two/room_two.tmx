@@ -7,6 +7,12 @@
     <property name="name" value="topleft"/>
    </properties>
   </tile>
+  <tile id="30">
+   <properties>
+    <property name="destination" value="door_next"/>
+    <property name="room_number" value="1"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -48,20 +54,6 @@
    eJztllEKwCAMQ/UOreD9LzrGFIpkY1/9SPqgyLIJzVqsrT30EAaet+YromZgz1fs7+fPvff7EcLD6i852LGeII0FAxqzXwca+gcsoFrO9CzyQH5RzVlAvavWz8x+Ue8yn881j7jPK7X5q9bPavdnNb9q/Yz8jvQs8qj7Rs0jdpjrW+hwAQofBCI=
   </data>
  </layer>
- <layer name="door_next" width="60" height="23">
-  <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
-  </data>
- </layer>
- <layer name="door_previous" width="60" height="23">
-  <properties>
-   <property name="destination" value="door_next"/>
-   <property name="room_number" value="2"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7A5wb9LnnkgIa2CJgAAAAC/zXUAoBajAAAg
-  </data>
- </layer>
  <layer name="door_locked_bronze" width="60" height="23">
   <properties>
    <property name="destination" value="top_left_right"/>
@@ -69,6 +61,15 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+  </data>
+ </layer>
+ <layer name="door_other" width="60" height="23">
+  <properties>
+   <property name="destination" value="door_next"/>
+   <property name="room_number" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7A5wb9LnnkgIa2CJgAAAAC/zXUAoBajAAAg
   </data>
  </layer>
  <layer name="ignore" width="60" height="23">

@@ -623,16 +623,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
     @Override
     public void hudFadeInComplete(String doorType) {
-        if (doorType.equals(DoorType.DOOR_OTHER)) {
-            loadNewRoom(mPlayerActor.getIsAtDoorUserData().getRoomNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
-        }
-        else if (doorType.equals(DoorType.DOOR_PREVIOUS)) {
-            loadNewRoom(mRoomModel.getRoomInt() - 1, DoorType.DOOR_NEXT);
-        }
-        else if (doorType.equals(DoorType.DOOR_NEXT)) {
-            loadNewRoom(mRoomModel.getRoomInt() + 1, DoorType.DOOR_PREVIOUS);
-        }
-        else {
+        if (mPlayerActor.getIsAtDoorUserData().getRoomNumber() != -1
+                && mPlayerActor.getIsAtDoorUserData().getDestinationDoor() != null) {
             mLoadedRoomModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
             loadNewRoom(mPlayerActor.getIsAtDoorUserData().getRoomNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }

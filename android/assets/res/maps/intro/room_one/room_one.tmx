@@ -2,6 +2,12 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="38">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
   <image source="../../tileset/gizmo.png" width="256" height="224"/>
+  <tile id="30">
+   <properties>
+    <property name="destination" value="door_next"/>
+    <property name="room_number" value="0"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -43,24 +49,6 @@
    eJztluEOhCAIx+0d1O3e/0Xvw8XG2B9FQzut38YqZgSBSAg/DiYRPJMunRLP61GQxIR0mQlfk5X19H3+nlwvfUQxSJBuF54WbwK6ON2LeTwtvyg2lPNdQLXrVc+856J+je5L/VyzpaG9K/GIt+bLXaDa/Uc/vUC53DlelF+pS8q6Famdv9Zc9+5X2ZtoNhy1/0v13Ot/yz/ysmWlNG9c+Vat/q22P8F+/ljQ4r26X2t+jbavMao/W2rVg1Y7KN48wQ+vGa7Vzl3zhtf51hrvqPl5Vj3T+WX1efX9K+mpm5XjfXkhvqBSBvw=
   </data>
  </layer>
- <layer name="door_next" width="60" height="23">
-  <properties>
-   <property name="destination" value="door_previous"/>
-   <property name="room_number" value="2"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
-  </data>
- </layer>
- <layer name="door_previous" width="60" height="23">
-  <properties>
-   <property name="destination" value="door_next"/>
-   <property name="room_number" value="0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7A5wb9LNOwiJK2CJgAAAADw01wHoLRpXAAg
-  </data>
- </layer>
  <layer name="door_locked_gold" width="60" height="23">
   <properties>
    <property name="destination" value="top_left_right"/>
@@ -77,6 +65,15 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7B5wb9HROwgJK2CJgAAAAA/zHUAoLS86AAk
+  </data>
+ </layer>
+ <layer name="door_other" width="60" height="23">
+  <properties>
+   <property name="destination" value="door_next"/>
+   <property name="room_number" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7A5wb9LNOwiJK2CJgAAAADw01wHoLRpXAAg
   </data>
  </layer>
  <layer name="ignore" width="60" height="23">

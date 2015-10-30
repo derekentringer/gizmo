@@ -25,7 +25,6 @@ import com.derekentringer.gizmo.component.actor.structure.WallActor;
 import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockClayActor;
 import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockDirtActor;
 import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockFallActor;
-import com.derekentringer.gizmo.component.actor.structure.door.DoorActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBronzeActor;
@@ -38,12 +37,12 @@ import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
-import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.GroundModel;
 import com.derekentringer.gizmo.model.structure.LavaModel;
 import com.derekentringer.gizmo.model.structure.WallModel;
@@ -227,14 +226,6 @@ public class MapParser extends Stage {
                             lavaActor.setName(LavaModel.LAVA);
                             addToActorsArray(lavaActor);
                         }
-                        else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_PREVIOUS)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticWorldBody(new DoorModel(DoorType.DOOR_PREVIOUS), world, mTileSize, row, col, true));
-                            addActor(doorActor);
-                        }
-                        else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_NEXT)) {
-                            DoorActor doorActor = new DoorActor(BodyUtils.createStaticWorldBody(new DoorModel(DoorType.DOOR_NEXT), world, mTileSize, row, col, true));
-                            addActor(doorActor);
-                        }
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OFF)) {
                             DoorOffActor doorOffActor = new DoorOffActor(BodyUtils.createStaticWorldBody(new DoorOffModel(), world, mTileSize, row, col, true));
                             addActor(doorOffActor);
@@ -258,10 +249,7 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OTHER)) {
                             createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get(ROOM_NUMBER).toString()),
                                     tiledMapTileLayer.getProperties().get(DESTINATION).toString(), false, row, col);
-                        }
-                        else if (curLayerName.equalsIgnoreCase(DoorType.DOOR_OTHER)) {
-                            createOtherDoorActor(world, Integer.parseInt(tiledMapTileLayer.getProperties().get(ROOM_NUMBER).toString()),
-                                    tiledMapTileLayer.getProperties().get(DESTINATION).toString(), false, row, col);
+
                         }
                     }
                 }

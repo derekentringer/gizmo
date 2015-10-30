@@ -7,6 +7,12 @@
     <property name="keyType" value="black"/>
    </properties>
   </tile>
+  <tile id="31">
+   <properties>
+    <property name="destination" value="door_previous"/>
+    <property name="room_number" value="1"/>
+   </properties>
+  </tile>
   <tile id="37">
    <properties>
     <property name="destination" value="doorPrevious"/>
@@ -26,7 +32,7 @@
  </layer>
  <layer name="background_foreground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlmsKgzAQhP3VQ/iC9gK5/+2K0IXtdCYvo6GQD4ruGpN9TGKnaVDDo3cAN2K5PrtGMRgMYqy9A7iZRfivrkOvOqt8907rXo1at3U8WL8X2Hf1O5VvqzhwnZTN1m4RSyrfWJ9XuHo/+nCeVL+Zr4Xm1D5dEs/9M9ar0n6ydXI0UEpJf1XPAvh3Mm+OvRW+U0NJvtgDpfnDTmkRa1TzTgy110tqpurdQs+HbfXcxBi2xxHLc59+9cLmtHdYLipm1nf0KW0Y8+fnxzINpPBxMz2wcyJM32dRcPc4Tvlrvj/GDFf0xzANMI355+hjvTt8K9j+6v1n8j2DrxWrT4Bxds/iwTlUH3Lyvfr/qiJHI6Wws9Zs9c3+R/weQK3bOWB2zlk74LwBCtITQQ==
+   eJztlkkKwzAMRb3qIRIn0G669P1vVwwVKL9fnuLEFPygpFI8aPh269ykhcfoAG5Ecn0OjWIymaTwowO4mdXwX12HUXW28t0H7Xs11r6948H6vcC+q9+5fHvFgfvkbLZ3j1hy+ab67OGp/ejDdXL9Zr4emrPO6Zp5r9+xXtX2k+1TooFaavpr9SyAfyfrlthb5ZwWavLFHliaj3ZOi1ijljkprLNeUzOr3j30HG2p52aMYWcckTx396sXtqbMYblYMbO+o8/ShrB8P3os00AOHTfTA7sngjveRUF9x3GWv+X3R1jgif4UogGmMf0efax30efB1k/tP5PvGWJN3u6oF01Q4/QcFg+uYfWhJN+r/69alGikFnbXim39Zv8j+gyg1uUeELvkrp1wPpqiE2g=
   </data>
  </layer>
  <layer name="lava" width="60" height="23">
@@ -59,18 +65,13 @@
    eJztmOEKgCAMhPUddO//qP3IwbArJobkrQ9GNBbt2JViSifZRAH3mqstSrvmh6gmNCcmbI3c1Ov77XN9fd8j0tCDcojirPsSM3rrm40sAvXsnVu0+e4I0rajT70gT+7oUy9ovsx6kXeZv180S2a9aL7M/6uZ9XdHovn5329w643mZ6RXlnexjn+/EW89YoZNr55d6bmapKtGFs0jOlg0j3AAE2kFQg==
   </data>
  </layer>
- <layer name="door_next" width="60" height="23">
+ <layer name="door_other" width="60" height="23">
   <properties>
    <property name="destination" value="door_previous"/>
    <property name="room_number" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7BJwb9KTCyBo1XQBAAAAOC3uQ4AlCyvkAAh
-  </data>
- </layer>
- <layer name="door_previous" width="60" height="23">
-  <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7C5wb9DLOwjJK2CJgAAAAB8NtcBoLalYAAo
   </data>
  </layer>
  <layer name="door_other" width="60" height="23">
