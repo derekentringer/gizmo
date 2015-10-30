@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="99">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
-  <image source="../tileset/gizmo.png" width="256" height="224"/>
+  <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
    <properties>
     <property name="keyType" value="black"/>
@@ -62,7 +62,7 @@
  <layer name="door_other" width="60" height="23">
   <properties>
    <property name="destination" value="top_left_left"/>
-   <property name="level_number" value="0"/>
+   <property name="room_number" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LROwgJK2CJgAAAD/MdQAAoLQmzwAg

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="37">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
-  <image source="../tileset/gizmo.png" width="256" height="224"/>
+  <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
    <properties>
     <property name="name" value="topleft"/>
@@ -54,6 +54,10 @@
   </data>
  </layer>
  <layer name="door_previous" width="60" height="23">
+  <properties>
+   <property name="destination" value="door_next"/>
+   <property name="room_number" value="2"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LnnkgIa2CJgAAAAC/zXUAoBajAAAg
   </data>
@@ -61,7 +65,7 @@
  <layer name="door_locked_bronze" width="60" height="23">
   <properties>
    <property name="destination" value="top_left_right"/>
-   <property name="level_number" value="0"/>
+   <property name="room_number" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==

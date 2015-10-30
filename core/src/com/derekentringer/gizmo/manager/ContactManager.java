@@ -9,7 +9,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.item.BaseItemModel;
-import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
@@ -89,14 +89,14 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerAttacking(MapParser mapParser, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public static void setPlayerAttacking(MapParser mapParser, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         // player attack with items collisions
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
                     //TODO add destroy animation
-                    loadedLevelModel.addDestroyedBoss((BaseEnemyModel) bodyB.getUserData());
+                    loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyB.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
                     }
@@ -112,7 +112,7 @@ public class ContactManager {
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
                     //TODO add destroy animation
-                    loadedLevelModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
+                    loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
                     }
@@ -139,25 +139,25 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupKey(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupKey(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         // pickup a key
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             playerActor.addKey((KeyModel) bodyA.getUserData());
-            loadedLevelModel.addPickedUpKey((KeyModel) bodyA.getUserData());
+            loadedRoomModel.addPickedUpKey((KeyModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             playerActor.addKey((KeyModel) bodyB.getUserData());
-            loadedLevelModel.addPickedUpKey((KeyModel) bodyB.getUserData());
+            loadedRoomModel.addPickedUpKey((KeyModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) bodyB.getUserData(), bodyB));
         }
     }
 
-    public static void setPlayerPickupHeart(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupHeart(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
         // pickup a heart
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             playerActor.addHealthHeart((HeartModel) bodyA.getUserData());
-            loadedLevelModel.addPickedUpHeart((HeartModel) bodyA.getUserData());
+            loadedRoomModel.addPickedUpHeart((HeartModel) bodyA.getUserData());
 
             for (IGameStage listener : listeners) {
                 listener.setHudHealthHearts(playerActor.getHealthHearts());
@@ -167,7 +167,7 @@ public class ContactManager {
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             playerActor.addHealthHeart((HeartModel) bodyB.getUserData());
-            loadedLevelModel.addPickedUpHeart((HeartModel) bodyB.getUserData());
+            loadedRoomModel.addPickedUpHeart((HeartModel) bodyB.getUserData());
 
             for (IGameStage listener : listeners) {
                 listener.setHudHealthHearts(playerActor.getHealthHearts());
@@ -177,11 +177,11 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupLife(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
         // pickup a life
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             playerActor.incrementLives();
-            loadedLevelModel.addPickedUpLife((LifeModel) bodyA.getUserData());
+            loadedRoomModel.addPickedUpLife((LifeModel) bodyA.getUserData());
 
             for (IGameStage listener : listeners) {
                 listener.setHudLives(playerActor.getPlayerLives());
@@ -191,7 +191,7 @@ public class ContactManager {
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             playerActor.incrementLives();
-            loadedLevelModel.addPickedUpLife((LifeModel) bodyB.getUserData());
+            loadedRoomModel.addPickedUpLife((LifeModel) bodyB.getUserData());
 
             for (IGameStage listener : listeners) {
                 listener.setHudLives(playerActor.getPlayerLives());
@@ -201,16 +201,16 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupItem(PlayerActor playerActor, LevelModel loadedLevelModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up any type of PLAYER_ITEM
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             playerActor.addItem((BaseItemModel) bodyA.getUserData());
-            loadedLevelModel.addPickedUpItem((BaseItemModel) bodyA.getUserData());
+            loadedRoomModel.addPickedUpItem((BaseItemModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((BaseItemModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             playerActor.addItem((BaseItemModel) bodyB.getUserData());
-            loadedLevelModel.addPickedUpItem((BaseItemModel) bodyB.getUserData());
+            loadedRoomModel.addPickedUpItem((BaseItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BaseItemModel) bodyB.getUserData(), bodyB));
         }
     }

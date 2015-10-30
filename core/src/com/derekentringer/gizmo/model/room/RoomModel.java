@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.model.level;
+package com.derekentringer.gizmo.model.room;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
@@ -12,7 +12,7 @@ import com.derekentringer.gizmo.model.structure.door.DoorModel;
 
 import java.util.ArrayList;
 
-public class LevelModel extends BaseModel {
+public class RoomModel extends BaseModel {
 
     private ArrayList<BaseItemModel> mPickedUpItems = new ArrayList<BaseItemModel>();
     private ArrayList<KeyModel> mPickedUpKeys = new ArrayList<KeyModel>();
@@ -22,57 +22,67 @@ public class LevelModel extends BaseModel {
     private ArrayList<BaseDestroyableModel> mDestroyedBlockList = new ArrayList<BaseDestroyableModel>();
     private ArrayList<BaseEnemyModel> mDestroyedBossList = new ArrayList<BaseEnemyModel>();
 
-    private int mLevelInt;
-    private String mLevelMap;
-    private String mLevelMidMap;
-    private String mLevelBackMap;
+    private String mRoomRegion;
+    private int mRoomInt;
+    private String mRoomMap;
+    private String mRoomMidMap;
+    private String mRoomBackMap;
 
     private KeyModel mLastKeyAdded;
     private HeartModel mLastHeartAdded;
     private BaseDestroyableModel mLastBlockAdded;
     private BaseEnemyModel mLastBossAdded;
 
-    public LevelModel() {
+    public RoomModel() {
     }
 
-    public LevelModel(int levelInt, String levelMap, String levelMidMap, String levelBackMap) {
-        mBaseModelType = BaseModelType.LEVEL;
-        mLevelInt = levelInt;
-        mLevelMap = levelMap;
-        mLevelMidMap = levelMidMap;
-        mLevelBackMap = levelBackMap;
+    public RoomModel(String roomRegion, int roomInt, String roomMap, String roomMidMap, String roomBackMap) {
+        mBaseModelType = BaseModelType.ROOM;
+        mRoomRegion = roomRegion;
+        mRoomInt = roomInt;
+        mRoomMap = roomMap;
+        mRoomMidMap = roomMidMap;
+        mRoomBackMap = roomBackMap;
     }
 
-    public int getLevelInt() {
-        return mLevelInt;
+    public String getRoomRegion() {
+        return mRoomRegion;
     }
 
-    public void setLevelInt(int levelInt) {
-        mLevelInt = levelInt;
+    public void setRoomRegion(String roomRegion) {
+        mRoomRegion = roomRegion;
     }
 
-    public String getLevelMap() {
-        return mLevelMap;
+    public int getRoomInt() {
+        return mRoomInt;
     }
 
-    public void setLevelMap(String levelMap) {
-        mLevelMap = levelMap;
+    public void setRoomInt(int roomInt) {
+        mRoomInt = roomInt;
     }
 
-    public String getLevelMidMap() {
-        return mLevelMidMap;
+    public String getRoomMap() {
+        return mRoomMap;
     }
 
-    public void setLevelMidMap(String levelMidMap) {
-        mLevelMidMap = levelMidMap;
+    public void setRoomMap(String roomMap) {
+        mRoomMap = roomMap;
     }
 
-    public String getLevelBackMap() {
-        return mLevelBackMap;
+    public String getRoomMidMap() {
+        return mRoomMidMap;
     }
 
-    public void setLevelBackMap(String levelBackMap) {
-        mLevelBackMap = levelBackMap;
+    public void setRoomMidMap(String roomMidMap) {
+        mRoomMidMap = roomMidMap;
+    }
+
+    public String getRoomBackMap() {
+        return mRoomBackMap;
+    }
+
+    public void setRoomBackMap(String roomBackMap) {
+        mRoomBackMap = roomBackMap;
     }
 
     public void addPickedUpItem(BaseItemModel itemModel) {

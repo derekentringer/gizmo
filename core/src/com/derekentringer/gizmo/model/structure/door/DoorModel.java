@@ -6,7 +6,7 @@ import com.derekentringer.gizmo.model.BaseModelType;
 public class DoorModel extends BaseModel {
 
     private String mDoorType;
-    private int mLevelNumber;
+    private int mRoomNumber;
     private String mDestinationDoor;
     private boolean mIsLocked;
 
@@ -18,11 +18,11 @@ public class DoorModel extends BaseModel {
         mDoorType = doorType;
     }
 
-    public DoorModel(String doorType, int levelNumber, String destinationDoor, boolean isLocked) {
+    public DoorModel(String doorType, int roomNumber, String destinationDoor, boolean isLocked) {
         super();
         mBaseModelType = BaseModelType.DOOR;
         mDoorType = doorType;
-        mLevelNumber = levelNumber;
+        mRoomNumber = roomNumber;
         mDestinationDoor = destinationDoor;
         mIsLocked = isLocked;
     }
@@ -31,8 +31,8 @@ public class DoorModel extends BaseModel {
         return mDoorType;
     }
 
-    public int getLevelNumber() {
-        return mLevelNumber;
+    public int getRoomNumber() {
+        return mRoomNumber;
     }
 
     public String getDestinationDoor() {

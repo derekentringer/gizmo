@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
-import com.derekentringer.gizmo.model.level.LevelModel;
+import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -15,7 +15,7 @@ public class LocalDataManager {
 
     private static final String GAME_SAVE_DIR = "sav/";
     private static final String GAME_SAVE_FILE = "game.sav";
-    private static final String LEVEL_SAVE_SUFFIX = "_level.sav";
+    private static final String ROOM_SAVE_SUFFIX = "_room.sav";
 
     public static void resetAllPlayerData() {
         FileHandle file = Gdx.files.local(GAME_SAVE_FILE);
@@ -43,32 +43,32 @@ public class LocalDataManager {
             GLog.d(TAG, "getLives: " + playerData.getLives());
             GLog.d(TAG, "getHealth: " + playerData.getHealth());
             GLog.d(TAG, "getKeys: " + playerData.getKeys());
-            GLog.d(TAG, "getCurrentLevel: " + playerData.getCurrentLevel());
+            GLog.d(TAG, "getCurrentRoom: " + playerData.getCurrentRoom());
 
             return playerData;
         }
         return null;
     }
 
-    public static LevelModel loadLevelData(LevelModel levelModel) {
-        String fileName = levelModel.getLevelInt() + LEVEL_SAVE_SUFFIX;
-        GLog.d(TAG, "*** LOADING LEVEL DATA *** " + fileName);
-        String savedLevelFile = readFile(fileName);
-        if (!savedLevelFile.isEmpty()) {
+    public static RoomModel loadRoomData(RoomModel roomModel) {
+        String fileName = roomModel.getRoomInt() + ROOM_SAVE_SUFFIX;
+        GLog.d(TAG, "*** LOADING ROOM DATA *** " + fileName);
+        String savedRoomFile = readFile(fileName);
+        if (!savedRoomFile.isEmpty()) {
             Json json = new Json();
-            LevelModel loadedLevelModel = json.fromJson(LevelModel.class, savedLevelFile);
-            GLog.d(TAG, "*** LOADED LEVEL DATA *** ");
-            return loadedLevelModel;
+            RoomModel loadedRoomModel = json.fromJson(RoomModel.class, savedRoomFile);
+            GLog.d(TAG, "*** LOADED ROOM DATA *** ");
+            return loadedRoomModel;
         }
         return null;
     }
 
-    public static void saveLevelData(LevelModel levelModel) {
-        String fileName = levelModel.getLevelInt() + LEVEL_SAVE_SUFFIX;
+    public static void saveRoomData(RoomModel roomModel) {
+        String fileName = roomModel.getRoomInt() + ROOM_SAVE_SUFFIX;
         Json json = new Json();
-        String levelModelString = json.toJson(levelModel, LevelModel.class);
-        GLog.d(TAG, "*** SAVING LEVEL DATA *** " + levelModelString);
-        writeFile(fileName, levelModelString);
+        String roomModelString = json.toJson(roomModel, RoomModel.class);
+        GLog.d(TAG, "*** SAVING ROOM DATA *** " + roomModelString);
+        writeFile(fileName, roomModelString);
     }
 
     public static void writeFile(String fileName, String string) {

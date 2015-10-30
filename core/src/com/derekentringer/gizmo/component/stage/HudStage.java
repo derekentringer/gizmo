@@ -175,7 +175,7 @@ public class HudStage extends Stage implements IGameStage {
             drawOverlay(0, 0, 0, mNewAlpha);
             if (mNewAlpha >= 1 && !isFadeInAlreadyRun) {
                 isFadeInAlreadyRun = true; //this is the PROBLEM
-                //fire off listener to load new level
+                //fire off listener to load new room
                 for(IHudStage listener : listeners){
                     listener.hudFadeInComplete(mDoorType);
                 }

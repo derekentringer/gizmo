@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="38">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
-  <image source="../tileset/gizmo.png" width="256" height="224"/>
+  <image source="../../tileset/gizmo.png" width="256" height="224"/>
  </tileset>
  <layer name="background" width="60" height="23">
   <data encoding="base64" compression="zlib">
@@ -44,11 +44,19 @@
   </data>
  </layer>
  <layer name="door_next" width="60" height="23">
+  <properties>
+   <property name="destination" value="door_previous"/>
+   <property name="room_number" value="2"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
   </data>
  </layer>
  <layer name="door_previous" width="60" height="23">
+  <properties>
+   <property name="destination" value="door_next"/>
+   <property name="room_number" value="0"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7A5wb9LNOwiJK2CJgAAAADw01wHoLRpXAAg
   </data>
@@ -56,7 +64,7 @@
  <layer name="door_locked_gold" width="60" height="23">
   <properties>
    <property name="destination" value="top_left_right"/>
-   <property name="level_number" value="0"/>
+   <property name="room_number" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzkERAAAIA6CFsX9GU+z0AQlIAH6Z6wAAAABAyQJ4jgAl
@@ -65,7 +73,7 @@
  <layer name="door_locked_black" width="60" height="23">
   <properties>
    <property name="destination" value="door_previous"/>
-   <property name="level_number" value="2"/>
+   <property name="room_number" value="2"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7B5wb9HROwgJK2CJgAAAAA/zHUAoLS86AAk

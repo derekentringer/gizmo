@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.HudStage;
 import com.derekentringer.gizmo.manager.LocalDataManager;
-import com.derekentringer.gizmo.util.GameLevelUtils;
+import com.derekentringer.gizmo.util.RoomUtils;
 import com.derekentringer.gizmo.util.ScreenUtils;
 import com.derekentringer.gizmo.util.log.GLog;
 
@@ -18,19 +18,19 @@ public class GameScreen extends ScreenAdapter {
 
     private Rectangle mViewPort;
 
-    private int mLevelToLoad = 0;
+    private int mRoomToLoad = 0;
 
     //private FPSLogger mFpsLogger = new FPSLogger();
 
     public GameScreen() {
-        GameLevelUtils.buildGameLevelList();
+        RoomUtils.buildRoomList();
         mGameStage = new GameStage();
         mHudStage = new HudStage(mGameStage);
         mHudStage.addListener(mGameStage);
         if (LocalDataManager.loadPlayerActorData() != null) {
-            mLevelToLoad = LocalDataManager.loadPlayerActorData().getCurrentLevel();
+            mRoomToLoad = LocalDataManager.loadPlayerActorData().getCurrentRoom();
         }
-        mGameStage.init(GameLevelUtils.gameLevels.get(mLevelToLoad));
+        mGameStage.init(RoomUtils.rooms.get(mRoomToLoad));
     }
 
     @Override

@@ -162,7 +162,7 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setHealth(playerModel.getHealth());
         mPlayerModel.setLives(playerModel.getLives());
         mPlayerModel.setDiggingPower(playerModel.getDiggingPower());
-        mPlayerModel.setCurrentLevel(playerModel.getCurrentLevel());
+        mPlayerModel.setCurrentRoom(playerModel.getCurrentRoom());
         if (playerModel.getKeys().size() > 0) {
             for (int i = 0; i < playerModel.getKeys().size(); i++) {
                 mPlayerModel.addKey(playerModel.getKeys().get(i));
@@ -286,8 +286,8 @@ public class PlayerActor extends BaseActor {
         }
     }
 
-    public void setCurrentLevel(int level) {
-        mPlayerModel.setCurrentLevel(level);
+    public void setCurrentRoom(int room) {
+        mPlayerModel.setCurrentRoom(room);
     }
 
     public int getCrystalBlueAmount() {

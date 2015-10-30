@@ -1,7 +1,7 @@
 package com.derekentringer.gizmo.model;
 
 public enum BaseModelType {
-    LEVEL,
+    ROOM,
     GROUND,
     WALL,
     DOOR,
