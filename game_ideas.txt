@@ -1,7 +1,7 @@
 TODO
 -----
 
-start screen displays amount of hears player has gathered
+work on laying out the world to build up the levels for the entire game
 
 add destroy animation
 
