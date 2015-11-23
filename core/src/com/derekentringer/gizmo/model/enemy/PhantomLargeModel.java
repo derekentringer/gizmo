@@ -6,8 +6,8 @@ public class PhantomLargeModel extends BaseEnemyModel {
 
     public static final String PHANTOM_LARGE = "PHANTOM_LARGE";
 
-    private static final int DEFAULT_HEALTH = 4;
-    private static final int DEFAULT_HEALTH_DAMAGE = 10;
+    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_HEALTH_DAMAGE = 15;
     private static final boolean IS_BOSS = true;
 
     public PhantomLargeModel() {

@@ -1,16 +1,15 @@
 TODO
 -----
 
-work on laying out the world to build up the levels for the entire game
+HUD for crystals
 
 add destroy animation
 
 use the player sensors to detect where the enemy is hitting the player
 	- let the player stand on enemies
+	- pickup ghosts as weapons (think mario 2)
 	
-"poof" for destroying a block or enemy
-
-HUD for crystals
+"poof" for destroying a block or enemy - this animation already exists
 
 trail of dust when running?
 
@@ -21,14 +20,16 @@ have the boomerang bounce off walls and ground
 
 give enemies flinching animation (something diff than the player blinking)
 
+work on laying out the world to build up the levels for the entire game
+
 dynamic levels or placed blocks and enemies based on player progression
 	- if the player has been to a certain stage in the game (loaded from game.sav) areas of a map can change slightly
 	- this would be certain layers in the tiled maps being shown
 
 add new screens
-	- start
+	- start - let users load games?
 	- choose game save slot
-	- pause
+	- pause - there are no pause states yet...show a window
 	- inventory
 
 add debug mode for the game
@@ -41,11 +42,6 @@ costumes
 	- raptor
 	- taco
 	- mech
-
-gizmo upgrades - some attacks (rolling, jump-lunge, guns)
-
-add animations when picking up objects
-	- pickup ghosts as weapons (think mario 2)
 
 add Google Play Services & Steam Services
 	- login
