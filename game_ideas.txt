@@ -1,6 +1,20 @@
 TODO
 -----
 
+bugs/blockers
+------------------------------------------------------------------------------
+
+phantoms fail when directly below or above
+	- need to add a buffer
+
+doors are still slightly bugged
+
+
+new additions needed
+------------------------------------------------------------------------------
+
+start screen should let user restart game
+
 HUD for crystals
 
 add destroy animation
@@ -13,14 +27,22 @@ use the player sensors to detect where the enemy is hitting the player
 
 trail of dust when running?
 
-phantoms fail when directly below or above
-	- need to add a buffer
-
 have the boomerang bounce off walls and ground
 
 give enemies flinching animation (something diff than the player blinking)
 
 work on laying out the world to build up the levels for the entire game
+
+how are we using blue crystals? buying objects at certain points in the game
+	- hearts
+	- objects
+	- keys
+	- buy only upgrades
+
+
+
+neat to haves
+------------------------------------------------------------------------------
 
 dynamic levels or placed blocks and enemies based on player progression
 	- if the player has been to a certain stage in the game (loaded from game.sav) areas of a map can change slightly
