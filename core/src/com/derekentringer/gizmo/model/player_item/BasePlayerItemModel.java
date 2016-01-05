@@ -1,16 +1,16 @@
-package com.derekentringer.gizmo.model.item;
+package com.derekentringer.gizmo.model.player_item;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 
-public class BaseItemModel extends BaseModel {
+public class BasePlayerItemModel extends BaseModel {
 
     public static final String PLAYER_ITEM = "PLAYER_ITEM";
 
     protected int mHealthDamage;
     protected String mItemType;
 
-    public BaseItemModel() {
+    public BasePlayerItemModel() {
     }
 
     public BaseModelType getBaseModelType() {

@@ -2,7 +2,7 @@ package com.derekentringer.gizmo.model.player;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_DIGGING_POWER = 1;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
-    private ArrayList<BaseItemModel> mItemList = new ArrayList<BaseItemModel>();
+    private ArrayList<BasePlayerItemModel> mItemList = new ArrayList<BasePlayerItemModel>();
 
     private int mCurrentRoom;
     private int mLives;
@@ -97,15 +97,15 @@ public class PlayerModel extends BaseModel {
         }
     }
 
-    public ArrayList<BaseItemModel> getItems() {
+    public ArrayList<BasePlayerItemModel> getItems() {
         return mItemList;
     }
 
-    public void addItem(BaseItemModel playerItem) {
+    public void addItem(BasePlayerItemModel playerItem) {
         mItemList.add(playerItem);
     }
 
-    public void removeItem(BaseItemModel playerItem) {
+    public void removeItem(BasePlayerItemModel playerItem) {
         mItemList.remove(playerItem);
     }
 

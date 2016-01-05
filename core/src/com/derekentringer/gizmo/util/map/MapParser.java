@@ -36,7 +36,7 @@ import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -316,7 +316,7 @@ public class MapParser extends Stage {
                         addToActorsArray(lifeActor);
                     }
                 }
-                else if (mapLayer.getName().equalsIgnoreCase(BaseItemModel.PLAYER_ITEM)) {
+                else if (mapLayer.getName().equalsIgnoreCase(BasePlayerItemModel.PLAYER_ITEM)) {
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
                     if (!loopThruPickedUpItemsArray(mLoadedRoomModel.getPickedUpItems(), itemType)) {
 
@@ -419,8 +419,8 @@ public class MapParser extends Stage {
         return false;
     }
 
-    private static boolean loopThruPickedUpItemsArray(ArrayList<BaseItemModel> array, String targetValue) {
-        for (BaseItemModel lookingForItem : array) {
+    private static boolean loopThruPickedUpItemsArray(ArrayList<BasePlayerItemModel> array, String targetValue) {
+        for (BasePlayerItemModel lookingForItem : array) {
             if (lookingForItem.getItemType().equalsIgnoreCase(targetValue)) {
                 return true;
             }

@@ -8,7 +8,7 @@ import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
@@ -204,14 +204,14 @@ public class ContactManager {
     public static void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up any type of PLAYER_ITEM
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            playerActor.addItem((BaseItemModel) bodyA.getUserData());
-            loadedRoomModel.addPickedUpItem((BaseItemModel) bodyA.getUserData());
-            deleteBodies.add(new DeleteBody((BaseItemModel) bodyA.getUserData(), bodyA));
+            playerActor.addItem((BasePlayerItemModel) bodyA.getUserData());
+            loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
+            deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            playerActor.addItem((BaseItemModel) bodyB.getUserData());
-            loadedRoomModel.addPickedUpItem((BaseItemModel) bodyB.getUserData());
-            deleteBodies.add(new DeleteBody((BaseItemModel) bodyB.getUserData(), bodyB));
+            playerActor.addItem((BasePlayerItemModel) bodyB.getUserData());
+            loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
+            deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
         }
     }
 

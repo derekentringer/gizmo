@@ -3,7 +3,7 @@ package com.derekentringer.gizmo.model.room;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class RoomModel extends BaseModel {
 
-    private ArrayList<BaseItemModel> mPickedUpItems = new ArrayList<BaseItemModel>();
+    private ArrayList<BasePlayerItemModel> mPickedUpItems = new ArrayList<BasePlayerItemModel>();
     private ArrayList<KeyModel> mPickedUpKeys = new ArrayList<KeyModel>();
     private ArrayList<HeartModel> mPickedUpHearts = new ArrayList<HeartModel>();
     private ArrayList<LifeModel> mPickedUpLives = new ArrayList<LifeModel>();
@@ -85,11 +85,11 @@ public class RoomModel extends BaseModel {
         mRoomBackMap = roomBackMap;
     }
 
-    public void addPickedUpItem(BaseItemModel itemModel) {
+    public void addPickedUpItem(BasePlayerItemModel itemModel) {
         mPickedUpItems.add(itemModel);
     }
 
-    public ArrayList<BaseItemModel> getPickedUpItems() {
+    public ArrayList<BasePlayerItemModel> getPickedUpItems() {
         return mPickedUpItems;
     }
 

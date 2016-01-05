@@ -7,11 +7,11 @@ import com.badlogic.gdx.utils.Timer;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
-import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
-import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
-import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
-import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangAmethystModel;
+import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangBloodStoneModel;
+import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangEmeraldModel;
+import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
@@ -93,7 +93,7 @@ public class PlayerActor extends BaseActor {
 
     private KeyModel mLastKeyAdded;
     private HeartModel mLastHeartAdded;
-    private BaseItemModel mLastItemAdded;
+    private BasePlayerItemModel mLastItemAdded;
 
     private boolean mIsItemActive = false;
 
@@ -251,7 +251,7 @@ public class PlayerActor extends BaseActor {
         return mPlayerModel.getHearts();
     }
 
-    public void addItem(BaseItemModel itemModel) {
+    public void addItem(BasePlayerItemModel itemModel) {
         if (mLastItemAdded == null || !mLastItemAdded.equals(itemModel)) {
             mPlayerModel.addItem(itemModel);
             mLastItemAdded = itemModel;
@@ -259,7 +259,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public boolean hasCorrectItem(String itemType) {
-        ArrayList<BaseItemModel> playerItems = mPlayerModel.getItems();
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getItemType().equalsIgnoreCase(itemType)) {
                 return true;

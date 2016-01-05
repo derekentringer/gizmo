@@ -1,9 +1,9 @@
-package com.derekentringer.gizmo.model.item.boomerang;
+package com.derekentringer.gizmo.model.player_item.boomerang;
 
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.item.BaseItemModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 
-public class BoomerangWoodModel extends BaseItemModel {
+public class BoomerangWoodModel extends BasePlayerItemModel {
 
     public static final String BOOMERANG_WOOD = "BOOMERANG_WOOD";
 
