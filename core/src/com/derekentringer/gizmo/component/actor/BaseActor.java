@@ -28,8 +28,10 @@ public class BaseActor extends Actor {
     private boolean mIsPlayingAnimation = true;
     private TextureRegion[] mCurrentTextureRegion;
 
-    public int mFacingDirection;
-    
+    private Vector2 mPlayerPosition = new Vector2();
+
+    private int mFacingDirection;
+
     public BaseActor(Body body) {
         mBody = body;
         mBaseModel = (BaseModel) body.getUserData();
@@ -117,6 +119,15 @@ public class BaseActor extends Actor {
         for (IBaseActor listener : listeners) {
             listener.isAnimationFinished(isFinished);
         }
+    }
+
+    public Vector2 getPlayerPosition() {
+        return mPlayerPosition;
+    }
+
+    public void setPlayerPosition(Vector2 playerPosition) {
+        mPlayerPosition.x = playerPosition.x;
+        mPlayerPosition.y = playerPosition.y;
     }
 
 }

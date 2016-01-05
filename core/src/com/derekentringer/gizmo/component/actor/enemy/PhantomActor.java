@@ -2,7 +2,6 @@ package com.derekentringer.gizmo.component.actor.enemy;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
@@ -26,8 +25,6 @@ public class PhantomActor extends BaseActor {
 
     private float phantomRadiusFront = getPosition().x + PLAYER_DETECTION_X;
     private float phantomRadiusBehind = getPosition().x - PLAYER_DETECTION_X;
-
-    private Vector2 mPlayerPosition = new Vector2();
 
     public PhantomActor(Body body) {
         super(body);
@@ -64,7 +61,7 @@ public class PhantomActor extends BaseActor {
             BodyUtils.applyLinearImpulseToBody(mBody, 0, "x");
         }
 
-        if (mFacingDirection == FACING_LEFT) {
+        if (getFacingDirection() == FACING_LEFT) {
             if (!getCurrentTextureRegion().equals(mPhantomLeftSprite)) {
                 setAnimation(mPhantomLeftSprite, 1 / 12f);
             }
@@ -86,21 +83,12 @@ public class PhantomActor extends BaseActor {
 
     private boolean isPlayerInFront() {
         return getPlayerPosition().x < phantomRadiusFront
-                && getPlayerPosition().x > getPosition().x;
+                && getPlayerPosition().x > getPosition().x + MOVEMENT_PADDING;
     }
 
     private boolean isPlayerBehind() {
         return getPlayerPosition().x > phantomRadiusBehind
-                && getPlayerPosition().x < getPosition().x;
-    }
-
-    public Vector2 getPlayerPosition() {
-        return mPlayerPosition;
-    }
-
-    public void setPlayerPosition(Vector2 playerPosition) {
-        mPlayerPosition.x = playerPosition.x;
-        mPlayerPosition.y = playerPosition.y;
+                && getPlayerPosition().x < getPosition().x - MOVEMENT_PADDING;
     }
 
 }

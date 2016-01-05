@@ -442,7 +442,7 @@ public class PlayerActor extends BaseActor {
 
     public void stoppedMoving() {
         if (mIsFlinching) {
-            if (mFacingDirection == FACING_LEFT) {
+            if (getFacingDirection() == FACING_LEFT) {
                 if (getIsOnGround() && !getCurrentTextureRegion().equals(mFlinchingStandingLeftSprites)) {
                     setAnimation(mFlinchingStandingLeftSprites, 1 / 12f);
                 }
@@ -454,7 +454,7 @@ public class PlayerActor extends BaseActor {
             }
         }
         else {
-            if (mFacingDirection == FACING_LEFT) {
+            if (getFacingDirection() == FACING_LEFT) {
                 if (getIsOnGround()
                         && !getCurrentTextureRegion().equals(mStandingLeftSprites)
                         && !UserInput.isDown(UserInput.DIG_BUTTON)) {
@@ -473,7 +473,7 @@ public class PlayerActor extends BaseActor {
     }
 
     private void applyFlinchForce() {
-        if (mFacingDirection == FACING_RIGHT) {
+        if (getFacingDirection() == FACING_RIGHT) {
             BodyUtils.applyLinearImpulseToBody(mBody, -FLINCH_FORCE, "x");
         }
         else {
