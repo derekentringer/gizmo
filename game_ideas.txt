@@ -4,9 +4,6 @@ TODO
 bugs/blockers
 ------------------------------------------------------------------------------
 
-phantoms fail when directly below or above
-	- need to add a buffer
-
 doors are still slightly bugged
 
 start screen doesn't recognize controllers
