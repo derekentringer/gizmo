@@ -330,6 +330,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             mMapParser.destroyTiledMap();
             WorldUtils.destroyBodies(mWorld);
             //TODO could load first room of multiple rooms
+            //TODO ie, need to pass which door in the room
             loadRoom(mRoomModel, DoorType.DOOR_PREVIOUS);
         }
     }
