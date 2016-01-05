@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="95">
- <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="96">
+ <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32" tilecount="56">
   <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
    <properties>
@@ -42,7 +42,7 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztmA0KgCAMhbc7qNARuv8FI/CRDK0008x98JiKRPtJXESKovwB48XeWi+sYazMBQ/+/JFZe79AAVf5tIl1E6gFTH1qz5yoF0zxePSKkfKMEXI2W22lvjHlgCNS5uCtXKOPaUUNP2Tt35kD+LvQN+8aNXEZe2M+yx4XSsXHBnJeNmLlOFQpOb6WoGfvN8G/GFgn5rA7G+2CBZY=
+   eJztmAsKgCAMhrc7qNARuv8FI/AnEa185CP3wc9URNymohIJgvAHlBVbq63QhrKwFjz5+DOz955ABk/51JF25agFTH3WnrpRL5jC8egVI6GMGXK22tqK7THhggMS5qA0b1/lGu+YVtTww4/hmzqAvxuNedeoiUnoG/LZf+NCsfhoR8ZKB6xfdpVLiq85yNk7JviLgTVeHfbkAAOJBZo=
   </data>
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
@@ -62,7 +62,7 @@
  </layer>
  <layer name="wall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztmOEKgCAMhPUddO//qP3IwbArJobkrQ9GNBbt2JViSifZRAH3mqstSrvmh6gmNCcmbI3c1Ov77XN9fd8j0tCDcojirPsSM3rrm40sAvXsnVu0+e4I0rajT70gT+7oUy9ovsx6kXeZv180S2a9aL7M/6uZ9XdHovn5329w643mZ6RXlnexjn+/EW89YoZNr55d6bmapKtGFs0jOlg0j3AAE2kFQg==
+   eJztmOEKgCAMhPUddO//qP3IwbArJka004NRjUl+7EoxpVPZRAHPmqstSrvmh6gmNCcmbI3c1Ov77bi+vp8jYuiFckjFWfcnzfDWNyfykdCcvX1brb8Rhdgi+tQr5MmIPvUK9ZeZF3mX+ftFvWTmRf1l/l/NrL8RtZqf936Dm3c1PyNeAbl8cx9Ne7+x3nrELDZePbvSczVJV0YW5hEOFuYRHSBFBUQ=
   </data>
  </layer>
  <layer name="door_other" width="60" height="23">
@@ -105,6 +105,9 @@
    <ellipse/>
   </object>
   <object id="92" x="225" y="108">
+   <ellipse/>
+  </object>
+  <object id="95" x="298" y="523">
    <ellipse/>
   </object>
  </objectgroup>
