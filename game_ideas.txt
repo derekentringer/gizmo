@@ -4,7 +4,7 @@ TODO
 bugs/blockers
 ------------------------------------------------------------------------------
 
-doors are still slightly bugged
+doors are still slightly bugged - this is weird and may or may not still be happening
 
 start screen doesn't recognize controllers
 
