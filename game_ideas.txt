@@ -12,6 +12,8 @@ new additions needed
 
 start screen should let user restart game
 
+- need to hook up buttons for the start screen
+
 start button should pause
 
 pause should let you quit to start screen

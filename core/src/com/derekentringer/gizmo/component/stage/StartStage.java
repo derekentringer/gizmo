@@ -147,7 +147,7 @@ public class StartStage extends Stage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontX, 35);
+            mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontX, 45);
             mBitmapFont.draw(mSpriteBatch, restartStringDisplay, fontXRestart, 25);
         mSpriteBatch.end();
     }
