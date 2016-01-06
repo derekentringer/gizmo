@@ -125,7 +125,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
         GLog.d(TAG, "buttonDown Code: " + buttonCode);
-
+        if(buttonCode > -1) {
+            UserInput.setKey(UserInput.ANY_BUTTON, true);
+        }
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
@@ -143,6 +145,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean buttonUp(Controller controller, int buttonCode) {
+        if(buttonCode > -1) {
+            UserInput.setKey(UserInput.ANY_BUTTON, false);
+        }
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, false);
