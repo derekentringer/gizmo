@@ -6,13 +6,15 @@ bugs/blockers
 
 doors are still slightly bugged - this is weird and may or may not still be happening
 
-start screen doesn't recognize controllers
-
 
 new additions needed
 ------------------------------------------------------------------------------
 
 start screen should let user restart game
+
+start button should pause
+
+pause should let you quit to start screen
 
 HUD for crystals
 
