@@ -11,6 +11,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
+import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
@@ -39,6 +40,8 @@ public class StartStage extends Stage {
     private int centerScreenX = Constants.GAME_WIDTH / 2;
     private int centerScreenY = Constants.GAME_HEIGHT / 2;
 
+    private int screenWidth = Constants.GAME_WIDTH;
+
     private float fontX;
 
     private PlayerModel mPlayerModel;
@@ -54,32 +57,29 @@ public class StartStage extends Stage {
         mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
-        loadPlayerModel();
+        loadPlayerHearts();
         addStartText();
         //loadStartStageActors();
     }
 
-    private void loadPlayerModel() {
-        /*if (LocalDataManager.loadPlayerActorData() != null) {
+    private void loadPlayerHearts() {
+        if (LocalDataManager.loadPlayerActorData() != null) {
             mPlayerModel = LocalDataManager.loadPlayerActorData();
-            int playerHearts = 15;
-            for (int i=0; i < playerHearts; i++) {
-                loadHeart(new Vector2(centerScreenX - (i * 18), centerScreenY));
+            int totalHearts = mPlayerModel.getHearts();
+            int heartsTotalWidth = totalHearts * 15;
+            int heartsPositionX = screenWidth / 2 - heartsTotalWidth / 2;
+            for (int i=0; i < totalHearts; i++) {
+                HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, new Vector2(heartsPositionX + (i * 20), centerScreenY)));
+                heartActor.setName(HeartModel.HEART);
+                addActor(heartActor);
+                mStartStageActorsArray.add(heartActor);
             }
-        }*/
-        loadHeart(new Vector2(centerScreenX, centerScreenY));
+        }
     }
 
     private void addStartText() {
         layout = new GlyphLayout(mBitmapFont, mStartScreenString);
         fontX = centerScreenX - layout.width / 2;
-    }
-
-    private void loadHeart(Vector2 position) {
-        HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, position));
-        heartActor.setName(HeartModel.HEART);
-        addActor(heartActor);
-        mStartStageActorsArray.add(heartActor);
     }
 
     @Override
