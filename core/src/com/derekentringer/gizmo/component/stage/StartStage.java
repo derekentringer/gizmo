@@ -34,11 +34,20 @@ public class StartStage extends Stage {
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
-    private String mStartScreenString = "press any key";
-    private String mStartScreenStringController = "press any button";
+    private String mStartGame = "press any key to start";
+    private String mStartGameController = "press any button to start";
+
+    private String mContinue = "press any key to continue";
+    private String mContinueController = "press any button to continue";
+
+    private String mRestart = "press x to restart";
+    private String mRestartController = "press x to restart";
+
     private BitmapFont mBitmapFont;
-    private GlyphLayout layout;
+    private GlyphLayout layoutStartContinue;
+    private GlyphLayout layoutRestart;
     private String startStringDisplay;
+    private String restartStringDisplay;
 
     private int centerScreenX = Constants.GAME_WIDTH / 2;
     private int centerScreenY = Constants.GAME_HEIGHT / 2;
@@ -46,6 +55,7 @@ public class StartStage extends Stage {
     private int screenWidth = Constants.GAME_WIDTH;
 
     private float fontX;
+    private float fontXRestart;
 
     private PlayerModel mPlayerModel;
 
@@ -61,7 +71,6 @@ public class StartStage extends Stage {
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
         loadPlayerHearts();
-        addStartText();
     }
 
     private void loadPlayerHearts() {
@@ -69,9 +78,11 @@ public class StartStage extends Stage {
             mPlayerModel = LocalDataManager.loadPlayerActorData();
             int totalHearts = mPlayerModel.getHearts();
             displayHearts(totalHearts);
+            addContinueText();
         }
         else {
             displayHearts(PlayerModel.DEFAULT_HEARTS);
+            addStartText();
         }
     }
 
@@ -88,14 +99,35 @@ public class StartStage extends Stage {
 
     private void addStartText() {
         if (isControllerConnected()) {
-            layout = new GlyphLayout(mBitmapFont, mStartScreenStringController);
-            fontX = centerScreenX - layout.width / 2;
-            startStringDisplay = mStartScreenStringController;
+            layoutStartContinue = new GlyphLayout(mBitmapFont, mStartGameController);
+            fontX = centerScreenX - layoutStartContinue.width / 2;
+            startStringDisplay = mStartGameController;
         }
         else {
-            layout = new GlyphLayout(mBitmapFont, mStartScreenString);
-            fontX = centerScreenX - layout.width / 2;
-            startStringDisplay = mStartScreenString;
+            layoutStartContinue = new GlyphLayout(mBitmapFont, mStartGame);
+            fontX = centerScreenX - layoutStartContinue.width / 2;
+            startStringDisplay = mStartGame;
+        }
+    }
+
+    private void addContinueText() {
+        if (isControllerConnected()) {
+            layoutStartContinue = new GlyphLayout(mBitmapFont, mContinueController);
+            fontX = centerScreenX - layoutStartContinue.width / 2;
+            startStringDisplay = mContinueController;
+
+            layoutRestart = new GlyphLayout(mBitmapFont, mRestartController);
+            fontXRestart = centerScreenX - layoutRestart.width / 2;
+            restartStringDisplay = mRestartController;
+        }
+        else {
+            layoutStartContinue = new GlyphLayout(mBitmapFont, mContinue);
+            fontX = centerScreenX - layoutStartContinue.width / 2;
+            startStringDisplay = mContinue;
+
+            layoutRestart = new GlyphLayout(mBitmapFont, mRestart);
+            fontXRestart = centerScreenX - layoutRestart.width / 2;
+            restartStringDisplay = mRestart;
         }
     }
 
@@ -115,7 +147,8 @@ public class StartStage extends Stage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontX, 25);
+            mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontX, 35);
+            mBitmapFont.draw(mSpriteBatch, restartStringDisplay, fontXRestart, 25);
         mSpriteBatch.end();
     }
 
