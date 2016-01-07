@@ -10,9 +10,6 @@ doors are still slightly bugged - this is weird and may or may not still be happ
 new additions needed
 ------------------------------------------------------------------------------
 
-start screen should let user restart game
-
-- need to hook up buttons for the start screen
 
 start button should pause
 
