@@ -18,10 +18,9 @@ public class LocalDataManager {
     private static final String ROOM_SAVE_SUFFIX = "_room.sav";
 
     public static void resetAllPlayerData() {
-        FileHandle file = Gdx.files.local(GAME_SAVE_FILE);
-        if (file != null && file.exists()) {
-            //file.delete();
-            file.writeString("", false);
+        FileHandle[] files = Gdx.files.local(GAME_SAVE_DIR).list();
+        for(FileHandle file: files) {
+            file.delete();
         }
     }
 

@@ -10,9 +10,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
+import com.derekentringer.gizmo.component.actor.misc.WhiteDotActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.model.misc.WhiteDotModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
@@ -29,19 +31,20 @@ public class StartStage extends Stage {
 
     private final ArrayList<BaseActor> mStartStageActorsArray = new ArrayList<BaseActor>();
 
+    private static final String SCREEN_STATE_START = "start";
+    private static final String SCREEN_STATE_CONTINUE = "continue";
+
     private StartScreen mStartScreen;
     private World mWorld;
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
-    private String mStartGame = "press any key to start";
-    private String mStartGameController = "press any button to start";
+    private PlayerModel mPlayerModel;
 
-    private String mContinue = "press any key to continue";
-    private String mContinueController = "press any button to continue";
-
-    private String mRestart = "press x to restart";
-    private String mRestartController = "press x to restart";
+    private String mPressAnyKey = "press any key";
+    private String mPressAnyButton = "press any button";
+    private String mContinue = "continue";
+    private String mRestart = "restart";
 
     private BitmapFont mBitmapFont;
     private GlyphLayout layoutStartContinue;
@@ -54,10 +57,15 @@ public class StartStage extends Stage {
 
     private int screenWidth = Constants.GAME_WIDTH;
 
-    private float fontX;
+    private String SCREEN_STATE;
+
+    private float fontStartX;
     private float fontXRestart;
 
-    private PlayerModel mPlayerModel;
+    private boolean toggleSelectionFlag = false;
+
+    private WhiteDotActor whiteDotContinue;
+    private WhiteDotActor whiteDotRestart;
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
@@ -75,19 +83,21 @@ public class StartStage extends Stage {
 
     private void loadPlayerHearts() {
         if (LocalDataManager.loadPlayerActorData() != null) {
+            SCREEN_STATE = SCREEN_STATE_CONTINUE;
             mPlayerModel = LocalDataManager.loadPlayerActorData();
             int totalHearts = mPlayerModel.getHearts();
             displayHearts(totalHearts);
             addContinueText();
         }
         else {
+            SCREEN_STATE = SCREEN_STATE_START;
             displayHearts(PlayerModel.DEFAULT_HEARTS);
             addStartText();
         }
     }
 
     private void displayHearts(int hearts) {
-        int heartsTotalWidth = hearts * 15;
+        int heartsTotalWidth = hearts * 10;
         int heartsPositionX = screenWidth / 2 - heartsTotalWidth / 2;
         for (int i=0; i < hearts; i++) {
             HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, new Vector2(heartsPositionX + (i * 20), centerScreenY)));
@@ -99,36 +109,41 @@ public class StartStage extends Stage {
 
     private void addStartText() {
         if (isControllerConnected()) {
-            layoutStartContinue = new GlyphLayout(mBitmapFont, mStartGameController);
-            fontX = centerScreenX - layoutStartContinue.width / 2;
-            startStringDisplay = mStartGameController;
+            layoutStartContinue = new GlyphLayout(mBitmapFont, mPressAnyButton);
+            fontStartX = centerScreenX - layoutStartContinue.width / 2;
+            startStringDisplay = mPressAnyButton;
         }
         else {
-            layoutStartContinue = new GlyphLayout(mBitmapFont, mStartGame);
-            fontX = centerScreenX - layoutStartContinue.width / 2;
-            startStringDisplay = mStartGame;
+            layoutStartContinue = new GlyphLayout(mBitmapFont, mPressAnyKey);
+            fontStartX = centerScreenX - layoutStartContinue.width / 2;
+            startStringDisplay = mPressAnyKey;
         }
     }
 
     private void addContinueText() {
-        if (isControllerConnected()) {
-            layoutStartContinue = new GlyphLayout(mBitmapFont, mContinueController);
-            fontX = centerScreenX - layoutStartContinue.width / 2;
-            startStringDisplay = mContinueController;
+        layoutStartContinue = new GlyphLayout(mBitmapFont, mContinue);
+        fontStartX = centerScreenX - layoutStartContinue.width / 2;
+        startStringDisplay = mContinue;
 
-            layoutRestart = new GlyphLayout(mBitmapFont, mRestartController);
-            fontXRestart = centerScreenX - layoutRestart.width / 2;
-            restartStringDisplay = mRestartController;
-        }
-        else {
-            layoutStartContinue = new GlyphLayout(mBitmapFont, mContinue);
-            fontX = centerScreenX - layoutStartContinue.width / 2;
-            startStringDisplay = mContinue;
+        layoutRestart = new GlyphLayout(mBitmapFont, mRestart);
+        fontXRestart = centerScreenX - layoutRestart.width / 2;
+        restartStringDisplay = mRestart;
 
-            layoutRestart = new GlyphLayout(mBitmapFont, mRestart);
-            fontXRestart = centerScreenX - layoutRestart.width / 2;
-            restartStringDisplay = mRestart;
-        }
+        createWhiteDotContinue();
+    }
+
+    private void createWhiteDotContinue() {
+        whiteDotContinue = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(fontStartX - 10, 42)));
+        whiteDotContinue.setName(WhiteDotModel.WHITE_DOT);
+        addActor(whiteDotContinue);
+        mStartStageActorsArray.add(whiteDotContinue);
+    }
+
+    private void createWhiteDotRestart() {
+        whiteDotRestart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(fontXRestart - 10, 22)));
+        whiteDotRestart.setName(WhiteDotModel.WHITE_DOT);
+        addActor(whiteDotRestart);
+        mStartStageActorsArray.add(whiteDotRestart);
     }
 
     private boolean isControllerConnected() {
@@ -147,8 +162,13 @@ public class StartStage extends Stage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontX, 45);
-            mBitmapFont.draw(mSpriteBatch, restartStringDisplay, fontXRestart, 25);
+            if(restartStringDisplay != "" && restartStringDisplay != null) {
+                mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontStartX, 45);
+                mBitmapFont.draw(mSpriteBatch, restartStringDisplay, fontXRestart, 25);
+            }
+            else {
+                mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontStartX, 25);
+            }
         mSpriteBatch.end();
     }
 
@@ -175,14 +195,52 @@ public class StartStage extends Stage {
     }
 
     private void handleInput() {
-        if (isControllerConnected()) {
-            if (UserInput.isDown(UserInput.ANY_BUTTON)) {
-                mStartScreen.startGame();
+        if (SCREEN_STATE.equalsIgnoreCase(SCREEN_STATE_CONTINUE)) {
+            if (UserInput.isDown(UserInput.UP) || UserInput.isDown(UserInput.DOWN)) {
+                toggleSelection();
+            }
+            if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+                if (mStartStageActorsArray.contains(whiteDotContinue)) {
+                    mStartScreen.startGame();
+                }
+                else {
+                    LocalDataManager.resetAllPlayerData();
+                    mStartScreen.startGame();
+                }
             }
         }
         else {
-            if (UserInput.isDown(UserInput.ANY_KEY)) {
-                mStartScreen.startGame();
+            if (isControllerConnected()) {
+                if (UserInput.isDown(UserInput.ANY_BUTTON)) {
+                    mStartScreen.startGame();
+                }
+            }
+            else {
+                if (UserInput.isDown(UserInput.ANY_KEY)) {
+                    mStartScreen.startGame();
+                }
+            }
+        }
+
+        //reset toggle flag
+        if (!UserInput.isDown(UserInput.UP)
+                && !UserInput.isDown(UserInput.DOWN)) {
+            toggleSelectionFlag = false;
+        }
+    }
+
+    private void toggleSelection() {
+        if (toggleSelectionFlag == false) {
+            toggleSelectionFlag = true;
+            if (mStartStageActorsArray.contains(whiteDotContinue)) {
+                mStartStageActorsArray.remove(whiteDotContinue);
+                whiteDotContinue.remove();
+                createWhiteDotRestart();
+            }
+            else {
+                mStartStageActorsArray.remove(whiteDotRestart);
+                whiteDotRestart.remove();
+                createWhiteDotContinue();
             }
         }
     }

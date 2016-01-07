@@ -49,6 +49,14 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.LEFT) {
             UserInput.setKey(UserInput.LEFT_BUTTON, true);
         }
+        if (keycode == Input.Keys.UP
+                || keycode == Input.Keys.DPAD_UP) {
+            UserInput.setKey(UserInput.UP, true);
+        }
+        if (keycode == Input.Keys.DOWN
+                || keycode == Input.Keys.DPAD_DOWN) {
+            UserInput.setKey(UserInput.DOWN, true);
+        }
 
         //wsad key movement
         if (keycode == Input.Keys.W) {
@@ -94,6 +102,14 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         if (keycode == Input.Keys.LEFT) {
             UserInput.setKey(UserInput.LEFT_BUTTON, false);
+        }
+        if (keycode == Input.Keys.UP
+                || keycode == Input.Keys.DPAD_UP) {
+            UserInput.setKey(UserInput.UP, false);
+        }
+        if (keycode == Input.Keys.DOWN
+                || keycode == Input.Keys.DPAD_DOWN) {
+            UserInput.setKey(UserInput.DOWN, false);
         }
 
         //wsad key movement

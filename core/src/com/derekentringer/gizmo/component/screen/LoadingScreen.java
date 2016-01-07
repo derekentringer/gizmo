@@ -21,6 +21,7 @@ public class LoadingScreen extends ScreenAdapter {
         Gizmo.assetManager.load("res/font/gizmo.fnt", BitmapFont.class);
 
         Gizmo.assetManager.load("res/image/start/heart.png", Texture.class);
+        Gizmo.assetManager.load("res/image/start/white_dot.png", Texture.class);
 
         Gizmo.assetManager.load("res/image/hud/hud_lives_one.png", Texture.class);
         Gizmo.assetManager.load("res/image/hud/hud_lives_two.png", Texture.class);

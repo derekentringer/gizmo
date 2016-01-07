@@ -20,5 +20,6 @@ public enum BaseModelType {
     LIFE,
     LAVA,
     BLOCK_DESTROYABLE,
-    BLOCK_DESTROYABLE_FALL
+    BLOCK_DESTROYABLE_FALL,
+    WHITE_DOT
 }

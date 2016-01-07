@@ -11,10 +11,7 @@ public class UserInput {
     public static boolean[] currentKey;
     public static boolean[] previousKey;
 
-    public static final int NUM_KEYS = 9;
-
-    public static final int ANY_KEY = 7;
-    public static final int ANY_BUTTON = 8;
+    public static final int NUM_KEYS = 11;
 
     public static final int JUMP_BUTTON = 0;
     public static final int LEFT_BUTTON = 1;
@@ -23,6 +20,12 @@ public class UserInput {
     public static final int ATTACK_BUTTON = 4;
     public static final int RUN_BUTTON = 5;
     public static final int DIG_BUTTON = 6;
+
+    public static final int ANY_KEY = 7;
+    public static final int ANY_BUTTON = 8;
+
+    public static final int UP = 9;
+    public static final int DOWN = 10;
 
     static {
         currentKey = new boolean[NUM_KEYS];

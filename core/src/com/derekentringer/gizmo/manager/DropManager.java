@@ -53,7 +53,7 @@ public class DropManager extends Stage {
     public void addDropHeart(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_DROPS, MAX_DROPS);
         for (int i = 0; i <= drops; i++) {
-            DropHeartActor dropHeartActor = new DropHeartActor(DropUtils.createDropHeart(new DropHeartModel(), world, coordinates));
+            DropHeartActor dropHeartActor = new DropHeartActor(DropUtils.createDrop(new DropHeartModel(), world, coordinates));
             dropHeartActor.setName(DropHeartModel.HEART_SMALL);
             for (IDropManager listener : listeners) {
                 listener.addDroppedItem(dropHeartActor);
@@ -64,7 +64,7 @@ public class DropManager extends Stage {
     public void addDropCrystalBlue(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_DROPS, MAX_DROPS);
         for (int i = 0; i <= drops; i++) {
-            DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDropHeart(new DropCrystalBlueModel(), world, coordinates), false);
+            DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDrop(new DropCrystalBlueModel(), world, coordinates), false);
             dropCrystalBlueActor.setName(DropCrystalBlueModel.CRYSTAL_BLUE);
             for (IDropManager listener : listeners) {
                 listener.addDroppedItem(dropCrystalBlueActor);
@@ -75,7 +75,7 @@ public class DropManager extends Stage {
     public void bossDropCrystals(World world, Vector2 coordinates) {
         int drops = MathUtils.random(MIN_BOSS_DROPS, MAX_BOSS_DROPS);
         for (int i = 0; i <= drops; i++) {
-            DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDropHeart(new DropCrystalBlueModel(), world, coordinates), true);
+            DropCrystalBlueActor dropCrystalBlueActor = new DropCrystalBlueActor(DropUtils.createDrop(new DropCrystalBlueModel(), world, coordinates), true);
             dropCrystalBlueActor.setName(DropCrystalBlueModel.CRYSTAL_BLUE);
             for (IDropManager listener : listeners) {
                 listener.addDroppedItem(dropCrystalBlueActor);
