@@ -43,6 +43,8 @@ public class GameScreen extends ScreenAdapter {
     public void pauseGame(){
         if(mGameState == mGameState.RUNNING) {
             mGameState = mGameState.PAUSED;
+            //TODO stop music
+            //TODO show paused screen
         } else {
             mGameState = mGameState.RUNNING;
         }
