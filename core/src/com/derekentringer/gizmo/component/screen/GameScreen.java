@@ -4,6 +4,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.math.Rectangle;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.HudStage;
+import com.derekentringer.gizmo.component.stage.PauseStage;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.util.RoomUtils;
 import com.derekentringer.gizmo.util.ScreenUtils;
@@ -13,8 +14,9 @@ public class GameScreen extends ScreenAdapter {
 
     private static final String TAG = GameScreen.class.getSimpleName();
 
-    private HudStage mHudStage;
     private GameStage mGameStage;
+    private HudStage mHudStage;
+    private PauseStage mPauseStage;
 
     private Rectangle mViewPort;
 
@@ -34,6 +36,8 @@ public class GameScreen extends ScreenAdapter {
         mGameStage = new GameStage(this);
         mHudStage = new HudStage(mGameStage);
         mHudStage.addListener(mGameStage);
+        mPauseStage = new PauseStage();
+
         if (LocalDataManager.loadPlayerActorData() != null) {
             mRoomToLoad = LocalDataManager.loadPlayerActorData().getCurrentRoom();
         }
@@ -43,9 +47,6 @@ public class GameScreen extends ScreenAdapter {
     public void pauseGame(){
         if(mGameState == mGameState.RUNNING) {
             mGameState = mGameState.PAUSED;
-            //TODO stop music
-            //TODO load pause screen
-
         } else {
             mGameState = mGameState.RUNNING;
         }
@@ -71,6 +72,10 @@ public class GameScreen extends ScreenAdapter {
                 break;
 
             case PAUSED:
+                //TODO stop music
+                //TODO load pause stage
+                mPauseStage.act();
+                mPauseStage.draw();
                 break;
 
             default:
@@ -110,6 +115,7 @@ public class GameScreen extends ScreenAdapter {
         GLog.d(TAG, "dispose");
         this.mGameStage.dispose();
         this.mHudStage.dispose();
+        this.mPauseStage.dispose();
     }
 
 }

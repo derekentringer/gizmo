@@ -28,7 +28,6 @@ public class StartScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-
     }
 
     @Override
