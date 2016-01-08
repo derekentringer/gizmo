@@ -44,7 +44,8 @@ public class GameScreen extends ScreenAdapter {
         if(mGameState == mGameState.RUNNING) {
             mGameState = mGameState.PAUSED;
             //TODO stop music
-            //TODO show paused screen
+            //TODO load pause screen
+
         } else {
             mGameState = mGameState.RUNNING;
         }
@@ -76,6 +77,8 @@ public class GameScreen extends ScreenAdapter {
                 break;
         }
 
+        //TODO should be handled in listener callbacks
+        //TODO from the InputProcessor for encapsulation reasons
         mGameStage.handleInput();
     }
 
