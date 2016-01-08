@@ -95,6 +95,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private DoorBlackActor mDoorBlackActor;
     private boolean alreadyEntered = false;
 
+    private boolean toggleSelectionFlag = false;
+
     public GameStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
     }
@@ -235,7 +237,6 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // input
         UserInput.update();
-        handleInput();
 
         // check to shake camera
         if (!mCameraManager.getShakeCamera()) {
@@ -339,10 +340,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
     }
 
-    private void handleInput() {
+    public void handleInput() {
         //pause game
         if (UserInput.isDown(UserInput.START_BUTTON)) {
-            mGameScreen.pauseGame();
+            if (toggleSelectionFlag == false) {
+                toggleSelectionFlag = true;
+                mGameScreen.pauseGame();
+            }
         }
 
         // walk left
@@ -501,6 +505,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
                     }
                 }
             }
+        }
+
+        //reset pause toggle flag
+        if (!UserInput.isDown(UserInput.START_BUTTON)) {
+            toggleSelectionFlag = false;
         }
     }
 

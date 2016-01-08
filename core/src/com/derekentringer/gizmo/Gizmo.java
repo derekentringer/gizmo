@@ -39,7 +39,7 @@ public class Gizmo extends Game {
 
     @Override
     public void resume() {
-        GLog.d(TAG, "rename");
+        GLog.d(TAG, "resume");
     }
 
 }

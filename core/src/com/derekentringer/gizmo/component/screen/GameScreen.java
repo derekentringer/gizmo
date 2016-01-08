@@ -73,6 +73,8 @@ public class GameScreen extends ScreenAdapter {
             default:
                 break;
         }
+
+        mGameStage.handleInput();
     }
 
     @Override
