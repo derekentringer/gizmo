@@ -29,6 +29,7 @@ import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBronzeActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorGoldActor;
 import com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor;
+import com.derekentringer.gizmo.component.screen.GameScreen;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.manager.CameraManager;
@@ -72,6 +73,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private ArrayList<IGameStage> listeners = new ArrayList<IGameStage>();
     private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
+    private GameScreen mGameScreen;
+
     private CameraManager mCameraManager = new CameraManager();
     private DropManager mDropManager = new DropManager();
 
@@ -92,7 +95,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private DoorBlackActor mDoorBlackActor;
     private boolean alreadyEntered = false;
 
-    public GameStage() {
+    public GameStage(GameScreen gameScreen) {
+        mGameScreen = gameScreen;
     }
 
     public void addListener(IGameStage listener) {
@@ -336,6 +340,11 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     }
 
     private void handleInput() {
+        //pause game
+        if (UserInput.isDown(UserInput.START_BUTTON)) {
+            mGameScreen.pauseGame();
+        }
+
         // walk left
         if (UserInput.isDown(UserInput.LEFT_BUTTON)
                 && !UserInput.isDown(UserInput.RUN_BUTTON)) {

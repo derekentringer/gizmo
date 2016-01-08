@@ -20,11 +20,18 @@ public class GameScreen extends ScreenAdapter {
 
     private int mRoomToLoad = 0;
 
+    public enum GameState {
+        RUNNING,
+        PAUSED
+    }
+
+    GameState mGameState = GameState.RUNNING;
+
     //private FPSLogger mFpsLogger = new FPSLogger();
 
     public GameScreen() {
         RoomUtils.buildRoomList();
-        mGameStage = new GameStage();
+        mGameStage = new GameStage(this);
         mHudStage = new HudStage(mGameStage);
         mHudStage.addListener(mGameStage);
         if (LocalDataManager.loadPlayerActorData() != null) {
@@ -33,23 +40,39 @@ public class GameScreen extends ScreenAdapter {
         mGameStage.init(RoomUtils.rooms.get(mRoomToLoad));
     }
 
+    public void pauseGame(){
+        if(mGameState == mGameState.RUNNING) {
+            mGameState = mGameState.PAUSED;
+        } else {
+            mGameState = mGameState.RUNNING;
+        }
+    }
+
     @Override
     public void show() {
     }
 
     @Override
     public void render(float delta) {
-        ScreenUtils.renderScreen(mViewPort);
+        switch (mGameState)
+        {
+            case RUNNING:
+                ScreenUtils.renderScreen(mViewPort);
+                //update the game stage
+                mGameStage.act(delta);
+                mGameStage.draw();
+                //update the hud stage
+                mHudStage.act(delta);
+                mHudStage.draw();
+                //mFpsLogger.log();
+                break;
 
-        //update the game stage
-        mGameStage.act(delta);
-        mGameStage.draw();
+            case PAUSED:
+                break;
 
-        //update the hud stage
-        mHudStage.act(delta);
-        mHudStage.draw();
-
-        //mFpsLogger.log();
+            default:
+                break;
+        }
     }
 
     @Override
@@ -61,11 +84,13 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void pause() {
         GLog.d(TAG, "pause");
+        pauseGame();
     }
 
     @Override
     public void resume() {
         GLog.d(TAG, "resume");
+        pauseGame();
     }
 
     @Override

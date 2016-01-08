@@ -25,6 +25,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
             UserInput.setKey(UserInput.ANY_KEY, true);
         }
 
+        if (keycode == Input.Keys.ESCAPE) {
+            UserInput.setKey(UserInput.START_BUTTON, true);
+        }
+
         if (keycode == Input.Keys.SPACE) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
         }
@@ -77,6 +81,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
         if(keycode > -1) {
             UserInput.setKey(UserInput.ANY_KEY, false);
+        }
+
+        if (keycode == Input.Keys.ESCAPE) {
+            UserInput.setKey(UserInput.START_BUTTON, false);
         }
 
         if (keycode == Input.Keys.SPACE) {
@@ -144,6 +152,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if(buttonCode > -1) {
             UserInput.setKey(UserInput.ANY_BUTTON, true);
         }
+        if (buttonCode == PS4Controller.BUTTON_START
+                || buttonCode == NexusPlayerController.BUTTON_BACK) {
+            UserInput.setKey(UserInput.START_BUTTON, true);
+        }
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
             UserInput.setKey(UserInput.JUMP_BUTTON, true);
@@ -163,6 +175,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean buttonUp(Controller controller, int buttonCode) {
         if(buttonCode > -1) {
             UserInput.setKey(UserInput.ANY_BUTTON, false);
+        }
+        if (buttonCode == PS4Controller.BUTTON_START
+                || buttonCode == NexusPlayerController.BUTTON_BACK) {
+            UserInput.setKey(UserInput.START_BUTTON, false);
         }
         if (buttonCode == PS4Controller.BUTTON_X
                 || buttonCode == NexusPlayerController.BUTTON_A) {
