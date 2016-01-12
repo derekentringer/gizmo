@@ -6,13 +6,10 @@ bugs/blockers
 
 doors are still slightly bugged - this is weird and may or may not still be happening
 
+pause resize not working
 
 new additions needed
 ------------------------------------------------------------------------------
-
-load pause stage onPause
-	- show PAUSED and RESTART/CONTINUE interface
-	- pause should let you quit to start screen
 
 HUD for crystals
 

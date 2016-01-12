@@ -90,6 +90,7 @@ public class GameScreen extends ScreenAdapter {
         //TODO should be handled in listener callbacks
         //TODO from the InputProcessor for encapsulation reasons
         mGameStage.handleInput();
+
     }
 
     @Override

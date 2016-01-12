@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
@@ -22,6 +23,8 @@ public class PauseStage extends Stage {
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
+    private Vector2 gameWidthHeight = new Vector2();
+
     private String mPaused = "paused";
 
     private BitmapFont mBitmapFont;
@@ -30,9 +33,6 @@ public class PauseStage extends Stage {
 
     private int centerScreenX = Constants.GAME_WIDTH / 2;
     private int centerScreenY = Constants.GAME_HEIGHT / 2;
-
-    private float fontX;
-    private float fontY;
 
     public PauseStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
@@ -50,8 +50,8 @@ public class PauseStage extends Stage {
 
     private void loadBitmap() {
         layoutPause = new GlyphLayout(mBitmapFont, mPaused);
-        fontX = centerScreenX - layoutPause.width / 2;
-        fontY = centerScreenY;
+        gameWidthHeight.x = centerScreenX - layoutPause.width / 2;
+        gameWidthHeight.y = centerScreenY;
         pauseStringDisplay = mPaused;
     }
 
@@ -59,7 +59,6 @@ public class PauseStage extends Stage {
     public void draw() {
         super.draw();
 
-        // input
         UserInput.update();
         handleInput();
 
@@ -67,7 +66,7 @@ public class PauseStage extends Stage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mBitmapFont.draw(mSpriteBatch, pauseStringDisplay, fontX, fontY);
+            mBitmapFont.draw(mSpriteBatch, pauseStringDisplay, gameWidthHeight.x, gameWidthHeight.y);
         mSpriteBatch.end();
 
     }
@@ -93,21 +92,10 @@ public class PauseStage extends Stage {
     public void updateLayout(float gameHeight, float gameWidth) {
         GLog.d(TAG, "updateLayout");
 
-        fontX = gameWidth / 2 - layoutPause.width / 2;
-        fontY = gameHeight / 2;
+        gameWidthHeight.x = gameWidth;
+        gameWidthHeight.y = gameHeight;
 
         mStartStageCamera.update();
-
-        /*mHudLivesPosition.x = Math.abs(crop.x) / scale;
-        mHudLivesPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
-
-        mHudHealthPosition.x = Math.abs(crop.x) / scale;
-        mHudHealthPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - mCurrentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
-
-        GLog.d(TAG, "hudPosition.x: " + mHudHealthPosition.x);
-        GLog.d(TAG, "hudPosition.y: " + mHudHealthPosition.y);
-
-        mHudCamera.update();*/
     }
 
 }
