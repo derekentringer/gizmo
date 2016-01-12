@@ -36,6 +36,7 @@ public class PauseStage extends Stage {
 
     public PauseStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
+        //mBackground = new ShapeRenderer();
         mStartStageCamera = new OrthographicCamera();
         mStartStageCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mStartStageCamera.update();
@@ -55,6 +56,8 @@ public class PauseStage extends Stage {
         pauseStringDisplay = mPaused;
     }
 
+    //private ShapeRenderer mBackground;
+
     @Override
     public void draw() {
         super.draw();
@@ -62,25 +65,18 @@ public class PauseStage extends Stage {
         UserInput.update();
         handleInput();
 
+        /*Gdx.gl.glEnable(GL20.GL_BLEND);
+        mBackground.begin(ShapeRenderer.ShapeType.Filled);
+        mBackground.setColor(0, 0, 0, 1);
+        mBackground.rect(0, 0, gameWidthHeight.x, gameWidthHeight.y);
+        mBackground.end();*/
+
         mSpriteBatch.setProjectionMatrix(mStartStageCamera.combined);
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
             mBitmapFont.draw(mSpriteBatch, pauseStringDisplay, gameWidthHeight.x, gameWidthHeight.y);
         mSpriteBatch.end();
-
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-
-        // game loop step
-        /*Constants.ACCUMULATOR += delta;
-        while (Constants.ACCUMULATOR >= delta) {
-            mWorld.step(Constants.TIME_STEP, 6, 2);
-            Constants.ACCUMULATOR -= Constants.TIME_STEP;
-        }*/
     }
 
     private void handleInput() {
