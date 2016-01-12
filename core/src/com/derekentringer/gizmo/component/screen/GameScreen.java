@@ -36,7 +36,6 @@ public class GameScreen extends ScreenAdapter {
         mGameStage = new GameStage(this);
         mHudStage = new HudStage(mGameStage);
         mHudStage.addListener(mGameStage);
-        mPauseStage = new PauseStage();
 
         if (LocalDataManager.loadPlayerActorData() != null) {
             mRoomToLoad = LocalDataManager.loadPlayerActorData().getCurrentRoom();
@@ -44,10 +43,11 @@ public class GameScreen extends ScreenAdapter {
         mGameStage.init(RoomUtils.rooms.get(mRoomToLoad));
     }
 
-    public void pauseGame(){
-        if(mGameState == mGameState.RUNNING) {
+    public void pauseGame() {
+        if (mGameState == mGameState.RUNNING) {
             mGameState = mGameState.PAUSED;
-        } else {
+        }
+        else {
             mGameState = mGameState.RUNNING;
         }
     }
@@ -58,9 +58,12 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        switch (mGameState)
-        {
+        switch (mGameState) {
             case RUNNING:
+                if (mPauseStage != null) {
+                    mPauseStage.dispose();
+                    mPauseStage = null;
+                }
                 ScreenUtils.renderScreen(mViewPort);
                 //update the game stage
                 mGameStage.act(delta);
@@ -73,7 +76,9 @@ public class GameScreen extends ScreenAdapter {
 
             case PAUSED:
                 //TODO stop music
-                //TODO load pause stage
+                if (mPauseStage == null) {
+                    mPauseStage = new PauseStage(this);
+                }
                 mPauseStage.act();
                 mPauseStage.draw();
                 break;
@@ -91,6 +96,9 @@ public class GameScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         mViewPort = ScreenUtils.resizeScreen(width, height);
         mHudStage.updateHudLayout(ScreenUtils.scale, ScreenUtils.crop, ScreenUtils.scaledHeight);
+        if (mPauseStage != null) {
+            mPauseStage.updateLayout(ScreenUtils.scaledHeight, ScreenUtils.scaledWidth);
+        }
     }
 
     @Override
@@ -115,7 +123,6 @@ public class GameScreen extends ScreenAdapter {
         GLog.d(TAG, "dispose");
         this.mGameStage.dispose();
         this.mHudStage.dispose();
-        this.mPauseStage.dispose();
     }
 
 }
