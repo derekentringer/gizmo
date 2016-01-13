@@ -306,11 +306,9 @@ public class HudStage extends Stage implements IGameStage {
         //float fullHealthBottom = (mHearts - 5) * PlayerModel.HEART_HEALTH_AMOUNT;
 
         if (health > 50) {
-            float percentFullTop = 1;
             float percentFullBottom = (health - 50) / fullHealth;
-            float newWidthTop = percentFullTop * mInitialWidth;
             float newWidthBottom = percentFullBottom * mInitialWidth;
-            mRedShapeWidthTop = getHealthTop(health, newWidthTop);
+            mRedShapeWidthTop = mCurrentHealthTexture.getWidth() - 34;
             mRedShapeWidthBottom = getHealthBottom(health, newWidthBottom);
         }
         else {
@@ -322,7 +320,7 @@ public class HudStage extends Stage implements IGameStage {
     }
 
     private float getHealthTop(int health, float newWidth) {
-        if (mHearts == 5 && health > 29) {
+        if ((mHearts >= 5) || mHearts == 5 && health > 29) {
             newWidth = newWidth + 3;
         }
         else if (mHearts == 4 && health > 19) {
