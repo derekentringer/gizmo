@@ -10,6 +10,8 @@ doors are still slightly bugged - this is weird and may or may not still be happ
 new additions needed
 ------------------------------------------------------------------------------
 
+create an Are You Sure screen for restarting from startstage
+
 rethink the hud (hide everything?) add hud for crystals
 
 add destroy animation
