@@ -6,7 +6,6 @@ bugs/blockers
 
 doors are still slightly bugged - this is weird and may or may not still be happening
 
-pause resize not working
 
 new additions needed
 ------------------------------------------------------------------------------
@@ -23,8 +22,6 @@ use the player sensors to detect where the enemy is hitting the player
 
 trail of dust when running?
 
-have the boomerang bounce off walls and ground
-
 give enemies flinching animation (something diff than the player blinking)
 
 work on laying out the world to build up the levels for the entire game
@@ -35,6 +32,8 @@ how are we using blue crystals? buying objects at certain points in the game
 	- keys
 	- buy only upgrades
 
+more enemies
+more weapons
 
 
 neat to haves
@@ -47,7 +46,6 @@ dynamic levels or placed blocks and enemies based on player progression
 add new screens
 	- start - let users load games?
 	- choose game save slot
-	- pause - there are no pause states yet...show a window
 	- inventory
 
 add debug mode for the game
