@@ -10,7 +10,7 @@ doors are still slightly bugged - this is weird and may or may not still be happ
 new additions needed
 ------------------------------------------------------------------------------
 
-HUD for crystals
+rethink the hud (hide everything?) add hud for crystals
 
 add destroy animation
 
@@ -24,8 +24,6 @@ trail of dust when running?
 
 give enemies flinching animation (something diff than the player blinking)
 
-work on laying out the world to build up the levels for the entire game
-
 how are we using blue crystals? buying objects at certain points in the game
 	- hearts
 	- objects
@@ -34,6 +32,12 @@ how are we using blue crystals? buying objects at certain points in the game
 
 more enemies
 more weapons
+
+need more than 5 hearts in the game total?
+
+plan out the levels, enemies, progression
+
+work on laying out the world to build up the levels for the entire game
 
 
 neat to haves
