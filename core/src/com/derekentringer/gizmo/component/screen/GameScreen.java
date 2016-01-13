@@ -36,6 +36,7 @@ public class GameScreen extends ScreenAdapter {
         mGameStage = new GameStage(this);
         mHudStage = new HudStage(mGameStage);
         mHudStage.addListener(mGameStage);
+        mPauseStage = new PauseStage(this);
 
         if (LocalDataManager.loadPlayerActorData() != null) {
             mRoomToLoad = LocalDataManager.loadPlayerActorData().getCurrentRoom();
@@ -60,10 +61,10 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         switch (mGameState) {
             case RUNNING:
-                if (mPauseStage != null) {
+                /*if (mPauseStage != null) {
                     mPauseStage.dispose();
                     mPauseStage = null;
-                }
+                }*/
                 ScreenUtils.renderScreen(mViewPort);
                 //update the game stage
                 mGameStage.act(delta);
@@ -76,9 +77,9 @@ public class GameScreen extends ScreenAdapter {
 
             case PAUSED:
                 //TODO stop music
-                if (mPauseStage == null) {
+                /*if (mPauseStage == null) {
                     mPauseStage = new PauseStage(this);
-                }
+                }*/
                 mPauseStage.act();
                 mPauseStage.draw();
                 break;
@@ -97,9 +98,7 @@ public class GameScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         mViewPort = ScreenUtils.resizeScreen(width, height);
         mHudStage.updateHudLayout(ScreenUtils.scale, ScreenUtils.crop, ScreenUtils.scaledHeight);
-        if (mPauseStage != null) {
-            mPauseStage.updateLayout(ScreenUtils.scaledHeight, ScreenUtils.scaledWidth);
-        }
+        mPauseStage.updateLayout(ScreenUtils.scaledHeight, ScreenUtils.scaledWidth);
     }
 
     @Override
@@ -124,6 +123,7 @@ public class GameScreen extends ScreenAdapter {
         GLog.d(TAG, "dispose");
         this.mGameStage.dispose();
         this.mHudStage.dispose();
+        this.mPauseStage.dispose();
     }
 
 }

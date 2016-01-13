@@ -1,9 +1,12 @@
 package com.derekentringer.gizmo.component.stage;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,7 +28,7 @@ public class PauseStage extends Stage {
 
     private Vector2 gameWidthHeight = new Vector2();
 
-    private String mPaused = "paused";
+    private String mPaused = "pawsed";
 
     private BitmapFont mBitmapFont;
     private GlyphLayout layoutPause;
@@ -34,9 +37,20 @@ public class PauseStage extends Stage {
     private int centerScreenX = Constants.GAME_WIDTH / 2;
     private int centerScreenY = Constants.GAME_HEIGHT / 2;
 
+    private static final float TIME_TO_FADE = 1;
+    private float mTimeAccumulated;
+    private float mNewAlpha = 1;
+
+    private enum FadeState {
+        FADE_IN,
+        FADE_OUT
+    }
+
+    FadeState mFadeState = FadeState.FADE_OUT;
+
     public PauseStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
-        //mBackground = new ShapeRenderer();
+        mBackground = new ShapeRenderer();
         mStartStageCamera = new OrthographicCamera();
         mStartStageCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mStartStageCamera.update();
@@ -46,17 +60,18 @@ public class PauseStage extends Stage {
         mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
+        gameWidthHeight.x = Constants.GAME_WIDTH;
+        gameWidthHeight.y = Constants.GAME_HEIGHT;
+
         loadBitmap();
     }
 
     private void loadBitmap() {
         layoutPause = new GlyphLayout(mBitmapFont, mPaused);
-        gameWidthHeight.x = centerScreenX - layoutPause.width / 2;
-        gameWidthHeight.y = centerScreenY;
         pauseStringDisplay = mPaused;
     }
 
-    //private ShapeRenderer mBackground;
+    private ShapeRenderer mBackground;
 
     @Override
     public void draw() {
@@ -65,18 +80,55 @@ public class PauseStage extends Stage {
         UserInput.update();
         handleInput();
 
-        /*Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glEnable(GL20.GL_BLEND);
         mBackground.begin(ShapeRenderer.ShapeType.Filled);
-        mBackground.setColor(0, 0, 0, 1);
-        mBackground.rect(0, 0, gameWidthHeight.x, gameWidthHeight.y);
-        mBackground.end();*/
+            mBackground.setColor(0, 0, 0, 1);
+            mBackground.rect(0, 0, gameWidthHeight.x, gameWidthHeight.y);
+        mBackground.end();
 
         mSpriteBatch.setProjectionMatrix(mStartStageCamera.combined);
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mBitmapFont.draw(mSpriteBatch, pauseStringDisplay, gameWidthHeight.x, gameWidthHeight.y);
+            mBitmapFont.draw(mSpriteBatch, pauseStringDisplay, centerScreenX - layoutPause.width / 2, centerScreenY);
         mSpriteBatch.end();
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (mFadeState == FadeState.FADE_IN) {
+            fadeIn(delta);
+        }
+        else {
+            fadeOut(delta);
+        }
+    }
+
+    private void fadeOut(float delta) {
+        mTimeAccumulated += delta;
+        mNewAlpha = 1 - (mTimeAccumulated / TIME_TO_FADE);
+        if (mNewAlpha < 0) {
+            mNewAlpha = 0;
+        }
+        mBitmapFont.setColor(1, 1, 1, mNewAlpha);
+        if (mNewAlpha <= 0) {
+            mTimeAccumulated = 0;
+            mFadeState = FadeState.FADE_IN;
+        }
+    }
+
+    private void fadeIn(float delta) {
+        mTimeAccumulated += delta;
+        mNewAlpha += (mTimeAccumulated / TIME_TO_FADE);
+        if (mNewAlpha == 1) {
+            mNewAlpha = 1;
+        }
+        mBitmapFont.setColor(1, 1, 1, mNewAlpha);
+        if (mNewAlpha >= 1) {
+            mTimeAccumulated = 0;
+            mFadeState = FadeState.FADE_OUT;
+        }
     }
 
     private void handleInput() {
@@ -92,6 +144,11 @@ public class PauseStage extends Stage {
         gameWidthHeight.y = gameHeight;
 
         mStartStageCamera.update();
+    }
+
+    @Override
+    public void dispose() {
+        GLog.d(TAG, "dispose");
     }
 
 }
