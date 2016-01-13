@@ -4,17 +4,21 @@ TODO
 bugs/blockers
 ------------------------------------------------------------------------------
 
+i'm not seeing this anymore and it seemed to have to do with tiled layers
 doors are still slightly bugged - this is weird and may or may not still be happening
 
+only one heart per room allowed bug
 
 new additions needed
 ------------------------------------------------------------------------------
 
 create an Are You Sure screen for restarting from startstage
 
-rethink the hud (hide everything?) add hud for crystals
+rethink the hud (hide everything?) at least add hud for crystals
 
-add destroy animation
+choose a weapon using 1-9 keys like doom, and show on hud which is chosen
+
+add destroy animation for blocks and enemies
 
 use the player sensors to detect where the enemy is hitting the player
 	- let the player stand on enemies
