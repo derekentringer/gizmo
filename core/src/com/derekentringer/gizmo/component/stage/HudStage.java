@@ -61,6 +61,7 @@ public class HudStage extends Stage implements IGameStage {
     private int mHearts;
 
     private ShapeRenderer mRedShapeRendererTop;
+    private ShapeRenderer mRedShapeRendererBottom;
     private ShapeRenderer mWhiteShapeRendererTop;
     private ShapeRenderer mWhiteShapeRendererBottom;
     private ShapeRenderer mTransitionShapeRenderer;
@@ -68,6 +69,7 @@ public class HudStage extends Stage implements IGameStage {
 
     private float mInitialWidth;
     private float mRedShapeWidthTop;
+    private float mRedShapeWidthBottom;
     private float mRedShapeHeight = 20;
 
     private String mDoorType;
@@ -85,6 +87,7 @@ public class HudStage extends Stage implements IGameStage {
         mHudCamera.update();
 
         mRedShapeRendererTop = new ShapeRenderer();
+        mRedShapeRendererBottom = new ShapeRenderer();
         mWhiteShapeRendererTop = new ShapeRenderer();
         mWhiteShapeRendererBottom = new ShapeRenderer();
         mTransitionShapeRenderer = new ShapeRenderer();
@@ -126,6 +129,7 @@ public class HudStage extends Stage implements IGameStage {
             mWhiteShapeRendererTop.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mWhiteShapeRendererBottom.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mRedShapeRendererTop.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mRedShapeRendererBottom.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mTransitionShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
         }
 
@@ -145,6 +149,13 @@ public class HudStage extends Stage implements IGameStage {
         mRedShapeRendererTop.setColor(193 / 255f, 0, 0, 1);
         mRedShapeRendererTop.rect(mHudHealthPosition.x + 3, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mRedShapeWidthTop, mRedShapeHeight);
         mRedShapeRendererTop.end();
+
+        if (mHearts > 5) {
+            mRedShapeRendererBottom.begin(ShapeRenderer.ShapeType.Filled);
+            mRedShapeRendererBottom.setColor(193 / 255f, 0, 0, 1);
+            mRedShapeRendererBottom.rect(mHudHealthPosition.x + 3, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight*2, mRedShapeWidthBottom, mRedShapeHeight);
+            mRedShapeRendererBottom.end();
+        }
 
         mSpriteBatch.begin();
         mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
