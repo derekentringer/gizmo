@@ -302,8 +302,6 @@ public class HudStage extends Stage implements IGameStage {
         GLog.d(TAG, "setHudHealth");
 
         float fullHealth = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
-        //float fullHealthTop = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
-        //float fullHealthBottom = (mHearts - 5) * PlayerModel.HEART_HEALTH_AMOUNT;
 
         if (health > 50) {
             float percentFullBottom = (health - 50) / fullHealth;
