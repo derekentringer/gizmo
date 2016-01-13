@@ -295,13 +295,33 @@ public class HudStage extends Stage implements IGameStage {
         setHudHealth(mHearts * PlayerModel.HEART_HEALTH_AMOUNT);
     }
 
+    //TODO this is called twice for some reason
+    //TODO when the level loads
     @Override
     public void setHudHealth(int health) {
         GLog.d(TAG, "setHudHealth");
-        float fullHealth = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
-        float percentFull = health / fullHealth;
-        float newWidth = percentFull * mInitialWidth;
 
+        float fullHealth = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
+        //float fullHealthTop = mHearts * PlayerModel.HEART_HEALTH_AMOUNT;
+        //float fullHealthBottom = (mHearts - 5) * PlayerModel.HEART_HEALTH_AMOUNT;
+
+        if (health > 50) {
+            float percentFullTop = 1;
+            float percentFullBottom = (health - 50) / fullHealth;
+            float newWidthTop = percentFullTop * mInitialWidth;
+            float newWidthBottom = percentFullBottom * mInitialWidth;
+            mRedShapeWidthTop = getHealthTop(health, newWidthTop);
+            mRedShapeWidthBottom = getHealthBottom(health, newWidthBottom);
+        }
+        else {
+            float percentFull = health / fullHealth;
+            float newWidth = percentFull * mInitialWidth;
+            mRedShapeWidthTop = getHealthTop(health, newWidth);
+            mRedShapeWidthBottom = 0;
+        }
+    }
+
+    private float getHealthTop(int health, float newWidth) {
         if (mHearts == 5 && health > 29) {
             newWidth = newWidth + 3;
         }
@@ -311,7 +331,20 @@ public class HudStage extends Stage implements IGameStage {
         else if (mHearts == 3 && health > 9) {
             newWidth = newWidth + 1;
         }
-        mRedShapeWidthTop = newWidth;
+        return newWidth;
+    }
+
+    private float getHealthBottom(int health, float newWidth) {
+        if (mHearts == 10 && health > 58) {
+            newWidth = newWidth + 3;
+        }
+        else if (mHearts == 8 && health > 38) {
+            newWidth = newWidth + 2;
+        }
+        else if (mHearts == 6 && health > 18) {
+            newWidth = newWidth + 1;
+        }
+        return newWidth;
     }
 
     @Override
