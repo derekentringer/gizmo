@@ -19,7 +19,7 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_HEALTH = 20;
     public static final int DEFAULT_LIVES = 2;
     public static final int DEFAULT_MAX_LIVES = 5;
-    public static final int DEFAULT_MAX_HEARTS = 5;
+    public static final int DEFAULT_MAX_HEARTS = 10;
     public static final int DEFAULT_DIGGING_POWER = 1;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();

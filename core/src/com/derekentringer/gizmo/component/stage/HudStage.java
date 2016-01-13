@@ -60,13 +60,14 @@ public class HudStage extends Stage implements IGameStage {
     private int mLives;
     private int mHearts;
 
-    private ShapeRenderer mRedShapeRenderer;
-    private ShapeRenderer mWhiteShapeRenderer;
+    private ShapeRenderer mRedShapeRendererTop;
+    private ShapeRenderer mWhiteShapeRendererTop;
+    private ShapeRenderer mWhiteShapeRendererBottom;
     private ShapeRenderer mTransitionShapeRenderer;
     private boolean mProjectionMatrixSet;
 
     private float mInitialWidth;
-    private float mRedShapeWidth;
+    private float mRedShapeWidthTop;
     private float mRedShapeHeight = 20;
 
     private String mDoorType;
@@ -83,8 +84,9 @@ public class HudStage extends Stage implements IGameStage {
         mHudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mHudCamera.update();
 
-        mRedShapeRenderer = new ShapeRenderer();
-        mWhiteShapeRenderer = new ShapeRenderer();
+        mRedShapeRendererTop = new ShapeRenderer();
+        mWhiteShapeRendererTop = new ShapeRenderer();
+        mWhiteShapeRendererBottom = new ShapeRenderer();
         mTransitionShapeRenderer = new ShapeRenderer();
         mProjectionMatrixSet = false;
 
@@ -121,20 +123,28 @@ public class HudStage extends Stage implements IGameStage {
         mSpriteBatch.setProjectionMatrix(mHudCamera.combined);
 
         if (!mProjectionMatrixSet) {
-            mWhiteShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
-            mRedShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mWhiteShapeRendererTop.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mWhiteShapeRendererBottom.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
+            mRedShapeRendererTop.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
             mTransitionShapeRenderer.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
         }
 
-        mWhiteShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        mWhiteShapeRenderer.setColor(Color.WHITE);
-        mWhiteShapeRenderer.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
-        mWhiteShapeRenderer.end();
+        mWhiteShapeRendererTop.begin(ShapeRenderer.ShapeType.Filled);
+        mWhiteShapeRendererTop.setColor(Color.WHITE);
+        mWhiteShapeRendererTop.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
+        mWhiteShapeRendererTop.end();
 
-        mRedShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        mRedShapeRenderer.setColor(193 / 255f, 0, 0, 1);
-        mRedShapeRenderer.rect(mHudHealthPosition.x + 3, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mRedShapeWidth, mRedShapeHeight);
-        mRedShapeRenderer.end();
+        if (mHearts > 5) {
+            mWhiteShapeRendererBottom.begin(ShapeRenderer.ShapeType.Filled);
+            mWhiteShapeRendererBottom.setColor(Color.WHITE);
+            mWhiteShapeRendererBottom.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight*2, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
+            mWhiteShapeRendererBottom.end();
+        }
+
+        mRedShapeRendererTop.begin(ShapeRenderer.ShapeType.Filled);
+        mRedShapeRendererTop.setColor(193 / 255f, 0, 0, 1);
+        mRedShapeRendererTop.rect(mHudHealthPosition.x + 3, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mRedShapeWidthTop, mRedShapeHeight);
+        mRedShapeRendererTop.end();
 
         mSpriteBatch.begin();
         mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
@@ -290,14 +300,14 @@ public class HudStage extends Stage implements IGameStage {
         else if (mHearts == 3 && health > 9) {
             newWidth = newWidth + 1;
         }
-        mRedShapeWidth = newWidth;
+        mRedShapeWidthTop = newWidth;
     }
 
     @Override
     public void resetHudShapes() {
         GLog.d(TAG, "resetHudShapes");
         mInitialWidth = mHearts * 18;
-        mRedShapeWidth = mInitialWidth;
+        mRedShapeWidthTop = mInitialWidth;
         mRedShapeHeight = 20;
     }
 
