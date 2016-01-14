@@ -103,7 +103,9 @@ public class LoadingScreen extends ScreenAdapter {
         Gizmo.assetManager.load("res/image/tile/destroyable_block_fall.png", Texture.class);
         Gizmo.assetManager.load("res/image/tile/destroyable_block_dirt.png", Texture.class);
         Gizmo.assetManager.load("res/image/tile/destroyable_block_clay.png", Texture.class);
-        Gizmo.assetManager.load("res/image/tile/destroy_block.png", Texture.class);
+
+        Gizmo.assetManager.load("res/image/tile/poof.png", Texture.class);
+        Gizmo.assetManager.load("res/image/tile/break.png", Texture.class);
 
         //Gizmo.assetManager.load("res/music/background.ogg", Music.class);
         //Gizmo.assetManager.load("res/sfx/jump.ogg", Sound.class);

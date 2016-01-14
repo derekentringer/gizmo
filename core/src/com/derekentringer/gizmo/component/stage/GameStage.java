@@ -1,6 +1,7 @@
 package com.derekentringer.gizmo.component.stage;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -19,6 +20,7 @@ import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangBloodSto
 import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangEmeraldActor;
 import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
+import com.derekentringer.gizmo.component.actor.misc.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
@@ -41,23 +43,25 @@ import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
+import com.derekentringer.gizmo.model.misc.BlockBreakModel;
+import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
+import com.derekentringer.gizmo.model.object.DropHeartModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangBloodStoneModel;
 import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangEmeraldModel;
 import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
-import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
-import com.derekentringer.gizmo.model.object.DropHeartModel;
-import com.derekentringer.gizmo.model.object.KeyModel;
-import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockFallModel;
 import com.derekentringer.gizmo.model.structure.destroyable.interfaces.IDestroyable;
 import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.BlockUtils;
-import com.derekentringer.gizmo.util.RoomUtils;
 import com.derekentringer.gizmo.util.ItemUtils;
+import com.derekentringer.gizmo.util.ObjectUtils;
+import com.derekentringer.gizmo.util.RoomUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -403,7 +407,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
                 if (UserInput.isDown(UserInput.RIGHT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableRight() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight()) <= 0) {
-                        //TODO add destroyed animation
+                        breakBlock(mPlayerActor.getTouchingBodyDestroyableRight());
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableRight())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
                         }
@@ -415,6 +419,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
                 else if (UserInput.isDown(UserInput.LEFT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableLeft() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft()) <= 0) {
+                        breakBlock(mPlayerActor.getTouchingBodyDestroyableLeft());
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableLeft())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableLeft().getPosition());
                         }
@@ -426,6 +431,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
                 else if (mPlayerActor.getTouchingBodyDestroyableBottom() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom()) <= 0) {
+                        breakBlock(mPlayerActor.getTouchingBodyDestroyableBottom());
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableBottom())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
                         }
@@ -511,6 +517,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         if (!UserInput.isDown(UserInput.START_BUTTON)) {
             toggleSelectionFlag = false;
         }
+    }
+
+    private void breakBlock(Body body) {
+        GLog.d(TAG, "add poof");
+        BlockBreakActor blockBreakActor = new BlockBreakActor(ObjectUtils.createBlockBreak(new BlockBreakModel(), mWorld, new Vector2(body.getPosition().x, body.getPosition().y)));
+        blockBreakActor.setName(BlockBreakModel.BREAK);
+        addActor(blockBreakActor);
+        mMapParser.addToActorsArray(blockBreakActor);
     }
 
     private void transitionRoom(String doorType) {

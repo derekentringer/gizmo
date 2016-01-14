@@ -21,5 +21,6 @@ public enum BaseModelType {
     LAVA,
     BLOCK_DESTROYABLE,
     BLOCK_DESTROYABLE_FALL,
-    WHITE_DOT
+    WHITE_DOT,
+    BREAK
 }
