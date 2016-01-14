@@ -175,6 +175,7 @@ public class ContactManager {
 
             deleteBodies.add(new DeleteBody((HeartModel) bodyB.getUserData(), bodyB));
         }
+
     }
 
     public static void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {

@@ -22,5 +22,6 @@ public enum BaseModelType {
     BLOCK_DESTROYABLE,
     BLOCK_DESTROYABLE_FALL,
     WHITE_DOT,
-    BREAK
+    BREAK,
+    PICKUP_HEART
 }

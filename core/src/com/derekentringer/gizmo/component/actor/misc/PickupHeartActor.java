@@ -7,20 +7,20 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.IBaseActor;
 
-public class BlockBreakActor extends BaseActor implements IBaseActor {
+public class PickupHeartActor extends BaseActor implements IBaseActor {
 
     private static final String TAG = BlockBreakActor.class.getSimpleName();
 
-    private TextureRegion[] mBreakSprite;
-    private Texture mBreak;
-    
-    public BlockBreakActor(Body body) {
+    private TextureRegion[] mPickupHeartSprite;
+    private Texture mPickupHeart;
+
+    public PickupHeartActor(Body body) {
         super(body);
         addListener(this);
-        mBreak = Gizmo.assetManager.get("res/image/tile/break.png", Texture.class);
-        mBreakSprite = TextureRegion.split(mBreak, 32, 32)[0];
+        mPickupHeart = Gizmo.assetManager.get("res/image/tile/pickup_heart.png", Texture.class);
+        mPickupHeartSprite = TextureRegion.split(mPickupHeart, 32, 32)[0];
 
-        setAnimation(mBreakSprite, 1 / 12f);
+        setAnimation(mPickupHeartSprite, 1 / 12f);
     }
 
     @Override
@@ -29,5 +29,5 @@ public class BlockBreakActor extends BaseActor implements IBaseActor {
             setIsPlayingAnimation(false);
         }
     }
-    
+
 }

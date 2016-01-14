@@ -12,6 +12,8 @@ only one heart per room allowed bug
 new additions needed
 ------------------------------------------------------------------------------
 
+add pickup heart animation
+
 create an Are You Sure screen for restarting from startstage
 
 rethink the hud (hide everything?) at least add hud for crystals
@@ -38,8 +40,6 @@ how are we using blue crystals? buying objects at certain points in the game
 
 more enemies
 more weapons
-
-need more than 5 hearts in the game total?
 
 plan out the levels, enemies, progression
 

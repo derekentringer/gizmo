@@ -21,6 +21,7 @@ import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangEmeraldA
 import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.misc.BlockBreakActor;
+import com.derekentringer.gizmo.component.actor.misc.PickupHeartActor;
 import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
@@ -44,6 +45,7 @@ import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.misc.BlockBreakModel;
+import com.derekentringer.gizmo.model.misc.PickupHeartModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -525,6 +527,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         blockBreakActor.setName(BlockBreakModel.BREAK);
         addActor(blockBreakActor);
         mMapParser.addToActorsArray(blockBreakActor);
+    }
+
+    private void pickupHeart(Body body) {
+        GLog.d(TAG, "pickup heart");
+        PickupHeartActor pickupHeartActor = new PickupHeartActor(ObjectUtils.createPickupHeart(new PickupHeartModel(), mWorld, new Vector2(body.getPosition().x, body.getPosition().y)));
+        pickupHeartActor.setName(PickupHeartModel.PICKUP_HEART);
+        addActor(pickupHeartActor);
+        mMapParser.addToActorsArray(pickupHeartActor);
     }
 
     private void transitionRoom(String doorType) {
