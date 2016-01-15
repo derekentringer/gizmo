@@ -22,6 +22,7 @@ import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActo
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.misc.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.misc.PickupHeartActor;
+import com.derekentringer.gizmo.component.actor.misc.PickupLifeActor;
 import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
@@ -46,6 +47,7 @@ import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.misc.BlockBreakModel;
 import com.derekentringer.gizmo.model.misc.PickupHeartModel;
+import com.derekentringer.gizmo.model.misc.PickupLifeModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -154,7 +156,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
-        ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, listeners, bodyA, bodyB);
+        ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
         ContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupSmallCrystalBlue(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
@@ -179,8 +181,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // create dropped item actors
         addDroppedItems();
 
-        //add actors heart pickups
-        addPickedUpHeartAnimation();
+        //add pickup animations
+        addPickedUpAnimations();
 
         // handle removed actors
         updateMapParserArrays();
@@ -290,11 +292,15 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         mMapParser.resetBossDroppedItemPositionArray();
     }
 
-    private void addPickedUpHeartAnimation() {
+    private void addPickedUpAnimations() {
         for (int i = 0; i < mMapParser.getPickedUpHeartPositionArray().size(); i++) {
             pickupHeart(mMapParser.getPickedUpHeartPositionArray().get(i));
         }
         mMapParser.resetPickedUpHeartPositionArray();
+        for (int i = 0; i < mMapParser.getPickedUpLifePositionArray().size(); i++) {
+            pickupLife(mMapParser.getPickedUpLifePositionArray().get(i));
+        }
+        mMapParser.resetPickedUpLifePositionArray();
     }
 
     private void deleteObsoleteActors() {
@@ -532,7 +538,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     }
 
     private void breakBlock(Body body) {
-        GLog.d(TAG, "add poof");
+        GLog.d(TAG, "break block animation");
         BlockBreakActor blockBreakActor = new BlockBreakActor(ObjectUtils.createBlockBreak(new BlockBreakModel(), mWorld, new Vector2(body.getPosition().x, body.getPosition().y)));
         blockBreakActor.setName(BlockBreakModel.BREAK);
         addActor(blockBreakActor);
@@ -540,11 +546,19 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     }
 
     private void pickupHeart(Vector2 vector) {
-        GLog.d(TAG, "pickup heart");
+        GLog.d(TAG, "pickup heart animation");
         PickupHeartActor pickupHeartActor = new PickupHeartActor(ObjectUtils.createPickupHeart(new PickupHeartModel(), mWorld, vector));
         pickupHeartActor.setName(PickupHeartModel.PICKUP_HEART);
         addActor(pickupHeartActor);
         mMapParser.addToTempActorsArray(pickupHeartActor);
+    }
+
+    private void pickupLife(Vector2 vector) {
+        GLog.d(TAG, "pickup life animation");
+        PickupLifeActor pickupLifeActor = new PickupLifeActor(ObjectUtils.createPickupLife(new PickupLifeModel(), mWorld, vector));
+        pickupLifeActor.setName(PickupLifeModel.PICKUP_LIFE);
+        addActor(pickupLifeActor);
+        mMapParser.addToTempActorsArray(pickupLifeActor);
     }
 
     private void transitionRoom(String doorType) {

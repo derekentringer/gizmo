@@ -7,20 +7,20 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.IBaseActor;
 
-public class PickupHeartActor extends BaseActor implements IBaseActor {
+public class PickupLifeActor extends BaseActor implements IBaseActor {
 
-    private static final String TAG = PickupHeartActor.class.getSimpleName();
+    private static final String TAG = PickupLifeActor.class.getSimpleName();
 
-    private TextureRegion[] mPickupHeartSprite;
-    private Texture mPickupHeart;
+    private TextureRegion[] mPickupLifeSprite;
+    private Texture mPickupLife;
 
-    public PickupHeartActor(Body body) {
+    public PickupLifeActor(Body body) {
         super(body);
         addListener(this);
-        mPickupHeart = Gizmo.assetManager.get("res/image/tile/pickup_heart.png", Texture.class);
-        mPickupHeartSprite = TextureRegion.split(mPickupHeart, 32, 32)[0];
+        mPickupLife = Gizmo.assetManager.get("res/image/tile/pickup_life.png", Texture.class);
+        mPickupLifeSprite = TextureRegion.split(mPickupLife, 32, 32)[0];
 
-        setAnimation(mPickupHeartSprite, 1 / 12f);
+        setAnimation(mPickupLifeSprite, 1 / 12f);
     }
 
     @Override

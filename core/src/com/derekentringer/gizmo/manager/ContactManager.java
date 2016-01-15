@@ -179,9 +179,10 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
         // pickup a life
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mapParser.addToPickedUpLifePositionArray(bodyA.getPosition());
             playerActor.incrementLives();
             loadedRoomModel.addPickedUpLife((LifeModel) bodyA.getUserData());
 
@@ -192,6 +193,7 @@ public class ContactManager {
             deleteBodies.add(new DeleteBody((LifeModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mapParser.addToPickedUpLifePositionArray(bodyB.getPosition());
             playerActor.incrementLives();
             loadedRoomModel.addPickedUpLife((LifeModel) bodyB.getUserData());
 

@@ -36,12 +36,12 @@ import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.GroundModel;
 import com.derekentringer.gizmo.model.structure.LavaModel;
@@ -68,6 +68,7 @@ public class MapParser extends Stage {
 
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
     private final ArrayList<Vector2> mPickedUpHeartAnimations = new ArrayList<Vector2>();
+    private final ArrayList<Vector2> mPickedUpLifeAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mBossDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
@@ -131,6 +132,18 @@ public class MapParser extends Stage {
 
     public void resetPickedUpHeartPositionArray() {
         mPickedUpHeartAnimations.clear();
+    }
+
+    public ArrayList<Vector2> getPickedUpLifePositionArray() {
+        return mPickedUpLifeAnimations;
+    }
+
+    public void addToPickedUpLifePositionArray(Vector2 position) {
+        mPickedUpLifeAnimations.add(position);
+    }
+
+    public void resetPickedUpLifePositionArray() {
+        mPickedUpLifeAnimations.clear();
     }
 
     public ArrayList<Vector2> getDroppedItemPositionArray() {
