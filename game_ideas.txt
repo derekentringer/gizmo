@@ -12,7 +12,7 @@ only one heart per room allowed bug
 new additions needed
 ------------------------------------------------------------------------------
 
-add pickup heart animation
+add extra life animation
 
 create an Are You Sure screen for restarting from startstage
 
