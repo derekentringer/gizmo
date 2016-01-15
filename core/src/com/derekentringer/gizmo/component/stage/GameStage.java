@@ -153,7 +153,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         ContactManager.setPlayerAttacking(mMapParser, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
-        ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, listeners, bodyA, bodyB);
+        ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
         ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, listeners, bodyA, bodyB);
         ContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
@@ -178,6 +178,9 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // create dropped item actors
         addDroppedItems();
+
+        //add actors heart pickups
+        addPickedUpHeartAnimation();
 
         // handle removed actors
         updateMapParserArrays();
@@ -285,6 +288,13 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         }
         mMapParser.resetDroppedItemPositionArray();
         mMapParser.resetBossDroppedItemPositionArray();
+    }
+
+    private void addPickedUpHeartAnimation() {
+        for (int i = 0; i < mMapParser.getPickedUpHeartPositionArray().size(); i++) {
+            pickupHeart(mMapParser.getPickedUpHeartPositionArray().get(i));
+        }
+        mMapParser.resetPickedUpHeartPositionArray();
     }
 
     private void deleteObsoleteActors() {
@@ -526,15 +536,15 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         BlockBreakActor blockBreakActor = new BlockBreakActor(ObjectUtils.createBlockBreak(new BlockBreakModel(), mWorld, new Vector2(body.getPosition().x, body.getPosition().y)));
         blockBreakActor.setName(BlockBreakModel.BREAK);
         addActor(blockBreakActor);
-        mMapParser.addToActorsArray(blockBreakActor);
+        mMapParser.addToTempActorsArray(blockBreakActor);
     }
 
-    private void pickupHeart(Body body) {
+    private void pickupHeart(Vector2 vector) {
         GLog.d(TAG, "pickup heart");
-        PickupHeartActor pickupHeartActor = new PickupHeartActor(ObjectUtils.createPickupHeart(new PickupHeartModel(), mWorld, new Vector2(body.getPosition().x, body.getPosition().y)));
+        PickupHeartActor pickupHeartActor = new PickupHeartActor(ObjectUtils.createPickupHeart(new PickupHeartModel(), mWorld, vector));
         pickupHeartActor.setName(PickupHeartModel.PICKUP_HEART);
         addActor(pickupHeartActor);
-        mMapParser.addToActorsArray(pickupHeartActor);
+        mMapParser.addToTempActorsArray(pickupHeartActor);
     }
 
     private void transitionRoom(String doorType) {

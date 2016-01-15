@@ -8,13 +8,13 @@ import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
-import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
+import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
@@ -153,9 +153,10 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupHeart(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupHeart(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
         // pickup a heart
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mapParser.addToPickedUpHeartPositionArray(bodyA.getPosition());
             playerActor.addHealthHeart((HeartModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpHeart((HeartModel) bodyA.getUserData());
 
@@ -166,6 +167,7 @@ public class ContactManager {
             deleteBodies.add(new DeleteBody((HeartModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mapParser.addToPickedUpHeartPositionArray(bodyB.getPosition());
             playerActor.addHealthHeart((HeartModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpHeart((HeartModel) bodyB.getUserData());
 
@@ -175,7 +177,6 @@ public class ContactManager {
 
             deleteBodies.add(new DeleteBody((HeartModel) bodyB.getUserData(), bodyB));
         }
-
     }
 
     public static void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
