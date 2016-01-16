@@ -12,8 +12,6 @@ only one heart per room allowed bug
 new additions needed
 ------------------------------------------------------------------------------
 
-add extra life animation
-
 create an Are You Sure screen for restarting from startstage
 
 rethink the hud (hide everything?) at least add hud for crystals
@@ -27,8 +25,6 @@ use the player sensors to detect where the enemy is hitting the player
 	- pickup ghosts as weapons (think mario 2)
 	
 "poof" for destroying a block or enemy - this animation already exists
-
-trail of dust when running?
 
 give enemies flinching animation (something diff than the player blinking)
 
