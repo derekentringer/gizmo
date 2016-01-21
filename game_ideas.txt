@@ -18,15 +18,11 @@ rethink the hud (hide everything?) at least add hud for crystals
 
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
 
-add destroy animation for blocks and enemies
-
 use the player sensors to detect where the enemy is hitting the player
 	- let the player stand on enemies
 	- pickup ghosts as weapons (think mario 2)
-	
-"poof" for destroying a block or enemy - this animation already exists
 
-give enemies flinching animation (something diff than the player blinking)
+give enemies flinching/destroy animation (something diff than the player blinking)
 
 how are we using blue crystals? buying objects at certain points in the game
 	- hearts
