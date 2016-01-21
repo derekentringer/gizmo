@@ -9,8 +9,16 @@ doors are still slightly bugged - this is weird and may or may not still be happ
 
 only one heart per room allowed bug
 
+bug with digging and the block destroy animation being sent to the collision detection
+
 new additions needed
 ------------------------------------------------------------------------------
+
+key pickup animation
+
+item pickup animation
+
+remember which enemies are destroyed in a level?
 
 create an Are You Sure screen for restarting from startstage
 
