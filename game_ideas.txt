@@ -14,9 +14,6 @@ bug with digging and the block destroy animation being sent to the collision det
 new additions needed
 ------------------------------------------------------------------------------
 
-key pickup animation
-
-item pickup animation
 
 remember which enemies are destroyed in a level?
 
