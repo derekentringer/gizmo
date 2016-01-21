@@ -139,14 +139,16 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupKey(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public static void setPlayerPickupKey(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, Body bodyA, Body bodyB) {
         // pickup a key
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            mapParser.addToPickedUpKeyPositionArray(bodyA.getPosition());
             playerActor.addKey((KeyModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpKey((KeyModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            mapParser.addToPickedUpKeyPositionArray(bodyB.getPosition());
             playerActor.addKey((KeyModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpKey((KeyModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((KeyModel) bodyB.getUserData(), bodyB));

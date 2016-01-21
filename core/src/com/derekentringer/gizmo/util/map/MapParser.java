@@ -69,6 +69,7 @@ public class MapParser extends Stage {
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
     private final ArrayList<Vector2> mPickedUpHeartAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mPickedUpLifeAnimations = new ArrayList<Vector2>();
+    private final ArrayList<Vector2> mPickedUpKeyAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mBossDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
@@ -144,6 +145,18 @@ public class MapParser extends Stage {
 
     public void resetPickedUpLifePositionArray() {
         mPickedUpLifeAnimations.clear();
+    }
+
+    public ArrayList<Vector2> getPickedUpKeyPositionArray() {
+        return mPickedUpKeyAnimations;
+    }
+
+    public void addToPickedUpKeyPositionArray(Vector2 position) {
+        mPickedUpKeyAnimations.add(position);
+    }
+
+    public void resetPickedUpKeyPositionArray() {
+        mPickedUpKeyAnimations.clear();
     }
 
     public ArrayList<Vector2> getDroppedItemPositionArray() {

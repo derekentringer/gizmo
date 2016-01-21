@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="107">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="110">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32" tilecount="56">
   <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
@@ -136,6 +136,24 @@
   <object id="106" x="336.667" y="649.333">
    <properties>
     <property name="key_type" value="gold"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="107" x="240.667" y="649.333">
+   <properties>
+    <property name="key_type" value="gold"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="108" x="304" y="649.333">
+   <properties>
+    <property name="key_type" value="blood"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="109" x="367.333" y="650">
+   <properties>
+    <property name="key_type" value="black"/>
    </properties>
    <ellipse/>
   </object>

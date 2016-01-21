@@ -22,6 +22,7 @@ import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActo
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.misc.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.misc.PickupHeartActor;
+import com.derekentringer.gizmo.component.actor.misc.PickupKeyActor;
 import com.derekentringer.gizmo.component.actor.misc.PickupLifeActor;
 import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
@@ -47,6 +48,7 @@ import com.derekentringer.gizmo.model.enemy.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.PhantomModel;
 import com.derekentringer.gizmo.model.misc.BlockBreakModel;
 import com.derekentringer.gizmo.model.misc.PickupHeartModel;
+import com.derekentringer.gizmo.model.misc.PickupKeyModel;
 import com.derekentringer.gizmo.model.misc.PickupLifeModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
@@ -154,7 +156,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         ContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
         ContactManager.setPlayerAttacking(mMapParser, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
-        ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, bodyA, bodyB);
         ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
         ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
         ContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
@@ -301,6 +303,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             pickupLife(mMapParser.getPickedUpLifePositionArray().get(i));
         }
         mMapParser.resetPickedUpLifePositionArray();
+        for (int i = 0; i < mMapParser.getPickedUpKeyPositionArray().size(); i++) {
+            pickupKey(mMapParser.getPickedUpKeyPositionArray().get(i));
+        }
+        mMapParser.resetPickedUpKeyPositionArray();
     }
 
     private void deleteObsoleteActors() {
@@ -559,6 +565,14 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         pickupLifeActor.setName(PickupLifeModel.PICKUP_LIFE);
         addActor(pickupLifeActor);
         mMapParser.addToTempActorsArray(pickupLifeActor);
+    }
+
+    private void pickupKey(Vector2 vector) {
+        GLog.d(TAG, "pickup key animation");
+        PickupKeyActor pickupKeyActor = new PickupKeyActor(ObjectUtils.createPickupKey(new PickupKeyModel(), mWorld, vector));
+        pickupKeyActor.setName(PickupKeyModel.PICKUP_KEY);
+        addActor(pickupKeyActor);
+        mMapParser.addToTempActorsArray(pickupKeyActor);
     }
 
     private void transitionRoom(String doorType) {
