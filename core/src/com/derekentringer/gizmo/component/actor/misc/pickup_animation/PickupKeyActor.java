@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.misc.pickups;
+package com.derekentringer.gizmo.component.actor.misc.pickup_animation;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
