@@ -7,6 +7,9 @@ bugs/blockers
 i'm not seeing this anymore and it seemed to have to do with tiled layers
 doors are still slightly bugged - this is weird and may or may not still be happening
 
+bug with hud text alpha when moving to/from pause screen
+
+can't toggle start screen selection with controller on nexus player
 
 new additions needed
 ------------------------------------------------------------------------------
