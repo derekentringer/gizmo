@@ -97,7 +97,7 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         mViewPort = ScreenUtils.resizeScreen(width, height);
-        mHudStage.updateHudLayout(ScreenUtils.scale, ScreenUtils.crop, ScreenUtils.scaledHeight);
+        mHudStage.updateHudLayout(ScreenUtils.scale, ScreenUtils.crop, ScreenUtils.scaledWidth, ScreenUtils.scaledHeight);
         mPauseStage.updateLayout(ScreenUtils.scaledHeight, ScreenUtils.scaledWidth);
     }
 

@@ -5,5 +5,6 @@ public interface IGameStage {
     void setHudHealth(int health);
     void resetHudShapes();
     void setHudLives(int lives);
+    void setCrystalCount(int crystalCount);
     void setTransition(String doorType, boolean transition);
 }

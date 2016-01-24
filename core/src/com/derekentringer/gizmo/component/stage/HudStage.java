@@ -37,6 +37,7 @@ public class HudStage extends Stage implements IGameStage {
 
     private Vector2 mHudLivesPosition = new Vector2();
     private Vector2 mHudHealthPosition = new Vector2();
+    private Vector2 mHudCrystalsPosition = new Vector2();
 
     private Texture mHudLivesOne;
     private Texture mHudLivesTwo;
@@ -57,8 +58,11 @@ public class HudStage extends Stage implements IGameStage {
     private Texture mCurrentLivesTexture;
     private Texture mCurrentHealthTexture;
 
+    private Texture mHudCrystalsCount;
+
     private int mLives;
     private int mHearts;
+    private int mCrystals;
 
     private ShapeRenderer mRedShapeRendererTop;
     private ShapeRenderer mRedShapeRendererBottom;
@@ -111,6 +115,8 @@ public class HudStage extends Stage implements IGameStage {
         mHudHeartsNine = Gizmo.assetManager.get("res/image/hud/hud_hearts_nine.png", Texture.class);
         mHudHeartsTen = Gizmo.assetManager.get("res/image/hud/hud_hearts_ten.png", Texture.class);
 
+        mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
+
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
     }
@@ -160,6 +166,7 @@ public class HudStage extends Stage implements IGameStage {
         mSpriteBatch.begin();
         mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
         mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
+        mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
         mSpriteBatch.end();
     }
 
@@ -246,7 +253,7 @@ public class HudStage extends Stage implements IGameStage {
         mFadeStatus = FADE_IN;
     }
 
-    public void updateHudLayout(Float scale, Vector2 crop, float gameHeight) {
+    public void updateHudLayout(Float scale, Vector2 crop, float gameWidth, float gameHeight) {
         GLog.d(TAG, "updateHudLayout");
         mHudLivesPosition.x = Math.abs(crop.x) / scale;
         mHudLivesPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
@@ -254,16 +261,22 @@ public class HudStage extends Stage implements IGameStage {
         mHudHealthPosition.x = Math.abs(crop.x) / scale;
         mHudHealthPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - mCurrentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
+        mHudCrystalsPosition.x = Math.abs((gameWidth - mHudCrystalsCount.getWidth()) * scale - crop.x) ;
+        mHudCrystalsPosition.y = 100;
+
         GLog.d(TAG, "hudPosition.x: " + mHudHealthPosition.x);
         GLog.d(TAG, "hudPosition.y: " + mHudHealthPosition.y);
+
+        GLog.d(TAG, "mHudCrystalsPosition.x: " + mHudCrystalsPosition.x);
+        GLog.d(TAG, "mHudCrystalsPosition.y: " + mHudCrystalsPosition.y);
 
         mHudCamera.update();
     }
 
     @Override
     public void setHudHealthHearts(int hearts) {
-        GLog.d(TAG, "setHudHealthHearts");
         mHearts = hearts;
+        GLog.d(TAG, "setHudHealthHearts: " + mHearts);
         if (mHearts == 2) {
             mCurrentHealthTexture = mHudHeartsTwo;
         }
@@ -353,8 +366,8 @@ public class HudStage extends Stage implements IGameStage {
 
     @Override
     public void setHudLives(int lives) {
-        GLog.d(TAG, "setHudLives");
         mLives = lives;
+        GLog.d(TAG, "setHudLives: " + mLives);
         if(mLives == 5) {
             mCurrentLivesTexture = mHudLivesFive;
         }
@@ -370,6 +383,12 @@ public class HudStage extends Stage implements IGameStage {
         else if (mLives == 1) {
             mCurrentLivesTexture = mHudLivesOne;
         }
+    }
+
+    @Override
+    public void setCrystalCount(int crystalCount) {
+        mCrystals = crystalCount;
+        GLog.d(TAG, "setCrystalCount: " + mCrystals);
     }
 
     @Override

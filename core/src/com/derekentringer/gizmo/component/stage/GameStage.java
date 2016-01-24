@@ -627,6 +627,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             listener.resetHudShapes();
             listener.setHudHealth(mPlayerActor.getBaseModel().getHealth());
             listener.setHudLives(mPlayerActor.getBaseModel().getLives());
+            listener.setCrystalCount(mPlayerActor.getBaseModel().getCrystalBlueAmount());
         }
     }
 
