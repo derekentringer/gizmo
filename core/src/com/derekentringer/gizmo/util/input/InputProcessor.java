@@ -24,6 +24,13 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
             UserInput.setKey(UserInput.ANY_KEY, true);
         }
 
+        if(keycode == Input.Keys.BACK){
+            UserInput.setKey(UserInput.BACK_BUTTON, true);
+            // Optional back button handling (e.g. ask for confirmation)
+            //if (shouldReallyQuit)
+            //    Gdx.app.exit();
+        }
+
         if (keycode == Input.Keys.ESCAPE) {
             UserInput.setKey(UserInput.START_BUTTON, true);
         }
@@ -80,6 +87,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
         if(keycode > -1) {
             UserInput.setKey(UserInput.ANY_KEY, false);
+        }
+
+        if (keycode == Input.Keys.BACK) {
+            UserInput.setKey(UserInput.BACK_BUTTON, false);
         }
 
         if (keycode == Input.Keys.ESCAPE) {

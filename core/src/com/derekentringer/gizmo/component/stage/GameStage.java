@@ -1,5 +1,6 @@
 package com.derekentringer.gizmo.component.stage;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -103,9 +104,10 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     private DoorBronzeActor mDoorBronzeActor;
     private DoorBloodActor mDoorBloodActor;
     private DoorBlackActor mDoorBlackActor;
-    private boolean alreadyEntered = false;
+    private boolean mAlreadyEntered = false;
 
-    private boolean toggleSelectionFlag = false;
+    private boolean mToggleSelectionFlag = false;
+    private boolean mBackWasPressed = false;
 
     public GameStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
@@ -371,10 +373,24 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     }
 
     public void handleInput() {
+        if (UserInput.isDown(UserInput.BACK_BUTTON)) {
+            if (mToggleSelectionFlag == false) {
+                mToggleSelectionFlag = true;
+                mBackWasPressed = true;
+                if (mBackWasPressed) {
+                    quitGame();
+                    Gdx.app.exit();
+                }
+                else {
+                    mGameScreen.pauseGame();
+                }
+            }
+        }
+
         //pause game
         if (UserInput.isDown(UserInput.START_BUTTON)) {
-            if (toggleSelectionFlag == false) {
-                toggleSelectionFlag = true;
+            if (mToggleSelectionFlag == false) {
+                mToggleSelectionFlag = true;
                 mGameScreen.pauseGame();
             }
         }
@@ -382,28 +398,28 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         // walk left
         if (UserInput.isDown(UserInput.LEFT_BUTTON)
                 && !UserInput.isDown(UserInput.RUN_BUTTON)) {
-            alreadyEntered = false;
+            mAlreadyEntered = false;
             mPlayerActor.moveLeft(false);
         }
 
         // run left
         if (UserInput.isDown(UserInput.LEFT_BUTTON)
                 && UserInput.isDown(UserInput.RUN_BUTTON)) {
-            alreadyEntered = false;
+            mAlreadyEntered = false;
             mPlayerActor.moveLeft(true);
         }
 
         // walk right
         if (UserInput.isDown(UserInput.RIGHT_BUTTON)
                 && !UserInput.isDown(UserInput.RUN_BUTTON)) {
-            alreadyEntered = false;
+            mAlreadyEntered = false;
             mPlayerActor.moveRight(false);
         }
 
         // run right
         if (UserInput.isDown(UserInput.RIGHT_BUTTON)
                 && UserInput.isDown(UserInput.RUN_BUTTON)) {
-            alreadyEntered = false;
+            mAlreadyEntered = false;
             mPlayerActor.moveRight(true);
         }
 
@@ -474,7 +490,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         // enter a door
         if (UserInput.isDown(UserInput.ENTER_DOOR)) {
-            if (alreadyEntered) {
+            if (mAlreadyEntered) {
                 return;
             }
             if (mPlayerActor.getIsAtDoor()) {
@@ -544,7 +560,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
 
         //reset pause toggle flag
         if (!UserInput.isDown(UserInput.START_BUTTON)) {
-            toggleSelectionFlag = false;
+            mToggleSelectionFlag = false;
         }
     }
 
@@ -587,7 +603,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
     }
 
     private void loadNewRoom(int newRoom, String whichDoor) {
-        alreadyEntered = true;
+        mAlreadyEntered = true;
         mPlayerActor.setIsItemActive(false);
 
         mRoomModel = RoomUtils.rooms.get(newRoom);

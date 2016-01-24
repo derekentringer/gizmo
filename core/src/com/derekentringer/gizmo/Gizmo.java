@@ -19,6 +19,7 @@ public class Gizmo extends Game {
     public void create() {
         Controllers.addListener(new InputProcessor());
         Gdx.input.setInputProcessor(new InputProcessor());
+        Gdx.input.setCatchBackKey(true);
         Gdx.app.setLogLevel(Constants.LOG_LEVEL);
         Gdx.graphics.setVSync(true);
         assetManager = new AssetManager();

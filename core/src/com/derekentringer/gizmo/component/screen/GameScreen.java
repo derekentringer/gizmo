@@ -61,10 +61,6 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         switch (mGameState) {
             case RUNNING:
-                /*if (mPauseStage != null) {
-                    mPauseStage.dispose();
-                    mPauseStage = null;
-                }*/
                 ScreenUtils.renderScreen(mViewPort);
                 //update the game stage
                 mGameStage.act(delta);
@@ -77,9 +73,6 @@ public class GameScreen extends ScreenAdapter {
 
             case PAUSED:
                 //TODO stop music
-                /*if (mPauseStage == null) {
-                    mPauseStage = new PauseStage(this);
-                }*/
                 mPauseStage.act();
                 mPauseStage.draw();
                 break;
