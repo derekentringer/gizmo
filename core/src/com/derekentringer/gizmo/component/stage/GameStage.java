@@ -433,36 +433,39 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
                 if (UserInput.isDown(UserInput.RIGHT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableRight() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableRight()) <= 0) {
-                        breakBlock(mPlayerActor.getTouchingBodyDestroyableRight());
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableRight())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
                         }
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData(), mPlayerActor.getTouchingBodyDestroyableRight()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData());
+
+                        breakBlock(mPlayerActor.getTouchingBodyDestroyableRight());
                         mPlayerActor.setTouchingBodyDestroyableRight(null);
                     }
                 }
                 else if (UserInput.isDown(UserInput.LEFT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableLeft() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft()) <= 0) {
-                        breakBlock(mPlayerActor.getTouchingBodyDestroyableLeft());
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableLeft())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableLeft().getPosition());
                         }
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData(), mPlayerActor.getTouchingBodyDestroyableLeft()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData());
+
+                        breakBlock(mPlayerActor.getTouchingBodyDestroyableLeft());
                         mPlayerActor.setTouchingBodyDestroyableLeft(null);
                     }
                 }
                 else if (mPlayerActor.getTouchingBodyDestroyableBottom() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableBottom()) <= 0) {
-                        breakBlock(mPlayerActor.getTouchingBodyDestroyableBottom());
                         if (BlockUtils.getBlockDropsLoot(mPlayerActor.getTouchingBodyDestroyableBottom())) {
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
                         }
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
+
+                        breakBlock(mPlayerActor.getTouchingBodyDestroyableBottom());
                         mPlayerActor.setTouchingBodyDestroyableBottom(null);
                     }
                 }

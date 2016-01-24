@@ -161,7 +161,7 @@ public class ObjectUtils {
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
 
-        fixtureDef.filter.categoryBits = Constants.IGNORE_ENTITY;
+        //fixtureDef.filter.categoryBits = Constants.IGNORE_ENTITY;
         fixtureDef.filter.groupIndex = -1;
 
         body.createFixture(fixtureDef).setUserData(new BlockBreakModel());

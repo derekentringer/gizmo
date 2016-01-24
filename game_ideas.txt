@@ -7,8 +7,6 @@ bugs/blockers
 i'm not seeing this anymore and it seemed to have to do with tiled layers
 doors are still slightly bugged - this is weird and may or may not still be happening
 
-only one heart per room allowed bug
-
 bug with digging and the block destroy animation being sent to the collision detection
 
 fullscreen to windowed breaks the pawsed stage background

@@ -20,6 +20,7 @@ public class Gizmo extends Game {
         Controllers.addListener(new InputProcessor());
         Gdx.input.setInputProcessor(new InputProcessor());
         Gdx.app.setLogLevel(Constants.LOG_LEVEL);
+        Gdx.graphics.setVSync(true);
         assetManager = new AssetManager();
         setScreen(new LoadingScreen(this));
     }
