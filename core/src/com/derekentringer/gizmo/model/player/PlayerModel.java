@@ -21,6 +21,7 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_MAX_LIVES = 5;
     public static final int DEFAULT_MAX_HEARTS = 10;
     public static final int DEFAULT_DIGGING_POWER = 1;
+    public static final int DEFAULT_CRYSTAL_BLUE = 0;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
     private ArrayList<BasePlayerItemModel> mItemList = new ArrayList<BasePlayerItemModel>();
@@ -29,10 +30,9 @@ public class PlayerModel extends BaseModel {
     private int mLives;
     private int mHearts;
     private int mHealth;
+    private int mCrystalBlueAmount;
     //TODO
     private int mDiggingPower = 1;
-
-    private int mCrystalBlueAmount;
 
     public PlayerModel() {
         mBaseModelType = BaseModelType.PLAYER;
@@ -113,8 +113,8 @@ public class PlayerModel extends BaseModel {
         return mCrystalBlueAmount;
     }
 
-    public void incrementCrystalBlueAmount() {
-        mCrystalBlueAmount = mCrystalBlueAmount + 1;
+    public void setCrystalBlueAmount(int crystalBlueAmount) {
+        mCrystalBlueAmount = crystalBlueAmount;
     }
 
 }

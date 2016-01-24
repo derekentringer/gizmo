@@ -163,6 +163,7 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setLives(playerModel.getLives());
         mPlayerModel.setDiggingPower(playerModel.getDiggingPower());
         mPlayerModel.setCurrentRoom(playerModel.getCurrentRoom());
+        mPlayerModel.setCrystalBlueAmount(playerModel.getCrystalBlueAmount());
         if (playerModel.getKeys().size() > 0) {
             for (int i = 0; i < playerModel.getKeys().size(); i++) {
                 mPlayerModel.addKey(playerModel.getKeys().get(i));
@@ -296,7 +297,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void incrementCrystalBlueAmount() {
-        mPlayerModel.incrementCrystalBlueAmount();
+        mPlayerModel.setCrystalBlueAmount(mPlayerModel.getCrystalBlueAmount() + 1);
         GLog.d(TAG, "total blue crystals: " + mPlayerModel.getCrystalBlueAmount());
     }
 

@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -83,6 +85,11 @@ public class HudStage extends Stage implements IGameStage {
     private float mNewAlpha;
     private boolean isFadeInAlreadyRun;
 
+    private BitmapFont mBitmapFont;
+    private GlyphLayout mLayoutBlueCrystalCount;
+    private String mBlueCrystalStringDisplay;
+    private String mInitialCrystalString = "0";
+
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
@@ -119,6 +126,10 @@ public class HudStage extends Stage implements IGameStage {
 
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
+
+        mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
+        mBitmapFont.getData().setScale(0.3f, 0.3f);
+        mLayoutBlueCrystalCount = new GlyphLayout(mBitmapFont, mInitialCrystalString);
     }
 
     public void addListener(IHudStage listener) {
@@ -163,10 +174,12 @@ public class HudStage extends Stage implements IGameStage {
             mRedShapeRendererBottom.end();
         }
 
+        mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-        mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
-        mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
-        mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
+            mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
+            mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
+            mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
+            mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 23, mHudCrystalsPosition.y + 19);
         mSpriteBatch.end();
     }
 
@@ -261,8 +274,10 @@ public class HudStage extends Stage implements IGameStage {
         mHudHealthPosition.x = Math.abs(crop.x) / scale;
         mHudHealthPosition.y = Math.abs(gameHeight - mCurrentLivesTexture.getHeight() * scale - mCurrentHealthTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        mHudCrystalsPosition.x = Math.abs((gameWidth - mHudCrystalsCount.getWidth()) * scale - crop.x) ;
-        mHudCrystalsPosition.y = 100;
+        mHudCrystalsPosition.x = Math.abs(gameWidth - mHudCrystalsCount.getWidth() * scale + crop.x) / scale;
+        mHudCrystalsPosition.y = Math.abs(gameHeight - mHudCrystalsCount.getHeight() * scale - HUD_PADDING * scale) / scale;
+
+        GLog.d(TAG, "crop.x"+crop.x);
 
         GLog.d(TAG, "hudPosition.x: " + mHudHealthPosition.x);
         GLog.d(TAG, "hudPosition.y: " + mHudHealthPosition.y);
@@ -389,6 +404,7 @@ public class HudStage extends Stage implements IGameStage {
     public void setCrystalCount(int crystalCount) {
         mCrystals = crystalCount;
         GLog.d(TAG, "setCrystalCount: " + mCrystals);
+        mBlueCrystalStringDisplay = Integer.toString(mCrystals);
     }
 
     @Override

@@ -207,6 +207,8 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
         // actor render loop
+        // pass the action position to these
+        // actors when they are added to actors array
         // TODO make better?? don't let this get out of control
         for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.render(mSpriteBatch);
@@ -614,6 +616,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
             mPlayerModel.setLives(PlayerModel.DEFAULT_LIVES);
             mPlayerModel.setCurrentRoom(PlayerModel.DEFAULT_ROOM);
             mPlayerModel.setDiggingPower(PlayerModel.DEFAULT_DIGGING_POWER);
+            mPlayerModel.setCrystalBlueAmount(PlayerModel.DEFAULT_CRYSTAL_BLUE);
             playerActor.initPlayerData(mPlayerModel);
             LocalDataManager.savePlayerActorData(mPlayerModel);
         }

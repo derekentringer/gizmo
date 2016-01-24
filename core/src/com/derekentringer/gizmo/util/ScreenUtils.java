@@ -33,7 +33,6 @@ public class ScreenUtils {
         crop = new Vector2(0f, 0f);
         scale = 1f;
 
-
         if (aspectRatio > Constants.ASPECT_RATIO) {
             scale = (float) height / (float) Constants.GAME_HEIGHT;
             crop.x = (width - Constants.GAME_WIDTH * scale) / 2f;

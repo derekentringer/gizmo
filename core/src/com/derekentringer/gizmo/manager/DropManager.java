@@ -24,7 +24,7 @@ public class DropManager extends Stage {
     private static final int DROP_TYPE_CRYSTAL_BLUE = 3;
 
     private static final int MIN_DROPS = 0;
-    private static final int MAX_DROPS = 5;
+    private static final int MAX_DROPS = 3;
 
     private static final int MIN_BOSS_DROPS = 50;
     private static final int MAX_BOSS_DROPS = 100;
@@ -39,7 +39,7 @@ public class DropManager extends Stage {
 
     public void randomDrop(World world, Vector2 coordinates) {
         whichDrop = MathUtils.random(DROP_TYPE_HEART, DROP_TYPE_CRYSTAL_BLUE);
-        GLog.d(TAG, "random drop: 0 or 3" + whichDrop);
+        GLog.d(TAG, "random drop: DROP_TYPE_HEART or DROP_TYPE_CRYSTAL_BLUE ->" + whichDrop);
         if (whichDrop == DROP_TYPE_HEART) {
             GLog.d(TAG, "addDropHeart: " + coordinates.x + ", " + coordinates.y);
             addDropHeart(world, coordinates);

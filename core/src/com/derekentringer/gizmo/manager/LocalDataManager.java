@@ -42,6 +42,7 @@ public class LocalDataManager {
             GLog.d(TAG, "getLives: " + playerData.getLives());
             GLog.d(TAG, "getHealth: " + playerData.getHealth());
             GLog.d(TAG, "getKeys: " + playerData.getKeys());
+            GLog.d(TAG, "getBlueCrystals: " + playerData.getCrystalBlueAmount());
             GLog.d(TAG, "getCurrentRoom: " + playerData.getCurrentRoom());
 
             return playerData;
