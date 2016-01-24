@@ -11,9 +11,12 @@ only one heart per room allowed bug
 
 bug with digging and the block destroy animation being sent to the collision detection
 
+fullscreen to windowed breaks the pawsed stage background
+
 new additions needed
 ------------------------------------------------------------------------------
 
+create player thought bubbles
 
 remember which enemies are destroyed in a level?
 

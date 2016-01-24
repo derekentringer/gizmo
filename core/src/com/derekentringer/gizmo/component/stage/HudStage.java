@@ -179,7 +179,7 @@ public class HudStage extends Stage implements IGameStage {
             mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
             mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
             mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
-            mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 23, mHudCrystalsPosition.y + 19);
+            mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 23, mHudCrystalsPosition.y + 23);
         mSpriteBatch.end();
     }
 
