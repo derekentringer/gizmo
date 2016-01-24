@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.model.misc;
+package com.derekentringer.gizmo.model.misc.pickups;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
