@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.derekentringer.gizmo.util.input.controller.BaseController;
 import com.derekentringer.gizmo.util.input.controller.NexusPlayerController;
 import com.derekentringer.gizmo.util.input.controller.PS4Controller;
-import com.derekentringer.gizmo.util.log.GLog;
 
 public class InputProcessor extends InputAdapter implements ControllerListener {
 
@@ -19,7 +18,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyDown(int keycode) {
-        GLog.d(TAG, "keyDown keycode: " + keycode);
+        //GLog.d(TAG, "keyDown keycode: " + keycode);
 
         if(keycode > -1) {
             UserInput.setKey(UserInput.ANY_KEY, true);
@@ -77,7 +76,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyUp(int keycode) {
-        GLog.d(TAG, "keyUp keycode: " + keycode);
+        //GLog.d(TAG, "keyUp keycode: " + keycode);
 
         if(keycode > -1) {
             UserInput.setKey(UserInput.ANY_KEY, false);
@@ -137,18 +136,18 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public void connected(Controller controller) {
-        GLog.d(TAG, "controller connected: " + controller.getName());
+        //GLog.d(TAG, "controller connected: " + controller.getName());
         UserInput.setController(controller);
     }
 
     @Override
     public void disconnected(Controller controller) {
-        GLog.d(TAG, "controller disconnected: " + controller.getName());
+        //GLog.d(TAG, "controller disconnected: " + controller.getName());
     }
 
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
-        GLog.d(TAG, "buttonDown Code: " + buttonCode);
+        //GLog.d(TAG, "buttonDown Code: " + buttonCode);
         if(buttonCode > -1) {
             UserInput.setKey(UserInput.ANY_BUTTON, true);
         }
@@ -248,7 +247,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-        GLog.d(TAG, "povCode: " + povCode + " " + value);
+        //GLog.d(TAG, "povCode: " + povCode + " " + value);
 
         if (value == BaseController.BUTTON_DPAD_RIGHT
                 || value == BaseController.BUTTON_DPAD_UP_RIGHT
