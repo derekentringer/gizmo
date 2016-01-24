@@ -1,6 +1,7 @@
-package com.derekentringer.gizmo.model.enemy;
+package com.derekentringer.gizmo.model.enemy.phantom;
 
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 
 public class PhantomModel extends BaseEnemyModel {
 

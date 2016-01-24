@@ -22,7 +22,6 @@ public class RoomModel extends BaseModel {
     private ArrayList<BaseDestroyableModel> mDestroyedBlockList = new ArrayList<BaseDestroyableModel>();
     private ArrayList<BaseEnemyModel> mDestroyedBossList = new ArrayList<BaseEnemyModel>();
 
-    private String mRoomRegion;
     private int mRoomInt;
     private String mRoomMap;
     private String mRoomMidMap;
@@ -36,21 +35,12 @@ public class RoomModel extends BaseModel {
     public RoomModel() {
     }
 
-    public RoomModel(String roomRegion, int roomInt, String roomMap, String roomMidMap, String roomBackMap) {
+    public RoomModel(int roomInt, String roomMap, String roomMidMap, String roomBackMap) {
         mBaseModelType = BaseModelType.ROOM;
-        mRoomRegion = roomRegion;
         mRoomInt = roomInt;
         mRoomMap = roomMap;
         mRoomMidMap = roomMidMap;
         mRoomBackMap = roomBackMap;
-    }
-
-    public String getRoomRegion() {
-        return mRoomRegion;
-    }
-
-    public void setRoomRegion(String roomRegion) {
-        mRoomRegion = roomRegion;
     }
 
     public int getRoomInt() {

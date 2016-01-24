@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.enemy;
+package com.derekentringer.gizmo.component.actor.enemy.phantom;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
