@@ -49,6 +49,7 @@ neat to haves
 dynamic levels or placed blocks and enemies based on player progression
 	- if the player has been to a certain stage in the game (loaded from game.sav) areas of a map can change slightly
 	- this would be certain layers in the tiled maps being shown
+	- if player already entered room and comes back at a certain point, show a specific layer containg items, doors, blocks, etc
 
 add new screens
 	- start - let users load games?
