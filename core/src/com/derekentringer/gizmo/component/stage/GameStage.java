@@ -1,6 +1,5 @@
 package com.derekentringer.gizmo.component.stage;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -376,12 +375,7 @@ public class GameStage extends Stage implements IMapParser, IPlayer, IDropManage
         if (UserInput.isDown(UserInput.BACK_BUTTON)) {
             if (mToggleSelectionFlag == false) {
                 mToggleSelectionFlag = true;
-                mBackWasPressed = true;
-                if (mBackWasPressed) {
-                    quitGame();
-                    Gdx.app.exit();
-                }
-                else {
+                if (!GameScreen.GameState.PAUSED.equals(GameScreen.GameState.PAUSED)) {
                     mGameScreen.pauseGame();
                 }
             }
