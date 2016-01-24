@@ -11,6 +11,8 @@ bug with hud text alpha when moving to/from pause screen
 
 can't toggle start screen selection with controller on nexus player
 
+translations?
+
 new additions needed
 ------------------------------------------------------------------------------
 

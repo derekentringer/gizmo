@@ -26,6 +26,8 @@ public class PauseStage extends Stage {
     private OrthographicCamera mStartStageCamera;
     private SpriteBatch mSpriteBatch;
 
+    private ShapeRenderer mBackground;
+
     private Vector2 gameWidthHeight = new Vector2();
 
     private String mPaused = "pawsed";
@@ -70,8 +72,6 @@ public class PauseStage extends Stage {
         layoutPause = new GlyphLayout(mBitmapFont, mPaused);
         pauseStringDisplay = mPaused;
     }
-
-    private ShapeRenderer mBackground;
 
     @Override
     public void draw() {
@@ -139,10 +139,8 @@ public class PauseStage extends Stage {
 
     public void updateLayout(float gameHeight, float gameWidth) {
         GLog.d(TAG, "updateLayout");
-
         gameWidthHeight.x = gameWidth;
         gameWidthHeight.y = gameHeight;
-
         mStartStageCamera.update();
     }
 

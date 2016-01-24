@@ -209,6 +209,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean axisMoved(Controller controller, int axisCode, float value) {
         //GLog.d(TAG, "axisCode: " + axisCode + " " + value);
 
+        //right/left triggers
         if (controller.getName().equalsIgnoreCase(BaseController.CONTROLLER_NEXUS)) {
             if (controller.getAxis(NexusPlayerController.BUTTON_RT) > 0.2f) {
                 UserInput.setKey(UserInput.ATTACK_BUTTON, true);
@@ -240,19 +241,35 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
             }
         }
 
-        if (controller.getAxis(PS4Controller.AXIS_X) > 0.2f) {
+        //stick left/right
+        if (controller.getAxis(BaseController.AXIS_X) > 0.2f) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
         }
         else {
             UserInput.setKey(UserInput.RIGHT_BUTTON, false);
         }
 
-        if (controller.getAxis(PS4Controller.AXIS_X) < -0.2f) {
+        if (controller.getAxis(BaseController.AXIS_X) < -0.2f) {
             UserInput.setKey(UserInput.LEFT_BUTTON, true);
         }
         else {
             UserInput.setKey(UserInput.LEFT_BUTTON, false);
         }
+
+        //stick up/down
+        if (controller.getAxis(BaseController.AXIS_Y) > 0.2f) {
+            UserInput.setKey(UserInput.UP, true);
+        }
+        else {
+            UserInput.setKey(UserInput.UP, false);
+        }
+        if (controller.getAxis(BaseController.AXIS_Y) < -0.2f) {
+            UserInput.setKey(UserInput.DOWN, true);
+        }
+        else {
+            UserInput.setKey(UserInput.DOWN, false);
+        }
+
         return true;
     }
 
