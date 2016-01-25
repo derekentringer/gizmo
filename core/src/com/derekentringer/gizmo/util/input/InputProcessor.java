@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.derekentringer.gizmo.util.input.controller.BaseController;
 import com.derekentringer.gizmo.util.input.controller.NexusPlayerController;
 import com.derekentringer.gizmo.util.input.controller.PS4Controller;
+import com.derekentringer.gizmo.util.log.GLog;
 
 public class InputProcessor extends InputAdapter implements ControllerListener {
 
@@ -275,11 +276,11 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-        //GLog.d(TAG, "povCode: " + povCode + " " + value);
+        GLog.d(TAG, "povCode: " + povCode + " " + value);
 
         if (value == BaseController.BUTTON_DPAD_RIGHT
                 || value == BaseController.BUTTON_DPAD_UP_RIGHT
-                || value == BaseController.BUTTON_DPAD_RIGHT_DOWN) {
+                || value == BaseController.BUTTON_DPAD_DOWN_RIGHT) {
             UserInput.setKey(UserInput.RIGHT_BUTTON, true);
         }
         else {
@@ -289,10 +290,28 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (value == BaseController.BUTTON_DPAD_LEFT
                 || value == BaseController.BUTTON_DPAD_UP_LEFT
                 || value == BaseController.BUTTON_DPAD_DOWN_LEFT) {
-            UserInput.setKey(UserInput.RIGHT_BUTTON, true);
+            UserInput.setKey(UserInput.LEFT_BUTTON, true);
         }
         else {
-            UserInput.setKey(UserInput.RIGHT_BUTTON, false);
+            UserInput.setKey(UserInput.LEFT_BUTTON, false);
+        }
+
+        if (value == BaseController.BUTTON_DPAD_UP
+                || value == BaseController.BUTTON_DPAD_UP_LEFT
+                || value == BaseController.BUTTON_DPAD_UP_RIGHT) {
+            UserInput.setKey(UserInput.UP, true);
+        }
+        else {
+            UserInput.setKey(UserInput.UP, false);
+        }
+
+        if (value == BaseController.BUTTON_DPAD_DOWN
+                || value == BaseController.BUTTON_DPAD_DOWN_LEFT
+                || value == BaseController.BUTTON_DPAD_DOWN_RIGHT) {
+            UserInput.setKey(UserInput.DOWN, true);
+        }
+        else {
+            UserInput.setKey(UserInput.DOWN, false);
         }
         return true;
     }
