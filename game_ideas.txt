@@ -4,31 +4,30 @@ TODO
 bugs/blockers
 ------------------------------------------------------------------------------
 
-i'm not seeing this anymore and it seemed to have to do with tiled layers
-doors are still slightly bugged - this is weird and may or may not still be happening
+doors are still slightly bugged in detecting player in vacinity
 
-bug with hud text alpha when moving to/from pause screen
-
-can't toggle start screen selection with controller on nexus player
+paused screen bug when fullscreen -> windowed; its not updating the background correctly to fill screen
 
 translations?
+
+need to map xbox360, xbox one, and ouya controllers
 
 new additions needed
 ------------------------------------------------------------------------------
 
-create player thought bubbles
+create player thought bubbles for small text and hints triggered by hidden layers in tiles?
 
-remember which enemies are destroyed in a level?
+create dialog box for larger strings and story progression
+
+remember which enemies are destroyed in a level? (prevent farming)
 
 create an Are You Sure screen for restarting from startstage
 
-rethink the hud (hide everything?) at least add hud for crystals
-
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
+	- create a box around each type of weapon and show the graphic as it is choosen
+	- animate the box alpha in/out as choosen
 
-use the player sensors to detect where the enemy is hitting the player
-	- let the player stand on enemies
-	- pickup ghosts as weapons (think mario 2)
+filter out enemies so you can't stand on them but they still deal damage
 
 give enemies flinching/destroy animation (something diff than the player blinking)
 
@@ -39,7 +38,12 @@ how are we using blue crystals? buying objects at certain points in the game
 	- buy only upgrades
 
 more enemies
+	- (insert random creativity after creating bosses)
+
 more weapons
+	- sword (power up shoots force wave)
+	- bombs (can be thown)
+	- 
 
 plan out the levels, enemies, progression
 
@@ -55,7 +59,6 @@ dynamic levels or placed blocks and enemies based on player progression
 	- if player already entered room and comes back at a certain point, show a specific layer containg items, doors, blocks, etc
 
 add new screens
-	- start - let users load games?
 	- choose game save slot
 	- inventory
 
@@ -82,21 +85,12 @@ add barking ability
 add a power up for barking
 
 add barking ability for ghosts (the most basic attack)
-
-moar enemies
-
-phantoms run away when gizmo barks
-
-need to map xbox360, xbox one, and ouya controllers
+	- phantoms run away when gizmo barks
 
 player stats - show keys? inventory
-destroyable blocks
-falling blocks
-design more blocks for dungeons
-
 
 - game is linear, but, certain ways to advance past levels 
-with power ups and digging (hidden)
+with power ups and digging
 
 -metroid/mario/zelda
 
@@ -131,7 +125,7 @@ Let the user get used to controlling Gizmo. Gives them a few obstacles to maneuv
 This level is a bit more complicated and larger. At the end of this level, player gets their first upgrade. A collar. Opens up dig ability.
 
 
-
+-----
 
 
 -- characters
