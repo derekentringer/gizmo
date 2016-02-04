@@ -8,12 +8,14 @@ import com.derekentringer.gizmo.settings.Constants;
 
 public class BaseStage extends Stage {
 
-    private static final FileHandle baseFileHandle = Gdx.files.internal("i18n/I18NBundle");
-    private static final I18NBundle i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.testLocale);
-    private static final I18NBundle i18NBundle = I18NBundle.createBundle(baseFileHandle);
+    private FileHandle baseFileHandle;
+    private I18NBundle i18NBundleDebug;
+    private I18NBundle i18NBundle;
 
     public BaseStage() {
-
+        baseFileHandle = Gdx.files.internal("i18n/I18NBundle");
+        i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.testLocale);
+        i18NBundle = I18NBundle.createBundle(baseFileHandle);
     }
 
     public I18NBundle getI18NBundle() {

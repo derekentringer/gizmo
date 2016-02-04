@@ -40,10 +40,10 @@ public class StartStage extends BaseStage {
 
     private PlayerModel mPlayerModel;
 
-    private String mPressAnyKey = getI18NBundle().get("startScreen_pressAnyKey");
-    private String mPressAnyButton = getI18NBundle().get("startScreen_pressAnyButton");
-    private String mContinue = getI18NBundle().get("startScreen_continue");
-    private String mRestart = getI18NBundle().get("startScreen_restart");
+    private String mPressAnyKey = getI18NBundle().get("startStage_pressAnyKey");
+    private String mPressAnyButton = getI18NBundle().get("startStage_pressAnyButton");
+    private String mContinue = getI18NBundle().get("startStage_continue");
+    private String mRestart = getI18NBundle().get("startStage_restart");
 
     private BitmapFont mBitmapFont;
     private GlyphLayout layoutStartContinue;

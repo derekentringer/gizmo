@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.screen.GameScreen;
 import com.derekentringer.gizmo.settings.Constants;
@@ -17,7 +16,7 @@ import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
 
-public class PauseStage extends Stage {
+public class PauseStage extends BaseStage {
 
     private static final String TAG = PauseStage.class.getSimpleName();
 
@@ -30,7 +29,7 @@ public class PauseStage extends Stage {
 
     private Vector2 gameWidthHeight = new Vector2();
 
-    private String mPaused = "pawsed";
+    private String mPaused = getI18NBundle().get("pausedStage_paused");
 
     private BitmapFont mBitmapFont;
     private GlyphLayout layoutPause;

@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
@@ -20,7 +19,7 @@ import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
-public class HudStage extends Stage implements IGameStage {
+public class HudStage extends BaseStage implements IGameStage {
 
     private static final String TAG = HudStage.class.getSimpleName();
 
