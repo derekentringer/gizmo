@@ -8,12 +8,15 @@ doors are still slightly bugged in detecting player in vacinity
 
 paused screen bug when fullscreen -> windowed; its not updating the background correctly to fill screen
 
-translations?
-
 need to map xbox360, xbox one, and ouya controllers
+
 
 new additions needed
 ------------------------------------------------------------------------------
+
+filter out enemies so you can't stand on them but they still deal damage
+
+give enemies flinching/destroy animation (something diff than the player blinking)
 
 create player thought bubbles for small text and hints triggered by hidden layers in tiles?
 
@@ -21,15 +24,10 @@ create dialog box for larger strings and story progression
 
 remember which enemies are destroyed in a level? (prevent farming)
 
-create an Are You Sure screen for restarting from startstage
-
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
 	- create a box around each type of weapon and show the graphic as it is choosen
 	- animate the box alpha in/out as choosen
-
-filter out enemies so you can't stand on them but they still deal damage
-
-give enemies flinching/destroy animation (something diff than the player blinking)
+	- put this in upper right?
 
 how are we using blue crystals? buying objects at certain points in the game
 	- hearts
@@ -43,7 +41,6 @@ more enemies
 more weapons
 	- sword (power up shoots force wave)
 	- bombs (can be thown)
-	- 
 
 plan out the levels, enemies, progression
 
