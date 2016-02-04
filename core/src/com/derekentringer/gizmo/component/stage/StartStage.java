@@ -30,8 +30,8 @@ public class StartStage extends BaseStage {
 
     private final ArrayList<BaseActor> mStartStageActorsArray = new ArrayList<BaseActor>();
 
-    private static final String SCREEN_STATE_START = "start";
-    private static final String SCREEN_STATE_CONTINUE = "continue";
+    private static final String SCREEN_STATE_START = "SCREEN_STATE_START";
+    private static final String SCREEN_STATE_CONTINUE = "SCREEN_STATE_CONTINUE";
 
     private StartScreen mStartScreen;
     private World mWorld;
@@ -40,10 +40,10 @@ public class StartStage extends BaseStage {
 
     private PlayerModel mPlayerModel;
 
-    private String mPressAnyKey = getI18NBundle().get("startStage_pressAnyKey");
-    private String mPressAnyButton = getI18NBundle().get("startStage_pressAnyButton");
-    private String mContinue = getI18NBundle().get("startStage_continue");
-    private String mRestart = getI18NBundle().get("startStage_restart");
+    private String mPressAnyKey = Gizmo.getI18NBundle().get("startStage_pressAnyKey");
+    private String mPressAnyButton = Gizmo.getI18NBundle().get("startStage_pressAnyButton");
+    private String mContinue = Gizmo.getI18NBundle().get("startStage_continue");
+    private String mRestart = Gizmo.getI18NBundle().get("startStage_restart");
 
     private BitmapFont mBitmapFont;
     private GlyphLayout layoutStartContinue;
