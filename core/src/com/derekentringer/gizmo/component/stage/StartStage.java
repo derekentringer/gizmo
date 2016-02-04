@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.misc.WhiteDotActor;
@@ -25,7 +24,7 @@ import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
-public class StartStage extends Stage {
+public class StartStage extends BaseStage {
 
     public static final String TAG = StartStage.class.getSimpleName();
 
@@ -41,10 +40,10 @@ public class StartStage extends Stage {
 
     private PlayerModel mPlayerModel;
 
-    private String mPressAnyKey = "press any key";
-    private String mPressAnyButton = "press any button";
-    private String mContinue = "continue";
-    private String mRestart = "restart";
+    private String mPressAnyKey = getI18NBundle().get("startScreen_pressAnyKey");
+    private String mPressAnyButton = getI18NBundle().get("startScreen_pressAnyButton");
+    private String mContinue = getI18NBundle().get("startScreen_continue");
+    private String mRestart = getI18NBundle().get("startScreen_restart");
 
     private BitmapFont mBitmapFont;
     private GlyphLayout layoutStartContinue;

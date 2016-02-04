@@ -3,6 +3,7 @@ package com.derekentringer.gizmo.component.screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.I18NBundle;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.util.log.GLog;
 
@@ -18,6 +19,8 @@ public class LoadingScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        Gizmo.assetManager.load("i18n/I18NBundle", I18NBundle.class);
+
         Gizmo.assetManager.load("res/font/gizmo.fnt", BitmapFont.class);
 
         Gizmo.assetManager.load("res/image/character/thought_bubble.png", Texture.class);

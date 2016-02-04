@@ -3,6 +3,7 @@ package com.derekentringer.gizmo;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.I18NBundleLoader;
 import com.badlogic.gdx.controllers.Controllers;
 import com.derekentringer.gizmo.component.screen.LoadingScreen;
 import com.derekentringer.gizmo.settings.Constants;
@@ -14,6 +15,7 @@ public class Gizmo extends Game {
     private static final String TAG = Gizmo.class.getSimpleName();
 
     public static AssetManager assetManager;
+    public static I18NBundleLoader bundleLoader;
 
     @Override
     public void create() {

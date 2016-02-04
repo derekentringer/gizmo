@@ -3,6 +3,8 @@ package com.derekentringer.gizmo.settings;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Logger;
 
+import java.util.Locale;
+
 public class Constants {
 
     // categoryBits declares what entity it is
@@ -18,6 +20,7 @@ public class Constants {
     public static final boolean IS_DEBUG = true;
     public static final boolean IS_DEBUG_BOX2D = false;
     public static final int LOG_LEVEL = Logger.DEBUG;
+    public static final Locale testLocale = new Locale("en", "EN");
 
     // rendering
     public static final float TIME_STEP = 1 / 300f;
