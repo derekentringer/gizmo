@@ -22,7 +22,6 @@ public class Gizmo extends Game {
         Gdx.input.setCatchBackKey(true);
         Gdx.app.setLogLevel(Constants.LOG_LEVEL);
         Gdx.graphics.setVSync(true);
-        Gdx.graphics.setContinuousRendering(true);
         Gdx.graphics.setDisplayMode(
                 Gdx.graphics.getDesktopDisplayMode().width,
                 Gdx.graphics.getDesktopDisplayMode().height,
