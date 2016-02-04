@@ -14,7 +14,7 @@ public class BaseStage extends Stage {
 
     public BaseStage() {
         baseFileHandle = Gdx.files.internal("i18n/I18NBundle");
-        i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.testLocale);
+        i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.debugLocale);
         i18NBundle = I18NBundle.createBundle(baseFileHandle);
     }
 
