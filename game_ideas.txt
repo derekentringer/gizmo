@@ -6,13 +6,13 @@ bugs/blockers
 
 doors are still slightly bugged in detecting player in vacinity
 
-paused screen bug when fullscreen -> windowed; its not updating the background correctly to fill screen
-
 need to map xbox360, xbox one, and ouya controllers
 
 
 new additions needed
 ------------------------------------------------------------------------------
+
+create controls screen w/pixelated controller graphic
 
 filter out enemies so you can't stand on them but they still deal damage
 
