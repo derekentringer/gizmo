@@ -1,6 +1,5 @@
 package com.derekentringer.gizmo.component.stage;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -121,8 +120,6 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     private void setupWorld() {
-        mSpriteBatch = new SpriteBatch();
-        mWorld = WorldUtils.createWorld();
         mWorld.setContactListener(this);
     }
 

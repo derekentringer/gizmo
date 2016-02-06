@@ -2,17 +2,12 @@ package com.derekentringer.gizmo.component.stage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.screen.GameScreen;
 import com.derekentringer.gizmo.settings.Constants;
-import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
 
@@ -21,22 +16,14 @@ public class PauseStage extends BaseStage {
     private static final String TAG = PauseStage.class.getSimpleName();
 
     private GameScreen mGameScreen;
-    private World mWorld;
-    private OrthographicCamera mStartStageCamera;
-    private SpriteBatch mSpriteBatch;
-
     private ShapeRenderer mBackground;
 
     private Vector2 gameWidthHeight = new Vector2();
 
     private String mPaused = Gizmo.getI18NBundle().get("pausedStage_paused");
 
-    private BitmapFont mBitmapFont;
     private GlyphLayout layoutPause;
     private String pauseStringDisplay;
-
-    private int centerScreenX = Constants.GAME_WIDTH / 2;
-    private int centerScreenY = Constants.GAME_HEIGHT / 2;
 
     private static final float TIME_TO_FADE = 1;
     private float mTimeAccumulated;
@@ -46,19 +33,14 @@ public class PauseStage extends BaseStage {
         FADE_IN,
         FADE_OUT
     }
-
-    FadeState mFadeState = FadeState.FADE_OUT;
+    private FadeState mFadeState = FadeState.FADE_OUT;
 
     public PauseStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
         mBackground = new ShapeRenderer();
-        mStartStageCamera = new OrthographicCamera();
-        mStartStageCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mStartStageCamera.update();
+        mOrthographicCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mOrthographicCamera.update();
 
-        mWorld = WorldUtils.createWorld();
-        mSpriteBatch = new SpriteBatch();
-        mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
         gameWidthHeight.x = Constants.GAME_WIDTH;
@@ -85,7 +67,7 @@ public class PauseStage extends BaseStage {
             mBackground.rect(0, 0, gameWidthHeight.x, gameWidthHeight.y);
         mBackground.end();
 
-        mSpriteBatch.setProjectionMatrix(mStartStageCamera.combined);
+        mSpriteBatch.setProjectionMatrix(mOrthographicCamera.combined);
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
@@ -140,7 +122,7 @@ public class PauseStage extends BaseStage {
         GLog.d(TAG, "updateLayout");
         gameWidthHeight.x = gameWidth;
         gameWidthHeight.y = gameHeight;
-        mStartStageCamera.update();
+        mOrthographicCamera.update();
     }
 
     @Override

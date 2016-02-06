@@ -3,11 +3,8 @@ package com.derekentringer.gizmo.component.stage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
@@ -81,7 +78,6 @@ public class HudStage extends BaseStage implements IGameStage {
     private float mNewAlpha;
     private boolean isFadeInAlreadyRun;
 
-    private BitmapFont mBitmapFont;
     private GlyphLayout mLayoutBlueCrystalCount;
     private String mBlueCrystalStringDisplay;
     private String mInitialCrystalString = "0";
@@ -89,7 +85,6 @@ public class HudStage extends BaseStage implements IGameStage {
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
-        mOrthographicCamera = new OrthographicCamera();
         mOrthographicCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mOrthographicCamera.update();
 
@@ -99,8 +94,6 @@ public class HudStage extends BaseStage implements IGameStage {
         mWhiteShapeRendererBottom = new ShapeRenderer();
         mTransitionShapeRenderer = new ShapeRenderer();
         mProjectionMatrixSet = false;
-
-        mSpriteBatch = new SpriteBatch();
 
         mHudLivesOne = Gizmo.assetManager.get("res/image/hud/hud_lives_one.png", Texture.class);
         mHudLivesTwo = Gizmo.assetManager.get("res/image/hud/hud_lives_two.png", Texture.class);
@@ -123,7 +116,6 @@ public class HudStage extends BaseStage implements IGameStage {
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
 
-        mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
         mLayoutBlueCrystalCount = new GlyphLayout(mBitmapFont, mInitialCrystalString);
     }

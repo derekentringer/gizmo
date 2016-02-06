@@ -1,10 +1,7 @@
 package com.derekentringer.gizmo.component.stage;
 
 import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
@@ -17,7 +14,6 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
-import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
 
@@ -58,13 +54,9 @@ public class StartStage extends BaseStage {
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
-        mOrthographicCamera = new OrthographicCamera();
         mOrthographicCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mOrthographicCamera.update();
 
-        mWorld = WorldUtils.createWorld();
-        mSpriteBatch = new SpriteBatch();
-        mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
         loadPlayerHearts();
