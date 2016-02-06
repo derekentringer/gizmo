@@ -1,6 +1,5 @@
 package com.derekentringer.gizmo.component.stage;
 
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
@@ -127,10 +126,6 @@ public class StartStage extends BaseStage {
         mStartStageActorsArray.add(whiteDotRestart);
     }
 
-    private boolean isControllerConnected() {
-        return Controllers.getControllers().size > 0;
-    }
-
     @Override
     public void draw() {
         super.draw();
@@ -175,6 +170,8 @@ public class StartStage extends BaseStage {
         }
     }
 
+    //TODO this can be put into BaseStage
+    //use an interface to make the callbacks
     private void handleInput() {
         if (SCREEN_STATE.equalsIgnoreCase(SCREEN_STATE_CONTINUE)) {
             if (UserInput.isDown(UserInput.UP) || UserInput.isDown(UserInput.DOWN)) {

@@ -1,5 +1,6 @@
 package com.derekentringer.gizmo.component.stage;
 
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,6 +23,10 @@ public class BaseStage extends Stage {
     public BitmapFont mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
 
     public BaseStage() {
+    }
+
+    public boolean isControllerConnected() {
+        return Controllers.getControllers().size > 0;
     }
 
 }

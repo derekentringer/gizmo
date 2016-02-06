@@ -12,6 +12,8 @@ need to map xbox360, xbox one, and ouya controllers
 new additions needed
 ------------------------------------------------------------------------------
 
+cleanup the startStage in prep for controls
+
 create controls screen w/pixelated controller graphic
 
 filter out enemies so you can't stand on them but they still deal damage
