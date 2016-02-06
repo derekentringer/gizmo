@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.PhantomBossActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
@@ -87,9 +86,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     private CameraManager mCameraManager = new CameraManager();
     private DropManager mDropManager = new DropManager();
 
-    private World mWorld;
     private MapParser mMapParser;
-    private SpriteBatch mSpriteBatch;
 
     private PlayerActor mPlayerActor;
     private PlayerModel mPlayerModel;

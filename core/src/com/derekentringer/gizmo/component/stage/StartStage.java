@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.misc.WhiteDotActor;
@@ -34,9 +33,6 @@ public class StartStage extends BaseStage {
     private static final String SCREEN_STATE_CONTINUE = "SCREEN_STATE_CONTINUE";
 
     private StartScreen mStartScreen;
-    private World mWorld;
-    private OrthographicCamera mStartStageCamera;
-    private SpriteBatch mSpriteBatch;
 
     private PlayerModel mPlayerModel;
 
@@ -45,16 +41,10 @@ public class StartStage extends BaseStage {
     private String mContinue = Gizmo.getI18NBundle().get("startStage_continue");
     private String mRestart = Gizmo.getI18NBundle().get("startStage_restart");
 
-    private BitmapFont mBitmapFont;
     private GlyphLayout layoutStartContinue;
     private GlyphLayout layoutRestart;
     private String startStringDisplay;
     private String restartStringDisplay;
-
-    private int centerScreenX = Constants.GAME_WIDTH / 2;
-    private int centerScreenY = Constants.GAME_HEIGHT / 2;
-
-    private int screenWidth = Constants.GAME_WIDTH;
 
     private String SCREEN_STATE;
 
@@ -68,9 +58,9 @@ public class StartStage extends BaseStage {
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
-        mStartStageCamera = new OrthographicCamera();
-        mStartStageCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mStartStageCamera.update();
+        mOrthographicCamera = new OrthographicCamera();
+        mOrthographicCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mOrthographicCamera.update();
 
         mWorld = WorldUtils.createWorld();
         mSpriteBatch = new SpriteBatch();
@@ -153,7 +143,7 @@ public class StartStage extends BaseStage {
     public void draw() {
         super.draw();
 
-        mSpriteBatch.setProjectionMatrix(mStartStageCamera.combined);
+        mSpriteBatch.setProjectionMatrix(mOrthographicCamera.combined);
 
         for (BaseActor actor : mStartStageActorsArray) {
             actor.render(mSpriteBatch);

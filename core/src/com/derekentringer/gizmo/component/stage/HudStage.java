@@ -33,9 +33,6 @@ public class HudStage extends BaseStage implements IGameStage {
     private static final String FADE_OUT = "FADE_OUT";
     private static final String FADE_COMPLETE = "FADE_COMPLETE";
 
-    private OrthographicCamera mHudCamera;
-    private SpriteBatch mSpriteBatch;
-
     private Vector2 mHudLivesPosition = new Vector2();
     private Vector2 mHudHealthPosition = new Vector2();
     private Vector2 mHudCrystalsPosition = new Vector2();
@@ -92,9 +89,9 @@ public class HudStage extends BaseStage implements IGameStage {
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
-        mHudCamera = new OrthographicCamera();
-        mHudCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        mHudCamera.update();
+        mOrthographicCamera = new OrthographicCamera();
+        mOrthographicCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        mOrthographicCamera.update();
 
         mRedShapeRendererTop = new ShapeRenderer();
         mRedShapeRendererBottom = new ShapeRenderer();
@@ -139,7 +136,7 @@ public class HudStage extends BaseStage implements IGameStage {
     public void draw() {
         super.draw();
 
-        mSpriteBatch.setProjectionMatrix(mHudCamera.combined);
+        mSpriteBatch.setProjectionMatrix(mOrthographicCamera.combined);
 
         if (!mProjectionMatrixSet) {
             mWhiteShapeRendererTop.setProjectionMatrix(mSpriteBatch.getProjectionMatrix());
@@ -285,7 +282,7 @@ public class HudStage extends BaseStage implements IGameStage {
         GLog.d(TAG, "mHudCrystalsPosition.x: " + mHudCrystalsPosition.x);
         GLog.d(TAG, "mHudCrystalsPosition.y: " + mHudCrystalsPosition.y);
 
-        mHudCamera.update();
+        mOrthographicCamera.update();
     }
 
     @Override
