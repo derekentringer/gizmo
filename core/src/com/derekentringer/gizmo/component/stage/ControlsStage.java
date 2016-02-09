@@ -12,6 +12,10 @@ public class ControlsStage extends BaseStage {
         mOrthographicCamera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         mOrthographicCamera.update();
         mBitmapFont.getData().setScale(0.3f, 0.3f);
+
+        //load controls actor
+        //set controls text/translations
+        //setup back selection functionality
     }
 
 }
