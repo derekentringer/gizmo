@@ -34,6 +34,7 @@ public class StartStage extends BaseStage {
     private String mPressAnyKey = Gizmo.getI18NBundle().get("startStage_pressAnyKey");
     private String mPressAnyButton = Gizmo.getI18NBundle().get("startStage_pressAnyButton");
     private String mContinue = Gizmo.getI18NBundle().get("startStage_continue");
+    private String mControls = Gizmo.getI18NBundle().get("startStage_controls");
     private String mRestart = Gizmo.getI18NBundle().get("startStage_restart");
 
     private GlyphLayout layoutStartContinue;
