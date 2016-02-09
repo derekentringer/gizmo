@@ -218,7 +218,7 @@ public class StartStage extends BaseStage {
                     mStartScreen.startGame();
                 }
                 else if (mStartStageActorsArray.contains(whiteDotControls)) {
-                    mControlsScreen.show();
+                    mStartScreen.viewGameControls();
                 }
             }
         }
@@ -231,7 +231,7 @@ public class StartStage extends BaseStage {
                     mStartScreen.startGame();
                 }
                 else {
-                    mControlsScreen.show();
+                    mStartScreen.viewGameControls();
                 }
             }
         }

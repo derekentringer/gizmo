@@ -22,6 +22,10 @@ public class StartScreen extends BaseScreen {
         this.dispose();
     }
 
+    public void viewGameControls() {
+        mGizmo.setScreen(new ControlsScreen(mGizmo));
+    }
+
     @Override
     public void show() {
     }
