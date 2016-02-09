@@ -12,13 +12,13 @@ need to map xbox360, xbox one, and ouya controllers
 new additions needed
 ------------------------------------------------------------------------------
 
-cleanup the startStage in prep for controls
+setup the controls screen with the new actor
 
-create controls screen w/pixelated controller graphic
-
-filter out enemies so you can't stand on them but they still deal damage
+refine the controls screen w/pixelated controller graphic & add text where needed
 
 give enemies flinching/destroy animation (something diff than the player blinking)
+
+filter out enemies so you can't stand on them but they still deal damage
 
 create player thought bubbles for small text and hints triggered by hidden layers in tiles?
 
