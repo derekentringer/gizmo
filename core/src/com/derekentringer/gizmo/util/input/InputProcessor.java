@@ -21,9 +21,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean keyDown(int keycode) {
         //GLog.d(TAG, "keyDown keycode: " + keycode);
 
-        if(keycode > -1) {
+        /*if(keycode > -1) {
             UserInput.setKey(UserInput.ANY_KEY, true);
-        }
+        }*/
 
         if(keycode == Input.Keys.BACK){
             UserInput.setKey(UserInput.BACK_BUTTON, true);
@@ -86,9 +86,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean keyUp(int keycode) {
         //GLog.d(TAG, "keyUp keycode: " + keycode);
 
-        if(keycode > -1) {
+        /*if(keycode > -1) {
             UserInput.setKey(UserInput.ANY_KEY, false);
-        }
+        }*/
 
         if (keycode == Input.Keys.BACK) {
             UserInput.setKey(UserInput.BACK_BUTTON, false);
@@ -160,9 +160,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
         //GLog.d(TAG, "buttonDown Code: " + buttonCode);
-        if(buttonCode > -1) {
+        /*if(buttonCode > -1) {
             UserInput.setKey(UserInput.ANY_BUTTON, true);
-        }
+        }*/
         if (buttonCode == PS4Controller.BUTTON_START
                 || buttonCode == NexusPlayerController.BUTTON_BACK) {
             UserInput.setKey(UserInput.START_BUTTON, true);
@@ -184,9 +184,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean buttonUp(Controller controller, int buttonCode) {
-        if(buttonCode > -1) {
+        /*if(buttonCode > -1) {
             UserInput.setKey(UserInput.ANY_BUTTON, false);
-        }
+        }*/
         if (buttonCode == PS4Controller.BUTTON_START
                 || buttonCode == NexusPlayerController.BUTTON_BACK) {
             UserInput.setKey(UserInput.START_BUTTON, false);

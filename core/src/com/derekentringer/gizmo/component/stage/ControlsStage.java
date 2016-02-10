@@ -28,15 +28,18 @@ public class ControlsStage extends BaseStage {
         UserInput.update();
         handleInput();
 
+        mSpriteBatch.setProjectionMatrix(mOrthographicCamera.combined);
+
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            mSpriteBatch.draw(mController, centerScreenX - mController.getWidth() / 2, centerScreenY - mController.getHeight() / 2);
+            mSpriteBatch.draw(mController, centerScreenX - (mController.getWidth() / 2), centerScreenY - (mController.getHeight() / 2));
         mSpriteBatch.end();
     }
 
     private void handleInput() {
-        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
-            //mControlsScreen.goBackToStartScreen();
+        if (UserInput.isDown(UserInput.JUMP_BUTTON)
+                && !UserInput.isPressed(UserInput.JUMP_BUTTON)) {
+            mControlsScreen.goBackToStartScreen();
         }
     }
 

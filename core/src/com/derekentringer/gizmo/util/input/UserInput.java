@@ -21,9 +21,6 @@ public class UserInput {
     public static final int RUN_BUTTON = 5;
     public static final int DIG_BUTTON = 6;
 
-    public static final int ANY_KEY = 7;
-    public static final int ANY_BUTTON = 8;
-
     public static final int UP = 9;
     public static final int DOWN = 10;
 
@@ -59,7 +56,7 @@ public class UserInput {
     }
 
     public static boolean isPressed(int i) {
-        return currentKey[i] && !previousKey[i];
+        return currentKey[i] && previousKey[i];
     }
 
 }
