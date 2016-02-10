@@ -113,14 +113,10 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     public void init(RoomModel room) {
         mRoomModel = room;
-        setupWorld();
+        mWorld.setContactListener(this);
         loadRoom(room, DoorType.DOOR_PREVIOUS);
         mCameraManager.createGameCameras();
         mDropManager.addListener(this);
-    }
-
-    private void setupWorld() {
-        mWorld.setContactListener(this);
     }
 
     public void loadRoom(RoomModel room, String whichDoor) {

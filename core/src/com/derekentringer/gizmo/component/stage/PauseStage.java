@@ -46,10 +46,6 @@ public class PauseStage extends BaseStage {
         gameWidthHeight.x = Constants.GAME_WIDTH;
         gameWidthHeight.y = Constants.GAME_HEIGHT;
 
-        loadBitmap();
-    }
-
-    private void loadBitmap() {
         layoutPause = new GlyphLayout(mBitmapFont, mPaused);
         pauseStringDisplay = mPaused;
     }

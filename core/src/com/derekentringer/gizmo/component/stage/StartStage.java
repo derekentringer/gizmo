@@ -6,7 +6,6 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.misc.WhiteDotActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
-import com.derekentringer.gizmo.component.screen.ControlsScreen;
 import com.derekentringer.gizmo.component.screen.StartScreen;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.misc.WhiteDotModel;
@@ -33,7 +32,6 @@ public class StartStage extends BaseStage {
     private static final String SELECTION_STATE_CONTROLS = "SELECTION_STATE_CONTROLS";
 
     private StartScreen mStartScreen;
-    private ControlsScreen mControlsScreen;
 
     private PlayerModel mPlayerModel;
 
