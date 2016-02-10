@@ -59,4 +59,8 @@ public class UserInput {
         return currentKey[i] && previousKey[i];
     }
 
+    public static void resetKey(int i, boolean b) {
+        currentKey[i] = b;
+    }
+
 }

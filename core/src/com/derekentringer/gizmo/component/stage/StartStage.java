@@ -31,6 +31,9 @@ public class StartStage extends BaseStage {
     private static final String SELECTION_STATE_RESTART = "SELECTION_STATE_RESTART";
     private static final String SELECTION_STATE_CONTROLS = "SELECTION_STATE_CONTROLS";
 
+    private String SCREEN_STATE;
+    private String SELECTION_STATE;
+
     private StartScreen mStartScreen;
 
     private PlayerModel mPlayerModel;
@@ -40,27 +43,24 @@ public class StartStage extends BaseStage {
     private String mControls = Gizmo.getI18NBundle().get("startStage_controls");
     private String mRestart = Gizmo.getI18NBundle().get("startStage_restart");
 
-    private GlyphLayout layoutStart;
-    private GlyphLayout layoutRestart;
-    private GlyphLayout layoutControls;
+    private GlyphLayout mLayoutStart;
+    private GlyphLayout mLayoutRestart;
+    private GlyphLayout mLayoutControls;
 
-    private String startStringDisplay;
-    private String restartStringDisplay;
-    private String controlsStringDisplay;
+    private String mStartStringDisplay;
+    private String mRestartStringDisplay;
+    private String mControlsStringDisplay;
 
-    private String SCREEN_STATE;
-    private String SELECTION_STATE;
+    private float mFontXStart;
+    private float mFontXRestart;
+    private float mFontXControls;
 
-    private float fontXStart;
-    private float fontXRestart;
-    private float fontXControls;
+    private boolean mToggleSelectionFlag = false;
 
-    private boolean toggleSelectionFlag = false;
-
-    private WhiteDotActor whiteDotStart;
-    private WhiteDotActor whiteDotContinue;
-    private WhiteDotActor whiteDotRestart;
-    private WhiteDotActor whiteDotControls;
+    private WhiteDotActor mWhiteDotStart;
+    private WhiteDotActor mWhiteDotContinue;
+    private WhiteDotActor mWhiteDotRestart;
+    private WhiteDotActor mWhiteDotControls;
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
@@ -68,6 +68,10 @@ public class StartStage extends BaseStage {
         mOrthographicCamera.update();
 
         mBitmapFont.getData().setScale(0.3f, 0.3f);
+
+        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+            UserInput.resetKey(UserInput.JUMP_BUTTON, false);
+        }
 
         loadPlayerHearts();
     }
@@ -100,59 +104,59 @@ public class StartStage extends BaseStage {
     }
 
     private void addStartText() {
-        layoutStart = new GlyphLayout(mBitmapFont, mStart);
-        fontXStart = centerScreenX - layoutStart.width / 2;
-        startStringDisplay = mStart;
+        mLayoutStart = new GlyphLayout(mBitmapFont, mStart);
+        mFontXStart = centerScreenX - mLayoutStart.width / 2;
+        mStartStringDisplay = mStart;
 
-        layoutControls = new GlyphLayout(mBitmapFont, mControls);
-        fontXControls = centerScreenX - layoutControls.width / 2;
-        controlsStringDisplay = mControls;
+        mLayoutControls = new GlyphLayout(mBitmapFont, mControls);
+        mFontXControls = centerScreenX - mLayoutControls.width / 2;
+        mControlsStringDisplay = mControls;
 
         createWhiteDotStart();
     }
 
     private void addContinueText() {
-        layoutStart = new GlyphLayout(mBitmapFont, mContinue);
-        fontXStart = centerScreenX - layoutStart.width / 2;
-        startStringDisplay = mContinue;
+        mLayoutStart = new GlyphLayout(mBitmapFont, mContinue);
+        mFontXStart = centerScreenX - mLayoutStart.width / 2;
+        mStartStringDisplay = mContinue;
 
-        layoutRestart = new GlyphLayout(mBitmapFont, mRestart);
-        fontXRestart = centerScreenX - layoutRestart.width / 2;
-        restartStringDisplay = mRestart;
+        mLayoutRestart = new GlyphLayout(mBitmapFont, mRestart);
+        mFontXRestart = centerScreenX - mLayoutRestart.width / 2;
+        mRestartStringDisplay = mRestart;
 
-        layoutControls = new GlyphLayout(mBitmapFont, mControls);
-        fontXControls = centerScreenX - layoutControls.width / 2;
-        controlsStringDisplay = mControls;
+        mLayoutControls = new GlyphLayout(mBitmapFont, mControls);
+        mFontXControls = centerScreenX - mLayoutControls.width / 2;
+        mControlsStringDisplay = mControls;
 
         createWhiteDotContinue();
     }
 
     private void createWhiteDotStart() {
-        whiteDotStart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(fontXStart - 10, 41)));
-        whiteDotStart.setName(WhiteDotModel.WHITE_DOT);
-        addActor(whiteDotStart);
-        mStartStageActorsArray.add(whiteDotStart);
+        mWhiteDotStart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 41)));
+        mWhiteDotStart.setName(WhiteDotModel.WHITE_DOT);
+        addActor(mWhiteDotStart);
+        mStartStageActorsArray.add(mWhiteDotStart);
     }
 
     private void createWhiteDotContinue() {
-        whiteDotContinue = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(fontXStart - 10, 56)));
-        whiteDotContinue.setName(WhiteDotModel.WHITE_DOT);
-        addActor(whiteDotContinue);
-        mStartStageActorsArray.add(whiteDotContinue);
+        mWhiteDotContinue = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 56)));
+        mWhiteDotContinue.setName(WhiteDotModel.WHITE_DOT);
+        addActor(mWhiteDotContinue);
+        mStartStageActorsArray.add(mWhiteDotContinue);
     }
 
     private void createWhiteDotRestart() {
-        whiteDotRestart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(fontXRestart - 10, 41)));
-        whiteDotRestart.setName(WhiteDotModel.WHITE_DOT);
-        addActor(whiteDotRestart);
-        mStartStageActorsArray.add(whiteDotRestart);
+        mWhiteDotRestart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXRestart - 10, 41)));
+        mWhiteDotRestart.setName(WhiteDotModel.WHITE_DOT);
+        addActor(mWhiteDotRestart);
+        mStartStageActorsArray.add(mWhiteDotRestart);
     }
 
     private void createWhiteDotControls() {
-        whiteDotControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(fontXControls - 10, 26)));
-        whiteDotControls.setName(WhiteDotModel.WHITE_DOT);
-        addActor(whiteDotControls);
-        mStartStageActorsArray.add(whiteDotControls);
+        mWhiteDotControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControls - 10, 26)));
+        mWhiteDotControls.setName(WhiteDotModel.WHITE_DOT);
+        addActor(mWhiteDotControls);
+        mStartStageActorsArray.add(mWhiteDotControls);
     }
 
     @Override
@@ -167,14 +171,14 @@ public class StartStage extends BaseStage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-            if(restartStringDisplay != "" && restartStringDisplay != null) {
-                mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontXStart, 60);
-                mBitmapFont.draw(mSpriteBatch, restartStringDisplay, fontXRestart, 45);
+            if(mRestartStringDisplay != "" && mRestartStringDisplay != null) {
+                mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 60);
+                mBitmapFont.draw(mSpriteBatch, mRestartStringDisplay, mFontXRestart, 45);
             }
             else {
-                mBitmapFont.draw(mSpriteBatch, startStringDisplay, fontXStart, 45);
+                mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 45);
             }
-        mBitmapFont.draw(mSpriteBatch, controlsStringDisplay, fontXControls, 30);
+            mBitmapFont.draw(mSpriteBatch, mControlsStringDisplay, mFontXControls, 30);
         mSpriteBatch.end();
     }
 
@@ -208,14 +212,14 @@ public class StartStage extends BaseStage {
                 setSelection(UserInput.isDown(UserInput.UP));
             }
             if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
-                if (mStartStageActorsArray.contains(whiteDotContinue)) {
+                if (mStartStageActorsArray.contains(mWhiteDotContinue)) {
                     mStartScreen.startGame();
                 }
-                else if (mStartStageActorsArray.contains(whiteDotRestart)) {
+                else if (mStartStageActorsArray.contains(mWhiteDotRestart)) {
                     LocalDataManager.resetAllPlayerData();
                     mStartScreen.startGame();
                 }
-                else if (mStartStageActorsArray.contains(whiteDotControls)) {
+                else if (mStartStageActorsArray.contains(mWhiteDotControls)) {
                     mStartScreen.viewGameControls();
                 }
             }
@@ -225,7 +229,7 @@ public class StartStage extends BaseStage {
                 toggleSelection();
             }
             if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
-                if (mStartStageActorsArray.contains(whiteDotStart)) {
+                if (mStartStageActorsArray.contains(mWhiteDotStart)) {
                     mStartScreen.startGame();
                 }
                 else {
@@ -237,33 +241,33 @@ public class StartStage extends BaseStage {
         //reset toggle flag
         if (!UserInput.isDown(UserInput.UP)
                 && !UserInput.isDown(UserInput.DOWN)) {
-            toggleSelectionFlag = false;
+            mToggleSelectionFlag = false;
         }
     }
 
     private void toggleSelection() {
-        if (toggleSelectionFlag == false) {
-            toggleSelectionFlag = true;
-            if (mStartStageActorsArray.contains(whiteDotStart)) {
-                mStartStageActorsArray.remove(whiteDotStart);
-                whiteDotStart.remove();
+        if (mToggleSelectionFlag == false) {
+            mToggleSelectionFlag = true;
+            if (mStartStageActorsArray.contains(mWhiteDotStart)) {
+                mStartStageActorsArray.remove(mWhiteDotStart);
+                mWhiteDotStart.remove();
                 createWhiteDotControls();
             }
             else {
-                mStartStageActorsArray.remove(whiteDotControls);
-                whiteDotControls.remove();
+                mStartStageActorsArray.remove(mWhiteDotControls);
+                mWhiteDotControls.remove();
                 createWhiteDotStart();
             }
         }
     }
 
     private void setSelection(boolean upPressed) {
-        if (toggleSelectionFlag == false) {
-            toggleSelectionFlag = true;
+        if (mToggleSelectionFlag == false) {
+            mToggleSelectionFlag = true;
             if (SELECTION_STATE.equals(SELECTION_STATE_CONTINUE)) {
-                if (mStartStageActorsArray.contains(whiteDotContinue)) {
-                    mStartStageActorsArray.remove(whiteDotContinue);
-                    whiteDotContinue.remove();
+                if (mStartStageActorsArray.contains(mWhiteDotContinue)) {
+                    mStartStageActorsArray.remove(mWhiteDotContinue);
+                    mWhiteDotContinue.remove();
                 }
                 if (upPressed) {
                     SELECTION_STATE = SELECTION_STATE_CONTROLS;
@@ -275,9 +279,9 @@ public class StartStage extends BaseStage {
                 }
             }
             else if (SELECTION_STATE.equals(SELECTION_STATE_RESTART)) {
-                if (mStartStageActorsArray.contains(whiteDotRestart)) {
-                    mStartStageActorsArray.remove(whiteDotRestart);
-                    whiteDotRestart.remove();
+                if (mStartStageActorsArray.contains(mWhiteDotRestart)) {
+                    mStartStageActorsArray.remove(mWhiteDotRestart);
+                    mWhiteDotRestart.remove();
                 }
                 if (upPressed) {
                     SELECTION_STATE = SELECTION_STATE_CONTINUE;
@@ -289,9 +293,9 @@ public class StartStage extends BaseStage {
                 }
             }
             else if (SELECTION_STATE.equals(SELECTION_STATE_CONTROLS)) {
-                if (mStartStageActorsArray.contains(whiteDotControls)) {
-                    mStartStageActorsArray.remove(whiteDotControls);
-                    whiteDotControls.remove();
+                if (mStartStageActorsArray.contains(mWhiteDotControls)) {
+                    mStartStageActorsArray.remove(mWhiteDotControls);
+                    mWhiteDotControls.remove();
                 }
                 if (upPressed) {
                     SELECTION_STATE = SELECTION_STATE_RESTART;
