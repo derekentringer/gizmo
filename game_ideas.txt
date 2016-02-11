@@ -4,17 +4,13 @@ TODO
 bugs/blockers
 ------------------------------------------------------------------------------
 
-doors are still slightly bugged in detecting player in vacinity
+doors are still slightly bugged in detecting player in vacinity - confirmed
 
-need to map xbox360, xbox one, and ouya controllers
+need to map xbox360, xbox one, ouya, fire tv controllers
 
 
 new additions needed
 ------------------------------------------------------------------------------
-
-setup the controls screen with the new actor
-
-refine the controls screen w/pixelated controller graphic & add text where needed
 
 give enemies flinching/destroy animation (something diff than the player blinking)
 
@@ -24,7 +20,10 @@ create player thought bubbles for small text and hints triggered by hidden layer
 
 create dialog box for larger strings and story progression
 
+show keys? inventory?
+
 remember which enemies are destroyed in a level? (prevent farming)
+	- not sure if we want to clear them all though
 
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
 	- create a box around each type of weapon and show the graphic as it is choosen
@@ -48,6 +47,8 @@ plan out the levels, enemies, progression
 
 work on laying out the world to build up the levels for the entire game
 
+refine the controls screen - add text where needed
+
 
 neat to haves
 ------------------------------------------------------------------------------
@@ -58,16 +59,16 @@ dynamic levels or placed blocks and enemies based on player progression
 	- if player already entered room and comes back at a certain point, show a specific layer containg items, doors, blocks, etc
 
 add new screens
+	- inventory (this might be doable based on new screen designs)
 	- choose game save slot
-	- inventory
-
+	
 add debug mode for the game
 	- teleport to any level/destination
 	- give full lives
 	- give full health
 	- give any items
 
-costumes
+costumes?
 	- raptor
 	- taco
 	- mech
@@ -85,8 +86,6 @@ add a power up for barking
 
 add barking ability for ghosts (the most basic attack)
 	- phantoms run away when gizmo barks
-
-player stats - show keys? inventory
 
 - game is linear, but, certain ways to advance past levels 
 with power ups and digging
