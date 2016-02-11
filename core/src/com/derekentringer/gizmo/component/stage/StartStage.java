@@ -8,7 +8,7 @@ import com.derekentringer.gizmo.component.actor.menu.WhiteDotActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
 import com.derekentringer.gizmo.manager.LocalDataManager;
-import com.derekentringer.gizmo.model.misc.WhiteDotModel;
+import com.derekentringer.gizmo.model.menu.WhiteDotModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;

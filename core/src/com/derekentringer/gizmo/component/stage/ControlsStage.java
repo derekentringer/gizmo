@@ -7,7 +7,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.menu.WhiteDotActor;
 import com.derekentringer.gizmo.component.screen.ControlsScreen;
-import com.derekentringer.gizmo.model.misc.WhiteDotModel;
+import com.derekentringer.gizmo.model.menu.WhiteDotModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
