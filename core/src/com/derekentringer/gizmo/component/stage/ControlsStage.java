@@ -29,6 +29,7 @@ public class ControlsStage extends BaseStage {
 
     private ControlsScreen mControlsScreen;
     private Texture mController;
+    private Texture mKeyboard;
     private Texture mCurrentTexture;
 
     private String mControllerControls = Gizmo.getI18NBundle().get("controlsStage_controller");
@@ -59,12 +60,12 @@ public class ControlsStage extends BaseStage {
         mOrthographicCamera.update();
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
-        mController = Gizmo.assetManager.get("res/image/controller/controller.png", Texture.class);
-
-        mCurrentTexture = mController;
+        mController = Gizmo.assetManager.get("res/image/controls/controller.png", Texture.class);
+        mKeyboard = Gizmo.assetManager.get("res/image/controls/keyboard.png", Texture.class);
 
         SELECTION_STATE = SELECTION_STATE_CONTROLLER;
 
+        showController();
         setupMenu();
     }
 
@@ -126,6 +127,7 @@ public class ControlsStage extends BaseStage {
     }
 
     private void createWhiteDotController() {
+        showController();
         mWhiteDotControllerControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControllerControls - 10, 56)));
         mWhiteDotControllerControls.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotControllerControls);
@@ -133,6 +135,7 @@ public class ControlsStage extends BaseStage {
     }
 
     private void createWhiteDotKeyboard() {
+        showKeyboard();
         mWhiteDotKeyboardControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXKeyboardControls - 10, 41)));
         mWhiteDotKeyboardControls.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotKeyboardControls);
@@ -217,6 +220,14 @@ public class ControlsStage extends BaseStage {
                 }
             }
         }
+    }
+
+    private void showController() {
+        mCurrentTexture = mController;
+    }
+
+    private void showKeyboard() {
+        mCurrentTexture = mKeyboard;
     }
 
     @Override
