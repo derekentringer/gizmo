@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.misc.WhiteDotActor;
+import com.derekentringer.gizmo.component.actor.menu.WhiteDotActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
 import com.derekentringer.gizmo.manager.LocalDataManager;

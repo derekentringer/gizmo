@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.misc;
+package com.derekentringer.gizmo.component.actor.menu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

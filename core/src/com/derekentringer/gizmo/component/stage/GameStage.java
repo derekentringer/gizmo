@@ -17,10 +17,10 @@ import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangBloodSto
 import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangEmeraldActor;
 import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
-import com.derekentringer.gizmo.component.actor.misc.BlockBreakActor;
-import com.derekentringer.gizmo.component.actor.misc.pickup_animation.PickupHeartActor;
-import com.derekentringer.gizmo.component.actor.misc.pickup_animation.PickupKeyActor;
-import com.derekentringer.gizmo.component.actor.misc.pickup_animation.PickupLifeActor;
+import com.derekentringer.gizmo.component.actor.blocks.BlockBreakActor;
+import com.derekentringer.gizmo.component.actor.pickup.PickupHeartActor;
+import com.derekentringer.gizmo.component.actor.pickup.PickupKeyActor;
+import com.derekentringer.gizmo.component.actor.pickup.PickupLifeActor;
 import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
 import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
