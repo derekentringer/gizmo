@@ -12,6 +12,8 @@ need to map xbox360, xbox one, ouya, fire tv controllers
 new additions needed
 ------------------------------------------------------------------------------
 
+check gradle files for updates
+
 add the translations for new menu items
 
 give enemies flinching/destroy animation (something diff than the player blinking)
