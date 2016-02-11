@@ -13,11 +13,11 @@ import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActo
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
-import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangAmethystModel;
-import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangBloodStoneModel;
-import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangEmeraldModel;
-import com.derekentringer.gizmo.model.player_item.boomerang.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.map.MapParser;
 

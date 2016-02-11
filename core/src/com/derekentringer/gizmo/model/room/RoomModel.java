@@ -3,7 +3,7 @@ package com.derekentringer.gizmo.model.room;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;

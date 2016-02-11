@@ -13,7 +13,7 @@ import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;

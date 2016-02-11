@@ -1,9 +1,8 @@
-package com.derekentringer.gizmo.model.player_item.boomerang;
+package com.derekentringer.gizmo.model.item.boomerang;
 
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
 
-public class BoomerangAmethystModel extends BasePlayerItemModel {
+public class BoomerangAmethystModel extends com.derekentringer.gizmo.model.item.BasePlayerItemModel {
 
     public static final String BOOMERANG_AMETHYST = "BOOMERANG_AMETHYST";
 

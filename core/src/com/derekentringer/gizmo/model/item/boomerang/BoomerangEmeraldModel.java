@@ -1,7 +1,7 @@
-package com.derekentringer.gizmo.model.player_item.boomerang;
+package com.derekentringer.gizmo.model.item.boomerang;
 
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 
 public class BoomerangEmeraldModel extends BasePlayerItemModel {
 

@@ -2,7 +2,7 @@ package com.derekentringer.gizmo.model.player;
 
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
-import com.derekentringer.gizmo.model.player_item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 
 import java.util.ArrayList;
