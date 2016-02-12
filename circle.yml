@@ -25,7 +25,7 @@ test:
             timeout: 360
         - (./gradlew desktop:dist):
             timeout: 360
-        - cp -r ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/build/outputs/apk/ $CIRCLE_ARTIFACTS
+        - cp -r ${HOME}/${CIRCLE_PROJECT_REPONAME}/android/build/outputs/apk/ $CIRCLE_ARTIFACTS
 
 #        - cp -r ~/android/build/outputs $CIRCLE_ARTIFACTS
 #        - cp -r /home/ubuntu/gizmo/android/app/build/outputs/apk/
