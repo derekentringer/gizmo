@@ -25,4 +25,4 @@ test:
             timeout: 360
         - (./gradlew desktop:dist):
             timeout: 360
-#        - cp -r ~/android/build/outputs $CIRCLE_ARTIFACTS
+        - cp -r ~/android/build/outputs $CIRCLE_ARTIFACTS
