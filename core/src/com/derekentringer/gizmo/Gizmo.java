@@ -29,13 +29,8 @@ public class Gizmo extends Game {
         Gdx.app.setLogLevel(Constants.LOG_LEVEL);
         Gdx.graphics.setVSync(true);
 
-        //fullscreen causes issues with debugging
         if (!Constants.IS_DEBUG) {
-            Gdx.graphics.setDisplayMode(
-                    Gdx.graphics.getDesktopDisplayMode().width,
-                    Gdx.graphics.getDesktopDisplayMode().height,
-                    true
-            );
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         }
 
         assetManager = new AssetManager();
