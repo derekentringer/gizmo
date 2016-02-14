@@ -17,7 +17,7 @@ public class Constants {
     public static final short IGNORE_ENTITY = 0x1 << 5;
 
     // debugging
-    public static final boolean IS_DEBUG = false;
+    public static final boolean IS_DEBUG = true;
     public static final boolean IS_DEBUG_BOX2D = false;
     public static final int LOG_LEVEL = Logger.DEBUG;
     public static final Locale debugLocale = new Locale("en");

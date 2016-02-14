@@ -26,8 +26,8 @@ public class DropManager extends Stage {
     private static final int MIN_DROPS = 0;
     private static final int MAX_DROPS = 3;
 
-    private static final int MIN_BOSS_DROPS = 50;
-    private static final int MAX_BOSS_DROPS = 100;
+    private static final int MIN_BOSS_DROPS = 15;
+    private static final int MAX_BOSS_DROPS = 35;
 
     private ArrayList<IDropManager> listeners = new ArrayList<IDropManager>();
 
