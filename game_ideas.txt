@@ -12,8 +12,6 @@ need to map xbox360, xbox one, ouya, fire tv controllers
 new additions needed
 ------------------------------------------------------------------------------
 
-add the translations for new menu items
-
 give enemies flinching/destroy animation (something diff than the player blinking)
 
 filter out enemies so you can't stand on them but they still deal damage
@@ -39,7 +37,7 @@ how are we using blue crystals? buying objects at certain points in the game
 	- buy only upgrades
 
 more enemies
-	- (insert random creativity after creating bosses)
+	- (insert random creativity after creating bosses...for levels layout/colors etc)
 
 more weapons
 	- sword (power up shoots force wave)
