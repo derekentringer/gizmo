@@ -8,24 +8,15 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.boss.phantom.PhantomBossActor;
+import com.derekentringer.gizmo.component.actor.block.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
-import com.derekentringer.gizmo.component.actor.enemy.phantom.PhantomActor;
-import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangAmethystActor;
-import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangBloodStoneActor;
-import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangEmeraldActor;
-import com.derekentringer.gizmo.component.actor.item.boomerang.BoomerangWoodActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
-import com.derekentringer.gizmo.component.actor.block.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupHeartActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupKeyActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupLifeActor;
-import com.derekentringer.gizmo.component.actor.object.DropCrystalBlueActor;
-import com.derekentringer.gizmo.component.actor.object.DropHeartActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
-import com.derekentringer.gizmo.component.actor.structure.destroyable.DestroyableBlockFallActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBloodActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBronzeActor;
@@ -40,24 +31,19 @@ import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.body.DeleteBody;
-import com.derekentringer.gizmo.model.boss.phantom.PhantomLargeModel;
-import com.derekentringer.gizmo.model.enemy.phantom.PhantomModel;
 import com.derekentringer.gizmo.model.block.BlockBreakModel;
-import com.derekentringer.gizmo.model.pickup.PickupHeartModel;
-import com.derekentringer.gizmo.model.pickup.PickupKeyModel;
-import com.derekentringer.gizmo.model.pickup.PickupLifeModel;
-import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
-import com.derekentringer.gizmo.model.object.DropHeartModel;
-import com.derekentringer.gizmo.model.object.KeyModel;
-import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.pickup.PickupHeartModel;
+import com.derekentringer.gizmo.model.pickup.PickupKeyModel;
+import com.derekentringer.gizmo.model.pickup.PickupLifeModel;
+import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
-import com.derekentringer.gizmo.model.structure.destroyable.DestroyableBlockFallModel;
 import com.derekentringer.gizmo.model.structure.destroyable.interfaces.IDestroyable;
 import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
@@ -196,39 +182,9 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
         mSpriteBatch.setProjectionMatrix(mCameraManager.getMainCamera().combined);
 
-        // actor render loop
-        // pass the action position to these
-        // actors when they are added to actors array
-        // TODO make better?? don't let this get out of control
         for (BaseActor actor : mMapParser.getActorsArray()) {
             actor.render(mSpriteBatch);
-            if (actor.getName().equalsIgnoreCase(PhantomModel.PHANTOM)) {
-                ((PhantomActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
-                ((PhantomBossActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
-                ((BoomerangWoodActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
-                ((BoomerangEmeraldActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
-                ((BoomerangAmethystActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
-                ((BoomerangBloodStoneActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(DropHeartModel.HEART_SMALL)) {
-                ((DropHeartActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(DropCrystalBlueModel.CRYSTAL_BLUE)) {
-                ((DropCrystalBlueActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
-            else if (actor.getName().equalsIgnoreCase(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL)) {
-                ((DestroyableBlockFallActor) actor).setPlayerPosition(mPlayerActor.getPosition());
-            }
+            actor.setPlayerPosition(mPlayerActor.getPosition());
         }
 
         // checks for the player position

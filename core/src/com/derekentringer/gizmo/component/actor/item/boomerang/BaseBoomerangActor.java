@@ -66,13 +66,4 @@ public class BaseBoomerangActor extends BaseActor {
         }
     }
 
-    public Vector2 getPlayerPosition() {
-        return mPlayerPosition;
-    }
-
-    public void setPlayerPosition(Vector2 playerPosition) {
-        mPlayerPosition.x = playerPosition.x;
-        mPlayerPosition.y = playerPosition.y;
-    }
-
 }

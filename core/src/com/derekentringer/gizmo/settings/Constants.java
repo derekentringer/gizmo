@@ -16,10 +16,6 @@ public class Constants {
     public static final short DROP_ENTITY = 0x1 << 4;
     public static final short IGNORE_ENTITY = 0x1 << 5;
 
-    public static final short MASK_PLAYER = ENEMY_ENTITY | WORLD_ENTITY; // or ~PLAYER_ENTITY
-    public static final short MASK_ENEMY = PLAYER_ENTITY | WORLD_ENTITY; // or ~ENEMY_ENTITY
-    public static final short MASK_WORLD = -1;
-
     // debugging
     public static final boolean IS_DEBUG = true;
     public static final boolean IS_DEBUG_BOX2D = false;

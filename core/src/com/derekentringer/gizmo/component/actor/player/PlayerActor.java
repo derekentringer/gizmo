@@ -177,13 +177,15 @@ public class PlayerActor extends BaseActor {
     }
 
     public void setHitEnemy(int healthDamage) {
-        applyFlinchForce();
         if (!mIsFlinching) {
             mPlayerModel.setHealth(mPlayerModel.getHealth() - healthDamage);
             applyFlinchForce();
             for (IPlayer listener : listeners) {
                 listener.playerGotHit(mPlayerModel.getHealth());
             }
+        }
+        else {
+            applyFlinchForce();
         }
     }
 
