@@ -14,23 +14,10 @@ new additions needed
 
 give enemies flinching/destroy animation (something diff than the player blinking)
 
-create dialog box for larger strings and story progression
-
-show keys? inventory?
-
-remember which enemies are destroyed in a level? (prevent farming)
-	- not sure if we want to clear them all though
-
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
 	- create a box around each type of weapon and show the graphic as it is choosen
 	- animate the box alpha in/out as choosen
 	- put this in upper right?
-
-how are we using blue crystals? buying objects at certain points in the game
-	- hearts
-	- objects
-	- keys
-	- buy only upgrades
 
 more enemies
 	- (insert random creativity after creating bosses...for levels layout/colors etc)
