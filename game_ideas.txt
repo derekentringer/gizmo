@@ -14,10 +14,6 @@ new additions needed
 
 give enemies flinching/destroy animation (something diff than the player blinking)
 
-filter out enemies so you can't stand on them but they still deal damage
-
-create player thought bubbles for small text and hints triggered by hidden layers in tiles?
-
 create dialog box for larger strings and story progression
 
 show keys? inventory?
