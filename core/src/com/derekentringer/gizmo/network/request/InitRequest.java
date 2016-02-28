@@ -19,27 +19,27 @@ public class InitRequest {
         mSdkVersion = sdkVersion;
     }
 
-    public String getmSdkVersion() {
+    public String getSdkVersion() {
         return mSdkVersion;
     }
 
-    public void setmSdkVersion(String mSdkVersion) {
+    public void setSdkVersion(String mSdkVersion) {
         this.mSdkVersion = mSdkVersion;
     }
 
-    public String getmPlatform() {
+    public String getPlatform() {
         return mPlatform;
     }
 
-    public void setmPlatform(String mPlatform) {
+    public void setPlatform(String mPlatform) {
         this.mPlatform = mPlatform;
     }
 
-    public String getmOsVersion() {
+    public String getOsVersion() {
         return mOsVersion;
     }
 
-    public void setmOsVersion(String mOsVersion) {
+    public void setOsVersion(String mOsVersion) {
         this.mOsVersion = mOsVersion;
     }
 

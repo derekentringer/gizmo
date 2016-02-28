@@ -7,6 +7,8 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.derekentringer.gizmo.analytics.Analytics;
+import com.derekentringer.gizmo.analytics.AnalyticsSettings;
+import com.derekentringer.gizmo.analytics.util.GameInfo;
 import com.derekentringer.gizmo.component.screen.LoadingScreen;
 import com.derekentringer.gizmo.network.RetroFitClient;
 import com.derekentringer.gizmo.network.request.InitRequest;
@@ -45,7 +47,9 @@ public class Gizmo extends Game {
         i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.debugLocale);
         i18NBundle = I18NBundle.createBundle(baseFileHandle);
 
-        Analytics.initialize(new InitRequest("java-desktop", "mac", "rest api v2"));
+        Analytics.initialize(new InitRequest(GameInfo.getPlatform(),
+                GameInfo.getOsVersion(), 
+                AnalyticsSettings.REST_API_VERSION));
 
         setScreen(new LoadingScreen(this));
     }

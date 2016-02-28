@@ -4,6 +4,8 @@ public class AnalyticsSettings {
 
     private static boolean mIsAnalyticsAvailable;
 
+    public static final String REST_API_VERSION = "rest api v2";
+
     public static final String ENDPOINT_PROD = "http://api.gameanalytics.com/";
     public static final String ENDPOINT_SANDBOX = "http://sandbox-api.gameanalytics.com/";
 
