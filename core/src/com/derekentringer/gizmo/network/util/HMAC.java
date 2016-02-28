@@ -1,42 +1,23 @@
 package com.derekentringer.gizmo.network.util;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import okhttp3.RequestBody;
-
 public class HMAC {
 
-    public static String hmacDigest(RequestBody body, String secret) {
-        String digest = null;
+    public static String hmacDigest(String body, String secret) {
+        String hash = null;
         try {
-            SecretKeySpec key = new SecretKeySpec((secret).getBytes("UTF-8"), "HmacSHA256");
-            Mac mac = Mac.getInstance("HmacSHA256");
-            mac.init(key);
-
-            byte[] bytes = mac.doFinal(body.toString().getBytes("ASCII"));
-
-            StringBuffer hash = new StringBuffer();
-            for (int i = 0; i < bytes.length; i++) {
-                String hex = Integer.toHexString(0xFF & bytes[i]);
-                if (hex.length() == 1) {
-                    hash.append('0');
-                }
-                hash.append(hex);
-            }
-            digest = hash.toString();
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+            hash = Base64.encodeBase64String(sha256_HMAC.doFinal(body.getBytes()));
         }
-        catch (UnsupportedEncodingException e) {
+        catch (Exception e) {
         }
-        catch (InvalidKeyException e) {
-        }
-        catch (NoSuchAlgorithmException e) {
-        }
-        return digest;
+        return hash;
     }
 
 }
