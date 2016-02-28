@@ -27,7 +27,7 @@ public interface RetroFitClient {
     class Factory {
         public static RetroFitClient create() {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             Interceptor headerInterceptor = new Interceptor() {
                 @Override
@@ -35,7 +35,7 @@ public interface RetroFitClient {
                     Request original = chain.request();
                     Request request = original.newBuilder()
                             .header("Content-Type", "application/json")
-                            .header("Authorization", HMAC.hmacDigest(original.body(), AnalyticsSettings.API_SECRET_KEY))
+                            .header("Authorization", HMAC.hmacDigest(original.body(), AnalyticsSettings.API_SECRET_KEY_SANDBOX))
                             .method(original.method(), original.body())
                             .build();
                     return chain.proceed(request);
@@ -48,12 +48,12 @@ public interface RetroFitClient {
                     .build();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(AnalyticsSettings.ENDPOINT_PROD)
+                    .baseUrl(AnalyticsSettings.ENDPOINT_SANDBOX)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
             return retrofit.create(RetroFitClient.class);
         }
     }
-    
+
 }

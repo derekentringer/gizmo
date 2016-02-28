@@ -14,18 +14,18 @@ public class Analytics {
 
     private static final String TAG = Analytics.class.getSimpleName();
 
-    public static void initialize() {
-        InitRequest initRequest = new InitRequest("java-desktop", "mac", "rest api v2");
-        Gizmo.getRetrofitClient().initialize(AnalyticsSettings.API_GAME_KEY, initRequest).enqueue(new Callback<InitResponse>() {
+    public static void initialize(InitRequest initRequest) {
+        Gizmo.getRetrofitClient().initialize(AnalyticsSettings.API_GAME_KEY_SANDBOX, initRequest).enqueue(new Callback<InitResponse>() {
             @Override
             public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
-                GLog.d(TAG, "analytics: " + response.isSuccess());
-                Constants.setmIsAnalyticsAvailable(response.isSuccess());
+                GLog.d(TAG, "isSuccess: " + response.isSuccess());
+                AnalyticsSettings.setIsAnalyticsAvailable(response.isSuccess());
             }
 
             @Override
             public void onFailure(Call<InitResponse> call, Throwable t) {
-                GLog.d(TAG, "analytics: onFailure");
+                GLog.d(TAG, "onFailure");
+                AnalyticsSettings.setIsAnalyticsAvailable(false);
             }
         });
     }
