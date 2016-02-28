@@ -17,6 +17,7 @@ public class BlockUtils {
         }
     }
 
+    //TODO random crash
     public static void setBlockHealth(Body body, int health) {
         BaseDestroyableModel baseDestroyableModel = (BaseDestroyableModel) body.getUserData();
         if (baseDestroyableModel != null) {

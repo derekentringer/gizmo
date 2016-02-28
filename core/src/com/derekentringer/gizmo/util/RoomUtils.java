@@ -1,5 +1,6 @@
 package com.derekentringer.gizmo.util;
 
+import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.room.RoomModel;
 
 import java.util.ArrayList;
@@ -7,37 +8,17 @@ import java.util.ArrayList;
 public class RoomUtils {
 
     public static final ArrayList<RoomModel> rooms = new ArrayList<RoomModel>();
+    private static final int numRooms = LocalDataManager.getNumberOfLevels();
 
     public static void buildRoomList() {
-
-        RoomModel roomZero = new RoomModel(
-                0,
-                "res/maps/intro/room_zero/room_zero.tmx",
-                "res/maps/intro/room_zero/mid_background.tmx",
-                "res/maps/intro/room_zero/background.tmx");
-
-        RoomModel roomOne = new RoomModel(
-                1,
-                "res/maps/intro/room_one/room_one.tmx",
-                "res/maps/intro/room_one/mid_background.tmx",
-                "res/maps/intro/room_one/background.tmx");
-
-        RoomModel roomTwo = new RoomModel(
-                2,
-                "res/maps/intro/room_two/room_two.tmx",
-                "res/maps/intro/room_two/mid_background.tmx",
-                "res/maps/intro/room_two/background.tmx");
-
-        RoomModel roomThree = new RoomModel(
-                3,
-                "res/maps/intro/room_three/room_three.tmx",
-                "res/maps/intro/room_three/mid_background.tmx",
-                "res/maps/intro/room_three/background.tmx");
-
-        rooms.add(roomZero);
-        rooms.add(roomOne);
-        rooms.add(roomTwo);
-        rooms.add(roomThree);
+        for (int i = 0; i <= numRooms; i++) {
+            rooms.add(new RoomModel(
+                    i,
+                    LocalDataManager.DIR_ROOMS + i + "/room.tmx",
+                    LocalDataManager.DIR_ROOMS + i + "/mid_background.tmx",
+                    LocalDataManager.DIR_ROOMS + i + "/background.tmx"
+            ));
+        }
     }
 
 }

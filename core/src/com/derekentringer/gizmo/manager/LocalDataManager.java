@@ -13,13 +13,26 @@ public class LocalDataManager {
 
     private static final String TAG = LocalDataManager.class.getSimpleName();
 
-    private static final String GAME_SAVE_DIR = "sav/";
+    private static final String DIR_GAME_SAVE = "sav/";
     private static final String GAME_SAVE_FILE = "game.sav";
     private static final String ROOM_SAVE_SUFFIX = "_room.sav";
 
+    public static final String DIR_ROOMS = "res/maps/rooms/";
+
+    public static int getNumberOfLevels() {
+        FileHandle[] files = Gdx.files.local(DIR_ROOMS).list();
+        int numDirs = 0;
+        for (FileHandle file : files) {
+            if (file.isDirectory()) {
+                numDirs++;
+            }
+        }
+        return numDirs;
+    }
+
     public static void resetAllPlayerData() {
-        FileHandle[] files = Gdx.files.local(GAME_SAVE_DIR).list();
-        for(FileHandle file: files) {
+        FileHandle[] files = Gdx.files.local(DIR_GAME_SAVE).list();
+        for (FileHandle file : files) {
             file.delete();
         }
     }
@@ -72,7 +85,7 @@ public class LocalDataManager {
     }
 
     public static void writeFile(String fileName, String string) {
-        FileHandle file = Gdx.files.local(GAME_SAVE_DIR + fileName);
+        FileHandle file = Gdx.files.local(DIR_GAME_SAVE + fileName);
         if (!Constants.IS_DEBUG) {
             file.writeString(Base64Coder.encodeString(string), false);
         }
@@ -82,7 +95,7 @@ public class LocalDataManager {
     }
 
     public static String readFile(String fileName) {
-        FileHandle file = Gdx.files.local(GAME_SAVE_DIR + fileName);
+        FileHandle file = Gdx.files.local(DIR_GAME_SAVE + fileName);
         if (file != null && file.exists()) {
             String string = file.readString();
             if (!string.isEmpty()) {
