@@ -10,19 +10,19 @@ public class InitResponse {
     @SerializedName("server_ts")
     private int mServerTs;
 
-    public boolean ismIsEnabled() {
+    public boolean isEnabled() {
         return mIsEnabled;
     }
 
-    public void setmIsEnabled(boolean mIsEnabled) {
+    public void setIsEnabled(boolean mIsEnabled) {
         this.mIsEnabled = mIsEnabled;
     }
 
-    public int getmServerTs() {
+    public int getServerTs() {
         return mServerTs;
     }
 
-    public void setmServerTs(int mServerTs) {
+    public void setServerTs(int mServerTs) {
         this.mServerTs = mServerTs;
     }
 
