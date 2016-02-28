@@ -6,10 +6,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.component.screen.LoadingScreen;
+import com.derekentringer.gizmo.network.RetroFitClient;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.InputProcessor;
 import com.derekentringer.gizmo.util.log.GLog;
+
 
 public class Gizmo extends Game {
 
@@ -20,6 +23,8 @@ public class Gizmo extends Game {
     private FileHandle baseFileHandle;
     private static I18NBundle i18NBundleDebug;
     private static I18NBundle i18NBundle;
+
+    private static RetroFitClient mRetrofitClient;
 
     @Override
     public void create() {
@@ -39,6 +44,8 @@ public class Gizmo extends Game {
         i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.debugLocale);
         i18NBundle = I18NBundle.createBundle(baseFileHandle);
 
+        Analytics.initialize();
+
         setScreen(new LoadingScreen(this));
     }
 
@@ -49,6 +56,13 @@ public class Gizmo extends Game {
         else {
             return i18NBundle;
         }
+    }
+
+    public static RetroFitClient getRetrofitClient() {
+        if (mRetrofitClient == null) {
+            mRetrofitClient = RetroFitClient.Factory.create();
+        }
+        return mRetrofitClient;
     }
 
     @Override

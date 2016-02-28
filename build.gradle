@@ -21,6 +21,8 @@ allprojects {
         supportLibVersion = '23.1.1'
         gdxVersion = '1.9.1'
         roboVMVersion = '1.12.0'
+        retrofitVersion = '2.0.0-beta4'
+        okhttp3Version = '3.1.2'
     }
 
     repositories {
@@ -105,6 +107,11 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+        compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+        compile "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
+        compile "com.squareup.okhttp3:okhttp:$okhttp3Version"
+        compile "com.squareup.okhttp3:okhttp-urlconnection:$okhttp3Version"
     }
 }
 

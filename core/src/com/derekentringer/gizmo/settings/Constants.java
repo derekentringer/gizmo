@@ -7,6 +7,8 @@ import java.util.Locale;
 
 public class Constants {
 
+    private static boolean mIsAnalyticsAvailable;
+
     // categoryBits declares what entity it is
     // maskBits declares which entities collide with
     public static final short WORLD_ENTITY = 0x1;
@@ -34,5 +36,13 @@ public class Constants {
 
     // world
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);
+
+    public static boolean getIsAnalyticsAvailable() {
+        return mIsAnalyticsAvailable;
+    }
+
+    public static void setmIsAnalyticsAvailable(boolean isAnalyticsAvailable) {
+        mIsAnalyticsAvailable = isAnalyticsAvailable;
+    }
 
 }
