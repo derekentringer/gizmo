@@ -1,6 +1,6 @@
 package com.derekentringer.gizmo.network.interceptor;
 
-import com.derekentringer.gizmo.analytics.AnalyticsSettings;
+import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.network.util.HMAC;
 
 import java.io.IOException;

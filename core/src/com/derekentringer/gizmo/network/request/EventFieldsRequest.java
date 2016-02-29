@@ -36,28 +36,6 @@ public class EventFieldsRequest implements Serializable {
     @SerializedName("session_num")
     private int mSessionNum;
 
-    /*public EventFieldsRequest(String device,
-                              int eventVersion,
-                              String userId,
-                              int clientTimestamp,
-                              String sdkVersion,
-                              String osVersion,
-                              String manufacturer,
-                              String platform,
-                              String sessionId,
-                              int sessionNum) {
-        mDevice = device;
-        mEventVersion = eventVersion;
-        mUserId = userId;
-        mClientTimestamp = clientTimestamp;
-        mSdkVersion = sdkVersion;
-        mOsVersion = osVersion;
-        mManufacturer = manufacturer;
-        mPlatform = platform;
-        mSessionId = sessionId;
-        mSessionNum = sessionNum;
-    }*/
-
     public String getDevice() {
         return mDevice;
     }

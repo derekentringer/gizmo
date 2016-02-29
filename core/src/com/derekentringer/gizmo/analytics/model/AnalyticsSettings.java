@@ -1,8 +1,6 @@
-package com.derekentringer.gizmo.analytics;
+package com.derekentringer.gizmo.analytics.model;
 
 public class AnalyticsSettings {
-
-    private static boolean mIsAnalyticsAvailable;
 
     public static final String REST_API_VERSION = "rest api v2";
     public static final String REST_API_EVENT_VERSION = "2";
@@ -16,12 +14,23 @@ public class AnalyticsSettings {
     public static final String API_GAME_KEY_SANDBOX = "5c6bcb5402204249437fb5a7a80a4959";
     public static final String API_SECRET_KEY_SANDBOX = "16813a12f718bc5c620f56944e1abc3ea13ccbac";
 
+    private static boolean mIsAnalyticsAvailable;
+    private static int mServerTimestampOffset;
+
     public static boolean getIsAnalyticsAvailable() {
         return mIsAnalyticsAvailable;
     }
 
     public static void setIsAnalyticsAvailable(boolean isAnalyticsAvailable) {
         mIsAnalyticsAvailable = isAnalyticsAvailable;
+    }
+
+    public static int getServerTimestampOffset() {
+        return mServerTimestampOffset;
+    }
+
+    public static void setServerTimestampOffset(int serverTimestampOffset) {
+        mServerTimestampOffset = serverTimestampOffset;
     }
 
 }

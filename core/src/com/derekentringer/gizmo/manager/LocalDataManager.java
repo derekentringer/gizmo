@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
-import com.derekentringer.gizmo.model.room.RoomModel;
+import com.derekentringer.gizmo.analytics.model.AnalyticsModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
+import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
 
@@ -16,6 +17,7 @@ public class LocalDataManager {
     private static final String DIR_GAME_SAVE = "sav/";
     private static final String GAME_SAVE_FILE = "game.sav";
     private static final String ROOM_SAVE_SUFFIX = "_room.sav";
+    private static final String ANALYTICS_SAVE_FILE = "gamea.sav";
 
     public static final String DIR_ROOMS = "res/maps/rooms/";
 
@@ -82,6 +84,26 @@ public class LocalDataManager {
         String roomModelString = json.toJson(roomModel, RoomModel.class);
         GLog.d(TAG, "*** SAVING ROOM DATA *** " + roomModelString);
         writeFile(fileName, roomModelString);
+    }
+
+    public static void saveGameAnalyticsData(AnalyticsModel analyticsModel) {
+        Json json = new Json();
+        String analyticsDataString = json.toJson(analyticsModel, AnalyticsModel.class);
+        GLog.d(TAG, "*** SAVING ANALYTICS DATA *** " + analyticsDataString);
+        writeFile(ANALYTICS_SAVE_FILE, analyticsDataString);
+    }
+
+    public static AnalyticsModel loadGameAnalyticsData() {
+        String fileName = ANALYTICS_SAVE_FILE;
+        GLog.d(TAG, "*** LOADING ANALYTICS DATA *** " + fileName);
+        String savedAnalyticsFile = readFile(fileName);
+        if (!savedAnalyticsFile.isEmpty()) {
+            Json json = new Json();
+            AnalyticsModel loadedAnalytics = json.fromJson(AnalyticsModel.class, savedAnalyticsFile);
+            GLog.d(TAG, "*** LOADED ANALYTICS DATA *** ");
+            return loadedAnalytics;
+        }
+        return null;
     }
 
     public static void writeFile(String fileName, String string) {

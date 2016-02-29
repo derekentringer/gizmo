@@ -1,12 +1,13 @@
 package com.derekentringer.gizmo.network;
 
-import com.derekentringer.gizmo.analytics.AnalyticsSettings;
+import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.network.interceptor.HeaderInterceptor;
 import com.derekentringer.gizmo.network.request.EventRequest;
 import com.derekentringer.gizmo.network.request.InitRequest;
 import com.derekentringer.gizmo.network.response.InitResponse;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -21,7 +22,7 @@ public interface RetroFitClient {
     Call<InitResponse> initialize(@Path("game_key") String gameKey, @Body InitRequest initRequest);
 
     @POST("v2/{game_key}/events")
-    Call<InitResponse> sendEvent(@Path("game_key") String gameKey, @Body EventRequest eventRequest);
+    Call<ResponseBody> sendEvent(@Path("game_key") String gameKey, @Body EventRequest eventRequest);
 
     class Factory {
         public static RetroFitClient create() {

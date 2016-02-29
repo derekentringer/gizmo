@@ -1,6 +1,6 @@
-package com.derekentringer.gizmo.analytics;
+package com.derekentringer.gizmo.analytics.model;
 
-import com.derekentringer.gizmo.analytics.util.AnalyticsInfo;
+import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.network.request.EventFieldsRequest;
 
 import java.util.LinkedHashMap;
@@ -9,20 +9,17 @@ public class EventFieldsDictionary {
 
     private static LinkedHashMap<String, String> dictionary = new LinkedHashMap<String, String>();
 
-    public EventFieldsDictionary() {
-    }
-
-    public static void initiate() {
-        dictionary.put("device", AnalyticsInfo.getPlatform());
+    public static void create() {
+        dictionary.put("device", AnalyticsUtils.getPlatform());
         dictionary.put("v", AnalyticsSettings.REST_API_EVENT_VERSION);
-        dictionary.put("user_id", AnalyticsInfo.getMacAddress());
-        dictionary.put("client_ts", "1");
+        dictionary.put("user_id", AnalyticsUtils.getMacAddress());
+        dictionary.put("client_ts", AnalyticsUtils.getTimestamp());
         dictionary.put("sdk_version", AnalyticsSettings.REST_API_VERSION);
-        dictionary.put("os_version", AnalyticsInfo.getOsVersion());
-        dictionary.put("manufacturer", "manufacturer");
-        dictionary.put("platform", AnalyticsInfo.getPlatform());
-        dictionary.put("session_id", "1");
-        dictionary.put("session_num", "1");
+        dictionary.put("os_version", AnalyticsUtils.getOsVersion());
+        dictionary.put("manufacturer", AnalyticsUtils.getPlatformManufacturer());
+        dictionary.put("platform", AnalyticsUtils.getPlatform());
+        dictionary.put("session_id", AnalyticsUtils.getRandomUUID());
+        dictionary.put("session_num", AnalyticsUtils.getSessionNum());
     }
 
     public static EventFieldsRequest getDictionary() {
@@ -36,16 +33,8 @@ public class EventFieldsDictionary {
         eventFields.setManufacturer(dictionary.get("manufacturer"));
         eventFields.setPlatform(dictionary.get("platform"));
         eventFields.setSessionId(dictionary.get("session_id"));
-        eventFields.setSessionNum(Integer.valueOf(dictionary.get("session_id")));
+        eventFields.setSessionNum(Integer.valueOf(dictionary.get("session_num")));
         return eventFields;
     }
-
-    /*ArrayList<Object> list = new ArrayList<>();
-    HashMap<String, String> map = new HashMap<>();
-    Integer i = 0;
-    for (Object s:list) {
-        map.put(String.valueOf(i), s.toString());
-        i++;
-    }*/
 
 }
