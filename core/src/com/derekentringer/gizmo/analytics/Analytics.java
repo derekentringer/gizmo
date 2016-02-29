@@ -8,6 +8,8 @@ import com.derekentringer.gizmo.network.request.InitRequest;
 import com.derekentringer.gizmo.network.response.InitResponse;
 import com.derekentringer.gizmo.util.log.GLog;
 
+import java.util.ArrayList;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +28,9 @@ public class Analytics {
                     AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
 
                     EventFieldsDictionary.create();
-                    Analytics.sendEvent(new EventRequest("user", EventFieldsDictionary.getDictionary()));
+                    ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
+                    eventRequests.add(new EventRequest("user", EventFieldsDictionary.getDictionary()));
+                    Analytics.sendEvent(eventRequests);
                 }
                 else {
                     AnalyticsSettings.setIsAnalyticsAvailable(false);
@@ -40,7 +44,7 @@ public class Analytics {
         });
     }
 
-    public static void sendEvent(EventRequest eventRequest) {
+    public static void sendEvent(ArrayList<EventRequest> eventRequest) {
         Gizmo.getRetrofitClient().sendEvent(AnalyticsSettings.API_GAME_KEY_SANDBOX, eventRequest).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
