@@ -27,7 +27,6 @@ public class Analytics {
                     AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
                     AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
 
-                    EventFieldsDictionary.create();
                     ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
                     eventRequests.add(new EventRequest("user", EventFieldsDictionary.getDictionary()));
                     Analytics.sendEvent(eventRequests);
