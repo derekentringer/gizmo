@@ -2,7 +2,9 @@ package com.derekentringer.gizmo.network.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EventFieldsRequest {
+import java.io.Serializable;
+
+public class EventFieldsRequest implements Serializable {
 
     @SerializedName("device")
     private String mDevice;
@@ -34,7 +36,7 @@ public class EventFieldsRequest {
     @SerializedName("session_num")
     private int mSessionNum;
 
-    public EventFieldsRequest(String device,
+    /*public EventFieldsRequest(String device,
                               int eventVersion,
                               String userId,
                               int clientTimestamp,
@@ -54,85 +56,85 @@ public class EventFieldsRequest {
         mPlatform = platform;
         mSessionId = sessionId;
         mSessionNum = sessionNum;
-    }
+    }*/
 
-    public String getmDevice() {
+    public String getDevice() {
         return mDevice;
     }
 
-    public void setmDevice(String mDevice) {
+    public void setDevice(String mDevice) {
         this.mDevice = mDevice;
     }
 
-    public int getmEventVersion() {
+    public int getEventVersion() {
         return mEventVersion;
     }
 
-    public void setmEventVersion(int mEventVersion) {
+    public void setEventVersion(int mEventVersion) {
         this.mEventVersion = mEventVersion;
     }
 
-    public String getmUserId() {
+    public String getUserId() {
         return mUserId;
     }
 
-    public void setmUserId(String mUserId) {
+    public void setUserId(String mUserId) {
         this.mUserId = mUserId;
     }
 
-    public int getmClientTimestamp() {
+    public int getClientTimestamp() {
         return mClientTimestamp;
     }
 
-    public void setmClientTimestamp(int mClientTimestamp) {
+    public void setClientTimestamp(int mClientTimestamp) {
         this.mClientTimestamp = mClientTimestamp;
     }
 
-    public String getmSdkVersion() {
+    public String getSdkVersion() {
         return mSdkVersion;
     }
 
-    public void setmSdkVersion(String mSdkVersion) {
+    public void setSdkVersion(String mSdkVersion) {
         this.mSdkVersion = mSdkVersion;
     }
 
-    public String getmOsVersion() {
+    public String getOsVersion() {
         return mOsVersion;
     }
 
-    public void setmOsVersion(String mOsVersion) {
+    public void setOsVersion(String mOsVersion) {
         this.mOsVersion = mOsVersion;
     }
 
-    public String getmManufacturer() {
+    public String getManufacturer() {
         return mManufacturer;
     }
 
-    public void setmManufacturer(String mManufacturer) {
+    public void setManufacturer(String mManufacturer) {
         this.mManufacturer = mManufacturer;
     }
 
-    public String getmPlatform() {
+    public String getPlatform() {
         return mPlatform;
     }
 
-    public void setmPlatform(String mPlatform) {
+    public void setPlatform(String mPlatform) {
         this.mPlatform = mPlatform;
     }
 
-    public String getmSessionId() {
+    public String getSessionId() {
         return mSessionId;
     }
 
-    public void setmSessionId(String mSessionId) {
+    public void setSessionId(String mSessionId) {
         this.mSessionId = mSessionId;
     }
 
-    public int getmSessionNum() {
+    public int getSessionNum() {
         return mSessionNum;
     }
 
-    public void setmSessionNum(int mSessionNum) {
+    public void setSessionNum(int mSessionNum) {
         this.mSessionNum = mSessionNum;
     }
 

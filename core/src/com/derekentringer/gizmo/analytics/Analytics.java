@@ -18,7 +18,12 @@ public class Analytics {
         Gizmo.getRetrofitClient().initialize(AnalyticsSettings.API_GAME_KEY_SANDBOX, initRequest).enqueue(new Callback<InitResponse>() {
             @Override
             public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
-                AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
+                if (response.isSuccess()) {
+                    AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
+                }
+                else {
+                    AnalyticsSettings.setIsAnalyticsAvailable(false);
+                }
             }
 
             @Override
@@ -29,14 +34,14 @@ public class Analytics {
     }
 
     public static void sendEvent(EventRequest eventRequest) {
-        Gizmo.getRetrofitClient().sendEvent(AnalyticsSettings.API_GAME_KEY_SANDBOX, eventRequest).enqueue(new Callback() {
+        Gizmo.getRetrofitClient().sendEvent(AnalyticsSettings.API_GAME_KEY_SANDBOX, eventRequest).enqueue(new Callback<InitResponse>() {
             @Override
-            public void onResponse(Call call, Response response) {
+            public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
                 GLog.d(TAG, "sendEvent:onResponse:" + response.isSuccess());
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<InitResponse> call, Throwable t) {
                 GLog.d(TAG, "sendEvent:onFailure");
             }
         });

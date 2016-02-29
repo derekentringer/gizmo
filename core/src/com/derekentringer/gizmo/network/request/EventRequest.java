@@ -1,9 +1,10 @@
 package com.derekentringer.gizmo.network.request;
 
-
 import com.google.gson.annotations.SerializedName;
 
-public class EventRequest {
+import java.io.Serializable;
+
+public class EventRequest implements Serializable {
 
     @SerializedName("category")
     private String mCategory;

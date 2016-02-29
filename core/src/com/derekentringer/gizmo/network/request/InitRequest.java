@@ -2,7 +2,9 @@ package com.derekentringer.gizmo.network.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class InitRequest {
+import java.io.Serializable;
+
+public class InitRequest implements Serializable {
 
     @SerializedName("platform")
     private String mPlatform;
