@@ -33,4 +33,12 @@ public class EventRequest implements Serializable {
         mEventFields = eventFields;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"category\":" + "\"" + mCategory + '\"' +
+                ",\"event_fields\":" + mEventFields.toString() +
+                '}';
+    }
+
 }

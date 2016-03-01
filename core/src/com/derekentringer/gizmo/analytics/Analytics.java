@@ -6,6 +6,7 @@ import com.derekentringer.gizmo.analytics.model.EventFieldsDictionary;
 import com.derekentringer.gizmo.network.request.EventRequest;
 import com.derekentringer.gizmo.network.request.InitRequest;
 import com.derekentringer.gizmo.network.response.InitResponse;
+import com.derekentringer.gizmo.network.util.HMAC;
 import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
@@ -20,41 +21,51 @@ public class Analytics {
     private static final String TAG = Analytics.class.getSimpleName();
 
     public static void initialize(InitRequest initRequest) {
-        Gizmo.getRetrofitClient().initialize(AnalyticsSettings.API_GAME_KEY_SANDBOX, initRequest).enqueue(new Callback<InitResponse>() {
-            @Override
-            public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
-                if (response.isSuccess()) {
-                    AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
-                    AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
+        GLog.d(TAG, "secret_key: " + AnalyticsSettings.API_SECRET_KEY_SANDBOX);
+        GLog.d(TAG, "initRequest: " + initRequest.toString());
+        Gizmo.getRetrofitClient().initialize(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_SANDBOX, initRequest.toString().getBytes()),
+                AnalyticsSettings.API_GAME_KEY_SANDBOX,
+                initRequest)
+                .enqueue(new Callback<InitResponse>() {
+                    @Override
+                    public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
+                        if (response.isSuccess()) {
+                            AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
+                            AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
 
-                    ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
-                    eventRequests.add(new EventRequest("user", EventFieldsDictionary.getDictionary()));
-                    Analytics.sendEvent(eventRequests);
-                }
-                else {
-                    AnalyticsSettings.setIsAnalyticsAvailable(false);
-                }
-            }
+                            ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
+                            eventRequests.add(new EventRequest("user", EventFieldsDictionary.getDictionary()));
+                            Analytics.sendEvent(eventRequests);
+                        }
+                        else {
+                            AnalyticsSettings.setIsAnalyticsAvailable(false);
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<InitResponse> call, Throwable t) {
-                AnalyticsSettings.setIsAnalyticsAvailable(false);
-            }
-        });
+                    @Override
+                    public void onFailure(Call<InitResponse> call, Throwable t) {
+                        AnalyticsSettings.setIsAnalyticsAvailable(false);
+                    }
+                });
     }
 
     public static void sendEvent(ArrayList<EventRequest> eventRequest) {
-        Gizmo.getRetrofitClient().sendEvent(AnalyticsSettings.API_GAME_KEY_SANDBOX, eventRequest).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                GLog.d(TAG, "sendEvent:onResponse:" + response.isSuccess());
-            }
+        GLog.d(TAG, "secret_key: " + AnalyticsSettings.API_SECRET_KEY_SANDBOX);
+        GLog.d(TAG, "initRequest: " + eventRequest.toString());
+        Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_SANDBOX, eventRequest.toString().getBytes()),
+                AnalyticsSettings.API_GAME_KEY_SANDBOX,
+                eventRequest)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        GLog.d(TAG, "sendEvent:onResponse:" + response.isSuccess());
+                    }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                GLog.d(TAG, "sendEvent:onFailure");
-            }
-        });
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        GLog.d(TAG, "sendEvent:onFailure");
+                    }
+                });
     }
 
 }

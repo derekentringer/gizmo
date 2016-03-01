@@ -116,4 +116,20 @@ public class EventFieldsRequest implements Serializable {
         this.mSessionNum = mSessionNum;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"device\":" + "\"" + mDevice + '\"' +
+                ",\"v\":" + mEventVersion +
+                ",\"user_id\":" + "\"" + mUserId + '\"' +
+                ",\"client_ts\":" + mClientTimestamp +
+                ",\"sdk_version\":" + "\"" + mSdkVersion + '\"' +
+                ",\"os_version\":" + "\"" + mOsVersion + '\"' +
+                ",\"manufacturer\":" + "\"" + mManufacturer + '\"' +
+                ",\"platform\":" + "\"" + mPlatform + '\"' +
+                ",\"session_id\":" + "\"" + mSessionId + '\"' +
+                ",\"session_num\":" + mSessionNum +
+                '}';
+    }
+
 }

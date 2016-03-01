@@ -45,4 +45,13 @@ public class InitRequest implements Serializable {
         this.mOsVersion = mOsVersion;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "\"platform\":" + "\"" + mPlatform + '\"' +
+                ",\"os_version\":" + "\"" + mOsVersion + '\"' +
+                ",\"sdk_version\":" + "\"" + mSdkVersion + '\"' +
+                '}';
+    }
+
 }

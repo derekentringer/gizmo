@@ -1,8 +1,5 @@
 package com.derekentringer.gizmo.network.interceptor;
 
-import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
-import com.derekentringer.gizmo.network.util.HMAC;
-
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -15,7 +12,6 @@ public class HeaderInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
         Request request = original.newBuilder()
-                .header("Authorization", HMAC.hmacDigest(original.body().toString(), AnalyticsSettings.API_SECRET_KEY_SANDBOX))
                 .header("Content-Type", "application/json")
                 .method(original.method(), original.body())
                 .build();
