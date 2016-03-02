@@ -1,7 +1,7 @@
 package com.derekentringer.gizmo.network;
 
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
-import com.derekentringer.gizmo.analytics.request.EventRequest;
+import com.derekentringer.gizmo.analytics.request.EventRequestTest;
 import com.derekentringer.gizmo.analytics.request.InitRequest;
 import com.derekentringer.gizmo.analytics.response.InitResponse;
 import com.derekentringer.gizmo.network.interceptor.HeaderInterceptor;
@@ -27,7 +27,7 @@ public interface RetroFitClient {
     @POST("v2/{game_key}/events")
     Call<ResponseBody> sendEvent(@Header("Authorization") String auth,
                                  @Path("game_key") String gameKey,
-                                 @Body EventRequest eventRequest);
+                                 @Body EventRequestTest eventRequest);
 
     class Factory {
         public static RetroFitClient create() {

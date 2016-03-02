@@ -3,7 +3,7 @@ package com.derekentringer.gizmo.analytics;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.analytics.model.EventRequestDictionary;
-import com.derekentringer.gizmo.analytics.request.EventRequest;
+import com.derekentringer.gizmo.analytics.request.EventRequestTest;
 import com.derekentringer.gizmo.analytics.request.InitRequest;
 import com.derekentringer.gizmo.analytics.response.InitResponse;
 import com.derekentringer.gizmo.network.util.HMAC;
@@ -31,9 +31,9 @@ public class Analytics {
 
                             AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
                             AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
-                            EventRequestDictionary.build();
+                            EventRequestDictionary.buildTestData();
 
-                            Analytics.sendEvent(EventRequestDictionary.getDictionary());
+                            Analytics.sendEvent(EventRequestDictionary.getTestDictionary());
                         }
                         else {
                             AnalyticsSettings.setIsAnalyticsAvailable(false);
@@ -47,7 +47,7 @@ public class Analytics {
                 });
     }
 
-    public static void sendEvent(EventRequest eventRequest) {
+    public static void sendEvent(EventRequestTest eventRequest) {
         GLog.d(TAG, "secret_key: " + AnalyticsSettings.API_SECRET_KEY_SANDBOX);
         GLog.d(TAG, "eventRequest: " + eventRequest.toString());
         Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_SANDBOX, eventRequest.toString().getBytes()),
