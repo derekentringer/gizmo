@@ -3,13 +3,11 @@ package com.derekentringer.gizmo.analytics;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.analytics.model.EventFieldsDictionary;
-import com.derekentringer.gizmo.network.request.EventRequest;
+import com.derekentringer.gizmo.network.request.EventFieldsRequest;
 import com.derekentringer.gizmo.network.request.InitRequest;
 import com.derekentringer.gizmo.network.response.InitResponse;
 import com.derekentringer.gizmo.network.util.HMAC;
 import com.derekentringer.gizmo.util.log.GLog;
-
-import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,12 +28,14 @@ public class Analytics {
                     @Override
                     public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
                         if (response.isSuccess()) {
+
                             AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
                             AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
+                            EventFieldsDictionary.create();
 
-                            ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
-                            eventRequests.add(new EventRequest("user", EventFieldsDictionary.getDictionary()));
-                            Analytics.sendEvent(eventRequests);
+                            //ArrayList<EventFieldsRequest> eventRequests = new ArrayList<EventFieldsRequest>();
+                            //eventRequests.add(EventFieldsDictionary.getDictionary());
+                            Analytics.sendEvent(EventFieldsDictionary.getDictionary());
                         }
                         else {
                             AnalyticsSettings.setIsAnalyticsAvailable(false);
@@ -49,9 +49,9 @@ public class Analytics {
                 });
     }
 
-    public static void sendEvent(ArrayList<EventRequest> eventRequest) {
+    public static void sendEvent(EventFieldsRequest eventRequest) {
         GLog.d(TAG, "secret_key: " + AnalyticsSettings.API_SECRET_KEY_SANDBOX);
-        GLog.d(TAG, "initRequest: " + eventRequest.toString());
+        GLog.d(TAG, "eventRequest: " + eventRequest.toString());
         Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_SANDBOX, eventRequest.toString().getBytes()),
                 AnalyticsSettings.API_GAME_KEY_SANDBOX,
                 eventRequest)

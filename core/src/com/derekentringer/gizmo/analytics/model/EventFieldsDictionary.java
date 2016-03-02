@@ -10,13 +10,13 @@ public class EventFieldsDictionary {
     private static LinkedHashMap<String, String> dictionary = new LinkedHashMap<String, String>();
 
     public static void create() {
-        dictionary.put("device", AnalyticsUtils.getPlatform());
+        dictionary.put("device", AnalyticsUtils.getDevice());
         dictionary.put("v", AnalyticsSettings.REST_API_EVENT_VERSION);
         dictionary.put("user_id", AnalyticsUtils.getMacAddress());
-        dictionary.put("client_ts", AnalyticsUtils.getTimestamp());
+        dictionary.put("client_ts", String.valueOf(AnalyticsUtils.getTimestamp()));
         dictionary.put("sdk_version", AnalyticsSettings.REST_API_VERSION);
         dictionary.put("os_version", AnalyticsUtils.getOsVersion());
-        dictionary.put("manufacturer", AnalyticsUtils.getPlatformManufacturer());
+        dictionary.put("manufacturer", AnalyticsUtils.getManufacturer());
         dictionary.put("platform", AnalyticsUtils.getPlatform());
         dictionary.put("session_id", AnalyticsUtils.getRandomUUID());
         dictionary.put("session_num", AnalyticsUtils.getSessionNum());

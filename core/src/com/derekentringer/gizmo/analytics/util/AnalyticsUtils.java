@@ -1,34 +1,59 @@
 package com.derekentringer.gizmo.analytics.util;
 
 import com.derekentringer.gizmo.analytics.model.AnalyticsModel;
-import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.Date;
 import java.util.UUID;
 
 public class AnalyticsUtils {
 
-    public static String getPlatform() {
+    public static String getDevice() {
         String platform = System.getProperty("os.name").toLowerCase();
         return platform;
     }
 
-    public static String getPlatformManufacturer() {
-        if (getPlatform().contains("win")) {
-            return "microsoft";
+    public static String getPlatform() {
+        //"enum": ["ios", "android", "windows", "windows_phone",
+        //"blackberry", "roku", "tizen", "nacl", "mac_osx", "webplayer"]
+        String platform = System.getProperty("os.name").toLowerCase();
+        if (platform.contains("win")) {
+            return "windows";
         }
-        else if (getPlatform().contains("mac")) {
+        else if (platform.contains("mac")) {
+            return "mac_osx";
+        }
+        else if (platform.contains("android")) {
+            return "android";
+        }
+        else if (platform.contains("ios")) {
+            return "ios";
+        }
+        else {
+            return "nacl";
+        }
+    }
+
+    public static String getManufacturer() {
+        String platform = System.getProperty("os.name").toLowerCase();
+        if (platform.contains("win")) {
+            return "windows";
+        }
+        else if (platform.contains("mac")
+            || platform.contains("ios")
+                || platform.contains("apple")) {
             return "apple";
         }
-        else if (getPlatform().contains("nix") ||
-                getPlatform().contains("nux") ||
-                getPlatform().contains("aix")) {
+        else if (platform.contains("nix") ||
+                platform.contains("nux") ||
+                platform.contains("aix")) {
             return "unix";
+        }
+        else if (platform.contains("android")) {
+            return "android";
         }
         else {
             return "other";
@@ -36,8 +61,9 @@ public class AnalyticsUtils {
     }
 
     public static String getOsVersion() {
+        //"^(ios|android|windows|windows_phone|blackberry|roku|tizen|nacl|mac_osx|webplayer) [0-9]{0,5}(\\.[0-9]{0,5}){0,2}$"
         String operatingSystem = System.getProperty("os.version").toLowerCase();
-        return operatingSystem;
+        return "mac_osx";
     }
 
     public static String getMacAddress() {
@@ -60,18 +86,11 @@ public class AnalyticsUtils {
         return sb.toString();
     }
 
-    public static String getTimestamp() {
-        Date date = new Date();
-        long localTime = date.getTime();
-        long serverTime = AnalyticsSettings.getServerTimestampOffset();
-        long timeOffset = localTime - serverTime;
-
-        if (serverTime != 0) {
-            return String.valueOf(timeOffset);
-        }
-        else {
-            return "0";
-        }
+    public static int getTimestamp() {
+        //int localTime = (int) (System.currentTimeMillis() / 1000L);
+        //int serverTime = AnalyticsSettings.getServerTimestampOffset();
+        //int timeOffset = localTime - serverTime;
+        return (int) (System.currentTimeMillis() / 1000L);
     }
 
     public static String getRandomUUID() {

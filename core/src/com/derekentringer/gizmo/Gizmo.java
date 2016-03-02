@@ -8,7 +8,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
-import com.derekentringer.gizmo.analytics.model.EventFieldsDictionary;
 import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.component.screen.LoadingScreen;
 import com.derekentringer.gizmo.network.RetroFitClient;
@@ -47,8 +46,6 @@ public class Gizmo extends Game {
         baseFileHandle = Gdx.files.internal("i18n/I18NBundle");
         i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.debugLocale);
         i18NBundle = I18NBundle.createBundle(baseFileHandle);
-
-        EventFieldsDictionary.create();
 
         Analytics.initialize(new InitRequest(AnalyticsUtils.getPlatform(),
                 AnalyticsUtils.getOsVersion(),

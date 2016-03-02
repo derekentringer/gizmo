@@ -36,6 +36,9 @@ public class EventFieldsRequest implements Serializable {
     @SerializedName("session_num")
     private int mSessionNum;
 
+    public EventFieldsRequest() {
+    }
+
     public String getDevice() {
         return mDevice;
     }
