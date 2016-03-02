@@ -1,15 +1,16 @@
 package com.derekentringer.gizmo.analytics.model;
 
+import com.derekentringer.gizmo.analytics.request.EventRequest;
 import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
-import com.derekentringer.gizmo.network.request.EventFieldsRequest;
 
 import java.util.LinkedHashMap;
 
-public class EventFieldsDictionary {
+public class EventRequestDictionary {
 
     private static LinkedHashMap<String, String> dictionary = new LinkedHashMap<String, String>();
 
-    public static void create() {
+    public static void build() {
+        dictionary.put("category", AnalyticsUtils.getCategory());
         dictionary.put("device", AnalyticsUtils.getDevice());
         dictionary.put("v", AnalyticsSettings.REST_API_EVENT_VERSION);
         dictionary.put("user_id", AnalyticsUtils.getMacAddress());
@@ -22,8 +23,9 @@ public class EventFieldsDictionary {
         dictionary.put("session_num", AnalyticsUtils.getSessionNum());
     }
 
-    public static EventFieldsRequest getDictionary() {
-        EventFieldsRequest eventFields = new EventFieldsRequest();
+    public static EventRequest getDictionary() {
+        EventRequest eventFields = new EventRequest();
+        eventFields.setCategory(dictionary.get("category"));
         eventFields.setDevice(dictionary.get("device"));
         eventFields.setEventVersion(Integer.valueOf(dictionary.get("v")));
         eventFields.setUserId(dictionary.get("user_id"));

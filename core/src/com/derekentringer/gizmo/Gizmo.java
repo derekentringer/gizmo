@@ -11,7 +11,7 @@ import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.component.screen.LoadingScreen;
 import com.derekentringer.gizmo.network.RetroFitClient;
-import com.derekentringer.gizmo.network.request.InitRequest;
+import com.derekentringer.gizmo.analytics.request.InitRequest;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.InputProcessor;
 import com.derekentringer.gizmo.util.log.GLog;

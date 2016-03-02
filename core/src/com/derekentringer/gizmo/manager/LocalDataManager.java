@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
-import com.derekentringer.gizmo.analytics.model.AnalyticsModel;
+import com.derekentringer.gizmo.analytics.model.LocalModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.settings.Constants;
@@ -86,20 +86,20 @@ public class LocalDataManager {
         writeFile(fileName, roomModelString);
     }
 
-    public static void saveGameAnalyticsData(AnalyticsModel analyticsModel) {
+    public static void saveGameAnalyticsData(LocalModel analyticsModel) {
         Json json = new Json();
-        String analyticsDataString = json.toJson(analyticsModel, AnalyticsModel.class);
+        String analyticsDataString = json.toJson(analyticsModel, LocalModel.class);
         GLog.d(TAG, "*** SAVING ANALYTICS DATA *** " + analyticsDataString);
         writeFile(ANALYTICS_SAVE_FILE, analyticsDataString);
     }
 
-    public static AnalyticsModel loadGameAnalyticsData() {
+    public static LocalModel loadGameAnalyticsData() {
         String fileName = ANALYTICS_SAVE_FILE;
         GLog.d(TAG, "*** LOADING ANALYTICS DATA *** " + fileName);
         String savedAnalyticsFile = readFile(fileName);
         if (!savedAnalyticsFile.isEmpty()) {
             Json json = new Json();
-            AnalyticsModel loadedAnalytics = json.fromJson(AnalyticsModel.class, savedAnalyticsFile);
+            LocalModel loadedAnalytics = json.fromJson(LocalModel.class, savedAnalyticsFile);
             GLog.d(TAG, "*** LOADED ANALYTICS DATA *** ");
             return loadedAnalytics;
         }

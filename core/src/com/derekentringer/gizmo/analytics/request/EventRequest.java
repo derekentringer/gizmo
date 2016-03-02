@@ -1,10 +1,13 @@
-package com.derekentringer.gizmo.network.request;
+package com.derekentringer.gizmo.analytics.request;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class EventFieldsRequest implements Serializable {
+public class EventRequest implements Serializable {
+
+    @SerializedName("category")
+    private String mCategory;
 
     @SerializedName("device")
     private String mDevice;
@@ -36,7 +39,15 @@ public class EventFieldsRequest implements Serializable {
     @SerializedName("session_num")
     private int mSessionNum;
 
-    public EventFieldsRequest() {
+    public EventRequest() {
+    }
+
+    public String getCategory() {
+        return mDevice;
+    }
+
+    public void setCategory(String mCategory) {
+        this.mCategory = mCategory;
     }
 
     public String getDevice() {
@@ -122,7 +133,8 @@ public class EventFieldsRequest implements Serializable {
     @Override
     public String toString() {
         return "{" +
-                "\"device\":" + "\"" + mDevice + '\"' +
+                "\"category\":" + "\"" + mCategory + '\"' +
+                ",\"device\":" + "\"" + mDevice + '\"' +
                 ",\"v\":" + mEventVersion +
                 ",\"user_id\":" + "\"" + mUserId + '\"' +
                 ",\"client_ts\":" + mClientTimestamp +

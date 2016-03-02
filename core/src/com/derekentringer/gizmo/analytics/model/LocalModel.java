@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class AnalyticsModel implements Serializable {
+public class LocalModel implements Serializable {
 
     @SerializedName("session_num")
     private int mSessionNum;

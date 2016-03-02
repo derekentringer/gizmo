@@ -1,6 +1,6 @@
 package com.derekentringer.gizmo.analytics.util;
 
-import com.derekentringer.gizmo.analytics.model.AnalyticsModel;
+import com.derekentringer.gizmo.analytics.model.LocalModel;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 
 import java.net.InetAddress;
@@ -10,6 +10,10 @@ import java.net.UnknownHostException;
 import java.util.UUID;
 
 public class AnalyticsUtils {
+
+    public static String getCategory() {
+        return "user";
+    }
 
     public static String getDevice() {
         String platform = System.getProperty("os.name").toLowerCase();
@@ -100,7 +104,7 @@ public class AnalyticsUtils {
 
     public static String getSessionNum() {
         int sessionNum;
-        AnalyticsModel analyticsModel = new AnalyticsModel();
+        LocalModel analyticsModel = new LocalModel();
 
         if (LocalDataManager.loadGameAnalyticsData() != null) {
             sessionNum = LocalDataManager.loadGameAnalyticsData().getSessionNum() + 1;

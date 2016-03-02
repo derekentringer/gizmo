@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.network.request;
+package com.derekentringer.gizmo.analytics.request;
 
 import com.google.gson.annotations.SerializedName;
 
