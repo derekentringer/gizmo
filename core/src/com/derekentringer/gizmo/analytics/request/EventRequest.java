@@ -7,34 +7,34 @@ import java.io.Serializable;
 public class EventRequest implements Serializable {
 
     @SerializedName("category")
-    private String mCategory; //"category": "user",
+    private String mCategory;
 
     @SerializedName("client_ts")
-    private int mClientTs; //"client_ts": 1443669792,
+    private int mClientTs;
 
     @SerializedName("device")
-    private String mDevice; //"device": "SGH-M919",
+    private String mDevice;
 
     @SerializedName("manufacturer")
-    private String mManufacturer; //"manufacturer": "samsung",
+    private String mManufacturer;
 
     @SerializedName("os_version")
-    private String mOsVersion; //"os_version": "android 4.4.4",
+    private String mOsVersion;
 
     @SerializedName("platform")
-    private String mPlatform; //"platform": "android",
+    private String mPlatform;
 
     @SerializedName("sdk_version")
-    private String mSdkVersion; //"sdk_version": "unity 2.1.4",
+    private String mSdkVersion;
 
     @SerializedName("session_id")
-    private String mSessionId; //"session_id": "84d04731-1e8a-4b60-97db-5cd09900bc85",
+    private String mSessionId;
 
     @SerializedName("session_num")
-    private int mSessionNum; //"session_num": 16,
+    private int mSessionNum;
 
     @SerializedName("user_id")
-    private String mUserId; //"user_id": "c1cb0331-920a-436a-8bc4-a2792ba464b9",
+    private String mUserId;
 
     @SerializedName("v")
     private int mEventVersion;
