@@ -1,6 +1,6 @@
 package com.derekentringer.gizmo.analytics.util;
 
-import com.derekentringer.gizmo.analytics.model.AnalyticsModel;
+import com.derekentringer.gizmo.analytics.model.LocalAnalyticsModel;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 
@@ -95,7 +95,7 @@ public class AnalyticsUtils {
 
     public static String getSessionNum() {
         int sessionNum;
-        AnalyticsModel analyticsModel = new AnalyticsModel();
+        LocalAnalyticsModel analyticsModel = new LocalAnalyticsModel();
         if (LocalDataManager.loadGameAnalyticsData() != null) {
             sessionNum = LocalDataManager.loadGameAnalyticsData().getSessionNum() + 1;
             analyticsModel.setSessionNum(sessionNum);

@@ -13,18 +13,17 @@ import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.InputProcessor;
 import com.derekentringer.gizmo.util.log.GLog;
 
-
 public class Gizmo extends Game {
 
     private static final String TAG = Gizmo.class.getSimpleName();
 
-    public static AssetManager assetManager;
-
-    private FileHandle baseFileHandle;
     private static I18NBundle i18NBundleDebug;
     private static I18NBundle i18NBundle;
-
     private static RetroFitClient mRetrofitClient;
+
+    private FileHandle baseFileHandle;
+
+    public static AssetManager assetManager;
 
     @Override
     public void create() {
