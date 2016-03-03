@@ -18,6 +18,7 @@ public class AnalyticsSettings {
     public static final String REST_API_EVENT_VERSION = "2";
 
     private static boolean mIsAnalyticsAvailable;
+    private static int mSessionStart;
 
     public static boolean getIsAnalyticsAvailable() {
         return mIsAnalyticsAvailable;
@@ -25,6 +26,14 @@ public class AnalyticsSettings {
 
     public static void setIsAnalyticsAvailable(boolean isAnalyticsAvailable) {
         mIsAnalyticsAvailable = isAnalyticsAvailable;
+    }
+
+    public static int getSessionStart() {
+        return mSessionStart;
+    }
+
+    public static void setSessionStartTimeStamp(int sessionStart) {
+        mSessionStart = sessionStart;
     }
 
 }

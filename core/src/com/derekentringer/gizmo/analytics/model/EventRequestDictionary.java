@@ -9,8 +9,8 @@ public class EventRequestDictionary {
 
     private static LinkedHashMap<String, String> dictionary = new LinkedHashMap<String, String>();
 
-    public static void buildDefaultParameters() {
-        dictionary.put("category", "user");
+    public static void buildDefaultParameters(String category) {
+        dictionary.put("category", category);
         dictionary.put("sdk_version", AnalyticsSettings.REST_API_VERSION);
         dictionary.put("v", AnalyticsSettings.REST_API_EVENT_VERSION);
         dictionary.put("user_id", AnalyticsUtils.getMacAddress());
@@ -21,6 +21,7 @@ public class EventRequestDictionary {
         dictionary.put("manufacturer", AnalyticsUtils.getManufacturer());
         dictionary.put("os_version", AnalyticsUtils.getOsVersion());
         dictionary.put("platform", AnalyticsUtils.getPlatform());
+        dictionary.put("length", String.valueOf(AnalyticsUtils.calculateSessionLength()));
     }
 
     public static EventRequest getDefaultParameters() {
@@ -36,6 +37,7 @@ public class EventRequestDictionary {
         eventFields.setManufacturer(dictionary.get("manufacturer"));
         eventFields.setOsVersion(dictionary.get("os_version"));
         eventFields.setPlatform(dictionary.get("platform"));
+        eventFields.setLength(Integer.valueOf(dictionary.get("length")));
         return eventFields;
     }
 

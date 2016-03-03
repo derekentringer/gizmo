@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class InitRequest implements Serializable {
+public class SessionStartRequest implements Serializable {
 
     @SerializedName("platform")
     private String mPlatform;
@@ -15,7 +15,7 @@ public class InitRequest implements Serializable {
     @SerializedName("sdk_version")
     private String mSdkVersion;
 
-    public InitRequest(String platform, String osVersion, String sdkVersion) {
+    public SessionStartRequest(String platform, String osVersion, String sdkVersion) {
         mPlatform = platform;
         mOsVersion = osVersion;
         mSdkVersion = sdkVersion;

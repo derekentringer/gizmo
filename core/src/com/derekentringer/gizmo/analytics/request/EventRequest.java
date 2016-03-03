@@ -39,92 +39,103 @@ public class EventRequest implements Serializable {
     @SerializedName("v")
     private int mEventVersion;
 
+    @SerializedName("length")
+    private int mLength;
+
     public String getCategory() {
         return mCategory;
     }
 
-    public void setCategory(String mCategory) {
-        this.mCategory = mCategory;
+    public void setCategory(String category) {
+        mCategory = category;
     }
 
     public int getClientTs() {
         return mClientTs;
     }
 
-    public void setClientTs(int mClientTs) {
-        this.mClientTs = mClientTs;
+    public void setClientTs(int clientTs) {
+        mClientTs = clientTs;
     }
 
     public String getDevice() {
         return mDevice;
     }
 
-    public void setDevice(String mDevice) {
-        this.mDevice = mDevice;
+    public void setDevice(String device) {
+        mDevice = device;
     }
 
     public String getManufacturer() {
         return mManufacturer;
     }
 
-    public void setManufacturer(String mManufacturer) {
-        this.mManufacturer = mManufacturer;
+    public void setManufacturer(String manufacturer) {
+        mManufacturer = manufacturer;
     }
 
     public String getOsVersion() {
         return mOsVersion;
     }
 
-    public void setOsVersion(String mOsVersion) {
-        this.mOsVersion = mOsVersion;
+    public void setOsVersion(String osVersion) {
+        mOsVersion = osVersion;
     }
 
     public String getPlatform() {
         return mPlatform;
     }
 
-    public void setPlatform(String mPlatform) {
-        this.mPlatform = mPlatform;
+    public void setPlatform(String platform) {
+        mPlatform = platform;
     }
 
     public String getSdkVersion() {
         return mSdkVersion;
     }
 
-    public void setSdkVersion(String mSdkVersion) {
-        this.mSdkVersion = mSdkVersion;
+    public void setSdkVersion(String sdkVersion) {
+        mSdkVersion = sdkVersion;
     }
 
     public String getSessionId() {
         return mSessionId;
     }
 
-    public void setSessionId(String mSessionId) {
-        this.mSessionId = mSessionId;
+    public void setSessionId(String sessionId) {
+        mSessionId = sessionId;
     }
 
     public int getSessionNum() {
         return mSessionNum;
     }
 
-    public void setSessionNum(int mSessionNum) {
-        this.mSessionNum = mSessionNum;
+    public void setSessionNum(int sessionNum) {
+        mSessionNum = sessionNum;
     }
 
     public String getUserId() {
         return mUserId;
     }
 
-    public void setUserId(String mUserId) {
-        this.mUserId = mUserId;
+    public void setUserId(String userId) {
+        mUserId = userId;
     }
 
     public int getEventVersion() {
-        return this.mEventVersion;
+        return mEventVersion;
     }
 
-    public void setEventVersion(int mEventVersion) {
-        this.mEventVersion = mEventVersion;
+    public void setEventVersion(int eventVersion) {
+        mEventVersion = eventVersion;
+    }
+
+    public int getLength() {
+        return mLength;
+    }
+
+    public void setLength(int length) {
+        mLength = length;
     }
 
     @Override
@@ -141,6 +152,7 @@ public class EventRequest implements Serializable {
                 ",\"session_num\":" + mSessionNum +
                 ",\"user_id\":" + "\"" + mUserId + '\"' +
                 ",\"v\":" + mEventVersion +
+                ",\"length\":" + mLength +
                 '}';
     }
 

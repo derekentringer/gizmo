@@ -68,6 +68,9 @@ public class Gizmo extends Game {
     @Override
     public void dispose () {
         GLog.d(TAG, "dispose");
+
+        Analytics.sendEvent("session_end");
+
         super.dispose();
         this.getScreen().dispose();
         assetManager.dispose();

@@ -4,7 +4,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.analytics.model.EventRequestDictionary;
 import com.derekentringer.gizmo.analytics.request.EventRequest;
-import com.derekentringer.gizmo.analytics.request.InitRequest;
+import com.derekentringer.gizmo.analytics.request.SessionStartRequest;
 import com.derekentringer.gizmo.analytics.response.InitResponse;
 import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.network.util.HMAC;
@@ -22,7 +22,7 @@ public class Analytics {
     private static final String TAG = Analytics.class.getSimpleName();
 
     public static void initialize() {
-        InitRequest initRequest = new InitRequest(AnalyticsUtils.getPlatform(),
+        SessionStartRequest initRequest = new SessionStartRequest(AnalyticsUtils.getPlatform(),
                 AnalyticsUtils.getOsVersion(),
                 AnalyticsSettings.REST_API_VERSION);
 
@@ -34,10 +34,9 @@ public class Analytics {
                     public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
                         if (response.isSuccess()) {
                             AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
-                            EventRequestDictionary.buildDefaultParameters();
-                            ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
-                            eventRequests.add(EventRequestDictionary.getDefaultParameters());
-                            Analytics.sendEvent(eventRequests);
+                            EventRequestDictionary.buildDefaultParameters("user");
+                            AnalyticsSettings.setSessionStartTimeStamp(EventRequestDictionary.getDefaultParameters().getClientTs());
+                            Analytics.sendEvent("user");
                         }
                         else {
                             AnalyticsSettings.setIsAnalyticsAvailable(false);
@@ -51,21 +50,28 @@ public class Analytics {
                 });
     }
 
-    public static void sendEvent(ArrayList<EventRequest> eventRequest) {
-        Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, eventRequest.toString().getBytes()),
-                AnalyticsSettings.API_GAME_KEY_DEV,
-                eventRequest)
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        GLog.d(TAG, "sendEvent:onResponse:" + response.isSuccess());
-                    }
+    public static void sendEvent(String category) {
+        if (AnalyticsSettings.getIsAnalyticsAvailable()) {
+            EventRequestDictionary.buildDefaultParameters(category);
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        GLog.d(TAG, "sendEvent:onFailure");
-                    }
-                });
+            ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
+            eventRequests.add(EventRequestDictionary.getDefaultParameters());
+
+            Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, eventRequests.toString().getBytes()),
+                    AnalyticsSettings.API_GAME_KEY_DEV,
+                    eventRequests)
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            GLog.d(TAG, "sendEvent:onResponse:" + response.isSuccess());
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            GLog.d(TAG, "sendEvent:onFailure");
+                        }
+                    });
+        }
     }
 
 }
