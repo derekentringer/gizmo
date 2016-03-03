@@ -11,18 +11,12 @@ import java.util.UUID;
 
 public class AnalyticsUtils {
 
-    public static String getCategory() {
-        return "user";
-    }
-
     public static String getDevice() {
         String platform = System.getProperty("os.name").toLowerCase();
         return platform;
     }
 
     public static String getPlatform() {
-        //"enum": ["ios", "android", "windows", "windows_phone",
-        //"blackberry", "roku", "tizen", "nacl", "mac_osx", "webplayer"]
         String platform = System.getProperty("os.name").toLowerCase();
         if (platform.contains("win")) {
             return "windows";
@@ -65,9 +59,8 @@ public class AnalyticsUtils {
     }
 
     public static String getOsVersion() {
-        //"^(ios|android|windows|windows_phone|blackberry|roku|tizen|nacl|mac_osx|webplayer) [0-9]{0,5}(\\.[0-9]{0,5}){0,2}$"
         String operatingSystem = System.getProperty("os.version").toLowerCase();
-        return "mac_osx";
+        return getPlatform() + " " + operatingSystem;
     }
 
     public static String getMacAddress() {
@@ -91,9 +84,6 @@ public class AnalyticsUtils {
     }
 
     public static int getTimestamp() {
-        //int localTime = (int) (System.currentTimeMillis() / 1000L);
-        //int serverTime = AnalyticsSettings.getServerTimestampOffset();
-        //int timeOffset = localTime - serverTime;
         return (int) (System.currentTimeMillis() / 1000L);
     }
 
@@ -105,7 +95,6 @@ public class AnalyticsUtils {
     public static String getSessionNum() {
         int sessionNum;
         LocalModel analyticsModel = new LocalModel();
-
         if (LocalDataManager.loadGameAnalyticsData() != null) {
             sessionNum = LocalDataManager.loadGameAnalyticsData().getSessionNum() + 1;
             analyticsModel.setSessionNum(sessionNum);

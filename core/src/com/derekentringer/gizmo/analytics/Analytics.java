@@ -3,11 +3,14 @@ package com.derekentringer.gizmo.analytics;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
 import com.derekentringer.gizmo.analytics.model.EventRequestDictionary;
-import com.derekentringer.gizmo.analytics.request.EventRequestTest;
+import com.derekentringer.gizmo.analytics.request.EventRequest;
 import com.derekentringer.gizmo.analytics.request.InitRequest;
 import com.derekentringer.gizmo.analytics.response.InitResponse;
+import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.network.util.HMAC;
 import com.derekentringer.gizmo.util.log.GLog;
+
+import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -18,22 +21,23 @@ public class Analytics {
 
     private static final String TAG = Analytics.class.getSimpleName();
 
-    public static void initialize(InitRequest initRequest) {
-        GLog.d(TAG, "secret_key: " + AnalyticsSettings.API_SECRET_KEY_SANDBOX);
-        GLog.d(TAG, "initRequest: " + initRequest.toString());
-        Gizmo.getRetrofitClient().initialize(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_SANDBOX, initRequest.toString().getBytes()),
-                AnalyticsSettings.API_GAME_KEY_SANDBOX,
+    public static void initialize() {
+        InitRequest initRequest = new InitRequest(AnalyticsUtils.getPlatform(),
+                AnalyticsUtils.getOsVersion(),
+                AnalyticsSettings.REST_API_VERSION);
+
+        Gizmo.getRetrofitClient().initialize(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, initRequest.toString().getBytes()),
+                AnalyticsSettings.API_GAME_KEY_DEV,
                 initRequest)
                 .enqueue(new Callback<InitResponse>() {
                     @Override
                     public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
                         if (response.isSuccess()) {
-
                             AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
-                            AnalyticsSettings.setServerTimestampOffset(response.body().getServerTs());
-                            EventRequestDictionary.buildTestData();
-
-                            Analytics.sendEvent(EventRequestDictionary.getTestDictionary());
+                            EventRequestDictionary.buildDefaultParameters();
+                            ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
+                            eventRequests.add(EventRequestDictionary.getDefaultParameters());
+                            Analytics.sendEvent(eventRequests);
                         }
                         else {
                             AnalyticsSettings.setIsAnalyticsAvailable(false);
@@ -47,11 +51,9 @@ public class Analytics {
                 });
     }
 
-    public static void sendEvent(EventRequestTest eventRequest) {
-        GLog.d(TAG, "secret_key: " + AnalyticsSettings.API_SECRET_KEY_SANDBOX);
-        GLog.d(TAG, "eventRequest: " + eventRequest.toString());
-        Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_SANDBOX, eventRequest.toString().getBytes()),
-                AnalyticsSettings.API_GAME_KEY_SANDBOX,
+    public static void sendEvent(ArrayList<EventRequest> eventRequest) {
+        Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, eventRequest.toString().getBytes()),
+                AnalyticsSettings.API_GAME_KEY_DEV,
                 eventRequest)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override

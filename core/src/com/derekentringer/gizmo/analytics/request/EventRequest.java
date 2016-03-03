@@ -7,47 +7,52 @@ import java.io.Serializable;
 public class EventRequest implements Serializable {
 
     @SerializedName("category")
-    private String mCategory;
+    private String mCategory; //"category": "user",
+
+    @SerializedName("client_ts")
+    private int mClientTs; //"client_ts": 1443669792,
 
     @SerializedName("device")
-    private String mDevice;
+    private String mDevice; //"device": "SGH-M919",
+
+    @SerializedName("manufacturer")
+    private String mManufacturer; //"manufacturer": "samsung",
+
+    @SerializedName("os_version")
+    private String mOsVersion; //"os_version": "android 4.4.4",
+
+    @SerializedName("platform")
+    private String mPlatform; //"platform": "android",
+
+    @SerializedName("sdk_version")
+    private String mSdkVersion; //"sdk_version": "unity 2.1.4",
+
+    @SerializedName("session_id")
+    private String mSessionId; //"session_id": "84d04731-1e8a-4b60-97db-5cd09900bc85",
+
+    @SerializedName("session_num")
+    private int mSessionNum; //"session_num": 16,
+
+    @SerializedName("user_id")
+    private String mUserId; //"user_id": "c1cb0331-920a-436a-8bc4-a2792ba464b9",
 
     @SerializedName("v")
     private int mEventVersion;
 
-    @SerializedName("user_id")
-    private String mUserId;
-
-    @SerializedName("client_ts")
-    private int mClientTimestamp;
-
-    @SerializedName("sdk_version")
-    private String mSdkVersion;
-
-    @SerializedName("os_version")
-    private String mOsVersion;
-
-    @SerializedName("manufacturer")
-    private String mManufacturer;
-
-    @SerializedName("platform")
-    private String mPlatform;
-
-    @SerializedName("session_id")
-    private String mSessionId;
-
-    @SerializedName("session_num")
-    private int mSessionNum;
-
-    public EventRequest() {
-    }
-
     public String getCategory() {
-        return mDevice;
+        return mCategory;
     }
 
     public void setCategory(String mCategory) {
         this.mCategory = mCategory;
+    }
+
+    public int getClientTs() {
+        return mClientTs;
+    }
+
+    public void setClientTs(int mClientTs) {
+        this.mClientTs = mClientTs;
     }
 
     public String getDevice() {
@@ -58,36 +63,12 @@ public class EventRequest implements Serializable {
         this.mDevice = mDevice;
     }
 
-    public int getEventVersion() {
-        return mEventVersion;
+    public String getManufacturer() {
+        return mManufacturer;
     }
 
-    public void setEventVersion(int mEventVersion) {
-        this.mEventVersion = mEventVersion;
-    }
-
-    public String getUserId() {
-        return mUserId;
-    }
-
-    public void setUserId(String mUserId) {
-        this.mUserId = mUserId;
-    }
-
-    public int getClientTimestamp() {
-        return mClientTimestamp;
-    }
-
-    public void setClientTimestamp(int mClientTimestamp) {
-        this.mClientTimestamp = mClientTimestamp;
-    }
-
-    public String getSdkVersion() {
-        return mSdkVersion;
-    }
-
-    public void setSdkVersion(String mSdkVersion) {
-        this.mSdkVersion = mSdkVersion;
+    public void setManufacturer(String mManufacturer) {
+        this.mManufacturer = mManufacturer;
     }
 
     public String getOsVersion() {
@@ -98,20 +79,20 @@ public class EventRequest implements Serializable {
         this.mOsVersion = mOsVersion;
     }
 
-    public String getManufacturer() {
-        return mManufacturer;
-    }
-
-    public void setManufacturer(String mManufacturer) {
-        this.mManufacturer = mManufacturer;
-    }
-
     public String getPlatform() {
         return mPlatform;
     }
 
     public void setPlatform(String mPlatform) {
         this.mPlatform = mPlatform;
+    }
+
+    public String getSdkVersion() {
+        return mSdkVersion;
+    }
+
+    public void setSdkVersion(String mSdkVersion) {
+        this.mSdkVersion = mSdkVersion;
     }
 
     public String getSessionId() {
@@ -130,20 +111,36 @@ public class EventRequest implements Serializable {
         this.mSessionNum = mSessionNum;
     }
 
+    public String getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(String mUserId) {
+        this.mUserId = mUserId;
+    }
+
+    public int getEventVersion() {
+        return this.mEventVersion;
+    }
+
+    public void setEventVersion(int mEventVersion) {
+        this.mEventVersion = mEventVersion;
+    }
+
     @Override
     public String toString() {
         return "{" +
                 "\"category\":" + "\"" + mCategory + '\"' +
+                ",\"client_ts\":" + mClientTs +
                 ",\"device\":" + "\"" + mDevice + '\"' +
-                ",\"v\":" + mEventVersion +
-                ",\"user_id\":" + "\"" + mUserId + '\"' +
-                ",\"client_ts\":" + mClientTimestamp +
-                ",\"sdk_version\":" + "\"" + mSdkVersion + '\"' +
-                ",\"os_version\":" + "\"" + mOsVersion + '\"' +
                 ",\"manufacturer\":" + "\"" + mManufacturer + '\"' +
+                ",\"os_version\":" + "\"" + mOsVersion + '\"' +
                 ",\"platform\":" + "\"" + mPlatform + '\"' +
+                ",\"sdk_version\":" + "\"" + mSdkVersion + '\"' +
                 ",\"session_id\":" + "\"" + mSessionId + '\"' +
                 ",\"session_num\":" + mSessionNum +
+                ",\"user_id\":" + "\"" + mUserId + '\"' +
+                ",\"v\":" + mEventVersion +
                 '}';
     }
 

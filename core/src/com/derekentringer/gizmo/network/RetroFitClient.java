@@ -1,10 +1,12 @@
 package com.derekentringer.gizmo.network;
 
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
-import com.derekentringer.gizmo.analytics.request.EventRequestTest;
+import com.derekentringer.gizmo.analytics.request.EventRequest;
 import com.derekentringer.gizmo.analytics.request.InitRequest;
 import com.derekentringer.gizmo.analytics.response.InitResponse;
 import com.derekentringer.gizmo.network.interceptor.HeaderInterceptor;
+
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -27,7 +29,7 @@ public interface RetroFitClient {
     @POST("v2/{game_key}/events")
     Call<ResponseBody> sendEvent(@Header("Authorization") String auth,
                                  @Path("game_key") String gameKey,
-                                 @Body EventRequestTest eventRequest);
+                                 @Body ArrayList<EventRequest> eventRequest);
 
     class Factory {
         public static RetroFitClient create() {
@@ -38,7 +40,7 @@ public interface RetroFitClient {
                     .build();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(AnalyticsSettings.ENDPOINT_SANDBOX)
+                    .baseUrl(AnalyticsSettings.ENDPOINT_DEV)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
