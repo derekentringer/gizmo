@@ -12,7 +12,7 @@ need to map xbox360, xbox one, ouya, fire tv controllers
 new additions needed
 ------------------------------------------------------------------------------
 
-give enemies (dynamic?) flinching/destroy animation (something diff than the player blinking)
+give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
 	- create a box in the hud around each type of weapon and show the graphic as it is choosen
