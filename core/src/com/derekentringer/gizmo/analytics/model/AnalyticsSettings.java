@@ -28,11 +28,11 @@ public class AnalyticsSettings {
         mIsAnalyticsAvailable = isAnalyticsAvailable;
     }
 
-    public static int getSessionStart() {
+    public static int getSessionStartTimestamp() {
         return mSessionStart;
     }
 
-    public static void setSessionStartTimeStamp(int sessionStart) {
+    public static void setSessionStartTimestamp(int sessionStart) {
         mSessionStart = sessionStart;
     }
 

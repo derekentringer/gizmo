@@ -110,7 +110,7 @@ public class AnalyticsUtils {
     }
 
     public static int calculateSessionLength() {
-        return getTimestamp() - AnalyticsSettings.getSessionStart();
+        return getTimestamp() - AnalyticsSettings.getSessionStartTimestamp();
     }
 
 }

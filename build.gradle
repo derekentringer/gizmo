@@ -113,6 +113,7 @@ project(":core") {
         compile "com.squareup.okhttp3:okhttp:$okhttp3Version"
         compile "com.squareup.okhttp3:okhttp-urlconnection:$okhttp3Version"
         compile 'commons-codec:commons-codec:1.10'
+        compile 'com.google.code.gson:gson:2.6.2'
     }
 }
 

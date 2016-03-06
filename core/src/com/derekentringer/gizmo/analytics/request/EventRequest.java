@@ -42,6 +42,12 @@ public class EventRequest implements Serializable {
     @SerializedName("length")
     private int mLength;
 
+    @SerializedName("event_id")
+    private String mEventId;
+
+    @SerializedName("attempt_num")
+    private int mAttemptNum;
+
     public String getCategory() {
         return mCategory;
     }
@@ -138,22 +144,20 @@ public class EventRequest implements Serializable {
         mLength = length;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "\"category\":" + "\"" + mCategory + '\"' +
-                ",\"client_ts\":" + mClientTs +
-                ",\"device\":" + "\"" + mDevice + '\"' +
-                ",\"manufacturer\":" + "\"" + mManufacturer + '\"' +
-                ",\"os_version\":" + "\"" + mOsVersion + '\"' +
-                ",\"platform\":" + "\"" + mPlatform + '\"' +
-                ",\"sdk_version\":" + "\"" + mSdkVersion + '\"' +
-                ",\"session_id\":" + "\"" + mSessionId + '\"' +
-                ",\"session_num\":" + mSessionNum +
-                ",\"user_id\":" + "\"" + mUserId + '\"' +
-                ",\"v\":" + mEventVersion +
-                ",\"length\":" + mLength +
-                '}';
+    public String getEventId() {
+        return mEventId;
+    }
+
+    public void setEventId(String eventId) {
+        mEventId = eventId;
+    }
+
+    public int getAttemptNum() {
+        return mAttemptNum;
+    }
+
+    public void setAttemptNum(int attemptNum) {
+        mAttemptNum = attemptNum;
     }
 
 }

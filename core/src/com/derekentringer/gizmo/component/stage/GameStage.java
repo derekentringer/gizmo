@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.block.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
@@ -87,7 +88,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     private boolean mAlreadyEntered = false;
 
     private boolean mToggleSelectionFlag = false;
-    private boolean mBackWasPressed = false;
+
+    private int mAttempts = 0;
 
     public GameStage(GameScreen gameScreen) {
         mGameScreen = gameScreen;
@@ -118,6 +120,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         mMapParser.addListener(this);
         mMapParser.createTileMapLayers(mWorld);
         mMapParser.createTileMapObjects(mWorld, whichDoor);
+
+        Analytics.sendEvent("progression", "Start:" + mRoomModel.getRoomInt(), mAttempts);
     }
 
     @Override
@@ -313,6 +317,9 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             //TODO could load first room of multiple rooms
             //TODO ie, need to pass which door in the room
             loadRoom(mRoomModel, DoorType.DOOR_PREVIOUS);
+
+            mAttempts++;
+            Analytics.sendEvent("progression", "Fail:" + mRoomModel.getRoomInt(), mAttempts);
         }
     }
 
@@ -541,7 +548,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         }
     }
 
-    private void loadNewRoom(int newRoom, String whichDoor) {
+    private void loadNewRoom(int currentRoom, int newRoom, String whichDestDoor) {
         mAlreadyEntered = true;
         mPlayerActor.setIsItemActive(false);
 
@@ -555,7 +562,10 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
         LocalDataManager.saveRoomData(mLoadedRoomModel);
 
-        loadRoom(RoomUtils.rooms.get(newRoom), whichDoor);
+        loadRoom(RoomUtils.rooms.get(newRoom), whichDestDoor);
+
+        mAttempts = 0;
+        Analytics.sendEvent("progression", "Complete:" + currentRoom, mAttempts);
     }
 
     @Override
@@ -669,7 +679,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         if (mPlayerActor.getIsAtDoorUserData().getRoomNumber() != -1
                 && mPlayerActor.getIsAtDoorUserData().getDestinationDoor() != null) {
             mLoadedRoomModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
-            loadNewRoom(mPlayerActor.getIsAtDoorUserData().getRoomNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
+            loadNewRoom(mRoomModel.getRoomInt(), mPlayerActor.getIsAtDoorUserData().getRoomNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }
     }
 

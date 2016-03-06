@@ -9,6 +9,7 @@ import com.derekentringer.gizmo.analytics.response.InitResponse;
 import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.network.util.HMAC;
 import com.derekentringer.gizmo.util.log.GLog;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -21,12 +22,14 @@ public class Analytics {
 
     private static final String TAG = Analytics.class.getSimpleName();
 
+    private static Gson gson = new Gson();
+
     public static void initialize() {
         SessionStartRequest initRequest = new SessionStartRequest(AnalyticsUtils.getPlatform(),
                 AnalyticsUtils.getOsVersion(),
                 AnalyticsSettings.REST_API_VERSION);
 
-        Gizmo.getRetrofitClient().initialize(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, initRequest.toString().getBytes()),
+        Gizmo.getRetrofitClient().initialize(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, gson.toJson(initRequest).getBytes()),
                 AnalyticsSettings.API_GAME_KEY_DEV,
                 initRequest)
                 .enqueue(new Callback<InitResponse>() {
@@ -34,9 +37,8 @@ public class Analytics {
                     public void onResponse(Call<InitResponse> call, Response<InitResponse> response) {
                         if (response.isSuccess()) {
                             AnalyticsSettings.setIsAnalyticsAvailable(response.body().isEnabled());
-                            EventRequestDictionary.buildDefaultParameters("user");
-                            AnalyticsSettings.setSessionStartTimeStamp(EventRequestDictionary.getDefaultParameters().getClientTs());
-                            Analytics.sendEvent("user");
+                            AnalyticsSettings.setSessionStartTimestamp(AnalyticsUtils.getTimestamp());
+                            Analytics.sendEvent("user", null, 0);
                         }
                         else {
                             AnalyticsSettings.setIsAnalyticsAvailable(false);
@@ -50,14 +52,13 @@ public class Analytics {
                 });
     }
 
-    public static void sendEvent(String category) {
+    public static void sendEvent(String category, String eventId, int attemptNum) {
         if (AnalyticsSettings.getIsAnalyticsAvailable()) {
-            EventRequestDictionary.buildDefaultParameters(category);
 
             ArrayList<EventRequest> eventRequests = new ArrayList<EventRequest>();
-            eventRequests.add(EventRequestDictionary.getDefaultParameters());
+            eventRequests.add(EventRequestDictionary.buildEventRequestParameters(category, eventId, attemptNum));
 
-            Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, eventRequests.toString().getBytes()),
+            Gizmo.getRetrofitClient().sendEvent(HMAC.hmacWithKey(AnalyticsSettings.API_SECRET_KEY_DEV, gson.toJson(eventRequests).getBytes()),
                     AnalyticsSettings.API_GAME_KEY_DEV,
                     eventRequests)
                     .enqueue(new Callback<ResponseBody>() {
