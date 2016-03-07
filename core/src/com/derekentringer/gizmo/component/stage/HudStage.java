@@ -85,6 +85,21 @@ public class HudStage extends BaseStage implements IGameStage {
     private String mBlueCrystalStringDisplay;
     private String mInitialCrystalString = "0";
 
+    private int getBackgroundWidth(int hearts) {
+        if (hearts == 2) {
+            return 90;
+        }
+        else if (hearts == 3) {
+            return 70;
+        }
+        else if (hearts == 4) {
+            return 50;
+        }
+        else {
+            return 32;
+        }
+    }
+
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
@@ -145,13 +160,13 @@ public class HudStage extends BaseStage implements IGameStage {
 
         mWhiteShapeRendererTop.begin(ShapeRenderer.ShapeType.Filled);
         mWhiteShapeRendererTop.setColor(Color.WHITE);
-        mWhiteShapeRendererTop.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
+        mWhiteShapeRendererTop.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight, mCurrentHealthTexture.getWidth() - getBackgroundWidth(mHearts), mRedShapeHeight);
         mWhiteShapeRendererTop.end();
 
         if (mHearts > 5) {
             mWhiteShapeRendererBottom.begin(ShapeRenderer.ShapeType.Filled);
             mWhiteShapeRendererBottom.setColor(Color.WHITE);
-            mWhiteShapeRendererBottom.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight*2, mCurrentHealthTexture.getWidth() - 32, mRedShapeHeight);
+            mWhiteShapeRendererBottom.rect(mHudHealthPosition.x, mHudHealthPosition.y + mCurrentHealthTexture.getHeight() - mRedShapeHeight*2, mCurrentHealthTexture.getWidth() - getBackgroundWidth(mHearts), mRedShapeHeight);
             mWhiteShapeRendererBottom.end();
         }
 
@@ -173,7 +188,7 @@ public class HudStage extends BaseStage implements IGameStage {
             mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
             mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
             mSpriteBatch.draw(mHudCurrentItem, centerScreenX - mHudCurrentItem.getWidth()/2, mHudCurrentItemPosition.y);
-            mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 23, mHudCrystalsPosition.y + 23);
+            mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 36, mHudCrystalsPosition.y + 23);
             mBitmapFont.setColor(1, 1, 1, 1);
         mSpriteBatch.end();
     }
