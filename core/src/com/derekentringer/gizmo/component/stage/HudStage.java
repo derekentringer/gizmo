@@ -33,6 +33,7 @@ public class HudStage extends BaseStage implements IGameStage {
     private Vector2 mHudLivesPosition = new Vector2();
     private Vector2 mHudHealthPosition = new Vector2();
     private Vector2 mHudCrystalsPosition = new Vector2();
+    private Vector2 mHudCurrentItemPosition = new Vector2();
 
     private Texture mHudLivesOne;
     private Texture mHudLivesTwo;
@@ -54,6 +55,8 @@ public class HudStage extends BaseStage implements IGameStage {
     private Texture mCurrentHealthTexture;
 
     private Texture mHudCrystalsCount;
+
+    private Texture mHudCurrentItem;
 
     private int mLives;
     private int mHearts;
@@ -113,6 +116,8 @@ public class HudStage extends BaseStage implements IGameStage {
 
         mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
+        mHudCurrentItem = Gizmo.assetManager.get("res/image/hud/hud_current_item.png", Texture.class);
+
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
 
@@ -167,6 +172,7 @@ public class HudStage extends BaseStage implements IGameStage {
             mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
             mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
             mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
+            mSpriteBatch.draw(mHudCurrentItem, centerScreenX - mHudCurrentItem.getWidth()/2, mHudCurrentItemPosition.y);
             mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 23, mHudCrystalsPosition.y + 23);
             mBitmapFont.setColor(1, 1, 1, 1);
         mSpriteBatch.end();
@@ -265,6 +271,8 @@ public class HudStage extends BaseStage implements IGameStage {
 
         mHudCrystalsPosition.x = Math.abs(gameWidth - mHudCrystalsCount.getWidth() * scale + crop.x) / scale;
         mHudCrystalsPosition.y = Math.abs(gameHeight - mHudCrystalsCount.getHeight() * scale - HUD_PADDING * scale) / scale;
+
+        mHudCurrentItemPosition.y = Math.abs(gameHeight - mHudCurrentItem.getHeight() * scale - HUD_PADDING * scale) / scale;
 
         GLog.d(TAG, "crop.x"+crop.x);
 
