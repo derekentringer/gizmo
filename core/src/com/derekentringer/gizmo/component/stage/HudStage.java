@@ -85,21 +85,6 @@ public class HudStage extends BaseStage implements IGameStage {
     private String mBlueCrystalStringDisplay;
     private String mInitialCrystalString = "0";
 
-    private int getBackgroundWidth(int hearts) {
-        if (hearts == 2) {
-            return 90;
-        }
-        else if (hearts == 3) {
-            return 70;
-        }
-        else if (hearts == 4) {
-            return 50;
-        }
-        else {
-            return 32;
-        }
-    }
-
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
@@ -198,6 +183,21 @@ public class HudStage extends BaseStage implements IGameStage {
         super.act(delta);
         if (mShowTransition) {
             dimTheStageLights(delta);
+        }
+    }
+
+    private int getBackgroundWidth(int hearts) {
+        if (hearts == 2) {
+            return 90;
+        }
+        else if (hearts == 3) {
+            return 70;
+        }
+        else if (hearts == 4) {
+            return 50;
+        }
+        else {
+            return 32;
         }
     }
 
