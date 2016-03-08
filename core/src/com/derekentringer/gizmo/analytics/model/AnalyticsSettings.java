@@ -19,6 +19,7 @@ public class AnalyticsSettings {
 
     private static boolean mIsAnalyticsAvailable;
     private static int mSessionStart;
+    private static String mSessionId;
 
     public static boolean getIsAnalyticsAvailable() {
         return mIsAnalyticsAvailable;
@@ -36,4 +37,11 @@ public class AnalyticsSettings {
         mSessionStart = sessionStart;
     }
 
+    public static String getSessionId() {
+        return mSessionId;
+    }
+
+    public static void setSessionId(String sessionId) {
+        mSessionId = sessionId;
+    }
 }

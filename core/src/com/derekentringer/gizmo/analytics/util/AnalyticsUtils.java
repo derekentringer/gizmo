@@ -90,6 +90,7 @@ public class AnalyticsUtils {
 
     public static String getRandomUUID() {
         UUID randomUUID = UUID.randomUUID();
+        AnalyticsSettings.setSessionId(randomUUID.toString());
         return randomUUID.toString();
     }
 
