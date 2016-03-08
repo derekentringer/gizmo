@@ -15,13 +15,6 @@ public class EventRequestDictionary {
         dictionary.put("sdk_version", AnalyticsSettings.REST_API_VERSION);
         dictionary.put("v", AnalyticsSettings.REST_API_EVENT_VERSION);
         dictionary.put("user_id", AnalyticsUtils.getMacAddress());
-        if (dictionary.get("session_id") == null
-                || dictionary.get("session_id") == "") {
-            dictionary.put("session_id", AnalyticsUtils.getRandomUUID());
-        }
-        else {
-            dictionary.put("session_id", AnalyticsSettings.getSessionId());
-        }
         dictionary.put("session_num", AnalyticsUtils.getSessionNum());
         dictionary.put("client_ts", String.valueOf(AnalyticsSettings.getSessionStartTimestamp()));
         dictionary.put("device", AnalyticsUtils.getDevice());
@@ -30,11 +23,18 @@ public class EventRequestDictionary {
         dictionary.put("platform", AnalyticsUtils.getPlatform());
         dictionary.put("length", String.valueOf(AnalyticsUtils.calculateSessionLength()));
 
+        if (dictionary.get("session_id") == null
+                || dictionary.get("session_id") == "") {
+            dictionary.put("session_id", AnalyticsUtils.getRandomUUID());
+        }
+        else {
+            dictionary.put("session_id", AnalyticsSettings.getSessionId());
+        }
+
         eventFields.setCategory(dictionary.get("category"));
         eventFields.setSdkVersion(dictionary.get("sdk_version"));
         eventFields.setEventVersion(Integer.valueOf(dictionary.get("v")));
         eventFields.setUserId(dictionary.get("user_id"));
-        eventFields.setSessionId(dictionary.get("session_id"));
         eventFields.setSessionNum(Integer.valueOf(dictionary.get("session_num")));
         eventFields.setClientTs(Integer.valueOf(dictionary.get("client_ts")));
         eventFields.setDevice(dictionary.get("device"));
@@ -42,6 +42,7 @@ public class EventRequestDictionary {
         eventFields.setOsVersion(dictionary.get("os_version"));
         eventFields.setPlatform(dictionary.get("platform"));
         eventFields.setLength(Integer.valueOf(dictionary.get("length")));
+        eventFields.setSessionId(dictionary.get("session_id"));
 
         if (category.equals("progression")) {
             dictionary.put("event_id", eventId);
