@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -276,6 +277,14 @@ public class HudStage extends BaseStage implements IGameStage {
         mFadeStatus = FADE_IN;
     }
 
+    @Override
+    public void setHudSelectedItem(BasePlayerItemModel item) {
+        //TODO set item that is selected
+        if (item != null) {
+            GLog.d(TAG, "setHudSelectedItem: " + item.getItemType());
+        }
+    }
+
     public void updateHudLayout(Float scale, Vector2 crop, float gameWidth, float gameHeight) {
         GLog.d(TAG, "updateHudLayout");
         mHudLivesPosition.x = Math.abs(crop.x) / scale;
@@ -335,8 +344,7 @@ public class HudStage extends BaseStage implements IGameStage {
         setHudHealth(mHearts * PlayerModel.HEART_HEALTH_AMOUNT);
     }
 
-    //TODO this is called twice for some reason
-    //TODO when the level loads
+    //TODO this is called twice for some reason when the level loads
     @Override
     public void setHudHealth(int health) {
         GLog.d(TAG, "setHudHealth");

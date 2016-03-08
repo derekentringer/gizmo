@@ -34,6 +34,8 @@ public class PlayerModel extends BaseModel {
     //TODO
     private int mDiggingPower = 1;
 
+    private BasePlayerItemModel mCurrentlySelectedItem;
+
     public PlayerModel() {
         mBaseModelType = BaseModelType.PLAYER;
     }
@@ -115,6 +117,14 @@ public class PlayerModel extends BaseModel {
 
     public void setCrystalBlueAmount(int crystalBlueAmount) {
         mCrystalBlueAmount = crystalBlueAmount;
+    }
+
+    public BasePlayerItemModel getCurrentlySelectedItem() {
+        return mCurrentlySelectedItem;
+    }
+
+    public void setCurrentlySelectedItem(BasePlayerItemModel currentlySelectedItem) {
+        mCurrentlySelectedItem = currentlySelectedItem;
     }
 
 }

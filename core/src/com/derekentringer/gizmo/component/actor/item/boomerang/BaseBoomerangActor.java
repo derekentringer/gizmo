@@ -2,7 +2,6 @@ package com.derekentringer.gizmo.component.actor.item.boomerang;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
@@ -22,7 +21,6 @@ public class BaseBoomerangActor extends BaseActor {
     protected Texture mBoomerangTexture;
 
     protected int mPlayerFacingDirection;
-    protected Vector2 mPlayerPosition = new Vector2();
     protected boolean mComingBack;
 
     public BaseBoomerangActor(Body body) {

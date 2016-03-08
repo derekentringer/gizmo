@@ -50,6 +50,14 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
             UserInput.setKey(UserInput.ATTACK_BUTTON, true);
         }
 
+        if (keycode == Input.Keys.LEFT_BRACKET) {
+            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD, true);
+        }
+
+        if (keycode == Input.Keys.RIGHT_BRACKET) {
+            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_FORWARD, true);
+        }
+
         //arrow key movement
         if (keycode == Input.Keys.UP) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
@@ -110,6 +118,14 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK_BUTTON, false);
+        }
+
+        if (keycode == Input.Keys.LEFT_BRACKET) {
+            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD, false);
+        }
+
+        if (keycode == Input.Keys.RIGHT_BRACKET) {
+            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_FORWARD, false);
         }
 
         //arrow key movement

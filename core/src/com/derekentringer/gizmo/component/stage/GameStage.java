@@ -38,6 +38,7 @@ import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.pickup.PickupHeartModel;
 import com.derekentringer.gizmo.model.pickup.PickupKeyModel;
@@ -64,7 +65,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     private static final String TAG = GameStage.class.getSimpleName();
 
-    private ArrayList<IGameStage> listeners = new ArrayList<IGameStage>();
+    private ArrayList<IGameStage> gameStageListeners = new ArrayList<IGameStage>();
     private ArrayList<DeleteBody> mDeleteBodies = new ArrayList<DeleteBody>();
 
     private GameScreen mGameScreen;
@@ -96,7 +97,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     public void addListener(IGameStage listener) {
-        listeners.add(listener);
+        gameStageListeners.add(listener);
     }
 
     public void init(RoomModel room) {
@@ -137,8 +138,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         ContactManager.setPlayerAttacking(mMapParser, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, bodyA, bodyB);
-        ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
-        ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, listeners, bodyA, bodyB);
+        ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
+        ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
         ContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerPickupSmallCrystalBlue(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
@@ -323,6 +324,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         }
     }
 
+    private boolean mKeyDown;
+
     public void handleInput() {
         if (UserInput.isDown(UserInput.BACK_BUTTON)) {
             if (mToggleSelectionFlag == false) {
@@ -480,27 +483,66 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             }
         }
 
+        //reset toggle flag
+        if (!UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD)
+                && !UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_FORWARD)) {
+            mKeyDown = false;
+        }
+
+        if (UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD)) {
+            if (!mKeyDown) {
+                mKeyDown = true;
+                UserInput.resetKey(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD, false);
+                mPlayerActor.deincrementSelectedItem();
+                for (IGameStage listener : gameStageListeners) {
+                    listener.setHudSelectedItem(mPlayerActor.getBaseModel().getCurrentlySelectedItem());
+                }
+            }
+        }
+
+        if (UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_FORWARD)) {
+            if (!mKeyDown) {
+                mKeyDown = true;
+                UserInput.resetKey(UserInput.SWITCH_WEAPON_BUTTON_FORWARD, false);
+                mPlayerActor.incrementSelectedItem();
+                for (IGameStage listener : gameStageListeners) {
+                    listener.setHudSelectedItem(mPlayerActor.getBaseModel().getCurrentlySelectedItem());
+                }
+            }
+        }
+
         // attack & kill stuff
         if (UserInput.isDown(UserInput.ATTACK_BUTTON)) {
-            // TODO check current item
-            // TODO this will require a inventory system
-            String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
-            if (playerBestBoomerang != null) {
-                if (!mPlayerActor.getIsItemActive()) {
-                    mPlayerActor.setIsItemActive(true);
-                    if (playerBestBoomerang.equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
-                        ItemUtils.createWoodBoomerang(mWorld, mPlayerActor, mMapParser, this);
-                    }
-                    else if (playerBestBoomerang.equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
-                        ItemUtils.createEmeraldBoomerang(mWorld, mPlayerActor, mMapParser, this);
-                    }
-                    else if (playerBestBoomerang.equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
-                        ItemUtils.createAmethystBoomerang(mWorld, mPlayerActor, mMapParser, this);
-                    }
-                    else if (playerBestBoomerang.equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
-                        ItemUtils.createBloodStoneBoomerang(mWorld, mPlayerActor, mMapParser, this);
-                    }
+            if (mPlayerActor.getCurrentItem() != null) {
+
+                //boomerangs
+                if (mPlayerActor.getCurrentItem().getItemType().contains(BoomerangModel.BOOMERANG)) {
+
+                    //String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
+                    //if (playerBestBoomerang != null) {
+
+                        if (!mPlayerActor.getIsItemActive()) {
+                            mPlayerActor.setIsItemActive(true);
+
+                            if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+                                ItemUtils.createWoodBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                            }
+                            else if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
+                                ItemUtils.createEmeraldBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                            }
+                            else if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
+                                ItemUtils.createAmethystBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                            }
+                            else if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
+                                ItemUtils.createBloodStoneBoomerang(mWorld, mPlayerActor, mMapParser, this);
+                            }
+                        }
+
+                    //}
                 }
+
+                //TODO add other items
+
             }
         }
 
@@ -543,7 +585,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     private void transitionRoom(String doorType) {
-        for (IGameStage listener : listeners) {
+        for (IGameStage listener : gameStageListeners) {
             listener.setTransition(doorType, true);
         }
     }
@@ -593,12 +635,13 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     public void updateHud() {
-        for (IGameStage listener : listeners) {
+        for (IGameStage listener : gameStageListeners) {
             listener.setHudHealthHearts(mPlayerActor.getBaseModel().getHearts());
             listener.resetHudShapes();
             listener.setHudHealth(mPlayerActor.getBaseModel().getHealth());
             listener.setHudLives(mPlayerActor.getBaseModel().getLives());
             listener.setCrystalCount(mPlayerActor.getBaseModel().getCrystalBlueAmount());
+            listener.setHudSelectedItem(mPlayerActor.getBaseModel().getCurrentlySelectedItem());
         }
     }
 
@@ -633,7 +676,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     @Override
     public void playerGotHit(int playerHealth) {
-        for (IGameStage listener : listeners) {
+        for (IGameStage listener : gameStageListeners) {
             listener.setHudHealth(playerHealth);
         }
         if (playerHealth <= 0) {
@@ -650,7 +693,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     private void killPlayer() {
         mPlayerActor.resetHealth();
         mPlayerActor.deIncrementLives();
-        for (IGameStage listener : listeners) {
+        for (IGameStage listener : gameStageListeners) {
             listener.setHudLives(mPlayerActor.getBaseModel().getLives());
         }
         mCameraManager.setShakeCamera(false);

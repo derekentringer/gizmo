@@ -94,7 +94,7 @@ public class PlayerActor extends BaseActor {
     private KeyModel mLastKeyAdded;
     private HeartModel mLastHeartAdded;
     private BasePlayerItemModel mLastItemAdded;
-
+    private BasePlayerItemModel mCurrentItem;
     private boolean mIsItemActive = false;
 
     public PlayerActor(Body body) {
@@ -164,6 +164,7 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setDiggingPower(playerModel.getDiggingPower());
         mPlayerModel.setCurrentRoom(playerModel.getCurrentRoom());
         mPlayerModel.setCrystalBlueAmount(playerModel.getCrystalBlueAmount());
+        mPlayerModel.setCurrentlySelectedItem(playerModel.getCurrentlySelectedItem());
         if (playerModel.getKeys().size() > 0) {
             for (int i = 0; i < playerModel.getKeys().size(); i++) {
                 mPlayerModel.addKey(playerModel.getKeys().get(i));
@@ -255,11 +256,73 @@ public class PlayerActor extends BaseActor {
         return mPlayerModel.getHearts();
     }
 
-    public void addItem(BasePlayerItemModel itemModel) {
-        if (mLastItemAdded == null || !mLastItemAdded.equals(itemModel)) {
-            mPlayerModel.addItem(itemModel);
-            mLastItemAdded = itemModel;
+    public void addItem(BasePlayerItemModel item) {
+        if (mLastItemAdded == null || !mLastItemAdded.equals(item)) {
+            mPlayerModel.addItem(item);
+            mLastItemAdded = item;
+            if (mPlayerModel.getItems().size() == 1) {
+                setCurrentItem(item);
+            }
         }
+    }
+
+    public void incrementSelectedItem() {
+        GLog.d(TAG, "incrementSelectedItem");
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
+        for (BasePlayerItemModel item : playerItems) {
+            if (getCurrentItem().getItemType().equals(item.getItemType())) {
+                if (playerItems.indexOf(item) == playerItems.size() - 1) {
+                    setCurrentItem(playerItems.get(0));
+                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(0).getItemType());
+                    return;
+                }
+                else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
+                    int nextItemIndex = playerItems.indexOf(item) + 1;
+                    setCurrentItem(playerItems.get(nextItemIndex));
+                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(nextItemIndex).getItemType());
+                    return;
+                }
+            }
+        }
+    }
+
+    public void deincrementSelectedItem() {
+        GLog.d(TAG, "deincrementSelectedItem");
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
+        for (BasePlayerItemModel item : playerItems) {
+            if (getCurrentItem().getItemType().equals(item.getItemType())) {
+                if (playerItems.indexOf(item) == 0) {
+                    setCurrentItem(playerItems.get(playerItems.size() - 1));
+                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(playerItems.size() - 1).getItemType());
+                    return;
+                }
+                else if (playerItems.indexOf(item) - 1 >= 0) {
+                    int nextItemIndex = playerItems.indexOf(item) - 1;
+                    setCurrentItem(playerItems.get(nextItemIndex));
+                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(nextItemIndex).getItemType());
+                    return;
+                }
+            }
+        }
+    }
+
+    public BasePlayerItemModel getItem(int itemNum) {
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
+        if (playerItems.size() <= itemNum) {
+            setCurrentItem(playerItems.get(itemNum));
+            return playerItems.get(itemNum);
+        }
+        else {
+            return null;
+        }
+    }
+
+    public void setCurrentItem(BasePlayerItemModel item) {
+        mPlayerModel.setCurrentlySelectedItem(item);
+    }
+
+    public BasePlayerItemModel getCurrentItem() {
+        return mPlayerModel.getCurrentlySelectedItem();
     }
 
     public boolean hasCorrectItem(String itemType) {

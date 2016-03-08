@@ -1,5 +1,7 @@
 package com.derekentringer.gizmo.component.stage.interfaces;
 
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
+
 public interface IGameStage {
     void setHudHealthHearts(int hearts);
     void setHudHealth(int health);
@@ -7,4 +9,5 @@ public interface IGameStage {
     void setHudLives(int lives);
     void setCrystalCount(int crystalCount);
     void setTransition(String doorType, boolean transition);
+    void setHudSelectedItem(BasePlayerItemModel itemActor);
 }
