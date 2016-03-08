@@ -518,6 +518,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                 //boomerangs
                 if (mPlayerActor.getCurrentItem().getItemType().contains(BoomerangModel.BOOMERANG)) {
 
+                    //TODO should probably grab the best boomerang unless boomerangs have different effects besides damage
                     //String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
                     //if (playerBestBoomerang != null) {
 

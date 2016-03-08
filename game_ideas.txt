@@ -4,38 +4,57 @@ TODO
 bugs/blockers
 ------------------------------------------------------------------------------
 
-doors are still slightly bugged in detecting player in vacinity - confirmed
+doors are still slightly bugged in detecting player in vacinity (collision detection is wrong...prob the ground interferring) - confirmed
 
-need to map xbox360, xbox one, ouya, fire tv controllers
+need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
+	- shield: 199
+	- fire: 99
+	- fire tv gaming edition: 139.99
+	- xbox pc controller setup: ??
 
 
 new additions needed
 ------------------------------------------------------------------------------
 
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
+	- i would lov if this was code based - would save a ton of time
 
 choose a weapon using 1-9 keys like doom, and show on hud which is chosen
-	- create a box in the hud around each type of weapon and show the graphic as it is choosen
+	- just need to map the 1-9 keys
 
-more enemies
+controller support
+	- buy controllers - see above
+
+MORE TESTING BEFORE MOVING FORWARD ON DIFF PLATFORMS FOR OPTIMIZATION WHERE NEEDED
+
+more bosses/enemies
 	- (insert random creativity after creating bosses...for levels layout/colors etc)
 
 more weapons
 	- sword (power up shoots force wave)
 	- bombs (can be thown)
+	- pillows with kittens on them ;)
+	- crazy power-ups only usable on bosses with full screen animations
 
-plan out the levels, enemies, progression
+more levels
+	- work on laying out the world to build up the levels for the entire game
+	- plan out the levels, enemies, progression
 
-work on laying out the world to build up the levels for the entire game
-
-refine the controls screen - add text where needed
+refine the controls screen - add translated text where needed
 
 need to proguard the project
 
-be sure that as much as possible is tracked in GameAnalytics
+be sure that as much as possible is tracked in GameAnalytics (ongoing)
 
 neat to haves
 ------------------------------------------------------------------------------
+
+add Google Play Services & Steam Services based on build type (this should be do-able actually without too much effort - at least google)
+	- login
+	- logout
+	- game saves
+	- high scores
+	- achievements
 
 dynamic levels or placed blocks and enemies based on player progression
 	- if the player has been to a certain stage in the game (loaded from game.sav) areas of a map can change slightly
@@ -45,24 +64,11 @@ dynamic levels or placed blocks and enemies based on player progression
 add new screens
 	- inventory (this might be doable based on new screen designs)
 	- choose game save slot
-	
-add debug mode for the game
-	- teleport to any level/destination
-	- give full lives
-	- give full health
-	- give any items
 
-costumes?
+costumes? (this is not going in this game)
 	- raptor
 	- taco
 	- mech
-
-add Google Play Services & Steam Services
-	- login
-	- logout
-	- game saves
-	- high scores
-	- achievements
 
 add a power up for jumping
 add barking ability
@@ -71,11 +77,6 @@ add a power up for barking
 add barking ability for ghosts (the most basic attack)
 	- phantoms run away when gizmo barks
 
-- game is linear, but, certain ways to advance past levels 
-with power ups and digging
-
--metroid/mario/zelda
-
 -----
 
 gizmo starts off as a small dog, but soon gets a power up that make him slightly bigger and standing on two legs
@@ -83,6 +84,7 @@ gizmo starts off as a small dog, but soon gets a power up that make him slightly
 Noir type game
 shadow monsters
 other underground enemies
+metroid/mario/zelda
 
 Gizmo is on a search for his lost brother. The last he had seen him, he was digging a hole in the forest. Gizmo enters the same hole that his brother did in an attempt to find him. Now Gizmo has found himself going deeper and deeper into the underground dungeons beneath the forest in order to find his brother.
 
