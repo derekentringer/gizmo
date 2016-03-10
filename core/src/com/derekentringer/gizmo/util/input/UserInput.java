@@ -4,8 +4,6 @@ import com.badlogic.gdx.controllers.Controller;
 
 public class UserInput {
 
-    private static final String TAG = UserInput.class.getSimpleName();
-
     private static Controller mController;
 
     public static boolean[] currentKey;
@@ -40,8 +38,6 @@ public class UserInput {
     public static final int SWITCH_WEAPON_BUTTON_7 = 19;
     public static final int SWITCH_WEAPON_BUTTON_8 = 20;
     public static final int SWITCH_WEAPON_BUTTON_9 = 21;
-
-
 
     static {
         currentKey = new boolean[NUM_KEYS];

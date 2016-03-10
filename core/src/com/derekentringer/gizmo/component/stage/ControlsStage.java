@@ -9,7 +9,7 @@ import com.derekentringer.gizmo.component.actor.menu.WhiteDotActor;
 import com.derekentringer.gizmo.component.screen.ControlsScreen;
 import com.derekentringer.gizmo.model.menu.WhiteDotModel;
 import com.derekentringer.gizmo.settings.Constants;
-import com.derekentringer.gizmo.util.ObjectUtils;
+import com.derekentringer.gizmo.util.HudUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
 
@@ -128,7 +128,7 @@ public class ControlsStage extends BaseStage {
 
     private void createWhiteDotController() {
         showController();
-        mWhiteDotControllerControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControllerControls - 10, 56)));
+        mWhiteDotControllerControls = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControllerControls - 10, 56)));
         mWhiteDotControllerControls.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotControllerControls);
         mControlsStageActorsArray.add(mWhiteDotControllerControls);
@@ -136,14 +136,14 @@ public class ControlsStage extends BaseStage {
 
     private void createWhiteDotKeyboard() {
         showKeyboard();
-        mWhiteDotKeyboardControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXKeyboardControls - 10, 41)));
+        mWhiteDotKeyboardControls = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXKeyboardControls - 10, 41)));
         mWhiteDotKeyboardControls.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotKeyboardControls);
         mControlsStageActorsArray.add(mWhiteDotKeyboardControls);
     }
 
     private void createWhiteDotBack() {
-        mWhiteDotBack = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXBack - 10, 26)));
+        mWhiteDotBack = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXBack - 10, 26)));
         mWhiteDotBack.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotBack);
         mControlsStageActorsArray.add(mWhiteDotBack);

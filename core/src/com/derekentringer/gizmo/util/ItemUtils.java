@@ -23,8 +23,6 @@ import com.derekentringer.gizmo.util.map.MapParser;
 
 public class ItemUtils {
 
-    private static final String TAG = ItemUtils.class.getSimpleName();
-
     public static void createWoodBoomerang(World world, PlayerActor playerActor, MapParser mapParser, GameStage gameStage) {
         BoomerangWoodActor boomerangWoodActor = new BoomerangWoodActor(ItemUtils.createBoomerang(new BoomerangWoodModel(), world, playerActor.getPosition()), playerActor.getFacingDirection());
         boomerangWoodActor.setName(BoomerangWoodModel.BOOMERANG_WOOD);

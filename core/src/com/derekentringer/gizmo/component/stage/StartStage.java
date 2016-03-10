@@ -12,6 +12,7 @@ import com.derekentringer.gizmo.model.menu.WhiteDotModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.HudUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -132,28 +133,28 @@ public class StartStage extends BaseStage {
     }
 
     private void createWhiteDotStart() {
-        mWhiteDotStart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 41)));
+        mWhiteDotStart = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 41)));
         mWhiteDotStart.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotStart);
         mStartStageActorsArray.add(mWhiteDotStart);
     }
 
     private void createWhiteDotContinue() {
-        mWhiteDotContinue = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 56)));
+        mWhiteDotContinue = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 56)));
         mWhiteDotContinue.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotContinue);
         mStartStageActorsArray.add(mWhiteDotContinue);
     }
 
     private void createWhiteDotRestart() {
-        mWhiteDotRestart = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXRestart - 10, 41)));
+        mWhiteDotRestart = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXRestart - 10, 41)));
         mWhiteDotRestart.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotRestart);
         mStartStageActorsArray.add(mWhiteDotRestart);
     }
 
     private void createWhiteDotControls() {
-        mWhiteDotControls = new WhiteDotActor(ObjectUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControls - 10, 26)));
+        mWhiteDotControls = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControls - 10, 26)));
         mWhiteDotControls.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotControls);
         mStartStageActorsArray.add(mWhiteDotControls);

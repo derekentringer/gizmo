@@ -64,8 +64,6 @@ import java.util.ArrayList;
 
 public class MapParser extends Stage {
 
-    private static final String TAG = MapParser.class.getSimpleName();
-
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
     private final ArrayList<Vector2> mPickedUpHeartAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mPickedUpLifeAnimations = new ArrayList<Vector2>();

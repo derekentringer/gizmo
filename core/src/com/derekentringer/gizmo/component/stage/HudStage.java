@@ -11,6 +11,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -52,12 +53,15 @@ public class HudStage extends BaseStage implements IGameStage {
     private Texture mHudHeartsNine;
     private Texture mHudHeartsTen;
 
+    private Texture mHudCurrentItemEmpty;
+    private Texture mHudCurrentItemBoomerangWood;
+
     private Texture mCurrentLivesTexture;
     private Texture mCurrentHealthTexture;
 
     private Texture mHudCrystalsCount;
 
-    private Texture mHudCurrentItem;
+    private Texture mHudCurrentItemTexture;
 
     private int mLives;
     private int mHearts;
@@ -115,12 +119,16 @@ public class HudStage extends BaseStage implements IGameStage {
         mHudHeartsNine = Gizmo.assetManager.get("res/image/hud/hud_hearts_nine.png", Texture.class);
         mHudHeartsTen = Gizmo.assetManager.get("res/image/hud/hud_hearts_ten.png", Texture.class);
 
+        mHudCurrentItemEmpty = Gizmo.assetManager.get("res/image/hud/hud_current_item.png", Texture.class);
+        mHudCurrentItemBoomerangWood = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_wood.png", Texture.class);
+
         mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
-        mHudCurrentItem = Gizmo.assetManager.get("res/image/hud/hud_current_item.png", Texture.class);
+        mHudCurrentItemTexture = Gizmo.assetManager.get("res/image/hud/hud_current_item.png", Texture.class);
 
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
+        mHudCurrentItemTexture = mHudCurrentItemEmpty;
 
         mBitmapFont.getData().setScale(0.3f, 0.3f);
         mLayoutBlueCrystalCount = new GlyphLayout(mBitmapFont, mInitialCrystalString);
@@ -173,7 +181,7 @@ public class HudStage extends BaseStage implements IGameStage {
             mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
             mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
             mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
-            mSpriteBatch.draw(mHudCurrentItem, centerScreenX - mHudCurrentItem.getWidth()/2, mHudCurrentItemPosition.y);
+            mSpriteBatch.draw(mHudCurrentItemTexture, mHudCurrentItemPosition.x, mHudCurrentItemPosition.y);
             mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 36, mHudCrystalsPosition.y + 23);
             mBitmapFont.setColor(1, 1, 1, 1);
         mSpriteBatch.end();
@@ -279,9 +287,12 @@ public class HudStage extends BaseStage implements IGameStage {
 
     @Override
     public void setHudSelectedItem(BasePlayerItemModel item) {
-        //TODO set item that is selected
-        if (item != null) {
-            GLog.d(TAG, "setHudSelectedItem: " + item.getItemType());
+        GLog.d(TAG, "setHudSelectedItem: " + item.getItemType());
+        if (item.getItemType().equals(BoomerangWoodModel.BOOMERANG_WOOD)) {
+            mHudCurrentItemTexture = mHudCurrentItemBoomerangWood;
+        }
+        else {
+            mHudCurrentItemTexture = mHudCurrentItemEmpty;
         }
     }
 
@@ -296,7 +307,8 @@ public class HudStage extends BaseStage implements IGameStage {
         mHudCrystalsPosition.x = Math.abs(gameWidth - mHudCrystalsCount.getWidth() * scale + crop.x) / scale;
         mHudCrystalsPosition.y = Math.abs(gameHeight - mHudCrystalsCount.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        mHudCurrentItemPosition.y = Math.abs(gameHeight - mHudCurrentItem.getHeight() * scale - HUD_PADDING * scale) / scale;
+        mHudCurrentItemPosition.x = centerScreenX - mHudCurrentItemTexture.getWidth()/2;
+        mHudCurrentItemPosition.y = Math.abs(gameHeight - mHudCurrentItemTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
         GLog.d(TAG, "crop.x"+crop.x);
 
