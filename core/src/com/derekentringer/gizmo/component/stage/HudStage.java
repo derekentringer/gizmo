@@ -11,6 +11,9 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
+import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.settings.Constants;
@@ -57,6 +60,9 @@ public class HudStage extends BaseStage implements IGameStage {
 
     private Texture mHudCurrentItemEmpty;
     private Texture mHudCurrentItemBoomerangWood;
+    private Texture mHudCurrentItemBoomerangEmerald;
+    private Texture mHudCurrentItemBoomerangAmethyst;
+    private Texture mHudCurrentItemBoomerangBloodstone;
 
     private Texture mCurrentLivesTexture;
     private Texture mCurrentHealthTexture;
@@ -124,6 +130,9 @@ public class HudStage extends BaseStage implements IGameStage {
 
         mHudCurrentItemEmpty = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
         mHudCurrentItemBoomerangWood = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_wood.png", Texture.class);
+        mHudCurrentItemBoomerangEmerald = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_emerald.png", Texture.class);
+        mHudCurrentItemBoomerangAmethyst = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_amethyst.png", Texture.class);
+        mHudCurrentItemBoomerangBloodstone = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_bloodstone.png", Texture.class);
 
         mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
@@ -298,6 +307,15 @@ public class HudStage extends BaseStage implements IGameStage {
             GLog.d(TAG, "setHudSelectedPrimaryItem: " + item.getItemType());
             if (item.getItemType().equals(BoomerangWoodModel.BOOMERANG_WOOD)) {
                 mHudCurrentPrimaryItemTexture = mHudCurrentItemBoomerangWood;
+            }
+            else if (item.getItemType().equals(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
+                mHudCurrentPrimaryItemTexture = mHudCurrentItemBoomerangEmerald;
+            }
+            else if (item.getItemType().equals(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
+                mHudCurrentPrimaryItemTexture = mHudCurrentItemBoomerangAmethyst;
+            }
+            else if (item.getItemType().equals(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
+                mHudCurrentPrimaryItemTexture = mHudCurrentItemBoomerangBloodstone;
             }
             else {
                 mHudCurrentPrimaryItemTexture = mHudCurrentItemEmpty;
