@@ -88,7 +88,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     private DoorBlackActor mDoorBlackActor;
     private boolean mAlreadyEntered = false;
 
-    private boolean mToggleSelectionFlag = false;
+    private boolean mStartKeyDown = false;
+    private boolean mKeyDown;
 
     private int mAttempts = 0;
 
@@ -324,12 +325,10 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         }
     }
 
-    private boolean mKeyDown;
-
     public void handleInput() {
         if (UserInput.isDown(UserInput.BACK_BUTTON)) {
-            if (mToggleSelectionFlag == false) {
-                mToggleSelectionFlag = true;
+            if (mStartKeyDown == false) {
+                mStartKeyDown = true;
                 if (!GameScreen.GameState.PAUSED.equals(GameScreen.GameState.PAUSED)) {
                     mGameScreen.pauseGame();
                 }
@@ -338,8 +337,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
         //pause game
         if (UserInput.isDown(UserInput.START_BUTTON)) {
-            if (mToggleSelectionFlag == false) {
-                mToggleSelectionFlag = true;
+            if (mStartKeyDown == false) {
+                mStartKeyDown = true;
                 mGameScreen.pauseGame();
             }
         }
@@ -491,6 +490,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             mKeyDown = false;
         }
 
+        //primary items
         if (UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)) {
             if (!mKeyDown) {
                 mKeyDown = true;
@@ -513,6 +513,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             }
         }
 
+        //secondary items
         if (UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD)) {
             if (!mKeyDown) {
                 mKeyDown = true;
@@ -542,7 +543,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                 //boomerangs
                 if (mPlayerActor.getCurrentPrimaryItem().getItemType().contains(BoomerangModel.BOOMERANG)) {
 
-                    //TODO should probably grab the best boomerang unless boomerangs have different effects besides damage
+                    //TODO should probably only show the best boomerang unless boomerangs have different effects besides damage
                     //String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
                     //if (playerBestBoomerang != null) {
 
@@ -573,7 +574,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
         //reset pause toggle flag
         if (!UserInput.isDown(UserInput.START_BUTTON)) {
-            mToggleSelectionFlag = false;
+            mStartKeyDown = false;
         }
     }
 
