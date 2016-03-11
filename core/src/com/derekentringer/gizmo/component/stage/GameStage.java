@@ -484,39 +484,63 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         }
 
         //reset toggle flag
-        if (!UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD)
-                && !UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_FORWARD)) {
+        if (!UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)
+                && !UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD)
+                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD)
+                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD)) {
             mKeyDown = false;
         }
 
-        if (UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD)) {
+        if (UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)) {
             if (!mKeyDown) {
                 mKeyDown = true;
-                UserInput.resetKey(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD, false);
-                mPlayerActor.deincrementSelectedItem();
+                UserInput.resetKey(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD, false);
+                mPlayerActor.deincrementSelectedPrimaryItem();
                 for (IGameStage listener : gameStageListeners) {
-                    listener.setHudSelectedItem(mPlayerActor.getBaseModel().getCurrentlySelectedItem());
+                    listener.setHudSelectedPrimaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemPrimary());
                 }
             }
         }
 
-        if (UserInput.isDown(UserInput.SWITCH_WEAPON_BUTTON_FORWARD)) {
+        if (UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD)) {
             if (!mKeyDown) {
                 mKeyDown = true;
-                UserInput.resetKey(UserInput.SWITCH_WEAPON_BUTTON_FORWARD, false);
-                mPlayerActor.incrementSelectedItem();
+                UserInput.resetKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
+                mPlayerActor.incrementSelectedPrimaryItem();
                 for (IGameStage listener : gameStageListeners) {
-                    listener.setHudSelectedItem(mPlayerActor.getBaseModel().getCurrentlySelectedItem());
+                    listener.setHudSelectedPrimaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemPrimary());
+                }
+            }
+        }
+
+        if (UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD)) {
+            if (!mKeyDown) {
+                mKeyDown = true;
+                UserInput.resetKey(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD, false);
+                mPlayerActor.deincrementSelectedSecondaryItem();
+                for (IGameStage listener : gameStageListeners) {
+                    listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary());
+                }
+            }
+        }
+
+        if (UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD)) {
+            if (!mKeyDown) {
+                mKeyDown = true;
+                UserInput.resetKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
+                mPlayerActor.incrementSelectedSecondaryItem();
+                for (IGameStage listener : gameStageListeners) {
+                    listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary());
                 }
             }
         }
 
         // attack & kill stuff
         if (UserInput.isDown(UserInput.ATTACK_BUTTON)) {
-            if (mPlayerActor.getCurrentItem() != null) {
+            if (mPlayerActor.getCurrentPrimaryItem() != null) {
 
                 //boomerangs
-                if (mPlayerActor.getCurrentItem().getItemType().contains(BoomerangModel.BOOMERANG)) {
+                if (mPlayerActor.getCurrentPrimaryItem().getItemType().contains(BoomerangModel.BOOMERANG)) {
 
                     //TODO should probably grab the best boomerang unless boomerangs have different effects besides damage
                     //String playerBestBoomerang = mPlayerActor.getPlayerBestBoomerang();
@@ -525,16 +549,16 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         if (!mPlayerActor.getIsItemActive()) {
                             mPlayerActor.setIsItemActive(true);
 
-                            if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+                            if (mPlayerActor.getCurrentPrimaryItem().getItemType().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
                                 ItemUtils.createWoodBoomerang(mWorld, mPlayerActor, mMapParser, this);
                             }
-                            else if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
+                            else if (mPlayerActor.getCurrentPrimaryItem().getItemType().equalsIgnoreCase(BoomerangEmeraldModel.BOOMERANG_EMERALD)) {
                                 ItemUtils.createEmeraldBoomerang(mWorld, mPlayerActor, mMapParser, this);
                             }
-                            else if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
+                            else if (mPlayerActor.getCurrentPrimaryItem().getItemType().equalsIgnoreCase(BoomerangAmethystModel.BOOMERANG_AMETHYST)) {
                                 ItemUtils.createAmethystBoomerang(mWorld, mPlayerActor, mMapParser, this);
                             }
-                            else if (mPlayerActor.getCurrentItem().getItemType().equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
+                            else if (mPlayerActor.getCurrentPrimaryItem().getItemType().equalsIgnoreCase(BoomerangBloodStoneModel.BOOMERANG_BLOODSTONE)) {
                                 ItemUtils.createBloodStoneBoomerang(mWorld, mPlayerActor, mMapParser, this);
                             }
                         }
@@ -642,7 +666,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             listener.setHudHealth(mPlayerActor.getBaseModel().getHealth());
             listener.setHudLives(mPlayerActor.getBaseModel().getLives());
             listener.setCrystalCount(mPlayerActor.getBaseModel().getCrystalBlueAmount());
-            listener.setHudSelectedItem(mPlayerActor.getBaseModel().getCurrentlySelectedItem());
+            listener.setHudSelectedPrimaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemPrimary());
+            listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary());
         }
     }
 

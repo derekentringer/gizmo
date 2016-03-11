@@ -24,7 +24,9 @@ public class PlayerModel extends BaseModel {
     public static final int DEFAULT_CRYSTAL_BLUE = 0;
 
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
-    private ArrayList<BasePlayerItemModel> mItemList = new ArrayList<BasePlayerItemModel>();
+
+    private ArrayList<BasePlayerItemModel> mPrimaryItemList = new ArrayList<BasePlayerItemModel>();
+    private ArrayList<BasePlayerItemModel> mSecondaryItemList = new ArrayList<BasePlayerItemModel>();
 
     private int mCurrentRoom;
     private int mLives;
@@ -34,7 +36,8 @@ public class PlayerModel extends BaseModel {
     //TODO
     private int mDiggingPower = 1;
 
-    private BasePlayerItemModel mCurrentlySelectedItem;
+    private BasePlayerItemModel mCurrentlySelectedItemPrimary;
+    private BasePlayerItemModel mCurrentlySelectedItemSecondary;
 
     public PlayerModel() {
         mBaseModelType = BaseModelType.PLAYER;
@@ -99,16 +102,28 @@ public class PlayerModel extends BaseModel {
         }
     }
 
-    public ArrayList<BasePlayerItemModel> getItems() {
-        return mItemList;
+    public ArrayList<BasePlayerItemModel> getPrimaryItems() {
+        return mPrimaryItemList;
     }
 
-    public void addItem(BasePlayerItemModel playerItem) {
-        mItemList.add(playerItem);
+    public void addPrimaryItem(BasePlayerItemModel playerItem) {
+        mPrimaryItemList.add(playerItem);
     }
 
-    public void removeItem(BasePlayerItemModel playerItem) {
-        mItemList.remove(playerItem);
+    public void removePrimaryItem(BasePlayerItemModel playerItem) {
+        mPrimaryItemList.remove(playerItem);
+    }
+
+    public ArrayList<BasePlayerItemModel> getSecondaryItems() {
+        return mSecondaryItemList;
+    }
+
+    public void addSecondaryItem(BasePlayerItemModel playerItem) {
+        mSecondaryItemList.add(playerItem);
+    }
+
+    public void removeSecondaryItem(BasePlayerItemModel playerItem) {
+        mSecondaryItemList.remove(playerItem);
     }
 
     public int getCrystalBlueAmount() {
@@ -119,12 +134,19 @@ public class PlayerModel extends BaseModel {
         mCrystalBlueAmount = crystalBlueAmount;
     }
 
-    public BasePlayerItemModel getCurrentlySelectedItem() {
-        return mCurrentlySelectedItem;
+    public BasePlayerItemModel getCurrentlySelectedItemPrimary() {
+        return mCurrentlySelectedItemPrimary;
     }
 
-    public void setCurrentlySelectedItem(BasePlayerItemModel currentlySelectedItem) {
-        mCurrentlySelectedItem = currentlySelectedItem;
+    public void setCurrentlySelectedItemPrimary(BasePlayerItemModel currentlySelectedItemPrimary) {
+        mCurrentlySelectedItemPrimary = currentlySelectedItemPrimary;
     }
 
+    public BasePlayerItemModel getCurrentlySelectedItemSecondary() {
+        return mCurrentlySelectedItemSecondary;
+    }
+
+    public void setCurrentlySelectedItemSecondary(BasePlayerItemModel currentlySelectedItemSecondary) {
+        mCurrentlySelectedItemSecondary = currentlySelectedItemSecondary;
+    }
 }

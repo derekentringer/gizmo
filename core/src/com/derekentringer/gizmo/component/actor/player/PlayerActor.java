@@ -164,15 +164,16 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setDiggingPower(playerModel.getDiggingPower());
         mPlayerModel.setCurrentRoom(playerModel.getCurrentRoom());
         mPlayerModel.setCrystalBlueAmount(playerModel.getCrystalBlueAmount());
-        mPlayerModel.setCurrentlySelectedItem(playerModel.getCurrentlySelectedItem());
+        mPlayerModel.setCurrentlySelectedItemPrimary(playerModel.getCurrentlySelectedItemPrimary());
+        mPlayerModel.setCurrentlySelectedItemSecondary(playerModel.getCurrentlySelectedItemSecondary());
         if (playerModel.getKeys().size() > 0) {
             for (int i = 0; i < playerModel.getKeys().size(); i++) {
                 mPlayerModel.addKey(playerModel.getKeys().get(i));
             }
         }
-        if (playerModel.getItems().size() > 0) {
-            for (int i = 0; i < playerModel.getItems().size(); i++) {
-                mPlayerModel.addItem(playerModel.getItems().get(i));
+        if (playerModel.getPrimaryItems().size() > 0) {
+            for (int i = 0; i < playerModel.getPrimaryItems().size(); i++) {
+                mPlayerModel.addPrimaryItem(playerModel.getPrimaryItems().get(i));
             }
         }
     }
@@ -258,75 +259,112 @@ public class PlayerActor extends BaseActor {
 
     public void addItem(BasePlayerItemModel item) {
         if (mLastItemAdded == null || !mLastItemAdded.equals(item)) {
-            mPlayerModel.addItem(item);
+            mPlayerModel.addPrimaryItem(item);
             mLastItemAdded = item;
-            if (mPlayerModel.getItems().size() == 1) {
-                setCurrentItem(item);
+            if (mPlayerModel.getPrimaryItems().size() == 1) {
+                setCurrentPrimaryItem(item);
             }
         }
     }
 
-    public void incrementSelectedItem() {
-        GLog.d(TAG, "incrementSelectedItem");
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
+    public void incrementSelectedPrimaryItem() {
+        GLog.d(TAG, "incrementSelectedPrimaryItem");
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPrimaryItems();
         for (BasePlayerItemModel item : playerItems) {
-            if (getCurrentItem().getItemType().equals(item.getItemType())) {
+            if (getCurrentPrimaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == playerItems.size() - 1) {
-                    setCurrentItem(playerItems.get(0));
-                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(0).getItemType());
+                    setCurrentPrimaryItem(playerItems.get(0));
+                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(0).getItemType());
                     return;
                 }
                 else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
                     int nextItemIndex = playerItems.indexOf(item) + 1;
-                    setCurrentItem(playerItems.get(nextItemIndex));
-                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(nextItemIndex).getItemType());
+                    setCurrentPrimaryItem(playerItems.get(nextItemIndex));
+                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(nextItemIndex).getItemType());
                     return;
                 }
             }
         }
     }
 
-    public void deincrementSelectedItem() {
-        GLog.d(TAG, "deincrementSelectedItem");
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
+    public void deincrementSelectedPrimaryItem() {
+        GLog.d(TAG, "deincrementSelectedPrimaryItem");
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPrimaryItems();
         for (BasePlayerItemModel item : playerItems) {
-            if (getCurrentItem().getItemType().equals(item.getItemType())) {
+            if (getCurrentPrimaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == 0) {
-                    setCurrentItem(playerItems.get(playerItems.size() - 1));
-                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(playerItems.size() - 1).getItemType());
+                    setCurrentPrimaryItem(playerItems.get(playerItems.size() - 1));
+                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(playerItems.size() - 1).getItemType());
                     return;
                 }
                 else if (playerItems.indexOf(item) - 1 >= 0) {
                     int nextItemIndex = playerItems.indexOf(item) - 1;
-                    setCurrentItem(playerItems.get(nextItemIndex));
-                    GLog.d(TAG, "setCurrentItem: " + playerItems.get(nextItemIndex).getItemType());
+                    setCurrentPrimaryItem(playerItems.get(nextItemIndex));
+                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(nextItemIndex).getItemType());
                     return;
                 }
             }
         }
     }
 
-    public BasePlayerItemModel getItem(int itemNum) {
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
-        if (playerItems.size() <= itemNum) {
-            setCurrentItem(playerItems.get(itemNum));
-            return playerItems.get(itemNum);
-        }
-        else {
-            return null;
+    public void setCurrentPrimaryItem(BasePlayerItemModel item) {
+        mPlayerModel.setCurrentlySelectedItemPrimary(item);
+    }
+
+    public BasePlayerItemModel getCurrentPrimaryItem() {
+        return mPlayerModel.getCurrentlySelectedItemPrimary();
+    }
+
+    public void incrementSelectedSecondaryItem() {
+        GLog.d(TAG, "incrementSelectedSecondaryItem");
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
+        for (BasePlayerItemModel item : playerItems) {
+            if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
+                if (playerItems.indexOf(item) == playerItems.size() - 1) {
+                    setCurrentSecondaryItem(playerItems.get(0));
+                    GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
+                    return;
+                }
+                else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
+                    int nextItemIndex = playerItems.indexOf(item) + 1;
+                    setCurrentSecondaryItem(playerItems.get(nextItemIndex));
+                    GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                    return;
+                }
+            }
         }
     }
 
-    public void setCurrentItem(BasePlayerItemModel item) {
-        mPlayerModel.setCurrentlySelectedItem(item);
+    public void deincrementSelectedSecondaryItem() {
+        GLog.d(TAG, "deincrementSelectedSecondaryItem");
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
+        for (BasePlayerItemModel item : playerItems) {
+            if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
+                if (playerItems.indexOf(item) == 0) {
+                    setCurrentSecondaryItem(playerItems.get(playerItems.size() - 1));
+                    GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(playerItems.size() - 1).getItemType());
+                    return;
+                }
+                else if (playerItems.indexOf(item) - 1 >= 0) {
+                    int nextItemIndex = playerItems.indexOf(item) - 1;
+                    setCurrentSecondaryItem(playerItems.get(nextItemIndex));
+                    GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                    return;
+                }
+            }
+        }
     }
 
-    public BasePlayerItemModel getCurrentItem() {
-        return mPlayerModel.getCurrentlySelectedItem();
+    public void setCurrentSecondaryItem(BasePlayerItemModel item) {
+        mPlayerModel.setCurrentlySelectedItemSecondary(item);
+    }
+
+    public BasePlayerItemModel getCurrentSecondaryItem() {
+        return mPlayerModel.getCurrentlySelectedItemSecondary();
     }
 
     public boolean hasCorrectItem(String itemType) {
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getItems();
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPrimaryItems();
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getItemType().equalsIgnoreCase(itemType)) {
                 return true;

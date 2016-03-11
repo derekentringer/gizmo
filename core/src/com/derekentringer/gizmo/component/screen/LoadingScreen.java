@@ -49,7 +49,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         Gizmo.assetManager.load("res/image/hud/hud_blue_crystals.png", Texture.class);
 
-        Gizmo.assetManager.load("res/image/hud/hud_current_item.png", Texture.class);
+        Gizmo.assetManager.load("res/image/hud/hud_current_item_empty.png", Texture.class);
         Gizmo.assetManager.load("res/image/hud/hud_current_item_boomerang_wood.png", Texture.class);
 
         Gizmo.assetManager.load("res/image/character/gizmo/gizmo_running_left.png", Texture.class);

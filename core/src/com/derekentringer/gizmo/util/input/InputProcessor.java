@@ -51,11 +51,19 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
 
         if (keycode == Input.Keys.LEFT_BRACKET) {
-            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD, true);
+            UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD, true);
         }
 
         if (keycode == Input.Keys.RIGHT_BRACKET) {
-            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_FORWARD, true);
+            UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, true);
+        }
+
+        if (keycode == Input.Keys.SEMICOLON) {
+            UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD, true);
+        }
+
+        if (keycode == Input.Keys.APOSTROPHE) {
+            UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, true);
         }
 
         //arrow key movement
@@ -121,11 +129,19 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
 
         if (keycode == Input.Keys.LEFT_BRACKET) {
-            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_BACKWARD, false);
+            UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD, false);
         }
 
         if (keycode == Input.Keys.RIGHT_BRACKET) {
-            UserInput.setKey(UserInput.SWITCH_WEAPON_BUTTON_FORWARD, false);
+            UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
+        }
+
+        if (keycode == Input.Keys.SEMICOLON) {
+            UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD, false);
+        }
+
+        if (keycode == Input.Keys.APOSTROPHE) {
+            UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
         }
 
         //arrow key movement

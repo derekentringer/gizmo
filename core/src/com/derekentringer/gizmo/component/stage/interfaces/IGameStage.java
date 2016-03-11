@@ -9,5 +9,6 @@ public interface IGameStage {
     void setHudLives(int lives);
     void setCrystalCount(int crystalCount);
     void setTransition(String doorType, boolean transition);
-    void setHudSelectedItem(BasePlayerItemModel itemActor);
+    void setHudSelectedPrimaryItem(BasePlayerItemModel itemActor);
+    void setHudSelectedSecondaryItem(BasePlayerItemModel itemActor);
 }

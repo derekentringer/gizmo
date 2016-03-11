@@ -35,7 +35,9 @@ public class HudStage extends BaseStage implements IGameStage {
     private Vector2 mHudLivesPosition = new Vector2();
     private Vector2 mHudHealthPosition = new Vector2();
     private Vector2 mHudCrystalsPosition = new Vector2();
-    private Vector2 mHudCurrentItemPosition = new Vector2();
+
+    private Vector2 mHudCurrentPrimaryItemPosition = new Vector2();
+    private Vector2 mHudCurrentSecondaryItemPosition = new Vector2();
 
     private Texture mHudLivesOne;
     private Texture mHudLivesTwo;
@@ -61,7 +63,8 @@ public class HudStage extends BaseStage implements IGameStage {
 
     private Texture mHudCrystalsCount;
 
-    private Texture mHudCurrentItemTexture;
+    private Texture mHudCurrentPrimaryItemTexture;
+    private Texture mHudCurrentSecondaryItemTexture;
 
     private int mLives;
     private int mHearts;
@@ -119,16 +122,19 @@ public class HudStage extends BaseStage implements IGameStage {
         mHudHeartsNine = Gizmo.assetManager.get("res/image/hud/hud_hearts_nine.png", Texture.class);
         mHudHeartsTen = Gizmo.assetManager.get("res/image/hud/hud_hearts_ten.png", Texture.class);
 
-        mHudCurrentItemEmpty = Gizmo.assetManager.get("res/image/hud/hud_current_item.png", Texture.class);
+        mHudCurrentItemEmpty = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
         mHudCurrentItemBoomerangWood = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_wood.png", Texture.class);
 
         mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
-        mHudCurrentItemTexture = Gizmo.assetManager.get("res/image/hud/hud_current_item.png", Texture.class);
+        mHudCurrentPrimaryItemTexture = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
+        mHudCurrentSecondaryItemTexture = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
 
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;
-        mHudCurrentItemTexture = mHudCurrentItemEmpty;
+
+        mHudCurrentPrimaryItemTexture = mHudCurrentItemEmpty;
+        mHudCurrentSecondaryItemTexture = mHudCurrentItemEmpty;
 
         mBitmapFont.getData().setScale(0.3f, 0.3f);
         mLayoutBlueCrystalCount = new GlyphLayout(mBitmapFont, mInitialCrystalString);
@@ -181,7 +187,8 @@ public class HudStage extends BaseStage implements IGameStage {
             mSpriteBatch.draw(mCurrentLivesTexture, mHudLivesPosition.x, mHudLivesPosition.y);
             mSpriteBatch.draw(mCurrentHealthTexture, mHudHealthPosition.x, mHudHealthPosition.y);
             mSpriteBatch.draw(mHudCrystalsCount, mHudCrystalsPosition.x, mHudCrystalsPosition.y);
-            mSpriteBatch.draw(mHudCurrentItemTexture, mHudCurrentItemPosition.x, mHudCurrentItemPosition.y);
+            mSpriteBatch.draw(mHudCurrentPrimaryItemTexture, mHudCurrentPrimaryItemPosition.x, mHudCurrentPrimaryItemPosition.y);
+            mSpriteBatch.draw(mHudCurrentSecondaryItemTexture, mHudCurrentSecondaryItemPosition.x, mHudCurrentSecondaryItemPosition.y);
             mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 36, mHudCrystalsPosition.y + 23);
             mBitmapFont.setColor(1, 1, 1, 1);
         mSpriteBatch.end();
@@ -286,13 +293,31 @@ public class HudStage extends BaseStage implements IGameStage {
     }
 
     @Override
-    public void setHudSelectedItem(BasePlayerItemModel item) {
-        GLog.d(TAG, "setHudSelectedItem: " + item.getItemType());
-        if (item.getItemType().equals(BoomerangWoodModel.BOOMERANG_WOOD)) {
-            mHudCurrentItemTexture = mHudCurrentItemBoomerangWood;
+    public void setHudSelectedPrimaryItem(BasePlayerItemModel item) {
+        if (item != null && item.getItemType() != null && item.getItemType() != "") {
+            GLog.d(TAG, "setHudSelectedPrimaryItem: " + item.getItemType());
+            if (item.getItemType().equals(BoomerangWoodModel.BOOMERANG_WOOD)) {
+                mHudCurrentPrimaryItemTexture = mHudCurrentItemBoomerangWood;
+            }
+            else {
+                mHudCurrentPrimaryItemTexture = mHudCurrentItemEmpty;
+            }
         }
         else {
-            mHudCurrentItemTexture = mHudCurrentItemEmpty;
+            mHudCurrentPrimaryItemTexture = mHudCurrentItemEmpty;
+        }
+    }
+
+    @Override
+    public void setHudSelectedSecondaryItem(BasePlayerItemModel item) {
+        if (item != null && item.getItemType() != null && item.getItemType() != "") {
+            GLog.d(TAG, "setHudSelectedSecondaryItem: " + item.getItemType());
+
+            //todo add secondary item type checks
+
+        }
+        else {
+            mHudCurrentSecondaryItemTexture = mHudCurrentItemEmpty;
         }
     }
 
@@ -307,16 +332,11 @@ public class HudStage extends BaseStage implements IGameStage {
         mHudCrystalsPosition.x = Math.abs(gameWidth - mHudCrystalsCount.getWidth() * scale + crop.x) / scale;
         mHudCrystalsPosition.y = Math.abs(gameHeight - mHudCrystalsCount.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        mHudCurrentItemPosition.x = centerScreenX - mHudCurrentItemTexture.getWidth()/2;
-        mHudCurrentItemPosition.y = Math.abs(gameHeight - mHudCurrentItemTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
+        mHudCurrentPrimaryItemPosition.x = centerScreenX - mHudCurrentPrimaryItemTexture.getWidth() - 1;
+        mHudCurrentPrimaryItemPosition.y = Math.abs(gameHeight - mHudCurrentPrimaryItemTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
-        GLog.d(TAG, "crop.x"+crop.x);
-
-        GLog.d(TAG, "hudPosition.x: " + mHudHealthPosition.x);
-        GLog.d(TAG, "hudPosition.y: " + mHudHealthPosition.y);
-
-        GLog.d(TAG, "mHudCrystalsPosition.x: " + mHudCrystalsPosition.x);
-        GLog.d(TAG, "mHudCrystalsPosition.y: " + mHudCrystalsPosition.y);
+        mHudCurrentSecondaryItemPosition.x = centerScreenX + 1;
+        mHudCurrentSecondaryItemPosition.y = Math.abs(gameHeight - mHudCurrentSecondaryItemTexture.getHeight() * scale - HUD_PADDING * scale) / scale;
 
         mOrthographicCamera.update();
     }

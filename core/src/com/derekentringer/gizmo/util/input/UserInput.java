@@ -9,7 +9,7 @@ public class UserInput {
     public static boolean[] currentKey;
     public static boolean[] previousKey;
 
-    public static final int NUM_KEYS = 22;
+    public static final int NUM_KEYS = 24;
 
     public static final int JUMP_BUTTON = 0;
     public static final int LEFT_BUTTON = 1;
@@ -26,18 +26,21 @@ public class UserInput {
 
     public static final int BACK_BUTTON = 10;
 
-    public static final int SWITCH_WEAPON_BUTTON_BACKWARD = 11;
-    public static final int SWITCH_WEAPON_BUTTON_FORWARD = 12;
+    public static final int SWITCH_PRIMARY_BUTTON_BACKWARD = 11;
+    public static final int SWITCH_PRIMARY_BUTTON_FORWARD = 12;
 
-    public static final int SWITCH_WEAPON_BUTTON_1 = 13;
-    public static final int SWITCH_WEAPON_BUTTON_2 = 14;
-    public static final int SWITCH_WEAPON_BUTTON_3 = 15;
-    public static final int SWITCH_WEAPON_BUTTON_4 = 16;
-    public static final int SWITCH_WEAPON_BUTTON_5 = 17;
-    public static final int SWITCH_WEAPON_BUTTON_6 = 18;
-    public static final int SWITCH_WEAPON_BUTTON_7 = 19;
-    public static final int SWITCH_WEAPON_BUTTON_8 = 20;
-    public static final int SWITCH_WEAPON_BUTTON_9 = 21;
+    public static final int SWITCH_SECONDARY_BUTTON_BACKWARD = 13;
+    public static final int SWITCH_SECONDARY_BUTTON_FORWARD = 14;
+
+    public static final int SWITCH_WEAPON_BUTTON_1 = 15;
+    public static final int SWITCH_WEAPON_BUTTON_2 = 16;
+    public static final int SWITCH_WEAPON_BUTTON_3 = 17;
+    public static final int SWITCH_WEAPON_BUTTON_4 = 18;
+    public static final int SWITCH_WEAPON_BUTTON_5 = 19;
+    public static final int SWITCH_WEAPON_BUTTON_6 = 20;
+    public static final int SWITCH_WEAPON_BUTTON_7 = 21;
+    public static final int SWITCH_WEAPON_BUTTON_8 = 22;
+    public static final int SWITCH_WEAPON_BUTTON_9 = 23;
 
     static {
         currentKey = new boolean[NUM_KEYS];
