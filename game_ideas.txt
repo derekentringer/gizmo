@@ -17,7 +17,7 @@ new additions needed
 ------------------------------------------------------------------------------
 
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
-	- i would lov if this was code based - would save a ton of time
+	- a custom shader should work
 
 controller support
 	- buy controllers - see above
