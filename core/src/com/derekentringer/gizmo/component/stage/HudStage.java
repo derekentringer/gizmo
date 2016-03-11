@@ -262,7 +262,7 @@ public class HudStage extends BaseStage implements IGameStage {
         // this could be used to adjust
         // the fade back in
         //mTimeAccumulated += delta;
-        Thread t = new Thread() {
+        Thread thread = new Thread() {
             public void run() {
                 try {
                     sleep(FADE_DELAY);
@@ -275,7 +275,7 @@ public class HudStage extends BaseStage implements IGameStage {
                 }
             }
         };
-        t.start();
+        thread.start();
     }
 
     private void drawOverlay(float r, float g, float b, float a) {
@@ -398,7 +398,7 @@ public class HudStage extends BaseStage implements IGameStage {
     }
 
     private float getHealthTop(int health, float newWidth) {
-        if ((mHearts >= 5) || mHearts == 5 && health > 29) {
+        if ((mHearts >= 5) && health > 29) {
             newWidth = newWidth + 3;
         }
         else if (mHearts == 4 && health > 19) {
