@@ -482,14 +482,6 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             }
         }
 
-        //reset toggle flag
-        if (!UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)
-                && !UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD)
-                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD)
-                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD)) {
-            mKeyDown = false;
-        }
-
         //primary items
         if (UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)) {
             if (!mKeyDown) {
@@ -570,6 +562,14 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                 //TODO add other items
 
             }
+        }
+
+        //reset keyDown flag
+        if (!UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)
+                && !UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD)
+                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD)
+                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD)) {
+            mKeyDown = false;
         }
 
         //reset pause toggle flag
