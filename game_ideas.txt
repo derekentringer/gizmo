@@ -19,9 +19,6 @@ new additions needed
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- i would lov if this was code based - would save a ton of time
 
-choose a weapon using 1-9 keys like doom, and show on hud which is chosen
-	- just need to map the 1-9 keys
-
 controller support
 	- buy controllers - see above
 
@@ -35,6 +32,8 @@ more weapons
 	- bombs (can be thown)
 	- pillows with kittens on them ;)
 	- crazy power-ups only usable on bosses with full screen animations
+
+secondary items
 
 more levels
 	- work on laying out the world to build up the levels for the entire game
