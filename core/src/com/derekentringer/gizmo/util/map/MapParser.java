@@ -60,6 +60,7 @@ import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.PlayerUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
@@ -357,6 +358,7 @@ public class MapParser extends Stage {
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(BasePlayerItemModel.PLAYER_ITEM)) {
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
+                    GLog.d("MapParser", itemType);
                     if (!loopThruPickedUpItemsArray(mLoadedRoomModel.getPickedUpItems(), itemType)) {
 
                         //boomerangs

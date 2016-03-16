@@ -9,6 +9,9 @@ public class PotionLifeModel extends BasePlayerItemModel {
 
     public PotionLifeModel() {
         mBaseModelType = BaseModelType.PLAYER_ITEM_SECONDARY;
+        //could add multiple potions with
+        //a PotionModel as the base model
+        mItemType = POTION_LIFE;
     }
 
 }
