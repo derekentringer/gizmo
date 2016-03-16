@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
@@ -63,6 +64,8 @@ public class HudStage extends BaseStage implements IGameStage {
     private Texture mHudCurrentItemBoomerangEmerald;
     private Texture mHudCurrentItemBoomerangAmethyst;
     private Texture mHudCurrentItemBoomerangBloodstone;
+
+    private Texture mHudCurrentItemPotionLife;
 
     private Texture mCurrentLivesTexture;
     private Texture mCurrentHealthTexture;
@@ -133,6 +136,8 @@ public class HudStage extends BaseStage implements IGameStage {
         mHudCurrentItemBoomerangEmerald = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_emerald.png", Texture.class);
         mHudCurrentItemBoomerangAmethyst = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_amethyst.png", Texture.class);
         mHudCurrentItemBoomerangBloodstone = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_bloodstone.png", Texture.class);
+
+        mHudCurrentItemPotionLife = Gizmo.assetManager.get("res/image/hud/hud_current_item_potion_life.png", Texture.class);
 
         mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
@@ -331,7 +336,9 @@ public class HudStage extends BaseStage implements IGameStage {
         if (item != null && item.getItemType() != null && item.getItemType() != "") {
             GLog.d(TAG, "setHudSelectedSecondaryItem: " + item.getItemType());
 
-            //todo add secondary item type checks
+            if (item.getItemType().equals(PotionLifeModel.POTION_LIFE)) {
+                mHudCurrentSecondaryItemTexture = mHudCurrentItemPotionLife;
+            }
 
         }
         else {
