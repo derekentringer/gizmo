@@ -18,6 +18,8 @@ import com.derekentringer.gizmo.component.actor.object.BoomerangActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.actor.object.KeyActor;
 import com.derekentringer.gizmo.component.actor.object.LifeActor;
+import com.derekentringer.gizmo.component.actor.object.PotionLifeActor;
+import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.structure.GroundActor;
 import com.derekentringer.gizmo.component.actor.structure.LavaActor;
@@ -33,15 +35,15 @@ import com.derekentringer.gizmo.component.actor.structure.door.DoorOffActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorOtherActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.boss.phantom.PhantomLargeModel;
+import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.enemy.phantom.PhantomModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
-import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.GroundModel;
 import com.derekentringer.gizmo.model.structure.LavaModel;
@@ -357,7 +359,7 @@ public class MapParser extends Stage {
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
                     if (!loopThruPickedUpItemsArray(mLoadedRoomModel.getPickedUpItems(), itemType)) {
 
-                        // boomerangs
+                        //boomerangs
                         if (itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)
                                 || itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_EMERALD)
                                 || itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_AMETHYST)
@@ -368,8 +370,17 @@ public class MapParser extends Stage {
                             addToActorsArray(boomerangActor);
                         }
 
+                        //life potion
+                        if (itemType.equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+                            PotionLifeActor potionLifeActor = new PotionLifeActor(ObjectUtils.createPotionLife(new PotionLifeModel(), world, getMapObjectCoords(mapObject)));
+                            potionLifeActor.setName(PotionLifeModel.POTION_LIFE);
+                            addActor(potionLifeActor);
+                            addToActorsArray(potionLifeActor);
+                        }
+
                     }
                 }
+
             }
         }
     }

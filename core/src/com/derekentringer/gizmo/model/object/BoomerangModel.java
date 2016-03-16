@@ -13,11 +13,11 @@ public class BoomerangModel extends BasePlayerItemModel {
     public static final String BOOMERANG_BLOODSTONE = "BOOMERANG_BLOODSTONE";
 
     public BoomerangModel() {
-        mBaseModelType = BaseModelType.PLAYER_ITEM;
+        mBaseModelType = BaseModelType.PLAYER_ITEM_PRIMARY;
     }
 
     public BoomerangModel(String boomerangType) {
-        mBaseModelType = BaseModelType.PLAYER_ITEM;
+        mBaseModelType = BaseModelType.PLAYER_ITEM_PRIMARY;
         mItemType = boomerangType;
     }
 

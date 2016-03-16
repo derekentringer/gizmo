@@ -90,6 +90,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         Gizmo.assetManager.load("res/image/object/heart.png", Texture.class);
         Gizmo.assetManager.load("res/image/object/life.png", Texture.class);
+        Gizmo.assetManager.load("res/image/object/potion_life.png", Texture.class);
 
         Gizmo.assetManager.load("res/image/drop/drop_heart.png", Texture.class);
         Gizmo.assetManager.load("res/image/drop/drop_crystal_blue.png", Texture.class);

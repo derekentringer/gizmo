@@ -10,7 +10,7 @@ public class BoomerangEmeraldModel extends BasePlayerItemModel {
     private static final int DEFAULT_HEALTH_DAMAGE = 4;
 
     public BoomerangEmeraldModel() {
-        mBaseModelType = BaseModelType.PLAYER_ITEM;
+        mBaseModelType = BaseModelType.PLAYER_ITEM_PRIMARY;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }
 

@@ -9,7 +9,7 @@ public class BoomerangBloodStoneModel extends com.derekentringer.gizmo.model.ite
     private static final int DEFAULT_HEALTH_DAMAGE = 8;
 
     public BoomerangBloodStoneModel() {
-        mBaseModelType = BaseModelType.PLAYER_ITEM;
+        mBaseModelType = BaseModelType.PLAYER_ITEM_PRIMARY;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }
 

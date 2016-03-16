@@ -9,7 +9,7 @@ public class BoomerangWoodModel extends com.derekentringer.gizmo.model.item.Base
     private static final int DEFAULT_HEALTH_DAMAGE = 2;
 
     public BoomerangWoodModel() {
-        mBaseModelType = BaseModelType.PLAYER_ITEM;
+        mBaseModelType = BaseModelType.PLAYER_ITEM_PRIMARY;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }
 

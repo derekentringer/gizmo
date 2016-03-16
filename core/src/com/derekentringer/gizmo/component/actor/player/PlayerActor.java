@@ -93,7 +93,8 @@ public class PlayerActor extends BaseActor {
 
     private KeyModel mLastKeyAdded;
     private HeartModel mLastHeartAdded;
-    private BasePlayerItemModel mLastItemAdded;
+    private BasePlayerItemModel mLastPrimaryItemAdded;
+    private BasePlayerItemModel mLastSecondaryItemAdded;
     private BasePlayerItemModel mCurrentItem;
     private boolean mIsItemActive = false;
 
@@ -257,12 +258,22 @@ public class PlayerActor extends BaseActor {
         return mPlayerModel.getHearts();
     }
 
-    public void addItem(BasePlayerItemModel item) {
-        if (mLastItemAdded == null || !mLastItemAdded.equals(item)) {
+    public void addPrimaryItem(BasePlayerItemModel item) {
+        if (mLastPrimaryItemAdded == null || !mLastPrimaryItemAdded.equals(item)) {
             mPlayerModel.addPrimaryItem(item);
-            mLastItemAdded = item;
+            mLastPrimaryItemAdded = item;
             if (mPlayerModel.getPrimaryItems().size() == 1) {
                 setCurrentPrimaryItem(item);
+            }
+        }
+    }
+
+    public void addSecondaryItem(BasePlayerItemModel item) {
+        if (mLastSecondaryItemAdded == null || !mLastSecondaryItemAdded.equals(item)) {
+            mPlayerModel.addSecondaryItem(item);
+            mLastSecondaryItemAdded = item;
+            if (mPlayerModel.getSecondaryItems().size() == 1) {
+                setCurrentSecondaryItem(item);
             }
         }
     }

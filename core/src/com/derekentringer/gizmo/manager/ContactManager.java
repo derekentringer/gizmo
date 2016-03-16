@@ -91,7 +91,7 @@ public class ContactManager {
 
     public static void setPlayerAttacking(MapParser mapParser, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         // player attack with items collisions
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
@@ -107,7 +107,7 @@ public class ContactManager {
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
             }
         }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
@@ -209,13 +209,24 @@ public class ContactManager {
 
     public static void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up any type of PLAYER_ITEM
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
-            playerActor.addItem((BasePlayerItemModel) bodyA.getUserData());
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            playerActor.addPrimaryItem((BasePlayerItemModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
         }
-        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
-            playerActor.addItem((BasePlayerItemModel) bodyB.getUserData());
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            playerActor.addPrimaryItem((BasePlayerItemModel) bodyB.getUserData());
+            loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
+            deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
+        }
+
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            playerActor.addSecondaryItem((BasePlayerItemModel) bodyA.getUserData());
+            loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
+            deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            playerActor.addSecondaryItem((BasePlayerItemModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
         }

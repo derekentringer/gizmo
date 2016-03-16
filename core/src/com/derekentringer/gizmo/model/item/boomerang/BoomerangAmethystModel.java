@@ -9,7 +9,7 @@ public class BoomerangAmethystModel extends com.derekentringer.gizmo.model.item.
     private static final int DEFAULT_HEALTH_DAMAGE = 6;
 
     public BoomerangAmethystModel() {
-        mBaseModelType = BaseModelType.PLAYER_ITEM;
+        mBaseModelType = BaseModelType.PLAYER_ITEM_PRIMARY;
         mHealthDamage = DEFAULT_HEALTH_DAMAGE;
     }
 

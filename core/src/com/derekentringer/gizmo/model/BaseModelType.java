@@ -11,7 +11,8 @@ public enum BaseModelType {
     PLAYER_SENSOR_RIGHT,
     PLAYER_SENSOR_BOTTOM,
     PLAYER_SENSOR_LEFT,
-    PLAYER_ITEM,
+    PLAYER_ITEM_PRIMARY,
+    PLAYER_ITEM_SECONDARY,
     ENEMY,
     KEY,
     HEART,
@@ -24,6 +25,5 @@ public enum BaseModelType {
     WHITE_DOT,
     BREAK,
     PICKUP_HEART,
-    PICKUP_LIFE,
-    PICKUP_KEY
+    PICKUP_LIFE
 }
