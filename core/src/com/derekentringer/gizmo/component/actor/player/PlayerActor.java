@@ -321,7 +321,7 @@ public class PlayerActor extends BaseActor {
     public void setCurrentPrimaryItem(BasePlayerItemModel item) {
         mPlayerModel.setCurrentlySelectedItemPrimary(item);
         for (IPlayer listener : listeners) {
-            listener.setCurrentlySelectedItemPrimary(item);
+            listener.setCurrentlySelectedItemPrimary(getCurrentPrimaryItem());
         }
     }
 
@@ -372,7 +372,7 @@ public class PlayerActor extends BaseActor {
     public void setCurrentSecondaryItem(BasePlayerItemModel item) {
         mPlayerModel.setCurrentlySelectedItemSecondary(item);
         for (IPlayer listener : listeners) {
-            listener.setCurrentlySelectedItemSecondary(item);
+            listener.setCurrentlySelectedItemSecondary(getCurrentSecondaryItem());
         }
     }
 

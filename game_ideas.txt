@@ -16,7 +16,7 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
-updates to the hud when a first primary or secondary item is choosen is not working
+primary item damage sometimes not loading up correctly
 
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader should work

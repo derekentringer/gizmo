@@ -1,8 +1,9 @@
 package com.derekentringer.gizmo.model.item.boomerang;
 
 import com.derekentringer.gizmo.model.BaseModelType;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 
-public class BoomerangBloodStoneModel extends com.derekentringer.gizmo.model.item.BasePlayerItemModel {
+public class BoomerangBloodStoneModel extends BasePlayerItemModel {
 
     public static final String BOOMERANG_BLOODSTONE = "BOOMERANG_BLOODSTONE";
 
