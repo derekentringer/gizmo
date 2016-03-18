@@ -34,6 +34,7 @@ import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.block.BlockBreakModel;
 import com.derekentringer.gizmo.model.body.DeleteBody;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
@@ -694,6 +695,20 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     public void setLockedBlackDoor(DoorBlackActor blackDoorActor) {
         mDoorBlackActor = blackDoorActor;
         mDoorBlackActor.addListener(this);
+    }
+
+    @Override
+    public void setCurrentlySelectedItemPrimary(BasePlayerItemModel item) {
+        for (IGameStage listener : gameStageListeners) {
+            listener.setHudSelectedPrimaryItem(item);
+        }
+    }
+
+    @Override
+    public void setCurrentlySelectedItemSecondary(BasePlayerItemModel item) {
+        for (IGameStage listener : gameStageListeners) {
+            listener.setHudSelectedSecondaryItem(item);
+        }
     }
 
     @Override
