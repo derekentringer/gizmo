@@ -33,16 +33,6 @@ public class UserInput {
     public static final int SWITCH_SECONDARY_BUTTON_BACKWARD = 14;
     public static final int SWITCH_SECONDARY_BUTTON_FORWARD = 15;
 
-    public static final int SWITCH_WEAPON_BUTTON_1 = 16;
-    public static final int SWITCH_WEAPON_BUTTON_2 = 17;
-    public static final int SWITCH_WEAPON_BUTTON_3 = 18;
-    public static final int SWITCH_WEAPON_BUTTON_4 = 19;
-    public static final int SWITCH_WEAPON_BUTTON_5 = 20;
-    public static final int SWITCH_WEAPON_BUTTON_6 = 21;
-    public static final int SWITCH_WEAPON_BUTTON_7 = 22;
-    public static final int SWITCH_WEAPON_BUTTON_8 = 23;
-    public static final int SWITCH_WEAPON_BUTTON_9 = 24;
-
     static {
         currentKey = new boolean[NUM_KEYS];
         previousKey = new boolean[NUM_KEYS];

@@ -566,8 +566,11 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         }
 
         if (UserInput.isDown(UserInput.SECONDARY_BUTTON)) {
-            if (mPlayerActor.getCurrentSecondaryItem() != null) {
-
+            if (!mKeyDown) {
+                mKeyDown = true;
+                if (mPlayerActor.getCurrentSecondaryItem() != null) {
+                    GLog.d(TAG, "use secondary item");
+                }
             }
         }
 
@@ -575,7 +578,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         if (!UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD)
                 && !UserInput.isDown(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD)
                 && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD)
-                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD)) {
+                && !UserInput.isDown(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD)
+                && !UserInput.isDown(UserInput.SECONDARY_BUTTON)) {
             mKeyDown = false;
         }
 

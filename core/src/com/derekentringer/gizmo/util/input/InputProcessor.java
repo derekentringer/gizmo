@@ -49,6 +49,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK_BUTTON, true);
         }
+        if (keycode == Input.Keys.R) {
+            UserInput.setKey(UserInput.SECONDARY_BUTTON, true);
+        }
 
         if (keycode == Input.Keys.LEFT_BRACKET) {
             UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_BACKWARD, true);
@@ -122,6 +125,9 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
         if (keycode == Input.Keys.F) {
             UserInput.setKey(UserInput.ATTACK_BUTTON, false);
+        }
+        if (keycode == Input.Keys.R) {
+            UserInput.setKey(UserInput.SECONDARY_BUTTON, false);
         }
 
         if (keycode == Input.Keys.LEFT_BRACKET) {
