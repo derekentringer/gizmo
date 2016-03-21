@@ -96,7 +96,6 @@ public class ContactManager {
 
         //primary
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
-            GLog.d(TAG, "setPlayerAttacking primary: damage " + ItemUtils.getItemHealthDamage(bodyA));
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
@@ -113,8 +112,7 @@ public class ContactManager {
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyB));
-            GLog.d(TAG, "setPlayerAttacking primary: damage " + ItemUtils.getItemHealthDamage(bodyB));
+            EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
                     //TODO add destroy animation
@@ -132,7 +130,6 @@ public class ContactManager {
 
         //secondary
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
-            GLog.d(TAG, "setPlayerAttacking secondary: damage " + ItemUtils.getItemHealthDamage(bodyA));
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
@@ -150,7 +147,6 @@ public class ContactManager {
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyB));
-            GLog.d(TAG, "setPlayerAttacking secondary: damage " + ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
                     //TODO add destroy animation
