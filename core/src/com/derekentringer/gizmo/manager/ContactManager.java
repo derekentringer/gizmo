@@ -20,6 +20,7 @@ import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
 import com.derekentringer.gizmo.util.ItemUtils;
+import com.derekentringer.gizmo.util.log.GLog;
 import com.derekentringer.gizmo.util.map.MapParser;
 
 import java.util.ArrayList;
@@ -90,8 +91,48 @@ public class ContactManager {
     }
 
     public static void setPlayerAttacking(MapParser mapParser, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
-        // player attack with items collisions
+        //player attack with items collisions
+        //primary and secondary bodyA & bodyB checks
+
+        //primary
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
+            GLog.d(TAG, "setPlayerAttacking primary: damage " + ItemUtils.getItemHealthDamage(bodyA));
+            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
+            if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
+                if (EnemyUtils.isEnemyBoss(bodyB)) {
+                    //TODO add destroy animation
+                    loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyB.getUserData());
+                    if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
+                        mapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
+                    }
+                }
+                else if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
+                    mapParser.addToDroppedItemPositionArray(bodyB.getPosition());
+                }
+                deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
+            }
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
+            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyB));
+            GLog.d(TAG, "setPlayerAttacking primary: damage " + ItemUtils.getItemHealthDamage(bodyB));
+            if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
+                if (EnemyUtils.isEnemyBoss(bodyA)) {
+                    //TODO add destroy animation
+                    loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
+                    if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
+                        mapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
+                    }
+                }
+                else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
+                    mapParser.addToDroppedItemPositionArray(bodyA.getPosition());
+                }
+                deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
+            }
+        }
+
+        //secondary
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.ENEMY)) {
+            GLog.d(TAG, "setPlayerAttacking secondary: damage " + ItemUtils.getItemHealthDamage(bodyA));
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
@@ -108,7 +149,8 @@ public class ContactManager {
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
+            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyB));
+            GLog.d(TAG, "setPlayerAttacking secondary: damage " + ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
                     //TODO add destroy animation
@@ -210,22 +252,26 @@ public class ContactManager {
     public static void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up any type of PLAYER_ITEM
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            GLog.d(TAG, "setPlayerPickupItem: primary" + bodyB.getUserData().toString());
             playerActor.addPrimaryItem((BasePlayerItemModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            GLog.d(TAG, "setPlayerPickupItem: primary" + bodyB.getUserData().toString());
             playerActor.addPrimaryItem((BasePlayerItemModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
         }
 
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
+            GLog.d(TAG, "setPlayerPickupItem: secondary" + bodyA.getUserData().toString());
             playerActor.addSecondaryItem((BasePlayerItemModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
+            GLog.d(TAG, "setPlayerPickupItem: secondary" + bodyB.getUserData().toString());
             playerActor.addSecondaryItem((BasePlayerItemModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));

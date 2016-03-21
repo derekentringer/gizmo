@@ -260,6 +260,8 @@ public class PlayerActor extends BaseActor {
 
     public void addPrimaryItem(BasePlayerItemModel item) {
         if (mLastPrimaryItemAdded == null || !mLastPrimaryItemAdded.equals(item)) {
+            GLog.d(TAG, "addPrimaryItem: type " + item.getItemType());
+            GLog.d(TAG, "addPrimaryItem: healthDamage " + item.getHealthDamage());
             mPlayerModel.addPrimaryItem(item);
             mLastPrimaryItemAdded = item;
             if (mPlayerModel.getPrimaryItems().size() == 1) {
@@ -270,6 +272,8 @@ public class PlayerActor extends BaseActor {
 
     public void addSecondaryItem(BasePlayerItemModel item) {
         if (mLastSecondaryItemAdded == null || !mLastSecondaryItemAdded.equals(item)) {
+            GLog.d(TAG, "addSecondaryItem: type " + item.getItemType());
+            GLog.d(TAG, "addSecondaryItem: healthDamage " + item.getHealthDamage());
             mPlayerModel.addSecondaryItem(item);
             mLastSecondaryItemAdded = item;
             if (mPlayerModel.getSecondaryItems().size() == 1) {
@@ -285,13 +289,15 @@ public class PlayerActor extends BaseActor {
             if (getCurrentPrimaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == playerItems.size() - 1) {
                     setCurrentPrimaryItem(playerItems.get(0));
-                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(0).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: type " + playerItems.get(0).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: damage " + playerItems.get(0).getHealthDamage());
                     return;
                 }
                 else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
                     int nextItemIndex = playerItems.indexOf(item) + 1;
                     setCurrentPrimaryItem(playerItems.get(nextItemIndex));
-                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: type " + playerItems.get(nextItemIndex).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: damage " + playerItems.get(nextItemIndex).getHealthDamage());
                     return;
                 }
             }
@@ -305,13 +311,15 @@ public class PlayerActor extends BaseActor {
             if (getCurrentPrimaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == 0) {
                     setCurrentPrimaryItem(playerItems.get(playerItems.size() - 1));
-                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(playerItems.size() - 1).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: type " + playerItems.get(playerItems.size() - 1).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: damage " + playerItems.get(playerItems.size() - 1).getHealthDamage());
                     return;
                 }
                 else if (playerItems.indexOf(item) - 1 >= 0) {
                     int nextItemIndex = playerItems.indexOf(item) - 1;
                     setCurrentPrimaryItem(playerItems.get(nextItemIndex));
-                    GLog.d(TAG, "setCurrentPrimaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: type " + playerItems.get(nextItemIndex).getItemType());
+                    GLog.d(TAG, "setCurrentPrimaryItem: damage " + playerItems.get(nextItemIndex).getHealthDamage());
                     return;
                 }
             }
@@ -319,6 +327,8 @@ public class PlayerActor extends BaseActor {
     }
 
     public void setCurrentPrimaryItem(BasePlayerItemModel item) {
+        GLog.d(TAG, "setCurrentPrimaryItem: type " + item.getItemType());
+        GLog.d(TAG, "setCurrentPrimaryItem: damage " + item.getHealthDamage());
         mPlayerModel.setCurrentlySelectedItemPrimary(item);
         for (IPlayer listener : listeners) {
             listener.setCurrentlySelectedItemPrimary(getCurrentPrimaryItem());
@@ -326,6 +336,8 @@ public class PlayerActor extends BaseActor {
     }
 
     public BasePlayerItemModel getCurrentPrimaryItem() {
+        GLog.d(TAG, "getCurrentPrimaryItem: type"  + mPlayerModel.getCurrentlySelectedItemPrimary().getItemType());
+        GLog.d(TAG, "getCurrentPrimaryItem: damage " + mPlayerModel.getCurrentlySelectedItemPrimary().getHealthDamage());
         return mPlayerModel.getCurrentlySelectedItemPrimary();
     }
 
@@ -370,6 +382,8 @@ public class PlayerActor extends BaseActor {
     }
 
     public void setCurrentSecondaryItem(BasePlayerItemModel item) {
+        GLog.d(TAG, "setCurrentSecondaryItem: type " + item.getItemType());
+        GLog.d(TAG, "setCurrentSecondaryItem: damage " + item.getHealthDamage());
         mPlayerModel.setCurrentlySelectedItemSecondary(item);
         for (IPlayer listener : listeners) {
             listener.setCurrentlySelectedItemSecondary(getCurrentSecondaryItem());
@@ -377,6 +391,8 @@ public class PlayerActor extends BaseActor {
     }
 
     public BasePlayerItemModel getCurrentSecondaryItem() {
+        GLog.d(TAG, "getCurrentSecondaryItem: type " + mPlayerModel.getCurrentlySelectedItemSecondary().getItemType());
+        GLog.d(TAG, "getCurrentSecondaryItem: damage " + mPlayerModel.getCurrentlySelectedItemSecondary().getHealthDamage());
         return mPlayerModel.getCurrentlySelectedItemSecondary();
     }
 
