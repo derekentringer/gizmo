@@ -560,7 +560,13 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                     //}
                 }
 
-                //TODO add other items
+                //TODO add other primary items
+
+            }
+        }
+
+        if (UserInput.isDown(UserInput.SECONDARY_BUTTON)) {
+            if (mPlayerActor.getCurrentSecondaryItem() != null) {
 
             }
         }

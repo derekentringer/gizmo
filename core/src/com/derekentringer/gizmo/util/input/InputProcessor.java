@@ -180,13 +180,13 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public void connected(Controller controller) {
-        //GLog.d(TAG, "controller connected: " + controller.getName());
+        GLog.d(TAG, "controller connected: " + controller.getName());
         UserInput.setController(controller);
     }
 
     @Override
     public void disconnected(Controller controller) {
-        //GLog.d(TAG, "controller disconnected: " + controller.getName());
+        GLog.d(TAG, "controller disconnected: " + controller.getName());
     }
 
     @Override
@@ -210,6 +210,26 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         if (buttonCode == PS4Controller.BUTTON_TRIANGLE
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_CIRCLE
+                || buttonCode == NexusPlayerController.BUTTON_B) {
+            UserInput.setKey(UserInput.DIG_BUTTON, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_RT
+                || buttonCode == NexusPlayerController.BUTTON_RT) {
+            UserInput.setKey(UserInput.ATTACK_BUTTON, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_RB
+                || buttonCode == NexusPlayerController.BUTTON_RB) {
+            UserInput.setKey(UserInput.SECONDARY_BUTTON, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_LT
+                || buttonCode == NexusPlayerController.BUTTON_LT) {
+            UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, true);
+        }
+        if (buttonCode == PS4Controller.BUTTON_LB
+                || buttonCode == NexusPlayerController.BUTTON_LB) {
+            UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, true);
         }
         return true;
     }
@@ -235,6 +255,10 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_Y) {
             UserInput.setKey(UserInput.ENTER_DOOR, false);
         }
+        if (buttonCode == PS4Controller.BUTTON_CIRCLE
+                || buttonCode == NexusPlayerController.BUTTON_B) {
+            UserInput.setKey(UserInput.DIG_BUTTON, false);
+        }
         return true;
     }
 
@@ -244,33 +268,59 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
         //right/left triggers
         if (controller.getName().equalsIgnoreCase(BaseController.CONTROLLER_NEXUS)) {
+
             if (controller.getAxis(NexusPlayerController.BUTTON_RT) > 0.2f) {
                 UserInput.setKey(UserInput.ATTACK_BUTTON, true);
             }
             else {
                 UserInput.setKey(UserInput.ATTACK_BUTTON, false);
             }
-
-            if (controller.getAxis(NexusPlayerController.BUTTON_LT) > 0.2f) {
-                UserInput.setKey(UserInput.DIG_BUTTON, true);
+            if (controller.getAxis(NexusPlayerController.BUTTON_RB) > 0.2f) {
+                UserInput.setKey(UserInput.SECONDARY_BUTTON, true);
             }
             else {
-                UserInput.setKey(UserInput.DIG_BUTTON, false);
+                UserInput.setKey(UserInput.SECONDARY_BUTTON, false);
+            }
+
+            if (controller.getAxis(NexusPlayerController.BUTTON_LT) > 0.2f) {
+                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, true);
+            }
+            else {
+                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
+            }
+            if (controller.getAxis(NexusPlayerController.BUTTON_LB) > 0.2f) {
+                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, true);
+            }
+            else {
+                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
             }
         }
         else if (controller.getName().equalsIgnoreCase(BaseController.CONTROLLER_PS4)) {
+
             if (controller.getAxis(PS4Controller.BUTTON_RT) > 0.2f) {
                 UserInput.setKey(UserInput.ATTACK_BUTTON, true);
             }
             else {
                 UserInput.setKey(UserInput.ATTACK_BUTTON, false);
             }
-
-            if (controller.getAxis(PS4Controller.BUTTON_LT) > 0.2f) {
-                UserInput.setKey(UserInput.DIG_BUTTON, true);
+            if (controller.getAxis(PS4Controller.BUTTON_RB) > 0.2f) {
+                UserInput.setKey(UserInput.SECONDARY_BUTTON, true);
             }
             else {
-                UserInput.setKey(UserInput.DIG_BUTTON, false);
+                UserInput.setKey(UserInput.SECONDARY_BUTTON, false);
+            }
+
+            if (controller.getAxis(PS4Controller.BUTTON_LT) > 0.2f) {
+                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, true);
+            }
+            else {
+                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
+            }
+            if (controller.getAxis(PS4Controller.BUTTON_LB) > 0.2f) {
+                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, true);
+            }
+            else {
+                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
             }
         }
 
