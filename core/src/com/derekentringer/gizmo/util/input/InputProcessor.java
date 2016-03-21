@@ -340,19 +340,18 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
         }
 
         //stick up/down
-        if (controller.getAxis(BaseController.AXIS_Y) > 0.2f) {
+        if (controller.getAxis(BaseController.AXIS_Y) < -0.2f) {
             UserInput.setKey(UserInput.UP, true);
         }
         else {
             UserInput.setKey(UserInput.UP, false);
         }
-        if (controller.getAxis(BaseController.AXIS_Y) < -0.2f) {
+        if (controller.getAxis(BaseController.AXIS_Y) > 0.2f) {
             UserInput.setKey(UserInput.DOWN, true);
         }
         else {
             UserInput.setKey(UserInput.DOWN, false);
         }
-
         return true;
     }
 
