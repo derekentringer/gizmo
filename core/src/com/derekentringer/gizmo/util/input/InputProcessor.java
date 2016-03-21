@@ -102,10 +102,6 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
     public boolean keyUp(int keycode) {
         //GLog.d(TAG, "keyUp keycode: " + keycode);
 
-        /*if(keycode > -1) {
-            UserInput.setKey(UserInput.ANY_KEY, false);
-        }*/
-
         if (keycode == Input.Keys.BACK) {
             UserInput.setKey(UserInput.BACK_BUTTON, false);
         }
@@ -259,70 +255,28 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
                 || buttonCode == NexusPlayerController.BUTTON_B) {
             UserInput.setKey(UserInput.DIG_BUTTON, false);
         }
+        if (buttonCode == PS4Controller.BUTTON_RT
+                || buttonCode == NexusPlayerController.BUTTON_RT) {
+            UserInput.setKey(UserInput.ATTACK_BUTTON, false);
+        }
+        if (buttonCode == PS4Controller.BUTTON_RB
+                || buttonCode == NexusPlayerController.BUTTON_RB) {
+            UserInput.setKey(UserInput.SECONDARY_BUTTON, false);
+        }
+        if (buttonCode == PS4Controller.BUTTON_LT
+                || buttonCode == NexusPlayerController.BUTTON_LT) {
+            UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
+        }
+        if (buttonCode == PS4Controller.BUTTON_LB
+                || buttonCode == NexusPlayerController.BUTTON_LB) {
+            UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
+        }
         return true;
     }
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
         //GLog.d(TAG, "axisCode: " + axisCode + " " + value);
-
-        //right/left triggers
-        if (controller.getName().equalsIgnoreCase(BaseController.CONTROLLER_NEXUS)) {
-
-            if (controller.getAxis(NexusPlayerController.BUTTON_RT) > 0.2f) {
-                UserInput.setKey(UserInput.ATTACK_BUTTON, true);
-            }
-            else {
-                UserInput.setKey(UserInput.ATTACK_BUTTON, false);
-            }
-            if (controller.getAxis(NexusPlayerController.BUTTON_RB) > 0.2f) {
-                UserInput.setKey(UserInput.SECONDARY_BUTTON, true);
-            }
-            else {
-                UserInput.setKey(UserInput.SECONDARY_BUTTON, false);
-            }
-
-            if (controller.getAxis(NexusPlayerController.BUTTON_LT) > 0.2f) {
-                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, true);
-            }
-            else {
-                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
-            }
-            if (controller.getAxis(NexusPlayerController.BUTTON_LB) > 0.2f) {
-                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, true);
-            }
-            else {
-                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
-            }
-        }
-        else if (controller.getName().equalsIgnoreCase(BaseController.CONTROLLER_PS4)) {
-
-            if (controller.getAxis(PS4Controller.BUTTON_RT) > 0.2f) {
-                UserInput.setKey(UserInput.ATTACK_BUTTON, true);
-            }
-            else {
-                UserInput.setKey(UserInput.ATTACK_BUTTON, false);
-            }
-            if (controller.getAxis(PS4Controller.BUTTON_RB) > 0.2f) {
-                UserInput.setKey(UserInput.SECONDARY_BUTTON, true);
-            }
-            else {
-                UserInput.setKey(UserInput.SECONDARY_BUTTON, false);
-            }
-
-            if (controller.getAxis(PS4Controller.BUTTON_LT) > 0.2f) {
-                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, true);
-            }
-            else {
-                UserInput.setKey(UserInput.SWITCH_PRIMARY_BUTTON_FORWARD, false);
-            }
-            if (controller.getAxis(PS4Controller.BUTTON_LB) > 0.2f) {
-                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, true);
-            }
-            else {
-                UserInput.setKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
-            }
-        }
 
         //stick left/right
         if (controller.getAxis(BaseController.AXIS_X) > 0.2f) {
