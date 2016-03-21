@@ -57,7 +57,7 @@
  </layer>
  <layer name="destroyable_block_fall" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAHgYFZAAAQ==
+   eJztx7EJAAAIBLHfyf13s3EAwdIErrgEAAAAgIuatg/81QG3ATM=
   </data>
  </layer>
  <layer name="wall" width="60" height="23">
@@ -94,7 +94,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzzEKADAIBEFfJOT/n0srVinFzMAWV14EAAAAAJNl26e0Uf+7WZa2yYd+dAEkzgMY
+   eJztz6ENACAQBEEq+gT6Lw6DIK8guGcmWXHyWgMAAADgxVid7luRdt+qKP+tLLaqiYN+NAH4MgRE
   </data>
  </layer>
  <objectgroup name="phantom">
