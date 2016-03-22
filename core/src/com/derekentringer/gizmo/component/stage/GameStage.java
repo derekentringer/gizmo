@@ -574,6 +574,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
                     if (mPlayerActor.getCurrentSecondaryItem().getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
                         ItemUtils.usePotionLife(mPlayerActor);
+                        pickupHeart(mPlayerActor.getPlayerPosition());
                         for (IGameStage listener : gameStageListeners) {
                             listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
                         }

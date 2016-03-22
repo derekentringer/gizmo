@@ -285,6 +285,10 @@ public class PlayerActor extends BaseActor {
         }
     }
 
+    public void removeSecondaryItem(BasePlayerItemModel item) {
+        mPlayerModel.removeSecondaryItem(item);
+    }
+
     public void incrementSelectedPrimaryItem() {
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPrimaryItems();
         for (BasePlayerItemModel item : playerItems) {
