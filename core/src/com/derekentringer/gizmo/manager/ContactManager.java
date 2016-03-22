@@ -8,12 +8,12 @@ import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
+import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.DropCrystalBlueModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
-import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -272,6 +272,8 @@ public class ContactManager {
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
         }
+
+
     }
 
     public static void setPlayerPickupSmallHeart(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
