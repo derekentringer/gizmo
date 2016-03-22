@@ -177,6 +177,11 @@ public class PlayerActor extends BaseActor {
                 mPlayerModel.addPrimaryItem(playerModel.getPrimaryItems().get(i));
             }
         }
+        if (playerModel.getSecondaryItems().size() > 0) {
+            for (int i = 0; i < playerModel.getSecondaryItems().size(); i++) {
+                mPlayerModel.addSecondaryItem(playerModel.getSecondaryItems().get(i));
+            }
+        }
     }
 
     public void setHitEnemy(int healthDamage) {
@@ -334,19 +339,27 @@ public class PlayerActor extends BaseActor {
     public void incrementSelectedSecondaryItem() {
         GLog.d(TAG, "incrementSelectedSecondaryItem");
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
-        for (BasePlayerItemModel item : playerItems) {
-            if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
-                if (playerItems.indexOf(item) == playerItems.size() - 1) {
-                    setCurrentSecondaryItem(playerItems.get(0));
-                    GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
-                    return;
+        if (playerItems.size() > 0) {
+            for (BasePlayerItemModel item : playerItems) {
+                if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
+                    if (playerItems.indexOf(item) == playerItems.size() - 1) {
+                        setCurrentSecondaryItem(playerItems.get(0));
+                        GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
+                        return;
+                    }
+                    else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
+                        int nextItemIndex = playerItems.indexOf(item) + 1;
+                        setCurrentSecondaryItem(playerItems.get(nextItemIndex));
+                        GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                        return;
+                    }
                 }
-                else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
-                    int nextItemIndex = playerItems.indexOf(item) + 1;
-                    setCurrentSecondaryItem(playerItems.get(nextItemIndex));
-                    GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
-                    return;
-                }
+            }
+        }
+        else {
+            setCurrentSecondaryItem(null);
+            for (IPlayer listener : listeners) {
+                listener.setCurrentlySelectedItemSecondary(null);
             }
         }
     }
@@ -373,7 +386,6 @@ public class PlayerActor extends BaseActor {
 
     public void setCurrentSecondaryItem(BasePlayerItemModel item) {
         mPlayerModel.setCurrentlySelectedItemSecondary(item);
-        GLog.d(TAG, "setCurrentSecondaryItem: " + item.getItemType());
         for (IPlayer listener : listeners) {
             listener.setCurrentlySelectedItemSecondary(getCurrentSecondaryItem());
         }

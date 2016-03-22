@@ -13,6 +13,7 @@ import com.derekentringer.gizmo.component.actor.block.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
+import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.pickup.PickupHeartActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupKeyActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupLifeActor;
@@ -560,7 +561,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                     //}
                 }
 
-                //TODO add other primary items
+                //todo add other primary items
 
             }
         }
@@ -569,7 +570,22 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             if (!mKeyDown) {
                 mKeyDown = true;
                 if (mPlayerActor.getCurrentSecondaryItem() != null) {
-                    GLog.d(TAG, "use secondary item");
+                    GLog.d(TAG, "using secondary item: " + mPlayerActor.getCurrentSecondaryItem().getItemType());
+
+                    if (mPlayerActor.getCurrentSecondaryItem().getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+                        ItemUtils.usePotionLife(mPlayerActor);
+                        for (IGameStage listener : gameStageListeners) {
+                            listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
+                        }
+                    }
+
+
+                    //todo add other secondary items
+
+
+                    for (IGameStage listener : gameStageListeners) {
+                        listener.setHudSelectedSecondaryItem(mPlayerActor.getCurrentSecondaryItem());
+                    }
                 }
             }
         }

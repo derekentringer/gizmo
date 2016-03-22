@@ -81,4 +81,13 @@ public class ItemUtils {
         return body;
     }
 
+    public static void usePotionLife(PlayerActor playerActor) {
+        playerActor.resetHealth();
+        playerActor.getBaseModel().removeSecondaryItem(playerActor.getCurrentSecondaryItem());
+        playerActor.incrementSelectedSecondaryItem();
+
+        //todo create animation for health restoring
+    }
+
+
 }

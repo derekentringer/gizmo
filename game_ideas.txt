@@ -16,8 +16,6 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
-primary item damage sometimes not loading up correctly
-
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader should work
 
