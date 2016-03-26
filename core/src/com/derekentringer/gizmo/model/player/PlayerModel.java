@@ -111,7 +111,11 @@ public class PlayerModel extends BaseModel {
     }
 
     public void removePrimaryItem(BasePlayerItemModel playerItem) {
-        mPrimaryItemList.remove(playerItem);
+        for (int i=0; i < mPrimaryItemList.size(); i++) {
+            if (mPrimaryItemList.get(i).getItemType().equalsIgnoreCase(playerItem.getItemType())) {
+                mPrimaryItemList.remove(i);
+            }
+        }
     }
 
     public ArrayList<BasePlayerItemModel> getSecondaryItems() {
@@ -123,7 +127,11 @@ public class PlayerModel extends BaseModel {
     }
 
     public void removeSecondaryItem(BasePlayerItemModel playerItem) {
-        mSecondaryItemList.remove(playerItem);
+        for (int i=0; i < mSecondaryItemList.size(); i++) {
+            if (mSecondaryItemList.get(i).getItemType().equalsIgnoreCase(playerItem.getItemType())) {
+                mSecondaryItemList.remove(i);
+            }
+        }
     }
 
     public int getCrystalBlueAmount() {
@@ -149,4 +157,5 @@ public class PlayerModel extends BaseModel {
     public void setCurrentlySelectedItemSecondary(BasePlayerItemModel currentlySelectedItemSecondary) {
         mCurrentlySelectedItemSecondary = currentlySelectedItemSecondary;
     }
+    
 }
