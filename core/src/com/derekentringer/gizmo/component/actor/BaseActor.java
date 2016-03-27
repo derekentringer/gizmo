@@ -1,9 +1,7 @@
 package com.derekentringer.gizmo.component.actor;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -34,20 +32,10 @@ public class BaseActor extends Actor {
 
     private int mFacingDirection;
 
-    private boolean mShowHitShader;
-
-    String vertexShader;
-    String fragmentShader;
-    ShaderProgram shaderProgram;
-
     public BaseActor(Body body) {
         mBody = body;
         mBaseModel = (BaseModel) body.getUserData();
         mAnimationManager = new AnimationManager();
-
-        vertexShader = Gdx.files.internal("res/glsl/vertex.glsl").readString();
-        fragmentShader = Gdx.files.internal("res/glsl/fragment.glsl").readString();
-        shaderProgram = new ShaderProgram(vertexShader,fragmentShader);
     }
 
     public BaseModel getBaseModel() {
@@ -140,14 +128,6 @@ public class BaseActor extends Actor {
     public void setPlayerPosition(Vector2 playerPosition) {
         mPlayerPosition.x = playerPosition.x;
         mPlayerPosition.y = playerPosition.y;
-    }
-
-    public boolean isShowHitShader() {
-        return mShowHitShader;
-    }
-
-    public void setShowHitShader(boolean showHitShader) {
-        mShowHitShader = showHitShader;
     }
 
 }
