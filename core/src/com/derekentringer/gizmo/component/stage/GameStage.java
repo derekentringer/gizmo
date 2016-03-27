@@ -1,6 +1,5 @@
 package com.derekentringer.gizmo.component.stage;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -9,14 +8,10 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.block.BlockBreakActor;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
-import com.derekentringer.gizmo.component.actor.pickup.PickupHeartActor;
-import com.derekentringer.gizmo.component.actor.pickup.PickupKeyActor;
-import com.derekentringer.gizmo.component.actor.pickup.PickupLifeActor;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
@@ -33,7 +28,6 @@ import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.block.BlockBreakModel;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
@@ -42,18 +36,15 @@ import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
-import com.derekentringer.gizmo.model.pickup.PickupHeartModel;
-import com.derekentringer.gizmo.model.pickup.PickupKeyModel;
-import com.derekentringer.gizmo.model.pickup.PickupLifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.destroyable.interfaces.IDestroyable;
 import com.derekentringer.gizmo.model.structure.door.DoorType;
 import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.AnimUtils;
 import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.ItemUtils;
-import com.derekentringer.gizmo.util.ObjectUtils;
 import com.derekentringer.gizmo.util.RoomUtils;
 import com.derekentringer.gizmo.util.WorldUtils;
 import com.derekentringer.gizmo.util.input.UserInput;
@@ -138,7 +129,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         ContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
         ContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
-        ContactManager.setPlayerAttacking(mMapParser, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
+        ContactManager.setPlayerAttacking(mMapParser, this, mWorld, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
         ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
         ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, bodyA, bodyB);
         ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
@@ -252,15 +243,15 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     private void addPickedUpAnimations() {
         for (int i = 0; i < mMapParser.getPickedUpHeartPositionArray().size(); i++) {
-            pickupHeart(mMapParser.getPickedUpHeartPositionArray().get(i));
+            AnimUtils.pickupHeart(mMapParser.getPickedUpHeartPositionArray().get(i), this, mMapParser, mWorld);
         }
         mMapParser.resetPickedUpHeartPositionArray();
         for (int i = 0; i < mMapParser.getPickedUpLifePositionArray().size(); i++) {
-            pickupLife(mMapParser.getPickedUpLifePositionArray().get(i));
+            AnimUtils.pickupLife(mMapParser.getPickedUpLifePositionArray().get(i), this, mMapParser, mWorld);
         }
         mMapParser.resetPickedUpLifePositionArray();
         for (int i = 0; i < mMapParser.getPickedUpKeyPositionArray().size(); i++) {
-            pickupKey(mMapParser.getPickedUpKeyPositionArray().get(i));
+            AnimUtils.pickupKey(mMapParser.getPickedUpKeyPositionArray().get(i), this, mMapParser, mWorld);
         }
         mMapParser.resetPickedUpKeyPositionArray();
     }
@@ -405,7 +396,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData(), mPlayerActor.getTouchingBodyDestroyableRight()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData());
 
-                        breakBlock(mPlayerActor.getTouchingBodyDestroyableRight());
+                        AnimUtils.breakBlock(mPlayerActor.getTouchingBodyDestroyableRight(), this, mMapParser, mWorld);
                         mPlayerActor.setTouchingBodyDestroyableRight(null);
                     }
                 }
@@ -418,7 +409,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData(), mPlayerActor.getTouchingBodyDestroyableLeft()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData());
 
-                        breakBlock(mPlayerActor.getTouchingBodyDestroyableLeft());
+                        AnimUtils.breakBlock(mPlayerActor.getTouchingBodyDestroyableLeft(), this, mMapParser, mWorld);
                         mPlayerActor.setTouchingBodyDestroyableLeft(null);
                     }
                 }
@@ -431,7 +422,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
 
-                        breakBlock(mPlayerActor.getTouchingBodyDestroyableBottom());
+                        AnimUtils.breakBlock(mPlayerActor.getTouchingBodyDestroyableBottom(), this, mMapParser, mWorld);
+
                         mPlayerActor.setTouchingBodyDestroyableBottom(null);
                     }
                 }
@@ -574,7 +566,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
                     if (mPlayerActor.getCurrentSecondaryItem().getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
                         ItemUtils.usePotionLife(mPlayerActor);
-                        pickupHeart(mPlayerActor.getPlayerPosition());
+                        AnimUtils.pickupHeart(mPlayerActor.getPlayerPosition(), this, mMapParser, mWorld);
                         for (IGameStage listener : gameStageListeners) {
                             listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
                         }
@@ -604,38 +596,6 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         if (!UserInput.isDown(UserInput.START_BUTTON)) {
             mStartKeyDown = false;
         }
-    }
-
-    private void breakBlock(Body body) {
-        GLog.d(TAG, "break block animation");
-        BlockBreakActor blockBreakActor = new BlockBreakActor(ObjectUtils.createBlockBreak(new BlockBreakModel(), mWorld, new Vector2(body.getPosition().x, body.getPosition().y)));
-        blockBreakActor.setName(BlockBreakModel.BREAK);
-        addActor(blockBreakActor);
-        mMapParser.addToTempActorsArray(blockBreakActor);
-    }
-
-    private void pickupHeart(Vector2 vector) {
-        GLog.d(TAG, "pickup heart animation");
-        PickupHeartActor pickupHeartActor = new PickupHeartActor(ObjectUtils.createPickupHeart(new PickupHeartModel(), mWorld, vector));
-        pickupHeartActor.setName(PickupHeartModel.PICKUP_HEART);
-        addActor(pickupHeartActor);
-        mMapParser.addToTempActorsArray(pickupHeartActor);
-    }
-
-    private void pickupLife(Vector2 vector) {
-        GLog.d(TAG, "pickup life animation");
-        PickupLifeActor pickupLifeActor = new PickupLifeActor(ObjectUtils.createPickupLife(new PickupLifeModel(), mWorld, vector));
-        pickupLifeActor.setName(PickupLifeModel.PICKUP_LIFE);
-        addActor(pickupLifeActor);
-        mMapParser.addToTempActorsArray(pickupLifeActor);
-    }
-
-    private void pickupKey(Vector2 vector) {
-        GLog.d(TAG, "pickup key animation");
-        PickupKeyActor pickupKeyActor = new PickupKeyActor(ObjectUtils.createPickupKey(new PickupKeyModel(), mWorld, vector));
-        pickupKeyActor.setName(PickupKeyModel.PICKUP_KEY);
-        addActor(pickupKeyActor);
-        mMapParser.addToTempActorsArray(pickupKeyActor);
     }
 
     private void transitionRoom(String doorType) {

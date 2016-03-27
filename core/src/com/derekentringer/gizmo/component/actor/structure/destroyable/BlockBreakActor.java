@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.block;
+package com.derekentringer.gizmo.component.actor.structure.destroyable;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

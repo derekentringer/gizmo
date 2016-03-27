@@ -2,6 +2,7 @@ package com.derekentringer.gizmo.manager;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
@@ -16,6 +17,7 @@ import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
+import com.derekentringer.gizmo.util.AnimUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
@@ -90,7 +92,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerAttacking(MapParser mapParser, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public static void setPlayerAttacking(MapParser mapParser, GameStage gameStage, World world, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //player attack with items collisions
         //primary and secondary bodyA & bodyB checks
 
@@ -99,7 +101,6 @@ public class ContactManager {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
-                    //TODO add destroy animation
                     loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyB.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
@@ -109,13 +110,13 @@ public class ContactManager {
                     mapParser.addToDroppedItemPositionArray(bodyB.getPosition());
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
+                AnimUtils.poof(bodyB.getPosition(), gameStage, mapParser, world);
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
             EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
-                    //TODO add destroy animation
                     loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
@@ -124,6 +125,7 @@ public class ContactManager {
                 else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                     mapParser.addToDroppedItemPositionArray(bodyA.getPosition());
                 }
+                AnimUtils.poof(bodyA.getPosition(), gameStage, mapParser, world);
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
             }
         }
@@ -133,7 +135,6 @@ public class ContactManager {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (EnemyUtils.getEnemyHealth(bodyB) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyB)) {
-                    //TODO add destroy animation
                     loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyB.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyB.getPosition());
@@ -142,6 +143,7 @@ public class ContactManager {
                 else if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
                     mapParser.addToDroppedItemPositionArray(bodyB.getPosition());
                 }
+                AnimUtils.poof(bodyB.getPosition(), gameStage, mapParser, world);
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
             }
         }
@@ -149,7 +151,6 @@ public class ContactManager {
             EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
-                    //TODO add destroy animation
                     loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
                     if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                         mapParser.addToBossDroppedItemPositionArray(bodyA.getPosition());
@@ -158,6 +159,7 @@ public class ContactManager {
                 else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                     mapParser.addToDroppedItemPositionArray(bodyA.getPosition());
                 }
+                AnimUtils.poof(bodyA.getPosition(), gameStage, mapParser, world);
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
             }
         }
