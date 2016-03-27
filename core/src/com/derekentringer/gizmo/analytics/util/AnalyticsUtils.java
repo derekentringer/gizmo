@@ -1,13 +1,9 @@
 package com.derekentringer.gizmo.analytics.util;
 
-import com.derekentringer.gizmo.analytics.model.LocalAnalyticsModel;
 import com.derekentringer.gizmo.analytics.model.AnalyticsSettings;
+import com.derekentringer.gizmo.analytics.model.LocalAnalyticsModel;
 import com.derekentringer.gizmo.manager.LocalDataManager;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.UUID;
 
 public class AnalyticsUtils {
@@ -64,50 +60,70 @@ public class AnalyticsUtils {
         return getPlatform() + " " + operatingSystem;
     }
 
-    public static String getMacAddress() {
-        InetAddress ip;
-        StringBuilder sb = new StringBuilder();
-        try {
-            ip = InetAddress.getLocalHost();
-            NetworkInterface network = NetworkInterface.getByInetAddress(ip);
-            byte[] mac = network.getHardwareAddress();
-            for (int i = 0; i < mac.length; i++) {
-                sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
-            }
-        }
-        catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        catch (SocketException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
-
     public static int getTimestamp() {
         return (int) (System.currentTimeMillis() / 1000L);
     }
 
-    public static String getRandomUUID() {
+    public static String getRandomSessionUUID() {
         UUID randomUUID = UUID.randomUUID();
         AnalyticsSettings.setSessionId(randomUUID.toString());
         return randomUUID.toString();
     }
 
-    public static String getSessionNum() {
-        int sessionNum;
-        LocalAnalyticsModel analyticsModel = new LocalAnalyticsModel();
-        if (LocalDataManager.loadGameAnalyticsData() != null) {
-            sessionNum = LocalDataManager.loadGameAnalyticsData().getSessionNum() + 1;
-            analyticsModel.setSessionNum(sessionNum);
+    public static String getDeviceId() {
+        String deviceId = "";
+        LocalAnalyticsModel analyticsModel = LocalDataManager.loadGameAnalyticsData();
+        if (analyticsModel != null) {
+            if (analyticsModel.getDeviceId() != null) {
+                deviceId = analyticsModel.getDeviceId();
+            }
+            else {
+                String uuid = UUID.randomUUID().toString();
+                analyticsModel.setDeviceId(uuid);
+                deviceId = uuid;
+            }
         }
         else {
+            String uuid = UUID.randomUUID().toString();
+            analyticsModel = new LocalAnalyticsModel();
+            analyticsModel.setDeviceId(uuid);
+            deviceId = uuid;
+        }
+
+        LocalDataManager.saveGameAnalyticsData(analyticsModel);
+        return deviceId;
+    }
+
+    public static String getSessionNum() {
+        int sessionNum = 0;
+        LocalAnalyticsModel analyticsModel = LocalDataManager.loadGameAnalyticsData();
+        if (analyticsModel != null) {
+            if (analyticsModel.getSessionNum() != 0) {
+                sessionNum = analyticsModel.getSessionNum();
+            }
+            else {
+                sessionNum = 1;
+                analyticsModel.setSessionNum(sessionNum);
+            }
+        }
+        else {
+            analyticsModel = new LocalAnalyticsModel();
             sessionNum = 1;
             analyticsModel.setSessionNum(sessionNum);
         }
 
         LocalDataManager.saveGameAnalyticsData(analyticsModel);
         return String.valueOf(sessionNum);
+    }
+
+    public static void incrementSessionNum() {
+        LocalAnalyticsModel analyticsModel;
+        if (LocalDataManager.loadGameAnalyticsData() != null) {
+            analyticsModel = LocalDataManager.loadGameAnalyticsData();
+            int sessionNum = analyticsModel.getSessionNum() + 1;
+            analyticsModel.setSessionNum(sessionNum);
+            LocalDataManager.saveGameAnalyticsData(analyticsModel);
+        }
     }
 
     public static int calculateSessionLength() {

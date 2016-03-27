@@ -14,7 +14,7 @@ public class EventRequestDictionary {
         dictionary.put("category", category);
         dictionary.put("sdk_version", AnalyticsSettings.REST_API_VERSION);
         dictionary.put("v", AnalyticsSettings.REST_API_EVENT_VERSION);
-        dictionary.put("user_id", AnalyticsUtils.getMacAddress());
+        dictionary.put("user_id", AnalyticsUtils.getDeviceId());
         dictionary.put("session_num", AnalyticsUtils.getSessionNum());
         dictionary.put("client_ts", String.valueOf(AnalyticsSettings.getSessionStartTimestamp()));
         dictionary.put("device", AnalyticsUtils.getDevice());
@@ -25,7 +25,7 @@ public class EventRequestDictionary {
 
         if (dictionary.get("session_id") == null
                 || dictionary.get("session_id") == "") {
-            dictionary.put("session_id", AnalyticsUtils.getRandomUUID());
+            dictionary.put("session_id", AnalyticsUtils.getRandomSessionUUID());
         }
         else {
             dictionary.put("session_id", AnalyticsSettings.getSessionId());
