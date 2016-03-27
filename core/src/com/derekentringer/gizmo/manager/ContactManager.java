@@ -17,7 +17,6 @@ import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
-import com.derekentringer.gizmo.util.AnimUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
@@ -110,7 +109,7 @@ public class ContactManager {
                     mapParser.addToDroppedItemPositionArray(bodyB.getPosition());
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
-                AnimUtils.poof(bodyB.getPosition(), gameStage, mapParser, world);
+                mapParser.addToDestroyedEnemyPositionArray(bodyB.getPosition());
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
@@ -125,8 +124,8 @@ public class ContactManager {
                 else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                     mapParser.addToDroppedItemPositionArray(bodyA.getPosition());
                 }
-                AnimUtils.poof(bodyA.getPosition(), gameStage, mapParser, world);
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
+                mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
             }
         }
 
@@ -143,8 +142,8 @@ public class ContactManager {
                 else if (EnemyUtils.getEnemyDropsLoot(bodyB)) {
                     mapParser.addToDroppedItemPositionArray(bodyB.getPosition());
                 }
-                AnimUtils.poof(bodyB.getPosition(), gameStage, mapParser, world);
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
+                mapParser.addToDestroyedEnemyPositionArray(bodyB.getPosition());
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
@@ -159,8 +158,8 @@ public class ContactManager {
                 else if (EnemyUtils.getEnemyDropsLoot(bodyA)) {
                     mapParser.addToDroppedItemPositionArray(bodyA.getPosition());
                 }
-                AnimUtils.poof(bodyA.getPosition(), gameStage, mapParser, world);
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
+                mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
             }
         }
     }

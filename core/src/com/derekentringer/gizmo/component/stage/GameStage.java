@@ -8,8 +8,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
-import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
+import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBoss;
+import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
 import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
@@ -254,6 +254,10 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             AnimUtils.pickupKey(mMapParser.getPickedUpKeyPositionArray().get(i), this, mMapParser, mWorld);
         }
         mMapParser.resetPickedUpKeyPositionArray();
+        for (int i = 0; i < mMapParser.getDestroyedEnemyPositionArray().size(); i++) {
+            AnimUtils.destroyEnemy(mMapParser.getDestroyedEnemyPositionArray().get(i), this, mMapParser, mWorld);
+        }
+        mMapParser.resetDestroyedEnemyPositionArray();
     }
 
     private void deleteObsoleteActors() {

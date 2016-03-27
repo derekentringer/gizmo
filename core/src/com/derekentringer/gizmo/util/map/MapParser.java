@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.boss.phantom.PhantomBossActor;
+import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.PhantomBossActor;
 import com.derekentringer.gizmo.component.actor.enemy.phantom.PhantomActor;
 import com.derekentringer.gizmo.component.actor.object.BoomerangActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
@@ -35,8 +35,8 @@ import com.derekentringer.gizmo.component.actor.structure.door.DoorOffActor;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorOtherActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.model.BaseModel;
-import com.derekentringer.gizmo.model.boss.phantom.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
+import com.derekentringer.gizmo.model.enemy.boss.phantom.PhantomLargeModel;
 import com.derekentringer.gizmo.model.enemy.phantom.PhantomModel;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
@@ -73,6 +73,7 @@ public class MapParser extends Stage {
     private final ArrayList<Vector2> mPickedUpKeyAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mBossDroppedItemPositionArray = new ArrayList<Vector2>();
+    private final ArrayList<Vector2> mDestroyedEnemyPositionArray = new ArrayList<Vector2>();
     private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
 
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
@@ -186,6 +187,18 @@ public class MapParser extends Stage {
 
     public ArrayList<BaseActor> getActorsArray() {
         return mActorsArray;
+    }
+
+    public ArrayList<Vector2> getDestroyedEnemyPositionArray() {
+        return mDestroyedEnemyPositionArray;
+    }
+
+    public void resetDestroyedEnemyPositionArray() {
+        mDestroyedEnemyPositionArray.clear();
+    }
+
+    public void addToDestroyedEnemyPositionArray(Vector2 position) {
+        mDestroyedEnemyPositionArray.add(position);
     }
 
     public void addToTempActorsArray(BaseActor actor) {

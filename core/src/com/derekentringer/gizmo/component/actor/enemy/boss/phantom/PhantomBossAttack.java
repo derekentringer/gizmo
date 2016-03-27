@@ -1,12 +1,12 @@
-package com.derekentringer.gizmo.component.actor.boss.phantom;
+package com.derekentringer.gizmo.component.actor.enemy.boss.phantom;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBossAttack;
+import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.enemy.phantom.PhantomActor;
-import com.derekentringer.gizmo.model.boss.phantom.FireBallModel;
+import com.derekentringer.gizmo.model.enemy.boss.phantom.FireBallModel;
 import com.derekentringer.gizmo.model.enemy.phantom.PhantomModel;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.WorldUtils;

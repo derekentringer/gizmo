@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.boss.phantom.interfaces;
+package com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces;
 
 import com.derekentringer.gizmo.component.actor.BaseActor;
 

@@ -23,7 +23,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         Gizmo.assetManager.load("res/font/gizmo.fnt", BitmapFont.class);
 
-        Gizmo.assetManager.load("res/image/character/thought_bubble.png", Texture.class);
+        //Gizmo.assetManager.load("res/image/character/thought_bubble.png", Texture.class);
 
         Gizmo.assetManager.load("res/image/start/heart.png", Texture.class);
         Gizmo.assetManager.load("res/image/start/white_dot.png", Texture.class);
@@ -123,8 +123,9 @@ public class LoadingScreen extends ScreenAdapter {
         Gizmo.assetManager.load("res/image/tile/destroyable_block_dirt.png", Texture.class);
         Gizmo.assetManager.load("res/image/tile/destroyable_block_clay.png", Texture.class);
 
-        Gizmo.assetManager.load("res/image/tile/poof.png", Texture.class);
         Gizmo.assetManager.load("res/image/tile/break.png", Texture.class);
+
+        Gizmo.assetManager.load("res/image/character/destroy_enemy.png", Texture.class);
 
         Gizmo.assetManager.load("res/image/tile/pickup_heart.png", Texture.class);
         Gizmo.assetManager.load("res/image/tile/pickup_life.png", Texture.class);

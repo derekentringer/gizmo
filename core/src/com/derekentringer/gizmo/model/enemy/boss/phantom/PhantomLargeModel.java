@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.model.boss.phantom;
+package com.derekentringer.gizmo.model.enemy.boss.phantom;
 
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;

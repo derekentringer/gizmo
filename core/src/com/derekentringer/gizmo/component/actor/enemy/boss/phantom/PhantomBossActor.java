@@ -1,4 +1,4 @@
-package com.derekentringer.gizmo.component.actor.boss.phantom;
+package com.derekentringer.gizmo.component.actor.enemy.boss.phantom;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
-import com.derekentringer.gizmo.component.actor.boss.phantom.interfaces.IPhantomBoss;
+import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.util.BodyUtils;
 

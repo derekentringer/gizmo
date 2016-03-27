@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.block.BlockBreakModel;
+import com.derekentringer.gizmo.model.enemy.DestroyEnemyModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
@@ -238,6 +239,31 @@ public class ObjectUtils {
         fixtureDef.filter.groupIndex = -1;
 
         body.createFixture(fixtureDef).setUserData(new PickupKeyModel());
+
+        body.setUserData(userData);
+
+        shape.dispose();
+
+        return body;
+    }
+
+    public static Body createDestroyEnemy(BaseModel userData, World world, Vector2 coordinates) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(coordinates.x, coordinates.y);
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+
+        fixtureDef.filter.categoryBits = Constants.IGNORE_ENTITY;
+        fixtureDef.filter.groupIndex = -1;
+
+        body.createFixture(fixtureDef).setUserData(new DestroyEnemyModel());
 
         body.setUserData(userData);
 

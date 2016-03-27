@@ -3,12 +3,14 @@ package com.derekentringer.gizmo.util;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.derekentringer.gizmo.component.actor.structure.destroyable.BlockBreakActor;
+import com.derekentringer.gizmo.component.actor.enemy.DestroyEnemyActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupHeartActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupKeyActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupLifeActor;
+import com.derekentringer.gizmo.component.actor.structure.destroyable.BlockBreakActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.model.block.BlockBreakModel;
+import com.derekentringer.gizmo.model.enemy.DestroyEnemyModel;
 import com.derekentringer.gizmo.model.pickup.PickupHeartModel;
 import com.derekentringer.gizmo.model.pickup.PickupKeyModel;
 import com.derekentringer.gizmo.model.pickup.PickupLifeModel;
@@ -51,8 +53,12 @@ public class AnimUtils {
         mapParser.addToTempActorsArray(pickupKeyActor);
     }
 
-    public static void poof(Vector2 vector, GameStage gameStage, MapParser mapParser, World world) {
-        GLog.d(TAG, "poof animation");
+    public static void destroyEnemy(Vector2 vector, GameStage gameStage, MapParser mapParser, World world) {
+        GLog.d(TAG, "destroy enemy animation");
+        DestroyEnemyActor destroyEnemyActor = new DestroyEnemyActor(ObjectUtils.createDestroyEnemy(new DestroyEnemyModel(), world, vector));
+        destroyEnemyActor.setName(DestroyEnemyModel.DESTROY_ENEMY);
+        gameStage.addActor(destroyEnemyActor);
+        mapParser.addToTempActorsArray(destroyEnemyActor);
     }
 
 }

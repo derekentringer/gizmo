@@ -25,5 +25,6 @@ public enum BaseModelType {
     WHITE_DOT,
     BREAK,
     PICKUP_HEART,
-    PICKUP_LIFE
+    PICKUP_LIFE,
+    DESTROY_ENEMY
 }
