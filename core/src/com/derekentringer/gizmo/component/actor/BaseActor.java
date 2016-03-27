@@ -80,11 +80,6 @@ public class BaseActor extends Actor {
         spriteBatch.draw(mAnimationManager.getFrame(),
                 mBody.getPosition().x * Constants.PPM - mWidth / 2,
                 mBody.getPosition().y * Constants.PPM - mHeight / 2);
-
-        if (mShowHitShader) {
-            spriteBatch.setShader(shaderProgram);
-        }
-
         spriteBatch.end();
     }
 
