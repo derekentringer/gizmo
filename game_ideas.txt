@@ -16,8 +16,6 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
-using secondary items doesnt always deplete the secondary item
-
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader should work
 
@@ -31,11 +29,10 @@ more bosses/enemies
 
 more weapons
 	- sword (power up shoots force wave)
-	- bombs (can be thown)
-	- pillows with kittens on them ;)
 	- crazy power-ups only usable on bosses with full screen animations
 
-secondary items
+more secondary items
+	- bombs (can be thown)
 
 more levels
 	- work on laying out the world to build up the levels for the entire game
@@ -46,6 +43,7 @@ refine the controls screen - add translated text where needed
 need to proguard the project
 
 be sure that as much as possible is tracked in GameAnalytics (ongoing)
+
 
 neat to haves
 ------------------------------------------------------------------------------
