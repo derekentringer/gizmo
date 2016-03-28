@@ -22,7 +22,7 @@ public class LocalDataManager {
     public static final String DIR_ROOMS = "res/maps/rooms/";
 
     public static int getNumberOfLevels() {
-        FileHandle[] files = Gdx.files.local(DIR_ROOMS).list();
+        FileHandle[] files = Gdx.files.internal(DIR_ROOMS).list();
         int numDirs = 0;
         for (FileHandle file : files) {
             if (file.isDirectory()) {

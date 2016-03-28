@@ -10,9 +10,9 @@ public class NexusPlayerController extends BaseController {
     public static final int BUTTON_RB = 103;
     public static final int BUTTON_LB = 102;
 
-    public static final int BUTTON_LT = 104;
-    public static final int BUTTON_RT = 105;
+    public static final int BUTTON_LT = 6;
+    public static final int BUTTON_RT = 4;
 
-    public static final int BUTTON_BACK = 9999;
+    public static final int BUTTON_BACK = 4;
 
 }

@@ -57,7 +57,13 @@ public class AnalyticsUtils {
 
     public static String getOsVersion() {
         String operatingSystem = System.getProperty("os.version").toLowerCase();
-        return getPlatform() + " " + operatingSystem;
+        String os = getPlatform() + " " + operatingSystem;
+        //os.replace(" ", "-");
+
+        if (os.contains("-")) {
+            os = os.replace(os.substring(os.indexOf("-"), os.length()), "");
+        }
+        return os;
     }
 
     public static int getTimestamp() {
