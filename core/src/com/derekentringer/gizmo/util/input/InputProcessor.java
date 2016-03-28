@@ -103,7 +103,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean keyUp(int keycode) {
-        GLog.d(TAG, "keyUp keycode: " + keycode);
+        //GLog.d(TAG, "keyUp keycode: " + keycode);
 
         if (keycode == Input.Keys.BACK) {
             UserInput.setKey(UserInput.BACK_BUTTON, false);
@@ -193,7 +193,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean buttonDown(Controller controller, int buttonCode) {
-        GLog.d(TAG, "buttonDown Code: " + buttonCode);
+        //GLog.d(TAG, "buttonDown Code: " + buttonCode);
         /*if(buttonCode > -1) {
             UserInput.setKey(UserInput.ANY_BUTTON, true);
         }*/
@@ -278,7 +278,7 @@ public class InputProcessor extends InputAdapter implements ControllerListener {
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
-        GLog.d(TAG, "axisCode: " + axisCode + " " + value);
+        //GLog.d(TAG, "axisCode: " + axisCode + " " + value);
 
         //stick left/right
         if (controller.getAxis(BaseController.AXIS_X) > 0.2f) {
