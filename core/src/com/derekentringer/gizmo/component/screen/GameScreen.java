@@ -1,11 +1,13 @@
 package com.derekentringer.gizmo.component.screen;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.math.Rectangle;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.HudStage;
 import com.derekentringer.gizmo.component.stage.PauseStage;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.RoomUtils;
 import com.derekentringer.gizmo.util.ScreenUtils;
 import com.derekentringer.gizmo.util.log.GLog;
@@ -29,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
 
     GameState mGameState = GameState.RUNNING;
 
-    //private FPSLogger mFpsLogger = new FPSLogger();
+    private FPSLogger mFpsLogger = new FPSLogger();
 
     public GameScreen() {
         RoomUtils.buildRoomList();
@@ -68,7 +70,11 @@ public class GameScreen extends ScreenAdapter {
                 //update the hud stage
                 mHudStage.act(delta);
                 mHudStage.draw();
-                //mFpsLogger.log();
+
+                if (Constants.IS_DEBUG_FPS) {
+                    mFpsLogger.log();
+                }
+
                 break;
 
             case PAUSED:

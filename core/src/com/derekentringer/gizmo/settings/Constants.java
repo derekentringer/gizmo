@@ -19,6 +19,7 @@ public class Constants {
     // debugging
     public static final boolean IS_DEBUG = true;
     public static final boolean IS_DEBUG_BOX2D = false;
+    public static final boolean IS_DEBUG_FPS = true;
     public static final int LOG_LEVEL = Logger.DEBUG;
     public static final Locale debugLocale = new Locale("en");
 
