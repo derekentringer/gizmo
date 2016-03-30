@@ -94,25 +94,7 @@
  <objectgroup name="player_item">
   <object id="88" x="784.667" y="363.333">
    <properties>
-    <property name="item_type" value="BOOMERANG_BLOODSTONE"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="96" x="848.667" y="395.667">
-   <properties>
-    <property name="item_type" value="BOOMERANG_AMETHYST"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="97" x="944.667" y="491.333">
-   <properties>
     <property name="item_type" value="BOOMERANG_EMERALD"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="98" x="1008.33" y="491.333">
-   <properties>
-    <property name="item_type" value="BOOMERANG_WOOD"/>
    </properties>
    <ellipse/>
   </object>

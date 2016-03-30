@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="113">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="116">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32" tilecount="56">
   <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
@@ -42,7 +42,7 @@
  </layer>
  <layer name="ground" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJztmA0KgCAMhbc7qNARuv8FI/CRiFb+pKn74LEpEe3NQiMSBGEGlBXbqK0wh1xYCx78/iOz936ADJ76qSPzylELmPqsPXWjXjCF/ejlkVDGCD1bbW3F3jHhggMaFY7ks1Lat688wjmmFTXq8D18Mwaod6N/7jVqYhKuDdXsn3GhmD/akbHSgejnrnJJqTWHmb69M4F/MYjGGyOeHBBlBZw=
+   eJztmA0KgCAMhbc7qNARuv8FI/CRDK0008x98JiKRPtJXESKovwB48XeWi+sYazMBQ/+/JFZe79AAVf5tIl1E6gFTH1qz5yoF0zxePSKkfKMEXI2W22lvjHlgCNS5uCtXKOPaUUNP2Tt35kD+LvQN+8aNXEZe2M+yx4XSsXHBnJeNmLlOFQpOb6WoGfvN8G/GFgn5rA7G+2CBZY=
   </data>
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
@@ -107,9 +107,6 @@
   <object id="92" x="225" y="108">
    <ellipse/>
   </object>
-  <object id="95" x="298" y="523">
-   <ellipse/>
-  </object>
  </objectgroup>
  <objectgroup name="key">
   <properties>
@@ -127,39 +124,9 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="103" x="273" y="651">
-   <properties>
-    <property name="key_type" value="black"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="106" x="336.667" y="649.333">
-   <properties>
-    <property name="key_type" value="gold"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="107" x="240.667" y="649.333">
-   <properties>
-    <property name="key_type" value="gold"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="108" x="304" y="649.333">
-   <properties>
-    <property name="key_type" value="blood"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="109" x="367.333" y="650">
-   <properties>
-    <property name="key_type" value="black"/>
-   </properties>
-   <ellipse/>
-  </object>
  </objectgroup>
  <objectgroup name="life">
-  <object id="79" x="496" y="622">
+  <object id="114" x="1680" y="207.333">
    <ellipse/>
   </object>
  </objectgroup>
@@ -196,19 +163,10 @@
   <object id="94" x="1584.33" y="686.333">
    <ellipse/>
   </object>
-  <object id="101" x="433" y="555">
-   <ellipse/>
-  </object>
  </objectgroup>
  <objectgroup name="player_item">
   <properties>
    <property name="item_type" value="POTION_LIFE"/>
   </properties>
-  <object id="112" x="530" y="463.333">
-   <properties>
-    <property name="item_type" value="POTION_LIFE"/>
-   </properties>
-   <ellipse/>
-  </object>
  </objectgroup>
 </map>
