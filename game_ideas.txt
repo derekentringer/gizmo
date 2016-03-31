@@ -16,6 +16,8 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
+bug with destroyable blocks
+
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader should work
 
