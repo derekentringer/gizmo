@@ -18,6 +18,10 @@ new additions needed
 
 bug with destroyable blocks
 
+add restart and controls to pause screen
+
+add You Died screen
+
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader should work
 
