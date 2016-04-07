@@ -18,7 +18,7 @@ allprojects {
 
     ext {
         appName = 'Gizmo'
-        supportLibVersion = '23.1.1'
+        supportLibVersion = '23.2.1'
         gdxVersion = '1.9.1'
         roboVMVersion = '1.12.0'
         retrofitVersion = '2.0.0-beta4'
