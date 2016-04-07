@@ -148,29 +148,29 @@ public class StartStage extends BaseStage {
         createWhiteDotContinue();
     }
 
-    private void createWhiteDotStart() {
-        mWhiteDotStart = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 41)));
-        mWhiteDotStart.setName(WhiteDotModel.WHITE_DOT);
-        addActor(mWhiteDotStart);
-        mStartStageActorsArray.add(mWhiteDotStart);
-    }
-
     private void createWhiteDotContinue() {
-        mWhiteDotContinue = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 56)));
+        mWhiteDotContinue = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 72)));
         mWhiteDotContinue.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotContinue);
         mStartStageActorsArray.add(mWhiteDotContinue);
     }
 
+    private void createWhiteDotStart() {
+        mWhiteDotStart = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXStart - 10, 56)));
+        mWhiteDotStart.setName(WhiteDotModel.WHITE_DOT);
+        addActor(mWhiteDotStart);
+        mStartStageActorsArray.add(mWhiteDotStart);
+    }
+
     private void createWhiteDotRestart() {
-        mWhiteDotRestart = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXRestart - 10, 41)));
+        mWhiteDotRestart = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXRestart - 10, 56)));
         mWhiteDotRestart.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotRestart);
         mStartStageActorsArray.add(mWhiteDotRestart);
     }
 
     private void createWhiteDotControls() {
-        mWhiteDotControls = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControls - 10, 26)));
+        mWhiteDotControls = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXControls - 10, 41)));
         mWhiteDotControls.setName(WhiteDotModel.WHITE_DOT);
         addActor(mWhiteDotControls);
         mStartStageActorsArray.add(mWhiteDotControls);
@@ -196,13 +196,13 @@ public class StartStage extends BaseStage {
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
             if(mRestartStringDisplay != "" && mRestartStringDisplay != null) {
-                mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 60);
-                mBitmapFont.draw(mSpriteBatch, mRestartStringDisplay, mFontXRestart, 45);
+                mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 75);
+                mBitmapFont.draw(mSpriteBatch, mRestartStringDisplay, mFontXRestart, 60);
             }
             else {
-                mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 45);
+                mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 60);
             }
-            mBitmapFont.draw(mSpriteBatch, mControlsStringDisplay, mFontXControls, 30);
+            mBitmapFont.draw(mSpriteBatch, mControlsStringDisplay, mFontXControls, 45);
             mBitmapFont.draw(mSpriteBatch, mAboutStringDisplay, mFontXAbout, 30);
         mSpriteBatch.end();
     }
