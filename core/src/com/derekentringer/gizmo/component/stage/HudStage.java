@@ -115,34 +115,34 @@ public class HudStage extends BaseStage implements IGameStage {
         mTransitionShapeRenderer = new ShapeRenderer();
         mProjectionMatrixSet = false;
 
-        mHudLivesOne = Gizmo.assetManager.get("res/image/hud/hud_lives_one.png", Texture.class);
-        mHudLivesTwo = Gizmo.assetManager.get("res/image/hud/hud_lives_two.png", Texture.class);
-        mHudLivesThree = Gizmo.assetManager.get("res/image/hud/hud_lives_three.png", Texture.class);
-        mHudLivesFour = Gizmo.assetManager.get("res/image/hud/hud_lives_four.png", Texture.class);
-        mHudLivesFive = Gizmo.assetManager.get("res/image/hud/hud_lives_five.png", Texture.class);
+        mHudLivesOne = Gizmo.getAssetManager().get("res/image/hud/hud_lives_one.png", Texture.class);
+        mHudLivesTwo = Gizmo.getAssetManager().get("res/image/hud/hud_lives_two.png", Texture.class);
+        mHudLivesThree = Gizmo.getAssetManager().get("res/image/hud/hud_lives_three.png", Texture.class);
+        mHudLivesFour = Gizmo.getAssetManager().get("res/image/hud/hud_lives_four.png", Texture.class);
+        mHudLivesFive = Gizmo.getAssetManager().get("res/image/hud/hud_lives_five.png", Texture.class);
 
-        mHudHeartsTwo = Gizmo.assetManager.get("res/image/hud/hud_hearts_two.png", Texture.class);
-        mHudHeartsThree = Gizmo.assetManager.get("res/image/hud/hud_hearts_three.png", Texture.class);
-        mHudHeartsFour = Gizmo.assetManager.get("res/image/hud/hud_hearts_four.png", Texture.class);
-        mHudHeartsFive = Gizmo.assetManager.get("res/image/hud/hud_hearts_five.png", Texture.class);
-        mHudHeartsSix = Gizmo.assetManager.get("res/image/hud/hud_hearts_six.png", Texture.class);
-        mHudHeartsSeven = Gizmo.assetManager.get("res/image/hud/hud_hearts_seven.png", Texture.class);
-        mHudHeartsEight = Gizmo.assetManager.get("res/image/hud/hud_hearts_eight.png", Texture.class);
-        mHudHeartsNine = Gizmo.assetManager.get("res/image/hud/hud_hearts_nine.png", Texture.class);
-        mHudHeartsTen = Gizmo.assetManager.get("res/image/hud/hud_hearts_ten.png", Texture.class);
+        mHudHeartsTwo = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_two.png", Texture.class);
+        mHudHeartsThree = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_three.png", Texture.class);
+        mHudHeartsFour = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_four.png", Texture.class);
+        mHudHeartsFive = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_five.png", Texture.class);
+        mHudHeartsSix = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_six.png", Texture.class);
+        mHudHeartsSeven = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_seven.png", Texture.class);
+        mHudHeartsEight = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_eight.png", Texture.class);
+        mHudHeartsNine = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_nine.png", Texture.class);
+        mHudHeartsTen = Gizmo.getAssetManager().get("res/image/hud/hud_hearts_ten.png", Texture.class);
 
-        mHudCurrentItemEmpty = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
-        mHudCurrentItemBoomerangWood = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_wood.png", Texture.class);
-        mHudCurrentItemBoomerangEmerald = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_emerald.png", Texture.class);
-        mHudCurrentItemBoomerangAmethyst = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_amethyst.png", Texture.class);
-        mHudCurrentItemBoomerangBloodstone = Gizmo.assetManager.get("res/image/hud/hud_current_item_boomerang_bloodstone.png", Texture.class);
+        mHudCurrentItemEmpty = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_empty.png", Texture.class);
+        mHudCurrentItemBoomerangWood = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_boomerang_wood.png", Texture.class);
+        mHudCurrentItemBoomerangEmerald = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_boomerang_emerald.png", Texture.class);
+        mHudCurrentItemBoomerangAmethyst = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_boomerang_amethyst.png", Texture.class);
+        mHudCurrentItemBoomerangBloodstone = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_boomerang_bloodstone.png", Texture.class);
 
-        mHudCurrentItemPotionLife = Gizmo.assetManager.get("res/image/hud/hud_current_item_potion_life.png", Texture.class);
+        mHudCurrentItemPotionLife = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_potion_life.png", Texture.class);
 
-        mHudCrystalsCount = Gizmo.assetManager.get("res/image/hud/hud_blue_crystals.png", Texture.class);
+        mHudCrystalsCount = Gizmo.getAssetManager().get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
-        mHudCurrentPrimaryItemTexture = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
-        mHudCurrentSecondaryItemTexture = Gizmo.assetManager.get("res/image/hud/hud_current_item_empty.png", Texture.class);
+        mHudCurrentPrimaryItemTexture = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_empty.png", Texture.class);
+        mHudCurrentSecondaryItemTexture = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_empty.png", Texture.class);
 
         mCurrentLivesTexture = mHudLivesOne;
         mCurrentHealthTexture = mHudHeartsTwo;

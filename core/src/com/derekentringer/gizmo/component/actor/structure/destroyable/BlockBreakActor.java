@@ -17,7 +17,7 @@ public class BlockBreakActor extends BaseActor implements IBaseActor {
     public BlockBreakActor(Body body) {
         super(body);
         addListener(this);
-        mBreak = Gizmo.assetManager.get("res/image/tile/break.png", Texture.class);
+        mBreak = Gizmo.getAssetManager().get("res/image/tile/break.png", Texture.class);
         mBreakSprite = TextureRegion.split(mBreak, 32, 32)[0];
 
         setAnimation(mBreakSprite, 1 / 12f);

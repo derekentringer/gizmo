@@ -26,7 +26,7 @@ public class DestroyableBlockFallActor extends BaseDestroyableBlockActor {
     public DestroyableBlockFallActor(Body body) {
         super(body);
 
-        mDestroyableBlock = Gizmo.assetManager.get("res/image/tile/destroyable_block_fall.png", Texture.class);
+        mDestroyableBlock = Gizmo.getAssetManager().get("res/image/tile/destroyable_block_fall.png", Texture.class);
         mDestroyableBlockSprite = TextureRegion.split(mDestroyableBlock, 32, 32)[0];
 
         setIsPlayingAnimation(false);

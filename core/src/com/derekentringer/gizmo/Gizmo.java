@@ -18,13 +18,11 @@ public class Gizmo extends Game {
 
     private static final String TAG = Gizmo.class.getSimpleName();
 
-    private static I18NBundle i18NBundleDebug;
-    private static I18NBundle i18NBundle;
+    private static I18NBundle mI18NBundleDebug;
+    private static I18NBundle mI18NBundle;
     private static RetroFitClient mRetrofitClient;
-
-    private FileHandle baseFileHandle;
-
-    public static AssetManager assetManager;
+    private FileHandle mBaseFileHandle;
+    private static AssetManager mAssetManager;
 
     @Override
     public void create() {
@@ -38,11 +36,11 @@ public class Gizmo extends Game {
             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         }
 
-        assetManager = new AssetManager();
+        mAssetManager = new AssetManager();
 
-        baseFileHandle = Gdx.files.internal("i18n/I18NBundle");
-        i18NBundleDebug = I18NBundle.createBundle(baseFileHandle, Constants.debugLocale);
-        i18NBundle = I18NBundle.createBundle(baseFileHandle);
+        mBaseFileHandle = Gdx.files.internal("i18n/I18NBundle");
+        mI18NBundleDebug = I18NBundle.createBundle(mBaseFileHandle, Constants.debugLocale);
+        mI18NBundle = I18NBundle.createBundle(mBaseFileHandle);
 
         AnalyticsUtils.incrementSessionNum();
         Analytics.initialize();
@@ -50,12 +48,12 @@ public class Gizmo extends Game {
         setScreen(new LoadingScreen(this));
     }
 
-    public static I18NBundle getI18NBundle() {
+    public static I18NBundle getmI18NBundle() {
         if (Constants.IS_DEBUG) {
-            return i18NBundleDebug;
+            return mI18NBundleDebug;
         }
         else {
-            return i18NBundle;
+            return mI18NBundle;
         }
     }
 
@@ -66,6 +64,10 @@ public class Gizmo extends Game {
         return mRetrofitClient;
     }
 
+    public static AssetManager getAssetManager() {
+        return mAssetManager;
+    }
+
     @Override
     public void dispose () {
         GLog.d(TAG, "dispose");
@@ -74,7 +76,7 @@ public class Gizmo extends Game {
 
         super.dispose();
         this.getScreen().dispose();
-        assetManager.dispose();
+        mAssetManager.dispose();
     }
 
     @Override

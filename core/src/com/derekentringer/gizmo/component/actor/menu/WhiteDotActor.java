@@ -16,7 +16,7 @@ public class WhiteDotActor extends BaseActor {
     public WhiteDotActor(Body body) {
         super(body);
 
-        mWhiteDot = Gizmo.assetManager.get("res/image/start/white_dot.png", Texture.class);
+        mWhiteDot = Gizmo.getAssetManager().get("res/image/start/white_dot.png", Texture.class);
         mWhiteDotSprite = TextureRegion.split(mWhiteDot, 8, 8)[0];
 
         setAnimation(mWhiteDotSprite, 1 / 12f);

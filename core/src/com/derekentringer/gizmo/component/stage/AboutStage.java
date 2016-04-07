@@ -17,7 +17,7 @@ public class AboutStage extends BaseStage {
     private Vector2 gameWidthHeight = new Vector2();
 
     private String mVersionNumber = Constants.VERSION;
-    private String mVersion = Gizmo.getI18NBundle().get("aboutStage_version") + " " + mVersionNumber;
+    private String mVersion = Gizmo.getmI18NBundle().get("aboutStage_version") + " " + mVersionNumber;
 
     private GlyphLayout mLayoutAbout;
     private String pauseStringDisplay;

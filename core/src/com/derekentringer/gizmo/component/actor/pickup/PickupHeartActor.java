@@ -15,7 +15,7 @@ public class PickupHeartActor extends BaseActor implements IBaseActor {
     public PickupHeartActor(Body body) {
         super(body);
         addListener(this);
-        mPickupHeart = Gizmo.assetManager.get("res/image/tile/pickup_heart.png", Texture.class);
+        mPickupHeart = Gizmo.getAssetManager().get("res/image/tile/pickup_heart.png", Texture.class);
         mPickupHeartSprite = TextureRegion.split(mPickupHeart, 32, 32)[0];
 
         setAnimation(mPickupHeartSprite, 1 / 12f);

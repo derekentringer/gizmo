@@ -29,8 +29,8 @@ public class PhantomActor extends BaseActor {
     public PhantomActor(Body body) {
         super(body);
 
-        mPhantomLeft = Gizmo.assetManager.get("res/image/character/enemy/phantom/phantom_left.png", Texture.class);
-        mPhantomRight = Gizmo.assetManager.get("res/image/character/enemy/phantom/phantom_right.png", Texture.class);
+        mPhantomLeft = Gizmo.getAssetManager().get("res/image/character/enemy/phantom/phantom_left.png", Texture.class);
+        mPhantomRight = Gizmo.getAssetManager().get("res/image/character/enemy/phantom/phantom_right.png", Texture.class);
 
         mPhantomLeftSprite = TextureRegion.split(mPhantomLeft, 32, 32)[0];
         mPhantomRightSprite = TextureRegion.split(mPhantomRight, 32, 32)[0];

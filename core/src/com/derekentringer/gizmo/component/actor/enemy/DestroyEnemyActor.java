@@ -15,7 +15,7 @@ public class DestroyEnemyActor extends BaseActor implements IBaseActor {
     public DestroyEnemyActor(Body body) {
         super(body);
         addListener(this);
-        mDestroyEnemy = Gizmo.assetManager.get("res/image/character/destroy_enemy.png", Texture.class);
+        mDestroyEnemy = Gizmo.getAssetManager().get("res/image/character/destroy_enemy.png", Texture.class);
         mDestroyEnemySprite = TextureRegion.split(mDestroyEnemy, 32, 32)[0];
 
         setAnimation(mDestroyEnemySprite, 1 / 48f);

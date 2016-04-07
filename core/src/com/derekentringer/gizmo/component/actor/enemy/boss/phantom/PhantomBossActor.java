@@ -36,7 +36,7 @@ public class PhantomBossActor extends BaseActor {
         super(body);
         mGameStage = gameStage;
 
-        mPhantomLarge = Gizmo.assetManager.get("res/image/character/boss/phantom/phantom.png", Texture.class);
+        mPhantomLarge = Gizmo.getAssetManager().get("res/image/character/boss/phantom/phantom.png", Texture.class);
         mPhantomSprite = TextureRegion.split(mPhantomLarge, 320, 320)[0];
         setAnimation(mPhantomSprite, 1 / 5f);
 

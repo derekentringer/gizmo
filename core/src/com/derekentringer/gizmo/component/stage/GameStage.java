@@ -776,7 +776,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     /*private void startBackgroundMusic() {
-        Music backgroundMusic = Gizmo.assetManager.get("res/music/background.ogg", Music.class);
+        Music backgroundMusic = Gizmo.mAssetManager.get("res/music/background.ogg", Music.class);
         if(!Constants.IS_DEBUGGING) {
             backgroundMusic.play();
             backgroundMusic.setLooping(true);

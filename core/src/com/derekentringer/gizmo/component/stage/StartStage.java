@@ -41,11 +41,11 @@ public class StartStage extends BaseStage {
 
     private PlayerModel mPlayerModel;
 
-    private String mStart = Gizmo.getI18NBundle().get("startStage_start");
-    private String mContinue = Gizmo.getI18NBundle().get("startStage_continue");
-    private String mControls = Gizmo.getI18NBundle().get("startStage_controls");
-    private String mRestart = Gizmo.getI18NBundle().get("startStage_restart");
-    private String mAbout = Gizmo.getI18NBundle().get("startStage_about");
+    private String mStart = Gizmo.getmI18NBundle().get("startStage_start");
+    private String mContinue = Gizmo.getmI18NBundle().get("startStage_continue");
+    private String mControls = Gizmo.getmI18NBundle().get("startStage_controls");
+    private String mRestart = Gizmo.getmI18NBundle().get("startStage_restart");
+    private String mAbout = Gizmo.getmI18NBundle().get("startStage_about");
 
     private GlyphLayout mLayoutStart;
     private GlyphLayout mLayoutRestart;

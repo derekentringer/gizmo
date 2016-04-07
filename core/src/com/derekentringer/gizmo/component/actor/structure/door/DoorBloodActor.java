@@ -26,13 +26,13 @@ public class DoorBloodActor extends BaseActor implements IBaseActor {
         super(body);
         addListener(this);
         if (isLocked) {
-            mDoorBlood = Gizmo.assetManager.get("res/image/door/door_blood_opening.png", Texture.class);
+            mDoorBlood = Gizmo.getAssetManager().get("res/image/door/door_blood_opening.png", Texture.class);
         }
         else {
-            mDoorBlood = Gizmo.assetManager.get("res/image/door/door_opened.png", Texture.class);
+            mDoorBlood = Gizmo.getAssetManager().get("res/image/door/door_opened.png", Texture.class);
         }
 
-        mDoorOpen = Gizmo.assetManager.get("res/image/door/door_opened.png", Texture.class);
+        mDoorOpen = Gizmo.getAssetManager().get("res/image/door/door_opened.png", Texture.class);
         mDoorOpenSprite = TextureRegion.split(mDoorOpen, 32, 32)[0];
 
         mDoorBloodSprite = TextureRegion.split(mDoorBlood, 32, 32)[0];

@@ -20,7 +20,7 @@ public class BaseStage extends Stage {
 
     public SpriteBatch mSpriteBatch = new SpriteBatch();
     public OrthographicCamera mOrthographicCamera = new OrthographicCamera();
-    public BitmapFont mBitmapFont = Gizmo.assetManager.get("res/font/gizmo.fnt", BitmapFont.class);
+    public BitmapFont mBitmapFont = Gizmo.getAssetManager().get("res/font/gizmo.fnt", BitmapFont.class);
 
     public BaseStage() {
     }

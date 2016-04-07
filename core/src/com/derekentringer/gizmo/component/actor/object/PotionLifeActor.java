@@ -14,7 +14,7 @@ public class PotionLifeActor extends BaseActor {
     public PotionLifeActor(Body body) {
         super(body);
 
-        mPotionLife = Gizmo.assetManager.get("res/image/object/potion_life.png", Texture.class);
+        mPotionLife = Gizmo.getAssetManager().get("res/image/object/potion_life.png", Texture.class);
         mPotionLifeSprite = TextureRegion.split(mPotionLife, 32, 32)[0];
 
         setAnimation(mPotionLifeSprite, 1 / 4f);

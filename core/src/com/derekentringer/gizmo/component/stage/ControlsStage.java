@@ -32,9 +32,9 @@ public class ControlsStage extends BaseStage {
     private Texture mKeyboard;
     private Texture mCurrentTexture;
 
-    private String mControllerControls = Gizmo.getI18NBundle().get("controlsStage_controller");
-    private String mKeyboardControls = Gizmo.getI18NBundle().get("controlsStage_keyboard");
-    private String mBack = Gizmo.getI18NBundle().get("controlsStage_back");
+    private String mControllerControls = Gizmo.getmI18NBundle().get("controlsStage_controller");
+    private String mKeyboardControls = Gizmo.getmI18NBundle().get("controlsStage_keyboard");
+    private String mBack = Gizmo.getmI18NBundle().get("controlsStage_back");
 
     private GlyphLayout mLayoutControllerControls;
     private GlyphLayout mLayoutKeyboardControls;
@@ -60,8 +60,8 @@ public class ControlsStage extends BaseStage {
         mOrthographicCamera.update();
         mBitmapFont.getData().setScale(0.3f, 0.3f);
 
-        mController = Gizmo.assetManager.get("res/image/controls/controller.png", Texture.class);
-        mKeyboard = Gizmo.assetManager.get("res/image/controls/keyboard.png", Texture.class);
+        mController = Gizmo.getAssetManager().get("res/image/controls/controller.png", Texture.class);
+        mKeyboard = Gizmo.getAssetManager().get("res/image/controls/keyboard.png", Texture.class);
 
         SELECTION_STATE = SELECTION_STATE_CONTROLLER;
 

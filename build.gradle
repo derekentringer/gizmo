@@ -14,8 +14,6 @@ allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
 
-    //update Constants version
-    //along with this one
     version = '0.0.1'
 
     ext {

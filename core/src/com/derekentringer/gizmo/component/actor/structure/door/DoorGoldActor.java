@@ -26,13 +26,13 @@ public class DoorGoldActor extends BaseActor implements IBaseActor {
         super(body);
         addListener(this);
         if (isLocked) {
-            mDoorGold = Gizmo.assetManager.get("res/image/door/door_gold_opening.png", Texture.class);
+            mDoorGold = Gizmo.getAssetManager().get("res/image/door/door_gold_opening.png", Texture.class);
         }
         else {
-            mDoorGold = Gizmo.assetManager.get("res/image/door/door_opened.png", Texture.class);
+            mDoorGold = Gizmo.getAssetManager().get("res/image/door/door_opened.png", Texture.class);
         }
 
-        mDoorOpen = Gizmo.assetManager.get("res/image/door/door_opened.png", Texture.class);
+        mDoorOpen = Gizmo.getAssetManager().get("res/image/door/door_opened.png", Texture.class);
         mDoorOpenSprite = TextureRegion.split(mDoorOpen, 32, 32)[0];
 
         mDoorGoldSprite = TextureRegion.split(mDoorGold, 32, 32)[0];

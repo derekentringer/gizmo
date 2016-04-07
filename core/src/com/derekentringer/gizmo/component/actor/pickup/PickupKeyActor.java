@@ -17,7 +17,7 @@ public class PickupKeyActor extends BaseActor implements IBaseActor {
     public PickupKeyActor(Body body) {
         super(body);
         addListener(this);
-        mPickupKey = Gizmo.assetManager.get("res/image/tile/pickup_key.png", Texture.class);
+        mPickupKey = Gizmo.getAssetManager().get("res/image/tile/pickup_key.png", Texture.class);
         mPickupKeySprite = TextureRegion.split(mPickupKey, 32, 32)[0];
 
         setAnimation(mPickupKeySprite, 1 / 30f);

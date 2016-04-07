@@ -17,7 +17,7 @@ public class PickupLifeActor extends BaseActor implements IBaseActor {
     public PickupLifeActor(Body body) {
         super(body);
         addListener(this);
-        mPickupLife = Gizmo.assetManager.get("res/image/tile/pickup_life.png", Texture.class);
+        mPickupLife = Gizmo.getAssetManager().get("res/image/tile/pickup_life.png", Texture.class);
         mPickupLifeSprite = TextureRegion.split(mPickupLife, 32, 32)[0];
 
         setAnimation(mPickupLifeSprite, 1 / 12f);

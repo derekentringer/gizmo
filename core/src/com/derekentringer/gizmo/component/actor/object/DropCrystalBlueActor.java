@@ -38,7 +38,7 @@ public class DropCrystalBlueActor extends BaseActor {
     public DropCrystalBlueActor(Body body, boolean isBoss) {
         super(body);
 
-        mDropHeart = Gizmo.assetManager.get("res/image/drop/drop_crystal_blue.png", Texture.class);
+        mDropHeart = Gizmo.getAssetManager().get("res/image/drop/drop_crystal_blue.png", Texture.class);
         mDropHeartSprite = TextureRegion.split(mDropHeart, 8, 8)[0];
 
         setAnimation(mDropHeartSprite, 1 / 12f);

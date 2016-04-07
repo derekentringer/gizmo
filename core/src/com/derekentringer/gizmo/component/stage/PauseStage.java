@@ -20,7 +20,7 @@ public class PauseStage extends BaseStage {
 
     private Vector2 gameWidthHeight = new Vector2();
 
-    private String mPaused = Gizmo.getI18NBundle().get("pausedStage_paused");
+    private String mPaused = Gizmo.getmI18NBundle().get("pausedStage_paused");
 
     private GlyphLayout layoutPause;
     private String pauseStringDisplay;
