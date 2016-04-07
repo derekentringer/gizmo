@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.screen.AboutScreen;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.UserInput;
@@ -15,12 +16,13 @@ public class AboutStage extends BaseStage {
     private ShapeRenderer mBackground;
     private Vector2 gameWidthHeight = new Vector2();
 
-    private String mVersion = Constants.VERSION;
+    private String mVersionNumber = Constants.VERSION;
+    private String mVersion = Gizmo.getI18NBundle().get("aboutStage_version") + " " + mVersionNumber;
 
     private GlyphLayout mLayoutAbout;
     private String pauseStringDisplay;
 
-    private boolean mToggleSelectionFlag = false;
+    private boolean mToggleSelectionFlag;
 
     public AboutStage(AboutScreen aboutScreen) {
         mAboutScreen = aboutScreen;
@@ -59,24 +61,15 @@ public class AboutStage extends BaseStage {
     }
 
     private void handleInput() {
+        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+            if (mToggleSelectionFlag) {
+                mAboutScreen.goBackToStartScreen();
+            }
+        }
+
         //reset toggle flag
-        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
+        if (!UserInput.isDown(UserInput.JUMP_BUTTON)) {
             mToggleSelectionFlag = true;
-        }
-        else {
-            mToggleSelectionFlag = false;
-        }
-
-        if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
-            goBackToStartScreen();
-
-        }
-    }
-
-    private void goBackToStartScreen() {
-        if (mToggleSelectionFlag == false) {
-            mToggleSelectionFlag = true;
-            mAboutScreen.goBackToStartScreen();
         }
     }
 
