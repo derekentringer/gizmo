@@ -120,9 +120,9 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         GLog.d(TAG, "dispose");
-        this.mGameStage.dispose();
-        this.mHudStage.dispose();
-        this.mPauseStage.dispose();
+        mGameStage.dispose();
+        mHudStage.dispose();
+        mPauseStage.dispose();
     }
 
 }

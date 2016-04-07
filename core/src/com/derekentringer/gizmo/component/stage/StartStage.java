@@ -28,9 +28,11 @@ public class StartStage extends BaseStage {
     private static final String SCREEN_STATE_START = "SCREEN_STATE_START";
     private static final String SCREEN_STATE_CONTINUE = "SCREEN_STATE_CONTINUE";
 
+    private static final String SELECTION_STATE_START = "SELECTION_STATE_START";
     private static final String SELECTION_STATE_CONTINUE = "SELECTION_STATE_CONTINUE";
     private static final String SELECTION_STATE_RESTART = "SELECTION_STATE_RESTART";
     private static final String SELECTION_STATE_CONTROLS = "SELECTION_STATE_CONTROLS";
+    private static final String SELECTION_STATE_ABOUT = "SELECTION_STATE_ABOUT";
 
     private String SCREEN_STATE;
     private String SELECTION_STATE;
@@ -43,18 +45,22 @@ public class StartStage extends BaseStage {
     private String mContinue = Gizmo.getI18NBundle().get("startStage_continue");
     private String mControls = Gizmo.getI18NBundle().get("startStage_controls");
     private String mRestart = Gizmo.getI18NBundle().get("startStage_restart");
+    private String mAbout = Gizmo.getI18NBundle().get("startStage_about");
 
     private GlyphLayout mLayoutStart;
     private GlyphLayout mLayoutRestart;
     private GlyphLayout mLayoutControls;
+    private GlyphLayout mLayoutAbout;
 
     private String mStartStringDisplay;
     private String mRestartStringDisplay;
     private String mControlsStringDisplay;
+    private String mAboutStringDisplay;
 
     private float mFontXStart;
     private float mFontXRestart;
     private float mFontXControls;
+    private float mFontXAbout;
 
     private boolean mToggleSelectionFlag = false;
 
@@ -62,6 +68,7 @@ public class StartStage extends BaseStage {
     private WhiteDotActor mWhiteDotContinue;
     private WhiteDotActor mWhiteDotRestart;
     private WhiteDotActor mWhiteDotControls;
+    private WhiteDotActor mWhiteDotAbout;
 
     public StartStage(StartScreen startScreen) {
         mStartScreen = startScreen;
@@ -88,6 +95,7 @@ public class StartStage extends BaseStage {
         }
         else {
             SCREEN_STATE = SCREEN_STATE_START;
+            SELECTION_STATE = SELECTION_STATE_START;
             displayHearts(PlayerModel.DEFAULT_HEARTS);
             addStartText();
         }
@@ -113,6 +121,10 @@ public class StartStage extends BaseStage {
         mFontXControls = centerScreenX - mLayoutControls.width / 2;
         mControlsStringDisplay = mControls;
 
+        mLayoutAbout = new GlyphLayout(mBitmapFont, mAbout);
+        mFontXAbout = centerScreenX - mLayoutAbout.width / 2;
+        mAboutStringDisplay = mAbout;
+
         createWhiteDotStart();
     }
 
@@ -128,6 +140,10 @@ public class StartStage extends BaseStage {
         mLayoutControls = new GlyphLayout(mBitmapFont, mControls);
         mFontXControls = centerScreenX - mLayoutControls.width / 2;
         mControlsStringDisplay = mControls;
+
+        mLayoutAbout = new GlyphLayout(mBitmapFont, mAbout);
+        mFontXAbout = centerScreenX - mLayoutAbout.width / 2;
+        mAboutStringDisplay = mAbout;
 
         createWhiteDotContinue();
     }
@@ -160,6 +176,13 @@ public class StartStage extends BaseStage {
         mStartStageActorsArray.add(mWhiteDotControls);
     }
 
+    private void createWhiteDotAbout() {
+        mWhiteDotAbout = new WhiteDotActor(HudUtils.createWhiteDot(new WhiteDotModel(), mWorld, new Vector2(mFontXAbout - 10, 26)));
+        mWhiteDotAbout.setName(WhiteDotModel.WHITE_DOT);
+        addActor(mWhiteDotAbout);
+        mStartStageActorsArray.add(mWhiteDotAbout);
+    }
+
     @Override
     public void draw() {
         super.draw();
@@ -180,6 +203,7 @@ public class StartStage extends BaseStage {
                 mBitmapFont.draw(mSpriteBatch, mStartStringDisplay, mFontXStart, 45);
             }
             mBitmapFont.draw(mSpriteBatch, mControlsStringDisplay, mFontXControls, 30);
+            mBitmapFont.draw(mSpriteBatch, mAboutStringDisplay, mFontXAbout, 30);
         mSpriteBatch.end();
     }
 
@@ -223,15 +247,21 @@ public class StartStage extends BaseStage {
                 else if (mStartStageActorsArray.contains(mWhiteDotControls)) {
                     mStartScreen.viewGameControls();
                 }
+                else if (mStartStageActorsArray.contains(mWhiteDotAbout)) {
+                    mStartScreen.viewAbout();
+                }
             }
         }
         else {
             if (UserInput.isDown(UserInput.UP) || UserInput.isDown(UserInput.DOWN)) {
-                toggleSelection();
+                setSelection(UserInput.isDown(UserInput.UP));
             }
             if (UserInput.isDown(UserInput.JUMP_BUTTON)) {
                 if (mStartStageActorsArray.contains(mWhiteDotStart)) {
                     mStartScreen.startGame();
+                }
+                else if (mStartStageActorsArray.contains(mWhiteDotAbout)) {
+                    mStartScreen.viewAbout();
                 }
                 else {
                     mStartScreen.viewGameControls();
@@ -246,33 +276,31 @@ public class StartStage extends BaseStage {
         }
     }
 
-    private void toggleSelection() {
-        if (mToggleSelectionFlag == false) {
-            mToggleSelectionFlag = true;
-            if (mStartStageActorsArray.contains(mWhiteDotStart)) {
-                mStartStageActorsArray.remove(mWhiteDotStart);
-                mWhiteDotStart.remove();
-                createWhiteDotControls();
-            }
-            else {
-                mStartStageActorsArray.remove(mWhiteDotControls);
-                mWhiteDotControls.remove();
-                createWhiteDotStart();
-            }
-        }
-    }
-
     private void setSelection(boolean upPressed) {
         if (mToggleSelectionFlag == false) {
             mToggleSelectionFlag = true;
-            if (SELECTION_STATE.equals(SELECTION_STATE_CONTINUE)) {
+            if (SELECTION_STATE.equals(SELECTION_STATE_START)) {
+                if (mStartStageActorsArray.contains(mWhiteDotStart)) {
+                    mStartStageActorsArray.remove(mWhiteDotStart);
+                    mWhiteDotStart.remove();
+                }
+                if (upPressed) {
+                    SELECTION_STATE = SELECTION_STATE_ABOUT;
+                    createWhiteDotAbout();
+                }
+                else {
+                    SELECTION_STATE = SELECTION_STATE_CONTROLS;
+                    createWhiteDotControls();
+                }
+            }
+            else if (SELECTION_STATE.equals(SELECTION_STATE_CONTINUE)) {
                 if (mStartStageActorsArray.contains(mWhiteDotContinue)) {
                     mStartStageActorsArray.remove(mWhiteDotContinue);
                     mWhiteDotContinue.remove();
                 }
                 if (upPressed) {
-                    SELECTION_STATE = SELECTION_STATE_CONTROLS;
-                    createWhiteDotControls();
+                    SELECTION_STATE = SELECTION_STATE_ABOUT;
+                    createWhiteDotAbout();
                 }
                 else {
                     SELECTION_STATE = SELECTION_STATE_RESTART;
@@ -299,12 +327,38 @@ public class StartStage extends BaseStage {
                     mWhiteDotControls.remove();
                 }
                 if (upPressed) {
-                    SELECTION_STATE = SELECTION_STATE_RESTART;
-                    createWhiteDotRestart();
+                    if (SCREEN_STATE == SCREEN_STATE_START) {
+                        SELECTION_STATE = SELECTION_STATE_START;
+                        createWhiteDotStart();
+                    }
+                    else {
+                        SELECTION_STATE = SELECTION_STATE_RESTART;
+                        createWhiteDotRestart();
+                    }
                 }
                 else {
-                    SELECTION_STATE = SELECTION_STATE_CONTINUE;
-                    createWhiteDotContinue();
+                    SELECTION_STATE = SELECTION_STATE_ABOUT;
+                    createWhiteDotAbout();
+                }
+            }
+            else if (SELECTION_STATE.equals(SELECTION_STATE_ABOUT)) {
+                if (mStartStageActorsArray.contains(mWhiteDotAbout)) {
+                    mStartStageActorsArray.remove(mWhiteDotAbout);
+                    mWhiteDotAbout.remove();
+                }
+                if (upPressed) {
+                    SELECTION_STATE = SELECTION_STATE_CONTROLS;
+                    createWhiteDotControls();
+                }
+                else {
+                    if (SCREEN_STATE == SCREEN_STATE_START) {
+                        SELECTION_STATE = SELECTION_STATE_START;
+                        createWhiteDotStart();
+                    }
+                    else {
+                        SELECTION_STATE = SELECTION_STATE_CONTINUE;
+                        createWhiteDotContinue();
+                    }
                 }
             }
         }

@@ -1,34 +1,24 @@
 package com.derekentringer.gizmo.component.screen;
 
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.component.stage.StartStage;
+import com.derekentringer.gizmo.component.stage.AboutStage;
 import com.derekentringer.gizmo.util.ScreenUtils;
 import com.derekentringer.gizmo.util.log.GLog;
 
-public class StartScreen extends BaseScreen {
+public class AboutScreen extends BaseScreen {
 
-    private final static String TAG = StartScreen.class.getSimpleName();
+    private final static String TAG = AboutScreen.class.getSimpleName();
 
-    private StartStage mStartStage;
+    private AboutStage mAboutStage;
     private Gizmo mGizmo;
 
-    public StartScreen(Gizmo gizmo) {
+    public AboutScreen(Gizmo gizmo) {
         mGizmo = gizmo;
-        mStartStage = new StartStage(this);
+        mAboutStage = new AboutStage(this);
     }
 
-    public void startGame() {
-        mGizmo.setScreen(new GameScreen());
-        this.dispose();
-    }
-
-    public void viewGameControls() {
-        mGizmo.setScreen(new ControlsScreen(mGizmo));
-        this.dispose();
-    }
-
-    public void viewAbout() {
-        mGizmo.setScreen(new AboutScreen(mGizmo));
+    public void goBackToStartScreen() {
+        mGizmo.setScreen(new StartScreen(mGizmo));
         this.dispose();
     }
 
@@ -40,9 +30,9 @@ public class StartScreen extends BaseScreen {
     public void render(float delta) {
         ScreenUtils.renderScreen(mViewPort);
 
-        //update the start stage
-        mStartStage.act(delta);
-        mStartStage.draw();
+        //update the about stage
+        mAboutStage.act(delta);
+        mAboutStage.draw();
     }
 
     @Override
@@ -68,7 +58,7 @@ public class StartScreen extends BaseScreen {
     @Override
     public void dispose() {
         GLog.d(TAG, "dispose");
-        mStartStage.dispose();
+        mAboutStage.dispose();
     }
 
 }

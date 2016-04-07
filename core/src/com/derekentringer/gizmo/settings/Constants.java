@@ -7,6 +7,8 @@ import java.util.Locale;
 
 public class Constants {
 
+    public static final String VERSION = "ALPHA-0.0.1";
+
     // categoryBits declares what entity it is
     // maskBits declares which entities collide with
     public static final short WORLD_ENTITY = 0x1;

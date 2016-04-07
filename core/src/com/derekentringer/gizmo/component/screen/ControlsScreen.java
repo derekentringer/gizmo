@@ -30,7 +30,7 @@ public class ControlsScreen extends BaseScreen {
     public void render(float delta) {
         ScreenUtils.renderScreen(mViewPort);
 
-        //update the start stage
+        //update the controls stage
         mControlsStage.act(delta);
         mControlsStage.draw();
     }
@@ -58,7 +58,7 @@ public class ControlsScreen extends BaseScreen {
     @Override
     public void dispose() {
         GLog.d(TAG, "dispose");
-        this.mControlsStage.dispose();
+        mControlsStage.dispose();
     }
 
 }

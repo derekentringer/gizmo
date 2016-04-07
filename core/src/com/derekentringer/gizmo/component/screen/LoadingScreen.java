@@ -166,6 +166,7 @@ public class LoadingScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         GLog.d(TAG, "dispose");
+        this.dispose();
     }
 
 }
