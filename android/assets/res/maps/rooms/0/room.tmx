@@ -168,31 +168,7 @@
   <properties>
    <property name="item_type" value="POTION_LIFE"/>
   </properties>
-  <object id="120" x="530" y="463">
-   <properties>
-    <property name="item_type" value="BOMB"/>
-   </properties>
-   <ellipse/>
-  </object>
   <object id="121" x="433" y="559">
-   <properties>
-    <property name="item_type" value="BOMB"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="122" x="593" y="464">
-   <properties>
-    <property name="item_type" value="BOMB"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="123" x="113" y="623">
-   <properties>
-    <property name="item_type" value="BOMB"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="124" x="368" y="654">
    <properties>
     <property name="item_type" value="BOMB"/>
    </properties>
