@@ -17,7 +17,7 @@ public class BombActor extends BaseActor {
         mBomb = Gizmo.getAssetManager().get("res/image/item/bomb_pickup_shine.png", Texture.class);
         mBombSprite = TextureRegion.split(mBomb, 32, 32)[0];
 
-        setAnimation(mBombSprite, 1 / 4f);
+        setAnimation(mBombSprite, 1 / 12f);
     }
 
 }
