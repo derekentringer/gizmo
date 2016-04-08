@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
-import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
+import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;

@@ -56,6 +56,7 @@ public class LoadingScreen extends ScreenAdapter {
         Gizmo.getAssetManager().load("res/image/hud/hud_current_item_boomerang_bloodstone.png", Texture.class);
 
         Gizmo.getAssetManager().load("res/image/hud/hud_current_item_potion_life.png", Texture.class);
+        Gizmo.getAssetManager().load("res/image/hud/hud_current_item_bomb.png", Texture.class);
 
         Gizmo.getAssetManager().load("res/image/character/gizmo/gizmo_running_left.png", Texture.class);
         Gizmo.getAssetManager().load("res/image/character/gizmo/gizmo_running_right.png", Texture.class);
@@ -116,6 +117,8 @@ public class LoadingScreen extends ScreenAdapter {
         Gizmo.getAssetManager().load("res/image/item/boomerang_amethyst_pickup_shine.png", Texture.class);
         Gizmo.getAssetManager().load("res/image/item/boomerang_bloodstone.png", Texture.class);
         Gizmo.getAssetManager().load("res/image/item/boomerang_bloodstone_pickup_shine.png", Texture.class);
+        Gizmo.getAssetManager().load("res/image/item/bomb.png", Texture.class);
+        Gizmo.getAssetManager().load("res/image/item/bomb_pickup_shine.png", Texture.class);
 
         Gizmo.getAssetManager().load("res/image/tile/lava.png", Texture.class);
 

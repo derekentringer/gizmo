@@ -11,7 +11,7 @@ import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
-import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
+import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;

@@ -14,12 +14,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.PhantomBossActor;
 import com.derekentringer.gizmo.component.actor.enemy.phantom.PhantomActor;
+import com.derekentringer.gizmo.component.actor.object.BombActor;
 import com.derekentringer.gizmo.component.actor.object.BoomerangActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.actor.object.KeyActor;
 import com.derekentringer.gizmo.component.actor.object.LifeActor;
 import com.derekentringer.gizmo.component.actor.object.PotionLifeActor;
-import com.derekentringer.gizmo.component.actor.object.PotionLifeModel;
+import com.derekentringer.gizmo.model.object.BombModel;
+import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.structure.GroundActor;
 import com.derekentringer.gizmo.component.actor.structure.LavaActor;
@@ -391,6 +393,14 @@ public class MapParser extends Stage {
                             potionLifeActor.setName(PotionLifeModel.POTION_LIFE);
                             addActor(potionLifeActor);
                             addToActorsArray(potionLifeActor);
+                        }
+
+                        //bomb
+                        if (itemType.equalsIgnoreCase(BombModel.BOMB)) {
+                            BombActor bombActor = new BombActor(ObjectUtils.createBomb(new BombModel(), world, getMapObjectCoords(mapObject)));
+                            bombActor.setName(BombModel.BOMB);
+                            addActor(bombActor);
+                            addToActorsArray(bombActor);
                         }
 
                     }
