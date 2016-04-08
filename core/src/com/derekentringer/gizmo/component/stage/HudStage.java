@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
+import com.derekentringer.gizmo.model.item.BombModel;
 import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
@@ -66,6 +67,7 @@ public class HudStage extends BaseStage implements IGameStage {
     private Texture mHudCurrentItemBoomerangBloodstone;
 
     private Texture mHudCurrentItemPotionLife;
+    private Texture mHudCurrentItemBomb;
 
     private Texture mCurrentLivesTexture;
     private Texture mCurrentHealthTexture;
@@ -138,6 +140,7 @@ public class HudStage extends BaseStage implements IGameStage {
         mHudCurrentItemBoomerangBloodstone = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_boomerang_bloodstone.png", Texture.class);
 
         mHudCurrentItemPotionLife = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_potion_life.png", Texture.class);
+        mHudCurrentItemBomb = Gizmo.getAssetManager().get("res/image/hud/hud_current_item_bomb.png", Texture.class);
 
         mHudCrystalsCount = Gizmo.getAssetManager().get("res/image/hud/hud_blue_crystals.png", Texture.class);
 
@@ -338,6 +341,9 @@ public class HudStage extends BaseStage implements IGameStage {
 
             if (item.getItemType().equals(PotionLifeModel.POTION_LIFE)) {
                 mHudCurrentSecondaryItemTexture = mHudCurrentItemPotionLife;
+            }
+            else if (item.getItemType().equals(BombModel.BOMB)) {
+                mHudCurrentSecondaryItemTexture = mHudCurrentItemBomb;
             }
 
         }
