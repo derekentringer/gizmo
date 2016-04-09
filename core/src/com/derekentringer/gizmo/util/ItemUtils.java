@@ -60,7 +60,7 @@ public class ItemUtils {
         bombActor.setName(BombModel.BOMB);
         mapParser.addToTempActorsArray(bombActor);
         bombActor.addListener(gameStage);
-        removeSecondaryItem(playerActor);
+        //removeSecondaryItem(playerActor);
     }
 
     public static void explodeBomb(World world, Vector2 bombPosition, MapParser mapParser, GameStage gameStage) {

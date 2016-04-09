@@ -58,7 +58,7 @@ public class BodyUtils {
         chainShape.createChain(v);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.friction = 0;
+        fixtureDef.friction = 0.001f;
         fixtureDef.shape = chainShape;
         fixtureDef.isSensor = isSensor;
 
@@ -91,7 +91,7 @@ public class BodyUtils {
         chainShape.createChain(v);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.friction = 0;
+        fixtureDef.friction = 0.001f;
         fixtureDef.shape = chainShape;
         fixtureDef.isSensor = isSensor;
 
@@ -159,11 +159,11 @@ public class BodyUtils {
         chainShape.createChain(v);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.friction = 0;
+        fixtureDef.friction = 0.001f;
         fixtureDef.shape = chainShape;
         fixtureDef.isSensor = isSensor;
 
-        fixtureDef.filter.categoryBits = Constants.WORLD_ENTITY;
+        fixtureDef.filter.categoryBits = Constants.DESTROYABLE | Constants.WORLD_ENTITY;
 
         Body body = world.createBody(bodyDef);
         body.createFixture(fixtureDef).setUserData(userData);
@@ -192,7 +192,7 @@ public class BodyUtils {
         chainShape.createChain(v);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.friction = 0;
+        fixtureDef.friction = 0.001f;
         fixtureDef.shape = chainShape;
         fixtureDef.isSensor = isSensor;
 
@@ -240,12 +240,15 @@ public class BodyUtils {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(bodyDef);
 
-        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        shape.setAsBox(WorldUtils.ppmCalc(7), WorldUtils.ppmCalc(14));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
 
         fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
-        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE | Constants.GROUND_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE | Constants.GROUND_ENTITY |
+                Constants.DROP_ENTITY | Constants.WALL_ENTITY;
+
+        fixtureDef.friction = 75f;
 
         body.createFixture(fixtureDef).setUserData(userData);
 
@@ -263,12 +266,17 @@ public class BodyUtils {
 
         bodyDef.position.set(coordinates.x, coordinates.y);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.gravityScale = 0f;
 
         Body body = world.createBody(bodyDef);
 
         shape.setAsBox(WorldUtils.ppmCalc(28), WorldUtils.ppmCalc(28));
         fixtureDef.shape = shape;
-        fixtureDef.isSensor = false;
+        fixtureDef.isSensor = true;
+
+        fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
+        fixtureDef.filter.maskBits = Constants.PLAYER_ENTITY | Constants.ENEMY_ENTITY |
+                Constants.DESTROYABLE | Constants.GROUND_ENTITY | Constants.WALL_ENTITY | Constants.DROP_ENTITY;
 
         body.createFixture(fixtureDef).setUserData(userData);
 
