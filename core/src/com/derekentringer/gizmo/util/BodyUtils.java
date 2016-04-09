@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -262,7 +263,8 @@ public class BodyUtils {
     public static Body createBombExplosion(BaseModel userData, World world, Vector2 coordinates) {
         BodyDef bodyDef = new BodyDef();
         FixtureDef fixtureDef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
+        //PolygonShape shape = new PolygonShape();
+        CircleShape shape = new CircleShape();
 
         bodyDef.position.set(coordinates.x, coordinates.y);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -270,7 +272,7 @@ public class BodyUtils {
 
         Body body = world.createBody(bodyDef);
 
-        shape.setAsBox(WorldUtils.ppmCalc(28), WorldUtils.ppmCalc(28));
+        shape.setRadius(WorldUtils.ppmCalc(56));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
 
