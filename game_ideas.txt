@@ -20,6 +20,8 @@ need to work on jumping
 
 bug with destroyable blocks
 
+bombs are not inflicting damage on blocks
+
 add restart and controls to pause screen
 
 add You Died screen
