@@ -6,7 +6,7 @@ public class DestroyableBlockClayModel extends BaseDestroyableModel {
 
     public static final String DESTROYABLE_BLOCK_CLAY = "DESTROYABLE_BLOCK_CLAY";
 
-    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_HEALTH = 50;
 
     public DestroyableBlockClayModel() {
     }

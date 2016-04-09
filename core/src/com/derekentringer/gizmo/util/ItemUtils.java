@@ -56,7 +56,7 @@ public class ItemUtils {
     }
 
     public static void useBomb(World world, PlayerActor playerActor, MapParser mapParser, GameStage gameStage) {
-        BombActor bombActor = new BombActor(BodyUtils.createBomb(new BombModel(), world, playerActor.getPosition()), playerActor.getFacingDirection());
+        BombActor bombActor = new BombActor(BodyUtils.createBomb(new BombModel(), world, playerActor.getPosition()), world, mapParser, gameStage, playerActor.getFacingDirection());
         bombActor.setName(BombModel.BOMB);
         mapParser.addToTempActorsArray(bombActor);
         bombActor.addListener(gameStage);

@@ -70,13 +70,15 @@ import java.util.ArrayList;
 public class MapParser extends Stage {
 
     private final ArrayList<BaseActor> mActorsArray = new ArrayList<BaseActor>();
+    private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
+
     private final ArrayList<Vector2> mPickedUpHeartAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mPickedUpLifeAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mPickedUpKeyAnimations = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mBossDroppedItemPositionArray = new ArrayList<Vector2>();
     private final ArrayList<Vector2> mDestroyedEnemyPositionArray = new ArrayList<Vector2>();
-    private final ArrayList<BaseActor> mTempActorsArray = new ArrayList<BaseActor>();
+    private final ArrayList<Vector2> mDestroyedBlockPositionArray = new ArrayList<Vector2>();
 
     private ArrayList<IMapParser> listeners = new ArrayList<IMapParser>();
 
@@ -201,6 +203,18 @@ public class MapParser extends Stage {
 
     public void addToDestroyedEnemyPositionArray(Vector2 position) {
         mDestroyedEnemyPositionArray.add(position);
+    }
+
+    public ArrayList<Vector2> getDestroyedBlockPositionArray() {
+        return mDestroyedBlockPositionArray;
+    }
+
+    public void resetDestroyedBlockPositionArray() {
+        mDestroyedBlockPositionArray.clear();
+    }
+
+    public void addToDestroyedBlockPositionArray(Vector2 position) {
+        mDestroyedBlockPositionArray.add(position);
     }
 
     public void addToTempActorsArray(BaseActor actor) {

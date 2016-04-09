@@ -156,13 +156,13 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     public void draw() {
         super.draw();
 
-        // create dropped item actors
+        //create dropped item actors
         addDroppedItems();
 
-        //add pickup animations
-        addPickedUpAnimations();
+        //add animations for pickup, explode, break blocka
+        addNeededAnimations();
 
-        // handle removed actors
+        //handle removed actors
         updateMapParserArrays();
         deleteObsoleteActors();
 
@@ -242,7 +242,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         mMapParser.resetBossDroppedItemPositionArray();
     }
 
-    private void addPickedUpAnimations() {
+    private void addNeededAnimations() {
         for (int i = 0; i < mMapParser.getPickedUpHeartPositionArray().size(); i++) {
             AnimUtils.pickupHeart(mMapParser.getPickedUpHeartPositionArray().get(i), this, mMapParser, mWorld);
         }
@@ -259,6 +259,10 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             AnimUtils.destroyEnemy(mMapParser.getDestroyedEnemyPositionArray().get(i), this, mMapParser, mWorld);
         }
         mMapParser.resetDestroyedEnemyPositionArray();
+        for (int i = 0; i < mMapParser.getDestroyedBlockPositionArray().size(); i++) {
+            AnimUtils.breakBlock(mMapParser.getDestroyedBlockPositionArray().get(i), this, mMapParser, mWorld);
+        }
+        mMapParser.resetDestroyedBlockPositionArray();
     }
 
     private void deleteObsoleteActors() {
@@ -401,7 +405,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData(), mPlayerActor.getTouchingBodyDestroyableRight()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData());
 
-                        AnimUtils.breakBlock(mPlayerActor.getTouchingBodyDestroyableRight(), this, mMapParser, mWorld);
+                        mMapParser.addToDestroyedBlockPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
                         mPlayerActor.setTouchingBodyDestroyableRight(null);
                     }
                 }
@@ -414,7 +418,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData(), mPlayerActor.getTouchingBodyDestroyableLeft()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData());
 
-                        AnimUtils.breakBlock(mPlayerActor.getTouchingBodyDestroyableLeft(), this, mMapParser, mWorld);
+                        mMapParser.addToDestroyedBlockPositionArray(mPlayerActor.getTouchingBodyDestroyableLeft().getPosition());
                         mPlayerActor.setTouchingBodyDestroyableLeft(null);
                     }
                 }
@@ -427,8 +431,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
                         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
 
-                        AnimUtils.breakBlock(mPlayerActor.getTouchingBodyDestroyableBottom(), this, mMapParser, mWorld);
-
+                        mMapParser.addToDestroyedBlockPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
                         mPlayerActor.setTouchingBodyDestroyableBottom(null);
                     }
                 }
@@ -769,7 +772,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     @Override
     public void explodeBomb(BaseActor bomb) {
-        ItemUtils.explodeBomb(mWorld, bomb.getPosition(), mMapParser, this);
+        //mMapParser.addToTempActorsArray(bomb);
     }
 
     @Override

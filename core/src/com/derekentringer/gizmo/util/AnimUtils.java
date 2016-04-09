@@ -1,7 +1,6 @@
 package com.derekentringer.gizmo.util;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.component.actor.enemy.DestroyEnemyActor;
 import com.derekentringer.gizmo.component.actor.pickup.PickupHeartActor;
@@ -21,9 +20,9 @@ public class AnimUtils {
 
     private static final String TAG = AnimUtils.class.getSimpleName();
 
-    public static void breakBlock(Body body, GameStage gameStage, MapParser mapParser, World world) {
+    public static void breakBlock(Vector2 vector, GameStage gameStage, MapParser mapParser, World world) {
         GLog.d(TAG, "break block animation");
-        BlockBreakActor blockBreakActor = new BlockBreakActor(ObjectUtils.createBlockBreak(new BlockBreakModel(), world, new Vector2(body.getPosition().x, body.getPosition().y)));
+        BlockBreakActor blockBreakActor = new BlockBreakActor(ObjectUtils.createBlockBreak(new BlockBreakModel(), world, vector));
         blockBreakActor.setName(BlockBreakModel.BREAK);
         gameStage.addActor(blockBreakActor);
         mapParser.addToTempActorsArray(blockBreakActor);

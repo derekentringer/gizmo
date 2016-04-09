@@ -6,7 +6,7 @@ public class DestroyableBlockDirtModel extends BaseDestroyableModel {
 
     public static final String DESTROYABLE_BLOCK_DIRT = "DESTROYABLE_BLOCK_DIRT";
 
-    private static final int DEFAULT_HEALTH = 50;
+    private static final int DEFAULT_HEALTH = 25;
 
     public DestroyableBlockDirtModel() {
     }

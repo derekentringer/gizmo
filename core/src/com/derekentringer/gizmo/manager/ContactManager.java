@@ -18,7 +18,6 @@ import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
-import com.derekentringer.gizmo.util.AnimUtils;
 import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
@@ -150,7 +149,7 @@ public class ContactManager {
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
-            EnemyUtils.setEnemyHealth(bodyB, ItemUtils.getItemHealthDamage(bodyB));
+            EnemyUtils.setEnemyHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (EnemyUtils.getEnemyHealth(bodyA) <= 0) {
                 if (EnemyUtils.isEnemyBoss(bodyA)) {
                     loadedRoomModel.addDestroyedBoss((BaseEnemyModel) bodyA.getUserData());
@@ -167,20 +166,24 @@ public class ContactManager {
         }
 
         //bombs destroy blocks
-        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.BLOCK_DESTROYABLE)) {
+        else if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.BLOCK_DESTROYABLE)) {
+            GLog.d(TAG, "bombs destroy block");
+            GLog.d(TAG, "health damage: " + ItemUtils.getItemHealthDamage(bodyA));
             BlockUtils.setBlockHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (BlockUtils.getBlockHealth(bodyB) <= 0) {
                 deleteBodies.add(new DeleteBody((BaseDestroyableModel) bodyB.getUserData(), bodyB));
                 loadedRoomModel.addDestroyedBlock((BaseDestroyableModel) bodyB.getUserData());
-                AnimUtils.breakBlock(bodyB, gameStage, mapParser, world);
+                mapParser.addToDestroyedBlockPositionArray(bodyB.getPosition());
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.BLOCK_DESTROYABLE)) {
+            GLog.d(TAG, "bombs destroy block");
+            GLog.d(TAG, "health damage: " + ItemUtils.getItemHealthDamage(bodyB));
             BlockUtils.setBlockHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (BlockUtils.getBlockHealth(bodyA) <= 0) {
                 deleteBodies.add(new DeleteBody((BaseDestroyableModel) bodyA.getUserData(), bodyA));
                 loadedRoomModel.addDestroyedBlock((BaseDestroyableModel) bodyA.getUserData());
-                AnimUtils.breakBlock(bodyA, gameStage, mapParser, world);
+                mapParser.addToDestroyedBlockPositionArray(bodyA.getPosition());
             }
         }
     }
@@ -294,8 +297,6 @@ public class ContactManager {
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
         }
-
-
     }
 
     public static void setPlayerPickupSmallHeart(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {

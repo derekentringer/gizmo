@@ -262,15 +262,13 @@ public class BodyUtils {
         PolygonShape shape = new PolygonShape();
 
         bodyDef.position.set(coordinates.x, coordinates.y);
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+
         Body body = world.createBody(bodyDef);
 
         shape.setAsBox(WorldUtils.ppmCalc(28), WorldUtils.ppmCalc(28));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
-
-        fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
-        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE;
 
         body.createFixture(fixtureDef).setUserData(userData);
 
