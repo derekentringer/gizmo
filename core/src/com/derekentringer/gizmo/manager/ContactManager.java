@@ -16,7 +16,10 @@ import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.LifeModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
+import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
+import com.derekentringer.gizmo.util.AnimUtils;
+import com.derekentringer.gizmo.util.BlockUtils;
 import com.derekentringer.gizmo.util.BodyUtils;
 import com.derekentringer.gizmo.util.EnemyUtils;
 import com.derekentringer.gizmo.util.FixtureUtils;
@@ -160,6 +163,24 @@ public class ContactManager {
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
                 mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
+            }
+        }
+
+        //bombs destroy blocks
+        if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.BLOCK_DESTROYABLE)) {
+            BlockUtils.setBlockHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
+            if (BlockUtils.getBlockHealth(bodyB) <= 0) {
+                deleteBodies.add(new DeleteBody((BaseDestroyableModel) bodyB.getUserData(), bodyB));
+                loadedRoomModel.addDestroyedBlock((BaseDestroyableModel) bodyB.getUserData());
+                AnimUtils.breakBlock(bodyB, gameStage, mapParser, world);
+            }
+        }
+        else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.BLOCK_DESTROYABLE)) {
+            BlockUtils.setBlockHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
+            if (BlockUtils.getBlockHealth(bodyA) <= 0) {
+                deleteBodies.add(new DeleteBody((BaseDestroyableModel) bodyA.getUserData(), bodyA));
+                loadedRoomModel.addDestroyedBlock((BaseDestroyableModel) bodyA.getUserData());
+                AnimUtils.breakBlock(bodyA, gameStage, mapParser, world);
             }
         }
     }

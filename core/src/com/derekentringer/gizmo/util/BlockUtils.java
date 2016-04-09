@@ -19,11 +19,13 @@ public class BlockUtils {
 
     //TODO random crash
     public static void setBlockHealth(Body body, int health) {
-        BaseDestroyableModel baseDestroyableModel = (BaseDestroyableModel) body.getUserData();
-        if (baseDestroyableModel != null) {
-            int newHealth = baseDestroyableModel.getHealth() - health;
-            baseDestroyableModel.setHealth(newHealth);
-        }
+        //if (body.getUserData() instanceof BaseDestroyableModel) {
+            BaseDestroyableModel baseDestroyableModel = (BaseDestroyableModel) body.getUserData();
+            if (baseDestroyableModel != null) {
+                int newHealth = baseDestroyableModel.getHealth() - health;
+                baseDestroyableModel.setHealth(newHealth);
+            }
+        //}
     }
 
     public static boolean getBlockDropsLoot(Body body) {

@@ -6,7 +6,7 @@ public class BombModel extends BasePlayerItemModel {
 
     public static final String BOMB = "BOMB";
 
-    private static final int DEFAULT_HEALTH_DAMAGE = 1;
+    private static final int DEFAULT_HEALTH_DAMAGE = 0;
 
     public BombModel() {
         mBaseModelType = BaseModelType.PLAYER_ITEM_SECONDARY;
