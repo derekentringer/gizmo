@@ -18,10 +18,6 @@ new additions needed
 
 need to look at jumping (mimic bombs more maybe)
 
-add friction to bombs so they dont slide across the screen
-
-tweak the velocity of bombs
-
 add controls to pause screen
 
 add You Died screen
