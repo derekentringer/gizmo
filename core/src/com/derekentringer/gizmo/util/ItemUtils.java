@@ -60,6 +60,7 @@ public class ItemUtils {
         bombActor.setName(BombModel.BOMB);
         mapParser.addToTempActorsArray(bombActor);
         bombActor.addListener(gameStage);
+        //todo put back after testing
         //removeSecondaryItem(playerActor);
     }
 
