@@ -11,6 +11,7 @@ import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
+import com.derekentringer.gizmo.model.object.BombModel;
 import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
@@ -575,10 +576,11 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                             listener.setHudHealthHearts(mPlayerActor.getHealthHearts());
                         }
                     }
-
+                    else if (mPlayerActor.getCurrentSecondaryItem().getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+                        ItemUtils.useBomb(mWorld, mPlayerActor, mMapParser, this);
+                    }
 
                     //todo add other secondary items
-
 
                     for (IGameStage listener : gameStageListeners) {
                         listener.setHudSelectedSecondaryItem(mPlayerActor.getCurrentSecondaryItem());
@@ -763,6 +765,11 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     public void removePlayerItemFromStage(BaseActor actor) {
         mPlayerActor.setIsItemActive(false);
         mDeleteBodies.add(new DeleteBody((BaseModel) actor.getBody().getUserData(), actor.getBody()));
+    }
+
+    @Override
+    public void explodeBomb(BaseActor bomb) {
+        ItemUtils.explodeBomb(mWorld, bomb.getPosition(), mMapParser, this);
     }
 
     @Override

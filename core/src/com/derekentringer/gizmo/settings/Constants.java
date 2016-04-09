@@ -17,6 +17,9 @@ public class Constants {
     public static final short ENEMY_ENTITY = 0x1 << 3;
     public static final short DROP_ENTITY = 0x1 << 4;
     public static final short IGNORE_ENTITY = 0x1 << 5;
+    public static final short DESTROYABLE = 0x1 << 6;
+    public static final short GROUND_ENTITY = 0x1 << 7;
+    public static final short WALL_ENTITY = 0x1 << 8;
 
     // debugging
     public static final boolean IS_DEBUG = true;

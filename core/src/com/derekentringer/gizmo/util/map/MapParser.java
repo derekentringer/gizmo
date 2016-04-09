@@ -241,17 +241,17 @@ public class MapParser extends Stage {
                         }
 
                         if (curLayerName.equalsIgnoreCase(GroundModel.TILE_GROUND)) {
-                            GroundActor groundActor = new GroundActor(BodyUtils.createStaticWorldBody(new GroundModel(), world, mTileSize, row, col, false));
+                            GroundActor groundActor = new GroundActor(BodyUtils.createGroundBody(new GroundModel(), world, mTileSize, row, col, false));
                             addActor(groundActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(WallModel.TILE_WALL)) {
-                            WallActor wallActor = new WallActor(BodyUtils.createStaticWorldBody(new WallModel(), world, mTileSize, row, col, false));
+                            WallActor wallActor = new WallActor(BodyUtils.createWallBody(new WallModel(), world, mTileSize, row, col, false));
                             addActor(wallActor);
                         }
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT)) {
                             Vector2 blockPosition = new Vector2(row, col);
                             if (!loopThruDestroyedBlocksArray(mLoadedRoomModel.getDestroyedBlockList(), blockPosition)) {
-                                DestroyableBlockDirtActor destroyableBlockDirtActor = new DestroyableBlockDirtActor(BodyUtils.createStaticWorldBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                DestroyableBlockDirtActor destroyableBlockDirtActor = new DestroyableBlockDirtActor(BodyUtils.createDestroyableBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
                                 destroyableBlockDirtActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
                                 addActor(destroyableBlockDirtActor);
                                 addToActorsArray(destroyableBlockDirtActor);
@@ -260,7 +260,7 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY)) {
                             Vector2 blockPosition = new Vector2(row, col);
                             if (!loopThruDestroyedBlocksArray(mLoadedRoomModel.getDestroyedBlockList(), blockPosition)) {
-                                DestroyableBlockClayActor destroyableBlockClayActor = new DestroyableBlockClayActor(BodyUtils.createStaticWorldBody(new DestroyableBlockClayModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
+                                DestroyableBlockClayActor destroyableBlockClayActor = new DestroyableBlockClayActor(BodyUtils.createDestroyableBody(new DestroyableBlockClayModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
                                 destroyableBlockClayActor.setName(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY);
                                 addActor(destroyableBlockClayActor);
                                 addToActorsArray(destroyableBlockClayActor);
@@ -269,7 +269,7 @@ public class MapParser extends Stage {
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL)) {
                             Vector2 blockPosition = new Vector2(row, col);
                             if (!loopThruDestroyedBlocksArray(mLoadedRoomModel.getDestroyedBlockList(), blockPosition)) {
-                                DestroyableBlockFallActor destroyableBlockFallActor = new DestroyableBlockFallActor(BodyUtils.createDynamicWorldBody(new DestroyableBlockFallModel(row, col), world, mTileSize, row, col, false));
+                                DestroyableBlockFallActor destroyableBlockFallActor = new DestroyableBlockFallActor(BodyUtils.createFallingBlockBody(new DestroyableBlockFallModel(row, col), world, mTileSize, row, col, false));
                                 destroyableBlockFallActor.setName(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL);
                                 addActor(destroyableBlockFallActor);
                                 addToActorsArray(destroyableBlockFallActor);

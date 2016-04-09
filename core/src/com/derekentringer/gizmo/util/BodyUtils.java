@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
@@ -36,6 +37,72 @@ public class BodyUtils {
         else {
             body.applyLinearImpulse(new Vector2(0, impulse), body.getWorldCenter(), true);
         }
+    }
+
+    public static Body createGroundBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set(
+                (col + 0.5f) * tileSize / Constants.PPM,
+                (row + 0.5f) * tileSize / Constants.PPM
+        );
+
+        //don't have to use chainshape here...there are other options
+        ChainShape chainShape = new ChainShape();
+        Vector2[] v = new Vector2[5];
+        v[0] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[1] = new Vector2(-tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[2] = new Vector2(tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[3] = new Vector2(tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[4] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        chainShape.createChain(v);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = 0;
+        fixtureDef.shape = chainShape;
+        fixtureDef.isSensor = isSensor;
+
+        fixtureDef.filter.categoryBits = Constants.GROUND_ENTITY | Constants.WORLD_ENTITY;
+
+        Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef).setUserData(userData);
+        body.setUserData(userData);
+
+        chainShape.dispose();
+        return body;
+    }
+
+    public static Body createWallBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set(
+                (col + 0.5f) * tileSize / Constants.PPM,
+                (row + 0.5f) * tileSize / Constants.PPM
+        );
+
+        //don't have to use chainshape here...there are other options
+        ChainShape chainShape = new ChainShape();
+        Vector2[] v = new Vector2[5];
+        v[0] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[1] = new Vector2(-tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[2] = new Vector2(tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[3] = new Vector2(tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[4] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        chainShape.createChain(v);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = 0;
+        fixtureDef.shape = chainShape;
+        fixtureDef.isSensor = isSensor;
+
+        fixtureDef.filter.categoryBits = Constants.WALL_ENTITY | Constants.WORLD_ENTITY;
+
+        Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef).setUserData(userData);
+        body.setUserData(userData);
+
+        chainShape.dispose();
+        return body;
     }
 
     //TODO cleanup
@@ -73,7 +140,7 @@ public class BodyUtils {
     }
 
     //TODO cleanup
-    public static Body createDynamicWorldBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
+    public static Body createFallingBlockBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(
@@ -103,6 +170,114 @@ public class BodyUtils {
         body.setUserData(userData);
 
         chainShape.dispose();
+        return body;
+    }
+
+    public static Body createDestroyableBody(BaseModel userData, World world, float tileSize, int row, int col, boolean isSensor) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set(
+                (col + 0.5f) * tileSize / Constants.PPM,
+                (row + 0.5f) * tileSize / Constants.PPM
+        );
+
+        //don't have to use chainshape here...there are other options
+        ChainShape chainShape = new ChainShape();
+        Vector2[] v = new Vector2[5];
+        v[0] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[1] = new Vector2(-tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[2] = new Vector2(tileSize / 2 / Constants.PPM, tileSize / 2 / Constants.PPM);
+        v[3] = new Vector2(tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        v[4] = new Vector2(-tileSize / 2 / Constants.PPM, -tileSize / 2 / Constants.PPM);
+        chainShape.createChain(v);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = 0;
+        fixtureDef.shape = chainShape;
+        fixtureDef.isSensor = isSensor;
+
+        fixtureDef.filter.categoryBits = Constants.DESTROYABLE | Constants.WORLD_ENTITY;
+
+        Body body = world.createBody(bodyDef);
+        body.createFixture(fixtureDef).setUserData(userData);
+        body.setUserData(userData);
+
+        chainShape.dispose();
+        return body;
+    }
+
+    public static Body createBoomerang(BaseModel userData, World world, Vector2 coordinates) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(coordinates.x, coordinates.y);
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY;
+
+        body.createFixture(fixtureDef).setUserData(userData);
+
+        body.setUserData(userData);
+
+        shape.dispose();
+
+        return body;
+    }
+
+    public static Body createBomb(BaseModel userData, World world, Vector2 coordinates) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(coordinates.x, coordinates.y);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE | Constants.GROUND_ENTITY;
+
+        body.createFixture(fixtureDef).setUserData(userData);
+
+        body.setUserData(userData);
+
+        shape.dispose();
+
+        return body;
+    }
+
+    public static Body createBombExplosion(BaseModel userData, World world, Vector2 coordinates) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(coordinates.x, coordinates.y);
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = false;
+
+        fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE;
+
+        body.createFixture(fixtureDef).setUserData(userData);
+
+        body.setUserData(userData);
+
+        shape.dispose();
+
         return body;
     }
 

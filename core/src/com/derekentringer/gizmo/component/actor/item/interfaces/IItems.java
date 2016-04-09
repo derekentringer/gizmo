@@ -4,4 +4,5 @@ import com.derekentringer.gizmo.component.actor.BaseActor;
 
 public interface IItems {
     void removePlayerItemFromStage(BaseActor actor);
+    void explodeBomb(BaseActor actor);
 }
