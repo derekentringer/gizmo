@@ -164,7 +164,6 @@ public class ContactManager {
                 mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
             }
         }
-
         //bombs destroy blocks
         else if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.BLOCK_DESTROYABLE)) {
             GLog.d(TAG, "bombs destroy block");

@@ -771,11 +771,6 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     @Override
-    public void explodeBomb(BaseActor bomb) {
-        //mMapParser.addToTempActorsArray(bomb);
-    }
-
-    @Override
     public void addDroppedItem(BaseActor actor) {
         mMapParser.addToTempActorsArray(actor);
     }
