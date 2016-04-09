@@ -18,12 +18,6 @@ new additions needed
 
 need to work on jumping
 
-bug with destroyable blocks
-
-bombs are not inflicting damage on blocks
-
-nullpointer on incrementSelectedSecondaryItem
-
 add restart and controls to pause screen
 
 add You Died screen
