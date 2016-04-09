@@ -16,16 +16,20 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
-need to work on jumping
+need to look at jumping (mimic bombs more maybe)
 
-add restart and controls to pause screen
+add friction to bombs so they dont slide across the screen
+
+tweak the velocity of bombs
+
+add controls to pause screen
 
 add You Died screen
 
-arraylists for health potions and bombs? would allow toggle and use with multiple
+arraylists for health potions and bombs? would allow toggle and use with multiple of each
 
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
-	- a custom shader should work
+	- a custom shader
 
 controller support
 	- buy controllers - see above
@@ -36,11 +40,7 @@ more bosses/enemies
 	- (insert random creativity after creating bosses...for levels layout/colors etc)
 
 more weapons
-	- sword (power up shoots force wave)
-	- crazy power-ups only usable on bosses with full screen animations
-
 more secondary items
-	- bombs (can be thown)
 
 more levels
 	- work on laying out the world to build up the levels for the entire game
