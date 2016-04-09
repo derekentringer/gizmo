@@ -170,6 +170,9 @@ public class ContactManager {
             GLog.d(TAG, "health damage: " + ItemUtils.getItemHealthDamage(bodyA));
             BlockUtils.setBlockHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (BlockUtils.getBlockHealth(bodyB) <= 0) {
+                if (BlockUtils.getBlockDropsLoot(bodyB)) {
+                    mapParser.addToDroppedItemPositionArray(bodyB.getPosition());
+                }
                 deleteBodies.add(new DeleteBody((BaseDestroyableModel) bodyB.getUserData(), bodyB));
                 loadedRoomModel.addDestroyedBlock((BaseDestroyableModel) bodyB.getUserData());
                 mapParser.addToDestroyedBlockPositionArray(bodyB.getPosition());
@@ -180,6 +183,9 @@ public class ContactManager {
             GLog.d(TAG, "health damage: " + ItemUtils.getItemHealthDamage(bodyB));
             BlockUtils.setBlockHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (BlockUtils.getBlockHealth(bodyA) <= 0) {
+                if (BlockUtils.getBlockDropsLoot(bodyA)) {
+                    mapParser.addToDroppedItemPositionArray(bodyA.getPosition());
+                }
                 deleteBodies.add(new DeleteBody((BaseDestroyableModel) bodyA.getUserData(), bodyA));
                 loadedRoomModel.addDestroyedBlock((BaseDestroyableModel) bodyA.getUserData());
                 mapParser.addToDestroyedBlockPositionArray(bodyA.getPosition());
