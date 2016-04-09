@@ -27,9 +27,9 @@ public class BombExplodeActor extends BaseActor implements IBaseActor {
     public BombExplodeActor(Body body) {
         super(body);
         addListener(this);
-        mBombExplodeTexture = Gizmo.getAssetManager().get("res/image/item/bomb.png", Texture.class);
-        mBombExplodeSprite = TextureRegion.split(mBombExplodeTexture, 32, 32)[0];
-        setAnimation(mBombExplodeSprite, 1 / 12f);
+        mBombExplodeTexture = Gizmo.getAssetManager().get("res/image/item/bomb_explode.png", Texture.class);
+        mBombExplodeSprite = TextureRegion.split(mBombExplodeTexture, 64, 64)[0];
+        setAnimation(mBombExplodeSprite, 1 / 24f);
     }
 
     @Override
