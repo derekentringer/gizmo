@@ -265,7 +265,7 @@ public class BodyUtils {
         bodyDef.type = BodyDef.BodyType.KinematicBody;
         Body body = world.createBody(bodyDef);
 
-        shape.setAsBox(WorldUtils.ppmCalc(14), WorldUtils.ppmCalc(14));
+        shape.setAsBox(WorldUtils.ppmCalc(28), WorldUtils.ppmCalc(28));
         fixtureDef.shape = shape;
         fixtureDef.isSensor = false;
 
