@@ -344,20 +344,25 @@ public class PlayerActor extends BaseActor {
         GLog.d(TAG, "incrementSelectedSecondaryItem");
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
         if (playerItems.size() > 0) {
-            for (BasePlayerItemModel item : playerItems) {
-                if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
-                    if (playerItems.indexOf(item) == playerItems.size() - 1) {
-                        setCurrentSecondaryItem(playerItems.get(0));
-                        GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
-                        return;
-                    }
-                    else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
-                        int nextItemIndex = playerItems.indexOf(item) + 1;
-                        setCurrentSecondaryItem(playerItems.get(nextItemIndex));
-                        GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
-                        return;
+            if (playerItems.size() > 1) {
+                for (BasePlayerItemModel item : playerItems) {
+                    if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
+                        if (playerItems.indexOf(item) == playerItems.size() - 1) {
+                            setCurrentSecondaryItem(playerItems.get(0));
+                            GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
+                            return;
+                        }
+                        else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
+                            int nextItemIndex = playerItems.indexOf(item) + 1;
+                            setCurrentSecondaryItem(playerItems.get(nextItemIndex));
+                            GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                            return;
+                        }
                     }
                 }
+            }
+            else {
+                setCurrentSecondaryItem(playerItems.get(0));
             }
         }
         else {
