@@ -166,6 +166,7 @@ public class PlayerModel extends BaseModel {
     }
 
     //todo this is adding more bombs and potions
+    //not sure if it is needed...buggggssss
     private void updateSecondaryItemList() {
         if (getBombArrayList().size() > 0) {
             mSecondaryItemList.add(mBombArrayList);

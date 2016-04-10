@@ -61,7 +61,7 @@ public class ItemUtils {
         mapParser.addToTempActorsArray(bombActor);
         bombActor.addListener(gameStage);
         //todo put back after testing
-        //removeSecondaryItem(playerActor);
+        removeSecondaryItem(playerActor);
     }
 
     public static void explodeBomb(World world, Vector2 bombPosition, MapParser mapParser, GameStage gameStage) {
