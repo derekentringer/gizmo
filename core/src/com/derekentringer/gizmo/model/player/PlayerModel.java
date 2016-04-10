@@ -3,7 +3,9 @@ package com.derekentringer.gizmo.model.player;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.BombModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.PotionLifeModel;
 
 import java.util.ArrayList;
 
@@ -28,12 +30,15 @@ public class PlayerModel extends BaseModel {
     private ArrayList<BasePlayerItemModel> mPrimaryItemList = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mSecondaryItemList = new ArrayList<BasePlayerItemModel>();
 
+    private ArrayList<BasePlayerItemModel> mBombArrayList = new ArrayList<BasePlayerItemModel>();
+    private ArrayList<BasePlayerItemModel> mPotionHealthArrayList = new ArrayList<BasePlayerItemModel>();
+
     private int mCurrentRoom;
     private int mLives;
     private int mHearts;
     private int mHealth;
     private int mCrystalBlueAmount;
-    //TODO
+    //todo
     private int mDiggingPower = 1;
 
     private BasePlayerItemModel mCurrentlySelectedItemPrimary;
@@ -156,6 +161,30 @@ public class PlayerModel extends BaseModel {
 
     public void setCurrentlySelectedItemSecondary(BasePlayerItemModel currentlySelectedItemSecondary) {
         mCurrentlySelectedItemSecondary = currentlySelectedItemSecondary;
+    }
+
+    public void addBombItem(BombModel bomb) {
+        mBombArrayList.add(bomb);
+    }
+
+    public void removeBombItem(BombModel bomb) {
+        mBombArrayList.remove(bomb);
+    }
+
+    public ArrayList<BasePlayerItemModel> getBombArrayList() {
+        return mBombArrayList;
+    }
+
+    public void addPotionLifeItem(PotionLifeModel potionLife) {
+        mPotionHealthArrayList.add(potionLife);
+    }
+
+    public void removePotionLifeItem(PotionLifeModel potionLife) {
+        mPotionHealthArrayList.remove(potionLife);
+    }
+
+    public ArrayList<BasePlayerItemModel> getPotionLifeArrayList() {
+        return mPotionHealthArrayList;
     }
     
 }
