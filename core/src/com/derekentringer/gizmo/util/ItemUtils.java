@@ -60,7 +60,6 @@ public class ItemUtils {
         bombActor.setName(BombModel.BOMB);
         mapParser.addToTempActorsArray(bombActor);
         bombActor.addListener(gameStage);
-        //todo put back after testing
         removeSecondaryItem(playerActor);
     }
 
@@ -78,7 +77,7 @@ public class ItemUtils {
 
     private static void removeSecondaryItem(PlayerActor playerActor) {
         playerActor.removeSecondaryItem(playerActor.getCurrentSecondaryItem());
-        playerActor.incrementSelectedSecondaryItem();
+        playerActor.autoIncrementSelectedSecondaryItem();
     }
 
 }

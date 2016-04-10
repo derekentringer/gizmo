@@ -352,23 +352,62 @@ public class PlayerActor extends BaseActor {
         return mPlayerModel.getCurrentlySelectedItemPrimary();
     }
 
+    public void autoIncrementSelectedSecondaryItem() {
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPlayerItemsSecondaryBase();
+        if (playerItems.size() > 0) {
+            if (playerItems.size() > 1) {
+                for (BasePlayerItemModel item : playerItems) {
+                    if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
+                        if (!mPlayerModel.isItemEmpty(item)) {
+                            setCurrentSecondaryItem(item);
+                            GLog.d(TAG, "KEEP setCurrentSecondaryItem: " + item.getItemType());
+                        }
+                        else {
+                            if (playerItems.indexOf(item) == playerItems.size() - 1) {
+                                setCurrentSecondaryItem(playerItems.get(0));
+                                GLog.d(TAG, "ZERO setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
+                                return;
+                            }
+                            else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
+                                int nextItemIndex = playerItems.indexOf(item) + 1;
+                                setCurrentSecondaryItem(playerItems.get(nextItemIndex));
+                                GLog.d(TAG, "NEXT setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                                return;
+                            }
+
+                        }
+                    }
+                }
+            }
+            else {
+                setCurrentSecondaryItem(playerItems.get(0));
+            }
+        }
+        else {
+            setCurrentSecondaryItem(null);
+            for (IPlayer listener : listeners) {
+                listener.setCurrentlySelectedItemSecondary(null);
+            }
+        }
+    }
+
     public void incrementSelectedSecondaryItem() {
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPlayerItemsSecondaryBase();
         if (playerItems.size() > 0) {
             if (playerItems.size() > 1) {
                 for (BasePlayerItemModel item : playerItems) {
                     if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
-                        if (playerItems.indexOf(item) == playerItems.size() - 1) {
-                            setCurrentSecondaryItem(playerItems.get(0));
-                            GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
-                            return;
-                        }
-                        else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
-                            int nextItemIndex = playerItems.indexOf(item) + 1;
-                            setCurrentSecondaryItem(playerItems.get(nextItemIndex));
-                            GLog.d(TAG, "setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
-                            return;
-                        }
+                            if (playerItems.indexOf(item) == playerItems.size() - 1) {
+                                setCurrentSecondaryItem(playerItems.get(0));
+                                GLog.d(TAG, "ZERO setCurrentSecondaryItem: " + playerItems.get(0).getItemType());
+                                return;
+                            }
+                            else if (playerItems.size() - 1 >= playerItems.indexOf(item) + 1) {
+                                int nextItemIndex = playerItems.indexOf(item) + 1;
+                                setCurrentSecondaryItem(playerItems.get(nextItemIndex));
+                                GLog.d(TAG, "NEXT setCurrentSecondaryItem: " + playerItems.get(nextItemIndex).getItemType());
+                                return;
+                            }
                     }
                 }
             }

@@ -6,6 +6,7 @@ import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.item.BombModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
 import com.derekentringer.gizmo.model.object.PotionLifeModel;
+import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
@@ -176,10 +177,28 @@ public class PlayerModel extends BaseModel {
     public void removeSecondaryItem(BasePlayerItemModel item) {
         if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
             removeBombItem(item);
+            GLog.d("PlayerModel", "getBombArrayList " +getBombArrayList().size());
         }
         else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
             removePotionLifeItem(item);
+            GLog.d("PlayerModel", "getPotionLifeArrayList " +getPotionLifeArrayList().size());
         }
+    }
+
+    public boolean isItemEmpty(BasePlayerItemModel item) {
+        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+            GLog.d("PlayerModel", "getBombArrayList: " + getBombArrayList().size());
+            if (getBombArrayList().size() <= 0) {
+                return true;
+            }
+        }
+        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+            GLog.d("PlayerModel", "getPotionLifeArrayList: " + getPotionLifeArrayList().size());
+            if (getPotionLifeArrayList().size() <= 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getCrystalBlueAmount() {
