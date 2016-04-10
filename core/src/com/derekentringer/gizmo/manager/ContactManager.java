@@ -166,8 +166,6 @@ public class ContactManager {
         }
         //bombs destroy blocks
         else if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.BLOCK_DESTROYABLE)) {
-            GLog.d(TAG, "bombs destroy block");
-            GLog.d(TAG, "health damage: " + ItemUtils.getItemHealthDamage(bodyA));
             BlockUtils.setBlockHealth(bodyB, ItemUtils.getItemHealthDamage(bodyA));
             if (BlockUtils.getBlockHealth(bodyB) <= 0) {
                 if (BlockUtils.getBlockDropsLoot(bodyB)) {
@@ -179,8 +177,6 @@ public class ContactManager {
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.BLOCK_DESTROYABLE)) {
-            GLog.d(TAG, "bombs destroy block");
-            GLog.d(TAG, "health damage: " + ItemUtils.getItemHealthDamage(bodyB));
             BlockUtils.setBlockHealth(bodyA, ItemUtils.getItemHealthDamage(bodyB));
             if (BlockUtils.getBlockHealth(bodyA) <= 0) {
                 if (BlockUtils.getBlockDropsLoot(bodyA)) {
@@ -276,7 +272,7 @@ public class ContactManager {
     }
 
     public static void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
-        //pick up any type of PLAYER_ITEM
+        //pick up player items
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             GLog.d(TAG, "setPlayerPickupItem: primary" + bodyB.getUserData().toString());
             playerActor.addPrimaryItem((BasePlayerItemModel) bodyA.getUserData());
@@ -305,7 +301,7 @@ public class ContactManager {
     }
 
     public static void setPlayerPickupSmallHeart(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
-        //pick up HEART_SMALL with PLAYER
+        //pick up HEART_SMALL
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART_SMALL)) {
             playerActor.addHealth((DropHeartModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((DropHeartModel) bodyB.getUserData(), bodyB));
