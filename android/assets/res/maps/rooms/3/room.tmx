@@ -94,7 +94,7 @@
  <objectgroup name="player_item">
   <object id="88" x="784.667" y="363.333">
    <properties>
-    <property name="item_type" value="BOOMERANG_BLOOD"/>
+    <property name="item_type" value="BOOMERANG_BLOODSTONE"/>
    </properties>
    <ellipse/>
   </object>

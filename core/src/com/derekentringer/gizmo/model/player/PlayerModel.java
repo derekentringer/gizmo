@@ -127,12 +127,19 @@ public class PlayerModel extends BaseModel {
         if (getSecondaryItems().size() > 0) {
             for (int i = 0; i < getSecondaryItems().size(); i++) {
                 ArrayList containerArray = getSecondaryItems().get(i);
+                ArrayList<String> addedItems = new ArrayList<String>();
                 for (int ii = 0; ii < containerArray.size(); ii++) {
-                    if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(BombModel.class.getSimpleName())) {
+                    if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(BombModel.class.getSimpleName())
+                            && !addedItems.contains(BombModel.class.getSimpleName())) {
+                        addedItems.add(BombModel.class.getSimpleName());
                         mBasePlayerItems.add((BasePlayerItemModel) containerArray.get(ii));
                     }
-                    else if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(PotionLifeModel.class.getSimpleName())) {
+                    else if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(PotionLifeModel.class.getSimpleName())
+                            && !addedItems.contains(PotionLifeModel.class.getSimpleName())) {
+
+                        addedItems.add(PotionLifeModel.class.getSimpleName());
                         mBasePlayerItems.add((BasePlayerItemModel) containerArray.get(ii));
+
                     }
                 }
             }
