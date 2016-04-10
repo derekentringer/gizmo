@@ -28,9 +28,7 @@ public class PlayerModel extends BaseModel {
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
 
     private ArrayList<BasePlayerItemModel> mPrimaryItemList = new ArrayList<BasePlayerItemModel>();
-    private ArrayList<ArrayList> mSecondaryItemList = new ArrayList<ArrayList>();
 
-    private ArrayList<BasePlayerItemModel> mBasePlayerItems = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mBombArrayList = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mPotionHealthArrayList = new ArrayList<BasePlayerItemModel>();
 
@@ -125,6 +123,7 @@ public class PlayerModel extends BaseModel {
     }
 
     public ArrayList<BasePlayerItemModel> getBasePlayerItems() {
+        ArrayList<BasePlayerItemModel> mBasePlayerItems = new ArrayList<BasePlayerItemModel>();
         if (getSecondaryItems().size() > 0) {
             for (int i = 0; i < getSecondaryItems().size(); i++) {
                 ArrayList containerArray = getSecondaryItems().get(i);
@@ -142,32 +141,7 @@ public class PlayerModel extends BaseModel {
     }
 
     public ArrayList<ArrayList> getSecondaryItems() {
-        return mSecondaryItemList;
-    }
-
-    public void addSecondaryItem(BasePlayerItemModel item) {
-        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
-            addBombItem(item);
-        }
-        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
-            addPotionLifeItem(item);
-        }
-        updateSecondaryItemList();
-    }
-
-    public void removeSecondaryItem(BasePlayerItemModel item) {
-        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
-            removeBombItem(item);
-        }
-        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
-            removePotionLifeItem(item);
-        }
-        updateSecondaryItemList();
-    }
-
-    //todo this is adding more bombs and potions
-    //not sure if it is needed...buggggssss
-    private void updateSecondaryItemList() {
+        ArrayList<ArrayList> mSecondaryItemList = new ArrayList<ArrayList>();
         if (getBombArrayList().size() > 0) {
             mSecondaryItemList.add(mBombArrayList);
         }
@@ -179,6 +153,25 @@ public class PlayerModel extends BaseModel {
         }
         else {
             mSecondaryItemList.remove(mPotionHealthArrayList);
+        }
+        return mSecondaryItemList;
+    }
+
+    public void addSecondaryItem(BasePlayerItemModel item) {
+        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+            addBombItem(item);
+        }
+        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+            addPotionLifeItem(item);
+        }
+    }
+
+    public void removeSecondaryItem(BasePlayerItemModel item) {
+        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+            removeBombItem(item);
+        }
+        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+            removePotionLifeItem(item);
         }
     }
 

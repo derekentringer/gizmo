@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="100">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="104">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32" tilecount="56">
   <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
@@ -94,7 +94,25 @@
  <objectgroup name="player_item">
   <object id="88" x="784.667" y="363.333">
    <properties>
+    <property name="item_type" value="BOOMERANG_BLOOD"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="101" x="879" y="430">
+   <properties>
+    <property name="item_type" value="BOOMERANG_AMETHYST"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="102" x="911" y="463">
+   <properties>
     <property name="item_type" value="BOOMERANG_EMERALD"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="103" x="945" y="496">
+   <properties>
+    <property name="item_type" value="BOOMERANG_WOOD"/>
    </properties>
    <ellipse/>
   </object>

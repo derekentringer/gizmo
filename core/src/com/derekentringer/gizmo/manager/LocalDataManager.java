@@ -54,7 +54,7 @@ public class LocalDataManager {
             GLog.d(TAG, "*** LOADED PLAYER DATA *** ");
             GLog.d(TAG, "getCurrentRoom: " + playerData.getCurrentRoom());
             GLog.d(TAG, "getPrimaryItems: " + playerData.getPrimaryItems());
-            GLog.d(TAG, "getPrimaryItems: " + playerData.getSecondaryItems());
+            GLog.d(TAG, "getSecondaryItems: " + playerData.getSecondaryItems());
             GLog.d(TAG, "getHearts: " + playerData.getHearts());
             GLog.d(TAG, "getLives: " + playerData.getLives());
             GLog.d(TAG, "getHealth: " + playerData.getHealth());
