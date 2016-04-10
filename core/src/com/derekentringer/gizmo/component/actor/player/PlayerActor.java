@@ -322,7 +322,6 @@ public class PlayerActor extends BaseActor {
     }
 
     public void deincrementSelectedPrimaryItem() {
-        GLog.d(TAG, "deincrementSelectedPrimaryItem");
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPrimaryItems();
         for (BasePlayerItemModel item : playerItems) {
             if (getCurrentPrimaryItem().getItemType().equals(item.getItemType())) {
@@ -354,7 +353,6 @@ public class PlayerActor extends BaseActor {
     }
 
     public void incrementSelectedSecondaryItem() {
-        GLog.d(TAG, "incrementSelectedSecondaryItem");
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getBasePlayerItems();
         if (playerItems.size() > 0) {
             if (playerItems.size() > 1) {
@@ -387,7 +385,6 @@ public class PlayerActor extends BaseActor {
     }
 
     public void deincrementSelectedSecondaryItem() {
-        GLog.d(TAG, "deincrementSelectedSecondaryItem");
         ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getBasePlayerItems();
         for (BasePlayerItemModel item : playerItems) {
             if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
