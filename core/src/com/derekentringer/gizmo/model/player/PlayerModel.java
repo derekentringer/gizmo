@@ -206,6 +206,18 @@ public class PlayerModel extends BaseModel {
         mCurrentlySelectedItemSecondary = currentlySelectedItemSecondary;
     }
 
+    public int getCurrentlySelectedItemSecondaryCount(BasePlayerItemModel item) {
+        if (item != null) {
+            if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+                return getBombArrayList().size();
+            }
+            else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+                return getPotionLifeArrayList().size();
+            }
+        }
+        return 0;
+    }
+
     public void addBombItem(BasePlayerItemModel bomb) {
         mBombArrayList.add(bomb);
     }

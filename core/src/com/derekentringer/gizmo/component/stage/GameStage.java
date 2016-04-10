@@ -514,7 +514,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                 UserInput.resetKey(UserInput.SWITCH_SECONDARY_BUTTON_BACKWARD, false);
                 mPlayerActor.deincrementSelectedSecondaryItem();
                 for (IGameStage listener : gameStageListeners) {
-                    listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary());
+                    listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary(),
+                            mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondaryCount(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary()));
                 }
             }
         }
@@ -525,7 +526,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                 UserInput.resetKey(UserInput.SWITCH_SECONDARY_BUTTON_FORWARD, false);
                 mPlayerActor.incrementSelectedSecondaryItem();
                 for (IGameStage listener : gameStageListeners) {
-                    listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary());
+                    listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary(),
+                            mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondaryCount(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary()));
                 }
             }
         }
@@ -586,7 +588,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                     //todo add other secondary items
 
                     for (IGameStage listener : gameStageListeners) {
-                        listener.setHudSelectedSecondaryItem(mPlayerActor.getCurrentSecondaryItem());
+                        listener.setHudSelectedSecondaryItem(mPlayerActor.getCurrentSecondaryItem(),
+                                mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondaryCount(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary()));
                     }
                 }
             }
@@ -665,7 +668,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
             listener.setHudLives(mPlayerActor.getBaseModel().getLives());
             listener.setCrystalCount(mPlayerActor.getBaseModel().getCrystalBlueAmount());
             listener.setHudSelectedPrimaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemPrimary());
-            listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary());
+            listener.setHudSelectedSecondaryItem(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary(),
+                    mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondaryCount(mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondary()));
         }
     }
 
@@ -703,7 +707,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     @Override
     public void setCurrentlySelectedItemSecondary(BasePlayerItemModel item) {
         for (IGameStage listener : gameStageListeners) {
-            listener.setHudSelectedSecondaryItem(item);
+            listener.setHudSelectedSecondaryItem(item,
+                    mPlayerActor.getBaseModel().getCurrentlySelectedItemSecondaryCount(item));
         }
     }
 

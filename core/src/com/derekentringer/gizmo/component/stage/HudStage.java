@@ -335,7 +335,7 @@ public class HudStage extends BaseStage implements IGameStage {
     }
 
     @Override
-    public void setHudSelectedSecondaryItem(BasePlayerItemModel item) {
+    public void setHudSelectedSecondaryItem(BasePlayerItemModel item, int numItems) {
         if (item != null && item.getItemType() != null && item.getItemType() != "") {
             GLog.d(TAG, "setHudSelectedSecondaryItem: " + item.getItemType());
 
@@ -344,6 +344,10 @@ public class HudStage extends BaseStage implements IGameStage {
             }
             else if (item.getItemType().equals(BombModel.BOMB)) {
                 mHudCurrentSecondaryItemTexture = mHudCurrentItemBomb;
+            }
+
+            if (numItems > 0) {
+                GLog.d(TAG, "total secondary items: " + numItems);
             }
 
         }
