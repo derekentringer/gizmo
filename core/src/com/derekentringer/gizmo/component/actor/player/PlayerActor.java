@@ -8,6 +8,7 @@ import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
+import com.derekentringer.gizmo.model.item.BombModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
@@ -16,6 +17,7 @@ import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.DropHeartModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.structure.door.DoorModel;
 import com.derekentringer.gizmo.util.BodyUtils;
@@ -177,11 +179,22 @@ public class PlayerActor extends BaseActor {
                 mPlayerModel.addPrimaryItem(playerModel.getPrimaryItems().get(i));
             }
         }
+
         if (playerModel.getSecondaryItems().size() > 0) {
             for (int i = 0; i < playerModel.getSecondaryItems().size(); i++) {
-                mPlayerModel.addSecondaryItem(playerModel.getSecondaryItems().get(i));
+                ArrayList containerArray = playerModel.getSecondaryItems().get(i);
+                for (int ii = 0; ii < containerArray.size(); ii++) {
+                    if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(BombModel.class.getSimpleName())) {
+                        mPlayerModel.addBombItem((BasePlayerItemModel) containerArray.get(ii));
+                    }
+                    else if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(PotionLifeModel.class.getSimpleName())) {
+                        mPlayerModel.addPotionLifeItem((BasePlayerItemModel) containerArray.get(ii));
+                    }
+                }
             }
+
         }
+
     }
 
     public void setHitEnemy(int healthDamage) {
@@ -342,7 +355,7 @@ public class PlayerActor extends BaseActor {
 
     public void incrementSelectedSecondaryItem() {
         GLog.d(TAG, "incrementSelectedSecondaryItem");
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
+        /*ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
         if (playerItems.size() > 0) {
             if (playerItems.size() > 1) {
                 for (BasePlayerItemModel item : playerItems) {
@@ -370,12 +383,12 @@ public class PlayerActor extends BaseActor {
             for (IPlayer listener : listeners) {
                 listener.setCurrentlySelectedItemSecondary(null);
             }
-        }
+        }*/
     }
 
     public void deincrementSelectedSecondaryItem() {
         GLog.d(TAG, "deincrementSelectedSecondaryItem");
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
+        /*ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
         for (BasePlayerItemModel item : playerItems) {
             if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == 0) {
@@ -390,7 +403,7 @@ public class PlayerActor extends BaseActor {
                     return;
                 }
             }
-        }
+        }*/
     }
 
     public void setCurrentSecondaryItem(BasePlayerItemModel item) {

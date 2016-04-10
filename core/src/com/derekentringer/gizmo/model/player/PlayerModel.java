@@ -28,7 +28,7 @@ public class PlayerModel extends BaseModel {
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
 
     private ArrayList<BasePlayerItemModel> mPrimaryItemList = new ArrayList<BasePlayerItemModel>();
-    private ArrayList mSecondaryItemList = new ArrayList();
+    private ArrayList<ArrayList> mSecondaryItemList = new ArrayList<ArrayList>();
 
     private ArrayList<BasePlayerItemModel> mBombArrayList = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mPotionHealthArrayList = new ArrayList<BasePlayerItemModel>();
@@ -123,7 +123,7 @@ public class PlayerModel extends BaseModel {
         }
     }
 
-    public ArrayList getSecondaryItems() {
+    public ArrayList<ArrayList> getSecondaryItems() {
         return mSecondaryItemList;
     }
 
