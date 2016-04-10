@@ -30,6 +30,7 @@ public class PlayerModel extends BaseModel {
     private ArrayList<BasePlayerItemModel> mPrimaryItemList = new ArrayList<BasePlayerItemModel>();
     private ArrayList<ArrayList> mSecondaryItemList = new ArrayList<ArrayList>();
 
+    private ArrayList<BasePlayerItemModel> mBasePlayerItems = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mBombArrayList = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mPotionHealthArrayList = new ArrayList<BasePlayerItemModel>();
 
@@ -121,6 +122,23 @@ public class PlayerModel extends BaseModel {
                 mPrimaryItemList.remove(i);
             }
         }
+    }
+
+    public ArrayList<BasePlayerItemModel> getBasePlayerItems() {
+        if (getSecondaryItems().size() > 0) {
+            for (int i = 0; i < getSecondaryItems().size(); i++) {
+                ArrayList containerArray = getSecondaryItems().get(i);
+                for (int ii = 0; ii < containerArray.size(); ii++) {
+                    if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(BombModel.class.getSimpleName())) {
+                        mBasePlayerItems.add((BasePlayerItemModel) containerArray.get(ii));
+                    }
+                    else if (containerArray.get(ii).getClass().getSimpleName().equalsIgnoreCase(PotionLifeModel.class.getSimpleName())) {
+                        mBasePlayerItems.add((BasePlayerItemModel) containerArray.get(ii));
+                    }
+                }
+            }
+        }
+        return mBasePlayerItems;
     }
 
     public ArrayList<ArrayList> getSecondaryItems() {

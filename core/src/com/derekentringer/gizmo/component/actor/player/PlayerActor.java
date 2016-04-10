@@ -169,11 +169,13 @@ public class PlayerActor extends BaseActor {
         mPlayerModel.setCrystalBlueAmount(playerModel.getCrystalBlueAmount());
         mPlayerModel.setCurrentlySelectedItemPrimary(playerModel.getCurrentlySelectedItemPrimary());
         mPlayerModel.setCurrentlySelectedItemSecondary(playerModel.getCurrentlySelectedItemSecondary());
+
         if (playerModel.getKeys().size() > 0) {
             for (int i = 0; i < playerModel.getKeys().size(); i++) {
                 mPlayerModel.addKey(playerModel.getKeys().get(i));
             }
         }
+
         if (playerModel.getPrimaryItems().size() > 0) {
             for (int i = 0; i < playerModel.getPrimaryItems().size(); i++) {
                 mPlayerModel.addPrimaryItem(playerModel.getPrimaryItems().get(i));
@@ -192,9 +194,7 @@ public class PlayerActor extends BaseActor {
                     }
                 }
             }
-
         }
-
     }
 
     public void setHitEnemy(int healthDamage) {
@@ -355,7 +355,7 @@ public class PlayerActor extends BaseActor {
 
     public void incrementSelectedSecondaryItem() {
         GLog.d(TAG, "incrementSelectedSecondaryItem");
-        /*ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getBasePlayerItems();
         if (playerItems.size() > 0) {
             if (playerItems.size() > 1) {
                 for (BasePlayerItemModel item : playerItems) {
@@ -383,12 +383,12 @@ public class PlayerActor extends BaseActor {
             for (IPlayer listener : listeners) {
                 listener.setCurrentlySelectedItemSecondary(null);
             }
-        }*/
+        }
     }
 
     public void deincrementSelectedSecondaryItem() {
         GLog.d(TAG, "deincrementSelectedSecondaryItem");
-        /*ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getSecondaryItems();
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getBasePlayerItems();
         for (BasePlayerItemModel item : playerItems) {
             if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == 0) {
@@ -403,7 +403,7 @@ public class PlayerActor extends BaseActor {
                     return;
                 }
             }
-        }*/
+        }
     }
 
     public void setCurrentSecondaryItem(BasePlayerItemModel item) {
