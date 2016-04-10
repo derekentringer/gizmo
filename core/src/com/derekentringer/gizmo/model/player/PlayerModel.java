@@ -28,7 +28,7 @@ public class PlayerModel extends BaseModel {
     private ArrayList<KeyModel> mKeyList = new ArrayList<KeyModel>();
 
     private ArrayList<BasePlayerItemModel> mPrimaryItemList = new ArrayList<BasePlayerItemModel>();
-    private ArrayList<BasePlayerItemModel> mSecondaryItemList = new ArrayList<BasePlayerItemModel>();
+    private ArrayList mSecondaryItemList = new ArrayList();
 
     private ArrayList<BasePlayerItemModel> mBombArrayList = new ArrayList<BasePlayerItemModel>();
     private ArrayList<BasePlayerItemModel> mPotionHealthArrayList = new ArrayList<BasePlayerItemModel>();
@@ -123,19 +123,42 @@ public class PlayerModel extends BaseModel {
         }
     }
 
-    public ArrayList<BasePlayerItemModel> getSecondaryItems() {
+    public ArrayList getSecondaryItems() {
         return mSecondaryItemList;
     }
 
-    public void addSecondaryItem(BasePlayerItemModel playerItem) {
-        mSecondaryItemList.add(playerItem);
+    public void addSecondaryItem(BasePlayerItemModel item) {
+        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+            addBombItem(item);
+        }
+        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+            addPotionLifeItem(item);
+        }
+        updateSecondaryItemList();
     }
 
-    public void removeSecondaryItem(BasePlayerItemModel playerItem) {
-        for (int i=0; i < mSecondaryItemList.size(); i++) {
-            if (mSecondaryItemList.get(i).getItemType().equalsIgnoreCase(playerItem.getItemType())) {
-                mSecondaryItemList.remove(i);
-            }
+    public void removeSecondaryItem(BasePlayerItemModel item) {
+        if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+            removeBombItem(item);
+        }
+        else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+            removePotionLifeItem(item);
+        }
+        updateSecondaryItemList();
+    }
+
+    private void updateSecondaryItemList() {
+        if (getBombArrayList().size() > 0) {
+            mSecondaryItemList.add(mBombArrayList);
+        }
+        else {
+            mSecondaryItemList.remove(mBombArrayList);
+        }
+        if (getPotionLifeArrayList().size() > 0) {
+            mSecondaryItemList.add(mPotionHealthArrayList);
+        }
+        else {
+            mSecondaryItemList.remove(mPotionHealthArrayList);
         }
     }
 
@@ -163,11 +186,11 @@ public class PlayerModel extends BaseModel {
         mCurrentlySelectedItemSecondary = currentlySelectedItemSecondary;
     }
 
-    public void addBombItem(BombModel bomb) {
+    public void addBombItem(BasePlayerItemModel bomb) {
         mBombArrayList.add(bomb);
     }
 
-    public void removeBombItem(BombModel bomb) {
+    public void removeBombItem(BasePlayerItemModel bomb) {
         mBombArrayList.remove(bomb);
     }
 
@@ -175,11 +198,11 @@ public class PlayerModel extends BaseModel {
         return mBombArrayList;
     }
 
-    public void addPotionLifeItem(PotionLifeModel potionLife) {
+    public void addPotionLifeItem(BasePlayerItemModel potionLife) {
         mPotionHealthArrayList.add(potionLife);
     }
 
-    public void removePotionLifeItem(PotionLifeModel potionLife) {
+    public void removePotionLifeItem(BasePlayerItemModel potionLife) {
         mPotionHealthArrayList.remove(potionLife);
     }
 
