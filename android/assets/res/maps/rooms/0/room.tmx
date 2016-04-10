@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="128">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="129">
  <tileset firstgid="1" name="gizmo" tilewidth="32" tileheight="32" tilecount="56">
   <image source="../../tileset/gizmo.png" width="256" height="224"/>
   <tile id="0">
@@ -47,7 +47,7 @@
  </layer>
  <layer name="destroyable_block_dirt" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0sENABAQRUEl6b86HbDiwJeZZM/2ZbUGAADASi/MT/TWJ9FJb2LzrCOle+f90/v+0Jskde+K1//ZLQMMAxNR
+   eJzt0sENACAIBEFKsv/qbACJ6EPvspPwlg1GAAAAAAC6RjKuslbX3lVrNapOWlWbqw6V7s77N7d16VWiuveO3//ZKxM3MRFx
   </data>
  </layer>
  <layer name="destroyable_block_clay" width="60" height="23">
@@ -94,7 +94,7 @@
  </layer>
  <layer name="ignore" width="60" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0kEKACAIRNFOFNT9D9emRYsorUCN/2AWQpADpgQAAAAA2MmC/IS+8kR00zdi51WPV71rj3Q+6TAqQ2ZvX8SS5n9vu2tF3VvC+51ZaSTsFEI=
+   eJzt0jEKACEMBVFPJOj9D2djYRElCYKJzINfCAvrgKUAAAAAAKyqsF9Jrb/27lpPy8rTmrX51HGru89pz56GVVsmfXtjL1n+H+3uVlnvrRH9nb0yAOOaEnY=
   </data>
  </layer>
  <objectgroup name="phantom">
@@ -177,6 +177,12 @@
   <object id="127" x="114" y="624">
    <properties>
     <property name="item_type" value="BOMB"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="128" x="241" y="562">
+   <properties>
+    <property name="item_type" value="POTION_LIFE"/>
    </properties>
    <ellipse/>
   </object>
