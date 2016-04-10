@@ -353,7 +353,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void incrementSelectedSecondaryItem() {
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getBasePlayerItems();
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPlayerItemsSecondaryBase();
         if (playerItems.size() > 0) {
             if (playerItems.size() > 1) {
                 for (BasePlayerItemModel item : playerItems) {
@@ -385,7 +385,7 @@ public class PlayerActor extends BaseActor {
     }
 
     public void deincrementSelectedSecondaryItem() {
-        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getBasePlayerItems();
+        ArrayList<BasePlayerItemModel> playerItems = mPlayerModel.getPlayerItemsSecondaryBase();
         for (BasePlayerItemModel item : playerItems) {
             if (getCurrentSecondaryItem().getItemType().equals(item.getItemType())) {
                 if (playerItems.indexOf(item) == 0) {

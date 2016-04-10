@@ -122,7 +122,7 @@ public class PlayerModel extends BaseModel {
         }
     }
 
-    public ArrayList<BasePlayerItemModel> getBasePlayerItems() {
+    public ArrayList<BasePlayerItemModel> getPlayerItemsSecondaryBase() {
         ArrayList<BasePlayerItemModel> mBasePlayerItems = new ArrayList<BasePlayerItemModel>();
         if (getSecondaryItems().size() > 0) {
             for (int i = 0; i < getSecondaryItems().size(); i++) {
