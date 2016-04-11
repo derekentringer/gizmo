@@ -104,6 +104,10 @@ public class HudStage extends BaseStage implements IGameStage {
     private String mBlueCrystalStringDisplay;
     private String mInitialCrystalString = "0";
 
+    private GlyphLayout mLayoutSecondaryItemCount;
+    private String mSecondaryItemCountStringDisplay = "";
+    private String mInitialSecondaryItemCountString = "";
+
     public HudStage(GameStage gameStage) {
         gameStage.addListener(this);
 
@@ -155,6 +159,7 @@ public class HudStage extends BaseStage implements IGameStage {
 
         mBitmapFont.getData().setScale(0.3f, 0.3f);
         mLayoutBlueCrystalCount = new GlyphLayout(mBitmapFont, mInitialCrystalString);
+        mLayoutSecondaryItemCount = new GlyphLayout(mBitmapFont, mInitialSecondaryItemCountString);
     }
 
     public void addListener(IHudStage listener) {
@@ -207,6 +212,7 @@ public class HudStage extends BaseStage implements IGameStage {
             mSpriteBatch.draw(mHudCurrentPrimaryItemTexture, mHudCurrentPrimaryItemPosition.x, mHudCurrentPrimaryItemPosition.y);
             mSpriteBatch.draw(mHudCurrentSecondaryItemTexture, mHudCurrentSecondaryItemPosition.x, mHudCurrentSecondaryItemPosition.y);
             mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 36, mHudCrystalsPosition.y + 23);
+            mBitmapFont.draw(mSpriteBatch, mSecondaryItemCountStringDisplay, mHudCurrentSecondaryItemPosition.x, mHudCurrentSecondaryItemPosition.y);
             mBitmapFont.setColor(1, 1, 1, 1);
         mSpriteBatch.end();
     }
@@ -346,8 +352,12 @@ public class HudStage extends BaseStage implements IGameStage {
                 mHudCurrentSecondaryItemTexture = mHudCurrentItemBomb;
             }
 
-            if (numItems > 0) {
+            if (numItems > 1) {
                 GLog.d(TAG, "select: total secondary items: " + numItems);
+                mSecondaryItemCountStringDisplay = Integer.toString(numItems);
+            }
+            else {
+                mSecondaryItemCountStringDisplay = "";
             }
 
         }
@@ -358,8 +368,12 @@ public class HudStage extends BaseStage implements IGameStage {
 
     @Override
     public void updateSelectedSecondaryItemCount(int numItems) {
-        if (numItems > 0) {
+        if (numItems > 1) {
             GLog.d(TAG, "update: total secondary items: " + numItems);
+            mSecondaryItemCountStringDisplay = Integer.toString(numItems);
+        }
+        else {
+            mSecondaryItemCountStringDisplay = "";
         }
     }
 
