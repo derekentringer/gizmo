@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class PlayerModel extends BaseModel {
 
+    private static final String TAG = PlayerModel.class.getSimpleName();
+
     public static final String PLAYER = "PLAYER";
     public static final String PLAYER_DESTINATIONS = "PLAYER_DESTINATIONS";
 
@@ -177,23 +179,23 @@ public class PlayerModel extends BaseModel {
     public void removeSecondaryItem(BasePlayerItemModel item) {
         if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
             removeBombItem(item);
-            GLog.d("PlayerModel", "getBombArrayList " +getBombArrayList().size());
+            GLog.d(TAG, "getBombArrayList " +getBombArrayList().size());
         }
         else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
             removePotionLifeItem(item);
-            GLog.d("PlayerModel", "getPotionLifeArrayList " +getPotionLifeArrayList().size());
+            GLog.d(TAG, "getPotionLifeArrayList " +getPotionLifeArrayList().size());
         }
     }
 
     public boolean isItemEmpty(BasePlayerItemModel item) {
         if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
-            GLog.d("PlayerModel", "getBombArrayList: " + getBombArrayList().size());
+            GLog.d(TAG, "getBombArrayList: " + getBombArrayList().size());
             if (getBombArrayList().size() <= 0) {
                 return true;
             }
         }
         else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
-            GLog.d("PlayerModel", "getPotionLifeArrayList: " + getPotionLifeArrayList().size());
+            GLog.d(TAG, "getPotionLifeArrayList: " + getPotionLifeArrayList().size());
             if (getPotionLifeArrayList().size() <= 0) {
                 return true;
             }
