@@ -212,7 +212,7 @@ public class HudStage extends BaseStage implements IGameStage {
             mSpriteBatch.draw(mHudCurrentPrimaryItemTexture, mHudCurrentPrimaryItemPosition.x, mHudCurrentPrimaryItemPosition.y);
             mSpriteBatch.draw(mHudCurrentSecondaryItemTexture, mHudCurrentSecondaryItemPosition.x, mHudCurrentSecondaryItemPosition.y);
             mBitmapFont.draw(mSpriteBatch, mBlueCrystalStringDisplay, mHudCrystalsPosition.x + 36, mHudCrystalsPosition.y + 23);
-            mBitmapFont.draw(mSpriteBatch, mSecondaryItemCountStringDisplay, mHudCurrentSecondaryItemPosition.x, mHudCurrentSecondaryItemPosition.y);
+            mBitmapFont.draw(mSpriteBatch, mSecondaryItemCountStringDisplay, mHudCurrentSecondaryItemPosition.x + 20, mHudCurrentSecondaryItemPosition.y + 11);
             mBitmapFont.setColor(1, 1, 1, 1);
         mSpriteBatch.end();
     }
