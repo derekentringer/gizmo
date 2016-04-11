@@ -246,8 +246,7 @@ public class BodyUtils {
         fixtureDef.isSensor = false;
 
         fixtureDef.filter.categoryBits = Constants.PLAYER_ATTACK_ENTITY;
-        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE | Constants.GROUND_ENTITY |
-                Constants.DROP_ENTITY | Constants.WALL_ENTITY;
+        fixtureDef.filter.maskBits = Constants.ENEMY_ENTITY | Constants.DESTROYABLE | Constants.GROUND_ENTITY | Constants.WALL_ENTITY;
 
         fixtureDef.friction = 75f;
 
