@@ -295,6 +295,12 @@ public class PlayerActor extends BaseActor {
             if (mPlayerModel.getSecondaryItems().size() == 1) {
                 setCurrentSecondaryItem(item);
             }
+
+            if (item.getItemType().equalsIgnoreCase(getCurrentSecondaryItem().getItemType())) {
+                for (IPlayer listener : listeners) {
+                    listener.updateSelectedSecondaryItemCount(mPlayerModel.getItemCount(item));
+                }
+            }
         }
     }
 

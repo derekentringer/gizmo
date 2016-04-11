@@ -201,6 +201,18 @@ public class PlayerModel extends BaseModel {
         return false;
     }
 
+    public int getItemCount(BasePlayerItemModel item) {
+        if (item != null) {
+            if (item.getItemType().equalsIgnoreCase(BombModel.BOMB)) {
+                return getBombArrayList().size();
+            }
+            else if (item.getItemType().equalsIgnoreCase(PotionLifeModel.POTION_LIFE)) {
+                return getPotionLifeArrayList().size();
+            }
+        }
+        return 0;
+    }
+
     public int getCrystalBlueAmount() {
         return mCrystalBlueAmount;
     }
