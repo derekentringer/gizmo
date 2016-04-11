@@ -9,12 +9,16 @@ public class StartScreen extends BaseScreen {
 
     private final static String TAG = StartScreen.class.getSimpleName();
 
-    private StartStage mStartStage;
     private Gizmo mGizmo;
+    private StartStage mStartStage;
 
     public StartScreen(Gizmo gizmo) {
         mGizmo = gizmo;
         mStartStage = new StartStage(this);
+
+        if (Gizmo.getGooglePlayServices() != null) {
+            Gizmo.getGooglePlayServices().signIn();
+        }
     }
 
     public void startGame() {

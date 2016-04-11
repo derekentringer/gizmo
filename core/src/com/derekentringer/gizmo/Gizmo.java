@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.component.screen.LoadingScreen;
+import com.derekentringer.gizmo.integrations.play.GooglePlayServices;
 import com.derekentringer.gizmo.network.RetroFitClient;
 import com.derekentringer.gizmo.settings.Constants;
 import com.derekentringer.gizmo.util.input.InputProcessor;
@@ -23,6 +24,11 @@ public class Gizmo extends Game {
     private static RetroFitClient mRetrofitClient;
     private FileHandle mBaseFileHandle;
     private static AssetManager mAssetManager;
+    private static GooglePlayServices mGooglePlayServices;
+
+    public Gizmo(GooglePlayServices googlePlayServices) {
+        mGooglePlayServices = googlePlayServices;
+    }
 
     @Override
     public void create() {
@@ -66,6 +72,10 @@ public class Gizmo extends Game {
 
     public static AssetManager getAssetManager() {
         return mAssetManager;
+    }
+
+    public static GooglePlayServices getGooglePlayServices() {
+        return mGooglePlayServices;
     }
 
     @Override

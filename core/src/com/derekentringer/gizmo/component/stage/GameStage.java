@@ -6,13 +6,12 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.analytics.Analytics;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBossAttack;
 import com.derekentringer.gizmo.component.actor.item.interfaces.IItems;
-import com.derekentringer.gizmo.model.object.BombModel;
-import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.actor.player.interfaces.IPlayer;
 import com.derekentringer.gizmo.component.actor.structure.door.DoorBlackActor;
@@ -35,8 +34,10 @@ import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangEmeraldModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangWoodModel;
+import com.derekentringer.gizmo.model.object.BombModel;
 import com.derekentringer.gizmo.model.object.BoomerangModel;
 import com.derekentringer.gizmo.model.object.KeyModel;
+import com.derekentringer.gizmo.model.object.PotionLifeModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
 import com.derekentringer.gizmo.model.room.RoomModel;
 import com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel;
@@ -118,6 +119,10 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         mMapParser.createTileMapObjects(mWorld, whichDoor);
 
         Analytics.sendEvent("progression", "Start:" + mRoomModel.getRoomInt(), mAttempts);
+
+        if (Gizmo.getGooglePlayServices() != null) {
+            Gizmo.getGooglePlayServices().unlockAchievement();
+        }
     }
 
     @Override

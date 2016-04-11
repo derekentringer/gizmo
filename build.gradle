@@ -64,6 +64,7 @@ project(":android") {
         compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
         compile "com.android.support:leanback-v17:$supportLibVersion"
         compile "com.android.support:appcompat-v7:$supportLibVersion"
+        compile project(path: ':BaseGameUtils')
     }
 }
 
