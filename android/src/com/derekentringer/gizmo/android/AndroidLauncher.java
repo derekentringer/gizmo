@@ -104,6 +104,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
 
     @Override
     public void unlockAchievement(String achievement) {
+        Gdx.app.log(TAG, "ACHIEVEMENT UNLOCKED! " + achievement);
         Games.Achievements.unlock(gameHelper.getApiClient(), achievement);
     }
 
