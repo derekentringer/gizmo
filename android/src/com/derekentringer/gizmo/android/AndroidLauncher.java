@@ -1,7 +1,6 @@
 package com.derekentringer.gizmo.android;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.badlogic.gdx.Gdx;
@@ -35,7 +34,6 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
             public void onSignInSucceeded(){
             }
         };
-
         gameHelper.setup(gameHelperListener);
 	}
 
@@ -89,8 +87,8 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
 
     @Override
     public void rateGame() {
-        String str = "play_store_link";
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));
+        /*String str = "play_store_link";
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));*/
     }
 
     @Override
@@ -130,4 +128,5 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
     public boolean isSignedIn() {
         return gameHelper.isSignedIn();
     }
+
 }
