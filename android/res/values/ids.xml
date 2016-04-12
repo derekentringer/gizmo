@@ -2,9 +2,10 @@
 <resources>
 	<string name="app_id">668392968537</string>
 	<string name="package_name">com.derekentringer.gizmo</string>
-	<string name="achievement_dags">CgkI2aLN-rkTEAIQAQ</string>
+	<string name="achievement_let_the_adventure_begin">CgkI2aLN-rkTEAIQDA</string>
+	<string name="achievement_ya_like_dags">CgkI2aLN-rkTEAIQAQ</string>
 	<string name="achievement_boomerang">CgkI2aLN-rkTEAIQBA</string>
-	<string name="achievement_head_shot">CgkI2aLN-rkTEAIQAw</string>
+	<string name="achievement_headshot">CgkI2aLN-rkTEAIQAw</string>
 	<string name="achievement_phantom_be_gone">CgkI2aLN-rkTEAIQAg</string>
 	<string name="achievement_game_over_man_game_over">CgkI2aLN-rkTEAIQBQ</string>
 	<string name="leaderboard_top_players">CgkI2aLN-rkTEAIQBw</string>

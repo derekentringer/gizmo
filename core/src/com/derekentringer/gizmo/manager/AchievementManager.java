@@ -24,11 +24,12 @@ public class AchievementManager {
 
     public void buildAchievementsPlayServices() {
         GLog.d(TAG, "building achievements");
-        achievementsPlayServices.put("achievement_dags", "CgkI2aLN-rkTEAIQAQ");
+        achievementsPlayServices.put("achievement_let_the_adventure_begin", "CgkI2aLN-rkTEAIQDA");
+        achievementsPlayServices.put("achievement_ya_like_dags", "CgkI2aLN-rkTEAIQAQ");
         achievementsPlayServices.put("achievement_boomerang", "CgkI2aLN-rkTEAIQBA");
-        achievementsPlayServices.put("achievement_head_shot", "CgkI2aLN-rkTEAIQAw");
+        achievementsPlayServices.put("achievement_headshot", "CgkI2aLN-rkTEAIQAw");
         achievementsPlayServices.put("achievement_phantom_be_gone", "CgkI2aLN-rkTEAIQAg");
-        achievementsPlayServices.put("achievement_game_over_man_game_over", "CgkI2aLN-rkTEAIQBw");
+        achievementsPlayServices.put("achievement_game_over_man_game_over", "CgkI2aLN-rkTEAIQBQ");
     }
 
     public String getAchievementsPlayServices(String key) {
