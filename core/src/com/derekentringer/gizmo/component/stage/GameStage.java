@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.analytics.Analytics;
+import com.derekentringer.gizmo.analytics.util.AnalyticsUtils;
 import com.derekentringer.gizmo.component.actor.BaseActor;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBoss;
 import com.derekentringer.gizmo.component.actor.enemy.boss.phantom.interfaces.IPhantomBossAttack;
@@ -27,9 +28,11 @@ import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.ContactManager;
 import com.derekentringer.gizmo.manager.DropManager;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.manager.interfaces.IAchievement;
 import com.derekentringer.gizmo.manager.interfaces.IDropManager;
 import com.derekentringer.gizmo.model.BaseModel;
 import com.derekentringer.gizmo.model.body.DeleteBody;
+import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangAmethystModel;
 import com.derekentringer.gizmo.model.item.boomerang.BoomerangBloodStoneModel;
@@ -57,7 +60,7 @@ import com.derekentringer.gizmo.util.map.interfaces.IMapParser;
 
 import java.util.ArrayList;
 
-public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropManager, IItems, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, IDestroyable, ContactListener {
+public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropManager, IItems, IAchievement, IHudStage, IPhantomBoss, IPhantomBossAttack, IDoor, IDestroyable, ContactListener {
 
     private static final String TAG = GameStage.class.getSimpleName();
 
@@ -68,6 +71,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     private CameraManager mCameraManager = new CameraManager();
     private DropManager mDropManager = new DropManager();
+    private ContactManager mContactManager = new ContactManager();
 
     private MapParser mMapParser;
 
@@ -103,6 +107,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         loadRoom(room, DoorType.DOOR_PREVIOUS);
         mCameraManager.createGameCameras();
         mDropManager.addListener(this);
+        mContactManager.addListener(this);
     }
 
     public void loadRoom(RoomModel room, String whichDoor) {
@@ -123,7 +128,12 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
         if (Gizmo.getGooglePlayServices() != null
                 && room.getRoomInt() == 0) {
-            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices("achievement_let_the_adventure_begin"));
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices(AchievementManager.LET_THE_ADVENTURE_BEGIN));
+        }
+
+        if (Gizmo.getGooglePlayServices() != null
+                && Integer.valueOf(AnalyticsUtils.getSessionNum()) > 0) {
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices(AchievementManager.YA_LIKE_DAGS));
         }
     }
 
@@ -134,17 +144,17 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
 
-        ContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
-        ContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
-        ContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
-        ContactManager.setPlayerAttacking(mMapParser, this, mWorld, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
-        ContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
-        ContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, bodyA, bodyB);
-        ContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
-        ContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
-        ContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
-        ContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
-        ContactManager.setPlayerPickupSmallCrystalBlue(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
+        mContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
+        mContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
+        mContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
+        mContactManager.setPlayerAttacking(mMapParser, this, mWorld, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
+        mContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
+        mContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, bodyA, bodyB);
+        mContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
+        mContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
+        mContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
+        mContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
+        mContactManager.setPlayerPickupSmallCrystalBlue(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
     }
 
     @Override
@@ -797,6 +807,14 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     @Override
     public void removeBlockFromMap(BaseActor baseActor) {
         mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) baseActor.getBody().getUserData());
+    }
+
+    @Override
+    public void playerPickedUpItem(BasePlayerItemModel item) {
+    }
+
+    @Override
+    public void playerKilledEnemy(BaseEnemyModel enemy) {
     }
 
     /*private void startBackgroundMusic() {

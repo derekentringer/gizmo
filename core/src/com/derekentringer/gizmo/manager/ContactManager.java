@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.component.actor.player.PlayerActor;
 import com.derekentringer.gizmo.component.stage.GameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
+import com.derekentringer.gizmo.manager.interfaces.IAchievement;
 import com.derekentringer.gizmo.model.BaseModelType;
 import com.derekentringer.gizmo.model.body.DeleteBody;
 import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
@@ -32,10 +33,16 @@ public class ContactManager {
 
     private static final String TAG = ContactManager.class.getSimpleName();
 
+    private ArrayList<IAchievement> mIAchievementListeners = new ArrayList<IAchievement>();
+
+    public void addListener(IAchievement listener) {
+        mIAchievementListeners.add(listener);
+    }
+
     public ContactManager() {
     }
 
-    public static void setPlayerOnGround(PlayerActor playerActor, Fixture fixtureA, Fixture fixtureB) {
+    public void setPlayerOnGround(PlayerActor playerActor, Fixture fixtureA, Fixture fixtureB) {
         // detect when player is on the ground
         if (FixtureUtils.fixtureIsPlayerHitAreaBottom(fixtureA) && FixtureUtils.fixtureIsGround(fixtureB)) {
             playerActor.setIsOnGround(true);
@@ -45,7 +52,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerAtDoor(PlayerActor playerActor, Body bodyA, Body bodyB) {
+    public void setPlayerAtDoor(PlayerActor playerActor, Body bodyA, Body bodyB) {
         // set player at door types
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.DOOR)) {
             playerActor.setIsAtDoor(true);
@@ -64,7 +71,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerTouchingDestroyable(PlayerActor playerActor, Fixture fixtureA, Fixture fixtureB) {
+    public void setPlayerTouchingDestroyable(PlayerActor playerActor, Fixture fixtureA, Fixture fixtureB) {
         // player fixture and destroyable detection
         // right fixture sensor detection
         if (FixtureUtils.fixtureIsPlayerHitAreaRight(fixtureA) && FixtureUtils.fixtureIsDestroyable(fixtureB)) {
@@ -93,7 +100,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerAttacking(MapParser mapParser, GameStage gameStage, World world, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public void setPlayerAttacking(MapParser mapParser, GameStage gameStage, World world, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //player attack with items collisions
         //primary and secondary bodyA & bodyB checks
 
@@ -112,6 +119,10 @@ public class ContactManager {
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
                 mapParser.addToDestroyedEnemyPositionArray(bodyB.getPosition());
+
+                for (IAchievement listener : mIAchievementListeners) {
+                    listener.playerKilledEnemy((BaseEnemyModel) bodyB.getUserData());
+                }
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
@@ -128,6 +139,10 @@ public class ContactManager {
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
                 mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
+
+                for (IAchievement listener : mIAchievementListeners) {
+                    listener.playerKilledEnemy((BaseEnemyModel) bodyA.getUserData());
+                }
             }
         }
 
@@ -146,6 +161,10 @@ public class ContactManager {
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyB.getUserData(), bodyB));
                 mapParser.addToDestroyedEnemyPositionArray(bodyB.getPosition());
+
+                for (IAchievement listener : mIAchievementListeners) {
+                    listener.playerKilledEnemy((BaseEnemyModel) bodyB.getUserData());
+                }
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY)) {
@@ -162,6 +181,10 @@ public class ContactManager {
                 }
                 deleteBodies.add(new DeleteBody((BaseEnemyModel) bodyA.getUserData(), bodyA));
                 mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
+
+                for (IAchievement listener : mIAchievementListeners) {
+                    listener.playerKilledEnemy((BaseEnemyModel) bodyA.getUserData());
+                }
             }
         }
         //bombs destroy blocks
@@ -189,7 +212,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerEnemyCollision(PlayerActor playerActor, Body bodyA, Body bodyB) {
+    public void setPlayerEnemyCollision(PlayerActor playerActor, Body bodyA, Body bodyB) {
         // player/enemy collisions
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.ENEMY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             playerActor.setHitEnemy(EnemyUtils.getEnemyBodyDamageAmount(bodyA));
@@ -203,7 +226,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupKey(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, Body bodyA, Body bodyB) {
+    public void setPlayerPickupKey(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, Body bodyA, Body bodyB) {
         // pickup a key
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.KEY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             mapParser.addToPickedUpKeyPositionArray(bodyA.getPosition());
@@ -219,7 +242,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupHeart(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+    public void setPlayerPickupHeart(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
         // pickup a heart
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.HEART) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             mapParser.addToPickedUpHeartPositionArray(bodyA.getPosition());
@@ -245,7 +268,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
+    public void setPlayerPickupLife(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, MapParser mapParser, ArrayList<IGameStage> listeners, Body bodyA, Body bodyB) {
         // pickup a life
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.LIFE) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             mapParser.addToPickedUpLifePositionArray(bodyA.getPosition());
@@ -271,19 +294,27 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public void setPlayerPickupItem(PlayerActor playerActor, RoomModel loadedRoomModel, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up player items
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
             GLog.d(TAG, "setPlayerPickupItem: primary" + bodyB.getUserData().toString());
             playerActor.addPrimaryItem((BasePlayerItemModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
+
+            for (IAchievement listener : mIAchievementListeners) {
+                listener.playerPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
+            }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             GLog.d(TAG, "setPlayerPickupItem: primary" + bodyB.getUserData().toString());
             playerActor.addPrimaryItem((BasePlayerItemModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
+
+            for (IAchievement listener : mIAchievementListeners) {
+                listener.playerPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
+            }
         }
 
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER)) {
@@ -291,16 +322,24 @@ public class ContactManager {
             playerActor.addSecondaryItem((BasePlayerItemModel) bodyA.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
+
+            for (IAchievement listener : mIAchievementListeners) {
+                listener.playerPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
+            }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
             GLog.d(TAG, "setPlayerPickupItem: secondary" + bodyB.getUserData().toString());
             playerActor.addSecondaryItem((BasePlayerItemModel) bodyB.getUserData());
             loadedRoomModel.addPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
+
+            for (IAchievement listener : mIAchievementListeners) {
+                listener.playerPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
+            }
         }
     }
 
-    public static void setPlayerPickupSmallHeart(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public void setPlayerPickupSmallHeart(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up HEART_SMALL
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.HEART_SMALL)) {
             playerActor.addHealth((DropHeartModel) bodyB.getUserData());
@@ -314,7 +353,7 @@ public class ContactManager {
         }
     }
 
-    public static void setPlayerPickupSmallCrystalBlue(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
+    public void setPlayerPickupSmallCrystalBlue(GameStage gameStage, PlayerActor playerActor, ArrayList<DeleteBody> deleteBodies, Body bodyA, Body bodyB) {
         //pick up CRYSTAL_BLUE with PLAYER
         if (BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER) && BodyUtils.bodyTypeCheck(bodyB, BaseModelType.CRYSTAL_BLUE)) {
             playerActor.incrementCrystalBlueAmount();
