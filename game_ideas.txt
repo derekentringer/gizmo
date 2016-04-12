@@ -26,6 +26,8 @@ add You Died screen
 
 bombs need to affect doors that are cracked
 
+need an achievements manager
+
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader
 
