@@ -26,8 +26,6 @@ add You Died screen
 
 bombs need to affect doors that are cracked
 
-need an achievements manager
-
 there is lag when too many dynamic objects are on screen - boss level - destroyable blocks - nexus player (not sure if other platforms)
 
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
