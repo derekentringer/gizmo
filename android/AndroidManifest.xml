@@ -26,7 +26,8 @@
         android:icon="@drawable/ic_launcher"
         android:isGame="true"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Leanback">
+        android:theme="@style/Theme.Leanback"
+	    android:largeHeap="true">
 
         <activity
             android:name=".AndroidLauncher"
