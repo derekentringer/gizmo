@@ -24,7 +24,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
 		initialize(new Gizmo(this), config);
 
         gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
-        gameHelper.enableDebugLog(false);
+        gameHelper.enableDebugLog(true);
 
         GameHelper.GameHelperListener gameHelperListener = new GameHelper.GameHelperListener() {
             @Override

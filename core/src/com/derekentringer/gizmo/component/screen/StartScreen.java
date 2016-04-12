@@ -15,10 +15,6 @@ public class StartScreen extends BaseScreen {
     public StartScreen(Gizmo gizmo) {
         mGizmo = gizmo;
         mStartStage = new StartStage(this);
-
-        /*if (Gizmo.getGooglePlayServices() != null) {
-            Gizmo.getGooglePlayServices().signIn();
-        }*/
     }
 
     public void startGame() {
