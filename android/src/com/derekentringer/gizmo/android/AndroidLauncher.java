@@ -128,5 +128,6 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
     public boolean isSignedIn() {
         return gameHelper.isSignedIn();
     }
+    
 
 }
