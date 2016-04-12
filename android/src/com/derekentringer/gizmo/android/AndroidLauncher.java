@@ -13,29 +13,38 @@ import com.google.example.games.basegameutils.GameHelper;
 
 public class AndroidLauncher extends AndroidApplication implements GooglePlayServices {
 
+    private static final String TAG = AndroidLauncher.class.getSimpleName();
+
+    private AndroidLauncher mAndroidLauncher;
+    AndroidApplicationConfiguration mConfig;
     private GameHelper gameHelper;
     private final static int requestCode = 1;
 
-	@Override
-	protected void onCreate (Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new Gizmo(this), config);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAndroidLauncher = this;
+        mConfig = new AndroidApplicationConfiguration();
 
         gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
         gameHelper.enableDebugLog(true);
 
         GameHelper.GameHelperListener gameHelperListener = new GameHelper.GameHelperListener() {
             @Override
-            public void onSignInFailed(){
+            public void onSignInFailed() {
+                Gdx.app.log(TAG, "Google Play Services Not Available");
+                initialize(new Gizmo(null), mConfig);
             }
 
             @Override
-            public void onSignInSucceeded(){
+            public void onSignInSucceeded() {
+                Gdx.app.log(TAG, "Google Play Services Available");
+                initialize(new Gizmo(mAndroidLauncher), mConfig);
             }
         };
         gameHelper.setup(gameHelperListener);
-	}
+    }
 
     @Override
     protected void onStart() {
@@ -66,7 +75,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
             });
         }
         catch (Exception e) {
-            Gdx.app.log("MainActivity", "Log in failed: " + e.getMessage() + ".");
+            Gdx.app.log(TAG, "Log in failed: " + e.getMessage() + ".");
         }
     }
 
@@ -81,7 +90,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
             });
         }
         catch (Exception e) {
-            Gdx.app.log("MainActivity", "Log out failed: " + e.getMessage() + ".");
+            Gdx.app.log(TAG, "Log out failed: " + e.getMessage() + ".");
         }
     }
 
@@ -92,8 +101,8 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
     }
 
     @Override
-    public void unlockAchievement() {
-        Games.Achievements.unlock(gameHelper.getApiClient(), getString(R.string.achievement_dags));
+    public void unlockAchievement(String achievement) {
+        Games.Achievements.unlock(gameHelper.getApiClient(), getString(Integer.valueOf(achievement)));
     }
 
     @Override
@@ -128,6 +137,5 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
     public boolean isSignedIn() {
         return gameHelper.isSignedIn();
     }
-    
 
 }

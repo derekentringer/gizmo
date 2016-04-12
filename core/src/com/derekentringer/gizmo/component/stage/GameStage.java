@@ -22,6 +22,7 @@ import com.derekentringer.gizmo.component.actor.structure.door.interfaces.IDoor;
 import com.derekentringer.gizmo.component.screen.GameScreen;
 import com.derekentringer.gizmo.component.stage.interfaces.IGameStage;
 import com.derekentringer.gizmo.component.stage.interfaces.IHudStage;
+import com.derekentringer.gizmo.manager.AchievementManager;
 import com.derekentringer.gizmo.manager.CameraManager;
 import com.derekentringer.gizmo.manager.ContactManager;
 import com.derekentringer.gizmo.manager.DropManager;
@@ -121,7 +122,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         Analytics.sendEvent("progression", "Start:" + mRoomModel.getRoomInt(), mAttempts);
 
         if (Gizmo.getGooglePlayServices() != null) {
-            Gizmo.getGooglePlayServices().unlockAchievement();
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices("achievement_dags"));
         }
     }
 
