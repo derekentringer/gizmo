@@ -21,7 +21,6 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-
 		initialize(new Gizmo(this), config);
 
         gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
