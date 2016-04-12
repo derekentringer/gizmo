@@ -34,13 +34,11 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
             @Override
             public void onSignInFailed() {
                 Gdx.app.log(TAG, "Google Play Services Not Available");
-
             }
 
             @Override
             public void onSignInSucceeded() {
                 Gdx.app.log(TAG, "Google Play Services Available");
-                //initialize(new Gizmo(mAndroidLauncher), mConfig);
             }
         };
         gameHelper.setup(gameHelperListener);
