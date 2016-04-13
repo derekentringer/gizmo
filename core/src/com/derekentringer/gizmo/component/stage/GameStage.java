@@ -127,7 +127,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         Analytics.sendEvent("progression", "Start:" + mRoomModel.getRoomInt(), mAttempts);
 
         if (Gizmo.getGooglePlayServices() != null
-                && room.getRoomInt() == 0) {
+                && room.getRoomInt() == 0
+                && Integer.valueOf(AnalyticsUtils.getSessionNum()) == 0) {
             Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices(AchievementManager.LET_THE_ADVENTURE_BEGIN));
         }
 
