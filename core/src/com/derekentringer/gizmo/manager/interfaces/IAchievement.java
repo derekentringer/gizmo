@@ -4,6 +4,6 @@ import com.derekentringer.gizmo.model.enemy.BaseEnemyModel;
 import com.derekentringer.gizmo.model.item.BasePlayerItemModel;
 
 public interface IAchievement {
-    void playerPickedUpItem(BasePlayerItemModel item);
-    void playerKilledEnemy(BaseEnemyModel enemy);
+    void achievementPlayerPickedUpItem(BasePlayerItemModel item);
+    void achievementPlayerKilledEnemy(BaseEnemyModel enemy);
 }

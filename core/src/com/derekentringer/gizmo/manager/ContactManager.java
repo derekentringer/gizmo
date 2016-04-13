@@ -121,7 +121,7 @@ public class ContactManager {
                 mapParser.addToDestroyedEnemyPositionArray(bodyB.getPosition());
 
                 for (IAchievement listener : mIAchievementListeners) {
-                    listener.playerKilledEnemy((BaseEnemyModel) bodyB.getUserData());
+                    listener.achievementPlayerKilledEnemy((BaseEnemyModel) bodyB.getUserData());
                 }
             }
         }
@@ -141,7 +141,7 @@ public class ContactManager {
                 mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
 
                 for (IAchievement listener : mIAchievementListeners) {
-                    listener.playerKilledEnemy((BaseEnemyModel) bodyA.getUserData());
+                    listener.achievementPlayerKilledEnemy((BaseEnemyModel) bodyA.getUserData());
                 }
             }
         }
@@ -163,7 +163,7 @@ public class ContactManager {
                 mapParser.addToDestroyedEnemyPositionArray(bodyB.getPosition());
 
                 for (IAchievement listener : mIAchievementListeners) {
-                    listener.playerKilledEnemy((BaseEnemyModel) bodyB.getUserData());
+                    listener.achievementPlayerKilledEnemy((BaseEnemyModel) bodyB.getUserData());
                 }
             }
         }
@@ -183,7 +183,7 @@ public class ContactManager {
                 mapParser.addToDestroyedEnemyPositionArray(bodyA.getPosition());
 
                 for (IAchievement listener : mIAchievementListeners) {
-                    listener.playerKilledEnemy((BaseEnemyModel) bodyA.getUserData());
+                    listener.achievementPlayerKilledEnemy((BaseEnemyModel) bodyA.getUserData());
                 }
             }
         }
@@ -303,7 +303,7 @@ public class ContactManager {
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
 
             for (IAchievement listener : mIAchievementListeners) {
-                listener.playerPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
+                listener.achievementPlayerPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_PRIMARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
@@ -313,7 +313,7 @@ public class ContactManager {
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
 
             for (IAchievement listener : mIAchievementListeners) {
-                listener.playerPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
+                listener.achievementPlayerPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             }
         }
 
@@ -324,7 +324,7 @@ public class ContactManager {
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyA.getUserData(), bodyA));
 
             for (IAchievement listener : mIAchievementListeners) {
-                listener.playerPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
+                listener.achievementPlayerPickedUpItem((BasePlayerItemModel) bodyA.getUserData());
             }
         }
         else if (BodyUtils.bodyTypeCheck(bodyB, BaseModelType.PLAYER_ITEM_SECONDARY) && BodyUtils.bodyTypeCheck(bodyA, BaseModelType.PLAYER)) {
@@ -334,7 +334,7 @@ public class ContactManager {
             deleteBodies.add(new DeleteBody((BasePlayerItemModel) bodyB.getUserData(), bodyB));
 
             for (IAchievement listener : mIAchievementListeners) {
-                listener.playerPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
+                listener.achievementPlayerPickedUpItem((BasePlayerItemModel) bodyB.getUserData());
             }
         }
     }

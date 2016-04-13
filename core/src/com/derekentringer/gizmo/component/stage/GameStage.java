@@ -127,14 +127,13 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         Analytics.sendEvent("progression", "Start:" + mRoomModel.getRoomInt(), mAttempts);
 
         if (Gizmo.getGooglePlayServices() != null
-                && room.getRoomInt() == 0
-                && Integer.valueOf(AnalyticsUtils.getSessionNum()) == 0) {
-            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices(AchievementManager.LET_THE_ADVENTURE_BEGIN));
+                && room.getRoomInt() == 0) {
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.LET_THE_ADVENTURE_BEGIN));
         }
 
         if (Gizmo.getGooglePlayServices() != null
-                && Integer.valueOf(AnalyticsUtils.getSessionNum()) > 0) {
-            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getInstance().getAchievementsPlayServices(AchievementManager.YA_LIKE_DAGS));
+                && Integer.valueOf(AnalyticsUtils.getSessionNum()) > 3) {
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.YA_LIKE_DAGS));
         }
     }
 
@@ -811,11 +810,20 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     }
 
     @Override
-    public void playerPickedUpItem(BasePlayerItemModel item) {
+    public void achievementPlayerPickedUpItem(BasePlayerItemModel item) {
+        if (item.getItemType().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.BOOMERANG_WOOD));
+        }
     }
 
     @Override
-    public void playerKilledEnemy(BaseEnemyModel enemy) {
+    public void achievementPlayerKilledEnemy(BaseEnemyModel enemy) {
+        if (enemy.isBoss()) {
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.PHANTOM_BE_GONE));
+        }
+        else {
+            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.HEADSHOT));
+        }
     }
 
     /*private void startBackgroundMusic() {

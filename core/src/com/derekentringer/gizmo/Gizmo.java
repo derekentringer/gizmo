@@ -53,7 +53,7 @@ public class Gizmo extends Game {
         Analytics.initialize();
 
         if (getGooglePlayServices() != null) {
-            AchievementManager.getInstance().buildAchievementsPlayServices();
+            AchievementManager.buildAchievementsPlayServices();
         }
 
         setScreen(new LoadingScreen(this));
