@@ -811,18 +811,21 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     @Override
     public void achievementPlayerPickedUpItem(BasePlayerItemModel item) {
-        if (item.getItemType().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
+        if (Gizmo.getGooglePlayServices() != null
+                && item.getItemType().equalsIgnoreCase(BoomerangWoodModel.BOOMERANG_WOOD)) {
             Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.BOOMERANG_WOOD));
         }
     }
 
     @Override
     public void achievementPlayerKilledEnemy(BaseEnemyModel enemy) {
-        if (enemy.isBoss()) {
-            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.PHANTOM_BE_GONE));
-        }
-        else {
-            Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.HEADSHOT));
+        if (Gizmo.getGooglePlayServices() != null) {
+            if (enemy.isBoss()) {
+                Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.PHANTOM_BE_GONE));
+            }
+            else {
+                Gizmo.getGooglePlayServices().unlockAchievement(AchievementManager.getAchievementsPlayServices(AchievementManager.HEADSHOT));
+            }
         }
     }
 
