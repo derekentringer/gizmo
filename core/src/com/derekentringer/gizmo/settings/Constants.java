@@ -37,6 +37,7 @@ public class Constants {
     public static final int GAME_HEIGHT = 360;
     public static final int ASPECT_RATIO = GAME_WIDTH / GAME_HEIGHT;
     public static final float PPM = 100;
+    public static final int TOTAL_NUM_ROOMS = 3;
 
     // world
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -9.81f);

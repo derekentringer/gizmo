@@ -12,7 +12,7 @@ public class RoomUtils {
     private static final String TAG = RoomUtils.class.getSimpleName();
 
     public static final ArrayList<RoomModel> rooms = new ArrayList<RoomModel>();
-    private static final int numRooms = LocalDataManager.getNumberOfLevels();
+    private static final int numRooms = Constants.TOTAL_NUM_ROOMS;
 
     public static void buildRoomList() {
         for (int i = 0; i <= numRooms; i++) {
