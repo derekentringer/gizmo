@@ -22,13 +22,16 @@ public class LocalDataManager {
     public static final String DIR_ROOMS = "res/maps/rooms/";
 
     public static int getNumberOfLevels() {
+
         FileHandle[] files = Gdx.files.internal(DIR_ROOMS).list();
         int numDirs = 0;
         for (FileHandle file : files) {
             if (file.isDirectory()) {
+                GLog.d(TAG, "room loaded: " + numDirs);
                 numDirs++;
             }
         }
+        GLog.d(TAG, "total rooms loaded: " + numDirs);
         return numDirs;
     }
 

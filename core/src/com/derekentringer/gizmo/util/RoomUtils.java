@@ -2,10 +2,14 @@ package com.derekentringer.gizmo.util;
 
 import com.derekentringer.gizmo.manager.LocalDataManager;
 import com.derekentringer.gizmo.model.room.RoomModel;
+import com.derekentringer.gizmo.settings.Constants;
+import com.derekentringer.gizmo.util.log.GLog;
 
 import java.util.ArrayList;
 
 public class RoomUtils {
+
+    private static final String TAG = RoomUtils.class.getSimpleName();
 
     public static final ArrayList<RoomModel> rooms = new ArrayList<RoomModel>();
     private static final int numRooms = LocalDataManager.getNumberOfLevels();
@@ -18,6 +22,13 @@ public class RoomUtils {
                     LocalDataManager.DIR_ROOMS + i + "/mid_background.tmx",
                     LocalDataManager.DIR_ROOMS + i + "/background.tmx"
             ));
+
+            if (Constants.IS_DEBUG) {
+                GLog.d(TAG, "rooms info: " + rooms.get(i).getRoomInt());
+                GLog.d(TAG, "rooms info: " + rooms.get(i).getRoomBackMap());
+                GLog.d(TAG, "rooms info: " + rooms.get(i).getRoomMidMap());
+                GLog.d(TAG, "rooms info: " + rooms.get(i).getRoomMap());
+            }
         }
     }
 
