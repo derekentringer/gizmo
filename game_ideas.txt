@@ -88,8 +88,6 @@ add barking ability for ghosts (the most basic attack)
 
 -----
 
-gizmo starts off as a small dog, but soon gets a power up that make him slightly bigger and standing on two legs
-
 Noir type game
 shadow monsters
 other underground enemies
