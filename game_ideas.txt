@@ -16,9 +16,9 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
-need to look at jumping (mimic bombs more maybe)
+add health indicators to bosses
 
-check on the bomb throwing
+setup showAchievements from menu
 
 add controls to pause screen
 
@@ -28,10 +28,10 @@ bombs need to affect doors that are cracked
 
 there is lag when too many dynamic objects are on screen - boss level - destroyable blocks - nexus player (not sure if other platforms)
 
-add health indicators to bosses
-
 give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader
+
+
 
 controller support
 	- buy controllers - see above
