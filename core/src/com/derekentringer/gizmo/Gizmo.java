@@ -23,7 +23,7 @@ public class Gizmo extends Game {
     private static I18NBundle mI18NBundleDebug;
     private static I18NBundle mI18NBundle;
     private static RetroFitClient mRetrofitClient;
-    private FileHandle mBaseFileHandle;
+    private FileHandle mGdxFileHandle;
     private static AssetManager mAssetManager;
     private static GooglePlayServices mGooglePlayServices;
 
@@ -45,9 +45,9 @@ public class Gizmo extends Game {
 
         mAssetManager = new AssetManager();
 
-        mBaseFileHandle = Gdx.files.internal("i18n/I18NBundle");
-        mI18NBundleDebug = I18NBundle.createBundle(mBaseFileHandle, Constants.debugLocale);
-        mI18NBundle = I18NBundle.createBundle(mBaseFileHandle);
+        mGdxFileHandle = Gdx.files.internal("i18n/I18NBundle");
+        mI18NBundleDebug = I18NBundle.createBundle(mGdxFileHandle, Constants.debugLocale);
+        mI18NBundle = I18NBundle.createBundle(mGdxFileHandle);
 
         AnalyticsUtils.incrementSessionNum();
         Analytics.initialize();
