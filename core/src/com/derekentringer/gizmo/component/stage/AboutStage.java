@@ -20,7 +20,7 @@ public class AboutStage extends BaseStage {
     private String mVersion = Gizmo.getmI18NBundle().get("aboutStage_version") + " " + mVersionNumber;
 
     private GlyphLayout mLayoutAbout;
-    private String pauseStringDisplay;
+    private String versionStringDisplay;
 
     private boolean mToggleSelectionFlag;
 
@@ -36,7 +36,7 @@ public class AboutStage extends BaseStage {
         gameWidthHeight.y = Constants.GAME_HEIGHT;
 
         mLayoutAbout = new GlyphLayout(mBitmapFont, mVersion);
-        pauseStringDisplay = mVersion;
+        versionStringDisplay = mVersion;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class AboutStage extends BaseStage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-        mBitmapFont.draw(mSpriteBatch, pauseStringDisplay, centerScreenX - mLayoutAbout.width / 2, centerScreenY);
+        mBitmapFont.draw(mSpriteBatch, versionStringDisplay, centerScreenX - mLayoutAbout.width / 2, centerScreenY);
         mSpriteBatch.end();
     }
 
