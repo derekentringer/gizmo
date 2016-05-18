@@ -16,6 +16,8 @@ need to map xbox360, xbox one, fire tv/stick controllers, nvidia shield
 new additions needed
 ------------------------------------------------------------------------------
 
+fix bug with breaking blocks
+
 add health indicators to bosses
 
 setup showAchievements from menu
