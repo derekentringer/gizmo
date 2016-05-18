@@ -426,6 +426,8 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                         mPlayerActor.setTouchingBodyDestroyableRight(null);
                     }
                 }
+                //TODO java.lang.ClassCastException: com.derekentringer.gizmo.model.block.BlockBreakModel cannot be cast to com.derekentringer.gizmo.model.structure.destroyable.BaseDestroyableModel
+                //at com.derekentringer.gizmo.util.BlockUtils.setBlockHealth(BlockUtils.java:23)
                 else if (UserInput.isDown(UserInput.LEFT_BUTTON) && mPlayerActor.getTouchingBodyDestroyableLeft() != null) {
                     BlockUtils.setBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft(), mPlayerModel.getDiggingPower());
                     if (BlockUtils.getBlockHealth(mPlayerActor.getTouchingBodyDestroyableLeft()) <= 0) {
