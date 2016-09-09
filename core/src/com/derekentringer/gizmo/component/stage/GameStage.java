@@ -80,7 +80,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     private boolean mIsPlayerDead = false;
 
     private RoomModel mRoomModel;
-    private RoomModel mLoadedRoomModel;
+    private RoomModel mLoadedRoomModelData;
 
     private DoorGoldActor mDoorGoldActor;
     private DoorBronzeActor mDoorBronzeActor;
@@ -113,13 +113,13 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     public void loadRoom(RoomModel room, String whichDoor) {
         GLog.d(TAG, "loading room: " + room.getRoomInt());
         if (LocalDataManager.loadRoomData(room) != null) {
-            mLoadedRoomModel = LocalDataManager.loadRoomData(room);
+            mLoadedRoomModelData = LocalDataManager.loadRoomData(room);
         }
         else {
-            mLoadedRoomModel = room;
+            mLoadedRoomModelData = room;
         }
 
-        mMapParser = new MapParser(this, mLoadedRoomModel, room.getRoomMap(), room.getRoomMidMap(), room.getRoomBackMap());
+        mMapParser = new MapParser(this, mLoadedRoomModelData, room.getRoomMap(), room.getRoomMidMap(), room.getRoomBackMap());
         mMapParser.addListener(this);
         mMapParser.createTileMapLayers(mWorld);
         mMapParser.createTileMapObjects(mWorld, whichDoor);
@@ -147,12 +147,12 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         mContactManager.setPlayerOnGround(mPlayerActor, fixtureA, fixtureB);
         mContactManager.setPlayerAtDoor(mPlayerActor, bodyA, bodyB);
         mContactManager.setPlayerTouchingDestroyable(mPlayerActor, fixtureA, fixtureB);
-        mContactManager.setPlayerAttacking(mMapParser, this, mWorld, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
+        mContactManager.setPlayerAttacking(mMapParser, this, mWorld, mLoadedRoomModelData, mDeleteBodies, bodyA, bodyB);
         mContactManager.setPlayerEnemyCollision(mPlayerActor, bodyA, bodyB);
-        mContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, bodyA, bodyB);
-        mContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
-        mContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModel, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
-        mContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModel, mDeleteBodies, bodyA, bodyB);
+        mContactManager.setPlayerPickupKey(mPlayerActor, mLoadedRoomModelData, mDeleteBodies, mMapParser, bodyA, bodyB);
+        mContactManager.setPlayerPickupHeart(mPlayerActor, mLoadedRoomModelData, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
+        mContactManager.setPlayerPickupLife(mPlayerActor, mLoadedRoomModelData, mDeleteBodies, mMapParser, gameStageListeners, bodyA, bodyB);
+        mContactManager.setPlayerPickupItem(mPlayerActor, mLoadedRoomModelData, mDeleteBodies, bodyA, bodyB);
         mContactManager.setPlayerPickupSmallHeart(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
         mContactManager.setPlayerPickupSmallCrystalBlue(this, mPlayerActor, mDeleteBodies, bodyA, bodyB);
     }
@@ -245,7 +245,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     public void quitGame() {
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
-        LocalDataManager.saveRoomData(mLoadedRoomModel);
+        LocalDataManager.saveRoomData(mLoadedRoomModelData);
     }
 
     private void addDroppedItems() {
@@ -420,7 +420,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
                         }
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData(), mPlayerActor.getTouchingBodyDestroyableRight()));
-                        mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData());
+                        mLoadedRoomModelData.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableRight().getUserData());
 
                         mMapParser.addToDestroyedBlockPositionArray(mPlayerActor.getTouchingBodyDestroyableRight().getPosition());
                         mPlayerActor.setTouchingBodyDestroyableRight(null);
@@ -435,7 +435,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableLeft().getPosition());
                         }
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData(), mPlayerActor.getTouchingBodyDestroyableLeft()));
-                        mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData());
+                        mLoadedRoomModelData.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableLeft().getUserData());
 
                         mMapParser.addToDestroyedBlockPositionArray(mPlayerActor.getTouchingBodyDestroyableLeft().getPosition());
                         mPlayerActor.setTouchingBodyDestroyableLeft(null);
@@ -448,7 +448,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
                             mMapParser.addToDroppedItemPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
                         }
                         mDeleteBodies.add(new DeleteBody((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData(), mPlayerActor.getTouchingBodyDestroyableBottom()));
-                        mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
+                        mLoadedRoomModelData.addDestroyedBlock((BaseDestroyableModel) mPlayerActor.getTouchingBodyDestroyableBottom().getUserData());
 
                         mMapParser.addToDestroyedBlockPositionArray(mPlayerActor.getTouchingBodyDestroyableBottom().getPosition());
                         mPlayerActor.setTouchingBodyDestroyableBottom(null);
@@ -647,7 +647,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
         mPlayerActor.setCurrentRoom(newRoom);
 
         LocalDataManager.savePlayerActorData(mPlayerActor.getBaseModel());
-        LocalDataManager.saveRoomData(mLoadedRoomModel);
+        LocalDataManager.saveRoomData(mLoadedRoomModelData);
 
         loadRoom(RoomUtils.rooms.get(newRoom), whichDestDoor);
 
@@ -790,7 +790,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
     public void hudFadeInComplete(String doorType) {
         if (mPlayerActor.getIsAtDoorUserData().getRoomNumber() != -1
                 && mPlayerActor.getIsAtDoorUserData().getDestinationDoor() != null) {
-            mLoadedRoomModel.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
+            mLoadedRoomModelData.addOpenedDoor(mPlayerActor.getIsAtDoorUserData());
             loadNewRoom(mRoomModel.getRoomInt(), mPlayerActor.getIsAtDoorUserData().getRoomNumber(), mPlayerActor.getIsAtDoorUserData().getDestinationDoor());
         }
     }
@@ -808,7 +808,7 @@ public class GameStage extends BaseStage implements IMapParser, IPlayer, IDropMa
 
     @Override
     public void removeBlockFromMap(BaseActor baseActor) {
-        mLoadedRoomModel.addDestroyedBlock((BaseDestroyableModel) baseActor.getBody().getUserData());
+        mLoadedRoomModelData.addDestroyedBlock((BaseDestroyableModel) baseActor.getBody().getUserData());
     }
 
     @Override
