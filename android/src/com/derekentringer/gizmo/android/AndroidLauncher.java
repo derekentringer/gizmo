@@ -115,7 +115,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
 
     @Override
     public void showAchievement() {
-        if (isSignedIn() == true) {
+        if (isSignedIn()) {
             startActivityForResult(Games.Achievements.getAchievementsIntent(gameHelper.getApiClient()), requestCode);
         }
         else {
@@ -125,7 +125,7 @@ public class AndroidLauncher extends AndroidApplication implements GooglePlaySer
 
     @Override
     public void showScore() {
-        /*if (isSignedIn() == true) {
+        /*if (isSignedIn()) {
             startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
                     getString(R.string.achievement_dags)), requestCode);
         }

@@ -18,8 +18,9 @@ public class StartScreen extends BaseScreen {
     }
 
     public void startGame() {
-        mGizmo.setScreen(new GameScreen());
-        this.dispose();
+        //mGizmo.setScreen(new GameScreen());
+        //this.dispose();
+        Gizmo.getGooglePlayServices().showAchievement();
     }
 
     public void viewGameControls() {
