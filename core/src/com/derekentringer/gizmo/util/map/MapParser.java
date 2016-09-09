@@ -100,12 +100,12 @@ public class MapParser extends Stage {
 
     private float mTileSize;
 
-    private RoomModel mLoadedRoomModel;
+    private RoomModel mLoadedRoomModelData;
 
-    public MapParser(GameStage gameStage, RoomModel loadedRoomModel, String tileMapName, String tileMapMidBackground, String tileMapBackground) {
+    public MapParser(GameStage gameStage, RoomModel loadedRoomModelData, String tileMapName, String tileMapMidBackground, String tileMapBackground) {
         mGameStage = gameStage;
 
-        mLoadedRoomModel = loadedRoomModel;
+        mLoadedRoomModelData = loadedRoomModelData;
 
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
         params.textureMagFilter = Texture.TextureFilter.Nearest;
@@ -264,7 +264,7 @@ public class MapParser extends Stage {
                         }
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT)) {
                             Vector2 blockPosition = new Vector2(row, col);
-                            if (!loopThruDestroyedBlocksArray(mLoadedRoomModel.getDestroyedBlockList(), blockPosition)) {
+                            if (!loopThruDestroyedBlocksArray(mLoadedRoomModelData.getDestroyedBlockList(), blockPosition)) {
                                 DestroyableBlockDirtActor destroyableBlockDirtActor = new DestroyableBlockDirtActor(BodyUtils.createDestroyableBody(new DestroyableBlockDirtModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
                                 destroyableBlockDirtActor.setName(DestroyableBlockDirtModel.DESTROYABLE_BLOCK_DIRT);
                                 addActor(destroyableBlockDirtActor);
@@ -273,7 +273,7 @@ public class MapParser extends Stage {
                         }
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY)) {
                             Vector2 blockPosition = new Vector2(row, col);
-                            if (!loopThruDestroyedBlocksArray(mLoadedRoomModel.getDestroyedBlockList(), blockPosition)) {
+                            if (!loopThruDestroyedBlocksArray(mLoadedRoomModelData.getDestroyedBlockList(), blockPosition)) {
                                 DestroyableBlockClayActor destroyableBlockClayActor = new DestroyableBlockClayActor(BodyUtils.createDestroyableBody(new DestroyableBlockClayModel(WorldUtils.randomBoolean(), row, col), world, mTileSize, row, col, false));
                                 destroyableBlockClayActor.setName(DestroyableBlockClayModel.DESTROYABLE_BLOCK_CLAY);
                                 addActor(destroyableBlockClayActor);
@@ -282,7 +282,7 @@ public class MapParser extends Stage {
                         }
                         else if (curLayerName.equalsIgnoreCase(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL)) {
                             Vector2 blockPosition = new Vector2(row, col);
-                            if (!loopThruDestroyedBlocksArray(mLoadedRoomModel.getDestroyedBlockList(), blockPosition)) {
+                            if (!loopThruDestroyedBlocksArray(mLoadedRoomModelData.getDestroyedBlockList(), blockPosition)) {
                                 DestroyableBlockFallActor destroyableBlockFallActor = new DestroyableBlockFallActor(BodyUtils.createFallingBlockBody(new DestroyableBlockFallModel(row, col), world, mTileSize, row, col, false));
                                 destroyableBlockFallActor.setName(DestroyableBlockFallModel.DESTROYABLE_BLOCK_FALL);
                                 addActor(destroyableBlockFallActor);
@@ -343,7 +343,7 @@ public class MapParser extends Stage {
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(PhantomLargeModel.PHANTOM_LARGE)) {
                     String bossType = (String) mapObject.getProperties().get(BOSS_TYPE);
-                    if (!loopThruDestroyedBossArray(mLoadedRoomModel.getDestroyedBossList(), bossType)) {
+                    if (!loopThruDestroyedBossArray(mLoadedRoomModelData.getDestroyedBossList(), bossType)) {
                         PhantomBossActor phantomBoss = new PhantomBossActor(world, mGameStage, EnemyUtils.createLargePhantom(new PhantomLargeModel(true, bossType), world, getMapObjectCoords(mapObject)));
                         phantomBoss.setName(PhantomLargeModel.PHANTOM_LARGE);
                         addActor(phantomBoss);
@@ -358,7 +358,7 @@ public class MapParser extends Stage {
                 }
                 else if (mapLayer.getName().equalsIgnoreCase(KeyModel.KEY)) {
                     String keyType = (String) mapObject.getProperties().get(KEY_TYPE);
-                    if (!loopThruPickedUpKeysArray(mLoadedRoomModel.getPickedUpKeys(), keyType)) {
+                    if (!loopThruPickedUpKeysArray(mLoadedRoomModelData.getPickedUpKeys(), keyType)) {
                         KeyActor keyActor = new KeyActor(ObjectUtils.createKey(new KeyModel(keyType), world, getMapObjectCoords(mapObject)), keyType);
                         keyActor.setName(KeyModel.KEY);
                         addActor(keyActor);
@@ -368,7 +368,7 @@ public class MapParser extends Stage {
                 else if (mapLayer.getName().equalsIgnoreCase(HeartModel.HEART)) {
                     // do not load a heart if it was picked up already
                     // only supporting one heart per room atm
-                    if (mLoadedRoomModel != null && mLoadedRoomModel.getPickedUpHearts().size() == 0) {
+                    if (mLoadedRoomModelData != null && mLoadedRoomModelData.getPickedUpHearts().size() == 0) {
                         HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), world, getMapObjectCoords(mapObject)));
                         heartActor.setName(HeartModel.HEART);
                         addActor(heartActor);
@@ -378,7 +378,7 @@ public class MapParser extends Stage {
                 else if (mapLayer.getName().equalsIgnoreCase(LifeModel.LIFE)) {
                     // do not load a life if it was picked up already
                     // only supporting one life per room atm
-                    if (mLoadedRoomModel != null && mLoadedRoomModel.getPickedUpLives().size() == 0) {
+                    if (mLoadedRoomModelData != null && mLoadedRoomModelData.getPickedUpLives().size() == 0) {
                         LifeActor lifeActor = new LifeActor(ObjectUtils.createLife(new LifeModel(), world, getMapObjectCoords(mapObject)));
                         lifeActor.setName(LifeModel.LIFE);
                         addActor(lifeActor);
@@ -388,7 +388,7 @@ public class MapParser extends Stage {
                 else if (mapLayer.getName().equalsIgnoreCase(BasePlayerItemModel.PLAYER_ITEM)) {
                     String itemType = (String) mapObject.getProperties().get(ITEM_TYPE);
                     GLog.d("MapParser", itemType);
-                    if (!loopThruPickedUpItemsArray(mLoadedRoomModel.getPickedUpItems(), itemType)) {
+                    if (!loopThruPickedUpItemsArray(mLoadedRoomModelData.getPickedUpItems(), itemType)) {
 
                         //boomerangs
                         if (itemType.equalsIgnoreCase(BoomerangModel.BOOMERANG_WOOD)
@@ -535,7 +535,7 @@ public class MapParser extends Stage {
     }
 
     private boolean checkIfDoorLocked(String doorType) {
-        return !loopThruOpenedDoorsArray(mLoadedRoomModel.getOpenedDoors(), doorType);
+        return !loopThruOpenedDoorsArray(mLoadedRoomModelData.getOpenedDoors(), doorType);
     }
 
     public void destroyTiledMap() {
