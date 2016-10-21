@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.actor.BaseActor;
+import com.derekentringer.gizmo.component.actor.menu.TitleActor;
 import com.derekentringer.gizmo.component.actor.menu.WhiteDotActor;
 import com.derekentringer.gizmo.component.actor.object.HeartActor;
 import com.derekentringer.gizmo.component.screen.StartScreen;
 import com.derekentringer.gizmo.manager.LocalDataManager;
+import com.derekentringer.gizmo.model.menu.TitleModel;
 import com.derekentringer.gizmo.model.menu.WhiteDotModel;
 import com.derekentringer.gizmo.model.object.HeartModel;
 import com.derekentringer.gizmo.model.player.PlayerModel;
@@ -81,7 +83,15 @@ public class StartStage extends BaseStage {
             UserInput.resetKey(UserInput.JUMP_BUTTON, false);
         }
 
+        loadTitleImage();
         loadPlayerHearts();
+    }
+
+    private void loadTitleImage() {
+        TitleActor titleActor = new TitleActor(HudUtils.createTitle(new TitleModel(), mWorld, new Vector2(centerScreenX, centerScreenY + 20)));
+        titleActor.setName(TitleModel.TITLE_IMAGE);
+        addActor(titleActor);
+        mStartStageActorsArray.add(titleActor);
     }
 
     private void loadPlayerHearts() {
@@ -105,7 +115,7 @@ public class StartStage extends BaseStage {
         int heartsTotalWidth = hearts * 18;
         int heartsPositionX = screenWidth / 2 - heartsTotalWidth / 2;
         for (int i=0; i < hearts; i++) {
-            HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, new Vector2(heartsPositionX + (i * 20), centerScreenY)));
+            HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, new Vector2(heartsPositionX + (i * 20), centerScreenY - 70)));
             heartActor.setName(HeartModel.HEART);
             addActor(heartActor);
             mStartStageActorsArray.add(heartActor);

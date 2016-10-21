@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.derekentringer.gizmo.model.BaseModel;
+import com.derekentringer.gizmo.model.menu.TitleModel;
 import com.derekentringer.gizmo.model.menu.WhiteDotModel;
 
 public class HudUtils {
@@ -24,6 +25,27 @@ public class HudUtils {
         fixtureDef.shape = shape;
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData(new WhiteDotModel());
+
+        body.setUserData(userData);
+
+        shape.dispose();
+
+        return body;
+    }
+
+    public static Body createTitle(BaseModel userData, World world, Vector2 coordinates) {
+        BodyDef bodyDef = new BodyDef();
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape shape = new PolygonShape();
+
+        bodyDef.position.set(WorldUtils.ppmCalc(coordinates.x), WorldUtils.ppmCalc(coordinates.y));
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        Body body = world.createBody(bodyDef);
+
+        shape.setAsBox(WorldUtils.ppmCalc(320), WorldUtils.ppmCalc(160));
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        body.createFixture(fixtureDef).setUserData(new TitleModel());
 
         body.setUserData(userData);
 

@@ -25,6 +25,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         //Gizmo.getAssetManager().load("res/image/character/thought_bubble.png", Texture.class);
 
+        Gizmo.getAssetManager().load("res/image/start/gizmo_title.png", Texture.class);
         Gizmo.getAssetManager().load("res/image/start/heart.png", Texture.class);
         Gizmo.getAssetManager().load("res/image/start/white_dot.png", Texture.class);
 
