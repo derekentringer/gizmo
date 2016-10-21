@@ -112,7 +112,7 @@ public class StartStage extends BaseStage {
     }
 
     private void displayHearts(int hearts) {
-        int heartsTotalWidth = hearts * 18;
+        int heartsTotalWidth = hearts * 10;
         int heartsPositionX = screenWidth / 2 - heartsTotalWidth / 2;
         for (int i=0; i < hearts; i++) {
             HeartActor heartActor = new HeartActor(ObjectUtils.createHeart(new HeartModel(), mWorld, new Vector2(heartsPositionX + (i * 20), centerScreenY - 70)));
