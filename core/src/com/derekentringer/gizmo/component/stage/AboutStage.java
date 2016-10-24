@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.derekentringer.gizmo.Gizmo;
 import com.derekentringer.gizmo.component.screen.AboutScreen;
 import com.derekentringer.gizmo.settings.Constants;
@@ -14,7 +13,6 @@ public class AboutStage extends BaseStage {
 
     private AboutScreen mAboutScreen;
     private ShapeRenderer mBackground;
-    private Vector2 gameWidthHeight = new Vector2();
 
     private String mVersionNumber = Constants.VERSION;
     private String mVersion = Gizmo.getmI18NBundle().get("aboutStage_version") + " " + mVersionNumber;
@@ -31,9 +29,6 @@ public class AboutStage extends BaseStage {
         mOrthographicCamera.update();
 
         mBitmapFont.getData().setScale(0.3f, 0.3f);
-
-        gameWidthHeight.x = Constants.GAME_WIDTH;
-        gameWidthHeight.y = Constants.GAME_HEIGHT;
 
         mLayoutAbout = new GlyphLayout(mBitmapFont, mVersion);
         versionStringDisplay = mVersion;
