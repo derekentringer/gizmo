@@ -22,17 +22,19 @@ fix bug with breaking blocks
 
 add health indicators to bosses
 
-setup showAchievements from menu
-
-add controls to pause screen
+add controls screen option to pause screen
 
 add You Died screen
 
+add fade in from start screen
+
+add quick story line in at start of new game
+
 bombs need to affect doors that are cracked
 
-there is lag when too many dynamic objects are on screen - boss level - destroyable blocks - nexus player (not sure if other platforms)
+there is lag when too many dynamic objects are on screen - boss level - destroyable blocks - nexus player (not sure if other platforms) - this might not matter anymore
 
-give enemies (dynamic??) flinching/destroy animation (something diff than the player blinking)
+give enemies (dynamic??) (probably not) flinching/destroy animation (something diff than the player blinking)
 	- a custom shader
 
 

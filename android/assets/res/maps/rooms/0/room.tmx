@@ -166,7 +166,7 @@
   </properties>
   <object id="133" x="1586" y="688">
    <properties>
-    <property name="item_type" value="POTION_LIFE"/>
+    <property name="item_type" value="potion_life"/>
    </properties>
    <ellipse/>
   </object>
