@@ -51,7 +51,7 @@ public class AboutStage extends BaseStage {
 
         mSpriteBatch.enableBlending();
         mSpriteBatch.begin();
-        mBitmapFont.draw(mSpriteBatch, versionStringDisplay, centerScreenX - mLayoutAbout.width / 2, centerScreenY);
+            mBitmapFont.draw(mSpriteBatch, versionStringDisplay, centerScreenX - mLayoutAbout.width / 2, centerScreenY);
         mSpriteBatch.end();
     }
 

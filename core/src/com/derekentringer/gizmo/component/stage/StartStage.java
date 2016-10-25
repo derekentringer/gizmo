@@ -270,9 +270,9 @@ public class StartStage extends BaseStage {
                 if (mStartStageActorsArray.contains(mWhiteDotStart)) {
 
                     //TODO show cutscreen/stage
-                    //mStartScreen.startCutScreen();
-                    mStartScreen.startGame();
-                    
+                    mStartScreen.startCutScreen();
+                    //mStartScreen.startGame();
+
                 }
                 else if (mStartStageActorsArray.contains(mWhiteDotAbout)) {
                     mStartScreen.viewAbout();

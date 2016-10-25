@@ -17,19 +17,14 @@ public class CutScreen extends BaseScreen {
         mCutStage = new CutStage(this);
     }
 
-    private void onCutSceneComplete() {
+    public void onContinueToGame() {
         mGizmo.setScreen(new GameScreen());
-    }
-
-    @Override
-    public void show() {
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.renderScreen(mViewPort);
 
-        //update the CutStage
         mCutStage.act(delta);
         mCutStage.draw();
     }
