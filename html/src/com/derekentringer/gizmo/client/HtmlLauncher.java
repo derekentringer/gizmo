@@ -14,7 +14,7 @@ public class HtmlLauncher extends GwtApplication {
 
     @Override
     public ApplicationListener createApplicationListener() {
-        return new Gizmo();
+        return new Gizmo(null);
     }
 
 }
